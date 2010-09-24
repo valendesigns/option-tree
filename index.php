@@ -3,7 +3,7 @@
 Plugin Name: OptionTree
 Plugin URI: http://optiontree.themeforest.net
 Description: An Insanely Customizable WordPress Theme Options Framework Built for ThemeForest.net
-Version: 1.0.4
+Version: 1.0.0
 Author: Derek Herman
 Author URI: http://valendesigns.com
 */
@@ -16,7 +16,7 @@ Author URI: http://valendesigns.com
 global $ver, $table_name, $option_array, $table_prefix;
 
 // Set Version
-$ver = '1.0.4';
+$ver = '1.0.0';
 
 // Define Table Name
 $table_name = $table_prefix . 'option_tree'; 
@@ -191,6 +191,12 @@ function option_tree_init() {
   
 }
 
+function get_option_ID( $page = '' ) 
+{
+  global $wpdb;
+  return $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = '".$page."' AND post_type = 'page'");
+}
+
 /**
  * 
  * Add Menu Items & Test Actions
@@ -206,7 +212,26 @@ function option_tree_admin() {
 	if($_GET['action'] == 'export'){
     option_tree_export_data();
   }
-  
+  	// Page == option_tree
+  if ($_GET['page'] == 'option_tree') 
+  {  
+    // look for custom page
+    $the_ID = get_option_ID('option-tree');
+    
+    // no page create it
+    if ( ! $the_ID ) 
+    {
+      // Create post object
+      $_p = array();
+      $_p['post_title'] = 'Option-Tree';
+      $_p['post_status'] = 'private';
+      $_p['post_type'] = 'page';
+      
+      // Insert the post into the database
+      $the_ID = wp_insert_post( $_p );
+    }
+  }
+
   // Grab Fresh Option Array
   $test_options = $wpdb->get_results("SELECT * FROM {$table_name}");
   
@@ -220,7 +245,6 @@ function option_tree_admin() {
   
   // Load options array
 	$settings = get_option('option_tree');
-	
 	
 	// Page == option_tree_setup
   if ($_GET['page'] == 'option_tree_setup') 
@@ -335,6 +359,22 @@ function option_tree_admin() {
 	// Page == option_tree
   if ($_GET['page'] == 'option_tree') {
     
+    // look for custom page
+    $the_ID = get_option_ID('option-tree-media');
+    
+    // no page create it
+    if ( ! $the_ID ) 
+    {
+      // Create post object
+      $_p = array();
+      $_p['post_title'] = 'Option-Tree-Media';
+      $_p['post_status'] = 'private';
+      $_p['post_type'] = 'page';
+      
+      // Insert the post into the database
+      $the_ID = wp_insert_post( $_p );
+    }
+  
     // If Save
     if ('save' == $_REQUEST['action'] && 'Reset Options' != $_REQUEST['reset']) {
       

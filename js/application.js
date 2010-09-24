@@ -137,11 +137,14 @@
   uploadOption = {
     init: function () {
       var formfield,
+          formID,
           btnContent = true;
       // On Click
       $('.upload_button').live("click", function () {
         formfield = $(this).prev('input').attr('name');
-        tb_show('', 'media-upload.php?type=image&amp;TB_iframe=true');
+        formID = $(this).attr('rel');
+        alert(formID);
+        tb_show('', 'media-upload.php?post_id='+formID+'&type=image&amp;TB_iframe=true');
         return false;
       });
             
@@ -156,9 +159,8 @@
           if (itemurl.match(image)) {
             btnContent = '<img src="'+itemurl+'" alt="" /><a href="" class="remove">Remove Image</a>';
           } else {
-            btnContent = '<div class="no_image">'+html+'<a href="" class="remove">Remove Image</a></div>';
+            btnContent = '<div class="no_image">'+html+'<a href="" class="remove">Remove</a></div>';
           }
-        
           $('#' + formfield).val(itemurl);
           $('#' + formfield).next().next('div').slideDown().html(btnContent);
           tb_remove();
