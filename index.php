@@ -1,8 +1,8 @@
 <?php
 /*
 Plugin Name: OptionTree
-Plugin URI: http://optiontree.themeforest.net
-Description: An Insanely Customizable WordPress Theme Options Framework Built for ThemeForest.net
+Plugin URI: http://wordpress.envato.com
+Description: Customizable WordPress Theme Options Framework
 Version: 1.0.0
 Author: Derek Herman
 Author URI: http://valendesigns.com
@@ -474,9 +474,10 @@ function option_tree_admin() {
  * Load Scripts & Styles
  *
  */
-function option_tree_load() {
+function option_tree_load() 
+{
   global $ver;
-  
+
   // Enqueue Styles
   wp_enqueue_style('option-tree-style', THIS_PLUGIN_URL.'/css/style.css', false, $ver, 'screen');
   if (get_user_option('admin_color') == 'classic') {
@@ -486,12 +487,12 @@ function option_tree_load() {
   // Enqueue Scripts
   add_thickbox();
   wp_enqueue_script('jquery-table-dnd', THIS_PLUGIN_URL.'/js/jquery.table.dnd.js', array('jquery'), $ver);
-  wp_enqueue_script('option-tree-application', THIS_PLUGIN_URL.'/js/application.js', array('jquery','media-upload','thickbox', 'jquery-ui-core', 'jquery-ui-tabs', 'jquery-table-dnd'), $ver);
+  wp_enqueue_script('jquery-color-picker', THIS_PLUGIN_URL.'/js/jquery.color.picker.js', array('jquery'), $ver);
+  wp_enqueue_script('jquery-option-tree', THIS_PLUGIN_URL.'/js/jquery.option.tree.js', array('jquery','media-upload','thickbox', 'jquery-ui-core', 'jquery-ui-tabs', 'jquery-table-dnd', 'jquery-color-picker'), $ver);
   
   // Remove GD Star Rating conflicts
   wp_deregister_style('gdsr-jquery-ui-core');
   wp_deregister_style('gdsr-jquery-ui-theme');
-
 }
 
 /**
