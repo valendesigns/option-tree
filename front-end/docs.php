@@ -38,6 +38,40 @@
             <li><code>$array</code> boolean (true/false) value. Default is false and the only option you would use this with is group of multiple checkboxes.</li>
             <li><code>$array_id</code> is numeric. Defaults to 0 and is only used if $array is true. This tells the function which array key you are after (remember an array starts at 0). Also, if you set to -1 and set $echo to false you can then set a variable to the value of the array and loop through it on your own.</li>
           </ul>
+          
+          <h3>Examples</h3>
+          <ul class="doc_list">
+            <li>Echo <code>test_option</code>, a single value colorpicker.</li>
+            <pre><code>get_option_tree( 'test_option', false, true );</code></pre>
+          </ul>
+          
+          <ul class="doc_list">
+            <li>Return <code>test_option</code>, a single value colorpicker.</li>
+            <pre><code>get_option_tree( 'test_option' );</code></pre>
+          </ul>
+          
+          <ul class="doc_list">
+            <li>Echo <code>test_option</code>, a multiple value checkbox. Grab the 3rd item in the array.</li>
+            <pre><code>get_option_tree( 'test_option', false, true, true, 2 );</code></pre>
+          </ul>
+          
+          <ul class="doc_list">
+            <li>Echo <code>test_option</code>, multiple checkbox values. Grab all items in the array and loop through it.</li>
+            <pre><code>// Query DB
+$option_tree = get_option('option_tree');
+
+// Set Array
+$test_option_array = get_option_tree('test_option', $option_tree, false, true, -1);
+
+// Loop
+if ( is_array( $test_option_array ) ) 
+{
+&nbsp;&nbsp;foreach( $test_option_array as $option ) 
+&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;echo $option;
+&nbsp;&nbsp;}
+}</code></pre>
+          </ul>
 
         </div>
         

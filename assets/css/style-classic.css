@@ -33,6 +33,16 @@ tbody tr.inline-edit-option td {
 #framework_wrap #content tbody tr.inline-edit-option td h3 {
   border-bottom-color: #dae1e8;
 }
+#framework_wrap code {
+  background-color: #eaf3fa;
+}
+#framework_wrap pre {
+	background: #aaa;
+	border-bottom: 1px solid #aaa;
+}
+#framework_wrap pre code {
+	background-image: url(../images/pre_classic_bg.gif);
+}
 .ui-tabs { 
   background-image: url(../images/tabs_bg_classic.png);
 }

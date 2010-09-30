@@ -619,12 +619,33 @@ a {
 }
 #framework_wrap ul.doc_list {
   font-size: 11px !important;
+  padding-bottom: 20px;
 }
   #framework_wrap .doc_list li {
     padding-bottom: 5px;
     list-style: disc;
     margin-left: 16px;
   }
+#framework_wrap code {
+  background-color: #f1f1f1;
+}
+#framework_wrap pre {
+  font-size: 13px;
+	padding: 0;
+	margin: 0;
+	line-height: 18px;
+	overflow: auto;
+	overflow-Y: hidden;
+	padding-top: 18px;
+	background: #aaa;
+	border-bottom: 1px solid #aaa;
+	margin-bottom: 20px;
+}
+#framework_wrap pre code {
+	padding: 0 0 18px 20px;
+	display: block;
+	background: url(../images/pre_bg.gif) repeat left top; /*--Background of lined paper--*/
+}
 /* Tabs */
 .options_tabs {
   display: none;
