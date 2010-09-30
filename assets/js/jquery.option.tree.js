@@ -31,11 +31,11 @@
  *
  */
 (function ($) {
-  $.fn.centerAjax = function(html){
+  $.fn.ajaxMessage = function(html){
     if (html) {
-      return $(this).animate({"top":( $(window).height() - $(this).height() ) / 2  - 200 + $(window).scrollTop() + "px"},100).fadeIn('fast').html(html).delay(2000, function(){$('.ajax-message').fadeOut()});
+      return $(this).animate({"top":( $(window).height() - $(this).height() ) / 2  - 200 + $(window).scrollTop() + "px"},100).fadeIn('fast').html(html).delay(3000, function(){$('.ajax-message').fadeOut()});
     } else {
-      return $(this).animate({"top":( $(window).height() - $(this).height() ) / 2 - 200 + $(window).scrollTop() + "px"},100).fadeIn('fast').delay(2000, function(){$('.ajax-message').fadeOut()});
+      return $(this).animate({"top":( $(window).height() - $(this).height() ) / 2 - 200 + $(window).scrollTop() + "px"},100).fadeIn('fast').delay(3000, function(){$('.ajax-message').fadeOut()});
     }
   };
 })(jQuery);
@@ -143,8 +143,7 @@
       $('.upload_button').live("click", function () {
         formfield = $(this).prev('input').attr('name');
         formID = $(this).attr('rel');
-        alert(formID);
-        tb_show('', 'media-upload.php?post_id='+formID+'&type=image&amp;TB_iframe=true');
+        tb_show('', 'media-upload.php?post_id='+formID+'&type=image&amp;TB_iframe=1');
         return false;
       });
             
@@ -188,6 +187,23 @@
     init: function () {
       var c = this,
           d = $("tr.inline-edit-option");
+      $('.save-options', '#the-theme-options').live("click", function () {
+        inlineEditOption.save_options(this);
+        return false;
+      });
+      $('.reset', '#the-theme-options').live("click", function () {
+        var agree = confirm("Are you absolutely sure you wish to delete all of your saved Theme Option?");
+        if (agree) {
+          inlineEditOption.reset_options(this);
+          return false;
+        } else {
+          return false;
+        }
+      });
+      $('.import-data', '#import-data').live("click", function () {
+        inlineEditOption.import_data(this);
+        return false;
+      });
       $("a.edit-inline").live("click", function (event) {
         if ($("a.edit-inline").hasClass('disable')) {
           event.preventDefault();
@@ -222,7 +238,7 @@
         } else {
           $.post( 
             ajaxurl,  
-            {action:'option_tree_next_id'},
+            { action:'option_tree_next_id', _ajax_nonce: $("#_ajax_nonce").val() },
             function (response) {
               c = parseInt(response) + 1;
               inlineEditOption.add(c);
@@ -236,7 +252,8 @@
         onDrop: function(table, row) {
           d = {
             action: "option_tree_sort",
-            id: $.tableDnD.serialize()
+            id: $.tableDnD.serialize(),
+            _ajax_nonce: $("#_ajax_nonce").val()
           };
           $.post(ajaxurl, d, function (response) {
         
@@ -250,18 +267,23 @@
         }
         return false;
       });
-      $('.delete-inline').live("click", function () {
-        var agree = confirm("Are you sure you want to delete this option?");
-        if (agree) {
-          inlineEditOption.remove(this);
+      $('.delete-inline').live("click", function (event) {
+        if ($("a.delete-inline").hasClass('disable')) {
+          event.preventDefault();
           return false;
         } else {
-          return false;
+          var agree = confirm("Are you sure you want to delete this option?");
+          if (agree) {
+            inlineEditOption.remove(this);
+            return false;
+          } else {
+            return false;
+          }
         }
       });
       // Fade out message div
       if ($('.ajax-message').hasClass('show')) {
-        $('.ajax-message').centerAjax();
+        $('.ajax-message').ajaxMessage();
       }
       // Remove Uploaded Image
       $('.remove').live('click', function(event) { 
@@ -272,6 +294,60 @@
       // Hide the delete button on the first row 
       $('a.delete-inline', "#option-1").hide();
     },
+    save_options: function (e) {
+      var d = {
+        action: "option_tree_array_save"
+      };
+      b = $(':input', '#the-theme-options').serialize();
+      d = b + "&" + $.param(d);
+      $.post(ajaxurl, d, function (r) {
+        if (r != -1) {
+          $('.ajax-message').ajaxMessage('<div class="message"><span>&nbsp;</span>Theme Options were saved</div>');
+        } else {
+          $('.ajax-message').ajaxMessage('<div class="message warning"><span>&nbsp;</span>Theme Options could not be saved</div>');
+        }
+      });
+      return false;
+    },
+    reset_options: function () {
+      var d = {
+        action: "option_tree_array_reset",
+        _ajax_nonce: $("#_ajax_nonce").val()
+      };
+      $.post(ajaxurl, d, function (r) {
+        if (r != -1) {
+          $('.screenshot').hide();
+          $(':input','#the-theme-options')
+          .not(':button, :submit, :reset, :hidden')
+          .val('')
+          .removeAttr('checked')
+          .removeAttr('selected');
+          $('.select').each(function () {
+            $(this).prev('span').text('-- Choose One --') 
+          });
+          $('.ajax-message').ajaxMessage('<div class="message"><span>&nbsp;</span>Theme Options were deleted</div>');
+        } else {
+          $('.ajax-message').ajaxMessage('<div class="message warning"><span>&nbsp;</span>Theme Options could not be deleted</div>');
+        }
+      });
+      return false;
+    },
+    import_data: function (e) {
+      var d = {
+        action: "option_tree_import_data"
+      };
+      b = $(':input', '#import-data').serialize();
+      d = b + "&" + $.param(d);
+      $.post(ajaxurl, d, function (r) {
+        if (r != -1) {
+          $("textarea", "#import_options").val('');
+          $('.ajax-message').ajaxMessage('<div class="message"><span>&nbsp;</span>Your Theme Options data was successfully imported.</div>');
+        } else {
+          $('.ajax-message').ajaxMessage('<div class="message warning"><span>&nbsp;</span>Your Theme Options data could not be imported.</div>');
+        }
+      });
+      return false;
+    },
     remove: function (b) {
       var c = true;
       
@@ -281,26 +357,26 @@
       
       d = {
         action: "option_tree_delete",
-        id: c
+        id: c,
+        _ajax_nonce: $("#_ajax_nonce").val()
       };
       $.post(ajaxurl, d, function (r) {
         if (r) {
           if (r == 'removed') {
             $("#option-" + c).remove();
-            $('.ajax-message').centerAjax('<div class="message">Option Deleted.</div>');
+            $('.ajax-message').ajaxMessage('<div class="message"><span>&nbsp;</span>Option Deleted.</div>');
           } else {
-            $('.ajax-message').centerAjax('<div class="message warning">'+r+'</div>');
+            $('.ajax-message').ajaxMessage('<div class="message warning"><span>&nbsp;</span>'+r+'</div>');
           }
         } else {
-          $('.ajax-message').centerAjax('<div class="message warning">'+r+'</div>');
+          $('.ajax-message').ajaxMessage('<div class="message warning"><span>&nbsp;</span>'+r+'</div>');
         }
       });
       return false;
-      
     },
     add: function (c) {
       var e = this, 
-          addRow, editRow = true;
+          addRow, editRow = true, temp_select;
       e.revert();
       
       // Clone the blank main row
@@ -313,6 +389,7 @@
       $('a.cancel', editRow).addClass('undo-add');
       $('a.save', editRow).addClass('add-save');
       $('a.edit-inline').addClass('disable');
+      $('a.delete-inline').addClass('disable');
       $('a.add-option').addClass('disable');
       
       // Set Colspan to 4
@@ -332,28 +409,46 @@
       $('.item_title', '#edit-'+c).focus();
       
       $('.select').each(function () {
-        if ($(this).prev('span').text() == 'heading') {
+        temp_select = $(this).prev('span').text();
+        if (temp_select == 'Heading') {
           $('.option-desc', '#edit-'+c).hide();
-          $('.option-std', '#edit-'+c).hide();
           $('.option-options', '#edit-'+c).hide();
         } 
       });
       
       $('.select').live('change', function () {
-        if ($(this).prev('span').text() == 'heading') {
+        temp_select = $(this).prev('span').text();
+        if (temp_select == 'Heading') {
           $('.option-desc', '#edit-'+c).hide();
-          $('.option-std', '#edit-'+c).hide();
           $('.option-options', '#edit-'+c).hide();
-        } else if ($(this).prev('span').text() == 'textblock') {
+        } else if ( 
+            temp_select == 'Checkbox' || 
+            temp_select == 'Radio' || 
+            temp_select == 'Select'
+          ) {
+          $('.alternative').hide();
+          $('.regular').show();
           $('.option-desc', '#edit-'+c).show();
-          $('.option-std', '#edit-'+c).hide();
-          $('.option-options', '#edit-'+c).hide();
-        } else {
-          $('.option-desc', '#edit-'+c).show();
-          $('.option-std', '#edit-'+c).show();
           $('.option-options', '#edit-'+c).show();
+        } else {
+          if (temp_select == 'Textarea') {
+            $('.regular').hide();
+            $('.alternative').show().html('<strong>Row Count:</strong> Enter a numeric value for the number of rows in your textarea.');
+            $('.option-desc', '#edit-'+c).show();
+            $('.option-options', '#edit-'+c).show();
+          } else if (
+              temp_select == 'Custom Post' ||
+              temp_select == 'Custom Posts'
+            ) {
+            $('.regular').hide();
+            $('.alternative').show().html('<strong>Post Type:</strong> Enter your custom post_type.');
+            $('.option-desc', '#edit-'+c).show();
+            $('.option-options', '#edit-'+c).show();
+          } else {
+            $('.option-desc', '#edit-'+c).show();
+            $('.option-options', '#edit-'+c).hide();
+          }
         }
-        
       });
       
       // Scroll
@@ -369,6 +464,7 @@
       c = c.substr(c.lastIndexOf("-") + 1);
 
       $("a.edit-inline").removeClass('disable');
+      $("a.delete-inline").removeClass('disable');
       $("a.add-option").removeClass('disable');
       $("#option-" + c).remove();
       
@@ -391,7 +487,6 @@
         item_title: $("input.item_title", f).val(),
         item_desc: $("textarea.item_desc", f).val(),
         item_type: $("select.item_type", f).val(),
-        item_std: $("input.item_std", f).val(),
         item_options: $("input.item_options", f).val()
       };
       b = $("#edit-" + e + " :input").serialize();
@@ -402,7 +497,7 @@
             inlineEditOption.afterSave(e);
             $("#edit-" + e).remove();
             $("#option-" + e).show();
-            $('.ajax-message').centerAjax('<div class="message">Option Added.</div>');
+            $('.ajax-message').ajaxMessage('<div class="message"><span>&nbsp;</span>Option Added.</div>');
             $('#framework-settings').tableDnD({
               onDragClass: "dragging",
               onDrop: function(table, row) {
@@ -416,17 +511,17 @@
               }
             });
           } else {
-            $('.ajax-message').centerAjax('<div class="message warning">'+r+'</div>');
+            $('.ajax-message').ajaxMessage('<div class="message warning"><span>&nbsp;</span>'+r+'</div>');
           }
         } else {
-          $('.ajax-message').centerAjax('<div class="message warning">'+r+'</div>');
+          $('.ajax-message').ajaxMessage('<div class="message warning"><span>&nbsp;</span>'+r+'</div>');
         }
       });
       return false;
     },
     edit: function (b) {
       var e = this, 
-          c, editRow, rowData, item_title, item_id, item_type, item_desc, item_std, item_options = true;
+          c, editRow, rowData, item_title, item_id, item_type, item_desc, item_options = true, temp_select;
       e.revert();
     
       c = $(b).parents("tr:first").attr('id');
@@ -458,45 +553,83 @@
       // Item Type
   		item_type = $('.item_type', rowData).text();
   		$('select[name=item_type] option[value='+item_type+']', editRow).attr('selected', true);
-  		$('.select_wrapper span', editRow).text(item_type);
+  		var temp_item_type = $('select[name=item_type] option[value='+item_type+']', editRow).text();
+  		$('.select_wrapper span', editRow).text(temp_item_type);
   		
   		// Item Description
       item_desc = $('.item_desc', rowData).text();
       $('.item_desc', editRow).attr('value', item_desc);
       
-      // Item Default
-      item_std = $('.item_std', rowData).text();
-      $('.item_std', editRow).attr('value', item_std);
-      
       // Item Options
       item_options = $('.item_options', rowData).text();
       $('.item_options', editRow).attr('value', item_options);
       
+      
       $('.select', editRow).each(function () {
-        if ($(this).prev('span').text() == 'heading') {
+        temp_select = $(this).prev('span').text();
+        if (temp_select == 'Heading') {
           $('.option-desc', editRow).hide();
-          $('.option-std', editRow).hide();
           $('.option-options', editRow).hide();
-        } else if ($(this).prev('span').text() == 'textblock') {
+        } else if ( 
+            temp_select == 'Checkbox' || 
+            temp_select == 'Radio' || 
+            temp_select == 'Select'
+          ) {
           $('.option-desc', editRow).show();
-          $('.option-std', editRow).hide();
-          $('.option-options', editRow).hide();
+          $('.option-options', editRow).show();
+        } else {
+          if (temp_select == 'Textarea') {
+            $('.regular').hide();
+            $('.alternative').show().html('<strong>Row Count:</strong> Enter a numeric value for the number of rows in your textarea.');
+            $('.option-desc', editRow).show();
+            $('.option-options', editRow).show();
+          } else if (
+              temp_select == 'Custom Post' ||
+              temp_select == 'Custom Posts'
+            ) {
+            $('.regular').hide();
+            $('.alternative').show().html('<strong>Post Type:</strong> Enter your custom post_type.');
+            $('.option-desc', editRow).show();
+            $('.option-options', editRow).show();
+          } else {
+            $('.option-desc', editRow).show();
+            $('.option-options', editRow).hide();
+          }
         }
       });
       
       $('.select').live('change', function () {
-        if ($(this).prev('span').text() == 'heading') {
+        temp_select = $(this).prev('span').text();
+        if (temp_select == 'Heading') {
           $('.option-desc', editRow).hide();
-          $('.option-std', editRow).hide();
           $('.option-options', editRow).hide();
-        } else if ($(this).prev('span').text() == 'textblock') {
+        } else if ( 
+            temp_select == 'Checkbox' || 
+            temp_select == 'Radio' || 
+            temp_select == 'Select'
+          ) {
+          $('.alternative').hide();
+          $('.regular').show();
           $('.option-desc', editRow).show();
-          $('.option-std', editRow).hide();
-          $('.option-options', editRow).hide();
-        } else {
-          $('.option-desc', editRow).show();
-          $('.option-std', editRow).show();
           $('.option-options', editRow).show();
+        } else {
+          if (temp_select == 'Textarea') {
+            $('.regular').hide();
+            $('.alternative').show().html('<strong>Row Count:</strong> Enter a numeric value for the number of rows in your textarea.');
+            $('.option-desc', editRow).show();
+            $('.option-options', editRow).show();
+          } else if (
+              temp_select == 'Custom Post' ||
+              temp_select == 'Custom Posts'
+            ) {
+            $('.regular').hide();
+            $('.alternative').show().html('<strong>Post Type:</strong> Enter your custom post_type.');
+            $('.option-desc', editRow).show();
+            $('.option-options', editRow).show();
+          } else {
+            $('.option-desc', editRow).show();
+            $('.option-options', editRow).hide();
+          }
         }
       });
   		
@@ -530,7 +663,6 @@
         item_title: $("input.item_title", f).val(),
         item_desc: $("textarea.item_desc", f).val(),
         item_type: $("select.item_type", f).val(),
-        item_std: $("input.item_std", f).val(),
         item_options: $("input.item_options", f).val()
       };
       b = $("#edit-" + e + " :input").serialize();
@@ -541,12 +673,12 @@
             inlineEditOption.afterSave(e);
             $("#edit-" + e).remove();
             $("#option-" + e).show();
-            $('.ajax-message').centerAjax('<div class="message">Option Saved.</div>');
+            $('.ajax-message').ajaxMessage('<div class="message"><span>&nbsp;</span>Option Saved.</div>');
           } else {
-            $('.ajax-message').centerAjax('<div class="message warning">'+r+'</div>');
+            $('.ajax-message').ajaxMessage('<div class="message warning"><span>&nbsp;</span>'+r+'</div>');
           }
         } else {
-          $('.ajax-message').centerAjax('<div class="message warning">'+r+'</div>');
+          $('.ajax-message').ajaxMessage('<div class="message warning"><span>&nbsp;</span>'+r+'</div>');
         }
       });
       return false;
@@ -562,6 +694,7 @@
       $('a.save', x).removeClass('add-save');
       $("a.add-option").removeClass('disable');
       $('a.edit-inline').removeClass('disable');
+      $('a.delete-inline').removeClass('disable');
       if (n = $("input.item_title", x).val()) {
         if ($("select.item_type", x).val() != 'heading') {
           $(y).removeClass('col-heading');
@@ -586,15 +719,12 @@
         $(".col-key", y).text(m);
         $(".item_id", z).text(m);
       }
-      if (o = $("select.item_type option:selected", x).text()) {
+      if (o = $("select.item_type option:selected", x).val()) {
         $(".col-type", y).text(o);
         $(".item_type", z).text(o);
       }
       if (p = $("textarea.item_desc", x).val()) {
         $(".item_desc", z).text(p);
-      }
-      if (q = $("input.item_std", x).val()) {
-        $(".item_std", z).text(q);
       }
       if (r = $("input.item_options", x).val()) {
         $(".item_options", z).text(r);

@@ -1,8 +1,12 @@
 /* Option Tree */
+#wpwrap {
+  min-width: 990px;
+}
 .clear {
   clear: both;
 }
-.hide {
+.hide,
+#contextual-help-link-wrap {
   display: none;
 }
 .left {
@@ -14,6 +18,9 @@
 p {
   padding-bottom: 14px;
 }
+a {
+  text-decoration: none;
+}
 #framework_wrap #header .error {
   display: none !important;
 }
@@ -23,7 +30,6 @@ p {
   margin: 15px;
 }
 #framework_wrap #header {
-  behavior: url(../wp-content/plugins/option-tree/css/border-radius.htc);
   -webkit-border-top-left-radius: 8px;
   -webkit-border-top-right-radius: 8px;
   -moz-border-radius-topleft: 8px;
@@ -46,7 +52,7 @@ p {
   #framework_wrap #header span.icon {
     position: absolute;
     display: block;
-    right: 21px;
+    right: 20px;
     top: 18px;
     height: 32px;
     width: 32px;
@@ -89,13 +95,11 @@ p {
       width: 21px;
       float: left;
       text-indent: -9999px;
-      margin: 5px 5px 0 20px;
+      margin: 5px 5px 0 19px;
       border: 1px solid #bbb;
-      behavior: url(../wp-content/plugins/option-tree/css/border-radius.htc);
       -webkit-border-radius: 4px;
       -moz-border-radius: 4px;
       border-radius: 4px;
-      margin-right: 20px;
     }
     .no-tabs a.toggle_tabs {
       display: none;
@@ -136,29 +140,37 @@ p {
     position: absolute;
     left: 300px;
     top: 100px;
-    width: 175px;
+    width: 200px;
     z-index: 100;
     display: none;
+    overflow: visible;
   }
   #framework_wrap #content_wrap .message {
     text-align: center;
-    color: #fff;
-    text-shadow: 0 1px 0 #000;
+    color: #444;
+    text-shadow: 0 1px 0 #fff;
     font-size: 12px;
-    line-height: 14px;
-    padding: 20px 25px 20px 30px;
-    background: #000;
-    background: rgba(0,0,0, 0.5);
-    background-image: url(../images/icon_add.png);
-    background-position: 8px 20px;
-    background-repeat: no-repeat;
-    border: 1px solid transparent;
-    behavior: url(../wp-content/plugins/option-tree/css/border-radius.htc);
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
+    line-height: 16px;
+    padding: 20px 10px;
+    background: #f3f3f3;
+    border: 1px solid #bbb;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -moz-box-shadow: 0px 2px 5px #eee;
+    -webkit-box-shadow: 0px 2px 5px #eee;
+    box-shadow: 0px 2px 5px #eee;
   }
-  #framework_wrap #content_wrap .message.warning {
+  #framework_wrap #content_wrap .message span {
+    display: block;
+    height: 16px;
+    width: 16px;
+    position: absolute;
+    left: -8px;
+    top: -8px;
+    background: url(../images/icon_add.png) no-repeat 0 0;
+  }
+  #framework_wrap #content_wrap .message.warning span {
     background-image: url(../images/icon_error.png);
   }
   /* Primary Form Button */
@@ -183,7 +195,6 @@ p {
     background: #f3f3f3 url(../images/btn.png) repeat-x 0 0;
     border: 1px solid #bbb;
     padding: 3px 10px 3px 10px;
-    behavior: url(../wp-content/plugins/option-tree/css/border-radius.htc);
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
@@ -220,7 +231,6 @@ p {
       	border: 1px solid #ccc;
       	background: #fafafa;
         border-color: #ccc #eee #eee #ccc;
-        behavior: url(../wp-content/plugins/option-tree/css/border-radius.htc);
         -webkit-border-radius: 4px;
         -moz-border-radius: 4px;
         border-radius: 4px;
@@ -287,7 +297,6 @@ p {
         border-width: 1px;
         font-size: 11px !important;
         text-shadow: 0 1px 0 #fff;
-        behavior: url(../wp-content/plugins/option-tree/css/border-radius.htc);
         -webkit-border-radius: 4px;
         -moz-border-radius: 4px;
         border-radius: 4px;
@@ -423,6 +432,7 @@ p {
         }
         #framework_wrap #content .inline-edit-option .option .section .description {
           width: 325px;
+          padding-top: 0px;
         }
         #framework_wrap #content .option-checkbox .section .description {
           width: 540px;
@@ -433,7 +443,7 @@ p {
         .input_wrap {
           padding: 4px 10px 12px 0;
           float: left;
-          width: 105px;
+          width: 160px;
         }
           .input_wrap input[type="checkbox"],
           .input_wrap input[type="radio"] {
@@ -488,7 +498,6 @@ p {
           border: 1px solid #ccc;
           border-color: #ccc #eee #eee #ccc;
           background: #fafafa;
-          behavior: url(../wp-content/plugins/option-tree/css/border-radius.htc);
           -webkit-border-radius: 4px;
           -moz-border-radius: 4px;
           border-radius: 4px;
@@ -555,7 +564,6 @@ p {
           padding-top: 15px;
       	}
       	#framework_wrap #content .select_wrapper {
-          behavior: url(../wp-content/plugins/option-tree/css/border-radius.htc);
           -moz-border-radius: 4px;
           -webkit-border-radius: 4px;
           border-radius: 4px;
@@ -601,29 +609,21 @@ p {
             z-index: 2;
             padding-left: 6px;
           }
-h2.theme_header {
-  margin: 0 20px;
+/* Docs */
+#framework_wrap #options_tabs.docs {
+  font-size: 11px !important;
+  color: #555;
 }
-.themes {
-  overflow: hidden;
+#framework_wrap code {
+  font-size: 10px;
 }
-.themes li {
-  display: block;
-  float: left;
-  margin: 10px 20px 10px 0px;
+#framework_wrap ul.doc_list {
+  font-size: 11px !important;
 }
-.themes li a {
-  width: 80px;
-  float: left;
-  border: 1px solid #eee;
-  padding: 8px;
-  font-size: 12px;
-}
-  .themes li span {
-    display: none;
-  }
-  .themes li a img {
-    display: block;
+  #framework_wrap .doc_list li {
+    padding-bottom: 5px;
+    list-style: disc;
+    margin-left: 16px;
   }
 /* Tabs */
 .options_tabs {
@@ -640,7 +640,7 @@ h2.theme_header {
   width: 225px !important;
 }
 .ui-tabs-panel .inline-edit-option .description {
-  width: 180px !important;
+  width: 200px !important;
 }
 .ui-tabs-panel h2 {
   display: none;
@@ -720,10 +720,10 @@ h2.theme_header {
 	display: none;
 	border: 1px solid #ccc;
   border-color: #ddd #bbb #bbb #ddd;
-	behavior: url(../wp-content/plugins/option-tree/css/border-radius.htc);
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
 	border-radius: 4px;
+	z-index: 100;
 }
 .colorpicker_color {
 	width: 150px;
