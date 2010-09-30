@@ -6,7 +6,7 @@ Requires at least: 3.0
 Tested up to: 3.0.1
 Stable tag: 1.0.0
 
-Customizable WordPress Theme Options Framework.
+BETA VERSION - Customizable WordPress Theme Options Framework.
 
 == Description ==
 
@@ -16,7 +16,7 @@ With Option Tree you can create as many Theme Options as your project requires a
 
 == Installation ==
 
-This section describes how to install the plugin and get it working.
+This section describes how to install the plugin and get it working. blah blah...
 
 e.g.
 
