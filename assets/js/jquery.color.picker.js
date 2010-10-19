@@ -200,6 +200,7 @@
 				cal.data('colorpicker').origColor = col;
 				setCurrentColor(col, cal.get(0));
 				cal.data('colorpicker').onSubmit(col, HSBToHex(col), HSBToRGB(col));
+				cal.hide();
 			},
 			show = function (ev) {
 				var cal = $('#' + $(this).data('colorpickerId'));

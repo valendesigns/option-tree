@@ -1,6 +1,9 @@
-/* Option Tree */
+/* OptionTree */
 #wpwrap {
   min-width: 990px;
+}
+strong {
+  color: #000;
 }
 .clear {
   clear: both;
@@ -20,6 +23,12 @@ p {
 }
 a {
   text-decoration: none;
+}
+a strong {
+  color: #21759B !important;
+}
+a:hover strong {
+  color: #d54e21 !important;
 }
 #framework_wrap #header .error {
   display: none !important;
@@ -63,8 +72,8 @@ a {
     text-align: left;
     position: absolute;
     left: 170px;
-    top: 33px;
-    font-size: 9px;
+    top: 32px;
+    font-size: 9px !important;
     line-height: 10px;
     color: #444;
     font-style: normal;
@@ -72,6 +81,7 @@ a {
     text-transform: uppercase;
     font-weight: normal;
     text-shadow: 0 1px 0 #888;
+    letter-spacing: -0.05em;
   }
 #framework_wrap #content_wrap {
   border: 1px solid #aaa;
@@ -444,7 +454,7 @@ a {
         .input_wrap {
           padding: 4px 10px 12px 0;
           float: left;
-          width: 160px;
+          width: 350px;
         }
           .input_wrap input[type="checkbox"],
           .input_wrap input[type="radio"] {
@@ -458,7 +468,7 @@ a {
           }
           .input_wrap label {
             float: left;
-            width: 80px;
+            width: 325px;
           }
           #framework_wrap #content label input {
             margin-right: 5px;
@@ -487,7 +497,7 @@ a {
           background: #fff;
         }
         #framework_wrap #content input[type="text"].upload {
-          width: 282px;
+          width: 281px;
           float: left;
         }
         #framework_wrap #content input[type="text"].cp_input {
@@ -627,12 +637,14 @@ a {
   padding-bottom: 20px;
 }
   #framework_wrap .doc_list li {
-    padding-bottom: 5px;
+    padding-bottom: 0px;
+    line-height: 12px;
     list-style: disc;
     margin-left: 16px;
   }
 #framework_wrap code {
   background-color: #f1f1f1;
+  color: #000;
 }
 #framework_wrap pre {
   font-size: 13px;
@@ -642,12 +654,15 @@ a {
 	overflow: auto;
 	overflow-Y: hidden;
 	padding-top: 18px;
-	background: #aaa;
-	border-bottom: 1px solid #aaa;
+	background: #f1f1f1;
+	border-bottom: 1px solid #f1f1f1;
 	margin-bottom: 20px;
+	color: #000;
+	white-space:pre-wrap;
+  word-wrap:break-word;
 }
 #framework_wrap pre code {
-	padding: 0 0 18px 20px;
+	padding: 0 18px 18px 18px;
 	display: block;
 	background: url(../images/pre_bg.gif) repeat left top; /*--Background of lined paper--*/
 }
@@ -676,6 +691,7 @@ a {
   position: relative; 
   float: left; 
   width: 148px;
+  word-wrap: break-word;
 }
 .ui-tabs .ui-tabs-nav li { 
   position: relative; 
@@ -917,8 +933,10 @@ div.file_wrap {
   }
     div.fake_file input.upload {
       margin-right: 3px;
+      width: 279px !important;
     }
     input.file {
+      background: none;
     	position: relative;
     	text-align: right;
     	float: right;

@@ -1,3 +1,6 @@
+a strong {
+  color: #1C6280 !important;
+}
 #framework_wrap #header {
   background: #436d92 url(../images/header_classic.png) repeat-x left top;
   border: 1px solid #1d507d;
@@ -37,8 +40,8 @@ tbody tr.inline-edit-option td {
   background-color: #eaf3fa;
 }
 #framework_wrap pre {
-	background: #aaa;
-	border-bottom: 1px solid #aaa;
+	background: #eaf3fa;
+	border-bottom: 1px solid #eaf3fa;
 }
 #framework_wrap pre code {
 	background-image: url(../images/pre_classic_bg.gif);

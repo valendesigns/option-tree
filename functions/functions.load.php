@@ -3,7 +3,7 @@
  * Functions Load
  *
  * @package     WordPress
- * @subpackage  Option Tree
+ * @subpackage  OptionTree
  * @since       1.0.0
  * @author      Derek Herman
  */

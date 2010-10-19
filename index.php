@@ -1,7 +1,7 @@
 <?php
 /*
-Plugin Name: Option Tree
-Plugin URI: http://wordpress.envato.com
+Plugin Name: OptionTree
+Plugin URI: http://wp.envato.com
 Description: Customizable WordPress Theme Options Framework
 Version: 1.0.0
 Author: Derek Herman

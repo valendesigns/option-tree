@@ -29,6 +29,8 @@ function option_tree_checkbox( $value, $settings, $int )
           $ch_values = array();
         }
         
+        $count = 0;
+        
         // create options array
         $options_array = explode( ',', $value->item_options );
         
@@ -40,7 +42,8 @@ function option_tree_checkbox( $value, $settings, $int )
 	        { 
             $checked = ' checked="checked"'; 
           }
-	        echo '<div class="input_wrap"><input name="checkboxes['.$value->item_id.'][]" type="checkbox" value="'.trim( $option ).'"'.$checked.' /><label>'.trim( $option ).'</label></div>';
+	        echo '<div class="input_wrap"><input name="checkboxes['.$value->item_id.'][]" id="'.$value->item_id.'_'.$count.'" type="checkbox" value="'.trim( $option ).'"'.$checked.' /><label for="'.$value->item_id.'_'.$count.'">'.trim( $option ).'</label></div>';
+	        $count++;
      		}
         ?>
       </div>

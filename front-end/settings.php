@@ -3,7 +3,7 @@
 <div id="framework_wrap" class="wrap">
 
 	<div id="header">
-    <h1>Option Tree</h1>
+    <h1>OptionTree</h1>
     <span class="icon">&nbsp;</span>
     <div class="version">
       <?php echo OT_VERSION; ?>
@@ -37,7 +37,7 @@
             <h3>Create the Theme Options</h3>
             <p><strong style="color:red;">WARNING!</strong> If you're unsure or not completely positive that you should be editing these options, you should read the <a href="<?php echo admin_url().'admin.php?page=option_tree_docs'; ?>"><strong>Documentation</strong></a> first.</p>
             <p>You can create as many Theme Options as your project requires and use them how you see fit. When you add an option here, it will be available on the <a href="<?php echo admin_url().'admin.php?page=option_tree'; ?>"><strong>Theme Options</strong></a> page for use in your theme. To break your Theme Options into sections, add a "<strong>heading</strong>" option type and a new navigation menu item will be created.</p>
-            <p>All the Theme Options can be sorted and rearranged to your liking with <strong>Drag &amp; Drop</strong>. Don't worry in what order you create your options, you can always reorder them.</p>
+            <p>All of the Theme Options can be sorted and rearranged to your liking with <strong>Drag &amp; Drop</strong>. Don't worry about the order in which you create your options, you can always reorder them.</p>
             <table cellspacing="0">
               <thead>
                 <tr>
@@ -234,7 +234,7 @@
             <div class="option option-input">
               <h3>Theme Options XML</h3>
               <div class="section desc-text">
-                <p>Export Theme Options XML file - better directions coming.</p>
+                <p>Click the Export XML button to export your Theme Options. A dialogue box will open and ask you what you want to do with the XML file, save it somewhere you can easily find it later.</p>
                 <input type="submit" value="Export XML" class="ob_button right" />
               </div>
             </div>
@@ -246,7 +246,7 @@
                 <textarea name="export_options" rows="8"><?php echo base64_encode(serialize($settings)); ?></textarea>
               </div>
               <div class="description">
-                Export Theme Options Data - better directions coming.
+                Export your saved Theme Options data by highlighting this text and doing a copy/paste into a blank .txt file. Then save the file for importing into another install of WordPress later. Alternatively, you could just paste it into the <code>OptionTree->Settings->Import</code> on another web site.
               </div>
             </div>
           </div>

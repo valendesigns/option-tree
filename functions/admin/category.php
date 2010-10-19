@@ -85,6 +85,7 @@ function option_tree_categories( $value, $settings, $int )
 	      $categories = &get_categories( array( 'hide_empty' => false ) );
        	if ( $categories )
        	{
+       	  $count = 0;
   	      foreach ( $categories as $category ) 
   	      {
             $checked = '';
@@ -92,7 +93,8 @@ function option_tree_categories( $value, $settings, $int )
   	        { 
               $checked = ' checked="checked"'; 
             }
-  	        echo '<div class="input_wrap"><input name="checkboxes['.$value->item_id.'][]" type="checkbox" value="'.$category->term_id.'"'.$checked.' /><label>'.$category->name.'</label></div>';
+  	        echo '<div class="input_wrap"><input name="checkboxes['.$value->item_id.'][]" id="'.$value->item_id.'_'.$count.'" type="checkbox" value="'.$category->term_id.'"'.$checked.' /><label for="'.$value->item_id.'_'.$count.'">'.$category->name.'</label></div>';
+  	        $count++;
        		}
        	}
        	else

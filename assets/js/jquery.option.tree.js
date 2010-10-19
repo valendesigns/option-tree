@@ -87,6 +87,9 @@
       });
       $('.select').live('change', function () {
         $(this).prev('span').replaceWith('<span>' + $(this).find('option:selected').text() + '</span>');
+      });
+      $('.select').bind($.browser.msie ? 'click' : 'change', function(event) {
+        $(this).prev('span').replaceWith('<span>' + $(this).find('option:selected').text() + '</span>');
       }); 
     }
   };
@@ -503,10 +506,11 @@
               onDrop: function(table, row) {
                 d = {
                   action: "option_tree_sort",
-                  id: $.tableDnD.serialize()
+                  id: $.tableDnD.serialize(),
+                  _ajax_nonce: $("#_ajax_nonce").val()
                 };
                 $.post(ajaxurl, d, function (response) {
-                  
+
                 }, "html");
               }
             });

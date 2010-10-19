@@ -1,9 +1,9 @@
 <?php if (!defined('OT_VERSION')) exit('No direct script access allowed');
 /**
- * Option Tree Admin
+ * OptionTree Admin
  *
  * @package     WordPress
- * @subpackage  Option Tree
+ * @subpackage  OptionTree
  * @since       1.0.0
  * @author      Derek Herman
  */
@@ -80,8 +80,8 @@ class OT_Admin
     {
       $sql = "CREATE TABLE {$this->table_name} (
   		  id mediumint(9) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  		  item_id VARCHAR(30) NOT NULL,
-  		  item_title VARCHAR(30) NOT NULL,
+  		  item_id VARCHAR(50) NOT NULL,
+  		  item_title VARCHAR(100) NOT NULL,
   		  item_desc LONGTEXT,
   		  item_type VARCHAR(30) NOT NULL,
   		  item_options VARCHAR(250) DEFAULT NULL,
@@ -270,9 +270,9 @@ class OT_Admin
     
     // create menu items
     add_object_page( 'OptionTree', 'OptionTree', 'level_7', 'option_tree', array( $this, 'option_tree_options_page' ), $icon);
-    $option_tree_options = add_submenu_page( 'option_tree', 'Option Tree', 'Theme Options', 'level_7', 'option_tree', array( $this, 'option_tree_options_page' ) );
-    $option_tree_docs = add_submenu_page( 'option_tree', 'Option Tree', 'Documentation', 'level_10', 'option_tree_docs', array( $this, 'option_tree_docs_page' ) );
-    $option_tree_settings = add_submenu_page( 'option_tree', 'Option Tree', 'Settings', 'level_10', 'option_tree_settings', array( $this, 'option_tree_settings_page' ) );
+    $option_tree_options = add_submenu_page( 'option_tree', 'OptionTree', 'Theme Options', 'level_7', 'option_tree', array( $this, 'option_tree_options_page' ) );
+    $option_tree_docs = add_submenu_page( 'option_tree', 'OptionTree', 'Documentation', 'level_7', 'option_tree_docs', array( $this, 'option_tree_docs_page' ) );
+    $option_tree_settings = add_submenu_page( 'option_tree', 'OptionTree', 'Settings', 'level_10', 'option_tree_settings', array( $this, 'option_tree_settings_page' ) );
     
     // add menu items
     add_action( "admin_print_styles-$option_tree_options", array( $this, 'option_tree_load' ) );

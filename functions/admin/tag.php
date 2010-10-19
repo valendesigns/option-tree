@@ -85,6 +85,7 @@ function option_tree_tags( $value, $settings, $int )
 	      $tags = &get_tags( array( 'hide_empty' => false ) );
        	if ( $tags )
        	{
+       	  $count = 0;
   	      foreach ( $tags as $tag ) 
   	      {
             $checked = '';
@@ -92,7 +93,8 @@ function option_tree_tags( $value, $settings, $int )
   	        { 
               $checked = ' checked="checked"'; 
             }
-  	        echo '<div class="input_wrap"><input name="checkboxes['.$value->item_id.'][]" type="checkbox" value="'.$tag->term_id.'"'.$checked.' /><label>'.$tag->name.'</label></div>';
+  	        echo '<div class="input_wrap"><input name="checkboxes['.$value->item_id.'][]" id="'.$value->item_id.'_'.$count.'" type="checkbox" value="'.$tag->term_id.'"'.$checked.' /><label for="'.$value->item_id.'_'.$count.'">'.$tag->name.'</label></div>';
+  	        $count++;
        		}
        	}
        	else

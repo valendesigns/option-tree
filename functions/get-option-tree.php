@@ -1,6 +1,6 @@
 <?php if (!defined('OT_VERSION')) exit('No direct script access allowed');
 /**
- * Get & return and Options Tree data array or variable
+ * Displays or returns a value from the 'option_tree' array.
  *
  * @uses get_option()
  *
@@ -8,33 +8,33 @@
  * @since 1.0.0
  *
  * @param string $item_id
- * @param array $option_tree
+ * @param array $options
  * @param bool $echo
- * @param bool $array
- * @param int $array_id
+ * @param bool $is_array
+ * @param int $offset
  *
  * @return mixed
  */
-function get_option_tree( $item_id = false, $option_tree = false, $echo = false, $array = false, $array_id = 0) 
+function get_option_tree( $item_id = '', $options = '', $echo = false, $is_array = false, $offset = -1) 
 {  
   // load saved options
-  if ( !$option_tree )
-    $option_tree = get_option( 'option_tree' );
+  if ( !$options )
+    $options = get_option( 'option_tree' );
   
   // set the item
-  if ( !isset( $option_tree[$item_id] ) )
+  if ( !isset( $options[$item_id] ) )
     return;
   
   // single item value  
-  $content = $option_tree[$item_id];
+  $content = $options[$item_id];
   
   // create an array of values
-  if ( $array ) 
+  if ( $is_array ) 
   {
     $content = explode( ',', $content );
-    if ( is_numeric( $array_id ) && $array_id >= 0) 
+    if ( is_numeric( $offset ) && $offset >= 0) 
     {
-      $content = htmlspecialchars_decode( trim( $content[$array_id] ) );
+      $content = htmlspecialchars_decode( trim( $content[$offset] ) );
     }
   }
   

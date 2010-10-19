@@ -3,7 +3,7 @@
 <div id="framework_wrap" class="wrap">
 	
 	<div id="header">
-    <h1>Option Tree</h1>
+    <h1>OptionTree</h1>
     <span class="icon">&nbsp;</span>
     <div class="version">
       <?php echo OT_VERSION; ?>

@@ -85,6 +85,7 @@ function option_tree_custom_posts( $value, $settings, $int )
 	      $posts = &get_posts( array( 'post_type' => $value->item_options ) );
        	if ( $posts )
        	{
+       	  $count = 0;
   	      foreach ( $posts as $post ) 
   	      {
             $checked = '';
@@ -92,7 +93,8 @@ function option_tree_custom_posts( $value, $settings, $int )
   	        { 
               $checked = ' checked="checked"'; 
             }
-  	        echo '<div class="input_wrap"><input name="checkboxes['.$value->item_id.'][]" type="checkbox" value="'.$post->ID.'"'.$checked.' /><label>'.$post->post_title.'</label></div>';
+  	        echo '<div class="input_wrap"><input name="checkboxes['.$value->item_id.'][]" id="'.$value->item_id.'_'.$count.'" type="checkbox" value="'.$post->ID.'"'.$checked.' /><label for="'.$value->item_id.'_'.$count.'">'.$post->post_title.'</label></div>';
+  	        $count++;
        		}
        	}
        	else

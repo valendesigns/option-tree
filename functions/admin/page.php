@@ -85,6 +85,7 @@ function option_tree_pages( $value, $settings, $int )
 	      $pages = &get_pages();
        	if ( $pages )
        	{
+       	  $count = 0;
   	      foreach ( $pages as $page ) 
   	      {
             $checked = '';
@@ -92,7 +93,8 @@ function option_tree_pages( $value, $settings, $int )
   	        { 
               $checked = ' checked="checked"'; 
             }
-  	        echo '<div class="input_wrap"><input name="checkboxes['.$value->item_id.'][]" type="checkbox" value="'.$page->ID.'"'.$checked.' /><label>'.$page->post_title.'</label></div>';
+  	        echo '<div class="input_wrap"><input name="checkboxes['.$value->item_id.'][]" id="'.$value->item_id.'_'.$count.'" type="checkbox" value="'.$page->ID.'"'.$checked.' /><label for="'.$value->item_id.'_'.$count.'">'.$page->post_title.'</label></div>';
+  	        $count++;
        		}
        	}
        	else
