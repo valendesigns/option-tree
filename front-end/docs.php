@@ -243,6 +243,11 @@ if ( function_exists( 'get_option_tree' ) ) {
             <strong>Custom Posts</strong>:<br />
             The Custom Posts option type is a checkbox list of IDs from any available wordpress post type or custom post type. It will return an array of multiple IDs for use in a custom function or loop. Custom Posts requires the post_type you are querying when created.
           </p>
+          
+          <p>
+            <strong>Measurement</strong>:<br />
+            The Measurement option type is a mix of input and select. The input excepts a value and the select lets you chose the unit of measurement to add to that value (px, %, em, pt). 
+          </p>
                                      
         </div>
         
@@ -284,6 +289,7 @@ if ( function_exists( 'get_option_tree' ) ) {
             <li>Tags</li>
             <li>Custom Post</li>
             <li>Custom Posts</li>
+            <li>Measurement</li>
           </ul>
           
           <p>

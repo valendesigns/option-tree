@@ -21,7 +21,7 @@ function option_tree_custom_post( $value, $settings, $int )
         <div class="select_wrapper">
           <select name="<?php echo $value->item_id; ?>" id="<?php echo $value->item_id; ?>" class="select">
           <?php
-       		$posts = &get_posts( array( 'post_type' => trim($value->item_options) ) );
+       		$posts = &get_posts( array( 'post_type' => trim($value->item_options), 'numberposts' => -1, 'orderby' => 'title', 'order' => 'ASC' ) );
        		if ( $posts )
        		{
             echo '<option value="">-- Choose One --</option>';
@@ -82,7 +82,7 @@ function option_tree_custom_posts( $value, $settings, $int )
         }
         
         // loop through tags
-	      $posts = &get_posts( array( 'post_type' => $value->item_options ) );
+	      $posts = &get_posts( array( 'post_type' => $value->item_options, 'numberposts' => -1, 'orderby' => 'title', 'order' => 'ASC' ) );
        	if ( $posts )
        	{
        	  $count = 0;

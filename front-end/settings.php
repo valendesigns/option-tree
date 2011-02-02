@@ -129,7 +129,8 @@
                               'tag'           => 'Tag',
                               'tags'          => 'Tags',
                               'custom_post'   => 'Custom Post',
-                              'custom_posts'  => 'Custom Posts'
+                              'custom_posts'  => 'Custom Posts',
+                              'measurement'   => 'Measurement'
                             );
                             foreach ( $types as $key => $value ) 
                             {

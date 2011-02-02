@@ -456,6 +456,19 @@ a:hover strong {
           float: left;
           width: 350px;
         }
+        .option-checbox .input_wrap,
+        .option-radio .input_wrap {
+          padding: 4px 10px 4px 0;
+          width: 325px;
+        }
+        .option-checbox .element {
+          border: none;
+          max-height: 260px;
+          height: auto !important;
+          height: expression( document.body.clientHeight > 260 ? "260px" : "auto" );
+          overflow-y: auto;
+          overflow-x: hidden;
+        }
           .input_wrap input[type="checkbox"],
           .input_wrap input[type="radio"] {
             float: left;
@@ -469,6 +482,10 @@ a:hover strong {
           .input_wrap label {
             float: left;
             width: 325px;
+          }
+          .option-checbox .input_wrap label,
+          .option-radio .input_wrap label {
+            width: 300px;
           }
           #framework_wrap #content label input {
             margin-right: 5px;
@@ -599,6 +616,16 @@ a:hover strong {
         }
         #framework_wrap #content .option-type .select_wrapper {
           background-color: #fff;
+        }
+        #framework_wrap #content .select_wrapper.measurement {
+          width: 65px;
+          float: right;
+          margin-top: 1px;
+        }
+        #framework_wrap #content input.measurement {
+          width: 269px;
+          float: left;
+          padding-top: 6px;
         }
         #framework_wrap #content .select_wrapper:hover {
           background-color: #fff;

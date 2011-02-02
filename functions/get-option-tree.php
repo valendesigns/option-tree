@@ -26,7 +26,7 @@ function get_option_tree( $item_id = '', $options = '', $echo = false, $is_array
     return;
   
   // single item value  
-  $content = $options[$item_id];
+  $content = stripslashes($options[$item_id]);
   
   // create an array of values
   if ( $is_array ) 

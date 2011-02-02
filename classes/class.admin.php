@@ -485,6 +485,19 @@ class OT_Admin
         		$new_settings[$key] = $values;
       		}
       	}
+      // value unit
+      }
+      else if ( isset( $_REQUEST['measurement'] ) && $value->item_type == "measurement" ) 
+      { 
+        // grab radio array()
+        foreach( $_REQUEST['measurement'] as $key => $val)
+        {
+      		if ($key == $value->item_id) 
+      		{
+        		$values = implode(',',$val);
+        		$new_settings[$key] = $values;
+      		}
+      	}
       // everything else
       } 
       else 
