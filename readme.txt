@@ -45,7 +45,6 @@ Yes OptionTree requires your host be running PHP5 to work correctly.
 * Fixed Post option type only returning 5 items
 * Added a scrolling window for checkboxes > 10
 
-
 = 1.1.1 =
 * Fixed the 'remove' icon from showing when nothing's uploaded
 
