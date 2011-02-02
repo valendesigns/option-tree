@@ -19,10 +19,8 @@ function option_tree_textarea( $value, $settings, $int )
     <div class="section">
       <div class="element">
         <textarea name="<?php echo $value->item_id; ?>" rows="<?php echo $int; ?>"><?php 
-          if ( $text = $settings[$value->item_id] ) 
-          {
-            echo $text;
-          }
+          if ( isset( $settings[$value->item_id] ) ) 
+            echo $settings[$value->item_id];
           ?></textarea>
       </div>
       <div class="description">

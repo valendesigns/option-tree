@@ -2,8 +2,8 @@
 /*
 Plugin Name: OptionTree
 Plugin URI: http://wp.envato.com
-Description: Customizable WordPress Theme Options Framework
-Version: 1.0.0
+Description: Customizable WordPress Theme Options Admin Interface
+Version: 1.1
 Author: Derek Herman
 Author URI: http://valendesigns.com
 */
@@ -13,7 +13,7 @@ Author URI: http://valendesigns.com
  *
  * @since 1.0.0
  */
-define( 'OT_VERSION', '1.0.0' );
+define( 'OT_VERSION', '1.1' );
 define( 'OT_PLUGIN_DIR', WP_PLUGIN_DIR . '/' . dirname( plugin_basename( __FILE__ ) ) );
 define( 'OT_PLUGIN_URL', WP_PLUGIN_URL . '/' . dirname( plugin_basename( __FILE__ ) ) );
 
@@ -38,7 +38,7 @@ $ot_admin = new OT_Admin();
  * @uses register_activation_hook()
  * @uses register_deactivation_hook()
  *
- * @since 1.0
+ * @since 1.0.0
  */
 register_activation_hook( __FILE__, array( $ot_admin, 'option_tree_activate' ) );
 register_deactivation_hook( __FILE__, array( $ot_admin, 'option_tree_deactivate' ) );
@@ -48,7 +48,7 @@ register_deactivation_hook( __FILE__, array( $ot_admin, 'option_tree_deactivate'
  *
  * @uses add_action()
  *
- * @since 1.0
+ * @since 1.0.0
  */
 add_action( 'init', array( $ot_admin, 'create_option_post' ), 5 );
 add_action( 'admin_init', array( $ot_admin, 'option_tree_init' ) );

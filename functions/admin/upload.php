@@ -20,7 +20,7 @@ function option_tree_upload( $value, $settings, $int ) { ?>
         <input id="upload_<?php echo $value->item_id; ?>" class="upload_button" type="button" value="Upload" rel="<?php echo $int; ?>" />
         <div class="screenshot" id="<?php echo $value->item_id; ?>_image">
           <?php 
-          if ( $settings[$value->item_id] ) 
+          if ( isset( $settings[$value->item_id] ) ) 
           { 
             $remove = '<a href="javascript:(void);" class="remove">Remove</a>';
             $image = preg_match( '/(^.*\.jpg|jpeg|png|gif|ico*)/i', $settings[$value->item_id] );

@@ -235,7 +235,7 @@ class OT_Admin
    * @uses add_action()
    *
    * @access public
-   * @since 1.0
+   * @since 1.0.0
    *
    * @param int $param
    *
