@@ -16,11 +16,11 @@ function option_tree_upload( $value, $settings, $int ) { ?>
     <h3><?php echo htmlspecialchars_decode( $value->item_title ); ?></h3>
     <div class="section">
       <div class="element">
-        <input type="text" name="<?php echo $value->item_id; ?>" id="<?php echo $value->item_id; ?>" value="<?php if ( $settings[$value->item_id] ) { echo $settings[$value->item_id]; } ?>" class="upload<?php if ( $settings[$value->item_id] ) { echo ' has-file'; } ?>" />
+        <input type="text" name="<?php echo $value->item_id; ?>" id="<?php echo $value->item_id; ?>" value="<?php if ( isset( $settings[$value->item_id] ) ) { echo $settings[$value->item_id]; } ?>" class="upload<?php if ( isset( $settings[$value->item_id] ) ) { echo ' has-file'; } ?>" />
         <input id="upload_<?php echo $value->item_id; ?>" class="upload_button" type="button" value="Upload" rel="<?php echo $int; ?>" />
         <div class="screenshot" id="<?php echo $value->item_id; ?>_image">
           <?php 
-          if ( isset( $settings[$value->item_id] ) ) 
+          if ( isset( $settings[$value->item_id] ) && $settings[$value->item_id] != '' ) 
           { 
             $remove = '<a href="javascript:(void);" class="remove">Remove</a>';
             $image = preg_match( '/(^.*\.jpg|jpeg|png|gif|ico*)/i', $settings[$value->item_id] );

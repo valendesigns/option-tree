@@ -30,7 +30,7 @@ a strong {
 a:hover strong {
   color: #d54e21 !important;
 }
-#framework_wrap #header .error {
+#framework_wrap .error {
   display: none !important;
 }
 #framework_wrap {

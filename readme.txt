@@ -4,7 +4,7 @@ Donate link:
 Tags: admin, theme options, options, admin interface, ajax
 Requires at least: 3.0
 Tested up to: 3.0.1
-Stable tag: 1.1
+Stable tag: 1.1.1
 
 Customizable WordPress Theme Options Admin Interface
 
@@ -38,6 +38,9 @@ Yes OptionTree requires your host be running PHP5 to work correctly.
 3. Documentation
 
 == Changelog ==
+
+= 1.1.1 =
+* Fixed the 'remove' icon from showing when nothing's uploaded
 
 = 1.1 =
 * Fixed the Undefined index: notices when WP_DEBUG is set to true
