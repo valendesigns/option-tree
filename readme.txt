@@ -29,7 +29,7 @@ OptionTree is a project sponsored by ThemeForest, the largest WordPress theme ma
 
 = Is this plugin PHP5 only? =
 
-Yes OptionTree requires your host be running PHP5 to work correctly.
+Sorry, but yes. OptionTree requires PHP5 to work correctly.
 
 == Screenshots ==
 
