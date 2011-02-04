@@ -25,6 +25,7 @@ if ( is_admin() )
   include( 'admin/tag.php' );
   include( 'admin/custom-post.php' );
   include( 'admin/measurement.php' );
+  include( 'admin/slider.php' );
 }
 else if ( !is_admin() )
 {

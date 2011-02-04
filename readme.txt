@@ -3,8 +3,8 @@ Contributors: valendesigns
 Donate link:
 Tags: admin, theme options, options, admin interface, ajax
 Requires at least: 3.0
-Tested up to: 3.0.4
-Stable tag: 1.1.2
+Tested up to: 3.1
+Stable tag: 1.1.3
 
 Customizable WordPress Theme Options Admin Interface
 
@@ -38,6 +38,13 @@ Yes OptionTree requires your host be running PHP5 to work correctly.
 3. Documentation
 
 == Changelog ==
+
+= 1.1.3 =
+* Added Slider option type with filter for changing the optional fields
+* Fixed the text displayed for Measurement option type after options are reset
+* Added filter to measurement units
+* Code cleanup in the option_tree_array_save() function
+* Fixed double quotes on front-end display
 
 = 1.1.2 =
 * Fixed double quotes in Textarea option type

@@ -16,26 +16,28 @@
  * @return mixed
  */
 function get_option_tree( $item_id = '', $options = '', $echo = false, $is_array = false, $offset = -1) 
-{  
+{
   // load saved options
   if ( !$options )
     $options = get_option( 'option_tree' );
   
-  // set the item
-  if ( !isset( $options[$item_id] ) )
+  // no value return
+  if ( !isset( $options[$item_id] ) || empty( $options[$item_id] ) )
     return;
   
-  // single item value  
-  $content = stripslashes($options[$item_id]);
-  
-  // create an array of values
-  if ( $is_array ) 
+  // set content value & strip slashes
+  $content = option_tree_stripslashes( $options[$item_id] );
+
+  // is an array
+  if ( $is_array || is_array( $content ) ) 
   {
-    $content = explode( ',', $content );
+    // $is_array is true but it's not an actual array, so build it!
+    if ( !is_array( $content ) )
+      $content = explode( ',', $content );
+
+    // get an array value using an offset  
     if ( is_numeric( $offset ) && $offset >= 0) 
-    {
-      $content = htmlspecialchars_decode( trim( $content[$offset] ) );
-    }
+      $content = $content[$offset];
   }
   
   // echo content
@@ -43,4 +45,39 @@ function get_option_tree( $item_id = '', $options = '', $echo = false, $is_array
     echo $content;
   
   return $content;
+}
+
+/**
+ * Custom stripslashes from single value or array.
+ *
+ * @uses stripslashes()
+ *
+ * @access public
+ * @since 1.1.3
+ *
+ * @param mixed $input
+ *
+ * @return mixed
+ */
+function option_tree_stripslashes( $input )
+{
+  if ( is_array( $input ) )
+  {
+    foreach( $input as &$val )
+    {
+      if ( is_array( $val ) )
+      {
+        $val = option_tree_stripslashes( $val );
+      }
+      else
+      {
+        $val = stripslashes( $val );
+      }
+    }
+  } 
+  else 
+  {
+    $input = stripslashes( $input );
+  }
+  return $input;
 }

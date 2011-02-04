@@ -71,16 +71,12 @@ function option_tree_categories( $value, $settings, $int )
     <div class="section">
       <div class="element">
         <?php
-        // check for settings item value
-	      if ( isset( $settings[$value->item_id] ) )
-	      {
-          $ch_values = explode(',', $settings[$value->item_id] );
-        }
-        else
-        {
+        // check for settings item value 
+	      if ( isset( $settings[$value->item_id] ) ) {
+          $ch_values = (array) $settings[$value->item_id];
+        } else {
           $ch_values = array();
         }
-        
         // loop through tags
 	      $categories = &get_categories( array( 'hide_empty' => false ) );
        	if ( $categories )
@@ -93,7 +89,7 @@ function option_tree_categories( $value, $settings, $int )
   	        { 
               $checked = ' checked="checked"'; 
             }
-  	        echo '<div class="input_wrap"><input name="checkboxes['.$value->item_id.'][]" id="'.$value->item_id.'_'.$count.'" type="checkbox" value="'.$category->term_id.'"'.$checked.' /><label for="'.$value->item_id.'_'.$count.'">'.$category->name.'</label></div>';
+  	        echo '<div class="input_wrap"><input name="'.$value->item_id.'['.$count.']" id="'.$value->item_id.'_'.$count.'" type="checkbox" value="'.$category->term_id.'"'.$checked.' /><label for="'.$value->item_id.'_'.$count.'">'.$category->name.'</label></div>';
   	        $count++;
        		}
        	}

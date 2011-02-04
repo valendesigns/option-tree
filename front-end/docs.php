@@ -78,7 +78,7 @@
           
           <p>
             This example returns the $item_id value.
-            <pre><code>&lt?php 
+            <pre><code>&lt;?php 
 if ( function_exists( 'get_option_tree' ) ) {
   get_option_tree( 'test_option' );
 }
@@ -87,7 +87,7 @@ if ( function_exists( 'get_option_tree' ) ) {
           
           <p>
             These examples will echo the $item_id value.
-            <pre><code>&lt?php 
+            <pre><code>&lt;?php 
 if ( function_exists( 'get_option_tree') ) {
   get_option_tree( 'test_option', '', true );
 }
@@ -101,8 +101,8 @@ if ( function_exists( 'get_option_tree') ) {
           </p>
           
           <p>
-            This example will echo the value of $item_id by grabbing the first offset key in the array. At the moment, this will only work if the item_type is a checkbox.
-            <pre><code>&lt?php 
+            This example will echo the value of $item_id by grabbing the first offset key in the array.
+            <pre><code>&lt;?php 
 if ( function_exists( 'get_option_tree' ) ) {
   get_option_tree( 'test_option', '', true, true, 0 );
 }
@@ -125,7 +125,7 @@ if ( function_exists( 'get_option_tree' ) ) {
 }
 ?&gt;</code></pre>
             OR a more WordPress version would be:<br /><br />
-            <pre><code>&lt?php
+            <pre><code>&lt;?php
 if ( function_exists( 'get_option_tree' ) ) {
   // set an array of page id's
   $ids = get_option_tree( 'list_of_page_ids', $theme_options, false, true, -1 );
@@ -139,6 +139,31 @@ if ( function_exists( 'get_option_tree' ) ) {
     )
   );
   echo '&lt;/ul&gt;';
+}
+?&gt;</code></pre>
+          </p>
+          
+          <p>
+          This example explains how to use the Measurement post type in your PHP files. The Measurement post type is an array of key/value pairs where the first key's value is the value of the measurement and the second key's value is the unit of measurement.
+          <pre><code>&lt;?php
+if ( function_exists( 'get_option_tree' ) ) {
+  $measurement = get_option_tree( 'measurement_type_id' );
+  echo $measurement[0].$measurement[1];
+}
+?&gt;</code></pre>
+          </p>
+          
+          <p>
+          This example displays a very basic slider loop.
+          <pre><code>&lt;?php
+if ( function_exists( 'get_option_tree' ) ) {
+  foreach( (array) get_option_tree( 'my_slider' ) as $slide ) {
+    echo '
+    &lt;li&gt;
+      &lt;a href="'.$slide['link'].'"&gt;&lt;img src="'.$slide['image'].'" alt="'.$slide['title'].'" /&gt;&lt;/a&gt;
+      &lt;div class="description">'.$slide['description'].'&lt;/div&gt;
+    &lt;/li&gt;';
+  }
 }
 ?&gt;</code></pre>
           </p>
@@ -246,8 +271,91 @@ if ( function_exists( 'get_option_tree' ) ) {
           
           <p>
             <strong>Measurement</strong>:<br />
-            The Measurement option type is a mix of input and select. The input excepts a value and the select lets you chose the unit of measurement to add to that value (px, %, em, pt). 
+            The Measurement option type is a mix of input and select fields. The text input excepts a value and the select list lets you choose the unit of measurement to add to that value. Currently the default units are px, %, em, pt. However, you can change them with the<code>measurement_unit_types</code> filter.
           </p>
+          
+          <p>
+            <strong>Filter to completely change the units in the Measurement option type</strong><br />
+            Added to functions.php
+          </p>
+          
+          <pre><code>add_filter( 'measurement_unit_types', 'custom_unit_types' );
+
+function custom_unit_types() 
+{
+  $array = array(
+    'in' => 'inches',
+    'ft' => 'feet'
+  );
+  return $array;
+}</code></pre>
+
+          <p>
+            <strong>Filter to add new units in the Measurement option type</strong><br />
+            Added to functions.php
+          </p>
+          
+          <pre><code>add_filter( 'measurement_unit_types', 'custom_unit_types' );
+
+function custom_unit_types($array) 
+{
+  $array['in'] = 'inches';
+  $array['ft'] = 'feet';
+  return $array;
+}</code></pre>
+          
+          <p>
+            <strong>Slider</strong>:<br />
+            The Slider option type is a mix of elements that you can change with the<code>image_slider_fields</code> filter. The currently supported element types are text, textarea, & hidden. In the future there will be more input types. As well, the current inputs are order, title, image, link, & description. Order & title are required fields. However, the other three can be altered using the filter above.<br />
+          
+          <p>
+            <strong>Filter to completely change the input fields in the Slider option type</strong><br />
+            Added to functions.php
+          </p>
+          <pre><code>add_filter( 'image_slider_fields', 'new_slider_fields' );
+
+function new_slider_fields() 
+{
+  $array = array(
+    array(
+      'name'  => 'image',
+      'type'  => 'text',
+      'label' => 'Post Image URL',
+      'class' => ''
+    ),
+    array(
+      'name'  => 'link',
+      'type'  => 'text',
+      'label' => 'Post URL',
+      'class' => ''
+    ),
+    array(
+      'name'  => 'description',
+      'type'  => 'textarea',
+      'label' => 'Post Description',
+      'class' => ''
+    )
+  );
+  return $array;
+}</code></pre>
+
+          <p>
+            <strong>Filter to add a new field to the Slider option type</strong><br />
+            Added to functions.php
+          </p>
+          <pre><code>add_filter( 'image_slider_fields', 'new_slider_fields' );
+
+function new_slider_fields($array) 
+{
+  $array[] =
+    array(
+      'name'  => 'awesome_field',
+      'type'  => 'text',
+      'label' => 'Write Something Awesome',
+      'class' => ''
+    );
+  return $array;
+}</code></pre>
                                      
         </div>
         
@@ -290,6 +398,7 @@ if ( function_exists( 'get_option_tree' ) ) {
             <li>Custom Post</li>
             <li>Custom Posts</li>
             <li>Measurement</li>
+            <li>Slider</li>
           </ul>
           
           <p>

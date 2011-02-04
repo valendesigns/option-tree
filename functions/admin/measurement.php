@@ -13,39 +13,34 @@
  * @return string
  */
 function option_tree_measurement( $value, $settings, $int ) { ?>
-  <div class="option option-valueunit">
+  <div class="option option-measurement">
     <h3><?php echo htmlspecialchars_decode( $value->item_title ); ?></h3>
     <div class="section">
       <div class="element">
-        <?php 
+        <?php        
         if ( isset( $settings[$value->item_id] ) )
-	      {
-          $measurement = explode(',', $settings[$value->item_id] );
-        }
-        else
-        {
-          $measurement = array();
-        }
-        ?>
-        <input type="text" name="measurement[<?php echo $value->item_id; ?>][]" value="<?php if ( isset( $measurement[0] ) ) { echo htmlspecialchars( stripslashes( $measurement[0] ), ENT_QUOTES); } ?>" class="measurement" />
+          $measurement = $settings[$value->item_id]; ?>
+        <input type="text" name="<?php echo $value->item_id; ?>[0]" value="<?php if ( isset( $measurement[0] ) ) { echo htmlspecialchars( stripslashes( $measurement[0] ), ENT_QUOTES); } ?>" class="measurement" />
 
         <div class="select_wrapper measurement">
-          <select name="measurement[<?php echo $value->item_id; ?>][]" class="select">
+          <select name="<?php echo $value->item_id; ?>[1]" class="select">
             <?php
-            echo '<option value=""></option>';
+            echo '<option value="">&nbsp;-- </option>';
             $units = array(
               'px' => 'px',
               '%'  => '%',
               'em' => 'em',
               'pt' => 'pt'
             );
-
+            // filter the unit types
+            $units = apply_filters( 'measurement_unit_types', $units );
             foreach ( $units as $unit ) {
-              $selected = '';
               if ( isset( $measurement[1] ) && $measurement[1] == trim( $unit ) ) { 
                 $selected = ' selected="selected"'; 
+              } else {
+                $selected = '';
               }
-              echo '<option'.$selected.'>'.trim( $unit ).'</option>';
+              echo '<option'.$selected.' value="'.trim( $unit ).'">&nbsp;'.trim( $unit ).'</option>';
             } 
             ?>
           </select>

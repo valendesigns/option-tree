@@ -20,29 +20,21 @@ function option_tree_radio( $value, $settings, $int )
       <div class="element">
         <?php
         // check for settings item value 
-	      if ( isset( $settings[$value->item_id] ) )
-	      {
-          $ch_values = explode(',', $settings[$value->item_id] );
-        }
-        else
-        {
+	      if ( isset( $settings[$value->item_id] ) ) {
+          $ch_values = (array) $settings[$value->item_id];
+        } else {
           $ch_values = array();
         }
-        
         $count = 0;
-        
-        // create options array
-        $options_array = explode( ',', $value->item_options );
-        
         // loop through options array
-	      foreach ( $options_array as $option ) 
+	      foreach ( explode( ',', $value->item_options ) as $option ) 
 	      {
           $checked = '';
 	        if ( in_array( trim( $option ), $ch_values ) ) 
 	        { 
             $checked = ' checked="checked"'; 
           }
-	        echo '<div class="input_wrap"><input name="radios['.$value->item_id.'][]" id="'.$value->item_id.'_'.$count.'" type="radio" value="'.trim( $option ).'"'.$checked.' /><label for="'.$value->item_id.'_'.$count.'">'.trim( $option ).'</label></div>';
+	        echo '<div class="input_wrap"><input name="'.$value->item_id.'" id="'.$value->item_id.'_'.$count.'" type="radio" value="'.trim( $option ).'"'.$checked.' /><label for="'.$value->item_id.'_'.$count.'">'.trim( $option ).'</label></div>';
 	        $count++;
      		}
         ?>

@@ -306,6 +306,8 @@
       $.post(ajaxurl, d, function (r) {
         if (r != -1) {
           $('.ajax-message').ajaxMessage('<div class="message"><span>&nbsp;</span>Theme Options were saved</div>');
+          $(".option-tree-slider-body").hide();
+          $('.option-tree-slider .edit').removeClass('down');
         } else {
           $('.ajax-message').ajaxMessage('<div class="message warning"><span>&nbsp;</span>Theme Options could not be saved</div>');
         }
@@ -326,7 +328,13 @@
           .removeAttr('checked')
           .removeAttr('selected');
           $('.select').each(function () {
-            $(this).prev('span').text('-- Choose One --') 
+            var new_text = '-- Choose One --';
+            if ( $(this).parents('div').hasClass('measurement') )
+              new_text = '&nbsp;--';
+            $(this).prev('span').html(new_text);
+          });
+          $('ul.option-tree-slider-wrap li').each(function () {
+            $(this).remove();
           });
           $('.ajax-message').ajaxMessage('<div class="message"><span>&nbsp;</span>Theme Options were deleted</div>');
         } else {
@@ -745,8 +753,95 @@
       }
       return false;
     }
-    };
-    $(document).ready(function () {
-        inlineEditOption.init()
-    })
+  };
+  $(document).ready(function () {
+    inlineEditOption.init();
+  })
+})(jQuery);
+
+/**
+ *
+ * Image Slider
+ * 
+ * Creates & Updates Image Slider
+ * Dependencies: jQuery, jQuery UI
+ *
+ */
+(function ($) {
+  ImageSlider = {
+    processing: false,
+    init: function () {
+      $(".option-tree-slider-body").hide();
+      $('.option-tree-slider .edit').live('click', function(event){
+        event.preventDefault();
+        $(this).toggleClass('down');
+        $(this).parent().find('.option-tree-slider-body').toggle();
+      });
+      $('.option-tree-slider-title').live('keyup', function(){
+  			ImageSlider.update_slider_title(this);
+  		});
+  		$('.remove-slide').live('click', function(event){
+  			event.preventDefault();
+  			var agree = confirm("Are you sure you wish to delete this slide?");
+        if (agree) {
+          ImageSlider.delete_slider_image(this);
+          return false;
+        } else {
+          return false;
+        }
+  		});
+  		$('.add-slide').live('click', function(event){
+  			event.preventDefault();
+  			ImageSlider.add_slider($(this).attr('id'));
+  		});
+  		
+  		if($('.option-tree-slider-wrap').length){
+  			$('.option-tree-slider-wrap').sortable({
+  				update: function(event,ui){
+  					$('ul.option-tree-slider-wrap').find('li:not(.ui-sortable-helper)').each(function(inc){
+  						var target = $(this).find('a.open').attr('href').split("#")[1];
+  						$('#' + target).find('input.option-tree-slider-order').val(inc + 1);
+  					});
+  				}
+  			});
+  		}
+    },
+    update_slider_title: function(e) {
+  		var element = e;
+  		if ( this.timer ) {
+  			clearTimeout( element.timer );
+  		}
+  		this.timer = setTimeout( function() {
+  			$(element).parents('.option-tree-slider').find('.open').text( element.value );
+  		}, 100);
+  		return true;
+  	},
+  	add_slider: function(id) {
+      var self = this;
+  		if ( this.processing === false ) {
+  			this.processing = true;
+        var image_count = parseInt($( '.option-tree-slider-wrap li' ).length) - 1;
+        $.ajax({
+  				url: ajaxurl,
+  				type: 'get',
+  				data: {
+            action: 'option_tree_add_slider',
+            slide_id: id,
+  					count: image_count
+          },
+          complete: function( data ) {
+            $('.option-tree-slider-wrap').append( '<li>' + data.responseText + '</li>' );
+            $('li:last .option-tree-slider .edit').toggleClass('down');
+            self.processing = false;
+          }
+        });
+      }
+    },
+  	delete_slider_image: function(e) {
+      $(e).parents('li').remove();
+    }
+  };
+  $(document).ready(function () {
+    ImageSlider.init();
+  })
 })(jQuery);

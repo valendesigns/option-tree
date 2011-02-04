@@ -307,7 +307,7 @@ class OT_Admin
     add_thickbox();
     wp_enqueue_script( 'jquery-table-dnd', OT_PLUGIN_URL.'/assets/js/jquery.table.dnd.js', array('jquery'), $this->version );
     wp_enqueue_script( 'jquery-color-picker', OT_PLUGIN_URL.'/assets/js/jquery.color.picker.js', array('jquery'), $this->version );
-    wp_enqueue_script( 'jquery-option-tree', OT_PLUGIN_URL.'/assets/js/jquery.option.tree.js', array('jquery','media-upload','thickbox','jquery-ui-core','jquery-ui-tabs','jquery-table-dnd','jquery-color-picker'), $this->version );
+    wp_enqueue_script( 'jquery-option-tree', OT_PLUGIN_URL.'/assets/js/jquery.option.tree.js', array('jquery','media-upload','thickbox','jquery-ui-core','jquery-ui-tabs','jquery-table-dnd','jquery-color-picker', 'jquery-ui-sortable'), $this->version );
     
     // remove GD star rating conflicts
     wp_deregister_style( 'gdsr-jquery-ui-core' );
@@ -445,69 +445,11 @@ class OT_Admin
     // set option values
     foreach ( $this->option_array as $value ) 
     {
-      // checkbox
-      if ( 
-          isset( $_REQUEST['checkboxes'] ) &&
-          ( $value->item_type == "checkbox" ||
-            $value->item_type == "posts" ||
-            $value->item_type == "pages" ||
-            $value->item_type == "categories" ||
-            $value->item_type == "tags" ||
-            $value->item_type == "custom_posts"
-          )
-        ) 
+      $key = trim( $value->item_id );
+      if ( isset( $_REQUEST[$key] ) )
       { 
-        foreach( $_REQUEST['checkboxes'] as $key => $val )
-        {
-          if ($key == $value->item_id) 
-          {
-        		$values = implode(',',$val);
-        		$new_settings[$key] = $values;
-      		}
-      	}
-      	// no checkbox values
-      	if ( !isset( $_REQUEST['checkboxes'] ) ) 
-      	{
-          $key = $value->item_id;
-          $values = null;
-          $new_settings[$key] = $values;
-      	}
-      // radio
-      } 
-      else if ( isset( $_REQUEST['radios'] ) && $value->item_type == "radio" )
-      {
-        // grab radio array()
-        foreach( $_REQUEST['radios'] as $key => $val)
-        {
-      		if ($key == $value->item_id) 
-      		{
-        		$values = implode(',',$val);
-        		$new_settings[$key] = $values;
-      		}
-      	}
-      // value unit
-      }
-      else if ( isset( $_REQUEST['measurement'] ) && $value->item_type == "measurement" ) 
-      { 
-        // grab radio array()
-        foreach( $_REQUEST['measurement'] as $key => $val)
-        {
-      		if ($key == $value->item_id) 
-      		{
-        		$values = implode(',',$val);
-        		$new_settings[$key] = $values;
-      		}
-      	}
-      // everything else
-      } 
-      else 
-      {
-        $key = trim( $value->item_id );
-        if ( isset( $_REQUEST[$key] ) )
-        { 
-          $val = $_REQUEST[$key];
-          $new_settings[$key] = $val;
-        }
+        $val = $_REQUEST[$key];
+        $new_settings[$key] = $val;
       }
 	  }
 	  
@@ -925,6 +867,21 @@ class OT_Admin
     }
     // failed
     die(-1);
+  }
+  
+  function option_tree_add_slider() 
+  {
+    $count = $_GET['count'] + 1;
+    $id = $_GET['slide_id'];
+    $image = array(
+      'order'       => $count,
+      'title'       => '',
+      'image'       => '',
+      'link'        => '',
+      'description' => ''
+    );
+    slider_view( $id, $image, $count );
+    die();
   }
   
   /**

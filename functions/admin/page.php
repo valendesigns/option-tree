@@ -71,16 +71,12 @@ function option_tree_pages( $value, $settings, $int )
     <div class="section">
       <div class="element">
         <?php
-        // check for settings item value
-	      if ( isset( $settings[$value->item_id] ) )
-	      {
-          $ch_values = explode(',', $settings[$value->item_id] );
-        }
-        else
-        {
+        // check for settings item value 
+	      if ( isset( $settings[$value->item_id] ) ) {
+          $ch_values = (array) $settings[$value->item_id];
+        } else {
           $ch_values = array();
         }
-        
         // loop through tags
 	      $pages = &get_pages();
        	if ( $pages )
@@ -93,7 +89,7 @@ function option_tree_pages( $value, $settings, $int )
   	        { 
               $checked = ' checked="checked"'; 
             }
-  	        echo '<div class="input_wrap"><input name="checkboxes['.$value->item_id.'][]" id="'.$value->item_id.'_'.$count.'" type="checkbox" value="'.$page->ID.'"'.$checked.' /><label for="'.$value->item_id.'_'.$count.'">'.$page->post_title.'</label></div>';
+  	        echo '<div class="input_wrap"><input name="'.$value->item_id.'['.$count.']" id="'.$value->item_id.'_'.$count.'" type="checkbox" value="'.$page->ID.'"'.$checked.' /><label for="'.$value->item_id.'_'.$count.'">'.$page->post_title.'</label></div>';
   	        $count++;
        		}
        	}
