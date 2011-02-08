@@ -144,20 +144,43 @@ if ( function_exists( 'get_option_tree' ) ) {
           </p>
           
           <p>
-          This example explains how to use the Measurement post type in your PHP files. The Measurement post type is an array of key/value pairs where the first key's value is the value of the measurement and the second key's value is the unit of measurement.
+            This example explains how to use the Measurement post type in your PHP files. The Measurement post type is an array of key/value pairs where the first key's value is the value of the measurement and the second key's value is the unit of measurement.
+          </p>
           <pre><code>&lt;?php
 if ( function_exists( 'get_option_tree' ) ) {
-  $measurement = get_option_tree( 'measurement_type_id' );
+  $measurement = get_option_tree( 'measurement_type_id', $theme_options, false, true );
   echo $measurement[0].$measurement[1];
 }
 ?&gt;</code></pre>
+          
+          <p>
+            <strong>OR:</strong>
           </p>
+          <pre><code>&lt;?php
+if ( function_exists( 'get_option_tree' ) ) {
+  $measurement = get_option_tree( 'measurement_type_id', $theme_options, false, true, 0 );
+  $unit        = get_option_tree( 'measurement_type_id', $theme_options, false, true, 1 );
+  echo $measurement.$unit;
+}
+?&gt;</code></pre>
+          
+          <p>
+            <strong>OR:</strong>
+          </p>
+          <pre><code>&lt;?php
+if ( function_exists( 'get_option_tree' ) ) {
+  $measurement = get_option_tree( 'measurement_type_id', $theme_options, false, true, -1 );
+  echo implode( '', $measurement );
+}
+?&gt;</code></pre>
+          
           
           <p>
           This example displays a very basic slider loop.
           <pre><code>&lt;?php
 if ( function_exists( 'get_option_tree' ) ) {
-  foreach( (array) get_option_tree( 'my_slider' ) as $slide ) {
+  $slides = get_option_tree( 'my_slider', $option_tree, false, true, -1 );
+  foreach( $slides as $slide ) {
     echo '
     &lt;li&gt;
       &lt;a href="'.$slide['link'].'"&gt;&lt;img src="'.$slide['image'].'" alt="'.$slide['title'].'" /&gt;&lt;/a&gt;

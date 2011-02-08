@@ -4,7 +4,7 @@ Donate link:
 Tags: admin, theme options, options, admin interface, ajax
 Requires at least: 3.0
 Tested up to: 3.1
-Stable tag: 1.1.3
+Stable tag: 1.1.4
 
 Customizable WordPress Theme Options Admin Interface
 
@@ -39,6 +39,9 @@ Sorry, but yes. OptionTree requires PHP5 to work correctly.
 
 == Changelog ==
 
+= 1.1.4 =
+* Patch for get_option_tree() $is_array being false and still returning an array
+
 = 1.1.3 =
 * Added Slider option type with filter for changing the optional fields
 * Fixed the text displayed for Measurement option type after options are reset
@@ -60,3 +63,8 @@ Sorry, but yes. OptionTree requires PHP5 to work correctly.
 
 = 1.0.0 =
 * Initial version
+
+== Upgrade Notice ==
+
+= 1.1.4 =
+Fixed the returned value of the get_option_tree() function when $is_array is set to false. If you have created any slider or measurement option types please read the updated documentation for examples on how to use them in your theme.
