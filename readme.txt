@@ -1,10 +1,10 @@
 === OptionTree ===
 Contributors: valendesigns
-Donate link:
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=accounts@valendesigns.com&item_name=Optiontree
 Tags: admin, theme options, options, admin interface, ajax
 Requires at least: 3.0
-Tested up to: 3.1
-Stable tag: 1.1.5
+Tested up to: 3.1.1
+Stable tag: 1.1.6
 
 Customizable WordPress Theme Options Admin Interface
 
@@ -16,7 +16,9 @@ With OptionTree you can create as many Theme Options as your project requires an
 
 Included is the ability to Import/Export all the theme options and data for packaging with custom themes or local development. With the Import/Export feature you can get a theme set up on a live server in minutes. Theme authors can now create different version of their themes and include them with the download. It makes setting up different theme styles & options easier than ever because a theme user installs the plugin and theme and either adds their own settings or imports your defaults.
 
-OptionTree is a project sponsored by ThemeForest, the largest WordPress theme marketplace on the web, and was originally conceived to help ThemeForest authors quickly power up their themes. But it's here for the benefit of one and all, so option up folks!
+**Update**: Since v1.1.6 it's now possible to have a default XML file included in your theme to populate the theme options and hide the 'Settings' and 'Documentation' pages from the end uses. You can read more about this in the plugins built in documentation by clicking the 'Theme Integration' tab.
+
+OptionTree is a project sponsored by <a href="http://themeforest.net/?ref=valendesigns">ThemeForest</a>, the largest WordPress theme marketplace on the web, and was originally conceived to help ThemeForest authors quickly power up their themes. But it's here for the benefit of one and all, so option up folks!
 
 == Installation ==
 
@@ -38,6 +40,10 @@ Sorry, but yes. OptionTree requires PHP5 to work correctly.
 3. Documentation
 
 == Changelog ==
+
+= 1.1.6 =
+* Theme Integration added.
+* Made the upload XML file openbase_dir compliant.
 
 = 1.1.5 =
 * Fixed multiple sliders issue
@@ -68,6 +74,9 @@ Sorry, but yes. OptionTree requires PHP5 to work correctly.
 * Initial version
 
 == Upgrade Notice ==
+
+= 1.1.6 =
+Added theme integration for developers. It's now possible to have a default XML file included in your theme to populate the theme options and hide the settings and docs pages. Read more about this in the plugins built in documentation.
 
 = 1.1.5 =
 Having multiple sliders caused a naming collision in the JavaScript and is now fixed. Upgrade ASAP to have multiple sliders available in the UI.

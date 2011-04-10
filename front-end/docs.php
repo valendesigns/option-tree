@@ -21,6 +21,7 @@
           <li><a href="#general">Usage &amp; Examples</a><span></span></li>
           <li><a href="#option_types">Option Types</a><span></span></li>
           <li><a href="#settings">Creating Options</a><span></span></li>
+          <li><a href="#integration">Theme Integration</a><span></span></li>
         </ul>
         
         <div id="general" class="block">
@@ -450,6 +451,39 @@ function new_slider_fields($array)
             <li>any</li>
           </ul>
           
+        </div>
+        
+        <div id="integration" class="block">
+          <h2>Theme Integration</h2>
+          <h3>Overview on how Theme Integration works.</h3>
+          
+          <p>
+            <strong>For Developers</strong>:<br />
+            If you have a theme that you want to be OptionTree aware, keep reading.
+          </p>
+          
+          <p>
+            After you've built your theme and created all your options on the 'Settings' page and populated your options with default data on the 'Theme Options' page, you can now seamlessly integrate with OptionTree by including two files with your theme (only one is required). It's that simple!
+          </p>
+          
+          <p style="padding-bottom:5px">
+            <strong>Getting OtionTree aware</strong>:<br />
+            <span style="color:red;">Follow these instructions.</span>
+          </p>
+          <ul class="doc_list">
+            <li>Export your <a href="http://localhost/framework/wp-admin/admin.php?page=option_tree_settings#export_options">Theme Options XML</a> file and save it somewhere you can get to it and once it's saved, rename it to '<strong>theme-options.xml</strong>'.</li>
+            <li>Copy the <a href="http://localhost/framework/wp-admin/admin.php?page=option_tree_settings#export_options">Theme Options Data</a> string to a new .txt file and name it '<strong>theme-options.txt</strong>' and save it where you can get to it.</li>
+            <li>Create a new directory in the root of your themes directory and name it '<strong>option-tree</strong>'.</li>
+            <li>Move your '<strong>theme-options.xml</strong>' and '<strong>theme-options.txt</strong>' into the '<strong>option-tree</strong>' directory and when the plugin is activated it will populate the defaults from those files.</li>
+          </ul>
+          
+          <p>
+            <span style="color:red;">NOTE</span>: the .txt file is optional and will only be used to populate the data on activation.<br />
+            <span style="color:red;">NOTE</span>: The file names are important, so be sure you have named them correctly.<br />
+            <span style="color:red;">NOTE</span>: If the theme options are not creating properly or you can still see the OptionTree menu the .xml file is not readable to the server or you have the files in the wrong place.<br />
+            <span style="color:red;">NOTE</span>: The plugin looks for the '<strong>option-tree</strong>' directory in the child themes root directory first, then the parent if you use a child/parent theme relationship. 
+          </p>
+        
         </div>
         
         <br class="clear" />
