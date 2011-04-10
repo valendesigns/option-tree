@@ -19,7 +19,7 @@ function option_tree_slider( $value, $settings, $int )
     <div class="section">
       <div class="element">
         <?php $count = 0; ?>
-        <ul class="ui-sortable option-tree-slider-wrap">
+        <ul class="ui-sortable option-tree-slider-wrap" id="<?php echo $value->item_id; ?>_list">
         <?php
         if ( !empty( $settings[$value->item_id] ) ) {
           foreach( $settings[$value->item_id] as $image ) { ?>

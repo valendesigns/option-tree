@@ -4,7 +4,7 @@ Donate link:
 Tags: admin, theme options, options, admin interface, ajax
 Requires at least: 3.0
 Tested up to: 3.1
-Stable tag: 1.1.4
+Stable tag: 1.1.5
 
 Customizable WordPress Theme Options Admin Interface
 
@@ -38,6 +38,9 @@ Sorry, but yes. OptionTree requires PHP5 to work correctly.
 3. Documentation
 
 == Changelog ==
+
+= 1.1.5 =
+* Fixed multiple sliders issue
 
 = 1.1.4 =
 * Patch for get_option_tree() $is_array being false and still returning an array

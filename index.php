@@ -3,7 +3,7 @@
 Plugin Name: OptionTree
 Plugin URI: http://wp.envato.com
 Description: Customizable WordPress Theme Options Admin Interface
-Version: 1.1.4
+Version: 1.1.5
 Author: Derek Herman
 Author URI: http://valendesigns.com
 */
@@ -13,7 +13,7 @@ Author URI: http://valendesigns.com
  *
  * @since 1.0.0
  */
-define( 'OT_VERSION', '1.1.4' );
+define( 'OT_VERSION', '1.1.5' );
 define( 'OT_PLUGIN_DIR', WP_PLUGIN_DIR . '/' . dirname( plugin_basename( __FILE__ ) ) );
 define( 'OT_PLUGIN_URL', WP_PLUGIN_URL . '/' . dirname( plugin_basename( __FILE__ ) ) );
 
