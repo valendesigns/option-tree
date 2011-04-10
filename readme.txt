@@ -69,5 +69,8 @@ Sorry, but yes. OptionTree requires PHP5 to work correctly.
 
 == Upgrade Notice ==
 
+= 1.1.5 =
+Having multiple sliders caused a naming collision in the JavaScript and is now fixed. Upgrade ASAP to have multiple sliders available in the UI.
+
 = 1.1.4 =
 Fixed the returned value of the get_option_tree() function when $is_array is set to false. If you have created any slider or measurement option types please read the updated documentation for examples on how to use them in your theme.
