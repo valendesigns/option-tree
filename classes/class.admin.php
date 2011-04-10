@@ -38,7 +38,7 @@ class OT_Admin
     $this->option_array = $this->option_tree_data();
     
     // file path & name without extention
-    $this->ot_file = '/option-tree/theme-options3';
+    $this->ot_file = '/option-tree/theme-options';
     
     // XML file path
     $this->theme_options_xml = get_stylesheet_directory() . $this->ot_file.'.xml';
