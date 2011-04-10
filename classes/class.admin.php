@@ -792,7 +792,21 @@ class OT_Admin
         // success - it's XML
         if ( preg_match( "/(.xml)$/i", $_FILES["import"]['name'] ) ) 
         {
-          $rawdata = file_get_contents( $_FILES["import"]["tmp_name"] );
+        
+          $mimes = apply_filters( 'upload_mimes', array(
+            'xml' => 'text/xml'
+          ));
+         
+          $overrides = array('test_form' => false, 'mimes' => $mimes);
+          $import = wp_handle_upload($_FILES['import'], $overrides);
+ 
+          if (!empty($import['error'])) 
+          {
+            header("Location: admin.php?page=option_tree_settings&error=true#import_options");
+            die();
+          }
+         
+          $rawdata = file_get_contents( $import['file'] );
           $new_options = new SimpleXMLElement( $rawdata );
           
           // drop table
