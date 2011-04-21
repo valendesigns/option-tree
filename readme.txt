@@ -1,12 +1,13 @@
 === OptionTree ===
 Contributors: valendesigns
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=accounts@valendesigns.com&item_name=Optiontree
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=accounts@valendesigns.com&item_name=OptionTree
 Tags: admin, theme options, options, admin interface, ajax
 Requires at least: 3.0
 Tested up to: 3.1.1
-Stable tag: 1.1.6
+Stable tag: 1.1.7
+License: GPLv2
 
-Customizable WordPress Theme Options Admin Interface
+Extremely customizable Theme Options interface for WordPress.
 
 == Description ==
 
@@ -40,6 +41,10 @@ Sorry, but yes. OptionTree requires PHP5 to work correctly.
 3. Documentation
 
 == Changelog ==
+
+= 1.1.7 =
+* Added layout support with import/export capabilities
+* Multisite compatibility by manually adding xml mime type
 
 = 1.1.6 =
 * Theme Integration added.

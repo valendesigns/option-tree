@@ -340,7 +340,7 @@
                   }
                   else
                   {
-                    echo '<tr><td colspan="3">No Saved Layouts.</td></tr>';
+                    echo '<tr class="empty-layouts"><td colspan="3">No Saved Layouts.</td></tr>';
                   }
                   ?>
                   </tbody>

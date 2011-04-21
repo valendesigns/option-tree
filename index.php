@@ -6,6 +6,7 @@ Description: Customizable WordPress Theme Options Admin Interface
 Version: 1.1.7
 Author: Derek Herman
 Author URI: http://valendesigns.com
+License: GPLv2
 */
 
 /**
@@ -54,6 +55,7 @@ add_action( 'init', array( $ot_admin, 'create_option_post' ), 5 );
 add_action( 'admin_init', array( $ot_admin, 'option_tree_init' ) );
 add_action( 'admin_menu', array( $ot_admin, 'option_tree_admin' ) );
 add_action( 'wp_ajax_option_tree_array_save', array( $ot_admin, 'option_tree_array_save' ) );
+add_action( 'wp_ajax_option_tree_array_reload', array( $ot_admin, 'option_tree_array_reload' ) );
 add_action( 'wp_ajax_option_tree_array_reset', array( $ot_admin, 'option_tree_array_reset' ) );
 add_action( 'wp_ajax_option_tree_add', array( $ot_admin, 'option_tree_add' ) );
 add_action( 'wp_ajax_option_tree_edit', array( $ot_admin, 'option_tree_edit' ) );

@@ -142,6 +142,9 @@ a:hover strong {
       color: #d54e45;
       float: left;
     }
+    #framework_wrap #content_wrap .info input.reload-options {
+      color: #d54e45
+    }
     #framework_wrap #content_wrap a.reset {
       margin-right: 10px;
       color: #d54e45;
@@ -624,6 +627,17 @@ a:hover strong {
           width: 100%;
           padding-top: 15px;
       	}
+      	#framework_wrap .select-layout {
+          float: right;
+          margin-right: 10px;
+          border-right: 1px solid #e3e3e3;
+          height: 34px
+        }
+          #framework_wrap .select-layout select {
+            margin: 5px 10px 0 0;
+            height: 25px;
+            padding: 4px 5px;
+          }
       	#framework_wrap #content .select_wrapper {
           -moz-border-radius: 4px;
           -webkit-border-radius: 4px;

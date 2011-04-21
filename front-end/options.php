@@ -15,15 +15,47 @@
     <form method="post" id="the-theme-options">
       
       <div class="info top-info">
-      
-        <input type="submit" value="<?php _e('Save All Changes') ?>" class="button-framework save-options" name="submit"/>
+        
+        <input type="submit" value="<?php _e('Save All Changes') ?>" class="button-framework save-options" name="submit" />
+        
+        <?php if ( $this->has_xml ) { ?>
+        <input type="submit" value="<?php _e('Reload XML') ?>" class="button-framework reload-options" name="reload" style="margin-right:10px;" />
+
+        <?php
+        if ( is_array( $layouts ) && !empty($layouts) ) 
+        {
+          echo '<div class="select-layout">';
+          echo '<select name="active_theme_layout" id="active_theme_layout">';
+          echo '<option value="">-- Choose One --</option>';
+
+          $active_layout = $layouts['active_layout'];
+          foreach( $layouts as $key => $v ) 
+          { 
+            if ( $key == 'active_layout')
+              continue;
+              
+            $selected = '';
+  	        if ( $active_layout == trim( $key ) ) 
+              $selected = ' selected="selected"'; 
+
+  	        echo '<option'.$selected.'>'.trim( $key ).'</option>';
+       		}
+       		echo '</select>';
+       		?>
+       		<input type="submit" value="<?php _e('Activate Layout') ?>" class="button-framework user-activate-layout" name="user-activate-layout" style="margin-right:10px;" />
+       		<?php
+       		echo '</div>';
+     		}
+        ?>
+
+        <?php } ?>
         
       </div>
       
-      <div class="ajax-message<?php if ( isset( $message ) ) { echo ' show'; } ?>">
-
+      <div class="ajax-message<?php if ( isset( $message ) || isset($_GET['updated']) || isset($_GET['layout']) ) { echo ' show'; } ?>">
+        <?php if (isset($_GET['updated'])) { echo '<div class="message"><span>&nbsp;</span>Theme Options were updated.</div>'; } ?>
+        <?php if (isset($_GET['layout'])) { echo '<div class="message"><span>&nbsp;</span>Your Layout has been activated.</div>'; } ?>
         <?php if ( isset( $message ) ) { echo $message; } ?>
-
       </div>
       
       <div id="content">

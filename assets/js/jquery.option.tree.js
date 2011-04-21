@@ -194,6 +194,10 @@
         inlineEditOption.save_options(this);
         return false;
       });
+      $('.reload-options', '#the-theme-options').live("click", function () {
+        inlineEditOption.reload_options(this);
+        return false;
+      });
       $('.reset', '#the-theme-options').live("click", function () {
         var agree = confirm("Are you absolutely sure you wish to delete all of your saved Theme Option?");
         if (agree) {
@@ -238,6 +242,10 @@
         } else {
           return false;
         }
+      });
+      $('.user-activate-layout', '#the-theme-options').live("click", function () {
+        inlineEditOption.activate_layout_user_side(this);
+        return false;
       });
       $("a.edit-inline").live("click", function (event) {
         if ($("a.edit-inline").hasClass('disable')) {
@@ -346,6 +354,20 @@
       });
       return false;
     },
+    reload_options: function (e) {
+      var d = {
+        action: "option_tree_array_reload",
+        _ajax_nonce: $("#_ajax_nonce").val()
+      };
+      $.post(ajaxurl, d, function (r) {
+        if (r != -1) {
+          window.location.href = r;
+        } else {
+          $('.ajax-message').ajaxMessage('<div class="message warning"><span>&nbsp;</span>Theme Options could not be updated.</div>');
+        }
+      });
+      return false;
+    },
     reset_options: function () {
       var d = {
         action: "option_tree_array_reset",
@@ -355,7 +377,7 @@
         if (r != -1) {
           $('.screenshot').hide();
           $(':input','#the-theme-options')
-          .not(':button, :submit, :reset, :hidden')
+          .not(':button, :submit, :reset, :hidden, #active_theme_layout')
           .val('')
           .removeAttr('checked')
           .removeAttr('selected');
@@ -395,6 +417,7 @@
           inlineEditOption.update_export_layout();
           $('tr').removeClass('active-layout');
           $('#layout-settings tr:first').addClass('active-layout');
+          $('.empty-layouts').remove();
         } else {
           $('.ajax-message').ajaxMessage('<div class="message warning"><span>&nbsp;</span>Your Layout could not be saved.</div>');
         }
@@ -425,6 +448,21 @@
         }
       });
       return false;
+    },
+    activate_layout_user_side: function(b) {
+      d = {
+        action: "option_tree_activate_layout",
+        id: $("#active_theme_layout").val(),
+        _ajax_nonce: $("#_ajax_nonce").val(),
+        themes: true
+      };
+      $.post(ajaxurl, d, function (r) {
+        if (r != -1) {
+          window.location.href = r;
+        } else {
+          $('.ajax-message').ajaxMessage('<div class="message warning"><span>&nbsp;</span>Theme Options could not be saved</div>');
+        }
+      });
     },
     delete_layout: function (b) {
       var c = true;

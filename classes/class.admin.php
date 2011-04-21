@@ -13,13 +13,19 @@ class OT_Admin
   private $version;
   private $option_array;
   private $ot_file;
+  private $ot_data;
+  private $ot_layout;
   private $theme_options_xml;
-  private $theme_options_txt;
+  private $theme_options_data;
+  private $theme_options_layout;
   private $has_xml;
-  private $has_txt;
+  private $has_data;
+  private $has_layout;
   
   /**
    * PHP4 contructor
+   *
+   * @since 1.1.6
    */
   function OT_Admin()
   {
@@ -28,31 +34,41 @@ class OT_Admin
   
   /**
    * PHP5 contructor
+   *
+   * @since 1.0.0
    */
   function __construct() 
   {
     global $table_prefix;
     
-    $this->table_name = $table_prefix . 'option_tree';
     $this->version = OT_VERSION;
+    $this->table_name = $table_prefix . 'option_tree';
     $this->option_array = $this->option_tree_data();
     
     // file path & name without extention
-    $this->ot_file = '/option-tree/theme-options';
+    $this->ot_file   = '/option-tree/theme-options.xml';
+    $this->ot_data   = '/option-tree/theme-options.txt';
+    $this->ot_layout = '/option-tree/layouts.txt';
     
     // XML file path
-    $this->theme_options_xml = get_stylesheet_directory() . $this->ot_file.'.xml';
+    $this->theme_options_xml = get_stylesheet_directory() . $this->ot_file;
     if ( $this->theme_options_xml == '' ) // no file try parent theme
-      $this->theme_options_xml = get_template_directory() . $this->ot_file.'.xml';
+      $this->theme_options_xml = get_template_directory() . $this->ot_file;
     
-    // TXT file path
-    $this->theme_options_txt = get_stylesheet_directory() . $this->ot_file.'.txt';
-    if ( $this->theme_options_txt == '' ) // no file try parent theme
-      $this->theme_options_xml = get_template_directory() . $this->ot_file.'.txt';
+    // Data file path
+    $this->theme_options_data = get_stylesheet_directory() . $this->ot_data;
+    if ( $this->theme_options_data == '' ) // no file try parent theme
+      $this->theme_options_data = get_template_directory() . $this->ot_data;
+    
+    // Layout file path
+    $this->theme_options_layout = get_stylesheet_directory() . $this->ot_layout;
+    if ( $this->theme_options_layout == '' ) // no file try parent theme
+      $this->theme_options_layout = get_template_directory() . $this->ot_layout;
     
     // check for files
-    $this->has_xml = ( is_readable( $this->theme_options_xml ) ) ? true : false;
-    $this->has_txt = ( is_readable( $this->theme_options_txt ) ) ? true : false;
+    $this->has_xml    = ( is_readable( $this->theme_options_xml ) ) ? true : false;
+    $this->has_data   = ( is_readable( $this->theme_options_data ) ) ? true : false;
+    $this->has_layout = ( is_readable( $this->theme_options_layout ) ) ? true : false;
   }
   
   /**
@@ -76,15 +92,6 @@ class OT_Admin
 
     if ( $check != "set" ) 
     {
-      // set blank option values
-      foreach ( $this->option_array as $value ) 
-      {
-        $key = $value->item_id;
-        $new_options[$key] = '';
-      }
-      
-      // add theme options
-      add_option( 'option_tree', $new_options );
       add_option( 'option_tree_activation', 'set');
       
       // load DB activation function if updating plugin
@@ -92,9 +99,6 @@ class OT_Admin
       
       if ( $this->has_xml == true )
       {
-        // load defaults from XML
-        $this->option_tree_default_data(false);
-        
         // Redirect
         wp_redirect( admin_url().'themes.php?page=option_tree' );
       }
@@ -167,13 +171,15 @@ class OT_Admin
       // run query
   		require_once( ABSPATH . 'wp-admin/includes/upgrade.php');
   		dbDelta( $this->option_tree_table( 'create' ) );
+  		
+  		// has xml file load defaults
+  		if ( $this->has_xml == true )
+  		  $this->option_tree_load_theme_files();
     }
     
-    // new install default data
+    // new install
     if ( $new_installation ) 
-    {
-      $this->option_tree_default_data(true);
-    }
+      $this->option_tree_default_data();
     
     // New Version Update
     if ( $installed_ver != $this->version ) 
@@ -204,23 +210,21 @@ class OT_Admin
   }
   
   /**
-   * Plugin Activation Default Data
-   *
-   * @uses query()
-   * @uses prepare()
+   * Load Default Data from theme included files
    *
    * @access public
-   * @since 1.0.0
+   * @since 1.1.7
    *
    * @return void
    */
-  function option_tree_default_data($new = false) 
+  function option_tree_load_theme_files() 
   {
-  	global $wpdb;
-  	
-  	if ( $this->has_xml == true )
+    global $wpdb;
+
+    $rawdata = file_get_contents( $this->theme_options_xml );
+    
+    if ( $rawdata )
     {
-      $rawdata = file_get_contents( $this->theme_options_xml );
       $new_options = new SimpleXMLElement( $rawdata );
       
       // drop table
@@ -241,39 +245,72 @@ class OT_Admin
           )
         );
       }
-      
-      // check for TXT file and is new install
-      if ( $new && $this->has_txt == true )
-      {
-        $rawdata = file_get_contents( $this->theme_options_txt );
-        $new_options = unserialize( base64_decode( $rawdata ) );
-        
-        // check if array()
-        if ( is_array( $new_options ) )
-        {
-          // delete old options
-          delete_option( 'option_tree' );
-    
-          // create new options
-          add_option('option_tree', $new_options);
-        }
-      }
-      return false;
     }
-
-    // default data no XML file
-  	$wpdb->query( $wpdb->prepare( "
-      INSERT INTO {$this->table_name}
-      ( item_id, item_title, item_type )
-      VALUES ( %s, %s, %s ) ", 
-      array('general_default','General','heading') ) );
+    
+    // check for Data file and data not saved
+    if ( $this->has_data == true && !get_option( 'option_tree' ) )
+    {
+      $rawdata = file_get_contents( $this->theme_options_data );
+      $new_options = unserialize( base64_decode( $rawdata ) );
       
-    $wpdb->query( $wpdb->prepare( "
-      INSERT INTO {$this->table_name}
-      ( item_id, item_title, item_type )
-      VALUES ( %s, %s, %s ) ", 
-      array('test_input','Test Input','input') ) );
-
+      // check if array()
+      if ( is_array( $new_options ) )
+      {
+        // create new options
+        add_option('option_tree', $new_options);
+      }
+    }
+    
+    // check for Layout file and layouts not saved
+    if ( $this->has_layout == true && !get_option( 'option_tree_layouts' ) )
+    {
+      $rawdata = file_get_contents( $this->theme_options_layout );
+      $new_layouts = unserialize( base64_decode( $rawdata ) );
+      
+      // check if array()
+      if ( is_array( $new_layouts ) )
+      {
+        // create new layouts
+        add_option('option_tree_layouts', $new_layouts);
+      }
+    }
+  }
+  
+  /**
+   * Plugin Activation Default Data
+   *
+   * @uses query()
+   * @uses prepare()
+   *
+   * @access public
+   * @since 1.0.0
+   *
+   * @return void
+   */
+  function option_tree_default_data() 
+  {
+    // load from files if they exist
+    if ( $this->has_xml == true )
+    {
+      $this->option_tree_load_theme_files();
+    }
+    else
+    {
+      global $wpdb;
+      
+      // only run these queries if no xml file exist
+    	$wpdb->query( $wpdb->prepare( "
+        INSERT INTO {$this->table_name}
+        ( item_id, item_title, item_type )
+        VALUES ( %s, %s, %s ) ", 
+        array('general_default','General','heading') ) );
+        
+      $wpdb->query( $wpdb->prepare( "
+        INSERT INTO {$this->table_name}
+        ( item_id, item_title, item_type )
+        VALUES ( %s, %s, %s ) ", 
+        array('test_input','Test Input','input') ) );
+    }
   } 
   
   /**
@@ -303,7 +340,7 @@ class OT_Admin
     $this->option_tree_activate();
     
     // Redirect
-    if ( is_readable( $this->theme_options_xml ) )
+    if ( $this->has_xml == true )
     {
       wp_redirect( admin_url().'themes.php?page=option_tree' );
     }
@@ -462,6 +499,9 @@ class OT_Admin
     // load saved option_tree
     $settings = get_option( 'option_tree' );
     
+    // Load Saved Layouts
+  	$layouts = get_option('option_tree_layouts');
+    
     // private page ID
     $post_id = $this->get_option_page_ID( 'media' );
     
@@ -581,6 +621,58 @@ class OT_Admin
   }
   
   /**
+   * Update XML Theme Option via AJAX
+   *
+   * @uses check_ajax_referer()
+   * @uses update_option()
+   * @uses option_tree_set_post_lock()
+   * @uses get_option_page_ID()
+   *
+   * @access public
+   * @since 1.0.0
+   *
+   * @return void
+   */
+  function option_tree_array_reload()
+  {
+    // Check AJAX Referer
+    check_ajax_referer( '_theme_options', '_ajax_nonce' );
+    
+    global $wpdb;
+
+    $rawdata = file_get_contents( $this->theme_options_xml );
+    
+    if ( $rawdata )
+    {
+      $new_options = new SimpleXMLElement( $rawdata );
+      
+      // drop table
+      $wpdb->query( "DROP TABLE $this->table_name" );
+          
+      // create table
+      $wpdb->query( $this->option_tree_table( 'create' ) );
+      	  
+      foreach ( $new_options->row as $value )
+      {
+        $wpdb->insert( $this->table_name,
+          array(
+            'item_id' => $value->item_id,
+            'item_title' => $value->item_title,
+            'item_desc' => $value->item_desc,
+            'item_type' => $value->item_type,
+            'item_options' => $value->item_options
+          )
+        );
+      }
+      die('themes.php?page=option_tree&updated=true&cache=buster_'.mt_rand(5, 100));
+    }
+    else
+    {
+      die('-1');
+    }
+  }
+  
+  /**
    * Reset Theme Option via AJAX
    *
    * @uses check_ajax_referer()
@@ -687,7 +779,7 @@ class OT_Admin
       AND item_title = '$item_title'
       AND item_type = '$item_type'
       AND item_options = '$item_options'
-      ");
+    ");
     
     // if updated
     if ( $updated )
@@ -901,6 +993,29 @@ class OT_Admin
   {
     global $wpdb;
     
+    // Check for multisite and add xml mime type if needed
+    if ( is_multisite() )
+    {
+      $xml_ext = false;
+      
+      // build ext array
+      $site_exts = explode( ' ', get_site_option( 'upload_filetypes' ) );
+      
+      // check for xml ext 
+      foreach ( $site_exts as $ext )
+      { 
+        if ( $ext == 'xml' )
+          $xml_ext = true;
+      }
+          
+    	// add xml to mime types
+      if ( $xml_ext == false )
+      {
+        $new_site_exts = implode( ' ', $site_exts );
+        update_site_option( 'upload_filetypes', $new_site_exts.' xml' );
+      }
+    }
+
     // action == upload
     if ( isset($_GET['action']) && $_GET['action'] == 'upload' ) 
     {
@@ -1130,8 +1245,17 @@ class OT_Admin
   {
     global $wpdb;
     
-    // check AJAX referer
-    check_ajax_referer( 'inlineeditnonce', '_ajax_nonce' );
+    if ( isset($_REQUEST['themes']) && $_REQUEST['themes'] == true ) 
+    {
+      // Check AJAX Referer
+      check_ajax_referer( '_theme_options', '_ajax_nonce' );
+    }
+    else
+    {
+      // check AJAX referer
+      check_ajax_referer( 'inlineeditnonce', '_ajax_nonce' );
+    }
+    
     
     // grab ID
     $id = $_REQUEST['id'];
@@ -1156,7 +1280,15 @@ class OT_Admin
       add_option( 'option_tree', $new_options );
 	  
       // redirect
-      die( 'activated' );
+      if ( $this->has_xml == true )
+      {
+        die('themes.php?page=option_tree&layout=true');
+      }
+      else 
+      {
+        die('activated');
+      }
+      
     }
     
     // failed
