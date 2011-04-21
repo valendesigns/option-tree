@@ -229,8 +229,7 @@ a:hover strong {
   #framework_wrap a:hover.button-framework.light {
     color: #000;
     border-color: #adaca7;
-  }
-  
+  } 
   /* Content Inner */
   #framework_wrap #content {
     padding: 0;
@@ -320,7 +319,6 @@ a:hover strong {
         -moz-border-radius: 4px;
         border-radius: 4px;
       }
-        
         #framework_wrap #content .has-table table th {
           background: #f1f1f1;
           background-image: -moz-linear-gradient(top, #f9f9f9, #f1f1f1);
@@ -392,6 +390,9 @@ a:hover strong {
           padding: 6px 10px;
           font-size: 11px !important;
         }
+        #framework_wrap tr.active-layout {
+          background: #eaf3fa;
+        }
         .has-table table a {
           text-decoration: none;
         }
@@ -401,7 +402,9 @@ a:hover strong {
         }
         a.edit-inline,
         a.delete-inline,
-        a.add-option {
+        a.add-option,
+        a.activate-saved,
+        a.delete-saved {
           background: url(../images/icon_edit.png) no-repeat 0 0;
           display: block;
           height: 16px;
@@ -411,12 +414,19 @@ a:hover strong {
           margin-right: 5px;
           display: block;
         }
-        a.delete-inline {
+        a.delete-inline,
+        a.delete-saved {
           background-image: url(../images/icon_delete.png);
         }
         a.add-option {
           background-image: url(../images/icon_add.png);
           margin-left: 21px;
+        }
+        a.activate-saved {
+          background-image: url(../images/icon_off.png);
+        }
+        .active-layout a.activate-saved {
+          background-image: url(../images/icon_on.png);
         }
         a:hover.edit-inline {
           border-color: #666;
@@ -503,7 +513,8 @@ a:hover strong {
           }
         #framework_wrap #content input[type="text"],
         #framework_wrap #content select,
-        #framework_wrap #content textarea {
+        #framework_wrap #content textarea,
+        #framework_wrap input.input_layout {
           background: #fafafa;
           border-color: #ccc #eee #eee #ccc;
           border-style: solid;
@@ -516,6 +527,13 @@ a:hover strong {
           display: block;
           color: #888;
           resize: none;
+        }
+        #framework_wrap input.input_layout {
+          -webkit-border-radius: 4px;
+          -moz-border-radius: 4px;
+          border-radius: 4px;
+          width: 240px;
+          float: left;
         }
         #framework_wrap #content tbody tr.inline-edit-option td input[type="text"],
         #framework_wrap #content tbody tr.inline-edit-option td select,
@@ -588,7 +606,9 @@ a:hover strong {
         #framework_wrap #content textarea:focus,
         #framework_wrap #content input[type="text"]:hover,
         #framework_wrap #content select:hover,
-        #framework_wrap #content textarea:hover {
+        #framework_wrap #content textarea:hover,
+        #framework_wrap input:hover.input_layout,
+        #framework_wrap input:focus.input_layout {
           background: #fff;
           border-color: #bbb #eee #eee #bbb;
           color: #333;
@@ -716,7 +736,7 @@ a:hover strong {
             font-size: 11px;
           }
           .option-tree-slider-wrap .option-tree-slider-body {
-            display: ;
+
           }
 /* Docs */
 #framework_wrap #options_tabs.docs {
@@ -761,33 +781,33 @@ a:hover strong {
 	background: url(../images/pre_bg.gif) repeat left top; /*--Background of lined paper--*/
 }
 /* Tabs */
-.options_tabs {
+#framework_wrap .options_tabs {
   display: none;
 }
-.ui-tabs { 
+#framework_wrap .ui-tabs { 
   zoom: 1; 
   background: url(../images/tabs_bg.png) repeat-y 0 0;
 }
-.ui-tabs .options_tabs {
+#framework_wrap .ui-tabs .options_tabs {
   display: block;
 }
-.ui-tabs-panel .description {
+#framework_wrap .ui-tabs-panel .description {
   width: 225px !important;
 }
-.ui-tabs-panel .inline-edit-option .description {
+#framework_wrap .ui-tabs-panel .inline-edit-option .description {
   width: 200px !important;
 }
-.ui-tabs-panel h2 {
+#framework_wrap .ui-tabs-panel h2 {
   display: none;
 }
-.ui-tabs .ui-tabs-nav { 
+#framework_wrap .ui-tabs .ui-tabs-nav { 
   list-style: none; 
   position: relative; 
   float: left; 
   width: 148px;
   word-wrap: break-word;
 }
-.ui-tabs .ui-tabs-nav li { 
+#framework_wrap .ui-tabs .ui-tabs-nav li { 
   position: relative; 
   float: left;
   display: block;
@@ -795,7 +815,7 @@ a:hover strong {
   padding: 0;
   overflow: visible;
 }
-.ui-tabs .ui-tabs-nav li a { 
+#framework_wrap .ui-tabs .ui-tabs-nav li a { 
   float: left; 
   text-decoration: none;
   display: block;
@@ -809,34 +829,34 @@ a:hover strong {
   background-position: 0 0;
   font-size: 11px;
 }
-.ui-tabs .ui-tabs-nav li.ui-tabs-selected a,
-.ui-tabs .ui-tabs-nav li.ui-tabs-selected a:hover { 
+#framework_wrap .ui-tabs .ui-tabs-nav li.ui-tabs-selected a,
+#framework_wrap .ui-tabs .ui-tabs-nav li.ui-tabs-selected a:hover { 
   background: #fff;
   color: #d54e45;
   width: 128px;
 }
-.ui-tabs .ui-tabs-nav li.ui-state-disabled a, 
-.ui-tabs .ui-tabs-nav li.ui-state-processing a { 
+#framework_wrap .ui-tabs .ui-tabs-nav li.ui-state-disabled a, 
+#framework_wrap .ui-tabs .ui-tabs-nav li.ui-state-processing a { 
   cursor: text;
 }
-.ui-tabs .ui-tabs-nav li a, 
-.ui-tabs.ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-selected a { 
+#framework_wrap .ui-tabs .ui-tabs-nav li a, 
+#framework_wrap .ui-tabs.ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-selected a { 
   cursor: pointer; 
 }
-.ui-tabs .ui-tabs-nav li.ui-state-hover a {
+#framework_wrap .ui-tabs .ui-tabs-nav li.ui-state-hover a {
   background-color: #eaf2fa;
   color: #555;
 }
-.ui-tabs .ui-tabs-panel { 
+#framework_wrap .ui-tabs .ui-tabs-panel { 
   display: block;
   float: right; 
   width: 595px;
   min-height: 400px;
 }
-.ui-tabs .ui-tabs-hide { 
+#framework_wrap .ui-tabs .ui-tabs-hide { 
   display: none !important; 
 }
-.options_tabs li.ui-tabs-selected span {
+#framework_wrap .options_tabs li.ui-tabs-selected span {
   position: absolute;
   left: -1px;
   top: 12px;

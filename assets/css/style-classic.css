@@ -36,6 +36,9 @@ tbody tr.inline-edit-option td {
 #framework_wrap #content tbody tr.inline-edit-option td h3 {
   border-bottom-color: #dae1e8;
 }
+#framework_wrap tr.active-layout {
+  background: #F7F6F1;
+}
 #framework_wrap code {
   background-color: #eaf3fa;
 }

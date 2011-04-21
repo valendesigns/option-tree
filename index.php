@@ -3,7 +3,7 @@
 Plugin Name: OptionTree
 Plugin URI: http://wp.envato.com
 Description: Customizable WordPress Theme Options Admin Interface
-Version: 1.1.6
+Version: 1.1.7
 Author: Derek Herman
 Author URI: http://valendesigns.com
 */
@@ -13,7 +13,7 @@ Author URI: http://valendesigns.com
  *
  * @since 1.0.0
  */
-define( 'OT_VERSION', '1.1.6' );
+define( 'OT_VERSION', '1.1.7' );
 define( 'OT_PLUGIN_DIR', WP_PLUGIN_DIR . '/' . dirname( plugin_basename( __FILE__ ) ) );
 define( 'OT_PLUGIN_URL', WP_PLUGIN_URL . '/' . dirname( plugin_basename( __FILE__ ) ) );
 
@@ -61,4 +61,10 @@ add_action( 'wp_ajax_option_tree_delete', array( $ot_admin, 'option_tree_delete'
 add_action( 'wp_ajax_option_tree_next_id', array( $ot_admin, 'option_tree_next_id' ) );
 add_action( 'wp_ajax_option_tree_sort', array( $ot_admin, 'option_tree_sort' ) );
 add_action( 'wp_ajax_option_tree_import_data', array( $ot_admin, 'option_tree_import_data' ) );
+add_action( 'wp_ajax_option_tree_update_export_data', array( $ot_admin, 'option_tree_update_export_data' ) );
 add_action( 'wp_ajax_option_tree_add_slider', array( $ot_admin, 'option_tree_add_slider' ) );
+add_action( 'wp_ajax_option_tree_save_layout', array( $ot_admin, 'option_tree_save_layout' ) );
+add_action( 'wp_ajax_option_tree_delete_layout', array( $ot_admin, 'option_tree_delete_layout' ) );
+add_action( 'wp_ajax_option_tree_activate_layout', array( $ot_admin, 'option_tree_activate_layout' ) );
+add_action( 'wp_ajax_option_tree_import_layout', array( $ot_admin, 'option_tree_import_layout' ) );
+add_action( 'wp_ajax_option_tree_update_export_layout', array( $ot_admin, 'option_tree_update_export_layout' ) );

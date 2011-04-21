@@ -494,11 +494,15 @@ class OT_Admin
    * @return string
    */
   function option_tree_settings_page() 
-  {
+  { 
+    // set 
     $ot_array = $this->option_array;
     
     // Load Saved Options
   	$settings = get_option('option_tree');
+  	
+  	// Load Saved Layouts
+  	$layouts = get_option('option_tree_layouts');
   	
   	// private page ID
     $post_id = $this->get_option_page_ID( 'options' );
@@ -562,10 +566,18 @@ class OT_Admin
 	  
 	  // Update Theme Options
     update_option( 'option_tree', $new_settings );
+    
+    // update active layout content
+    $options_layouts = get_option( 'option_tree_layouts' );
+    if ( isset( $options_layouts['active_layout'] ) ) {
+      $options_layouts[$options_layouts['active_layout']] = base64_encode( serialize( $new_settings ) );
+      update_option( 'option_tree_layouts', $options_layouts );
+    }
+    
+    // lock post editing
     $this->option_tree_set_post_lock( $this->get_option_page_ID( 'media' ) );
     
   	die();
-
   }
   
   /**
@@ -594,6 +606,13 @@ class OT_Admin
     // update theme Options
     update_option( 'option_tree', $new_options );
     
+    // update active layout content
+    $options_layouts = get_option( 'option_tree_layouts' );
+    if ( isset( $options_layouts['active_layout'] ) ) {
+      $options_layouts[$options_layouts['active_layout']] = base64_encode( serialize( $new_options ) );
+      update_option( 'option_tree_layouts', $options_layouts );
+    }
+    
   	die();
   }
   
@@ -610,7 +629,8 @@ class OT_Admin
    *
    * @return void
    */
-  function option_tree_add() {
+  function option_tree_add() 
+  {
   	global $wpdb;
     
     // check AJAX referer
@@ -693,7 +713,8 @@ class OT_Admin
    *
    * @return void
    */
-  function option_tree_edit() {
+  function option_tree_edit() 
+  {
   	global $wpdb;
     
     // Check AJAX Referer
@@ -838,7 +859,8 @@ class OT_Admin
    *
    * @return void
    */
-  function option_tree_sort() {
+  function option_tree_sort() 
+  {
     global $wpdb;
     
     // check AJAX referer
@@ -969,7 +991,7 @@ class OT_Admin
     check_ajax_referer( '_import_data', '_ajax_nonce' );
     
     // Get Data
-    $string = $_REQUEST['import_options'];
+    $string = $_REQUEST['import_options_data'];
 
     // Unserialize The Array
     $new_options = unserialize( base64_decode( $string ) );
@@ -983,11 +1005,234 @@ class OT_Admin
       // create new options
       add_option('option_tree', $new_options);
       
+      // update active layout content
+      $options_layouts = get_option( 'option_tree_layouts' );
+      if ( isset( $options_layouts['active_layout'] ) ) {
+        $options_layouts[$options_layouts['active_layout']] = base64_encode( serialize( $new_options ) );
+        update_option( 'option_tree_layouts', $options_layouts );
+      }
+	  
       // redirect
       die();
     }
     // failed
-    die(-1);
+    die('-1');
+  }
+  
+  /**
+   * Update Layouts data via AJAX
+   *
+   * @uses check_ajax_referer()
+   * @uses get_option()
+   *
+   * @access public
+   * @since 1.1.7
+   *
+   * @return void
+   */
+  function option_tree_update_export_data() 
+  {
+    global $wpdb;
+    
+    // check AJAX referer
+    check_ajax_referer( 'inlineeditnonce', '_ajax_nonce' );
+    
+    $saved = $_REQUEST['saved'];
+    $updated = base64_encode( serialize( get_option( 'option_tree' ) ) );
+    
+    // check if array()
+    if ( $saved != $updated ) 
+    {
+      die($updated);
+    }
+    // failed
+    die('-1');
+  }
+  
+  /**
+   * Save Layout, Activate & Delete Saved Layouts Data via AJAX
+   *
+   * @uses check_ajax_referer()
+   * @uses get_option()
+   * @uses update_option()
+   * @uses add_option()
+   *
+   * @access public
+   * @since 1.1.7
+   *
+   * @return void
+   */
+  function option_tree_save_layout() 
+  {
+    global $wpdb;
+    
+    // check AJAX referer
+    check_ajax_referer( '_save_layout', '_ajax_nonce' );
+    
+    // Get Data
+    $string = $_REQUEST['options_name'];
+    
+    // set default layout name
+    if ( !$string ) 
+      $string = 'default';
+    
+    // replace whitespace and set to lower case
+    $string = str_replace(' ', '-', strtolower( $string ) );
+
+    // get options and encode
+    $options = get_option( 'option_tree' );
+    $options = base64_encode( serialize( $options ) );
+    
+    // get saved layouts
+    $options_layouts = get_option( 'option_tree_layouts' );
+	
+    if ( is_array( $options_layouts ) )
+    {
+      $options_layouts['active_layout'] = $string;
+      $options_layouts[$string] = $options;
+      update_option( 'option_tree_layouts', $options_layouts );
+    } 
+    else
+    {
+      delete_option( 'option_tree_layouts' );
+      add_option( 'option_tree_layouts', array( 'active_layout' => $string, $string => $options ) );
+    }
+    die( $options );
+  }
+
+  function option_tree_delete_layout() 
+  {
+    global $wpdb;
+    
+    // check AJAX referer
+    check_ajax_referer( 'inlineeditnonce', '_ajax_nonce' );
+    
+    // grab ID
+    $id = $_REQUEST['id'];
+	
+    $options_layouts = get_option( 'option_tree_layouts' );
+    
+    // remove the item
+    unset( $options_layouts[$id] );
+    
+    // check active layout and unset if deleted
+    if ( $options_layouts['active_layout'] == $id )
+    {
+      unset( $options_layouts['active_layout'] );
+    }
+    
+    update_option( 'option_tree_layouts', $options_layouts );
+    
+    die( 'removed' );
+  }
+  
+  function option_tree_activate_layout() 
+  {
+    global $wpdb;
+    
+    // check AJAX referer
+    check_ajax_referer( 'inlineeditnonce', '_ajax_nonce' );
+    
+    // grab ID
+    $id = $_REQUEST['id'];
+	
+    // Get Saved Options
+    $options_layouts = get_option('option_tree_layouts');
+	
+    // Unserialize The Array
+    $new_options = unserialize( base64_decode( $options_layouts[$id] ) );
+    
+    // check if array()
+    if ( is_array( $new_options ) ) 
+    {
+      // delete old options
+      delete_option( 'option_tree' );
+      
+      // set active layout
+      $options_layouts['active_layout'] = $id;
+      update_option('option_tree_layouts', $options_layouts);
+      
+      // create new options
+      add_option( 'option_tree', $new_options );
+	  
+      // redirect
+      die( 'activated' );
+    }
+    
+    // failed
+    die('-1');
+  }
+  
+  /**
+   * Import Layouts via AJAX
+   *
+   * @uses check_ajax_referer()
+   * @uses delete_option()
+   * @uses add_option()
+   * @uses do_action()
+   *
+   * @access public
+   * @since 1.1.7
+   *
+   * @return void
+   */
+  function option_tree_import_layout() 
+  {
+    global $wpdb;
+    
+    // check AJAX referer
+    check_ajax_referer( '_import_layout', '_ajax_nonce' );
+    
+    // Get Data
+    $string = $_REQUEST['import_option_layouts'];
+
+    // Unserialize The Array
+    $new_options = unserialize( base64_decode( $string ) );
+    
+    // check if array()
+    if ( is_array( $new_options ) ) 
+    {
+      // delete old layouts
+      delete_option( 'option_tree_layouts' );
+      
+      // create new layouts
+      add_option('option_tree_layouts', $new_options);
+	  
+      // redirect
+      die('admin.php?page=option_tree_settings&layout=true&cache=buster_'.mt_rand(5, 100).'#layout_options');
+    }
+    // failed
+    die('-1');
+  }
+  
+  /**
+   * Update Layouts data via AJAX
+   *
+   * @uses check_ajax_referer()
+   * @uses get_option()
+   *
+   * @access public
+   * @since 1.1.7
+   *
+   * @return void
+   */
+  function option_tree_update_export_layout() 
+  {
+    global $wpdb;
+    
+    // check AJAX referer
+    check_ajax_referer( 'inlineeditnonce', '_ajax_nonce' );
+    
+    $saved = $_REQUEST['saved'];
+    $updated = base64_encode( serialize( get_option( 'option_tree_layouts' ) ) );
+    
+    // check if array()
+    if ( $saved != $updated ) 
+    {
+      die($updated);
+    }
+    // failed
+    die('-1');
   }
   
   function option_tree_add_slider() 

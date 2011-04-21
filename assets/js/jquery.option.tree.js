@@ -207,6 +207,38 @@
         inlineEditOption.import_data(this);
         return false;
       });
+      $('.import-layout', '#import-layout').live("click", function () {
+        inlineEditOption.import_layout(this);
+        return false;
+      });
+      $('.save-layout', '#save-layout').live("click", function (e) {
+        inlineEditOption.save_layout(this);
+        e.preventDefault();
+        return false;
+      });
+      $('a.delete-saved').live("click", function () {
+        if ($("a.delete-saved").hasClass('disable')) {
+          event.preventDefault();
+          return false;
+        } else {
+          var agree = confirm("Are you sure you want to delete this saved layout?");
+          if (agree) {
+            inlineEditOption.delete_layout(this);
+            return false;
+          } else {
+            return false;
+          }
+        }
+      });
+      $("a.activate-saved").live("click", function(){
+        var agree = confirm("Are you sure you want to activate this layout?");
+        if (agree) {
+          inlineEditOption.activate_layout(this);
+          return false;
+        } else {
+          return false;
+        }
+      });
       $("a.edit-inline").live("click", function (event) {
         if ($("a.edit-inline").hasClass('disable')) {
           event.preventDefault();
@@ -343,6 +375,108 @@
       });
       return false;
     },
+    save_layout: function(e){  
+      var d = {
+        action: "option_tree_save_layout"
+      };
+      var aa = $(':input', '#save-layout').val();
+      if ( !aa ) {
+        aa = 'default';
+      }
+      var ab = aa.replace(' ', '-');
+      ab = ab.toLowerCase();
+  	  
+      b = $(':input', '#save-layout').serialize();
+      d = b + "&" + $.param(d);
+      $.post(ajaxurl, d, function (r) {
+        if (r != -1) {
+          $('.ajax-message').ajaxMessage('<div class="message"><span>&nbsp;</span>Layout Saved Successfully.</div>');
+          $("#saved-options > tbody").prepend("<tr id='saved-"+ab+"'><td class='col-title'>"+aa+"</td><td class='col-key>'><textarea>"+r+"</textarea></td><td class='col-edit' style='padding-left:10px !important; width: 55px;'><a href='#' class='activate-saved' alt='Activate'>Activate</a><a href='#' class='delete-saved' alt='Delete'>Delete</a></td></tr>");
+          inlineEditOption.update_export_layout();
+          $('tr').removeClass('active-layout');
+          $('#layout-settings tr:first').addClass('active-layout');
+        } else {
+          $('.ajax-message').ajaxMessage('<div class="message warning"><span>&nbsp;</span>Your Layout could not be saved.</div>');
+        }
+      });
+      return false;
+    },
+  	activate_layout: function (b) {
+      var c = true;
+        
+      // Set ID
+      c = $(b).parents("tr:first").attr('id');
+      c = c.replace("saved-", "");
+  
+      d = {
+        action: "option_tree_activate_layout",
+        id: c,
+        _ajax_nonce: $("#_ajax_nonce").val()
+      };
+      $.post(ajaxurl, d, function (r) {
+        if (r != -1) {
+          $('.ajax-message').ajaxMessage('<div class="message"><span>&nbsp;</span>Your Layout has been activated.</div>');
+          inlineEditOption.update_export_data();
+          inlineEditOption.update_export_layout();
+          $('tr').removeClass('active-layout');
+          $('#'+$(b).parents("tr:first").attr('id')).addClass('active-layout');
+        } else {
+          $('.ajax-message').ajaxMessage('<div class="message warning"><span>&nbsp;</span>'+r+'</div>');
+        }
+      });
+      return false;
+    },
+    delete_layout: function (b) {
+      var c = true;
+        
+      // Set ID
+      c = $(b).parents("tr:first").attr('id');
+      c = c.replace("saved-", "");
+        
+      d = {
+        action: "option_tree_delete_layout",
+        id: c,
+        _ajax_nonce: $("#_ajax_nonce").val()
+      };
+      $.post(ajaxurl, d, function (r) {
+        if (r != -1) {
+          $("#saved-" + c).remove();
+          $('.ajax-message').ajaxMessage('<div class="message"><span>&nbsp;</span>Your Layout has been deleted.</div>');
+          inlineEditOption.update_export_layout();
+        } else {
+          $('.ajax-message').ajaxMessage('<div class="message warning"><span>&nbsp;</span>'+r+'</div>');
+        }
+      });
+      return false;
+    },
+    import_layout: function (e) {
+      var d = {
+        action: "option_tree_import_layout"
+      };
+      b = $(':input', '#import-layout').serialize();
+      d = b + "&" + $.param(d);
+      $.post(ajaxurl, d, function (r) {
+        if (r != -1) {
+          window.location.href = r;
+        } else {
+          $('.ajax-message').ajaxMessage('<div class="message warning"><span>&nbsp;</span>Your Layouts could not be imported.</div>');
+        }
+      });
+      return false;
+    },
+    update_export_layout: function () {
+      var d = {
+        action: "option_tree_update_export_layout",
+        saved: $("textarea#export_layouts").val(),
+        _ajax_nonce: $("#_ajax_nonce").val()
+      };
+      $.post(ajaxurl, d, function (r) {
+        if (r != -1) {
+          $("textarea#export_layouts").val(r);
+        }
+      });
+      return false;
+    },
     import_data: function (e) {
       var d = {
         action: "option_tree_import_data"
@@ -351,10 +485,25 @@
       d = b + "&" + $.param(d);
       $.post(ajaxurl, d, function (r) {
         if (r != -1) {
-          $("textarea", "#import_options").val('');
+          $("textarea#import_options_data").val('');
           $('.ajax-message').ajaxMessage('<div class="message"><span>&nbsp;</span>Your Theme Options data was successfully imported.</div>');
+          inlineEditOption.update_export_data();
         } else {
           $('.ajax-message').ajaxMessage('<div class="message warning"><span>&nbsp;</span>Your Theme Options data could not be imported.</div>');
+        }
+      });
+      return false;
+    },
+    update_export_data: function () {
+      var d = {
+        action: "option_tree_update_export_data",
+        saved: $("textarea#export_data").val(),
+        _ajax_nonce: $("#_ajax_nonce").val()
+      };
+      $.post(ajaxurl, d, function (r) {
+        if (r != -1) {
+          $("textarea#export_data").val(r);
+          $('.active-layout textarea').val(r);
         }
       });
       return false;

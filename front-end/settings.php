@@ -15,11 +15,12 @@
     <div class="info top-info">
     </div>
     
-    <div class="ajax-message<?php if ( isset($_GET['xml']) || isset($_GET['error']) || isset($_GET['nofile']) || isset($_GET['empty']) || isset( $message ) ) { echo ' show'; } ?>">
+    <div class="ajax-message<?php if ( isset($_GET['xml']) || isset($_GET['error']) || isset($_GET['nofile']) || isset($_GET['empty']) || isset($_GET['layout']) || isset( $message ) ) { echo ' show'; } ?>">
       <?php if(isset($_GET['xml'])) { echo '<div class="message"><span>&nbsp;</span>Theme Options Created</div>'; } ?>
       <?php if(isset($_GET['error'])) { echo '<div class="message warning"><span>&nbsp;</span>Wrong File Type!</div>'; } ?>
       <?php if(isset($_GET['nofile'])) { echo '<div class="message warning"><span>&nbsp;</span>Please add a file.</div>'; } ?>
       <?php if(isset($_GET['empty'])) { echo '<div class="message warning"><span>&nbsp;</span>An error occurred while importing your data.</div>'; } ?>
+      <?php if(isset($_GET['layout'])) { echo '<div class="message"><span>&nbsp;</span>Your Layouts were successfully imported.</div>'; } ?>
       <?php if ( isset( $message ) ) { echo $message; } ?>
     </div>
     
@@ -29,6 +30,7 @@
           <li><a href="#tree_settings">Create</a><span></span></li>
           <li><a href="#import_options">Import</a><span></span></li>
           <li><a href="#export_options">Export</a><span></span></li>
+          <li><a href="#layout_options">Layouts</a><span></span></li>
         </ul>
         
         <div id="tree_settings" class="block has-table">
@@ -216,7 +218,7 @@
               <h3>Theme Options Data</h3>
               <div class="section">
                 <div class="element">
-                  <textarea name="import_options" rows="8" id="import_options" class="import_options"></textarea>
+                  <textarea name="import_options_data" rows="8" id="import_options_data" class="import_options_data"></textarea>
                 </div>
                 <div class="description">
                   <p>Only after you've imported the Theme Options XML file should you try and update your Theme Options Data.</p>
@@ -226,6 +228,23 @@
               <input type="submit" value="<?php _e('Import Data') ?>" class="ob_button right import-data" />
             </div>
             <?php wp_nonce_field( '_import_data', '_ajax_nonce', false ); ?>
+          </form>
+          
+          <form method="post" id="import-layout">
+            <div class="option option-input">
+              <h3>Layouts</h3>
+              <div class="section">
+                <div class="element">
+                  <textarea name="import_option_layouts" rows="8" id="import_option_layouts" class="import_option_layouts"></textarea>
+                </div>
+                <div class="description">
+                  <p>Only after you've imported the Theme Options XML file should you try and update your Theme Options Data.</p>
+                  <p>To import the values of your theme options copy and paste what appears to be a random string of alpha numeric characters into this textarea and press the "Import Data" button below.</p>
+                </div>
+              </div>
+              <input type="submit" value="<?php _e('Import Layouts') ?>" class="ob_button right import-layout" />
+            </div>
+            <?php wp_nonce_field( '_import_layout', '_ajax_nonce', false ); ?>
           </form>
           
         </div>
@@ -245,10 +264,87 @@
             <h3>Theme Options Data</h3>
             <div class="section">
               <div class="element">
-                <textarea name="export_options" rows="8"><?php echo base64_encode(serialize($settings)); ?></textarea>
+                <textarea name="export_data" id="export_data" rows="8"><?php echo base64_encode(serialize($settings)); ?></textarea>
               </div>
               <div class="description">
                 Export your saved Theme Options data by highlighting this text and doing a copy/paste into a blank .txt file. Then save the file for importing into another install of WordPress later. Alternatively, you could just paste it into the <code>OptionTree->Settings->Import</code> on another web site.
+              </div>
+            </div>
+          </div>
+          <div class="option option-input">
+            <h3>Layouts</h3>
+            <div class="section">
+              <div class="element">
+                <textarea name="export_layouts" id="export_layouts" rows="8"><?php echo base64_encode(serialize($layouts)); ?></textarea>
+              </div>
+              <div class="description">
+                Export your saved Theme Options data by highlighting this text and doing a copy/paste into a blank .txt file. Then save the file for importing into another install of WordPress later. Alternatively, you could just paste it into the <code>OptionTree->Settings->Import</code> on another web site.
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div id="layout_options" class="block">
+          <h2>Layouts</h2>
+          <div class="option option-input">
+            <h3>What's a layout?</h3>
+            <p>It's a variation of your theme options data that you can save and import/export. Basically save your theme option data as layouts and activate them later or save them as a text file for use in a clients theme. Simply edit your theme options so everything is setup correctly for your new layout, then enter a name and hit "Save Layout". The layout will then be saved to an array in the database for use later.</p>
+            <p>Once you have created all your different layouts, or theme variations, you can save them to a separate text file for repackaging with your theme. Alternatively, you could just make different variations for yourself and change your theme with the click of a button, all without deleting your previous options data.</p>
+            <h3>Save your Layouts</h3>
+            <div class="section">
+              <div class="element">
+                <form method="post" id="save-layout">
+                  <input type="options_name" name="options_name" value="" class="input_layout" />
+                  <?php wp_nonce_field( '_save_layout', '_ajax_nonce', false ); ?>
+                  <input type="submit" value="Save Layout" class="ob_button right save-layout" /> 
+                </form>
+              </div>
+              <div class="description">
+                Use a simple naming structure for new layouts (no special characters).
+              </div>
+              <div style="clear:both; padding-top:20px;" class="has-table">
+                <table cellspacing="0" id="saved-options">
+                  <thead>
+                    <tr>
+                      <th class="col-title">Name</th>
+                      <th class="col-key">Theme Options Data (Copy & Save)</th>
+                      <th class="col-edit" style="padding-left:10px !important; width: 55px;">Action</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th class="col-title">Name</th>
+                      <th class="col-key">Theme Options Data (Copy & Save)</th>
+                      <th class="col-edit" style="padding-left:10px !important; width: 55px;">Action</th>
+                    </tr>
+                  </tfoot>
+                  <tbody id="layout-settings">
+                  <?php 
+                  if ( is_array( $layouts ) && !empty($layouts) ) {
+                    arsort( $layouts );
+                    $active_layout = $layouts['active_layout'];
+                    foreach( $layouts as $key => $values ) { 
+                      if ( $key == 'active_layout')
+                        continue;
+                    ?>
+                      <tr id="saved-<?php echo $key; ?>"<?php echo ( $key == $active_layout ) ? ' class="active-layout"' : ''; ?>>
+                        <td class="col-title"><?php echo $key; ?></td>
+                        <td class="col-key>"><?php echo '<textarea>'. $values.'</textarea>'; ?></td>
+                        <td class="col-edit" style="padding-left:10px !important; width: 55px;">
+                          <a href="#" class="activate-saved" title="Activate">Activate</a>
+                          <a href="#" class="delete-saved" title="Delete">Delete</a>
+                        </td>
+                      </tr>
+                  <?php 
+                    } 
+                  }
+                  else
+                  {
+                    echo '<tr><td colspan="3">No Saved Layouts.</td></tr>';
+                  }
+                  ?>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
