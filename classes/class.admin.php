@@ -493,6 +493,9 @@ class OT_Admin
    */
   function option_tree_options_page() 
   {
+    // hook before page loads
+    do_action( 'option_tree_admin_header' );
+    
     // set 
     $ot_array = $this->option_array;
     
@@ -534,7 +537,10 @@ class OT_Admin
    * @return string
    */
   function option_tree_settings_page() 
-  { 
+  {
+    // hook before page loads
+    do_action( 'option_tree_admin_header' );
+    
     // set 
     $ot_array = $this->option_array;
     
@@ -571,6 +577,9 @@ class OT_Admin
    */
   function option_tree_docs_page() 
   {
+    // hook before page loads
+    do_action( 'option_tree_admin_header' );
+    
     // Get Settings Page
     include( OT_PLUGIN_DIR.'/front-end/docs.php');
   }
@@ -749,7 +758,7 @@ class OT_Admin
   	}
   	
   	// verify key is alphanumeric
-    if ( eregi( '[^a-z0-9_]', $item_id ) ) 
+    if ( preg_match( '/[^a-z0-9_]/', $item_id ) ) 
       die("You must enter a valid option key.");
   	
   	// verify title
@@ -840,7 +849,7 @@ class OT_Admin
   	}
   	
   	// verify key is alphanumeric
-    if ( eregi( '[^a-z0-9_]', $item_id ) ) 
+    if ( preg_match( '/[^a-z0-9_]/', $item_id ) ) 
       die("You must enter a valid option key.");
       
   	// verify title
