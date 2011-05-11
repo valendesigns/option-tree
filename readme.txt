@@ -46,6 +46,9 @@ Sorry, but yes. OptionTree requires PHP5 to work correctly.
 * Added layout (theme variation) support with import/export capabilities
 * Multisite compatibility by manually adding xml mime type
 * Replaced eregi() with preg_match() for 5.3+ compatibility
+* Added 'option_tree_admin_header' hook before admin pages
+* Added 'option_tree_save' hook after save (likely to change in next version, needs testing)
+* Added new test data in the assets directory
 
 = 1.1.6 =
 * Theme Integration added.

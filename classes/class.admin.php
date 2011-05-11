@@ -626,6 +626,10 @@ class OT_Admin
     // lock post editing
     $this->option_tree_set_post_lock( $this->get_option_page_ID( 'media' ) );
     
+    // hook before AJAX is returned
+    // THIS MAY CHANGE
+    do_action( 'option_tree_save' );
+
   	die();
   }
   
@@ -1135,7 +1139,11 @@ class OT_Admin
         $options_layouts[$options_layouts['active_layout']] = base64_encode( serialize( $new_options ) );
         update_option( 'option_tree_layouts', $options_layouts );
       }
-	  
+      
+      // hook before AJAX is returned
+      // THIS MAY CHANGE
+      do_action( 'option_tree_save' );
+    
       // redirect
       die();
     }
