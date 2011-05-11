@@ -1,0 +1,175 @@
+<?xml version="1.0"?>
+<wp_4_option_tree>
+  <row>
+    <id>1</id>
+    <item_id>general_default</item_id>
+    <item_title>Test Options</item_title>
+    <item_desc></item_desc>
+    <item_type>heading</item_type>
+    <item_options></item_options>
+    <item_sort>1</item_sort>
+  </row>
+  <row>
+    <id>2</id>
+    <item_id>textblock</item_id>
+    <item_title>Textblock</item_title>
+    <item_desc>&amp;lt;h3&amp;gt;Textblock&amp;lt;/h3&amp;gt;
+&amp;lt;p&amp;gt;Here is a &amp;lt;strong&amp;gt;textblock&amp;lt;/strong&amp;gt; with HTML in it. You can use this space to transition to the next section or subsection within a tab on the &amp;lt;em&amp;gt;Theme Options&amp;lt;/em&amp;gt; page. It&amp;#039;s use is strictly for the admin UI and is not for the front-end of the web site.&amp;lt;/p&amp;gt;</item_desc>
+    <item_type>textblock</item_type>
+    <item_options></item_options>
+    <item_sort>3</item_sort>
+  </row>
+  <row>
+    <id>3</id>
+    <item_id>input</item_id>
+    <item_title>Input</item_title>
+    <item_desc>You can save a simple string here. Maybe a link to feedburner or your Twitter username.</item_desc>
+    <item_type>input</item_type>
+    <item_options></item_options>
+    <item_sort>4</item_sort>
+  </row>
+  <row>
+    <id>4</id>
+    <item_id>checkbox</item_id>
+    <item_title>Checkbox</item_title>
+    <item_desc>You could ask a question with a checkbox. For example, do you want to activate asynchronous Google analytics?</item_desc>
+    <item_type>checkbox</item_type>
+    <item_options>yes</item_options>
+    <item_sort>5</item_sort>
+  </row>
+  <row>
+    <id>5</id>
+    <item_id>radio</item_id>
+    <item_title>Radio</item_title>
+    <item_desc>You could ask a question with a radio input. For example, do you want to activate asynchronous Google analytics?</item_desc>
+    <item_type>radio</item_type>
+    <item_options>yes,no</item_options>
+    <item_sort>6</item_sort>
+  </row>
+  <row>
+    <id>6</id>
+    <item_id>select</item_id>
+    <item_title>Select</item_title>
+    <item_desc>Use this to list different theme styles or choose some other important setting.</item_desc>
+    <item_type>select</item_type>
+    <item_options>yes,no</item_options>
+    <item_sort>7</item_sort>
+  </row>
+  <row>
+    <id>7</id>
+    <item_id>textarea</item_id>
+    <item_title>Textarea</item_title>
+    <item_desc>Here users can add custom code or text for use in your theme.</item_desc>
+    <item_type>textarea</item_type>
+    <item_options>6</item_options>
+    <item_sort>8</item_sort>
+  </row>
+  <row>
+    <id>8</id>
+    <item_id>upload</item_id>
+    <item_title>Upload</item_title>
+    <item_desc>Here you can upload any WordPress supported media. After uploading, hit the &amp;quot;Insert into Post&amp;quot; button. One caveat of this feature is that if you upload media on one site the URL will no be correct if you import the data to a new one. You&amp;#039;ll have to re-upload the media.</item_desc>
+    <item_type>upload</item_type>
+    <item_options></item_options>
+    <item_sort>9</item_sort>
+  </row>
+  <row>
+    <id>9</id>
+    <item_id>colorpicker</item_id>
+    <item_title>Colorpicker</item_title>
+    <item_desc>This is a very self explanatory feature. Use it to change the color of something.</item_desc>
+    <item_type>colorpicker</item_type>
+    <item_options></item_options>
+    <item_sort>10</item_sort>
+  </row>
+  <row>
+    <id>10</id>
+    <item_id>category</item_id>
+    <item_title>Category</item_title>
+    <item_desc>Choose from a list of categories and save as a single category ID for use in a function or loop.</item_desc>
+    <item_type>category</item_type>
+    <item_options></item_options>
+    <item_sort>11</item_sort>
+  </row>
+  <row>
+    <id>11</id>
+    <item_id>categories</item_id>
+    <item_title>Categories</item_title>
+    <item_desc>Choose from a list of categories and save multiple category ID&amp;#039;s for use in a function or loop.</item_desc>
+    <item_type>categories</item_type>
+    <item_options></item_options>
+    <item_sort>12</item_sort>
+  </row>
+  <row>
+    <id>12</id>
+    <item_id>tag</item_id>
+    <item_title>Tag</item_title>
+    <item_desc>Choose from a list of tags and save as a single tag ID for use in a function or loop.</item_desc>
+    <item_type>tag</item_type>
+    <item_options></item_options>
+    <item_sort>13</item_sort>
+  </row>
+  <row>
+    <id>13</id>
+    <item_id>tags</item_id>
+    <item_title>Tags</item_title>
+    <item_desc>Choose from a list of tags and save as multiple tag ID&amp;#039;s for use in a function or loop.</item_desc>
+    <item_type>tags</item_type>
+    <item_options></item_options>
+    <item_sort>14</item_sort>
+  </row>
+  <row>
+    <id>14</id>
+    <item_id>post</item_id>
+    <item_title>Post</item_title>
+    <item_desc>Choose from a list of posts and save as a single post ID for use in a function or loop.</item_desc>
+    <item_type>post</item_type>
+    <item_options></item_options>
+    <item_sort>15</item_sort>
+  </row>
+  <row>
+    <id>15</id>
+    <item_id>posts</item_id>
+    <item_title>Posts</item_title>
+    <item_desc>Choose from a list of posts and save as multiple post ID&amp;#039;s for use in a function or loop.</item_desc>
+    <item_type>posts</item_type>
+    <item_options></item_options>
+    <item_sort>16</item_sort>
+  </row>
+  <row>
+    <id>16</id>
+    <item_id>page</item_id>
+    <item_title>Page</item_title>
+    <item_desc>Choose from a list of pages and save as a single page ID for use in a function or loop.</item_desc>
+    <item_type>page</item_type>
+    <item_options></item_options>
+    <item_sort>17</item_sort>
+  </row>
+  <row>
+    <id>17</id>
+    <item_id>pages</item_id>
+    <item_title>Pages</item_title>
+    <item_desc>Choose from a list of pages and save as multiple page ID&amp;#039;s for use in a function or loop.</item_desc>
+    <item_type>pages</item_type>
+    <item_options></item_options>
+    <item_sort>18</item_sort>
+  </row>
+  <row>
+    <id>18</id>
+    <item_id>custom_post</item_id>
+    <item_title>Custom Post</item_title>
+    <item_desc>Choose from a list of any post type and save as a single ID for use in a function or loop.</item_desc>
+    <item_type>custom_post</item_type>
+    <item_options>attachment</item_options>
+    <item_sort>19</item_sort>
+  </row>
+  <row>
+    <id>19</id>
+    <item_id>custom_posts</item_id>
+    <item_title>Custom Posts</item_title>
+    <item_desc>Choose from a list of any post type and save as multiple ID&amp;#039;s for use in a function or loop.</item_desc>
+    <item_type>custom_posts</item_type>
+    <item_options>attachment</item_options>
+    <item_sort>20</item_sort>
+  </row>
+</wp_4_option_tree>
