@@ -1310,7 +1310,6 @@ class OT_Admin
    * @uses check_ajax_referer()
    * @uses delete_option()
    * @uses add_option()
-   * @uses do_action()
    *
    * @access public
    * @since 1.1.7
