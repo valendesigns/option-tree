@@ -21,6 +21,7 @@
           <li><a href="#general">Usage &amp; Examples</a><span></span></li>
           <li><a href="#option_types">Option Types</a><span></span></li>
           <li><a href="#settings">Creating Options</a><span></span></li>
+          <li><a href="#layouts">Adding Layouts</a><span></span></li>
           <li><a href="#integration">Theme Integration</a><span></span></li>
         </ul>
         
@@ -453,6 +454,88 @@ function new_slider_fields($array)
           
         </div>
         
+        <div id="layouts" class="block">
+          <h2>Adding Layouts</h2>
+          <h3>Overview on how Layouts work.</h3>
+          
+          <p>
+            <strong>It's Super Simple</strong>:<br />
+            Layouts make your theme awesome! Package them with different theme variations, with very little effort. I made adding a layout ridiculously easy, just follow these steps and youl'll be on your way to having a WordPress super theme.
+          </p>
+          
+          <h3>For Developers</h3>
+          
+          <p style="padding-bottom:5px">
+            <strong>Creating a Layout</strong>:<br />
+          </p>
+          <ul class="doc_list">
+            <li>Go to the <a href="admin.php?page=option_tree_settings#layout_options">Layouts</a> page.</li>
+            <li>Enter a name for your layout in the text field and hit "Save Layout", you've created your first layout.</li>
+            <li>Adding new layout is as easy as repeating the steps above.</li>
+          </ul>
+          
+          <p style="padding-bottom:5px">
+            <strong>Activating a Layout</strong>:<br />
+          </p>
+          <ul class="doc_list">
+            <li>Go to the <a href="admin.php?page=option_tree_settings#layout_options">Layouts</a> page.</li>
+            <li>Click on the activate layout button in the actions list.</li>
+          </ul>
+          
+          <p style="padding-bottom:5px">
+            <strong>Deleting a Layout</strong>:<br />
+          </p>
+          <ul class="doc_list">
+            <li>Go to the <a href="admin.php?page=option_tree_settings#layout_options">Layouts</a> page.</li>
+            <li>Click on the delete layout button in the actions list.</li>
+          </ul>
+          
+          <p style="padding-bottom:5px">
+            <strong>Editing the data of a Layout</strong>:<br />
+          </p>
+          <ul class="doc_list">
+            <li>Go to the <a href="admin.php?page=option_tree">Theme Options</a> page.</li>
+            <li>Modify and save your theme options and the layout will be updated automatically.</li>
+            <li><span style="color:red;">NOTE:</span> Saving theme options data will update the currently active layout, so before you start saving make sure you want to modify the current layout.</li>
+            <li>If you want to edit a new layout, first create it then save your theme options.</li>
+          </ul>
+          
+          <h3>End-Users Mode</h3>
+          
+          <p style="padding-bottom:5px">
+            <strong>Creating a Layout</strong>:<br />
+          </p>
+          <ul class="doc_list">
+            <li>End-Users mode does not allow creating new layouts.</li>
+          </ul>
+          
+          <p style="padding-bottom:5px">
+            <strong>Activating a Layout</strong>:<br />
+          </p>
+          <ul class="doc_list">
+            <li>Go to the <a href="admin.php?page=option_tree">Theme Options</a> page.</li>
+            <li>Choose a layout from the select list and click the "Activate Layout" button.</li>
+          </ul>
+          
+          <p style="padding-bottom:5px">
+            <strong>Deleting a Layout</strong>:<br />
+          </p>
+          <ul class="doc_list">
+            <li>End-Users mode does not allow deleting layouts.</li>
+          </ul>
+          
+          <p style="padding-bottom:5px">
+            <strong>Editing the data of a Layout</strong>:<br />
+          </p>
+          <ul class="doc_list">
+            <li>Go to the <a href="admin.php?page=option_tree">Theme Options</a> page.</li>
+            <li>Modify and save your theme options and the layout will be updated automatically.</li>
+            <li><span style="color:red;">NOTE:</span> Saving theme options data will update the currently active layout, so before you start saving make sure you want to modify the current layout.</li>
+          </ul>
+
+        
+        </div>
+        
         <div id="integration" class="block">
           <h2>Theme Integration</h2>
           <h3>Overview on how Theme Integration works.</h3>
@@ -471,16 +554,17 @@ function new_slider_fields($array)
             <span style="color:red;">Follow these instructions.</span>
           </p>
           <ul class="doc_list">
-            <li>Export your <a href="http://localhost/framework/wp-admin/admin.php?page=option_tree_settings#export_options">Theme Options XML</a> file and save it somewhere you can get to it and once it's saved, rename it to '<strong>theme-options.xml</strong>'.</li>
-            <li>Copy the <a href="http://localhost/framework/wp-admin/admin.php?page=option_tree_settings#export_options">Theme Options Data</a> string to a new .txt file and name it '<strong>theme-options.txt</strong>' and save it where you can get to it.</li>
+            <li>Export your <a href="admin.php?page=option_tree_settings#export_options">Theme Options XML</a> file and save it somewhere you can get to it and once it's saved, rename it to '<strong>theme-options.xml</strong>'.</li>
+            <li>Copy the <a href="admin.php?page=option_tree_settings#export_options">Theme Options Data</a> string to a new .txt file and name it '<strong>theme-options.txt</strong>' and save it where you can get to it.</li>
+            <li>Copy the <a href="admin.php?page=option_tree_settings#export_options">Layouts</a> string to a new .txt file and name it '<strong>layouts.txt</strong>' and save it where you can get to it.</li>
             <li>Create a new directory in the root of your themes directory and name it '<strong>option-tree</strong>'.</li>
-            <li>Move your '<strong>theme-options.xml</strong>' and '<strong>theme-options.txt</strong>' into the '<strong>option-tree</strong>' directory and when the plugin is activated it will populate the defaults from those files.</li>
+            <li>Move your '<strong>layouts.txt</strong>', '<strong>theme-options.txt</strong>', and '<strong>theme-options.xml</strong>' into the '<strong>option-tree</strong>' directory and when the plugin is activated it will populate the defaults from those files.</li>
           </ul>
           
           <p>
-            <span style="color:red;">NOTE</span>: the .txt file is optional and will only be used to populate the data on activation.<br />
+            <span style="color:red;">NOTE</span>: the .txt filee are optional and will only be used to populate the data on activation.<br />
             <span style="color:red;">NOTE</span>: The file names are important, so be sure you have named them correctly.<br />
-            <span style="color:red;">NOTE</span>: If the theme options are not creating properly or you can still see the OptionTree menu the .xml file is not readable to the server or you have the files in the wrong place.<br />
+            <span style="color:red;">NOTE</span>: If the theme options are not created properly or you can still see the OptionTree menu the .xml file is not readable to the server or you have the files in the wrong place.<br />
             <span style="color:red;">NOTE</span>: The plugin looks for the '<strong>option-tree</strong>' directory in the child themes root directory first, then the parent if you use a child/parent theme relationship. 
           </p>
         

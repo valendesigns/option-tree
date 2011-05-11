@@ -238,8 +238,8 @@
                   <textarea name="import_option_layouts" rows="8" id="import_option_layouts" class="import_option_layouts"></textarea>
                 </div>
                 <div class="description">
-                  <p>Only after you've imported the Theme Options XML file should you try and update your Theme Options Data.</p>
-                  <p>To import the values of your theme options copy and paste what appears to be a random string of alpha numeric characters into this textarea and press the "Import Data" button below.</p>
+                  <p>Only after you've imported the Theme Options XML file should you try and update your Layouts.</p>
+                  <p>To import the values of your layouts copy and paste what appears to be a random string of alpha numeric characters into this textarea and press the "Import Layouts" button below.</p>
                 </div>
               </div>
               <input type="submit" value="<?php _e('Import Layouts') ?>" class="ob_button right import-layout" />
@@ -278,7 +278,7 @@
                 <textarea name="export_layouts" id="export_layouts" rows="8"><?php echo base64_encode(serialize($layouts)); ?></textarea>
               </div>
               <div class="description">
-                Export your saved Theme Options data by highlighting this text and doing a copy/paste into a blank .txt file. Then save the file for importing into another install of WordPress later. Alternatively, you could just paste it into the <code>OptionTree->Settings->Import</code> on another web site.
+                Export your saved Layouts by highlighting this text and doing a copy/paste into a blank .txt file. Then save the file for importing into another install of WordPress later. Alternatively, you could just paste it into the <code>OptionTree->Settings->Import</code> on another web site.
               </div>
             </div>
           </div>
@@ -288,7 +288,7 @@
           <h2>Layouts</h2>
           <div class="option option-input">
             <h3>What's a layout?</h3>
-            <p>It's a variation of your theme options data that you can save and import/export. Basically save your theme option data as layouts and activate them later or save them as a text file for use in a clients theme. Simply edit your theme options so everything is setup correctly for your new layout, then enter a name and hit "Save Layout". The layout will then be saved to an array in the database for use later.</p>
+            <p>It's a variation of your theme options data that you can save and import/export. Basically, you save your data as layouts you can activate later, or save them as a text file for use in a clients theme. Simply enter a name and hit "Save Layout", then you can edit your theme options so everything is setup correctly for your new layout. It's important you save layouts before you save the options because you're editing the active layout.</p>
             <p>Once you have created all your different layouts, or theme variations, you can save them to a separate text file for repackaging with your theme. Alternatively, you could just make different variations for yourself and change your theme with the click of a button, all without deleting your previous options data.</p>
             <h3>Save your Layouts</h3>
             <div class="section">
