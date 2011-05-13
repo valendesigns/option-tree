@@ -718,6 +718,10 @@ a:hover strong {
             background: #fff;
             width: 323px;
           }
+          #framework_wrap #content .option-option-tree-slider .section .element input[type="text"].upload {
+            width: 261px;
+            float: left;
+          }
           .option-tree-slider-wrap .edit {
             position: absolute;
             height: 16px;
@@ -754,6 +758,11 @@ a:hover strong {
           }
           .option-tree-slider p {
             clear: both;
+          }
+          .option-tree-slider-wrap .option-tree-slider-body div label {
+            color: #555;
+            font-size: 11px;
+            display: block;
           }
           .option-tree-slider-wrap .option-tree-slider-body .screenshot {
             display: block; 

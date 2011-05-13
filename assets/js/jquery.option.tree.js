@@ -150,7 +150,7 @@
         tb_show('', 'media-upload.php?post_id='+formID+'&type=image&amp;TB_iframe=1');
         return false;
       });
-            
+     
       window.original_send_to_editor = window.send_to_editor;
       window.send_to_editor = function(html) {
         if (formfield) {
@@ -333,10 +333,35 @@
       $('.remove').live('click', function(event) { 
         $(this).hide();
         $(this).parents().prev().prev('.upload').attr('value', '');
-        $(this).parents('.screenshot').slideUp();
+        //$(this).parents('.screenshot').slideUp();
+        $(this).parents('.screenshot').find('img').remove();
+        $(this).parents('.screenshot').find('.remove').remove();
+        event.preventDefault();
       });
       // Hide the delete button on the first row 
       $('a.delete-inline', "#option-1").hide();
+      // change upload input
+      $('.upload').blur( function() {
+        var id = $(this).attr('id'),
+            val = $(this).val(),
+            img = $(this).parent().find('img'),
+            btn = $(this).parent().find('.remove'),
+            src = img.attr('src');
+            
+            if ( val != src ) {
+              img.attr('src', val);
+            }
+              
+            if ( val !== '' && ( typeof src == 'undefined' || src == false ) ) {
+              btnContent = '<img src="'+val+'" alt="" /><a href="" class="remove">Remove Image</a>';
+              $(this).parent().find('.screenshot').append(btnContent);
+            } else if ( val == '' ) {
+              img.remove();
+              btn.remove();
+            }
+
+            
+      });
     },
     save_options: function (e) {
       var d = {

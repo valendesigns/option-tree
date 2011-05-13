@@ -7,7 +7,7 @@
  * @since       1.0.0
  * @author      Derek Herman
  */
-if ( is_admin() && isset( $_GET['page'] ) && strpos( '__'.$_GET['page'], 'option_tree' ) )
+if ( is_admin() )
 {
   include( 'admin/export.php' );
   include( 'admin/heading.php' );

@@ -9,7 +9,7 @@
       <?php echo OT_VERSION; ?>
     </div>
 	</div>
-  
+
   <div id="content_wrap">
   
     <form method="post" id="the-theme-options">
@@ -79,7 +79,7 @@
             foreach ( $ot_array as $value ) 
             {
               $count++;
-              if ( $value->item_type == 'upload' ) 
+              if ( $value->item_type == 'upload' || $value->item_type == 'slider' ) 
               {
                 $int = $post_id;
               }

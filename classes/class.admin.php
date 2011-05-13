@@ -1414,7 +1414,7 @@ class OT_Admin
       'link'        => '',
       'description' => ''
     );
-    slider_view( $id, $image, $count );
+    slider_view( $id, $image, $this->get_option_page_ID('media'), $count );
     die();
   }
   
@@ -1434,7 +1434,7 @@ class OT_Admin
   {
     global $wpdb;
     
-    return $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_title = '{$page_title}' AND post_type = 'option-tree' AND post_status != 'trash'");
+    return $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE `post_name` = '{$page_title}' AND `post_type` = 'option-tree' AND `post_status` = 'private'");
   }
   
   /**
@@ -1454,7 +1454,7 @@ class OT_Admin
     		'name' => __( 'Options' ),
     	),
     	'public' => true,
-    	'show_ui' => false,
+    	'show_ui' => true,
     	'capability_type' => 'post',
     	'exclude_from_search' => true,
     	'hierarchical' => false,

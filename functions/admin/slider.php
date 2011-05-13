@@ -23,8 +23,8 @@ function option_tree_slider( $value, $settings, $int )
         <?php
         if ( !empty( $settings[$value->item_id] ) ) {
           foreach( $settings[$value->item_id] as $image ) { ?>
-            <li><?php slider_view( $value->item_id, $image, $count ); ?></li><?php 
-            $count++;
+            <li><?php slider_view( $value->item_id, $image, $int, $count ); ?></li><?php 
+            $count++; 
           }
         } 
         ?>
@@ -51,7 +51,7 @@ function option_tree_slider( $value, $settings, $int )
  *
  * @return string
  */
-function slider_view( $id, $image, $count ) 
+function slider_view( $id, $image, $int, $count ) 
 {
   // required fileds
   $requred_fields = array(
@@ -108,34 +108,25 @@ function slider_view( $id, $image, $count )
       foreach( $image_slider_fields as $field ) {
       
         if ( $field['name'] == 'image' ){ ?>
-          <p>
-            <label><?php echo $field['label']; ?></label>       		  
+          <div>
+            <label><?php echo $field['label']; ?></label>      		  
             <input type="text" name="<?php echo $id; ?>[<?php echo $count; ?>][<?php echo $field['name']; ?>]" id="<?php echo $id; ?>-<?php echo $count; ?>-<?php echo $field['name']; ?>" value="<?php echo ( isset( $image[$field['name']] ) ? stripslashes($image[$field['name']]) : '' ); ?>" class="upload<?php if ( isset( $image[$field['name']] ) ) { echo ' has-file'; } ?>"/>
-            <input id="upload_<?php echo $id ?>-<?php echo $count ?>-<?php echo $field['name'] ?>" class="upload_button" type="button" value="Upload" rel="<?php echo '85'; ?>" />
-          </p>
-          <div class="screenshot" id="<?php echo $id ?>-<?php echo $count ?>-<?php echo $field['name'] ?>_image">
-            <?php 
-            if ( isset( $image[$field['name']] ) && $image[$field['name']] != '' ) 
-            { 
-              $remove = '<a href="javascript:(void);" class="remove">Remove</a>';
-              $screenshot_image = $image[$field['name']];
-              $image = preg_match( '/(^.*\.jpg|jpeg|png|gif|ico*)/i', $image[$field['name']] );
-              if ( $image ) 
-              {
-                echo '<img src="'.$screenshot_image.'" alt="" />'.$remove.'';
-              } 
-              else 
-              {
-                $parts = explode( "/", $image[$field['name']] );
-                for( $i = 0; $i < sizeof($parts); ++$i ) 
+            <input id="upload_<?php echo $id ?>-<?php echo $count ?>-<?php echo $field['name'] ?>" class="upload_button" type="button" value="Upload" rel="<?php echo $int; ?>" />
+            <div class="screenshot" id="<?php echo $id ?>-<?php echo $count ?>-<?php echo $field['name'] ?>_image">
+              <?php 
+              if ( isset( $image[$field['name']] ) && $image[$field['name']] != '' ) 
+              { 
+                $remove = '<a href="javascript:(void);" class="remove">Remove</a>';
+                $screenshot_image = $image[$field['name']];
+                $new_image = preg_match( '/(^.*\.jpg|jpeg|png|gif|ico*)/i', $image[$field['name']] );
+                if ( $new_image ) 
                 {
-                  $title = $parts[$i];
+                  echo '<img src="'.$screenshot_image.'" alt="" />'.$remove.'';
                 }
-                echo '<div class="no_image"><a href="'.$image[$field['name']].'">'.$title.'</a>'.$remove.'</div>';
               }
-            }
-            ?>
-          </div> 
+              ?>
+            </div>
+          </div>
         <?php
         } else if ( $field['type'] == 'text' ) {
           echo '
