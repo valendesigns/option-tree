@@ -993,8 +993,8 @@
       $(".option-tree-slider-body").hide();
       $('.option-tree-slider .edit').live('click', function(event){
         event.preventDefault();
-        $('.option-tree-slider .edit').removeClass('down');
-        $('.option-tree-slider-body').hide();
+        $('.option-tree-slider .edit').not($(this)).removeClass('down');
+        $('.option-tree-slider-body').not($(this).parent().find('.option-tree-slider-body')).hide();
         $(this).toggleClass('down');
         $(this).parent().find('.option-tree-slider-body').toggle();
       });
