@@ -1040,7 +1040,8 @@
           data: {
             action: 'option_tree_add_slider',
             slide_id: id,
-            count: image_count
+            count: image_count,
+            page: 'option_tree'
           },
           complete: function( data ) {
             $('#'+id+'_list').append( '<li>' + data.responseText + '</li>' );
