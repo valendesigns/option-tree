@@ -752,6 +752,20 @@ a:hover strong {
           .option-tree-slider-wrap .option-tree-slider-body {
 
           }
+          .option-tree-slider p {
+            clear: both;
+          }
+          .option-tree-slider-wrap .option-tree-slider-body .screenshot {
+            display: block; 
+            width: 320px;
+          }
+          .option-tree-slider-wrap .option-tree-slider-body .screenshot img {
+          	max-width: 314px;
+          	margin: 10px 0;
+          }
+          .option-tree-slider-wrap .option-tree-slider-body .screenshot .remove {
+            bottom: 6px;
+          }
 /* Docs */
 #framework_wrap #options_tabs.docs {
   font-size: 11px !important;

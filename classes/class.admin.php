@@ -21,6 +21,7 @@ class OT_Admin
   private $has_xml;
   private $has_data;
   private $has_layout;
+  private $show_docs;
   
   /**
    * PHP4 contructor
@@ -69,6 +70,11 @@ class OT_Admin
     $this->has_xml    = ( is_readable( $this->theme_options_xml ) ) ? true : false;
     $this->has_data   = ( is_readable( $this->theme_options_data ) ) ? true : false;
     $this->has_layout = ( is_readable( $this->theme_options_layout ) ) ? true : false;
+    
+    // show or hide docs
+    // TODO find a way to set this outside of the plugin before it loads
+    $this->show_docs = true;
+      
   }
   
   /**
@@ -97,7 +103,7 @@ class OT_Admin
       // load DB activation function if updating plugin
       $this->option_tree_activate();
       
-      if ( $this->has_xml == true )
+      if ( $this->has_xml == true && $this->show_docs == false )
       {
         // Redirect
         wp_redirect( admin_url().'themes.php?page=option_tree' );
@@ -340,7 +346,7 @@ class OT_Admin
     $this->option_tree_activate();
     
     // Redirect
-    if ( $this->has_xml == true )
+    if ( $this->has_xml == true && $this->show_docs == false )
     {
       wp_redirect( admin_url().'themes.php?page=option_tree' );
     }
@@ -397,7 +403,7 @@ class OT_Admin
     $this->option_tree_import_xml();
 
     // if XML file came with the theme don't build the whole UI
-    if ( $this->has_xml == true )
+    if ( $this->has_xml == true && $this->show_docs == false )
     {
       // create menu item
       $option_tree_options = add_submenu_page( 'themes.php', 'OptionTree Theme Options','Theme Options', 'activate_plugins', 'option_tree', array( $this, 'option_tree_options_page' ) );
@@ -627,8 +633,7 @@ class OT_Admin
     $this->option_tree_set_post_lock( $this->get_option_page_ID( 'media' ) );
     
     // hook before AJAX is returned
-    // THIS MAY CHANGE
-    do_action( 'option_tree_save' );
+    do_action( 'option_tree_array_save' );
 
   	die();
   }
@@ -1123,7 +1128,7 @@ class OT_Admin
 
     // Unserialize The Array
     $new_options = unserialize( base64_decode( $string ) );
-    
+      
     // check if array()
     if ( is_array( $new_options ) ) 
     {
@@ -1140,9 +1145,8 @@ class OT_Admin
         update_option( 'option_tree_layouts', $options_layouts );
       }
       
-      // hook before AJAX is returned
-      // THIS MAY CHANGE
-      do_action( 'option_tree_save' );
+      // hook after import, before AJAX is returned
+      do_action( 'option_tree_import_data' );
     
       // redirect
       die();
@@ -1229,6 +1233,10 @@ class OT_Admin
       delete_option( 'option_tree_layouts' );
       add_option( 'option_tree_layouts', array( 'active_layout' => $string, $string => $options ) );
     }
+    
+    // hook after save, before AJAX is returned
+    do_action( 'option_tree_save_layout' );
+      
     die( $options );
   }
 
@@ -1255,6 +1263,9 @@ class OT_Admin
     
     update_option( 'option_tree_layouts', $options_layouts );
     
+    // hook after delete, before AJAX is returned
+    do_action( 'option_tree_delete_layout' );
+    
     die( 'removed' );
   }
   
@@ -1272,7 +1283,6 @@ class OT_Admin
       // check AJAX referer
       check_ajax_referer( 'inlineeditnonce', '_ajax_nonce' );
     }
-    
     
     // grab ID
     $id = $_REQUEST['id'];
@@ -1295,11 +1305,18 @@ class OT_Admin
       
       // create new options
       add_option( 'option_tree', $new_options );
-	  
+      
+      // hook after activate, before AJAX is returned
+      do_action( 'option_tree_activate_layout' );
+    
       // redirect
-      if ( $this->has_xml == true )
+      if ( $this->has_xml == true && $this->show_docs == false )
       {
         die('themes.php?page=option_tree&layout=true');
+      }
+      else if ( isset($_REQUEST['themes']) && $_REQUEST['themes'] == true )
+      {
+        die('admin.php?page=option_tree&layout=true');
       }
       else 
       {
@@ -1345,7 +1362,10 @@ class OT_Admin
       
       // create new layouts
       add_option('option_tree_layouts', $new_options);
-	  
+      
+      // hook after import, before redirect
+      do_action( 'option_tree_import_layout' );
+      
       // redirect
       die('admin.php?page=option_tree_settings&layout=true&cache=buster_'.mt_rand(5, 100).'#layout_options');
     }

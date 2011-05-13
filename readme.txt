@@ -43,12 +43,18 @@ Sorry, but yes. OptionTree requires PHP5 to work correctly.
 == Changelog ==
 
 = 1.1.7 =
-* Added layout (theme variation) support with import/export capabilities
-* Multisite compatibility by manually adding xml mime type
-* Replaced eregi() with preg_match() for 5.3+ compatibility
-* Added 'option_tree_admin_header' hook before admin pages
-* Added 'option_tree_save' hook after save (likely to change in next version, needs testing)
-* Added new test data in the assets directory
+* Added layout (theme variation) support with save/delete/activate/import/export capabilities. Contributions form Brian of flauntbooks.com
+* Allow layout change on Theme Options page.
+* Full Multisite compatibility by manually adding xml mime type.
+* Replaced eregi() with preg_match() for 5.3+ compatibility.
+* Added do_action('option_tree_import_data') to option_tree_import_data() function before exit.
+* Added do_action('option_tree_array_save') to option_tree_array_save() function before exit.
+* Added do_action('option_tree_save_layout') to option_tree_save_layout() function before exit.
+* Added do_action('option_tree_delete_layout') to option_tree_delete_layout() function before exit.
+* Added do_action('option_tree_activate_layout') to option_tree_activate_layout() function before exit.
+* Added do_action('option_tree_import_layout') to option_tree_import_layout() function before redirect.
+* Added do_action('option_tree_admin_header') hook before all admin pages.
+* Added new test data in the assets directory.
 
 = 1.1.6 =
 * Theme Integration added.

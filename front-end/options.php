@@ -20,7 +20,7 @@
         
         <?php if ( $this->has_xml ) { ?>
         <input type="submit" value="<?php _e('Reload XML') ?>" class="button-framework reload-options" name="reload" style="margin-right:10px;" />
-
+        <?php } ?>
         <?php
         if ( is_array( $layouts ) && !empty($layouts) ) 
         {
@@ -47,8 +47,6 @@
        		echo '</div>';
      		}
         ?>
-
-        <?php } ?>
         
       </div>
       
