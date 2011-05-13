@@ -144,7 +144,6 @@
           btnContent = true;
       // On Click
       $('.upload_button').live("click", function () {
-        //formfield = $(this).prev('input').attr('name');
         formfield = $(this).prev('input').attr('id');
         formID = $(this).attr('rel');
         tb_show('', 'media-upload.php?post_id='+formID+'&type=image&amp;TB_iframe=1');
@@ -347,20 +346,19 @@
             img = $(this).parent().find('img'),
             btn = $(this).parent().find('.remove'),
             src = img.attr('src');
-            
-            if ( val != src ) {
-              img.attr('src', val);
-            }
-              
-            if ( val !== '' && ( typeof src == 'undefined' || src == false ) ) {
-              btnContent = '<img src="'+val+'" alt="" /><a href="" class="remove">Remove Image</a>';
-              $(this).parent().find('.screenshot').append(btnContent);
-            } else if ( val == '' ) {
-              img.remove();
-              btn.remove();
-            }
-
-            
+        
+        // don't match update             
+        if ( val != src ) {
+          img.attr('src', val);
+        }
+        // no image to change add it
+        if ( val !== '' && ( typeof src == 'undefined' || src == false ) ) {
+          btnContent = '<img src="'+val+'" alt="" /><a href="" class="remove">Remove Image</a>';
+          $(this).parent().find('.screenshot').append(btnContent);
+        } else if ( val == '' ) {
+          img.remove();
+          btn.remove();
+        }  
       });
     },
     save_options: function (e) {
@@ -776,10 +774,10 @@
       $('.item_id', editRow).attr('value', item_id);
       
       // Item Type
-  		item_type = $('.item_type', rowData).text();
-  		$('select[name=item_type] option[value='+item_type+']', editRow).attr('selected', true);
-  		var temp_item_type = $('select[name=item_type] option[value='+item_type+']', editRow).text();
-  		$('.select_wrapper span', editRow).text(temp_item_type);
+      item_type = $('.item_type', rowData).text();
+      $('select[name=item_type] option[value='+item_type+']', editRow).attr('selected', true);
+      var temp_item_type = $('select[name=item_type] option[value='+item_type+']', editRow).text();
+      $('.select_wrapper span', editRow).text(temp_item_type);
   		
   		// Item Description
       item_desc = $('.item_desc', rowData).text();
@@ -991,59 +989,58 @@
         $(this).parent().find('.option-tree-slider-body').toggle();
       });
       $('.option-tree-slider-title').live('keyup', function(){
-  			ImageSlider.update_slider_title(this);
-  		});
-  		$('.remove-slide').live('click', function(event){
-  			event.preventDefault();
-  			var agree = confirm("Are you sure you wish to delete this slide?");
+        ImageSlider.update_slider_title(this);
+      });
+      $('.remove-slide').live('click', function(event){
+        event.preventDefault();
+        var agree = confirm("Are you sure you wish to delete this slide?");
         if (agree) {
           ImageSlider.delete_slider_image(this);
           return false;
         } else {
           return false;
         }
-  		});
-  		$('.add-slide').live('click', function(event){
-  			event.preventDefault();
-  			ImageSlider.add_slider($(this).attr('id'));
-  		});
-
-  		$('.option-tree-slider-wrap').each( function() {
-  		  var id = $(this).attr('id');
-    		if ( $('#'+id).length ) {
-    			$('#'+id).sortable({
-    				update: function(event,ui){
-    					$('#'+id).find('li:not(.ui-sortable-helper)').each(function(inc){
-    						var target = $(this).find('a.open').attr('href').split("#")[1];
-    						$('#' + target).find('input.option-tree-slider-order').val(inc + 1);
-    					});
-    				}
-    			});
-    		}
+      });
+      $('.add-slide').live('click', function(event){
+        event.preventDefault();
+        ImageSlider.add_slider($(this).attr('id'));
+      });
+      $('.option-tree-slider-wrap').each( function() {
+        var id = $(this).attr('id');
+        if ( $('#'+id).length ) {
+          $('#'+id).sortable({
+            update: function(event,ui){
+              $('#'+id).find('li:not(.ui-sortable-helper)').each(function(inc){
+                var target = $(this).find('a.open').attr('href').split("#")[1];
+                $('#' + target).find('input.option-tree-slider-order').val(inc + 1);
+              });
+            }
+          });
+        }
       });
     },
     update_slider_title: function(e) {
-  		var element = e;
-  		if ( this.timer ) {
-  			clearTimeout( element.timer );
-  		}
-  		this.timer = setTimeout( function() {
-  			$(element).parents('.option-tree-slider').find('.open').text( element.value );
-  		}, 100);
-  		return true;
-  	},
-  	add_slider: function(id) {
+      var element = e;
+      if ( this.timer ) {
+        clearTimeout( element.timer );
+      }
+      this.timer = setTimeout( function() {
+        $(element).parents('.option-tree-slider').find('.open').text( element.value );
+      }, 100);
+      return true;
+    },
+    add_slider: function(id) {
       var self = this;
-  		if ( this.processing === false ) {
-  			this.processing = true;
+      if ( this.processing === false ) {
+        this.processing = true;
         var image_count = parseInt($( '#'+id+'_list li' ).length) - 1;
         $.ajax({
-  				url: ajaxurl,
-  				type: 'get',
-  				data: {
+          url: ajaxurl,
+          type: 'get',
+          data: {
             action: 'option_tree_add_slider',
             slide_id: id,
-  					count: image_count
+            count: image_count
           },
           complete: function( data ) {
             $('#'+id+'_list').append( '<li>' + data.responseText + '</li>' );
@@ -1053,7 +1050,7 @@
         });
       }
     },
-  	delete_slider_image: function(e) {
+    delete_slider_image: function(e) {
       $(e).parents('li').remove();
     }
   };
