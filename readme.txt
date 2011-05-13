@@ -17,6 +17,8 @@ With OptionTree you can create as many Theme Options as your project requires an
 
 Included is the ability to Import/Export all the theme options and data for packaging with custom themes or local development. With the Import/Export feature you can get a theme set up on a live server in minutes. Theme authors can now create different version of their themes and include them with the download. It makes setting up different theme styles & options easier than ever because a theme user installs the plugin and theme and either adds their own settings or imports your defaults.
 
+**Update**: Since v1.1.7 you can create layouts (theme variations) and import/export those layouts. You can also activate them at anytime from the Theme Options page. Added an upload feature to the slider.
+
 **Update**: Since v1.1.6 it's now possible to have a default XML file included in your theme to populate the theme options and hide the 'Settings' and 'Documentation' pages from the end uses. You can read more about this in the plugins built in documentation by clicking the 'Theme Integration' tab.
 
 OptionTree is a project sponsored by <a href="http://themeforest.net/?ref=valendesigns">ThemeForest</a>, the largest WordPress theme marketplace on the web, and was originally conceived to help ThemeForest authors quickly power up their themes. But it's here for the benefit of one and all, so option up folks!
@@ -91,6 +93,9 @@ Sorry, but yes. OptionTree requires PHP5 to work correctly.
 * Initial version
 
 == Upgrade Notice ==
+
+= 1.1.7 =
+Lots of additions, none critical just fun. Added layouts & upload to slider. As well, started including action hooks for extending and integrating with other plugins.
 
 = 1.1.6 =
 Added theme integration for developers. It's now possible to have a default XML file included in your theme to populate the theme options and hide the settings and docs pages. Read more about this in the plugins built in documentation.
