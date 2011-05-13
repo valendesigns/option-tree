@@ -18,7 +18,7 @@
         
         <input type="submit" value="<?php _e('Save All Changes') ?>" class="button-framework save-options" name="submit" />
         
-        <?php if ( $this->has_xml ) { ?>
+        <?php if ( $this->has_xml && $this->show_docs == false ) { ?>
         <input type="submit" value="<?php _e('Reload XML') ?>" class="button-framework reload-options" name="reload" style="margin-right:10px;" />
         <?php } ?>
         <?php

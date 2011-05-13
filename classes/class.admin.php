@@ -1480,7 +1480,7 @@ class OT_Admin
     		'name' => __( 'Options' ),
     	),
     	'public' => true,
-    	'show_ui' => true,
+    	'show_ui' => false,
     	'capability_type' => 'post',
     	'exclude_from_search' => true,
     	'hierarchical' => false,
