@@ -50,7 +50,7 @@ Sorry, but yes. OptionTree requires PHP5 to work correctly.
 * Full Multisite compatibility by manually adding xml mime type for import options.
 * Replaced eregi() with preg_match() for 5.3+ compatibility.
 * Changed test data in the assets directory for new layout option.
-* Made it so when the slider & upload image changes it's reflect on blur.
+* Made it so when the slider & upload image changes it's reflected on blur.
 * Gave the slider image an upload button.
 * Added do_action('option_tree_import_data') to option_tree_import_data() function before exit.
 * Added do_action('option_tree_array_save') to option_tree_array_save() function before exit.
@@ -59,6 +59,10 @@ Sorry, but yes. OptionTree requires PHP5 to work correctly.
 * Added do_action('option_tree_activate_layout') to option_tree_activate_layout() function before exit.
 * Added do_action('option_tree_import_layout') to option_tree_import_layout() function before redirect.
 * Added do_action('option_tree_admin_header') hook before all admin pages.
+* Fixed bug where users could add a color without a hash.
+* Only load option type function on Theme Options page
+* Loading resources with absolute paths, no longer relative.
+* Fixed a bug with uploader creating extra option-tree draft pages.
 
 = 1.1.6 =
 * Theme Integration added.
