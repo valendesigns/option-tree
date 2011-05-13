@@ -7,7 +7,7 @@
  * @since       1.0.0
  * @author      Derek Herman
  */
-if ( is_admin() && isset( $_GET['page'] ) && $_GET['page'] == 'option_tree' )
+if ( is_admin() )
 {
   include( OT_PLUGIN_DIR . '/functions/admin/export.php' );
   include( OT_PLUGIN_DIR . '/functions/admin/heading.php' );
