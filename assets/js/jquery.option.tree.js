@@ -360,6 +360,14 @@
           btn.remove();
         }  
       });
+      // add a # to color
+      $('.cp_input').live('blur', function() {
+        var val = $(this).val();
+        var reg = /^[A-Fa-f0-9]{6}$/;
+        if( reg.test( val) && val != '' ) { 
+          $(this).attr('value', '#'+val )
+        }
+      });
     },
     save_options: function (e) {
       var d = {
