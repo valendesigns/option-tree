@@ -1186,7 +1186,7 @@ class OT_Admin
   }
   
   /**
-   * Save Layout, Activate & Delete Saved Layouts Data via AJAX
+   * Save Layout via AJAX
    *
    * @uses check_ajax_referer()
    * @uses get_option()
@@ -1239,7 +1239,20 @@ class OT_Admin
       
     die( $options );
   }
-
+  
+  /**
+   * Delete Layout via AJAX
+   *
+   * @uses check_ajax_referer()
+   * @uses get_option()
+   * @uses update_option()
+   * @uses add_option()
+   *
+   * @access public
+   * @since 1.1.7
+   *
+   * @return void
+   */
   function option_tree_delete_layout() 
   {
     global $wpdb;
@@ -1269,6 +1282,19 @@ class OT_Admin
     die( 'removed' );
   }
   
+  /**
+   * Activate Layout via AJAX
+   *
+   * @uses check_ajax_referer()
+   * @uses get_option()
+   * @uses update_option()
+   * @uses add_option()
+   *
+   * @access public
+   * @since 1.1.7
+   *
+   * @return void
+   */
   function option_tree_activate_layout() 
   {
     global $wpdb;
