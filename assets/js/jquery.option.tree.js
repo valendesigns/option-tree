@@ -340,7 +340,7 @@
       // Hide the delete button on the first row 
       $('a.delete-inline', "#option-1").hide();
       // change upload input
-      $('.upload').blur( function() {
+      $('.upload').live('blur', function() {
         var id = $(this).attr('id'),
             val = $(this).val(),
             img = $(this).parent().find('img'),

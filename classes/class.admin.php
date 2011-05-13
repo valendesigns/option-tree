@@ -525,7 +525,7 @@ class OT_Admin
   	}
     
     // Grab Options Page
-    include( OT_PLUGIN_DIR.'/front-end/options.php' );
+    include( OT_PLUGIN_DIR. '/front-end/options.php' );
   }
   
   /**
@@ -570,7 +570,7 @@ class OT_Admin
   	}
     
     // Get Settings Page
-    include( OT_PLUGIN_DIR.'/front-end/settings.php');
+    include( OT_PLUGIN_DIR . '/front-end/settings.php' );
   }
   
   /**
@@ -587,7 +587,7 @@ class OT_Admin
     do_action( 'option_tree_admin_header' );
     
     // Get Settings Page
-    include( OT_PLUGIN_DIR.'/front-end/docs.php');
+    include( OT_PLUGIN_DIR . '/front-end/docs.php' );
   }
   
   /**
@@ -1440,7 +1440,7 @@ class OT_Admin
       'link'        => '',
       'description' => ''
     );
-    slider_view( $id, $image, $this->get_option_page_ID('media'), $count );
+    option_tree_slider_view( $id, $image, $this->get_option_page_ID('media'), $count );
     die();
   }
   

@@ -23,7 +23,7 @@ function option_tree_slider( $value, $settings, $int )
         <?php
         if ( !empty( $settings[$value->item_id] ) ) {
           foreach( $settings[$value->item_id] as $image ) { ?>
-            <li><?php slider_view( $value->item_id, $image, $int, $count ); ?></li><?php 
+            <li><?php option_tree_slider_view( $value->item_id, $image, $int, $count ); ?></li><?php 
             $count++; 
           }
         } 
@@ -51,7 +51,7 @@ function option_tree_slider( $value, $settings, $int )
  *
  * @return string
  */
-function slider_view( $id, $image, $int, $count ) 
+function option_tree_slider_view( $id, $image, $int, $count ) 
 {
   // required fileds
   $requred_fields = array(

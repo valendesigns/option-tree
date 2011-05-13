@@ -23,8 +23,8 @@ define( 'OT_PLUGIN_URL', WP_PLUGIN_URL . '/' . dirname( plugin_basename( __FILE_
  *
  * @since 1.0.0
  */
-require_once('functions/functions.load.php');
-require_once('classes/class.admin.php');
+require_once( OT_PLUGIN_DIR . '/functions/functions.load.php' );
+require_once( OT_PLUGIN_DIR . '/classes/class.admin.php' );
 
 /**
  * Instantiate Classe
