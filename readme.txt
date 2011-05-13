@@ -63,6 +63,7 @@ Sorry, but yes. OptionTree requires PHP5 to work correctly.
 * Only load option type function on Theme Options page
 * Loading resources with absolute paths, no longer relative.
 * Fixed a bug with uploader creating extra option-tree draft pages.
+* Fixed slider toggle bug, now the sliders close when you open another or create new slide.
 
 = 1.1.6 =
 * Theme Integration added.
