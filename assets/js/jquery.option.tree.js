@@ -993,6 +993,8 @@
       $(".option-tree-slider-body").hide();
       $('.option-tree-slider .edit').live('click', function(event){
         event.preventDefault();
+        $('.option-tree-slider .edit').removeClass('down');
+        $('.option-tree-slider-body').hide();
         $(this).toggleClass('down');
         $(this).parent().find('.option-tree-slider-body').toggle();
       });
@@ -1052,6 +1054,8 @@
             page: 'option_tree'
           },
           complete: function( data ) {
+            $('.option-tree-slider .edit').removeClass('down');
+            $('.option-tree-slider-body').hide();
             $('#'+id+'_list').append( '<li>' + data.responseText + '</li>' );
             $('#'+id+'_list li:last .option-tree-slider .edit').toggleClass('down');
             self.processing = false;
