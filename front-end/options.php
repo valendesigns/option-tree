@@ -13,45 +13,57 @@
   
     <form method="post" id="the-theme-options">
       
-      <div class="info top-info">
+      <div class="info top-info is-option-page">
         
         <input type="submit" value="<?php _e('Save All Changes') ?>" class="button-framework save-options" name="submit" />
         
-        <?php if ( $this->has_xml && $this->show_docs == false ) { ?>
-        <input type="submit" value="<?php _e('Reload XML') ?>" class="button-framework reload-options" name="reload" style="margin-right:10px;" />
-        <?php } ?>
-        <?php
-        if ( is_array( $layouts ) && !empty($layouts) ) 
-        {
-          echo '<div class="select-layout">';
-          echo '<select name="active_theme_layout" id="active_theme_layout">';
-          echo '<option value="">-- Choose One --</option>';
+        <div class="top-layout-bar">
 
-          $active_layout = $layouts['active_layout'];
-          foreach( $layouts as $key => $v ) 
-          { 
-            if ( $key == 'active_layout')
-              continue;
-              
-            $selected = '';
-  	        if ( $active_layout == trim( $key ) ) 
-              $selected = ' selected="selected"'; 
-
-  	        echo '<option'.$selected.'>'.trim( $key ).'</option>';
+          <?php if ( $this->has_xml && $this->show_docs == false ) { ?>
+          <input type="submit" value="<?php _e('Reload XML') ?>" class="button-framework reload-options" name="reload" style="margin-right:10px;" />
+          <?php } ?>
+          <?php
+          $has_layouts = false;
+          if ( is_array( $layouts ) && !empty($layouts) ) 
+          {
+            $has_layouts = true;
+            echo '<div class="select-layout">';
+            echo '<select name="active_theme_layout" id="active_theme_layout">';
+            echo '<option value="">-- Choose One --</option>';
+  
+            $active_layout = $layouts['active_layout'];
+            foreach( $layouts as $key => $v ) 
+            { 
+              if ( $key == 'active_layout')
+                continue;
+                
+              $selected = '';
+    	        if ( $active_layout == trim( $key ) ) 
+                $selected = ' selected="selected"'; 
+  
+    	        echo '<option'.$selected.'>'.trim( $key ).'</option>';
+         		}
+         		echo '</select>';
+         		?>
+         		<input type="submit" value="<?php _e('Activate Layout') ?>" class="button-framework user-activate-layout" name="user-activate-layout" />
+         		<?php
+         		echo '</div>';
        		}
-       		echo '</select>';
-       		?>
-       		<input type="submit" value="<?php _e('Activate Layout') ?>" class="button-framework user-activate-layout" name="user-activate-layout" style="margin-right:10px;" />
-       		<?php
-       		echo '</div>';
-     		}
-        ?>
+          ?>
+          
+          <div class="right" style="height: 34px">
+            <input type="text" name="options_name" value="" style="margin:5px 10px 0 0;padding:3px 3px 4px 3px;" id="save_theme_layout" />
+            <input type="submit" value="<?php _e('Save Layout') ?>" class="button-framework user-save-layout" name="user-save-layout" style="margin-right:<?php echo $has_layouts ? '10' : '20'; ?>px;" />
+          </div>
+          
+        </div>
         
       </div>
       
-      <div class="ajax-message<?php if ( isset( $message ) || isset($_GET['updated']) || isset($_GET['layout']) ) { echo ' show'; } ?>">
+      <div class="ajax-message<?php if ( isset( $message ) || isset($_GET['updated']) || isset($_GET['layout']) || isset($_GET['layout_saved']) ) { echo ' show'; } ?>">
         <?php if (isset($_GET['updated'])) { echo '<div class="message"><span>&nbsp;</span>Theme Options were updated.</div>'; } ?>
         <?php if (isset($_GET['layout'])) { echo '<div class="message"><span>&nbsp;</span>Your Layout has been activated.</div>'; } ?>
+        <?php if (isset($_GET['layout_saved'])) { echo '<div class="message"><span>&nbsp;</span>Layout Saved Successfully.</div>'; } ?>
         <?php if ( isset( $message ) ) { echo $message; } ?>
       </div>
       

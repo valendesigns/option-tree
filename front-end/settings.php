@@ -296,7 +296,7 @@
             <div class="section">
               <div class="element">
                 <form method="post" id="save-layout">
-                  <input type="options_name" name="options_name" value="" class="input_layout" />
+                  <input type="text" name="options_name" value="" class="input_layout" />
                   <?php wp_nonce_field( '_save_layout', '_ajax_nonce', false ); ?>
                   <input type="submit" value="Save Layout" class="ob_button right save-layout" /> 
                 </form>
@@ -324,7 +324,7 @@
                   <?php 
                   if ( is_array( $layouts ) && !empty($layouts) ) {
                     arsort( $layouts );
-                    $active_layout = $layouts['active_layout'];
+                    $active_layout = isset($layouts['active_layout']) ? $layouts['active_layout'] : '';
                     foreach( $layouts as $key => $values ) { 
                       if ( $key == 'active_layout')
                         continue;

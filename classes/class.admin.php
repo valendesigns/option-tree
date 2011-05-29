@@ -1202,7 +1202,16 @@ class OT_Admin
     global $wpdb;
     
     // check AJAX referer
-    check_ajax_referer( '_save_layout', '_ajax_nonce' );
+    if ( isset($_REQUEST['themes']) && $_REQUEST['themes'] == true ) 
+    {
+      // Check AJAX Referer
+      check_ajax_referer( '_theme_options', '_ajax_nonce' );
+    }
+    else
+    {
+      // check AJAX referer
+      check_ajax_referer( '_save_layout', '_ajax_nonce' );
+    }
     
     // Get Data
     $string = $_REQUEST['options_name'];
@@ -1235,8 +1244,16 @@ class OT_Admin
     
     // hook after save, before AJAX is returned
     do_action( 'option_tree_save_layout' );
-      
-    die( $options );
+    
+    // redirect
+    if ( isset($_REQUEST['themes']) && $_REQUEST['themes'] == true )
+    {
+      die('admin.php?page=option_tree&layout_saved=true');
+    }
+    else 
+    {
+      die( $options );
+    }
   }
   
   /**

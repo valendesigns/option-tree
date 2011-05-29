@@ -97,6 +97,16 @@ a:hover strong {
     border-top: 1px solid #fff;
     border-bottom: 1px solid #e3e3e3;
   }
+  #framework_wrap #content_wrap .info.is-option-page {
+    height: 71px;
+  }
+    .top-layout-bar {
+      background: #f1f1f1;
+      float: left;
+      width: 100%;
+      border-top: 1px solid #e3e3e3;
+      margin-top: 7px;
+    }
     a.toggle_tabs {
       cursor: pointer;
       background: url(../images/toggle_tabs.png) no-repeat -2px -1px;
@@ -517,7 +527,7 @@ a:hover strong {
         #framework_wrap #content input[type="text"],
         #framework_wrap #content select,
         #framework_wrap #content textarea,
-        #framework_wrap input.input_layout {
+        #framework_wrap #content input.input_layout {
           background: #fafafa;
           border-color: #ccc #eee #eee #ccc;
           border-style: solid;
@@ -534,11 +544,11 @@ a:hover strong {
         #framework_wrap #content div.css_block textarea {
           width: 594px;
         }
-        #framework_wrap input.input_layout {
+        #framework_wrap #content input.input_layout {
           -webkit-border-radius: 4px;
           -moz-border-radius: 4px;
           border-radius: 4px;
-          width: 240px;
+          width: 250px;
           float: left;
         }
         #framework_wrap #content tbody tr.inline-edit-option td input[type="text"],
@@ -613,8 +623,8 @@ a:hover strong {
         #framework_wrap #content input[type="text"]:hover,
         #framework_wrap #content select:hover,
         #framework_wrap #content textarea:hover,
-        #framework_wrap input:hover.input_layout,
-        #framework_wrap input:focus.input_layout {
+        #framework_wrap #content input:hover.input_layout,
+        #framework_wrap #content input:focus.input_layout {
           background: #fff;
           border-color: #bbb #eee #eee #bbb;
           color: #333;
@@ -632,8 +642,8 @@ a:hover strong {
       	}
       	#framework_wrap .select-layout {
           float: right;
-          margin-right: 10px;
-          border-right: 1px solid #e3e3e3;
+          border-left: 1px solid #e3e3e3;
+          padding-left: 10px;
           height: 34px
         }
           #framework_wrap .select-layout select {

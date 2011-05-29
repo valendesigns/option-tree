@@ -112,7 +112,7 @@
       // Activate
       $("#options_tabs").tabs();
       // Append Toggle Button
-      $('.top-info').append('<a href="" class="toggle_tabs">Tabs</a>');
+      $('.top-info').prepend('<a href="" class="toggle_tabs">Tabs</a>');
       // Toggle Tabs
       $('.toggle_tabs').toggle(function() {
         $("#options_tabs").tabs('destroy');
@@ -220,6 +220,10 @@
       $('.save-layout', '#save-layout').live("click", function (e) {
         inlineEditOption.save_layout(this);
         e.preventDefault();
+        return false;
+      });
+      $('.user-save-layout', '#the-theme-options').live("click", function (e) {
+        inlineEditOption.save_layout_user_side(this);
         return false;
       });
       $('a.delete-saved').live("click", function () {
@@ -474,6 +478,24 @@
         }
       });
       return false;
+    },
+    save_layout_user_side: function(b) {
+      d = {
+        action: "option_tree_save_layout",
+        options_name: $("#save_theme_layout").val(),
+        _ajax_nonce: $("#_ajax_nonce").val(),
+        themes: true
+      };
+      if ( $("#save_theme_layout").val() == '' ) {
+        return false;  
+      }
+      $.post(ajaxurl, d, function (r) {
+        if (r != -1) {
+          window.location.href = r;
+        } else {
+          $('.ajax-message').ajaxMessage('<div class="message warning"><span>&nbsp;</span>Your Layout could not be saved.</div>');
+        }
+      });
     },
   	activate_layout: function (b) {
       var c = true;
