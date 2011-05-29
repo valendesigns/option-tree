@@ -141,18 +141,20 @@
     init: function () {
       var formfield,
           formID,
-          btnContent = true;
+          btnContent = true,
+          tbframe_interval;
       // On Click
       $('.upload_button').live("click", function () {
         formfield = $(this).prev('input').attr('id');
         formID = $(this).attr('rel');
         tb_show('', 'media-upload.php?post_id='+formID+'&type=image&amp;TB_iframe=1');
+        tbframe_interval = setInterval(function() { jQuery('#TB_iframeContent').contents().find('.savesend .button').val('Add to OptionTree'); }, 2000);
         return false;
       });
-     
       window.original_send_to_editor = window.send_to_editor;
       window.send_to_editor = function(html) {
         if (formfield) {
+          clearInterval(tbframe_interval);
           itemurl = $(html).attr('href');
           var image = /(^.*\.jpg|jpeg|png|gif|ico*)/gi;
           var document = /(^.*\.pdf|doc|docx|ppt|pptx|odt*)/gi;
@@ -414,9 +416,26 @@
           .removeAttr('checked')
           .removeAttr('selected');
           $('.select').each(function () {
+            var parent = $(this).parents('div');
             var new_text = '-- Choose One --';
-            if ( $(this).parents('div').hasClass('measurement') )
+            if ( parent.hasClass('measurement') )
               new_text = '&nbsp;--';
+            if ( parent.hasClass('background-repeat') )
+              new_text = 'background-repeat';
+            if ( parent.hasClass('background-attachment') )
+              new_text = 'background-attachment';
+            if ( parent.hasClass('background-position') )
+              new_text = 'background-position';
+            if ( parent.hasClass('typography-family') )
+              new_text = 'font-family';
+            if ( parent.hasClass('typography-style') )
+              new_text = 'font-style';
+            if ( parent.hasClass('typography-variant') )
+              new_text = 'font-variant';
+            if ( parent.hasClass('typography-weight') )
+              new_text = 'font-weight';
+            if ( parent.hasClass('typography-size') )
+              new_text = 'font-size';
             $(this).prev('span').html(new_text);
           });
           $('ul.option-tree-slider-wrap li').each(function () {
@@ -661,7 +680,7 @@
           $('.option-desc', '#edit-'+c).show();
           $('.option-options', '#edit-'+c).show();
         } else {
-          if (temp_select == 'Textarea') {
+          if (temp_select == 'Textarea' || temp_select == 'CSS') {
             $('.regular').hide();
             $('.alternative').show().html('<strong>Row Count:</strong> Enter a numeric value for the number of rows in your textarea.');
             $('.option-desc', '#edit-'+c).show();
@@ -682,7 +701,8 @@
       });
       
       // Scroll
-      $('html, body').animate({ scrollTop: 2000 }, 500);
+      var $elem = $('#framework_wrap');
+      $('html, body').animate({ scrollTop: $elem.height() }, 500);
 
       return false;
     },
@@ -809,7 +829,7 @@
           $('.option-desc', editRow).show();
           $('.option-options', editRow).show();
         } else {
-          if (temp_select == 'Textarea') {
+          if (temp_select == 'Textarea' || temp_select == 'CSS') {
             $('.regular').hide();
             $('.alternative').show().html('<strong>Row Count:</strong> Enter a numeric value for the number of rows in your textarea.');
             $('.option-desc', editRow).show();
@@ -844,7 +864,7 @@
           $('.option-desc', editRow).show();
           $('.option-options', editRow).show();
         } else {
-          if (temp_select == 'Textarea') {
+          if (temp_select == 'Textarea' || temp_select == 'CSS') {
             $('.regular').hide();
             $('.alternative').show().html('<strong>Row Count:</strong> Enter a numeric value for the number of rows in your textarea.');
             $('.option-desc', editRow).show();

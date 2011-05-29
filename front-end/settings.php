@@ -112,31 +112,33 @@
                           <div class="select_wrapper">
                             <select name="item_type" class="select item_type">
                             <?php
-                            $types = array(
-                              'heading'       => 'Heading',
-                              'textblock'     => 'Textblock',
-                              'input'         => 'Input',
-                              'checkbox'      => 'Checkbox',
-                              'radio'         => 'Radio',
-                              'select'        => 'Select',
-                              'textarea'      => 'Textarea',
-                              'upload'        => 'Upload',
-                              'colorpicker'   => 'Colorpicker',
-                              'post'          => 'Post',
-                              'posts'         => 'Posts',
-                              'page'          => 'Page',
-                              'pages'         => 'Pages',
-                              'category'      => 'Category',
-                              'categories'    => 'Categories',
-                              'tag'           => 'Tag',
-                              'tags'          => 'Tags',
-                              'custom_post'   => 'Custom Post',
-                              'custom_posts'  => 'Custom Posts',
-                              'measurement'   => 'Measurement',
-                              'slider'        => 'Slider'
-                            );
-                            foreach ( $types as $key => $value ) 
-                            {
+                            $types = apply_filters( 'option_tree_option_types', array(
+                              'heading'           => 'Heading',
+                              'background'	      => 'Background',
+                              'category'          => 'Category',
+                              'categories'        => 'Categories',
+                              'checkbox'          => 'Checkbox',
+                              'colorpicker'       => 'Colorpicker',
+                              'css'	              => 'CSS',
+                              'custom_post'       => 'Custom Post',
+                              'custom_posts'      => 'Custom Posts',                     
+                              'input'             => 'Input',
+                              'measurement'       => 'Measurement',
+                              'page'              => 'Page',
+                              'pages'             => 'Pages',
+                              'post'              => 'Post',
+                              'posts'             => 'Posts',
+                              'radio'             => 'Radio',
+                              'select'            => 'Select',
+                              'slider'            => 'Slider',
+                              'tag'               => 'Tag',
+                              'tags'              => 'Tags',
+                              'textarea'          => 'Textarea',
+                              'textblock'         => 'Textblock',
+                              'typography'	      => 'Typography',
+                              'upload'            => 'Upload'
+                              ) );
+                            foreach ( $types as $key => $value ) {
                               echo '<option value="'.$key.'">'.$value.'</option>';
                             } 
                             ?>

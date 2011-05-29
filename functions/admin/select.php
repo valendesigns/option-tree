@@ -23,14 +23,14 @@ function option_tree_select( $value, $settings, $int )
           <select name="<?php echo $value->item_id; ?>" id="<?php echo $value->item_id; ?>" class="select">
           <?php
           echo '<option value="">-- Choose One --</option>';
-          foreach ( $options_array as $option ) 
-          {
+          foreach ( $options_array as $option ) {
             $selected = '';
-  	        if ( $settings[$value->item_id] == trim( $option ) ) 
-  	        { 
-              $selected = ' selected="selected"'; 
+            $value_pair = explode( '=', trim( $option ) );
+            if ( isset( $value_pair[0] ) && isset( $value_pair[1] ) ) {
+    	        echo '<option value="' . esc_attr( $value_pair[0] ) . '" ' . selected( $settings[$value->item_id], $value_pair[0], false ) . '>' . esc_html( $option ) . '</option>';
+            } else {
+    	        echo '<option value="' . esc_attr( trim( $option ) ) . '" ' . selected( $settings[$value->item_id], trim( $option ), false ) . '>' . esc_html( $option ) . '</option>';
             }
-  	        echo '<option'.$selected.'>'.trim( $option ).'</option>';
        		} 
           ?>
           </select>

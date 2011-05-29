@@ -26,21 +26,8 @@ function option_tree_measurement( $value, $settings, $int ) { ?>
           <select name="<?php echo $value->item_id; ?>[1]" class="select">
             <?php
             echo '<option value="">&nbsp;-- </option>';
-            $units = array(
-              'px' => 'px',
-              '%'  => '%',
-              'em' => 'em',
-              'pt' => 'pt'
-            );
-            // filter the unit types
-            $units = apply_filters( 'measurement_unit_types', $units );
-            foreach ( $units as $unit ) {
-              if ( isset( $measurement[1] ) && $measurement[1] == trim( $unit ) ) { 
-                $selected = ' selected="selected"'; 
-              } else {
-                $selected = '';
-              }
-              echo '<option'.$selected.' value="'.trim( $unit ).'">&nbsp;'.trim( $unit ).'</option>';
+            foreach ( measurement_unit_types() as $unit ) {
+              echo '<option value="' . esc_attr( trim( $unit ) ) . '" ' . selected( $measurement[1], trim( $unit ), false ) . '>' . esc_html( $unit ) . '</option>';
             } 
             ?>
           </select>

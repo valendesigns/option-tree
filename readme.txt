@@ -3,8 +3,8 @@ Contributors: valendesigns
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=accounts@valendesigns.com&item_name=OptionTree
 Tags: admin, theme options, options, admin interface, ajax
 Requires at least: 3.0
-Tested up to: 3.1.2
-Stable tag: 1.1.7
+Tested up to: 3.1.3
+Stable tag: 1.1.8
 License: GPLv2
 
 Extremely customizable Theme Options interface for WordPress.
@@ -16,6 +16,8 @@ Theme Options are what make a WordPress Theme truly custom. OptionTree attempts 
 With OptionTree you can create as many Theme Options as your project requires and use them how you see fit. When you add a option to the Settings page, it will be available on the Theme Options page for use in your theme. 
 
 Included is the ability to Import/Export all the theme options and data for packaging with custom themes or local development. With the Import/Export feature you can get a theme set up on a live server in minutes. Theme authors can now create different version of their themes and include them with the download. It makes setting up different theme styles & options easier than ever because a theme user installs the plugin and theme and either adds their own settings or imports your defaults.
+
+**Update**: Since v1.1.8 you can build custom CSS code that will automatically get inserted into your style.css or any file you choose (be sure it's permissions are writable to the server). As well, typography & background options were added with a ton of filters to extend them.
 
 **Update**: Since v1.1.7 you can create layouts (theme variations) and import/export those layouts. You can also activate them at anytime from the Theme Options page. Added an upload feature to the slider.
 
@@ -43,6 +45,20 @@ Sorry, but yes. OptionTree requires PHP5 to work correctly.
 3. Documentation
 
 == Changelog ==
+
+= 1.1.8 =
+* Fixed scrolling issue on extra tall pages
+* Added a show/hide settings & documentation option via the User Profile page.
+* Added Background option type.
+* Added Typography option type.
+* Added CSS option type.
+* Better looking selects with 1=Yes,2=No where '1' is the value and 'Yes' is the text in the select.
+* Made the AJAX message CSS more prominent.
+* functions.load.php will now only load option type functions if viewing an OT admin page.
+* Deregistered the custom jQuery UI in the 'Cispm Mail Contact' plugin when viewing an OptionTree page.
+
+= 1.1.7.1 =
+* Revert functions.load.php, will fix and update in next version
 
 = 1.1.7 =
 * Added layout (theme variation) support with save/delete/activate/import/export capabilities. Contributions form Brian of flauntbooks.com
@@ -98,6 +114,9 @@ Sorry, but yes. OptionTree requires PHP5 to work correctly.
 * Initial version
 
 == Upgrade Notice ==
+
+= 1.1.8 =
+Added Typography, Background, & CSS option types. Lots of way to extend them, as well.
 
 = 1.1.7 =
 Lots of additions, none critical just fun. Added layouts & upload to slider. As well, started including action hooks for extending and integrating with other plugins.

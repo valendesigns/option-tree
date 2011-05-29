@@ -151,28 +151,28 @@ a:hover strong {
     }
   .ajax-message {
     position: absolute;
-    left: 300px;
-    top: 100px;
-    width: 200px;
+    left: 275px;
+    top: 200px;
+    width: 250px;
     z-index: 100;
     display: none;
     overflow: visible;
   }
   #framework_wrap #content_wrap .message {
     text-align: center;
-    color: #444;
-    text-shadow: 0 1px 0 #fff;
-    font-size: 12px;
-    line-height: 16px;
-    padding: 20px 10px;
-    background: #f3f3f3;
-    border: 1px solid #bbb;
+    color: #fff;
+    text-shadow: 0 1px 0 #000;
+    font-size: 14px;
+    line-height: 18px;
+    padding: 40px 10px;
+    background: #444;
+    border: 1px solid #333;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
-    -moz-box-shadow: 0px 2px 5px #eee;
-    -webkit-box-shadow: 0px 2px 5px #eee;
-    box-shadow: 0px 2px 5px #eee;
+    -moz-box-shadow: 0px 2px 5px rgba(0,0,0,0.25);
+    -webkit-box-shadow: 0px 2px 5px rgba(0,0,0,0.25);
+    box-shadow: 0px 2px 5px rgba(0,0,0,0.25);
   }
   #framework_wrap #content_wrap .message span {
     display: block;
@@ -531,6 +531,9 @@ a:hover strong {
           color: #888;
           resize: none;
         }
+        #framework_wrap #content div.css_block textarea {
+          width: 594px;
+        }
         #framework_wrap input.input_layout {
           -webkit-border-radius: 4px;
           -moz-border-radius: 4px;
@@ -650,10 +653,9 @@ a:hover strong {
           border-width: 1px;
           float: left;
           height: 26px;
-          width: 344px;
+          width: 343px;
           margin: 0;
           margin-bottom: 9px !important;
-          width: 344px;
           display: block;
           color: #888;
         }
@@ -1097,3 +1099,10 @@ div.file_wrap {
     	opacity: 0;
     	z-index: 2;
     }
+
+.option-background-upload .screenshot img {
+  margin-bottom: 10px;
+}
+.option-background-upload .screenshot .remove {
+  bottom: 6px;
+}

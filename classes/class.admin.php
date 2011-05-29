@@ -44,6 +44,7 @@ class OT_Admin
     
     $this->version = OT_VERSION;
     $this->table_name = $table_prefix . 'option_tree';
+    define( 'OT_TABLE_NAME', $this->table_name );
     $this->option_array = $this->option_tree_data();
     
     // file path & name without extention
@@ -70,11 +71,7 @@ class OT_Admin
     $this->has_xml    = ( is_readable( $this->theme_options_xml ) ) ? true : false;
     $this->has_data   = ( is_readable( $this->theme_options_data ) ) ? true : false;
     $this->has_layout = ( is_readable( $this->theme_options_layout ) ) ? true : false;
-    
-    // show or hide docs
-    // TODO find a way to set this outside of the plugin before it loads
-    $this->show_docs = false;
-      
+
   }
   
   /**
@@ -427,7 +424,6 @@ class OT_Admin
       add_action( "admin_print_styles-$option_tree_docs", array( $this, 'option_tree_load' ) );
       add_action( "admin_print_styles-$option_tree_settings", array( $this, 'option_tree_load' ) );
     }
-
   }
   
   /**
@@ -462,6 +458,9 @@ class OT_Admin
     // remove GD star rating conflicts
     wp_deregister_style( 'gdsr-jquery-ui-core' );
     wp_deregister_style( 'gdsr-jquery-ui-theme' );
+    
+    // remove Cispm Mail Contact jQuery UI
+    wp_deregister_script('jquery-ui-1.7.2.custom.min');
   }
   
   /**
@@ -1475,6 +1474,11 @@ class OT_Admin
    */
   function create_option_post() 
   {
+    global $current_user;
+    
+    // profile show docs & settings checkbox
+    $this->show_docs = ( get_the_author_meta( 'show_docs', $current_user->ID ) == "Yes" ) ? true : false;
+    
     register_post_type( 'option-tree', array(
     	'labels' => array(
     		'name' => __( 'Options' ),
@@ -1638,6 +1642,56 @@ class OT_Admin
   
   	delete_post_meta( $post_id, '_edit_lock' );
   	delete_post_meta( $post_id, '_edit_last' );
+  }
+  
+  /**
+   * Extra Profile Fields
+   *
+   * @uses get_the_author_meta()
+   *
+   * @access public
+   * @since 1.8
+   *
+   * @param option_tree
+   *
+   * @return void
+   */
+  function option_tree_extra_profile_fields( $user ) 
+  { 
+  ?>
+  <h3>Option Tree</h3>
+  <table class="form-table">
+    <tr>
+      <th scope="row"><?php _e( 'Show Settings &amp; Docs', 'option-tree' ); ?></th>
+      <td>
+        <input type="checkbox" name="show_docs" value="<?php echo esc_attr( get_the_author_meta( 'show_docs', $user->ID ) ); ?>"<?php if(esc_attr( get_the_author_meta( 'show_docs', $user->ID ) ) == "Yes"){ echo ' checked="checked"'; } ?> />
+        <label for="show_docs"><?php _e( 'Yes/No', 'option-tree' ); ?></label>
+      </td>
+    </tr>
+  </table>
+  <?php 
+  }
+	
+	  
+  /**
+   * Extra Profile Fields Save
+   *
+   * @uses current_user_can()
+   *
+   * @access public
+   * @since 1.8
+   *
+   * @param option_tree
+   *
+   * @return void
+   */
+  function option_tree_save_extra_profile_fields( $user_id ) 
+  {
+    if ( !current_user_can( 'edit_user', $user_id ) )
+      return false;
+    
+    $ot_view = isset( $_POST['show_docs'] ) ? 'Yes' : 'No';
+    update_user_meta( $user_id, 'show_docs', $ot_view );
   }
 
 }

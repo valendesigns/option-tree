@@ -1,5 +1,4 @@
 <?php if (!defined('OT_VERSION')) exit('No direct script access allowed'); ?>
-
 <div id="framework_wrap" class="wrap">
 	
 	<div id="header">
@@ -76,19 +75,13 @@
             // set count        
             $count = 0;
             // loop options & load corresponding function   
-            foreach ( $ot_array as $value ) 
-            {
+            foreach ( $ot_array as $value ) {
               $count++;
-              if ( $value->item_type == 'upload' || $value->item_type == 'slider' ) 
-              {
+              if ( $value->item_type == 'upload' || $value->item_type == 'background' || $value->item_type == 'slider' ) {
                 $int = $post_id;
-              }
-              else if ( $value->item_type == 'textarea' )
-              {
-                $int = ( is_numeric( trim( $value->item_options ) ) ) ? trim( $value->item_options ) : 8;
-              }
-              else
-              {
+              } else if ( $value->item_type == 'textarea' || $value->item_type == 'css' ) {
+                $int = ( is_numeric( trim( $value->item_options ) ) ) ? trim( $value->item_options ) : ( $value->item_type == 'css' ? 24 : 8);
+              } else {
                 $int = $count;
               }
               call_user_func_array( 'option_tree_' . $value->item_type, array( $value, $settings, $int ) );
