@@ -197,8 +197,13 @@
         return false;
       });
       $('.reload-options', '#the-theme-options').live("click", function () {
-        inlineEditOption.reload_options(this);
-        return false;
+        var agree = confirm("Are you sure you want to reload your options from the theme-options.xml file?");
+        if (agree) {
+          inlineEditOption.reload_options(this);
+          return false;
+        } else {
+          return false;
+        }
       });
       $('.reset', '#the-theme-options').live("click", function () {
         var agree = confirm("Are you absolutely sure you wish to delete all of your saved Theme Option?");
@@ -223,7 +228,11 @@
         return false;
       });
       $('.user-save-layout', '#the-theme-options').live("click", function (e) {
-        inlineEditOption.save_layout_user_side(this);
+        var agree = confirm("Are you sure you want to save this layout?");
+        if (agree) {
+          inlineEditOption.save_layout_user_side(this);
+          return false;
+        }
         return false;
       });
       $('a.delete-saved').live("click", function () {
@@ -235,22 +244,24 @@
           if (agree) {
             inlineEditOption.delete_layout(this);
             return false;
-          } else {
-            return false;
           }
         }
+        return false;
       });
       $("a.activate-saved").live("click", function(){
         var agree = confirm("Are you sure you want to activate this layout?");
         if (agree) {
           inlineEditOption.activate_layout(this);
           return false;
-        } else {
-          return false;
         }
+        return false;
       });
       $('.user-activate-layout', '#the-theme-options').live("click", function () {
-        inlineEditOption.activate_layout_user_side(this);
+        var agree = confirm("Are you sure you want to activate this layout?");
+        if (agree) {
+          inlineEditOption.activate_layout_user_side(this);
+          return false;
+        }
         return false;
       });
       $("a.edit-inline").live("click", function (event) {

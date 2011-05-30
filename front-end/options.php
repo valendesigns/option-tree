@@ -16,17 +16,20 @@
       <div class="info top-info is-option-page">
         
         <input type="submit" value="<?php _e('Save All Changes') ?>" class="button-framework save-options" name="submit" />
-        
+
         <div class="top-layout-bar">
 
-          <?php if ( $this->has_xml && $this->show_docs == false ) { ?>
-          <input type="submit" value="<?php _e('Reload XML') ?>" class="button-framework reload-options" name="reload" style="margin-right:10px;" />
-          <?php } ?>
+          <div class="save-layout">
+            <input type="text" name="options_name" value="" id="save_theme_layout" />
+            <input type="submit" value="<?php _e('New Layout') ?>" class="button-framework user-save-layout" name="user-save-layout" />
+          </div>
+          
           <?php
-          $has_layouts = false;
           if ( is_array( $layouts ) && !empty($layouts) ) 
           {
-            $has_layouts = true;
+            ?>
+         		<input type="submit" value="<?php _e('Activate Layout') ?>" class="button-framework user-activate-layout" name="user-activate-layout" style="margin-right:10px;" />
+         		<?php
             echo '<div class="select-layout">';
             echo '<select name="active_theme_layout" id="active_theme_layout">';
             echo '<option value="">-- Choose One --</option>';
@@ -44,18 +47,14 @@
     	        echo '<option'.$selected.'>'.trim( $key ).'</option>';
          		}
          		echo '</select>';
-         		?>
-         		<input type="submit" value="<?php _e('Activate Layout') ?>" class="button-framework user-activate-layout" name="user-activate-layout" />
-         		<?php
          		echo '</div>';
        		}
           ?>
           
-          <div class="right" style="height: 34px">
-            <input type="text" name="options_name" value="" style="margin:5px 10px 0 0;padding:3px 3px 4px 3px;" id="save_theme_layout" />
-            <input type="submit" value="<?php _e('Save Layout') ?>" class="button-framework user-save-layout" name="user-save-layout" style="margin-right:<?php echo $has_layouts ? '10' : '20'; ?>px;" />
-          </div>
-          
+          <?php if ( $this->has_xml && $this->show_docs == false ) { ?>
+          <input type="submit" value="<?php _e('Reload XML') ?>" class="button-framework reload-options right" name="reload" style="margin:5px 10px 0 20px;" />
+          <?php } ?>
+
         </div>
         
       </div>

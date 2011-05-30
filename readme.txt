@@ -56,6 +56,7 @@ Sorry, but yes. OptionTree requires PHP5 to work correctly.
 * Made the AJAX message CSS more prominent.
 * functions.load.php will now only load option type functions if viewing an OT admin page.
 * Deregistered the custom jQuery UI in the 'Cispm Mail Contact' plugin when viewing an OptionTree page.
+* Can now save layouts from the Theme Options page.
 
 = 1.1.7.1 =
 * Revert functions.load.php, will fix and update in next version
