@@ -51,7 +51,7 @@
        		}
           ?>
           
-          <?php if ( $this->has_xml && $this->show_docs == false ) { ?>
+          <?php if ( $this->has_xml ) { ?>
           <input type="submit" value="<?php _e('Reload XML') ?>" class="button-framework reload-options right" name="reload" style="margin:5px 10px 0 20px;" />
           <?php } ?>
 

@@ -202,7 +202,7 @@
         <div id="import_options" class="block">
           <h2>Import</h2>
           
-          <form method="post" action="admin.php?page=option_tree_settings&action=upload" enctype="multipart/form-data" id="upload-xml">
+          <form method="post" action="admin.php?page=option_tree_settings&action=ot-upload-xml" enctype="multipart/form-data" id="upload-xml">
             <input type="hidden" name="action" value="upload" />
             <div class="option option-upload">
               <h3>Theme Options XML</h3>
@@ -253,7 +253,7 @@
         
         <div id="export_options" class="block">
           <h2>Export</h2>
-          <form method="post" action="admin.php?page=option_tree_settings&action=export">
+          <form method="post" action="admin.php?page=option_tree_settings&action=ot-export-xml">
             <div class="option option-input">
               <h3>Theme Options XML</h3>
               <div class="section desc-text">

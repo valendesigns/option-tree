@@ -380,7 +380,7 @@ class OT_Admin
     global $wpdb;
   	
   	// export XML - run before anything else
-  	if ( isset($_GET['action']) && $_GET['action'] == 'export' )
+  	if ( isset($_GET['action']) && $_GET['action'] == 'ot-export-xml' )
       option_tree_export_xml( $this->option_tree_data(), $this->table_name );
     
     // grab saved table option
@@ -1034,7 +1034,7 @@ class OT_Admin
     }
 
     // action == upload
-    if ( isset($_GET['action']) && $_GET['action'] == 'upload' ) 
+    if ( isset($_GET['action']) && $_GET['action'] == 'ot-upload-xml' ) 
     {
       // fail no file
       if ( $_FILES["import"]['name'] == null )
