@@ -109,8 +109,9 @@ a:hover strong {
     }
     #save_theme_layout {
       margin: 5px 10px 0 0;
-      padding: 3px 3px 4px 3px;
+      padding: 5px 3px 4px 3px;
       width: 140px;
+      float: left;
     }
     #active_theme_layout {
       float: right;
@@ -649,7 +650,7 @@ a:hover strong {
           padding-top: 15px;
       	}
       	#framework_wrap .select-layout,
-      	#framework_wrap .save-layout {
+      	#framework_wrap .save-layout-wrap {
           height: 34px;
           float: right;
         }

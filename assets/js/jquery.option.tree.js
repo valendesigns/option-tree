@@ -141,7 +141,7 @@
     init: function () {
       var formfield,
           formID,
-          btnContent = true,
+          btnContent = '',
           tbframe_interval;
       // On Click
       $('.upload_button').live("click", function () {
@@ -160,13 +160,17 @@
           var document = /(^.*\.pdf|doc|docx|ppt|pptx|odt*)/gi;
           var audio = /(^.*\.mp3|m4a|ogg|wav*)/gi;
           var video = /(^.*\.mp4|m4v|mov|wmv|avi|mpg|ogv|3gp|3g2*)/gi;
-          if (itemurl.match(image)) {
-            btnContent = '<img src="'+itemurl+'" alt="" /><a href="" class="remove">Remove Image</a>';
-          } else {
-            btnContent = '<div class="no_image">'+html+'<a href="" class="remove">Remove</a></div>';
+          if ( UrlExists(itemurl) ) {
+            if (itemurl.match(image)) {
+              btnContent = '<img src="'+itemurl+'" alt="" /><a href="" class="remove">Remove Image</a>';
+            } else {
+              btnContent = '<div class="no_image">'+html+'<a href="" class="remove">Remove</a></div>';
+            }
           }
           $('#' + formfield).val(itemurl);
-          $('#' + formfield).next().next('div').slideDown().html(btnContent);
+          $('#' + formfield + '_image').remove();
+          $('#' + formfield).parent('div').append('<div class="screenshot" id="'+formfield+'_image" />');
+          $('#' + formfield + '_image').append(btnContent).slideDown();
           tb_remove();
         } else {
           window.original_send_to_editor(html);
@@ -178,6 +182,13 @@
     uploadOption.init()
   })
 })(jQuery);
+
+function UrlExists(url) {
+  var http = new XMLHttpRequest();
+  http.open('HEAD', url, false);
+  http.send();
+  return http.status!=404;
+}
 
 /**
  *
@@ -369,21 +380,24 @@
           img.attr('src', val);
         }
         // no image to change add it
-        if ( val !== '' && ( typeof src == 'undefined' || src == false ) ) {
+        if ( val !== '' && ( typeof src == 'undefined' || src == false ) && UrlExists(val) ) {
           btnContent = '<img src="'+val+'" alt="" /><a href="" class="remove">Remove Image</a>';
-          $(this).parent().find('.screenshot').append(btnContent);
-        } else if ( val == '' ) {
+          $(this).parent('div').append('<div class="screenshot" id="'+id+'_image" />');
+          $('#' + id + '_image').append(btnContent).slideDown();
+        } else if ( val == '' || ! UrlExists(val) ) {
           img.remove();
           btn.remove();
         }  
       });
-      // add a # to color
+      // add # to hex if missing
       $('.cp_input').live('blur', function() {
-        var val = $(this).val();
-        var reg = /^[A-Fa-f0-9]{6}$/;
-        if( reg.test( val) && val != '' ) { 
-          $(this).attr('value', '#'+val )
-        }
+        $('.cp_input').each( function(index, domEle) {
+          var val = $(domEle).val();
+          var reg = /^[A-Fa-f0-9]{6}$/;
+          if( reg.test(val) && val != '' ) { 
+            $(domEle).attr('value', '#'+val )
+          }
+        });
       });
     },
     save_options: function (e) {

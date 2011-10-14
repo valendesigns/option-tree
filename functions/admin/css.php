@@ -11,8 +11,7 @@
  *
  * @return string
  */
-function option_tree_css( $value, $settings, $int ) 
-{ 
+function option_tree_css( $value, $settings, $int ) { 
 ?>
   <div class="option option-css">
     <h3><?php echo htmlspecialchars_decode( $value->item_title ); ?></h3>

@@ -51,8 +51,7 @@ function option_tree_slider( $value, $settings, $int )
  *
  * @return string
  */
-function option_tree_slider_view( $id, $image, $int, $count ) 
-{
+function option_tree_slider_view( $id, $image, $int, $count ) {
   // required fileds
   $requred_fields = array(
     array(
@@ -92,9 +91,9 @@ function option_tree_slider_view( $id, $image, $int, $count )
   );
   
   // filter the optional fields
-  $image_slider_fields = apply_filters( 'image_slider_fields', $image_slider_fields );
+  $image_slider_fields = apply_filters( 'image_slider_fields', $image_slider_fields, $id );
   
-  // merge required & optional  arrays
+  // merge required & optional arrays
   $image_slider_fields = array_merge( $requred_fields, $image_slider_fields );
   ?>
   <div id="option-tree-slider-editor_<?php echo $count; ?>" class="option-tree-slider">

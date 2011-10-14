@@ -206,7 +206,7 @@ function measurement_unit_types() {
 function option_tree_css_save() {
   global $wpdb;
   
-  $options = $wpdb->get_results( "SELECT item_id FROM ".OT_TABLE_NAME." WHERE `item_type` = 'css' ORDER BY `item_sort` ASC" );
+  $options = $wpdb->get_results( "SELECT item_id FROM " . OT_TABLE_NAME . " WHERE `item_type` = 'css' ORDER BY `item_sort` ASC" );
   foreach ( $options as $option )
     option_tree_insert_css_with_markers( $option->item_id );
   
@@ -216,7 +216,7 @@ function option_tree_css_save() {
 /**
  * Inserts CSS with Markers
  *
- * Inserts CSS into a the style.css file, placing it between
+ * Inserts CSS into a dynamic.css file, placing it between
  * BEGIN and END markers. Replaces existing marked info. Retains surrounding
  * data.
  *
@@ -236,11 +236,11 @@ function option_tree_insert_css_with_markers( $option = '' ) {
   $filepath = apply_filters( 'css_option_file_path', $filepath, $option );
 
   /* Insert CSS into file */
-  if ( !file_exists( $filepath ) || is_writeable( $filepath ) ) {
+  if ( ! file_exists( $filepath ) || is_writeable( $filepath ) ) {
     
     /* Get options & set CSS value */
     $options     = get_option('option_tree');
-    $insertion   = stripslashes( $options[$option] );
+    $insertion   = option_tree_normalize_css( stripslashes( $options[$option] ) );
     $regex       = "/{{([a-zA-Z0-9\_\-\#\|\=]+)}}/";
     $marker      = $option;
   
@@ -265,17 +265,19 @@ function option_tree_insert_css_with_markers( $option = '' ) {
           if ( isset( $value[0] ) && isset( $value[1] ) ) {
             $value = $value[0].$value[1];
           /* typography */
-          } else if ( isset( $value['font-style'] ) ) {
-            $style    = !empty( $value['font-style'] )    ? $value['font-style'] . ' '    : '';
-            $variant  = !empty( $value['font-variant'] )  ? $value['font-variant'] . ' '  : '';
-            $weight   = !empty( $value['font-weight'] )   ? $value['font-weight'] . ' '   : '';
-            $size     = !empty( $value['font-size'] )     ? $value['font-size'] . ' '     : '';
-            $family   = '';
+          } else if ( isset( $value['font-color'] ) || isset( $value['font-style'] ) || isset( $value['font-variant'] ) || isset( $value['font-weight'] ) || isset( $value['font-size'] ) || isset( $value['font-family'] ) ) {
+            $font     = '';
+            $font    .= ! empty( $value['font-color'] )    ? "font-color: " . $value['font-color'] . ";" : '';
             foreach ( recognized_font_families() as $key => $v ) {
-              if ( !empty( $value['font-family'] ) && $key == $value['font-family'] )
-                $family = $v;
+              if ( ! empty( $value['font-family'] ) && $key == $value['font-family'] )
+                $font .= " font-family: " . $v . ";";
             }
-            $value = $style.$variant.$weight.$size.$family;
+            $font    .= ! empty( $value['font-size'] )     ? " font-size: " . $value['font-size'] . ";" : '';
+            $font    .= ! empty( $value['font-style'] )    ? " font-style: " . $value['font-style'] . ";" : '';
+            $font    .= ! empty( $value['font-variant'] )  ? " font-variant: " . $value['font-variant'] . ";" : '';
+            $font    .= ! empty( $value['font-weight'] )   ? " font-weight: " . $value['font-weight'] . ";" : '';
+            
+            $value = $font;
           /* background */
           } else if ( isset( $value['background-color'] ) ) {
             $color      = !empty( $value['background-color'] ) ? $value['background-color'] : '';
@@ -294,7 +296,7 @@ function option_tree_insert_css_with_markers( $option = '' ) {
     }
 	
     /* file doesn't exist */
-    if ( !file_exists( $filepath ) ) {
+    if ( ! file_exists( $filepath ) ) {
       $markerdata = '';
     /* file exist, create array from the lines of code */
     } else {
@@ -333,7 +335,7 @@ function option_tree_insert_css_with_markers( $option = '' ) {
       }
     }
     /* nothing inserted, write code. DO IT, DO IT! */
-    if (!$foundit) {
+    if ( ! $foundit ) {
       fwrite( $f, "\n\n/* BEGIN {$marker} */\n" );
       fwrite( $f, "{$insertion}\n" );
       fwrite( $f, "/* END {$marker} */\n" );
@@ -344,4 +346,14 @@ function option_tree_insert_css_with_markers( $option = '' ) {
   } else {
     return false;
   }
+}
+
+function option_tree_normalize_css( $s ) {
+  // Normalize line endings
+  // Convert all line-endings to UNIX format
+  $s = str_replace( "\r\n", "\n", $s );
+  $s = str_replace( "\r", "\n", $s );
+  // Don't allow out-of-control blank lines
+  $s = preg_replace( "/\n{2,}/", "\n\n", $s );
+  return $s;
 }

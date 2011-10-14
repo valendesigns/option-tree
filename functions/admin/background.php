@@ -73,9 +73,10 @@ function option_tree_background( $value, $settings, $int ) { ?>
         </div>
         <input type="text" name="<?php echo $value->item_id; ?>[background-image]" id="<?php echo $value->item_id; ?>" value="<?php if ( isset( $settings[$value->item_id]['background-image'] ) ) { echo $settings[$value->item_id]['background-image']; } ?>" class="upload<?php if ( isset( $settings[$value->item_id]['background-image'] ) ) { echo ' has-file'; } ?>" />
         <input id="upload_<?php echo $value->item_id; ?>" class="upload_button" type="button" value="Upload" rel="<?php echo $int; ?>" />
+        <?php if ( is_array( @getimagesize( $settings[$value->item_id]['background-image'] ) ) ) { ?>
         <div class="screenshot" id="<?php echo $value->item_id; ?>_image">
           <?php 
-          if ( isset( $settings[$value->item_id]['background-image'] ) && $settings[$value->item_id]['background-image'] != '' ) { 
+          if ( isset( $settings[$value->item_id]['background-image'] ) && $settings[$value->item_id]['background-image'] != '' ) {
             $remove = '<a href="javascript:(void);" class="remove">Remove</a>';
             $image = preg_match( '/(^.*\.jpg|jpeg|png|gif|ico*)/i', $settings[$value->item_id]['background-image'] );
             if ( $image ) {
@@ -84,6 +85,7 @@ function option_tree_background( $value, $settings, $int ) { ?>
           }
           ?>
         </div>
+        <?php } ?>
       </div>
       <div class="description">
         <?php echo htmlspecialchars_decode( $value->item_desc ); ?>

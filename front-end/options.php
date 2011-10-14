@@ -19,7 +19,7 @@
 
         <div class="top-layout-bar">
 
-          <div class="save-layout">
+          <div class="save-layout-wrap">
             <input type="text" name="options_name" value="" id="save_theme_layout" />
             <input type="submit" value="<?php _e('New Layout') ?>" class="button-framework user-save-layout" name="user-save-layout" />
           </div>

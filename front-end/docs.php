@@ -306,8 +306,7 @@ if ( function_exists( 'get_option_tree' ) ) {
           
           <pre><code>add_filter( 'measurement_unit_types', 'custom_unit_types' );
 
-function custom_unit_types() 
-{
+function custom_unit_types() {
   $array = array(
     'in' => 'inches',
     'ft' => 'feet'
@@ -322,8 +321,7 @@ function custom_unit_types()
           
           <pre><code>add_filter( 'measurement_unit_types', 'custom_unit_types' );
 
-function custom_unit_types($array) 
-{
+function custom_unit_types($array) {
   $array['in'] = 'inches';
   $array['ft'] = 'feet';
   return $array;
@@ -337,48 +335,50 @@ function custom_unit_types($array)
             <strong>Filter to completely change the input fields in the Slider option type</strong><br />
             Added to functions.php
           </p>
-          <pre><code>add_filter( 'image_slider_fields', 'new_slider_fields' );
+          <pre><code>add_filter( 'image_slider_fields', 'new_slider_fields', 10, 2 );
 
-function new_slider_fields() 
-{
-  $array = array(
-    array(
-      'name'  => 'image',
-      'type'  => 'text',
-      'label' => 'Post Image URL',
-      'class' => ''
-    ),
-    array(
-      'name'  => 'link',
-      'type'  => 'text',
-      'label' => 'Post URL',
-      'class' => ''
-    ),
-    array(
-      'name'  => 'description',
-      'type'  => 'textarea',
-      'label' => 'Post Description',
-      'class' => ''
-    )
-  );
-  return $array;
+function new_slider_fields( $image_slider_fields, $id ) {
+  if ( $id == 'my_slider_id' ) {
+    $image_slider_fields = array(
+      array(
+        'name'  => 'image',
+        'type'  => 'text',
+        'label' => 'Post Image URL',
+        'class' => ''
+      ),
+      array(
+        'name'  => 'link',
+        'type'  => 'text',
+        'label' => 'Post URL',
+        'class' => ''
+      ),
+      array(
+        'name'  => 'description',
+        'type'  => 'textarea',
+        'label' => 'Post Description',
+        'class' => ''
+      )
+    );
+  }
+  return $image_slider_fields;
 }</code></pre>
 
           <p>
             <strong>Filter to add a new field to the Slider option type</strong><br />
             Added to functions.php
           </p>
-          <pre><code>add_filter( 'image_slider_fields', 'new_slider_fields' );
+          <pre><code>add_filter( 'image_slider_fields', 'new_slider_fields', 10, 2 );
 
-function new_slider_fields($array) 
-{
-  $array[] =
-    array(
-      'name'  => 'awesome_field',
-      'type'  => 'text',
-      'label' => 'Write Something Awesome',
-      'class' => ''
-    );
+function new_slider_fields( $image_slider_fields, $id ) {
+  if ( $id == 'my_slider_id' ) {
+    $image_slider_fields[] =
+      array(
+        'name'  => 'awesome_field',
+        'type'  => 'text',
+        'label' => 'Write Something Awesome',
+        'class' => ''
+      );
+  }
   return $array;
 }</code></pre>
                                      

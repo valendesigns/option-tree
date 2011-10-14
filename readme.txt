@@ -3,7 +3,7 @@ Contributors: valendesigns
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=accounts@valendesigns.com&item_name=OptionTree
 Tags: admin, theme options, options, admin interface, ajax
 Requires at least: 3.0
-Tested up to: 3.1.3
+Tested up to: 3.2.1
 Stable tag: 1.1.8
 License: GPLv2
 
@@ -36,7 +36,7 @@ OptionTree is a project sponsored by <a href="http://themeforest.net/?ref=valend
 
 = Is this plugin PHP5 only? =
 
-Sorry, but yes. OptionTree requires PHP5 to work correctly.
+Sorry, but yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
 
 == Screenshots ==
 
@@ -48,7 +48,7 @@ Sorry, but yes. OptionTree requires PHP5 to work correctly.
 
 = 1.1.8 =
 * Fixed scrolling issue on extra tall pages
-* Added a show/hide settings & documentation option via the User Profile page.
+* Added ability to show/hide settings & documentation via the User Profile page.
 * Added Background option type.
 * Added Typography option type.
 * Added CSS option type.
@@ -57,6 +57,8 @@ Sorry, but yes. OptionTree requires PHP5 to work correctly.
 * functions.load.php will now only load option type functions if viewing an OT admin page.
 * Deregistered the custom jQuery UI in the 'Cispm Mail Contact' plugin when viewing an OptionTree page.
 * Can now save layouts from the Theme Options page.
+* You can now change the slider fields by targeting a specific "Option Key"
+* Modified upload for situations where you manually enter a relative path
 
 = 1.1.7.1 =
 * Revert functions.load.php, will fix and update in next version
