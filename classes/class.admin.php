@@ -1682,7 +1682,7 @@ class OT_Admin
       <th scope="row"><?php _e( 'Show Settings &amp; Docs', 'option-tree' ); ?></th>
       <td>
         <input type="checkbox" name="show_docs" value="<?php echo esc_attr( get_the_author_meta( 'show_docs', $user->ID ) ); ?>"<?php if(esc_attr( get_the_author_meta( 'show_docs', $user->ID ) ) == "Yes"){ echo ' checked="checked"'; } ?> />
-        <label for="show_docs"><?php _e( 'Yes/No', 'option-tree' ); ?></label>
+        <label for="show_docs"><?php _e( 'Yes', 'option-tree' ); ?></label>
       </td>
     </tr>
   </table>
