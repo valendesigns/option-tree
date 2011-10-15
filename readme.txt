@@ -59,6 +59,8 @@ Sorry, but yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
 * Can now save layouts from the Theme Options page.
 * You can now change the slider fields by targeting a specific "Option Key"
 * Modified upload for situations where you manually enter a relative path
+* Allow get_option_tree() function to be used in WP admin
+* Changed permissions to edit_theme_options
 
 = 1.1.7.1 =
 * Revert functions.load.php, will fix and update in next version

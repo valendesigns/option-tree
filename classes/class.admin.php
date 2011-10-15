@@ -403,7 +403,7 @@ class OT_Admin
     if ( $this->has_xml == true && $this->show_docs == false )
     {
       // create menu item
-      $option_tree_options = add_submenu_page( 'themes.php', 'OptionTree Theme Options','Theme Options', 'activate_plugins', 'option_tree', array( $this, 'option_tree_options_page' ) );
+      $option_tree_options = add_submenu_page( 'themes.php', 'OptionTree Theme Options','Theme Options', 'edit_theme_options', 'option_tree', array( $this, 'option_tree_options_page' ) );
       
       // add menu item
       add_action( "admin_print_styles-$option_tree_options", array( $this, 'option_tree_load' ) );
@@ -414,10 +414,10 @@ class OT_Admin
       $icon = ( get_user_option( 'admin_color' ) == 'classic' ) ? OT_PLUGIN_URL.'/assets/images/icon_classic.png' : OT_PLUGIN_URL.'/assets/images/icon_dark.png';
       
       // create menu items
-      add_object_page( 'OptionTree', 'OptionTree', 'manage_options', 'option_tree', array( $this, 'option_tree_options_page' ), $icon);
-      $option_tree_options = add_submenu_page( 'option_tree', 'OptionTree', 'Theme Options', 'manage_options', 'option_tree', array( $this, 'option_tree_options_page' ) );
-      $option_tree_docs = add_submenu_page( 'option_tree', 'OptionTree', 'Documentation', 'manage_options', 'option_tree_docs', array( $this, 'option_tree_docs_page' ) );
-      $option_tree_settings = add_submenu_page( 'option_tree', 'OptionTree', 'Settings', 'manage_options', 'option_tree_settings', array( $this, 'option_tree_settings_page' ) );
+      add_object_page( 'OptionTree', 'OptionTree', 'edit_theme_options', 'option_tree', array( $this, 'option_tree_options_page' ), $icon);
+      $option_tree_options = add_submenu_page( 'option_tree', 'OptionTree', 'Theme Options', 'edit_theme_options', 'option_tree', array( $this, 'option_tree_options_page' ) );
+      $option_tree_docs = add_submenu_page( 'option_tree', 'OptionTree', 'Documentation', 'edit_theme_options', 'option_tree_docs', array( $this, 'option_tree_docs_page' ) );
+      $option_tree_settings = add_submenu_page( 'option_tree', 'OptionTree', 'Settings', 'edit_theme_options', 'option_tree_settings', array( $this, 'option_tree_settings_page' ) );
       
       // add menu items
       add_action( "admin_print_styles-$option_tree_options", array( $this, 'option_tree_load' ) );
