@@ -236,7 +236,7 @@ if ( function_exists( 'get_option_tree' ) ) {
           
           <p>
             <strong>Upload</strong>:<br />
-            The Upload option type is used to upload any WordPress supported media. After uploading, users are required to press the "<strong style="color:red;">Insert into Post</strong>" button in order to populate the input with the URI of that media. There is one caveat of this feature. If you import the theme options and have uploaded media on one site the old URI will not reflect the URI of your new site. You'll have to re-upload or FTP any media to your new server and change the URIs if necessary.
+            The Upload option type is used to upload any WordPress supported media. After uploading, users are required to press the "<strong style="color:red;">Insert into Post</strong>" or "<strong style="color:red;">Add to OptionTree</strong>" button in order to populate the input with the URI of that media. There is one caveat of this feature. If you import the theme options and have uploaded media on one site the old URI will not reflect the URI of your new site. You'll have to re-upload or FTP any media to your new server and change the URIs if necessary.
           </p>
           
           <p>
@@ -379,8 +379,45 @@ function new_slider_fields( $image_slider_fields, $id ) {
         'class' => ''
       );
   }
-  return $array;
+  return $image_slider_fields;
 }</code></pre>
+
+          <p>
+            <strong>CSS</strong>:<br />
+            The CSS option type is a simple easy way to add dynamic CSS to your theme from within OptionTree. It will create a file named <code>dynamic.css</code> at the root level of your theme (if it doesn't exist) and update the CSS in that file every time you save your theme options.
+          </p>
+          
+          <p>
+            <strong>An few examples of the CSS option type</strong><br />
+            This assumes you have an option with the ID of <code>custom_background_css</code> which will display the saved values for that option.
+          </p>
+          
+          <p><strong>Input:</strong></p>
+          <pre><code>body {
+  {{custom_background_css}}
+  background-color: {{custom_background_css|background-color}};
+}
+</code></pre>
+          
+          <p>
+            <strong>Output:</strong><br />
+            The values saved in the database will replace the text placeholders below.
+          </p>
+          <pre><code>body {
+  background: color image repeat attachment position;
+  background-color: color;
+}
+</code></pre>
+          
+          <p>
+            <strong>Background</strong>:<br />
+            The Background option type is for adding background styles to your theme dynamically via the CSS option type above or manually with <code>get_option_tree()</code>.
+          </p>
+          
+          <p>
+            <strong>Typography</strong>:<br />
+            The Typography option type is for adding typography styles to your theme dynamically via the CSS option type above or manually with <code>get_option_tree()</code>.
+          </p>
                                      
         </div>
         
@@ -403,27 +440,37 @@ function new_slider_fields( $image_slider_fields, $id ) {
             You are required to choose one of the supported option types. They are:
           </p>
           <ul class="doc_list">
-            <li>Heading</li>
-            <li>Textblock</li>
-            <li>Input</li>
-            <li>Checkbox</li>
-            <li>Radio</li>
-            <li>Select</li>
-            <li>Textarea</li>
-            <li>Upload</li>
-            <li>Colorpicker</li>
-            <li>Post</li>
-            <li>Posts</li>
-            <li>Page</li>
-            <li>Pages</li>
-            <li>Category</li>
-            <li>Categories</li>
-            <li>Tag</li>
-            <li>Tags</li>
-            <li>Custom Post</li>
-            <li>Custom Posts</li>
-            <li>Measurement</li>
-            <li>Slider</li>
+            <?php
+            $types = apply_filters( 'option_tree_option_types', array(
+              'heading'           => 'Heading',
+              'background'	      => 'Background',
+              'category'          => 'Category',
+              'categories'        => 'Categories',
+              'checkbox'          => 'Checkbox',
+              'colorpicker'       => 'Colorpicker',
+              'css'	              => 'CSS',
+              'custom_post'       => 'Custom Post',
+              'custom_posts'      => 'Custom Posts',                     
+              'input'             => 'Input',
+              'measurement'       => 'Measurement',
+              'page'              => 'Page',
+              'pages'             => 'Pages',
+              'post'              => 'Post',
+              'posts'             => 'Posts',
+              'radio'             => 'Radio',
+              'select'            => 'Select',
+              'slider'            => 'Slider',
+              'tag'               => 'Tag',
+              'tags'              => 'Tags',
+              'textarea'          => 'Textarea',
+              'textblock'         => 'Textblock',
+              'typography'	      => 'Typography',
+              'upload'            => 'Upload'
+              ) );
+            foreach ( $types as $key => $value ) {
+              echo '<li>'.$value.'</li>';
+            } 
+            ?>
           </ul>
           
           <p>

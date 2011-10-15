@@ -10,6 +10,7 @@
 include( OT_PLUGIN_DIR . '/functions/functions.php' );
 
 if ( is_admin() && isset( $_GET['page'] ) && strpos( '_' . $_GET['page'], 'option_tree' ) ) {
+  include( OT_PLUGIN_DIR . '/functions/get-option-tree.php' );
   include( OT_PLUGIN_DIR . '/functions/admin/export.php' );
   include( OT_PLUGIN_DIR . '/functions/admin/heading.php' );
   include( OT_PLUGIN_DIR . '/functions/admin/input.php' );

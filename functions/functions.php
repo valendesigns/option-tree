@@ -234,7 +234,7 @@ function option_tree_insert_css_with_markers( $option = '' ) {
   
   /* allow filter on path */
   $filepath = apply_filters( 'css_option_file_path', $filepath, $option );
-
+   
   /* Insert CSS into file */
   if ( ! file_exists( $filepath ) || is_writeable( $filepath ) ) {
     
@@ -266,26 +266,51 @@ function option_tree_insert_css_with_markers( $option = '' ) {
             $value = $value[0].$value[1];
           /* typography */
           } else if ( isset( $value['font-color'] ) || isset( $value['font-style'] ) || isset( $value['font-variant'] ) || isset( $value['font-weight'] ) || isset( $value['font-size'] ) || isset( $value['font-family'] ) ) {
-            $font     = '';
-            $font    .= ! empty( $value['font-color'] )    ? "font-color: " . $value['font-color'] . ";" : '';
+            $font = array();
+            
+            if ( ! empty( $value['font-color'] ) )
+              $font[] = "font-color: " . $value['font-color'] . ";";
+
             foreach ( recognized_font_families() as $key => $v ) {
               if ( ! empty( $value['font-family'] ) && $key == $value['font-family'] )
-                $font .= " font-family: " . $v . ";";
+                $font[] = "font-family: " . $v . ";";
             }
-            $font    .= ! empty( $value['font-size'] )     ? " font-size: " . $value['font-size'] . ";" : '';
-            $font    .= ! empty( $value['font-style'] )    ? " font-style: " . $value['font-style'] . ";" : '';
-            $font    .= ! empty( $value['font-variant'] )  ? " font-variant: " . $value['font-variant'] . ";" : '';
-            $font    .= ! empty( $value['font-weight'] )   ? " font-weight: " . $value['font-weight'] . ";" : '';
             
-            $value = $font;
+            if ( ! empty( $value['font-size'] ) )
+              $font[] = "font-size: " . $value['font-size'] . ";";
+            
+            if ( ! empty( $value['font-style'] ) )
+              $font[] = "font-style: " . $value['font-style'] . ";";
+            
+            if ( ! empty( $value['font-variant'] ) )
+              $font[] = "font-variant: " . $value['font-variant'] . ";";
+            
+            if ( ! empty( $value['font-weight'] ) )
+              $font[] = "font-weight: " . $value['font-weight'] . ";";
+            
+            if ( ! empty( $font ) )
+                $value = implode( "\n", $font );
           /* background */
-          } else if ( isset( $value['background-color'] ) ) {
-            $color      = !empty( $value['background-color'] ) ? $value['background-color'] : '';
-            $image      = !empty( $value['background-image'] ) ? ' url("' . $value['background-image'] . '")' : '';
-            $repeat     = !empty( $value['background-repeat'] ) ? ' ' . $value['background-repeat'] : '';
-            $attachment = !empty( $value['background-attachment'] ) ? ' ' . $value['background-attachment'] : '';
-            $position   = !empty( $value['background-position'] ) ? ' ' . $value['background-position'] : '';
-            $value = $color.$image.$repeat.$attachment.$position;
+          } else if ( isset( $value['background-color'] ) || isset( $value['background-image'] ) ) {
+            $bg = array();
+            
+            if ( ! empty( $value['background-color'] ) )
+              $bg[] = $value['background-color'];
+              
+            if ( ! empty( $value['background-image'] ) )
+              $bg[] = 'url("' . $value['background-image'] . '")';
+              
+            if ( ! empty( $value['background-repeat'] ) )
+              $bg[] = $value['background-repeat'];
+              
+            if ( ! empty( $value['background-attachment'] ) )
+              $bg[] = $value['background-attachment'];
+              
+            if ( ! empty( $value['background-position'] ) )
+              $bg[] = $value['background-position'];
+
+            if ( ! empty( $bg ) )
+              $value = 'background: ' . implode( " ", $bg ) . ';';
           }
         /* key|value explode return a second value */
         } else {
