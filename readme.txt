@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=accounts
 Tags: admin, theme options, options, admin interface, ajax
 Requires at least: 3.0
 Tested up to: 3.2.1
-Stable tag: 1.1.8
+Stable tag: 1.1.8.1
 License: GPLv2
 
 Extremely customizable Theme Options interface for WordPress.
@@ -17,7 +17,9 @@ With OptionTree you can create as many Theme Options as your project requires an
 
 Included is the ability to Import/Export all the theme options and data for packaging with custom themes or local development. With the Import/Export feature you can get a theme set up on a live server in minutes. Theme authors can now create different version of their themes and include them with the download. It makes setting up different theme styles & options easier than ever because a theme user installs the plugin and theme and either adds their own settings or imports your defaults.
 
-**Update**: Since v1.1.8 you can build custom CSS code that will automatically get inserted into your style.css or any file you choose (be sure it's permissions are writable to the server). As well, typography & background options were added with a ton of filters to extend them.
+**Update**: v1.1.8.1 Removed get_option_tree() in the WordPress admin area due to theme conflicts.
+
+**Update**: Since v1.1.8 you can build custom CSS code that will automatically get inserted into dynamic.css (created by the server) or any file you choose, just be sure it's permissions are writable. As well, typography & background options were added with a ton of filters to extend them.
 
 **Update**: Since v1.1.7 you can create layouts (theme variations) and import/export those layouts. You can also activate them at anytime from the Theme Options page. Added an upload feature to the slider.
 
@@ -45,6 +47,10 @@ Sorry, but yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
 3. Documentation
 
 == Changelog ==
+
+= 1.1.8.1 =
+* Removed get_option_tree() in the WordPress admin area due to theme conflicts.
+* Removed demo files in the assets folder at the request of WordPress
 
 = 1.1.8 =
 * Fixed scrolling issue on extra tall pages
@@ -119,6 +125,9 @@ Sorry, but yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
 * Initial version
 
 == Upgrade Notice ==
+
+= 1.1.8.1 =
+Removed get_option_tree() in the WordPress admin area due to theme conflicts.
 
 = 1.1.8 =
 Added Typography, Background, & CSS option types. Lots of way to extend them, as well.
