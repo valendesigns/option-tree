@@ -3,7 +3,7 @@
 Plugin Name: OptionTree
 Plugin URI: http://wp.envato.com
 Description: Customizable WordPress Theme Options Admin Interface
-Version: 1.1.8
+Version: 1.1.8.1
 Author: Derek Herman
 Author URI: http://valendesigns.com
 License: GPLv2
@@ -14,7 +14,7 @@ License: GPLv2
  *
  * @since 1.0.0
  */
-define( 'OT_VERSION', '1.1.8' );
+define( 'OT_VERSION', '1.1.8.1' );
 define( 'OT_PLUGIN_DIR', WP_PLUGIN_DIR . '/' . dirname( plugin_basename( __FILE__ ) ) );
 define( 'OT_PLUGIN_URL', WP_PLUGIN_URL . '/' . dirname( plugin_basename( __FILE__ ) ) );
 

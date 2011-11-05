@@ -8,7 +8,6 @@
  * @author      Derek Herman
  */
 include( OT_PLUGIN_DIR . '/functions/functions.php' );
-include( OT_PLUGIN_DIR . '/functions/get-option-tree.php' );
 
 if ( is_admin() && isset( $_GET['page'] ) && strpos( '_' . $_GET['page'], 'option_tree' ) ) {
   include( OT_PLUGIN_DIR . '/functions/admin/export.php' );
@@ -31,5 +30,6 @@ if ( is_admin() && isset( $_GET['page'] ) && strpos( '_' . $_GET['page'], 'optio
   include( OT_PLUGIN_DIR . '/functions/admin/background.php' );
   include( OT_PLUGIN_DIR . '/functions/admin/typography.php' );
   include( OT_PLUGIN_DIR . '/functions/admin/css.php' );
+} else if ( ! is_admin() ) {
+  include( OT_PLUGIN_DIR . '/functions/get-option-tree.php' );
 }
-

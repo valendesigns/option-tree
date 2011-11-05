@@ -17,7 +17,7 @@
  */
 function get_option_tree( $item_id = '', $options = '', $echo = false, $is_array = false, $offset = -1) {
   // load saved options
-  if ( !$options )
+  if ( ! $options )
     $options = get_option( 'option_tree' );
   
   // no value return
