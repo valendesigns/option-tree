@@ -107,7 +107,7 @@ function option_tree_slider_view( $id, $image, $int, $count ) {
       foreach( $image_slider_fields as $field ) {
       
         if ( $field['type'] == 'image' || $field['name'] == 'image' ){ ?>
-          <div>
+          <div style="clear: both;">
             <label><?php echo $field['label']; ?></label>      		  
             <input type="text" name="<?php echo $id; ?>[<?php echo $count; ?>][<?php echo $field['name']; ?>]" id="<?php echo $id; ?>-<?php echo $count; ?>-<?php echo $field['name']; ?>" value="<?php echo ( isset( $image[$field['name']] ) ? stripslashes($image[$field['name']]) : '' ); ?>" class="upload<?php if ( isset( $image[$field['name']] ) ) { echo ' has-file'; } ?>"/>
             <input id="upload_<?php echo $id ?>-<?php echo $count ?>-<?php echo $field['name'] ?>" class="upload_button" type="button" value="Upload" rel="<?php echo $int; ?>" />
@@ -144,6 +144,7 @@ function option_tree_slider_view( $id, $image, $int, $count ) {
         }
       }
       ?>
+      <div style="clear: both;"></div>
     </div>
   </div>
   <?php
