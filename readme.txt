@@ -7,7 +7,7 @@ Tested up to: 3.2.1
 Stable tag: 1.1.8.1
 License: GPLv2
 
-Extremely customizable Theme Options interface for WordPress.
+Theme Options UI Builder for WordPress. A simple way to create & save Theme Options for free or premium themes.
 
 == Description ==
 

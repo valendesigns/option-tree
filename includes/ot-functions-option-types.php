@@ -1,0 +1,1509 @@
+<?php if ( ! defined( 'OT_VERSION' ) ) exit( 'No direct script access allowed' );
+/**
+ * Functions used to build each option type.
+ *
+ * @package   OptionTree
+ * @author    Derek Herman <derek@valendesigns.com>
+ * @copyright Copyright (c) 2012, Derek Herman
+ * @since     2.0
+ */
+
+/**
+ * Builds the HTML for each of the available option types by calling those
+ * function with call_user_func and passing the arguments to the second param.
+ *
+ * All fields are required!
+ *
+ * @param     array       $args The array of arguments are as follows:
+ * @param     string      $type Type of option.
+ * @param     string      $field_id The field ID.
+ * @param     string      $field_name The field Name.
+ * @param     mixed       $field_value The field value is a string or an array of values.
+ * @param     string      $field_desc The field description.
+ * @param     string      $field_std The standard value.
+ * @param     string      $field_class Extra CSS classes.
+ * @param     array       $field_choices The array of option choices.
+ * @param     array       $field_settings The array of settings for a list item.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.0
+ */
+if ( ! function_exists( 'ot_display_by_type' ) ) {
+
+  function ot_display_by_type( $args = array() ) {
+    
+    /* allow filters to be executed on the array */
+    apply_filters( 'ot_display_by_type', $args );
+    
+    /* build the function name */
+    $function_name_by_type = str_replace( '-', '_', 'ot_type_' . $args['type'] );
+    
+    /* call the function & pass in arguments array */
+    if ( function_exists( $function_name_by_type ) ) {
+      call_user_func( $function_name_by_type, $args );
+    } else {
+      echo '<p>' . __( 'Sorry, this function does not exist', 'option-tree' ) . '</p>';
+    }
+    
+  }
+  
+}
+
+/**
+ * Background option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.0
+ */
+if ( ! function_exists( 'ot_type_background' ) ) {
+  
+  function ot_type_background( $args = array() ) {
+    
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+    
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-background ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+      
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+      
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">'; 
+        
+        /* build background colorpicker */  
+        echo '<div class="option-tree-ui-colorpicker-input-wrap">';
+          
+          /* colorpicker JS */      
+          echo '<script>jQuery(document).ready(function($) { OT_UI.bind_colorpicker("' . $field_id . '-picker"); });</script>';
+          
+          /* set background color */
+          $background_color = isset( $field_value['background-color'] ) ? $field_value['background-color'] : '';
+          
+          /* set border color */
+          $border_color = in_array( $background_color, array( '#FFFFFF', '#FFF', '#ffffff', '#fff' ) ) ? '#ccc' : $background_color;
+          
+          /* input */
+          echo '<input type="text" name="' . $field_name . '[background-color]" id="' . $field_id . '-picker" value="' . esc_attr( $background_color ) . '" class="widefat option-tree-ui-input cp_input ' . $field_class . '" autocomplete="off" />';
+
+          echo '<div id="cp_' . $field_id . '-picker" class="cp_box"' . ( $background_color ? " style='background-color:$background_color; border-color:$border_color;'" : '' ) . '></div>';
+        
+        echo '</div>';
+        
+        /* build background repeat */
+        $background_repeat = isset( $field_value['background-repeat'] ) ? $field_value['background-repeat'] : '';
+        echo '<select name="' . $field_name . '[background-repeat]" id="' . $field_id . '-repeat" class="option-tree-ui-select ' . $field_class . '">';
+          echo '<option value="">' . __( 'background-repeat', 'option-tree' ) . '</option>';
+          foreach ( ot_recognized_background_repeat( $field_id ) as $key => $value ) {
+            echo '<option value="' . esc_attr( $key ) . '" ' . selected( $background_repeat, $key, false ) . '>' . esc_attr( $value ) . '</option>';
+          }
+        echo '</select>';
+        
+        /* build background attachment */
+        $background_attachment = isset( $field_value['background-attachment'] ) ? $field_value['background-attachment'] : '';
+        echo '<select name="' . $field_name . '[background-attachment]" id="' . $field_id . '-attachment" class="option-tree-ui-select ' . $field_class . '">';
+          echo '<option value="">' . __( 'background-attachment', 'option-tree' ) . '</option>';
+          foreach ( ot_recognized_background_attachment( $field_id ) as $key => $value ) {
+            echo '<option value="' . esc_attr( $key ) . '" ' . selected( $background_attachment, $key, false ) . '>' . esc_attr( $value ) . '</option>';
+          }
+        echo '</select>';
+        
+        /* build background position */
+        $background_position = isset( $field_value['background-position'] ) ? $field_value['background-position'] : '';
+        echo '<select name="' . $field_name . '[background-position]" id="' . $field_id . '-position" class="option-tree-ui-select ' . $field_class . '">';
+          echo '<option value="">' . __( 'background-position', 'option-tree' ) . '</option>';
+          foreach ( ot_recognized_background_position( $field_id ) as $key => $value ) {
+            echo '<option value="' . esc_attr( $key ) . '" ' . selected( $background_position, $key, false ) . '>' . esc_attr( $value ) . '</option>';
+          }
+        echo '</select>';
+        
+        /* build background image */
+        echo '<div class="option-tree-ui-upload-parent">';
+          
+          /* input */
+          echo '<input type="text" name="' . $field_name . '[background-image]" id="' . $field_id . '" value="' . esc_attr( isset( $field_value['background-image'] ) ? $field_value['background-image'] : '' ) . '" class="widefat option-tree-ui-upload-input ' . $field_class . '" />';
+          
+          /* add media button */
+          echo '<a href="javascript:void(0);" class="ot_upload_media option-tree-ui-button blue light" rel="0" title="' . __( 'Add Media', 'option-tree' ) . '"><span class="icon upload">' . __( 'Add Media', 'option-tree' ) . '</span></a>';
+        
+        echo '</div>';
+        
+        /* media */
+        if ( isset( $field_value['background-image'] ) && $field_value['background-image'] !== '' ) {
+        
+          echo '<div class="option-tree-ui-media-wrap" id="' . $field_id . '_media">';
+          
+            if ( preg_match( '/\.(?:jpe?g|png|gif|ico)$/i', $field_value['background-image'] ) )
+              echo '<div class="option-tree-ui-image-wrap"><img src="' . $field_value['background-image'] . '" alt="" /></div>';
+            
+            echo '<a href="javascript:(void);" class="option-tree-ui-remove-media option-tree-ui-button" title="' . __( 'Remove Media', 'option-tree' ) . '"><span class="icon trash-can">' . __( 'Remove Media', 'option-tree' ) . '</span></a>';
+            
+          echo '</div>';
+          
+        }
+      
+      echo '</div>';
+
+    echo '</div>';
+    
+  }
+  
+}
+
+/**
+ * Category Checkbox option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.0
+ */
+if ( ! function_exists( 'ot_type_category_checkbox' ) ) {
+  
+  function ot_type_category_checkbox( $args = array() ) {
+    
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+    
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-checkbox ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+      
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+      
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+      
+        /* get category array */
+        $categories = get_categories( array( 'hide_empty' => false ) );
+        
+        /* build categories */
+        if ( ! empty( $categories ) ) {
+          $count = 0;
+          foreach ( $categories as $category ) {
+            echo '<p>';
+              echo '<input type="checkbox" name="' . $field_name . '[' . $count . ']" id="' . $field_id . '-' . $count . '" value="' . esc_attr( $category->term_id ) . '" ' . ( isset( $field_value[$count] ) ? checked( $field_value[$count], $category->term_id, false ) : '' ) . ' class="checkbox option-tree-ui-checkbox ' . $field_class . '" />';
+              echo '<label for="' . $field_id . '-' . $count . '">' . $category->name . '</label>';
+            echo '</p>';
+            $count++;
+          } 
+        } else {
+          echo '<p>' . __( 'No Categories Found', 'option-tree' ) . '</p>';
+        }
+      
+      echo '</div>';
+    
+    echo '</div>';
+    
+  }
+  
+}
+
+/**
+ * Category Select option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.0
+ */
+if ( ! function_exists( 'ot_type_category_select' ) ) {
+  
+  function ot_type_category_select( $args = array() ) {
+    
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+    
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-select ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+      
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+      
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+      
+        /* build category */
+        echo '<select name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" class="option-tree-ui-select ' . $field_class . '"">';
+        
+        /* get category array */
+        $categories = get_categories( array( 'hide_empty' => false ) );
+        
+        /* has cats */
+        if ( ! empty( $categories ) ) {
+          echo '<option value="">-- ' . __( 'Choose One', 'option-tree' ) . ' --</option>';
+          foreach ( $categories as $category ) {
+            echo '<option value="' . esc_attr( $category->term_id ) . '"' . selected( $field_value, $category->term_id, false ) . '>' . $category->name . '</option>';
+          }
+        } else {
+          echo '<option value="">' . __( 'No Categories Found', 'option-tree' ) . '</option>';
+        }
+        echo '</select>';
+      
+      echo '</div>';
+    
+    echo '</div>';
+    
+  }
+  
+}
+
+/**
+ * Checkbox option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.0
+ */
+if ( ! function_exists( 'ot_type_checkbox' ) ) {
+  
+  function ot_type_checkbox( $args = array() ) {
+    
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+    
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-checkbox ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+      
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+      
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';    
+      
+        /* build checkbox */
+        foreach ( (array) $field_choices as $key => $choice ) {
+          if ( isset( $choice['value'] ) && isset( $choice['label'] ) ) {
+            echo '<p>';
+              echo '<input type="checkbox" name="' . $field_name . '[' . $key . ']" id="' . $field_id . '-' . $key . '" value="' . esc_attr( $choice['value'] ) . '" ' . ( isset( $field_value[$key] ) ? checked( $field_value[$key], $choice['value'], false ) : '' ) . ' class="checkbox option-tree-ui-checkbox ' . $field_class . '" />';
+              echo '<label for="' . $field_id . '-' . $key . '">' . $choice['label'] . '</label>';
+            echo '</p>';
+          }
+        }
+      
+      echo '</div>';
+
+    echo '</div>';
+    
+  }
+  
+}
+
+/**
+ * Colorpicker option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.0
+ */
+if ( ! function_exists( 'ot_type_colorpicker' ) ) {
+  
+  function ot_type_colorpicker( $args = array() ) {
+    
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+    
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-colorpicker ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+      
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+      
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">'; 
+        
+        /* build colorpicker */  
+        echo '<div class="option-tree-ui-colorpicker-input-wrap">';
+          
+          /* colorpicker JS */      
+          echo '<script>jQuery(document).ready(function($) { OT_UI.bind_colorpicker("' . $field_id . '"); });</script>';
+        
+          /* input */
+          echo '<input type="text" name="' . $field_name . '" id="' . $field_id . '" value="' . esc_attr( $field_value ) . '" class="widefat option-tree-ui-input cp_input ' . $field_class . '" autocomplete="off" />';
+              
+          /* set border color */
+          $border_color = in_array( $field_value, array( '#FFFFFF', '#FFF', '#ffffff', '#fff' ) ) ? '#ccc' : $field_value;
+          
+          echo '<div id="cp_' . $field_id . '" class="cp_box"' . ( $field_value ? " style='background-color:$field_value; border-color:$border_color;'" : '' ) . '></div>';
+        
+        echo '</div>';
+      
+      echo '</div>';
+
+    echo '</div>';
+    
+  }
+  
+}
+
+/**
+ * CSS option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.0
+ */
+if ( ! function_exists( 'ot_type_css' ) ) {
+  
+  function ot_type_css( $args = array() ) {
+    
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+    
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-textarea simple ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+      
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+      
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+      
+        /* build textarea for CSS */
+        wp_editor( 
+          $field_value, 
+          $field_id, 
+          array(
+            'wpautop'       => false,
+            'media_buttons' => false,
+            'textarea_name' => $field_name,
+            'textarea_rows' => $field_rows,
+            'tinymce'       => false,              
+            'quicktags'     => false
+          ) 
+        );
+        
+      echo '</div>';
+      
+    echo '</div>';
+    
+  }
+  
+}
+
+/**
+ * Custom Post Type Checkbox option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.0
+ */
+if ( ! function_exists( 'ot_type_custom_post_type_checkbox' ) ) {
+  
+  function ot_type_custom_post_type_checkbox( $args = array() ) {
+    
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+    
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-checkbox ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+      
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+      
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+        
+        /* setup the post types */
+        $post_type = isset( $field_post_type ) ? explode( ',', $field_post_type ) : array( 'post' );
+        
+        /* query posts array */
+        $query = new WP_Query( array( 'post_type' => $post_type, 'numberposts' => -1, 'orderby' => 'title', 'order' => 'ASC', 'post_status' => 'any' ) );
+        
+        /* has posts */
+        if ( $query->have_posts() ) {
+          $count = 0;
+          while ( $query->have_posts() ) {
+            $query->the_post();
+            echo '<p>';
+              echo '<input type="checkbox" name="' . $field_name . '[' . $count . ']" id="' . $field_id . '-' . $count . '" value="' . esc_attr( get_the_ID() ) . '" ' . ( isset( $field_value[$count] ) ? checked( $field_value[$count], get_the_ID(), false ) : '' ) . ' class="checkbox option-tree-ui-checkbox ' . $field_class . '" />';
+              echo '<label for="' . $field_id . '-' . $count . '">' . get_the_title() . '</label>';
+            echo '</p>';
+            $count++;
+          } 
+        } else {
+          echo '<p>' . __( 'No Posts Found', 'option-tree' ) . '</p>';
+        }
+        
+      echo '</div>';
+
+    echo '</div>';
+    
+  }
+  
+}
+
+/**
+ * Custom Post Type Select option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.0
+ */
+if ( ! function_exists( 'ot_type_custom_post_type_select' ) ) {
+  
+  function ot_type_custom_post_type_select( $args = array() ) {
+
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+    
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-select ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+      
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+      
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+        
+        /* build category */
+        echo '<select name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" class="option-tree-ui-select ' . $field_class . '">';
+        
+        /* setup the post types */
+        $post_type = isset( $field_post_type ) ? explode( ',', $field_post_type ) : array( 'post' );
+        
+        /* query posts array */
+        $query = new WP_Query( array( 'post_type' => $post_type, 'numberposts' => -1, 'orderby' => 'title', 'order' => 'ASC', 'post_status' => 'any' ) );
+        
+        /* has posts */
+        if ( $query->have_posts() ) {
+          echo '<option value="">-- ' . __( 'Choose One', 'option-tree' ) . ' --</option>';
+          while ( $query->have_posts() ) {
+            $query->the_post();
+            echo '<option value="' . esc_attr( get_the_ID() ) . '"' . selected( $field_value, get_the_ID(), false ) . '>' . get_the_title() . '</option>';
+          }
+        } else {
+          echo '<option value="">' . __( 'No Posts Found', 'option-tree' ) . '</option>';
+        }
+        echo '</select>';
+        
+      echo '</div>';
+
+    echo '</div>';
+    
+  }
+  
+}
+
+/**
+ * List Item option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.0
+ */
+if ( ! function_exists( 'ot_type_list_item' ) ) {
+  
+  function ot_type_list_item( $args = array() ) {
+    
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-list-item ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+      
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+      
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+        
+        /* build list items */
+        echo '<ul class="option-tree-setting-wrap option-tree-sortable" rel="' . $field_id . '">';
+        
+        if ( is_array( $field_value ) && ! empty( $field_value ) ) {
+        
+          foreach( $field_value as $key => $list_item ) {
+            
+            echo '<li class="ui-state-default list-list-item">';
+              ot_list_item_view( $field_id, $key, $list_item );
+            echo '</li>';
+            
+          }
+          
+        }
+        
+        echo '</ul>';
+        
+        /* button */
+        echo '<a href="javascript:void(0);" class="option-tree-list-item-add option-tree-ui-button blue right hug-right">' . __( 'Add List Item', 'option-tree' ) . '</a>';
+        
+        /* description */
+        echo '<div class="list-item-description">' . __( 'You can re-order with drag & drop, the order will update after saving.', 'option-tree' ) . '</div>';
+      
+      echo '</div>';
+
+    echo '</div>';
+    
+  }
+  
+}
+
+/**
+ * Measurement option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.0
+ */
+if ( ! function_exists( 'ot_type_measurement' ) ) {
+  
+  function ot_type_measurement( $args = array() ) {
+    
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+    
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-select ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+      
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+      
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+      
+        echo '<div class="option-tree-ui-measurement-input-wrap">';
+        
+          echo '<input type="text" name="' . $field_name . '[0]" id="' . $field_id . '-0" value="' . ( isset( $field_value[0] ) ? esc_attr( $field_value[0] ) : '' ) . '" class="widefat option-tree-ui-input ' . $field_class . '" />';
+        
+        echo '</div>';
+        
+        /* build measurement */
+        echo '<select name="' . $field_name . '[1]" id="' . $field_id . '-1" class="option-tree-ui-select ' . $field_class . '">';
+          
+          echo '<option value="">&nbsp;--&nbsp;</option>';
+          
+          foreach ( ot_measurement_unit_types( $field_id ) as $unit ) {
+            echo '<option value="' . esc_attr( $unit ) . '"' . selected( $field_value[1], $unit, false ) . '>' . $unit . '</option>';
+          }
+          
+        echo '</select>';
+      
+      echo '</div>';
+    
+    echo '</div>';
+    
+  }
+  
+}
+
+/**
+ * Page Checkbox option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.0
+ */
+if ( ! function_exists( 'ot_type_page_checkbox' ) ) {
+  
+  function ot_type_page_checkbox( $args = array() ) {
+    
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+    
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-checkbox ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+      
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+      
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+      
+        /* query pages array */
+        $query = new WP_Query( array( 'post_type' => array( 'page' ), 'numberposts' => -1, 'orderby' => 'title', 'order' => 'ASC', 'post_status' => 'any' ) );
+        
+        /* has pages */
+        if ( $query->have_posts() ) {
+          $count = 0;
+          while ( $query->have_posts() ) {
+            $query->the_post();
+            echo '<p>';
+              echo '<input type="checkbox" name="' . $field_name . '[' . $count . ']" id="' . $field_id . '-' . $count . '" value="' . esc_attr( get_the_ID() ) . '" ' . ( isset( $field_value[$count] ) ? checked( $field_value[$count], get_the_ID(), false ) : '' ) . ' class="checkbox option-tree-ui-checkbox ' . $field_class . '" />';
+              echo '<label for="' . $field_id . '-' . $count . '">' . get_the_title() . '</label>';
+            echo '</p>';
+            $count++;
+          } 
+        } else {
+          echo '<p>' . __( 'No Pages Found', 'option-tree' ) . '</p>';
+        }
+      
+      echo '</div>';
+      
+    echo '</div>';
+    
+  }
+  
+}
+
+/**
+ * Page Select option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.0
+ */
+if ( ! function_exists( 'ot_type_page_select' ) ) {
+  
+  function ot_type_page_select( $args = array() ) {
+
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+    
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-select ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+      
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+      
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+      
+        /* build page select */
+        echo '<select name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" class="option-tree-ui-select ' . $field_class . '">';
+        
+        /* query pages array */
+        $query = new WP_Query( array( 'post_type' => array( 'page' ), 'numberposts' => -1, 'orderby' => 'title', 'order' => 'ASC', 'post_status' => 'any' ) );
+        
+        /* has pages */
+        if ( $query->have_posts() ) {
+          echo '<option value="">-- ' . __( 'Choose One', 'option-tree' ) . ' --</option>';
+          while ( $query->have_posts() ) {
+            $query->the_post();
+            echo '<option value="' . esc_attr( get_the_ID() ) . '"' . selected( $field_value, get_the_ID(), false ) . '>' . get_the_title() . '</option>';
+          }
+        } else {
+          echo '<option value="">' . __( 'No Pages Found', 'option-tree' ) . '</option>';
+        }
+        echo '</select>';
+        
+      echo '</div>';
+
+    echo '</div>';
+    
+  }
+  
+}
+
+/**
+ * Post Checkbox option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.0
+ */
+if ( ! function_exists( 'ot_type_post_checkbox' ) ) {
+  
+  function ot_type_post_checkbox( $args = array() ) {
+    
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+    
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-checkbox ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+      
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+      
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+      
+        /* query posts array */
+        $query = new WP_Query( array( 'post_type' => array( 'post' ), 'numberposts' => -1, 'orderby' => 'title', 'order' => 'ASC', 'post_status' => 'any' ) );
+        
+        /* has posts */
+        if ( $query->have_posts() ) {
+          $count = 0;
+          while ( $query->have_posts() ) {
+            $query->the_post();
+            echo '<p>';
+              echo '<input type="checkbox" name="' . $field_name . '[' . $count . ']" id="' . $field_id . '-' . $count . '" value="' . esc_attr( get_the_ID() ) . '" ' . ( isset( $field_value[$count] ) ? checked( $field_value[$count], get_the_ID(), false ) : '' ) . ' class="checkbox option-tree-ui-checkbox ' . $field_class . '" />';
+              echo '<label for="' . $field_id . '-' . $count . '">' . get_the_title() . '</label>';
+            echo '</p>';
+            $count++;
+          } 
+        } else {
+          echo '<p>' . __( 'No Posts Found', 'option-tree' ) . '</p>';
+        }
+        
+      echo '</div>';
+    
+    echo '</div>';
+    
+  }
+  
+}
+
+/**
+ * Post Select option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.0
+ */
+if ( ! function_exists( 'ot_type_post_select' ) ) {
+  
+  function ot_type_post_select( $args = array() ) {
+
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+    
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-select ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+      
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+      
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+      
+        /* build page select */
+        echo '<select name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" class="option-tree-ui-select ' . $field_class . '">';
+        
+        /* query posts array */
+        $query = new WP_Query( array( 'post_type' => array( 'post' ), 'numberposts' => -1, 'orderby' => 'title', 'order' => 'ASC', 'post_status' => 'any' ) );
+        
+        /* has posts */
+        if ( $query->have_posts() ) {
+          echo '<option value="">-- ' . __( 'Choose One', 'option-tree' ) . ' --</option>';
+          while ( $query->have_posts() ) {
+            $query->the_post();
+            echo '<option value="' . esc_attr( get_the_ID() ) . '"' . selected( $field_value, get_the_ID(), false ) . '>' . get_the_title() . '</option>';
+          }
+        } else {
+          echo '<option value="">' . __( 'No Posts Found', 'option-tree' ) . '</option>';
+        }
+        echo '</select>';
+        
+      echo '</div>';
+      
+    echo '</div>';
+    
+  }
+  
+}
+
+/**
+ * Radio option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.0
+ */
+if ( ! function_exists( 'ot_type_radio' ) ) {
+  
+  function ot_type_radio( $args = array() ) {
+    
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+    
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-radio ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+      
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+      
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+      
+        /* build radio */
+        foreach ( (array) $field_choices as $key => $choice ) {
+          echo '<p><input type="radio" name="' . $field_name . '" id="' . $field_id . '-' . $key . '" value="' . esc_attr( $choice['value'] ) . '"' . checked( $field_value, $choice['value'], false ) . ' class="radio option-tree-ui-radio ' . $field_class . '" /><label for="' . $field_id . '-' . $key . '">' . $choice['label'] . '</label></p>';
+        }
+      
+      echo '</div>';
+    
+    echo '</div>';
+    
+  }
+  
+}
+
+/**
+ * Radio Images option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.0
+ */
+if ( ! function_exists( 'ot_type_radio_image' ) ) {
+  
+  function ot_type_radio_image( $args = array() ) {
+    
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+    
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-radio-image ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+      
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+      
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+        
+        /**
+         * load the default filterable images if nothing 
+         * has been set in the choices array.
+         */
+        if ( empty( $field_choices ) )
+          $field_choices = ot_radio_images( $field_id );
+          
+        /* build radio image */
+        foreach ( (array) $field_choices as $key => $choice ) {
+          echo '<div class="option-tree-ui-radio-images">';
+            echo '<p style="display:none"><input type="radio" name="' . $field_name . '" id="' . $field_id . '-' . $key . '" value="' . esc_attr( $choice['value'] ) . '"' . checked( $field_value, $choice['value'], false ) . ' class="option-tree-ui-radio option-tree-ui-images" /><label for="' . $field_id . '-' . $key . '">' . $choice['label'] . '</label></p>';
+            echo '<img src="' . esc_url( $choice['src'] ) . '" alt="" title="' . $choice['label'] .'" class="option-tree-ui-radio-image ' . $field_class . ( $field_value == $choice['value'] ? ' option-tree-ui-radio-image-selected' : '' ) . '" />';
+          echo '</div>';
+        }
+        
+      echo '</div>';
+    
+    echo '</div>';
+    
+  }
+  
+}
+
+/**
+ * Select option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.0
+ */
+if ( ! function_exists( 'ot_type_select' ) ) {
+  
+  function ot_type_select( $args = array() ) {
+    
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+    
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-select ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+      
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+      
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+      
+        /* build select */
+        echo '<select name="' . $field_name . '" id="' . $field_id . '" class="option-tree-ui-select ' . $field_class . '">';
+        foreach ( (array) $field_choices as $choice ) {
+          if ( isset( $choice['value'] ) && isset( $choice['label'] ) ) {
+            echo '<option value="' . esc_attr( $choice['value'] ) . '"' . selected( $field_value, $choice['value'], false ) . '>' . $choice['label'] . '</option>';
+          }
+        }
+        echo '</select>';
+        
+      echo '</div>';
+    
+    echo '</div>';
+    
+  }
+  
+}
+
+/**
+ * Tag Checkbox option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.0
+ */
+if ( ! function_exists( 'ot_type_tag_checkbox' ) ) {
+  
+  function ot_type_tag_checkbox( $args = array() ) {
+    
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+    
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-checkbox ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+      
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+      
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+      
+        /* get tags */
+        $tags = get_tags( array( 'hide_empty' => false ) );
+        
+        /* has tags */
+        if ( $tags ) {
+          $count = 0;
+          foreach( $tags as $tag ) {
+            echo '<p>';
+              echo '<input type="checkbox" name="' . $field_name . '[' . $count . ']" id="' . $field_id . '-' . $count . '" value="' . esc_attr( $tag->term_id ) . '" ' . ( isset( $field_value[$count] ) ? checked( $field_value[$count], $tag->term_id, false ) : '' ) . ' class="checkbox option-tree-ui-checkbox ' . $field_class . '" />';
+              echo '<label for="' . $field_id . '-' . $count . '">' . $tag->name . '</label>';
+            echo '</p>';
+            $count++;
+          } 
+        } else {
+          echo '<p>' . __( 'No Tags Found', 'option-tree' ) . '</p>';
+        }
+        
+      echo '</div>';
+    
+    echo '</div>';
+    
+  }
+  
+}
+
+/**
+ * Tag Select option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.0
+ */
+if ( ! function_exists( 'ot_type_tag_select' ) ) {
+  
+  function ot_type_tag_select( $args = array() ) {
+
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+    
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-select ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+      
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+      
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+      
+        /* build tag select */
+        echo '<select name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" class="option-tree-ui-select ' . $field_class . '">';
+        
+        /* get tags */
+        $tags = get_tags( array( 'hide_empty' => false ) );
+        
+        /* has tags */
+        if ( $tags ) {
+          echo '<option value="">-- ' . __( 'Choose One', 'option-tree' ) . ' --</option>';
+          foreach( $tags as $tag ) {
+            echo '<option value="' . esc_attr( $tag->term_id ) . '"' . selected( $field_value, $tag->term_id, false ) . '>' . $tag->name . '</option>';
+          }
+        } else {
+          echo '<option value="">' . __( 'No Tgas Found', 'option-tree' ) . '</option>';
+        }
+        echo '</select>';
+      
+      echo '</div>';
+      
+    echo '</div>';
+    
+  }
+  
+}
+
+/**
+ * Text option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.0
+ */
+if ( ! function_exists( 'ot_type_text' ) ) {
+  
+  function ot_type_text( $args = array() ) {
+    
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+    
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-text ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+      
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+      
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+      
+        /* build text input */
+        echo '<input type="text" name="' . $field_name . '" id="' . $field_id . '" value="' . ( $field_value ? esc_attr( $field_value ) : $field_std  ). '" class="widefat option-tree-ui-input ' . $field_class . '" />';
+        
+      echo '</div>';
+    
+    echo '</div>';
+    
+  }
+  
+}
+
+/**
+ * Textarea option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.0
+ */
+if ( ! function_exists( 'ot_type_textarea' ) ) {
+  
+  function ot_type_textarea( $args = array() ) {
+    
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+    
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-textarea ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . ' fill-area">';
+      
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+      
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+      
+        /* build textarea */
+        wp_editor( 
+          $field_value, 
+          $field_id, 
+          array(
+            'wpautop'       => apply_filters( 'ot_wpautop', false, $field_id ),
+            'media_buttons' => apply_filters( 'ot_media_buttons', true, $field_id ),
+            'textarea_name' => $field_name,
+            'textarea_rows' => $field_rows,
+            'tinymce'       => apply_filters( 'ot_tinymce', true, $field_id ),              
+            'quicktags'     => apply_filters( 'ot_quicktags', array( 'buttons' => 'strong,em,link,block,del,ins,img,ul,ol,li,code,spell,close' ), $field_id )
+          ) 
+        );
+        
+      echo '</div>';
+    
+    echo '</div>';
+    
+  }
+  
+}
+
+/**
+ * Textarea Simple option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.0
+ */
+if ( ! function_exists( 'ot_type_textarea_simple' ) ) {
+  
+  function ot_type_textarea_simple( $args = array() ) {
+    
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+    
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-textarea simple ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+      
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+      
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+      
+        /* build textarea simple */
+        wp_editor( 
+          $field_value, 
+          $field_id, 
+          array(
+            'wpautop'       => apply_filters( 'ot_wpautop', false, $field_id ),
+            'media_buttons' => false,
+            'textarea_name' => $field_name,
+            'textarea_rows' => $field_rows,
+            'tinymce'       => false,              
+            'quicktags'     => false
+          ) 
+        );
+        
+      echo '</div>';
+      
+    echo '</div>';
+    
+  }
+  
+}
+
+/**
+ * Textblock option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.0
+ */
+if ( ! function_exists( 'ot_type_textblock' ) ) {
+  
+  function ot_type_textblock( $args = array() ) {
+    
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-textblock wide-desc">';
+      
+      /* description */
+      echo '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>';
+      
+    echo '</div>';
+    
+  }
+  
+}
+
+/**
+ * Textblock Titled option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.0
+ */
+if ( ! function_exists( 'ot_type_textblock_titled' ) ) {
+  
+  function ot_type_textblock_titled( $args = array() ) {
+    
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-textblock wide-desc">';
+      
+      /* description */
+      echo '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>';
+      
+    echo '</div>';
+    
+  }
+  
+}
+
+/**
+ * Typography option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.0
+ */
+if ( ! function_exists( 'ot_type_typography' ) ) {
+  
+  function ot_type_typography( $args = array() ) {
+    
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+    
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-background ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+      
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+      
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">'; 
+        
+        /* build background colorpicker */  
+        echo '<div class="option-tree-ui-colorpicker-input-wrap">';
+          
+          /* colorpicker JS */      
+          echo '<script>jQuery(document).ready(function($) { OT_UI.bind_colorpicker("' . $field_id . '-picker"); });</script>';
+          
+          /* set background color */
+          $background_color = isset( $field_value['font-color'] ) ? $field_value['font-color'] : '';
+          
+          /* set border color */
+          $border_color = in_array( $background_color, array( '#FFFFFF', '#FFF', '#ffffff', '#fff' ) ) ? '#ccc' : $background_color;
+          
+          /* input */
+          echo '<input type="text" name="' . $field_name . '[font-color]" id="' . $field_id . '-picker" value="' . esc_attr( $background_color ) . '" class="widefat option-tree-ui-input cp_input ' . $field_class . '" autocomplete="off" />';
+
+          echo '<div id="cp_' . $field_id . '-picker" class="cp_box"' . ( $background_color ? " style='background-color:$background_color; border-color:$border_color;'" : '' ) . '></div>';
+        
+        echo '</div>';
+        
+        /* build font family */
+        $font_family = isset( $field_value['font-family'] ) ? $field_value['font-family'] : '';
+        echo '<select name="' . $field_name . '[font-family]" id="' . $field_id . '-family" class="option-tree-ui-select ' . $field_class . '">';
+          echo '<option value="">font-family</option>';
+          foreach ( ot_recognized_font_families( $field_id ) as $key => $value ) {
+            echo '<option value="' . esc_attr( $key ) . '" ' . selected( $font_family, $key, false ) . '>' . esc_attr( $value ) . '</option>';
+          }
+        echo '</select>';
+        
+        /* build font style */
+        $font_style = isset( $field_value['font-style'] ) ? $field_value['font-style'] : '';
+        echo '<select name="' . $field_name . '[font-style]" id="' . $field_id . '-style" class="option-tree-ui-select ' . $field_class . '">';
+          echo '<option value="">font-style</option>';
+          foreach ( ot_recognized_font_styles( $field_id ) as $key => $value ) {
+            echo '<option value="' . esc_attr( $key ) . '" ' . selected( $font_style, $key, false ) . '>' . esc_attr( $value ) . '</option>';
+          }
+        echo '</select>';
+        
+        /* build font variant */
+        $font_variant = isset( $field_value['font-variant'] ) ? $field_value['font-variant'] : '';
+        echo '<select name="' . $field_name . '[font-variant]" id="' . $field_id . '-variant" class="option-tree-ui-select ' . $field_class . '">';
+          echo '<option value="">font-variant</option>';
+          foreach ( ot_recognized_font_variants( $field_id ) as $key => $value ) {
+            echo '<option value="' . esc_attr( $key ) . '" ' . selected( $font_variant, $key, false ) . '>' . esc_attr( $value ) . '</option>';
+          }
+        echo '</select>';
+        
+        /* build font weight */
+        $font_weight = isset( $field_value['font-weight'] ) ? $field_value['font-weight'] : '';
+        echo '<select name="' . $field_name . '[font-weight]" id="' . $field_id . '-weight" class="option-tree-ui-select ' . $field_class . '">';
+          echo '<option value="">font-weight</option>';
+          foreach ( ot_recognized_font_weights( $field_id ) as $key => $value ) {
+            echo '<option value="' . esc_attr( $key ) . '" ' . selected( $font_weight, $key, false ) . '>' . esc_attr( $value ) . '</option>';
+          }
+        echo '</select>';
+        
+        /* build font size */
+        $font_size = isset( $field_value['font-size'] ) ? $field_value['font-size'] : '';
+        echo '<select name="' . $field_name . '[font-size]" id="' . $field_id . '-size" class="option-tree-ui-select ' . $field_class . '">';
+          echo '<option value="">font-size</option>';
+          for ( $i = 8; $i <= 72; $i++ ) { 
+            $size = $i . 'px';
+            echo '<option value="' . esc_attr( $size ) . '" ' . selected( $font_size, $size, false ) . '>' . esc_attr( $size ) . '</option>';
+          }
+        echo '</select>';
+        
+      echo '</div>';
+      
+    echo '</div>';
+    
+  }
+  
+}
+
+/**
+ * Upload option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.0
+ */
+if ( ! function_exists( 'ot_type_upload' ) ) {
+  
+  function ot_type_upload( $args = array() ) {
+    
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+    
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-upload ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+      
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+      
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+      
+        /* build upload */
+        echo '<div class="option-tree-ui-upload-parent">';
+          
+          /* input */
+          echo '<input type="text" name="' . $field_name . '" id="' . $field_id . '" value="' . esc_attr( $field_value ) . '" class="widefat option-tree-ui-upload-input ' . $field_class . '" />';
+          
+          /* add media button */
+          echo '<a href="javascript:void(0);" class="ot_upload_media option-tree-ui-button blue light" rel="0" title="' . __( 'Add Media', 'option-tree' ) . '"><span class="icon upload">' . __( 'Add Media', 'option-tree' ) . '</span></a>';
+        
+        echo '</div>';
+        
+        /* media */
+        if ( $field_value ) {
+        
+          echo '<div class="option-tree-ui-media-wrap" id="' . $field_id . '_media">';
+          
+            if ( preg_match( '/\.(?:jpe?g|png|gif|ico)$/i', $field_value ) )
+              echo '<div class="option-tree-ui-image-wrap"><img src="' . $field_value . '" alt="" /></div>';
+            
+            echo '<a href="javascript:(void);" class="option-tree-ui-remove-media option-tree-ui-button" title="' . __( 'Remove Media', 'option-tree' ) . '"><span class="icon trash-can">' . __( 'Remove Media', 'option-tree' ) . '</span></a>';
+            
+          echo '</div>';
+          
+        }
+        
+      echo '</div>';
+    
+    echo '</div>';
+    
+  }
+  
+}
+
+/* End of file ot-functions-option-types.php */
+/* Location: ./includes/ot-functions-option-types.php */
