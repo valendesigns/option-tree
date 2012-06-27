@@ -1001,7 +1001,7 @@ if ( ! function_exists( 'ot_option_types_array' ) ) {
       'custom-post-type-checkbox' => 'Custom Post Type Checkbox',
       'custom-post-type-select'   => 'Custom Post Type Select',
       'list-item'                 => 'List Item',
-      'Measurement'               => 'Measurement',
+      'measurement'               => 'Measurement',
       'page-checkbox'             => 'Page Checkbox',
       'page-select'               => 'Page Select',
       'post-checkbox'             => 'Post Checkbox',
