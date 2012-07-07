@@ -1009,6 +1009,7 @@ if ( ! function_exists( 'ot_option_types_array' ) ) {
       'radio'                     => 'Radio',
       'radio-image'               => 'Radio Image',
       'select'                    => 'Select',
+      'slider'                    => 'Slider',
       'tag-checkbox'              => 'Tag Checkbox',
       'tag-select'                => 'Tag Select',
       'text'                      => 'Text',
@@ -1049,6 +1050,7 @@ if ( ! function_exists( 'ot_map_old_option_types' ) ) {
       'custom_post'       => 'custom-post-type-select',
       'custom_posts'      => 'custom-post-type-checkbox',                     
       'input'             => 'text',
+      'image'             => 'upload',
       'measurement'       => 'measurement',
       'page'              => 'page-select',
       'pages'             => 'page-checkbox',
@@ -1056,7 +1058,7 @@ if ( ! function_exists( 'ot_map_old_option_types' ) ) {
       'posts'             => 'post-checkbox',
       'radio'             => 'radio',
       'select'            => 'select',
-      'slider'            => 'list-item',
+      'slider'            => 'slider',
       'tag'               => 'tag-select',
       'tags'              => 'tag-checkbox',
       'textarea'          => 'textarea',
@@ -2134,7 +2136,6 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
     /* get saved settings */
     $option_tree_settings = get_option( 'option_tree_settings' );
     
-    
     /* loop through settings and find the list items settings array */
     foreach( $option_tree_settings['settings'] as $setting ) {
     
@@ -2144,11 +2145,75 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
         
       }
       
+      if ( $setting['id'] == $name ) {
+      
+        $_type = $setting['type'];
+        
+      }
+      
     }
-
+    
+    /* load the old filterable slider settings */
+    if ( isset( $_type ) && 'slider' == $_type ) {
+      
+      $settings = apply_filters( 'image_slider_fields', array(
+        array(
+          'name'      => 'image',
+          'type'      => 'image',
+          'label'     => __( 'Image', 'option-tree' ),
+          'class'     => ''
+        ),
+        array(
+          'name'      => 'link',
+          'type'      => 'text',
+          'label'     => __( 'Link', 'option-tree' ),
+          'class'     => ''
+        ),
+        array(
+          'name'      => 'description',
+          'type'      => 'textarea',
+          'label'     => __( 'Description', 'option-tree' ),
+          'class'     => ''
+        )
+      ), $name );
+      
+      /* fix the array keys, values, and just get it 2.0 ready */
+      foreach( $settings as $_k => $setting ) {
+      
+        foreach( $setting as $s_key => $s_value ) {
+          
+          if ( 'name' == $s_key ) {
+          
+            $settings[$_k]['id'] = $s_value;
+            unset($settings[$_k]['name']);
+            
+          } else if ( 'type' == $s_key ) {
+            
+            if ( 'input' == $s_value ) {
+            
+              $settings[$_k]['type'] = 'text';
+              
+            } else if ( 'textarea' == $s_value ) {
+            
+              $settings[$_k]['type'] = 'textarea-simple';
+              
+            } else if ( 'image' == $s_value ) {
+            
+              $settings[$_k]['type'] = 'upload';
+              
+            }
+            
+          }
+          
+        } 
+        
+      }
+    
+    }
+      
     /* if no settings array load the filterable list item settings */
     if ( ! isset( $settings ) && empty( $settings ) ) {
-    
+      
       $settings = apply_filters( 'list_item_fields', array(
         array(
           'id'        => 'image',
@@ -2189,10 +2254,11 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
     
     /* merge the two settings array */
     $settings = array_merge( $required_setting, $settings );
+    $fallback_title = isset( $_type ) && 'slider' == $_type ? 'Slide ' : 'Item ';
     
     echo '
     <div class="option-tree-setting">
-      <div class="open">' . ( isset( $list_item['title'] ) ? esc_attr( $list_item['title'] ) : 'List Item ' . ( $key + 1 ) ) . '</div>
+      <div class="open">' . ( isset( $list_item['title'] ) ? esc_attr( $list_item['title'] ) : $fallback_title . ( $key + 1 ) ) . '</div>
       <div class="button-section">
         <a href="javascript:void(0);" class="option-tree-setting-edit option-tree-ui-button left-item" title="' . __( 'Edit', 'option-tree' ) . '">
           <span class="icon pencil">' . __( 'Edit', 'option-tree' ) . '</span>

@@ -589,7 +589,7 @@ if ( ! function_exists( 'ot_type_list_item' ) ) {
         echo '</ul>';
         
         /* button */
-        echo '<a href="javascript:void(0);" class="option-tree-list-item-add option-tree-ui-button blue right hug-right">' . __( 'Add List Item', 'option-tree' ) . '</a>';
+        echo '<a href="javascript:void(0);" class="option-tree-list-item-add option-tree-ui-button blue right hug-right">' . __( 'New item', 'option-tree' ) . '</a>';
         
         /* description */
         echo '<div class="list-item-description">' . __( 'You can re-order with drag & drop, the order will update after saving.', 'option-tree' ) . '</div>';
@@ -761,6 +761,67 @@ if ( ! function_exists( 'ot_type_page_select' ) ) {
         }
         echo '</select>';
         
+      echo '</div>';
+
+    echo '</div>';
+    
+  }
+  
+}
+
+/**
+ * List Item option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.0
+ */
+if ( ! function_exists( 'ot_type_slider' ) ) {
+  
+  function ot_type_slider( $args = array() ) {
+    
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-list-item ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+      
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+      
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+        
+        /* build list items */
+        echo '<ul class="option-tree-setting-wrap option-tree-sortable" rel="' . $field_id . '">';
+        
+        if ( is_array( $field_value ) && ! empty( $field_value ) ) {
+        
+          foreach( $field_value as $key => $list_item ) {
+            
+            echo '<li class="ui-state-default list-list-item">';
+              ot_list_item_view( $field_id, $key, $list_item );
+            echo '</li>';
+            
+          }
+          
+        }
+        
+        echo '</ul>';
+        
+        /* button */
+        echo '<a href="javascript:void(0);" class="option-tree-list-item-add option-tree-ui-button blue right hug-right">' . __( 'Add a Slide', 'option-tree' ) . '</a>';
+        
+        /* description */
+        echo '<div class="list-item-description">' . __( 'You can re-order with drag & drop, the order will update after saving.', 'option-tree' ) . '</div>';
+      
       echo '</div>';
 
     echo '</div>';
