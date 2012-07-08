@@ -77,6 +77,7 @@
 .format-setting.wide-desc .description,
 .option-tree-list-item .description   { float: none; width: 100%; }
 
+.list-item-description                { padding-top: 10px; }
 #option-tree-settings-api h4          { color: #333; font-size: 1.12em; font-weight: bold; margin: 1em 0 0.5em 0; padding: 0; }
 #option-tree-settings-api h5          { color: #444; font-size: 1em; font-weight: bold; margin: 1em 0 0.5em 0; padding: 0; }
 #option-tree-settings-api p           { margin: 0 0 1.5em 0 !important; }

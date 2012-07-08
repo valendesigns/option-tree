@@ -111,6 +111,8 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
     
     } else if ( $type == 'css' ) {
       
+      $input = esc_html( stripcslashes( $input ) );
+      
       /* insert CSS into dynamic.css */
       ot_insert_css_with_markers( $setting['id'] );
 
@@ -1785,17 +1787,17 @@ if ( ! function_exists( 'ot_sections_view' ) ) {
     <div class="option-tree-setting is-section">
       <div class="open">' . ( isset( $section['title'] ) ? esc_attr( $section['title'] ) : 'Section ' . ( $key + 1 ) ) . '</div>
       <div class="button-section">
-        <a href="javascript:void(0);" class="option-tree-setting-edit option-tree-ui-button left-item" title="Edit">
-          <span class="icon pencil">Edit</span>
+        <a href="javascript:void(0);" class="option-tree-setting-edit option-tree-ui-button left-item" title="' . __( 'edit', 'option-tree' ) . '">
+          <span class="icon pencil">' . __( 'Edit', 'option-tree' ) . '</span>
         </a>
-        <a href="javascript:void(0);" class="option-tree-setting-remove option-tree-ui-button right-item" title="Delete">
-          <span class="icon trash-can">Delete</span>
+        <a href="javascript:void(0);" class="option-tree-setting-remove option-tree-ui-button right-item" title="' . __( 'Delete', 'option-tree' ) . '">
+          <span class="icon trash-can">' . __( 'Delete', 'option-tree' ) . '</span>
         </a>
       </div>
       <div class="option-tree-setting-body">
         <div class="format-settings">
           <div class="format-setting type-text">
-            <div class="description"><strong>Section Title</strong>: Displayed as a menu item on the Theme Options page.</div>
+            <div class="description">' . __( '<strong>Section Title</strong>: Displayed as a menu item on the Theme Options page.', 'option-tree' ) . '</div>
             <div class="format-setting-inner">
               <input type="text" name="' . $name . '[' . $key . '][title]" value="' . ( isset( $section['title'] ) ? $section['title'] : '' ) . '" class="widefat option-tree-ui-input option-tree-setting-title section-title" autocomplete="off" />
             </div>
@@ -1803,7 +1805,7 @@ if ( ! function_exists( 'ot_sections_view' ) ) {
         </div>
         <div class="format-settings">
           <div class="format-setting type-text">
-            <div class="description"><strong>Section ID</strong>: A unique lower case alphanumeric string, underscores allowed [a-z0-9_].</div>
+            <div class="description">' . __( '<strong>Section ID</strong>: A unique lower case alphanumeric string, underscores allowed.', 'option-tree' ) . '</div>
             <div class="format-setting-inner">
               <input type="text" name="' . $name . '[' . $key . '][id]" value="' . ( isset( $section['id'] ) ? $section['id'] : '' ) . '" class="widefat option-tree-ui-input section-id" autocomplete="off" />
             </div>
@@ -1840,17 +1842,17 @@ if ( ! function_exists( 'ot_settings_view' ) ) {
     <div class="option-tree-setting">
       <div class="open">' . ( isset( $setting['label'] ) ? esc_attr( $setting['label'] ) : 'Setting ' . ( $key + 1 ) ) . '</div>
       <div class="button-section">
-        <a href="javascript:void(0);" class="option-tree-setting-edit option-tree-ui-button left-item" title="Edit">
-          <span class="icon pencil">Edit</span>
+        <a href="javascript:void(0);" class="option-tree-setting-edit option-tree-ui-button left-item" title="' . __( 'Edit', 'option-tree' ) . '">
+          <span class="icon pencil">' . __( 'Edit', 'option-tree' ) . '</span>
         </a>
-        <a href="javascript:void(0);" class="option-tree-setting-remove option-tree-ui-button right-item" title="Delete">
-          <span class="icon trash-can">Delete</span>
+        <a href="javascript:void(0);" class="option-tree-setting-remove option-tree-ui-button right-item" title="' . __( 'Delete', 'option-tree' ) . '">
+          <span class="icon trash-can">' . __( 'Delete', 'option-tree' ) . '</span>
         </a>
       </div>
       <div class="option-tree-setting-body">
         <div class="format-settings">
           <div class="format-setting type-text wide-desc">
-            <div class="description"><strong>Label</strong>: Displayed as the label of a form element on the Theme Options page.</div>
+            <div class="description">' . __( '<strong>Label</strong>: Displayed as the label of a form element on the Theme Options page.', 'option-tree' ) . '</div>
             <div class="format-setting-inner">
               <input type="text" name="' . $name . '[' . $key . '][label]" value="' . ( isset( $setting['label'] ) ? esc_attr( $setting['label'] ) : '' ) . '" class="widefat option-tree-ui-input option-tree-setting-title" autocomplete="off" />
             </div>
@@ -1858,7 +1860,7 @@ if ( ! function_exists( 'ot_settings_view' ) ) {
         </div>
         <div class="format-settings">
           <div class="format-setting type-text wide-desc">
-            <div class="description"><strong>ID</strong>: A unique lower case alphanumeric string, underscores allowed.</div>
+            <div class="description">' . __( '<strong>ID</strong>: A unique lower case alphanumeric string, underscores allowed.', 'option-tree' ) . '</div>
             <div class="format-setting-inner">
               <input type="text" name="' . $name . '[' . $key . '][id]" value="' . ( isset( $setting['id'] ) ? esc_attr( $setting['id'] ) : '' ) . '" class="widefat option-tree-ui-input" autocomplete="off" />
             </div>
@@ -1866,7 +1868,7 @@ if ( ! function_exists( 'ot_settings_view' ) ) {
         </div>
         <div class="format-settings">
           <div class="format-setting type-select wide-desc">
-            <div class="description"><strong>Type</strong>: Choose one of the available option types from the dropdown.</div>
+            <div class="description">' . __( '<strong>Type</strong>: Choose one of the available option types from the dropdown.', 'option-tree' ) . '</div>
             <div class="format-setting-inner">
               <select name="' . $name . '[' . $key . '][type]" value="' . ( isset( $setting['type'] ) ? esc_attr( $setting['type'] ) : '' ) . '" class="option-tree-ui-select">
               ' . ( isset( $setting['type'] ) ? ot_loop_through_option_types( $setting['type'], $child ) : ot_loop_through_option_types( '',$child ) ) . '                     
@@ -1877,7 +1879,7 @@ if ( ! function_exists( 'ot_settings_view' ) ) {
         </div>
         <div class="format-settings">
           <div class="format-setting type-textarea wide-desc">
-            <div class="description"><strong>Description</strong>: Enter a detailed description for the users to read on the Theme Options page, HTML is allowed. This is also where you enter content for both the Textblock & Textblock Titled option types.</div>
+            <div class="description">' . __( '<strong>Description</strong>: Enter a detailed description for the users to read on the Theme Options page, HTML is allowed. This is also where you enter content for both the Textblock & Textblock Titled option types.', 'option-tree' ) . '</div>
             <div class="format-setting-inner">
               <textarea class="textarea" rows="10" cols="40" name="' . $name . '[' . $key . '][desc]">' . ( isset( $setting['desc'] ) ? esc_html( $setting['desc'] ) : '' ) . '</textarea>
             </div>
@@ -1885,23 +1887,23 @@ if ( ! function_exists( 'ot_settings_view' ) ) {
         </div>
         <div class="format-settings">
           <div class="format-setting type-textblock wide-desc">
-            <div class="description"><strong>Choices</strong>: This will only affect the following option types: Checkbox, Radio, Select & Select Image.</div>
+            <div class="description">' . __( '<strong>Choices</strong>: This will only affect the following option types: Checkbox, Radio, Select & Select Image.', 'option-tree' ) . '</div>
             <div class="format-setting-inner">
               <ul class="option-tree-setting-wrap option-tree-sortable" rel="' . $name . '[' . $key . ']">
                 ' . ( isset( $setting['choices'] ) ? ot_loop_through_choices( $name . '[' . $key . ']', $setting['choices'] ) : '' ) . '
               </ul>
-              <a href="javascript:void(0);" class="option-tree-choice-add option-tree-ui-button hug-left">Add Choice</a>
+              <a href="javascript:void(0);" class="option-tree-choice-add option-tree-ui-button hug-left">' . __( 'Add Choice', 'option-tree' ) . '</a>
             </div>
           </div>
         </div>
         <div class="format-settings">
           <div class="format-setting type-textblock wide-desc">
-            <div class="description"><strong>Settings</strong>: This will only affect the List Item option type.</div>
+            <div class="description">' . __( '<strong>Settings</strong>: This will only affect the List Item option type.', 'option-tree' ) . '</div>
             <div class="format-setting-inner">
               <ul class="option-tree-setting-wrap option-tree-sortable" rel="' . $name . '[' . $key . ']">
                 ' . ( isset( $setting['settings'] ) ? ot_loop_through_sub_settings( $name . '[' . $key . '][settings]', $setting['settings'] ) : '' ) . '
               </ul>
-              <a href="javascript:void(0);" class="option-tree-list-item-setting-add option-tree-ui-button hug-left">Add Setting</a>
+              <a href="javascript:void(0);" class="option-tree-list-item-setting-add option-tree-ui-button hug-left">' . __( 'Add Setting', 'option-tree' ) . '</a>
             </div>
           </div>
         </div>
@@ -1915,7 +1917,7 @@ if ( ! function_exists( 'ot_settings_view' ) ) {
         </div>
         <div class="format-settings">
           <div class="format-setting type-text wide-desc">
-            <div class="description"><strong>Rows</strong>: Enter a numeric value for the number of rows in your textarea. This will only affect the following option types: CSS, Textarea, & Textarea Simple.</div>
+            <div class="description">' . __( '<strong>Rows</strong>: Enter a numeric value for the number of rows in your textarea. This will only affect the following option types: CSS, Textarea, & Textarea Simple.', 'option-tree' ) . '</div>
             <div class="format-setting-inner">
               <input type="text" name="' . $name . '[' . $key . '][rows]" value="' . ( isset( $setting['rows'] ) ? esc_attr( $setting['rows'] ) : '' ) . '" class="widefat option-tree-ui-input" />
             </div>
@@ -1923,7 +1925,7 @@ if ( ! function_exists( 'ot_settings_view' ) ) {
         </div>
         <div class="format-settings">
           <div class="format-setting type-text wide-desc">
-            <div class="description"><strong>Post Type</strong>: Add a comma separated list of post type like \'post,page\'. This will only affect the following option types: Custom Post Type Checkbox, & Custom Post Type Select.</div>
+            <div class="description">' . __( '<strong>Post Type</strong>: Add a comma separated list of post type like \'post,page\'. This will only affect the following option types: Custom Post Type Checkbox, & Custom Post Type Select.', 'option-tree' ) . '</div>
             <div class="format-setting-inner">
               <input type="text" name="' . $name . '[' . $key . '][post_type]" value="' . ( isset( $setting['post_type'] ) ? esc_attr( $setting['post_type'] ) : '' ) . '" class="widefat option-tree-ui-input" autocomplete="off" />
             </div>
@@ -1960,17 +1962,17 @@ if ( ! function_exists( 'ot_choices_view' ) ) {
     <div class="option-tree-setting">
       <div class="open">' . ( isset( $choice['label'] ) ? esc_attr( $choice['label'] ) : 'Choice ' . ( $key + 1 ) ) . '</div>
       <div class="button-section">
-        <a href="javascript:void(0);" class="option-tree-setting-edit option-tree-ui-button left-item" title="Edit">
-          <span class="icon pencil">Edit</span>
+        <a href="javascript:void(0);" class="option-tree-setting-edit option-tree-ui-button left-item" title="' . __( 'Edit', 'option-tree' ) . '">
+          <span class="icon pencil">' . __( 'Edit', 'option-tree' ) . '</span>
         </a>
-        <a href="javascript:void(0);" class="option-tree-setting-remove option-tree-ui-button right-item" title="Delete">
-          <span class="icon trash-can">Delete</span>
+        <a href="javascript:void(0);" class="option-tree-setting-remove option-tree-ui-button right-item" title="' . __( 'Delete', 'option-tree' ) . '">
+          <span class="icon trash-can">' . __( 'Delete', 'option-tree' ) . '</span>
         </a>
       </div>
       <div class="option-tree-setting-body">
         <div class="format-settings">
           <div class="format-setting-label">
-            <h5>Label</h5>
+            <h5>' . __( 'Label', 'option-tree' ) . '</h5>
           </div>
           <div class="format-setting type-text wide-desc">
             <div class="format-setting-inner">
@@ -1980,7 +1982,7 @@ if ( ! function_exists( 'ot_choices_view' ) ) {
         </div>
         <div class="format-settings">
           <div class="format-setting-label">
-            <h5>Value</h5>
+            <h5>' . __( 'Value', 'option-tree' ) . '</h5>
           </div>
           <div class="format-setting type-text wide-desc">
             <div class="format-setting-inner">
@@ -1990,7 +1992,7 @@ if ( ! function_exists( 'ot_choices_view' ) ) {
         </div>
         <div class="format-settings">
           <div class="format-setting-label">
-            <h5>Image Source (Radio Image only)</h5>
+            <h5>' . __( 'Image Source (Radio Image only)', 'option-tree' ) . '</h5>
           </div>
           <div class="format-setting type-text wide-desc">
             <div class="format-setting-inner">
@@ -2026,17 +2028,17 @@ if ( ! function_exists( 'ot_contextual_help_view' ) ) {
     <div class="option-tree-setting">
       <div class="open">' . ( isset( $content['title'] ) ? esc_attr( $content['title'] ) : 'Content ' . ( $key + 1 ) ) . '</div>
       <div class="button-section">
-        <a href="javascript:void(0);" class="option-tree-setting-edit option-tree-ui-button left-item" title="Edit">
-          <span class="icon pencil">Edit</span>
+        <a href="javascript:void(0);" class="option-tree-setting-edit option-tree-ui-button left-item" title="' . __( 'Edit', 'option-tree' ) . '">
+          <span class="icon pencil">' . __( 'Edit', 'option-tree' ) . '</span>
         </a>
-        <a href="javascript:void(0);" class="option-tree-setting-remove option-tree-ui-button right-item" title="Delete">
-          <span class="icon trash-can">Delete</span>
+        <a href="javascript:void(0);" class="option-tree-setting-remove option-tree-ui-button right-item" title="' . __( 'Delete', 'option-tree' ) . '">
+          <span class="icon trash-can">' . __( 'Delete', 'option-tree' ) . '</span>
         </a>
       </div>
       <div class="option-tree-setting-body">
         <div class="format-settings">
           <div class="format-setting type-text no-desc">
-            <div class="description"><strong>Title</strong>: Displayed as a contextual help menu item on the Theme Options page.</div>
+            <div class="description">' . __( '<strong>Title</strong>: Displayed as a contextual help menu item on the Theme Options page.', 'option-tree' ) . '</div>
             <div class="format-setting-inner">
               <input type="text" name="' . $name . '[' . $key . '][title]" value="' . ( isset( $content['title'] ) ? $content['title'] : '' ) . '" class="widefat option-tree-ui-input option-tree-setting-title" autocomplete="off" />
             </div>
@@ -2044,7 +2046,7 @@ if ( ! function_exists( 'ot_contextual_help_view' ) ) {
         </div>
         <div class="format-settings">
           <div class="format-setting type-text no-desc">
-            <div class="description"><strong>ID</strong>: A unique lower case alphanumeric string, underscores allowed [a-z0-9_].</div>
+            <div class="description">' . __( '<strong>ID</strong>: A unique lower case alphanumeric string, underscores allowed.', 'option-tree' ) . '</div>
             <div class="format-setting-inner">
               <input type="text" name="' . $name . '[' . $key . '][id]" value="' . ( isset( $content['id'] ) ? $content['id'] : '' ) . '" class="widefat option-tree-ui-input" autocomplete="off" />
             </div>
@@ -2052,7 +2054,7 @@ if ( ! function_exists( 'ot_contextual_help_view' ) ) {
         </div>
         <div class="format-settings">
           <div class="format-setting type-textarea no-desc">
-            <div class="description"><strong>Content</strong>: Enter the HTML content about this contextual help item displayed on the Theme Option page for end users to read.</div>
+            <div class="description">' . __( '<strong>Content</strong>: Enter the HTML content about this contextual help item displayed on the Theme Option page for end users to read.', 'option-tree' ) . '</div>
             <div class="format-setting-inner">
               <textarea class="textarea" rows="15" cols="40" name="' . $name . '[' . $key . '][content]">' . ( isset( $content['content'] ) ? esc_html( $content['content'] ) : '' ) . '</textarea>
             </div>
@@ -2085,11 +2087,11 @@ if ( ! function_exists( 'ot_layouts_view' ) ) {
     <div class="option-tree-setting">
       <div class="open">' . ( isset( $key ) ? esc_attr( $key ) : __( 'Layout', 'option-tree' ) ) . '</div>
       <div class="button-section">
-        <a href="javascript:void(0);" class="option-tree-layout-activate option-tree-ui-button left-item' . ( $active_layout == $key ? ' active' : '' ) . '" title="Activate">
-          <span class="icon check">Activate</span>
+        <a href="javascript:void(0);" class="option-tree-layout-activate option-tree-ui-button left-item' . ( $active_layout == $key ? ' active' : '' ) . '" title="' . __( 'Activate', 'option-tree' ) . '">
+          <span class="icon check">' . __( 'Activate', 'option-tree' ) . '</span>
         </a>
-        <a href="javascript:void(0);" class="option-tree-setting-remove option-tree-ui-button right-item" title="Delete">
-          <span class="icon trash-can">Delete</span>
+        <a href="javascript:void(0);" class="option-tree-setting-remove option-tree-ui-button right-item" title="'. __( 'Delete', 'option-tree' ) . '">
+          <span class="icon trash-can">' . __( 'Delete', 'option-tree' ) . '</span>
         </a>
       </div>
       <input type="hidden" name="option_tree_layouts[' . $key . ']" value="' . ( isset( $data ) ? $data : '' ) . '" />

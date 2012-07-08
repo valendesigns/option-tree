@@ -589,7 +589,7 @@ if ( ! function_exists( 'ot_type_list_item' ) ) {
         echo '</ul>';
         
         /* button */
-        echo '<a href="javascript:void(0);" class="option-tree-list-item-add option-tree-ui-button blue right hug-right">' . __( 'New item', 'option-tree' ) . '</a>';
+        echo '<a href="javascript:void(0);" class="option-tree-list-item-add option-tree-ui-button blue right hug-right" title="' . __( 'Add New', 'option-tree' ) . '">' . __( 'Add New', 'option-tree' ) . '</a>';
         
         /* description */
         echo '<div class="list-item-description">' . __( 'You can re-order with drag & drop, the order will update after saving.', 'option-tree' ) . '</div>';
@@ -817,7 +817,7 @@ if ( ! function_exists( 'ot_type_slider' ) ) {
         echo '</ul>';
         
         /* button */
-        echo '<a href="javascript:void(0);" class="option-tree-list-item-add option-tree-ui-button blue right hug-right">' . __( 'Add a Slide', 'option-tree' ) . '</a>';
+        echo '<a href="javascript:void(0);" class="option-tree-list-item-add option-tree-ui-button blue right hug-right" title="' . __( 'Add New', 'option-tree' ) . '">' . __( 'Add New', 'option-tree' ) . '</a>';
         
         /* description */
         echo '<div class="list-item-description">' . __( 'You can re-order with drag & drop, the order will update after saving.', 'option-tree' ) . '</div>';
