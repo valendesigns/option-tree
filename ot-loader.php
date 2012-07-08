@@ -189,6 +189,9 @@ class OT_Loader {
     /* save layouts */
     add_action( 'admin_init', 'ot_modify_layouts', 5 );
     
+    /* global CSS */
+    add_action( 'admin_head', array( &$this, 'global_admin_css' ) );
+    
     /* AJAX call to create a new section */
     add_action( 'wp_ajax_add_section', array( &$this, 'add_section' ) );
     
@@ -210,6 +213,17 @@ class OT_Loader {
     /* AJAX call to create a new list item */
     add_action( 'wp_ajax_add_list_item', array( &$this, 'add_list_item' ) );
     
+  }
+  
+  /**
+   * Adds the global CSS to fix the menu icon.
+   */
+  public function global_admin_css() {
+    echo '
+    <style>
+      #adminmenu #toplevel_page_ot-settings .wp-menu-image img { padding: 4px 0px 1px 2px !important; }
+    </style>
+    ';
   }
   
   /**
