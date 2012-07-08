@@ -543,7 +543,6 @@ if ( ! function_exists( 'ot_type_examples' ) ) {
   }
   
 }</code></pre>';
-
         
       echo '</div>';
       
