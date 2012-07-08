@@ -12,6 +12,105 @@
  */
 
 /**
+ * Runs directly after the Theme Options are save.
+ *
+ * @return    void
+ *
+ * @access    public
+ * @since     2.0
+ */
+if ( ! function_exists( 'ot_after_theme_options_save' ) ) {
+
+  function ot_after_theme_options_save() {
+  
+    $page = isset( $_REQUEST['page'] ) ? $_REQUEST['page'] : '';
+    $updated = isset( $_REQUEST['settings-updated'] ) && $_REQUEST['settings-updated'] == 'true' ? true : false;
+    
+    /* only execute after the theme options are saved */
+    if ( 'ot-theme-options' == $page && $updated ) {
+      
+      /* grab a copy of the theme options */
+      $options = get_option( 'option_tree' );
+      
+      /* execute the action hook and pass the theme options to it */
+      do_action( 'ot_after_theme_options_save', $options );
+      
+    }
+  
+  }
+
+}
+
+/**
+ * Validate the options by type before saving.
+ *
+ * This function will run on only some of the option types
+ * as all of them don't need to be validated, just the
+ * ones users are going to input data into; because they
+ * can't be trusted.
+ *
+ * @param     mixed     Setting value
+ * @param     string    Setting type
+ * @param     array     The array of settings
+ * @return    mixed
+ *
+ * @access    public
+ * @since     2.0
+ */
+if ( ! function_exists( 'ot_validate_setting' ) ) {
+
+  function ot_validate_setting( $input, $type, $setting = null ) {
+    
+    /* exit early if missing data */
+    if ( ! $input || ! $type )
+      return $input;
+    
+    if ( 'background' == $type ) {
+
+      $input['background-color'] = ot_validate_setting( $input['background-color'], 'colorpicker' );
+      
+      $input['background-image'] = ot_validate_setting( $input['background-image'], 'upload' );
+      
+    } else if ( 'colorpicker' == $type ) {
+
+      /* return empty & set error */
+      if ( 0 === preg_match( '/^#([a-f0-9]{6}|[a-f0-9]{3})$/i', $input ) ) {
+        
+        $input = '';
+        
+        add_settings_error( 'option-tree', 'invalid_hex', __( 'The Colorpicker only allows valid hexadecimal values.', 'option-tree' ), 'error' );
+      
+      }
+    
+    } else if ( in_array( $type, array( 'css', 'textarea', 'textarea-simple' ) ) ) {
+      
+      $input = wp_kses_post( $input );
+            
+    } else if ( 'measurement' == $type ) {
+    
+      $input[0] = sanitize_text_field( $input[0] );
+      
+    } else if ( in_array( $type, array( 'text', 'upload' ) ) ) {
+
+      $input = sanitize_text_field( $input );
+    
+    } else if ( 'typography' == $type ) {
+      
+      $input['font-color'] = ot_validate_setting( $input['font-color'], 'colorpicker' );
+         
+    }  else if ( in_array( $type, array( 'list-item', 'slider' ) ) ) {
+      
+      /* TODO */
+         
+    }
+ 
+    return $input;
+    
+  }
+
+}
+  
+/**
  * Setup the default admin styles
  *
  * @return    void
@@ -70,57 +169,6 @@ if ( ! function_exists( 'ot_admin_scripts' ) ) {
 
   }
   
-}
-
-/**
- * Validate the options by type
- *
- * @return    string
- *
- * @access    public
- * @since     2.0
- */
-if ( ! function_exists( 'ot_validate_setting' ) ) {
-
-  function ot_validate_setting( $input, $type, $setting = null ) {
-    
-    /* exit early if missing data */
-    if ( ! $input || ! $type )
-      return $input;
-    
-    /* validate settings */
-    if ( $type == 'text' ) {
-
-      $input = esc_attr( $input );
-    
-    } else if ( in_array( $type, array( 'textarea', 'textarea-simple' ) ) && is_array( $input ) ) {
-    
-      $input = esc_html( stripcslashes( $input ) );
-      
-    } else if ( $type == 'upload' ) {
-    
-      $input = esc_url( $input );
-      
-    } else if ( in_array( $type, array( 'checkbox', 'radio', 'select' ) ) && is_array( $input ) ) {
-      
-      foreach( (array) $input as $key => $value ) {
-        
-        $input[$key] = esc_attr( $value );
-        
-      }
-    
-    } else if ( $type == 'css' ) {
-      
-      $input = esc_html( stripcslashes( $input ) );
-      
-      /* insert CSS into dynamic.css */
-      ot_insert_css_with_markers( $setting['id'] );
-
-    }
- 
-    return $input;
-  }
-
 }
 
 /**
@@ -254,6 +302,52 @@ if ( ! function_exists( 'ot_default_settings' ) ) {
 
 }
 
+/**
+ * Helper function to update the CSS option type after save.
+ *
+ * @return    void
+ *
+ * @access    public
+ * @since     2.0
+ */
+if ( ! function_exists( 'ot_save_css' ) ) {
+
+  function ot_save_css( $options ) {
+    
+    /* grab a copy of the settings */
+    $settings = get_option( 'option_tree_settings' );
+      
+    /* has settings */
+    if ( isset( $settings['settings'] ) ) {
+        
+      /* loop through sections and insert CSS when needed */
+      foreach( $settings['settings'] as $k => $setting ) {
+        
+        /* is the CSS option type */
+        if ( isset( $setting['type'] ) && 'css' == $setting['type'] ) {
+
+          /* insert CSS into dynamic.css */
+          if ( isset( $options[$setting['id']] ) && '' !== $options[$setting['id']] ) {
+            
+            ot_insert_css_with_markers( $setting['id'], $options );
+          
+          /* remove old CSS from dynamic.css */
+          } else {
+          
+            ot_remove_old_css( $setting['id'] );
+            
+          }
+          
+        }
+      
+      }
+      
+    }
+    
+  }
+
+}
+ 
 /**
  * Helper function to load filters for XML mime type.
  *
@@ -1394,6 +1488,7 @@ if ( ! function_exists( 'ot_radio_images' ) ) {
  * but still retains surrounding data.
  *
  * @param     string  $field_id The CSS option field ID.
+ * @param     array   $options The current option_tree array.
  * @return    bool    True on write success, false on failure.
  *
  * @access    public
@@ -1402,10 +1497,10 @@ if ( ! function_exists( 'ot_radio_images' ) ) {
  */
 if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
 
-  function ot_insert_css_with_markers( $field_id = '' ) {
+  function ot_insert_css_with_markers( $field_id = '', $options = array() ) {
     
-    /* missing $field_id string */
-    if ( '' == $field_id )
+    /* missing $field_id or $options exit early */
+    if ( '' == $field_id || empty( $options ) )
       return;
     
     /* path to the dynamic.css file */
@@ -1417,8 +1512,6 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
     /* insert CSS into file */
     if ( file_exists( $filepath ) && $f = @fopen( $filepath, 'w' ) ) {
       
-      /* Get options & set CSS value */
-      $options     = get_option( 'option_tree' );
       $insertion   = ot_normalize_css( $options[$field_id] );
       $regex       = "/{{([a-zA-Z0-9\_\-\#\|\=]+)}}/";
       $marker      = $field_id;
@@ -1592,7 +1685,7 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
  * @access    public
  * @since     2.0
  */
-if ( ! function_exists( 'ot_remove_css_with_markers' ) ) {
+if ( ! function_exists( 'ot_remove_old_css' ) ) {
 
   function ot_remove_old_css( $field_id = '' ) {
     

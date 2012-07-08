@@ -174,23 +174,29 @@ class OT_Loader {
    */
   public function hooks() {
     
+    /* prepares the after save do_action */
+    add_action( 'admin_init', 'ot_after_theme_options_save', 1 );
+    
     /* default settings */
-    add_action( 'admin_init', 'ot_default_settings', 1 );
+    add_action( 'admin_init', 'ot_default_settings', 2 );
     
     /* add xml to upload filetypes array */
-    add_action( 'admin_init', 'ot_add_xml_to_upload_filetypes', 2 );
+    add_action( 'admin_init', 'ot_add_xml_to_upload_filetypes', 3 );
     
     /* import */
-    add_action( 'admin_init', 'ot_import', 3 );
+    add_action( 'admin_init', 'ot_import', 4 );
     
     /* save settings */
-    add_action( 'admin_init', 'ot_save_settings', 4 );
+    add_action( 'admin_init', 'ot_save_settings', 5 );
     
     /* save layouts */
-    add_action( 'admin_init', 'ot_modify_layouts', 5 );
+    add_action( 'admin_init', 'ot_modify_layouts', 6 );
     
     /* global CSS */
     add_action( 'admin_head', array( &$this, 'global_admin_css' ) );
+    
+    /* insert theme CSS dynamically */
+    add_action( 'ot_after_theme_options_save', 'ot_save_css' );
     
     /* AJAX call to create a new section */
     add_action( 'wp_ajax_add_section', array( &$this, 'add_section' ) );

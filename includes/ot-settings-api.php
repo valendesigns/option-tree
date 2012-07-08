@@ -242,6 +242,8 @@ class OT_Settings {
             
             echo ot_alert_message( $page );
             
+            settings_errors( 'option-tree' );
+            
             /* Header */
             echo '<div id="option-tree-header-wrap">';
             
@@ -417,7 +419,7 @@ class OT_Settings {
     /* loop through options */
     foreach( (array) $this->options as $option ) {
         
-      register_setting( $option['id'], $option['id'], array ( &$this, 'validate_settings' ) );
+      register_setting( $option['id'], $option['id'], array ( &$this, 'sanitize_callback' ) );
         
       /* loop through pages */
       foreach( (array) $this->get_pages( $option ) as $page ) {
@@ -517,7 +519,9 @@ class OT_Settings {
         foreach( (array) $this->get_settings( $page ) as $setting ) {
           
           if ( isset( $setting['std'] ) ) {
+          
             $defaults[$setting['id']] = ot_validate_setting( $setting['std'], $setting['type'], $setting );
+            
           }
 
         }
@@ -532,14 +536,14 @@ class OT_Settings {
   }
   
   /**
-   * Validation callback for register_setting()
+   * Sanitize callback for register_setting()
    *
    * @return    string
    *
    * @access    public
    * @since     2.0
    */
-  public function validate_settings( $input ) {
+  public function sanitize_callback( $input ) {
     
     /* loop through options */
     foreach( (array) $this->options as $option ) {
@@ -549,12 +553,7 @@ class OT_Settings {
           
         /* loop through page settings */
         foreach( (array) $this->get_settings( $page ) as $setting ) {
-          
-          /* remove old CSS when the textarea is empty */
-          if ( isset( $setting['type'] ) && $setting['type'] == 'css' && empty( $input[$setting['id']] ) ) {
-            ot_remove_old_css( $setting['id'] );
-          }
-          
+
           /* verify setting has a type & value */
           if ( isset( $setting['type'] ) && isset( $input[$setting['id']] ) ) {
             
@@ -571,7 +570,7 @@ class OT_Settings {
     
     return $input;
   }
-  
+
   /**
    * Helper function to get the pages array for an option
    *
