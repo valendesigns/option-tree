@@ -1892,7 +1892,7 @@ if ( ! function_exists( 'ot_sections_view' ) ) {
           <div class="format-setting type-text">
             <div class="description">' . __( '<strong>Section Title</strong>: Displayed as a menu item on the Theme Options page.', 'option-tree' ) . '</div>
             <div class="format-setting-inner">
-              <input type="text" name="' . $name . '[' . $key . '][title]" value="' . ( isset( $section['title'] ) ? $section['title'] : '' ) . '" class="widefat option-tree-ui-input option-tree-setting-title section-title" autocomplete="off" />
+              <input type="text" name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][title]" value="' . ( isset( $section['title'] ) ? esc_attr( $section['title'] ) : '' ) . '" class="widefat option-tree-ui-input option-tree-setting-title section-title" autocomplete="off" />
             </div>
           </div>
         </div>
@@ -1900,7 +1900,7 @@ if ( ! function_exists( 'ot_sections_view' ) ) {
           <div class="format-setting type-text">
             <div class="description">' . __( '<strong>Section ID</strong>: A unique lower case alphanumeric string, underscores allowed.', 'option-tree' ) . '</div>
             <div class="format-setting-inner">
-              <input type="text" name="' . $name . '[' . $key . '][id]" value="' . ( isset( $section['id'] ) ? $section['id'] : '' ) . '" class="widefat option-tree-ui-input section-id" autocomplete="off" />
+              <input type="text" name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][id]" value="' . ( isset( $section['id'] ) ? esc_attr( $section['id'] ) : '' ) . '" class="widefat option-tree-ui-input section-id" autocomplete="off" />
             </div>
           </div>
         </div>
@@ -1947,7 +1947,7 @@ if ( ! function_exists( 'ot_settings_view' ) ) {
           <div class="format-setting type-text wide-desc">
             <div class="description">' . __( '<strong>Label</strong>: Displayed as the label of a form element on the Theme Options page.', 'option-tree' ) . '</div>
             <div class="format-setting-inner">
-              <input type="text" name="' . $name . '[' . $key . '][label]" value="' . ( isset( $setting['label'] ) ? esc_attr( $setting['label'] ) : '' ) . '" class="widefat option-tree-ui-input option-tree-setting-title" autocomplete="off" />
+              <input type="text" name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][label]" value="' . ( isset( $setting['label'] ) ? esc_attr( $setting['label'] ) : '' ) . '" class="widefat option-tree-ui-input option-tree-setting-title" autocomplete="off" />
             </div>
           </div>
         </div>
@@ -1955,7 +1955,7 @@ if ( ! function_exists( 'ot_settings_view' ) ) {
           <div class="format-setting type-text wide-desc">
             <div class="description">' . __( '<strong>ID</strong>: A unique lower case alphanumeric string, underscores allowed.', 'option-tree' ) . '</div>
             <div class="format-setting-inner">
-              <input type="text" name="' . $name . '[' . $key . '][id]" value="' . ( isset( $setting['id'] ) ? esc_attr( $setting['id'] ) : '' ) . '" class="widefat option-tree-ui-input" autocomplete="off" />
+              <input type="text" name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][id]" value="' . ( isset( $setting['id'] ) ? esc_attr( $setting['id'] ) : '' ) . '" class="widefat option-tree-ui-input" autocomplete="off" />
             </div>
           </div>
         </div>
@@ -1963,8 +1963,8 @@ if ( ! function_exists( 'ot_settings_view' ) ) {
           <div class="format-setting type-select wide-desc">
             <div class="description">' . __( '<strong>Type</strong>: Choose one of the available option types from the dropdown.', 'option-tree' ) . '</div>
             <div class="format-setting-inner">
-              <select name="' . $name . '[' . $key . '][type]" value="' . ( isset( $setting['type'] ) ? esc_attr( $setting['type'] ) : '' ) . '" class="option-tree-ui-select">
-              ' . ( isset( $setting['type'] ) ? ot_loop_through_option_types( $setting['type'], $child ) : ot_loop_through_option_types( '',$child ) ) . '                     
+              <select name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][type]" value="' . ( isset( $setting['type'] ) ? esc_attr( $setting['type'] ) : '' ) . '" class="option-tree-ui-select">
+              ' . ( isset( $setting['type'] ) ? ot_loop_through_option_types( $setting['type'], $child ) : ot_loop_through_option_types( '', $child ) ) . '                     
               
               </select>
             </div>
@@ -1974,7 +1974,7 @@ if ( ! function_exists( 'ot_settings_view' ) ) {
           <div class="format-setting type-textarea wide-desc">
             <div class="description">' . __( '<strong>Description</strong>: Enter a detailed description for the users to read on the Theme Options page, HTML is allowed. This is also where you enter content for both the Textblock & Textblock Titled option types.', 'option-tree' ) . '</div>
             <div class="format-setting-inner">
-              <textarea class="textarea" rows="10" cols="40" name="' . $name . '[' . $key . '][desc]">' . ( isset( $setting['desc'] ) ? esc_html( $setting['desc'] ) : '' ) . '</textarea>
+              <textarea class="textarea" rows="10" cols="40" name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][desc]">' . ( isset( $setting['desc'] ) ? esc_html( $setting['desc'] ) : '' ) . '</textarea>
             </div>
           </div>
         </div>
@@ -1982,7 +1982,7 @@ if ( ! function_exists( 'ot_settings_view' ) ) {
           <div class="format-setting type-textblock wide-desc">
             <div class="description">' . __( '<strong>Choices</strong>: This will only affect the following option types: Checkbox, Radio, Select & Select Image.', 'option-tree' ) . '</div>
             <div class="format-setting-inner">
-              <ul class="option-tree-setting-wrap option-tree-sortable" rel="' . $name . '[' . $key . ']">
+              <ul class="option-tree-setting-wrap option-tree-sortable" rel="' . esc_attr( $name ) . '[' . esc_attr( $key ) . ']">
                 ' . ( isset( $setting['choices'] ) ? ot_loop_through_choices( $name . '[' . $key . ']', $setting['choices'] ) : '' ) . '
               </ul>
               <a href="javascript:void(0);" class="option-tree-choice-add option-tree-ui-button hug-left">' . __( 'Add Choice', 'option-tree' ) . '</a>
@@ -1993,7 +1993,7 @@ if ( ! function_exists( 'ot_settings_view' ) ) {
           <div class="format-setting type-textblock wide-desc">
             <div class="description">' . __( '<strong>Settings</strong>: This will only affect the List Item option type.', 'option-tree' ) . '</div>
             <div class="format-setting-inner">
-              <ul class="option-tree-setting-wrap option-tree-sortable" rel="' . $name . '[' . $key . ']">
+              <ul class="option-tree-setting-wrap option-tree-sortable" rel="' . esc_attr( $name ) . '[' . esc_attr( $key ) . ']">
                 ' . ( isset( $setting['settings'] ) ? ot_loop_through_sub_settings( $name . '[' . $key . '][settings]', $setting['settings'] ) : '' ) . '
               </ul>
               <a href="javascript:void(0);" class="option-tree-list-item-setting-add option-tree-ui-button hug-left">' . __( 'Add Setting', 'option-tree' ) . '</a>
@@ -2004,7 +2004,7 @@ if ( ! function_exists( 'ot_settings_view' ) ) {
           <div class="format-setting type-text wide-desc">
             <div class="description">' . __( '<strong>Standard</strong>: Setting the standard value for your option only works for some option types. Read the <code>OptionTree->Documentation</code> for more information on which ones.', 'option-tree' ) . '</div>
             <div class="format-setting-inner">
-              <input type="text" name="' . $name . '[' . $key . '][std]" value="' . ( isset( $setting['std'] ) ? esc_attr( $setting['std'] ) : '' ) . '" class="widefat option-tree-ui-input" autocomplete="off" />
+              <input type="text" name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][std]" value="' . ( isset( $setting['std'] ) ? esc_attr( $setting['std'] ) : '' ) . '" class="widefat option-tree-ui-input" autocomplete="off" />
             </div>
           </div>
         </div>
@@ -2012,7 +2012,7 @@ if ( ! function_exists( 'ot_settings_view' ) ) {
           <div class="format-setting type-text wide-desc">
             <div class="description">' . __( '<strong>Rows</strong>: Enter a numeric value for the number of rows in your textarea. This will only affect the following option types: CSS, Textarea, & Textarea Simple.', 'option-tree' ) . '</div>
             <div class="format-setting-inner">
-              <input type="text" name="' . $name . '[' . $key . '][rows]" value="' . ( isset( $setting['rows'] ) ? esc_attr( $setting['rows'] ) : '' ) . '" class="widefat option-tree-ui-input" />
+              <input type="text" name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][rows]" value="' . ( isset( $setting['rows'] ) ? esc_attr( $setting['rows'] ) : '' ) . '" class="widefat option-tree-ui-input" />
             </div>
           </div>
         </div>
@@ -2020,13 +2020,13 @@ if ( ! function_exists( 'ot_settings_view' ) ) {
           <div class="format-setting type-text wide-desc">
             <div class="description">' . __( '<strong>Post Type</strong>: Add a comma separated list of post type like \'post,page\'. This will only affect the following option types: Custom Post Type Checkbox, & Custom Post Type Select.', 'option-tree' ) . '</div>
             <div class="format-setting-inner">
-              <input type="text" name="' . $name . '[' . $key . '][post_type]" value="' . ( isset( $setting['post_type'] ) ? esc_attr( $setting['post_type'] ) : '' ) . '" class="widefat option-tree-ui-input" autocomplete="off" />
+              <input type="text" name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][post_type]" value="' . ( isset( $setting['post_type'] ) ? esc_attr( $setting['post_type'] ) : '' ) . '" class="widefat option-tree-ui-input" autocomplete="off" />
             </div>
           </div>
         </div>
       </div>
     </div>
-    ' . ( ! $child ? '<input type="hidden" class="hidden-section" name="' . $name . '[' . $key . '][section]" value="' . ( isset( $setting['section'] ) ? $setting['section'] : '' ) . '" />' : '' );
+    ' . ( ! $child ? '<input type="hidden" class="hidden-section" name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][section]" value="' . ( isset( $setting['section'] ) ? esc_attr( $setting['section'] ) : '' ) . '" />' : '' );
   
   }
 
@@ -2069,7 +2069,7 @@ if ( ! function_exists( 'ot_choices_view' ) ) {
           </div>
           <div class="format-setting type-text wide-desc">
             <div class="format-setting-inner">
-              <input type="text" name="' . $name . '[choices][' . $key . '][label]" value="' . ( isset( $choice['label'] ) ? esc_attr( $choice['label'] ) : '' ) . '" class="widefat option-tree-ui-input option-tree-setting-title" autocomplete="off" />
+              <input type="text" name="' . esc_attr( $name ) . '[choices][' . esc_attr( $key ) . '][label]" value="' . ( isset( $choice['label'] ) ? esc_attr( $choice['label'] ) : '' ) . '" class="widefat option-tree-ui-input option-tree-setting-title" autocomplete="off" />
             </div>
           </div>
         </div>
@@ -2079,7 +2079,7 @@ if ( ! function_exists( 'ot_choices_view' ) ) {
           </div>
           <div class="format-setting type-text wide-desc">
             <div class="format-setting-inner">
-              <input type="text" name="' . $name . '[choices][' . $key . '][value]" value="' . ( isset( $choice['value'] ) ? esc_attr( $choice['value'] ) : '' ) . '" class="widefat option-tree-ui-input" autocomplete="off" />
+              <input type="text" name="' . esc_attr( $name ) . '[choices][' . esc_attr( $key ) . '][value]" value="' . ( isset( $choice['value'] ) ? esc_attr( $choice['value'] ) : '' ) . '" class="widefat option-tree-ui-input" autocomplete="off" />
             </div>
           </div>
         </div>
@@ -2089,7 +2089,7 @@ if ( ! function_exists( 'ot_choices_view' ) ) {
           </div>
           <div class="format-setting type-text wide-desc">
             <div class="format-setting-inner">
-              <input type="text" name="' . $name . '[choices][' . $key . '][src]" value="' . ( isset( $choice['src'] ) ? esc_attr( $choice['src'] ) : '' ) . '" class="widefat option-tree-ui-input" autocomplete="off" />
+              <input type="text" name="' . esc_attr( $name ) . '[choices][' . esc_attr( $key ) . '][src]" value="' . ( isset( $choice['src'] ) ? esc_url( $choice['src'] ) : '' ) . '" class="widefat option-tree-ui-input" autocomplete="off" />
             </div>
           </div>
         </div>
@@ -2133,7 +2133,7 @@ if ( ! function_exists( 'ot_contextual_help_view' ) ) {
           <div class="format-setting type-text no-desc">
             <div class="description">' . __( '<strong>Title</strong>: Displayed as a contextual help menu item on the Theme Options page.', 'option-tree' ) . '</div>
             <div class="format-setting-inner">
-              <input type="text" name="' . $name . '[' . $key . '][title]" value="' . ( isset( $content['title'] ) ? $content['title'] : '' ) . '" class="widefat option-tree-ui-input option-tree-setting-title" autocomplete="off" />
+              <input type="text" name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][title]" value="' . ( isset( $content['title'] ) ? esc_attr( $content['title'] ) : '' ) . '" class="widefat option-tree-ui-input option-tree-setting-title" autocomplete="off" />
             </div>
           </div>
         </div>
@@ -2141,7 +2141,7 @@ if ( ! function_exists( 'ot_contextual_help_view' ) ) {
           <div class="format-setting type-text no-desc">
             <div class="description">' . __( '<strong>ID</strong>: A unique lower case alphanumeric string, underscores allowed.', 'option-tree' ) . '</div>
             <div class="format-setting-inner">
-              <input type="text" name="' . $name . '[' . $key . '][id]" value="' . ( isset( $content['id'] ) ? $content['id'] : '' ) . '" class="widefat option-tree-ui-input" autocomplete="off" />
+              <input type="text" name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][id]" value="' . ( isset( $content['id'] ) ? esc_attr( $content['id'] ) : '' ) . '" class="widefat option-tree-ui-input" autocomplete="off" />
             </div>
           </div>
         </div>
@@ -2149,7 +2149,7 @@ if ( ! function_exists( 'ot_contextual_help_view' ) ) {
           <div class="format-setting type-textarea no-desc">
             <div class="description">' . __( '<strong>Content</strong>: Enter the HTML content about this contextual help item displayed on the Theme Option page for end users to read.', 'option-tree' ) . '</div>
             <div class="format-setting-inner">
-              <textarea class="textarea" rows="15" cols="40" name="' . $name . '[' . $key . '][content]">' . ( isset( $content['content'] ) ? esc_html( $content['content'] ) : '' ) . '</textarea>
+              <textarea class="textarea" rows="15" cols="40" name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][content]">' . ( isset( $content['content'] ) ? esc_html( $content['content'] ) : '' ) . '</textarea>
             </div>
           </div>
         </div>
@@ -2187,7 +2187,7 @@ if ( ! function_exists( 'ot_layouts_view' ) ) {
           <span class="icon trash-can">' . __( 'Delete', 'option-tree' ) . '</span>
         </a>
       </div>
-      <input type="hidden" name="option_tree_layouts[' . $key . ']" value="' . ( isset( $data ) ? $data : '' ) . '" />
+      <input type="hidden" name="option_tree_layouts[' . esc_attr( $key ) . ']" value="' . ( isset( $data ) ? $data : '' ) . '" />
     </div>';
     
   }
@@ -2309,7 +2309,7 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
     /* if no settings array load the filterable list item settings */
     if ( ! isset( $settings ) && empty( $settings ) ) {
       
-      $settings = apply_filters( 'list_item_fields', array(
+      $settings = apply_filters( 'ot_list_item_fields', array(
         array(
           'id'        => 'image',
           'label'     => __( 'Image', 'option-tree' ),
@@ -2397,7 +2397,7 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
           $_args['type'] = 'textarea-simple';
           
         /* option body, list-item is not allowed inside another list-item */
-        if ( $_args['type'] !== 'list-item' ) {
+        if ( $_args['type'] !== 'list-item' && $_args['type'] !== 'slider' ) {
           echo ot_display_by_type( $_args );
         }
         
@@ -2448,7 +2448,7 @@ if ( ! function_exists( 'ot_theme_options_layouts_form' ) ) {
     
       if ( is_array( $layouts ) && count( $layouts ) > 1 ) {
         
-        $active_layout = $layouts['active_layout'];
+        $active_layout = esc_attr( $layouts['active_layout'] );
         
         echo '<input type="hidden" id="the_current_layout" value="' . $active_layout . '" />';
         

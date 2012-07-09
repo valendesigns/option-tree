@@ -84,24 +84,24 @@ if ( ! function_exists( 'ot_type_background' ) ) {
         echo '<div class="option-tree-ui-colorpicker-input-wrap">';
           
           /* colorpicker JS */      
-          echo '<script>jQuery(document).ready(function($) { OT_UI.bind_colorpicker("' . $field_id . '-picker"); });</script>';
+          echo '<script>jQuery(document).ready(function($) { OT_UI.bind_colorpicker("' . esc_attr( $field_id ) . '-picker"); });</script>';
           
           /* set background color */
-          $background_color = isset( $field_value['background-color'] ) ? $field_value['background-color'] : '';
+          $background_color = isset( $field_value['background-color'] ) ? esc_attr( $field_value['background-color'] ) : '';
           
           /* set border color */
           $border_color = in_array( $background_color, array( '#FFFFFF', '#FFF', '#ffffff', '#fff' ) ) ? '#ccc' : $background_color;
           
           /* input */
-          echo '<input type="text" name="' . $field_name . '[background-color]" id="' . $field_id . '-picker" value="' . esc_attr( $background_color ) . '" class="widefat option-tree-ui-input cp_input ' . $field_class . '" autocomplete="off" />';
+          echo '<input type="text" name="' . esc_attr( $field_name ) . '[background-color]" id="' . $field_id . '-picker" value="' . $background_color . '" class="widefat option-tree-ui-input cp_input ' . esc_attr( $field_class ) . '" autocomplete="off" />';
 
-          echo '<div id="cp_' . $field_id . '-picker" class="cp_box"' . ( $background_color ? " style='background-color:$background_color; border-color:$border_color;'" : '' ) . '></div>';
+          echo '<div id="cp_' . esc_attr( $field_id ) . '-picker" class="cp_box"' . ( $background_color ? " style='background-color:$background_color; border-color:$border_color;'" : '' ) . '></div>';
         
         echo '</div>';
         
         /* build background repeat */
-        $background_repeat = isset( $field_value['background-repeat'] ) ? $field_value['background-repeat'] : '';
-        echo '<select name="' . $field_name . '[background-repeat]" id="' . $field_id . '-repeat" class="option-tree-ui-select ' . $field_class . '">';
+        $background_repeat = isset( $field_value['background-repeat'] ) ? esc_attr( $field_value['background-repeat'] ) : '';
+        echo '<select name="' . esc_attr( $field_name ) . '[background-repeat]" id="' . esc_attr( $field_id ) . '-repeat" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
           echo '<option value="">' . __( 'background-repeat', 'option-tree' ) . '</option>';
           foreach ( ot_recognized_background_repeat( $field_id ) as $key => $value ) {
             echo '<option value="' . esc_attr( $key ) . '" ' . selected( $background_repeat, $key, false ) . '>' . esc_attr( $value ) . '</option>';
@@ -109,8 +109,8 @@ if ( ! function_exists( 'ot_type_background' ) ) {
         echo '</select>';
         
         /* build background attachment */
-        $background_attachment = isset( $field_value['background-attachment'] ) ? $field_value['background-attachment'] : '';
-        echo '<select name="' . $field_name . '[background-attachment]" id="' . $field_id . '-attachment" class="option-tree-ui-select ' . $field_class . '">';
+        $background_attachment = isset( $field_value['background-attachment'] ) ? esc_attr( $field_value['background-attachment'] ) : '';
+        echo '<select name="' . esc_attr( $field_name ) . '[background-attachment]" id="' . esc_attr( $field_id ) . '-attachment" class="option-tree-ui-select ' . $field_class . '">';
           echo '<option value="">' . __( 'background-attachment', 'option-tree' ) . '</option>';
           foreach ( ot_recognized_background_attachment( $field_id ) as $key => $value ) {
             echo '<option value="' . esc_attr( $key ) . '" ' . selected( $background_attachment, $key, false ) . '>' . esc_attr( $value ) . '</option>';
@@ -118,8 +118,8 @@ if ( ! function_exists( 'ot_type_background' ) ) {
         echo '</select>';
         
         /* build background position */
-        $background_position = isset( $field_value['background-position'] ) ? $field_value['background-position'] : '';
-        echo '<select name="' . $field_name . '[background-position]" id="' . $field_id . '-position" class="option-tree-ui-select ' . $field_class . '">';
+        $background_position = isset( $field_value['background-position'] ) ? esc_attr( $field_value['background-position'] ) : '';
+        echo '<select name="' . esc_attr( $field_name ) . '[background-position]" id="' . esc_attr( $field_id ) . '-position" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
           echo '<option value="">' . __( 'background-position', 'option-tree' ) . '</option>';
           foreach ( ot_recognized_background_position( $field_id ) as $key => $value ) {
             echo '<option value="' . esc_attr( $key ) . '" ' . selected( $background_position, $key, false ) . '>' . esc_attr( $value ) . '</option>';
@@ -130,7 +130,7 @@ if ( ! function_exists( 'ot_type_background' ) ) {
         echo '<div class="option-tree-ui-upload-parent">';
           
           /* input */
-          echo '<input type="text" name="' . $field_name . '[background-image]" id="' . $field_id . '" value="' . esc_attr( isset( $field_value['background-image'] ) ? $field_value['background-image'] : '' ) . '" class="widefat option-tree-ui-upload-input ' . $field_class . '" />';
+          echo '<input type="text" name="' . esc_attr( $field_name ) . '[background-image]" id="' . esc_attr( $field_id ) . '" value="' . ( isset( $field_value['background-image'] ) ? esc_attr( $field_value['background-image'] ) : '' ) . '" class="widefat option-tree-ui-upload-input ' . esc_attr( $field_class ) . '" />';
           
           /* add media button */
           echo '<a href="javascript:void(0);" class="ot_upload_media option-tree-ui-button blue light" rel="0" title="' . __( 'Add Media', 'option-tree' ) . '"><span class="icon upload">' . __( 'Add Media', 'option-tree' ) . '</span></a>';
@@ -140,10 +140,10 @@ if ( ! function_exists( 'ot_type_background' ) ) {
         /* media */
         if ( isset( $field_value['background-image'] ) && $field_value['background-image'] !== '' ) {
         
-          echo '<div class="option-tree-ui-media-wrap" id="' . $field_id . '_media">';
+          echo '<div class="option-tree-ui-media-wrap" id="' . esc_attr( $field_id ) . '_media">';
           
             if ( preg_match( '/\.(?:jpe?g|png|gif|ico)$/i', $field_value['background-image'] ) )
-              echo '<div class="option-tree-ui-image-wrap"><img src="' . $field_value['background-image'] . '" alt="" /></div>';
+              echo '<div class="option-tree-ui-image-wrap"><img src="' . esc_url( $field_value['background-image'] ) . '" alt="" /></div>';
             
             echo '<a href="javascript:(void);" class="option-tree-ui-remove-media option-tree-ui-button" title="' . __( 'Remove Media', 'option-tree' ) . '"><span class="icon trash-can">' . __( 'Remove Media', 'option-tree' ) . '</span></a>';
             
@@ -197,8 +197,8 @@ if ( ! function_exists( 'ot_type_category_checkbox' ) ) {
           $count = 0;
           foreach ( $categories as $category ) {
             echo '<p>';
-              echo '<input type="checkbox" name="' . $field_name . '[' . $count . ']" id="' . $field_id . '-' . $count . '" value="' . esc_attr( $category->term_id ) . '" ' . ( isset( $field_value[$count] ) ? checked( $field_value[$count], $category->term_id, false ) : '' ) . ' class="checkbox option-tree-ui-checkbox ' . $field_class . '" />';
-              echo '<label for="' . $field_id . '-' . $count . '">' . $category->name . '</label>';
+              echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[' . esc_attr( $count ) . ']" id="' . esc_attr( $field_id ) . '-' . esc_attr( $count ) . '" value="' . esc_attr( $category->term_id ) . '" ' . ( isset( $field_value[$count] ) ? checked( $field_value[$count], $category->term_id, false ) : '' ) . ' class="checkbox option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
+              echo '<label for="' . esc_attr( $field_id ) . '-' . esc_attr( $count ) . '">' . esc_attr( $category->name ) . '</label>';
             echo '</p>';
             $count++;
           } 
@@ -254,7 +254,7 @@ if ( ! function_exists( 'ot_type_category_select' ) ) {
         if ( ! empty( $categories ) ) {
           echo '<option value="">-- ' . __( 'Choose One', 'option-tree' ) . ' --</option>';
           foreach ( $categories as $category ) {
-            echo '<option value="' . esc_attr( $category->term_id ) . '"' . selected( $field_value, $category->term_id, false ) . '>' . $category->name . '</option>';
+            echo '<option value="' . esc_attr( $category->term_id ) . '"' . selected( $field_value, $category->term_id, false ) . '>' . esc_attr( $category->name ) . '</option>';
           }
         } else {
           echo '<option value="">' . __( 'No Categories Found', 'option-tree' ) . '</option>';
@@ -303,8 +303,8 @@ if ( ! function_exists( 'ot_type_checkbox' ) ) {
         foreach ( (array) $field_choices as $key => $choice ) {
           if ( isset( $choice['value'] ) && isset( $choice['label'] ) ) {
             echo '<p>';
-              echo '<input type="checkbox" name="' . $field_name . '[' . $key . ']" id="' . $field_id . '-' . $key . '" value="' . esc_attr( $choice['value'] ) . '" ' . ( isset( $field_value[$key] ) ? checked( $field_value[$key], $choice['value'], false ) : '' ) . ' class="checkbox option-tree-ui-checkbox ' . $field_class . '" />';
-              echo '<label for="' . $field_id . '-' . $key . '">' . $choice['label'] . '</label>';
+              echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[' . esc_attr( $key ) . ']" id="' . esc_attr( $field_id ) . '-' . esc_attr( $key ) . '" value="' . esc_attr( $choice['value'] ) . '" ' . ( isset( $field_value[$key] ) ? checked( $field_value[$key], $choice['value'], false ) : '' ) . ' class="checkbox option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
+              echo '<label for="' . esc_attr( $field_id ) . '-' . esc_attr( $key ) . '">' . esc_attr( $choice['label'] ) . '</label>';
             echo '</p>';
           }
         }
@@ -351,15 +351,15 @@ if ( ! function_exists( 'ot_type_colorpicker' ) ) {
         echo '<div class="option-tree-ui-colorpicker-input-wrap">';
           
           /* colorpicker JS */      
-          echo '<script>jQuery(document).ready(function($) { OT_UI.bind_colorpicker("' . $field_id . '"); });</script>';
+          echo '<script>jQuery(document).ready(function($) { OT_UI.bind_colorpicker("' . esc_attr( $field_id ) . '"); });</script>';
         
           /* input */
-          echo '<input type="text" name="' . $field_name . '" id="' . $field_id . '" value="' . esc_attr( $field_value ) . '" class="widefat option-tree-ui-input cp_input ' . $field_class . '" autocomplete="off" />';
+          echo '<input type="text" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" value="' . esc_attr( $field_value ) . '" class="widefat option-tree-ui-input cp_input ' . esc_attr( $field_class ) . '" autocomplete="off" />';
               
           /* set border color */
-          $border_color = in_array( $field_value, array( '#FFFFFF', '#FFF', '#ffffff', '#fff' ) ) ? '#ccc' : $field_value;
+          $border_color = in_array( $field_value, array( '#FFFFFF', '#FFF', '#ffffff', '#fff' ) ) ? '#ccc' : esc_attr( $field_value );
           
-          echo '<div id="cp_' . $field_id . '" class="cp_box"' . ( $field_value ? " style='background-color:$field_value; border-color:$border_color;'" : '' ) . '></div>';
+          echo '<div id="cp_' . esc_attr( $field_id ) . '" class="cp_box"' . ( $field_value ? " style='background-color:" . esc_attr( $field_value ) . "; border-color:$border_color;'" : '' ) . '></div>';
         
         echo '</div>';
       
@@ -404,12 +404,12 @@ if ( ! function_exists( 'ot_type_css' ) ) {
         /* build textarea for CSS */
         wp_editor( 
           $field_value, 
-          $field_id, 
+          esc_attr( $field_id ), 
           array(
             'wpautop'       => false,
             'media_buttons' => false,
-            'textarea_name' => $field_name,
-            'textarea_rows' => $field_rows,
+            'textarea_name' => esc_attr( $field_name ),
+            'textarea_rows' => esc_attr( $field_rows ),
             'tinymce'       => false,              
             'quicktags'     => false
           ) 
@@ -465,8 +465,8 @@ if ( ! function_exists( 'ot_type_custom_post_type_checkbox' ) ) {
           while ( $query->have_posts() ) {
             $query->the_post();
             echo '<p>';
-              echo '<input type="checkbox" name="' . $field_name . '[' . $count . ']" id="' . $field_id . '-' . $count . '" value="' . esc_attr( get_the_ID() ) . '" ' . ( isset( $field_value[$count] ) ? checked( $field_value[$count], get_the_ID(), false ) : '' ) . ' class="checkbox option-tree-ui-checkbox ' . $field_class . '" />';
-              echo '<label for="' . $field_id . '-' . $count . '">' . get_the_title() . '</label>';
+              echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[' . esc_attr( $count ) . ']" id="' . esc_attr( $field_id ) . '-' . esc_attr( $count ) . '" value="' . esc_attr( get_the_ID() ) . '" ' . ( isset( $field_value[$count] ) ? checked( $field_value[$count], get_the_ID(), false ) : '' ) . ' class="checkbox option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
+              echo '<label for="' . esc_attr( $field_id ) . '-' . esc_attr( $count ) . '">' . get_the_title() . '</label>';
             echo '</p>';
             $count++;
           } 
@@ -526,7 +526,7 @@ if ( ! function_exists( 'ot_type_custom_post_type_select' ) ) {
           echo '<option value="">-- ' . __( 'Choose One', 'option-tree' ) . ' --</option>';
           while ( $query->have_posts() ) {
             $query->the_post();
-            echo '<option value="' . esc_attr( get_the_ID() ) . '"' . selected( $field_value, get_the_ID(), false ) . '>' . get_the_title() . '</option>';
+            echo '<option value="' . esc_attr( get_the_ID() ) . '"' . selected( $field_value, get_the_ID(), false ) . '>' . esc_attr( get_the_title() ) . '</option>';
           }
         } else {
           echo '<option value="">' . __( 'No Posts Found', 'option-tree' ) . '</option>';
@@ -572,7 +572,7 @@ if ( ! function_exists( 'ot_type_list_item' ) ) {
       echo '<div class="format-setting-inner">';
         
         /* build list items */
-        echo '<ul class="option-tree-setting-wrap option-tree-sortable" rel="' . $field_id . '">';
+        echo '<ul class="option-tree-setting-wrap option-tree-sortable" rel="' . esc_attr( $field_id ) . '">';
         
         if ( is_array( $field_value ) && ! empty( $field_value ) ) {
         
@@ -634,17 +634,17 @@ if ( ! function_exists( 'ot_type_measurement' ) ) {
       
         echo '<div class="option-tree-ui-measurement-input-wrap">';
         
-          echo '<input type="text" name="' . $field_name . '[0]" id="' . $field_id . '-0" value="' . ( isset( $field_value[0] ) ? esc_attr( $field_value[0] ) : '' ) . '" class="widefat option-tree-ui-input ' . $field_class . '" />';
+          echo '<input type="text" name="' . esc_attr( $field_name ) . '[0]" id="' . esc_attr( $field_id ) . '-0" value="' . ( isset( $field_value[0] ) ? esc_attr( $field_value[0] ) : '' ) . '" class="widefat option-tree-ui-input ' . esc_attr( $field_class ) . '" />';
         
         echo '</div>';
         
         /* build measurement */
-        echo '<select name="' . $field_name . '[1]" id="' . $field_id . '-1" class="option-tree-ui-select ' . $field_class . '">';
+        echo '<select name="' . esc_attr( $field_name ) . '[1]" id="' . esc_attr( $field_id ) . '-1" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
           
           echo '<option value="">&nbsp;--&nbsp;</option>';
           
           foreach ( ot_measurement_unit_types( $field_id ) as $unit ) {
-            echo '<option value="' . esc_attr( $unit ) . '"' . selected( $field_value[1], $unit, false ) . '>' . $unit . '</option>';
+            echo '<option value="' . esc_attr( $unit ) . '"' . selected( $field_value[1], $unit, false ) . '>' . esc_attr( $unit ) . '</option>';
           }
           
         echo '</select>';
@@ -696,8 +696,8 @@ if ( ! function_exists( 'ot_type_page_checkbox' ) ) {
           while ( $query->have_posts() ) {
             $query->the_post();
             echo '<p>';
-              echo '<input type="checkbox" name="' . $field_name . '[' . $count . ']" id="' . $field_id . '-' . $count . '" value="' . esc_attr( get_the_ID() ) . '" ' . ( isset( $field_value[$count] ) ? checked( $field_value[$count], get_the_ID(), false ) : '' ) . ' class="checkbox option-tree-ui-checkbox ' . $field_class . '" />';
-              echo '<label for="' . $field_id . '-' . $count . '">' . get_the_title() . '</label>';
+              echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[' . esc_attr( $count ) . ']" id="' . esc_attr( $field_id ) . '-' . esc_attr( $count ) . '" value="' . esc_attr( get_the_ID() ) . '" ' . ( isset( $field_value[$count] ) ? checked( $field_value[$count], get_the_ID(), false ) : '' ) . ' class="checkbox option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
+              echo '<label for="' . esc_attr( $field_id ) . '-' . esc_attr( $count ) . '">' . get_the_title() . '</label>';
             echo '</p>';
             $count++;
           } 
@@ -754,7 +754,7 @@ if ( ! function_exists( 'ot_type_page_select' ) ) {
           echo '<option value="">-- ' . __( 'Choose One', 'option-tree' ) . ' --</option>';
           while ( $query->have_posts() ) {
             $query->the_post();
-            echo '<option value="' . esc_attr( get_the_ID() ) . '"' . selected( $field_value, get_the_ID(), false ) . '>' . get_the_title() . '</option>';
+            echo '<option value="' . esc_attr( get_the_ID() ) . '"' . selected( $field_value, get_the_ID(), false ) . '>' . esc_attr( get_the_title() ) . '</option>';
           }
         } else {
           echo '<option value="">' . __( 'No Pages Found', 'option-tree' ) . '</option>';
@@ -800,7 +800,7 @@ if ( ! function_exists( 'ot_type_slider' ) ) {
       echo '<div class="format-setting-inner">';
         
         /* build list items */
-        echo '<ul class="option-tree-setting-wrap option-tree-sortable" rel="' . $field_id . '">';
+        echo '<ul class="option-tree-setting-wrap option-tree-sortable" rel="' . esc_attr( $field_id ) . '">';
         
         if ( is_array( $field_value ) && ! empty( $field_value ) ) {
         
@@ -869,8 +869,8 @@ if ( ! function_exists( 'ot_type_post_checkbox' ) ) {
           while ( $query->have_posts() ) {
             $query->the_post();
             echo '<p>';
-              echo '<input type="checkbox" name="' . $field_name . '[' . $count . ']" id="' . $field_id . '-' . $count . '" value="' . esc_attr( get_the_ID() ) . '" ' . ( isset( $field_value[$count] ) ? checked( $field_value[$count], get_the_ID(), false ) : '' ) . ' class="checkbox option-tree-ui-checkbox ' . $field_class . '" />';
-              echo '<label for="' . $field_id . '-' . $count . '">' . get_the_title() . '</label>';
+              echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[' . esc_attr( $count ) . ']" id="' . esc_attr( $field_id ) . '-' . esc_attr( $count ) . '" value="' . esc_attr( get_the_ID() ) . '" ' . ( isset( $field_value[$count] ) ? checked( $field_value[$count], get_the_ID(), false ) : '' ) . ' class="checkbox option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
+              echo '<label for="' . esc_attr( $field_id ) . '-' . esc_attr( $count ) . '">' . esc_attr( get_the_title() ) . '</label>';
             echo '</p>';
             $count++;
           } 
@@ -927,7 +927,7 @@ if ( ! function_exists( 'ot_type_post_select' ) ) {
           echo '<option value="">-- ' . __( 'Choose One', 'option-tree' ) . ' --</option>';
           while ( $query->have_posts() ) {
             $query->the_post();
-            echo '<option value="' . esc_attr( get_the_ID() ) . '"' . selected( $field_value, get_the_ID(), false ) . '>' . get_the_title() . '</option>';
+            echo '<option value="' . esc_attr( get_the_ID() ) . '"' . selected( $field_value, get_the_ID(), false ) . '>' . esc_attr( get_the_title() ) . '</option>';
           }
         } else {
           echo '<option value="">' . __( 'No Posts Found', 'option-tree' ) . '</option>';
@@ -974,7 +974,7 @@ if ( ! function_exists( 'ot_type_radio' ) ) {
       
         /* build radio */
         foreach ( (array) $field_choices as $key => $choice ) {
-          echo '<p><input type="radio" name="' . $field_name . '" id="' . $field_id . '-' . $key . '" value="' . esc_attr( $choice['value'] ) . '"' . checked( $field_value, $choice['value'], false ) . ' class="radio option-tree-ui-radio ' . $field_class . '" /><label for="' . $field_id . '-' . $key . '">' . $choice['label'] . '</label></p>';
+          echo '<p><input type="radio" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '-' . esc_attr( $key ) . '" value="' . esc_attr( $choice['value'] ) . '"' . checked( $field_value, $choice['value'], false ) . ' class="radio option-tree-ui-radio ' . esc_attr( $field_class ) . '" /><label for="' . esc_attr( $field_id ) . '-' . esc_attr( $key ) . '">' . esc_attr( $choice['label'] ) . '</label></p>';
         }
       
       echo '</div>';
@@ -1025,8 +1025,8 @@ if ( ! function_exists( 'ot_type_radio_image' ) ) {
         /* build radio image */
         foreach ( (array) $field_choices as $key => $choice ) {
           echo '<div class="option-tree-ui-radio-images">';
-            echo '<p style="display:none"><input type="radio" name="' . $field_name . '" id="' . $field_id . '-' . $key . '" value="' . esc_attr( $choice['value'] ) . '"' . checked( $field_value, $choice['value'], false ) . ' class="option-tree-ui-radio option-tree-ui-images" /><label for="' . $field_id . '-' . $key . '">' . $choice['label'] . '</label></p>';
-            echo '<img src="' . esc_url( $choice['src'] ) . '" alt="" title="' . $choice['label'] .'" class="option-tree-ui-radio-image ' . $field_class . ( $field_value == $choice['value'] ? ' option-tree-ui-radio-image-selected' : '' ) . '" />';
+            echo '<p style="display:none"><input type="radio" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '-' . esc_attr( $key ) . '" value="' . esc_attr( $choice['value'] ) . '"' . checked( $field_value, $choice['value'], false ) . ' class="option-tree-ui-radio option-tree-ui-images" /><label for="' . esc_attr( $field_id ) . '-' . esc_attr( $key ) . '">' . esc_attr( $choice['label'] ) . '</label></p>';
+            echo '<img src="' . esc_url( $choice['src'] ) . '" alt="" title="' . esc_attr( $choice['label'] ) .'" class="option-tree-ui-radio-image ' . esc_attr( $field_class ) . ( $field_value == $choice['value'] ? ' option-tree-ui-radio-image-selected' : '' ) . '" />';
           echo '</div>';
         }
         
@@ -1069,10 +1069,10 @@ if ( ! function_exists( 'ot_type_select' ) ) {
       echo '<div class="format-setting-inner">';
       
         /* build select */
-        echo '<select name="' . $field_name . '" id="' . $field_id . '" class="option-tree-ui-select ' . $field_class . '">';
+        echo '<select name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
         foreach ( (array) $field_choices as $choice ) {
           if ( isset( $choice['value'] ) && isset( $choice['label'] ) ) {
-            echo '<option value="' . esc_attr( $choice['value'] ) . '"' . selected( $field_value, $choice['value'], false ) . '>' . $choice['label'] . '</option>';
+            echo '<option value="' . esc_attr( $choice['value'] ) . '"' . selected( $field_value, $choice['value'], false ) . '>' . esc_attr( $choice['label'] ) . '</option>';
           }
         }
         echo '</select>';
@@ -1123,8 +1123,8 @@ if ( ! function_exists( 'ot_type_tag_checkbox' ) ) {
           $count = 0;
           foreach( $tags as $tag ) {
             echo '<p>';
-              echo '<input type="checkbox" name="' . $field_name . '[' . $count . ']" id="' . $field_id . '-' . $count . '" value="' . esc_attr( $tag->term_id ) . '" ' . ( isset( $field_value[$count] ) ? checked( $field_value[$count], $tag->term_id, false ) : '' ) . ' class="checkbox option-tree-ui-checkbox ' . $field_class . '" />';
-              echo '<label for="' . $field_id . '-' . $count . '">' . $tag->name . '</label>';
+              echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[' . esc_attr( $count ) . ']" id="' . esc_attr( $field_id ) . '-' . esc_attr( $count ) . '" value="' . esc_attr( $tag->term_id ) . '" ' . ( isset( $field_value[$count] ) ? checked( $field_value[$count], $tag->term_id, false ) : '' ) . ' class="checkbox option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
+              echo '<label for="' . esc_attr( $field_id ) . '-' . esc_attr( $count ) . '">' . esc_attr( $tag->name ) . '</label>';
             echo '</p>';
             $count++;
           } 
@@ -1180,7 +1180,7 @@ if ( ! function_exists( 'ot_type_tag_select' ) ) {
         if ( $tags ) {
           echo '<option value="">-- ' . __( 'Choose One', 'option-tree' ) . ' --</option>';
           foreach( $tags as $tag ) {
-            echo '<option value="' . esc_attr( $tag->term_id ) . '"' . selected( $field_value, $tag->term_id, false ) . '>' . $tag->name . '</option>';
+            echo '<option value="' . esc_attr( $tag->term_id ) . '"' . selected( $field_value, $tag->term_id, false ) . '>' . esc_attr( $tag->name ) . '</option>';
           }
         } else {
           echo '<option value="">' . __( 'No Tgas Found', 'option-tree' ) . '</option>';
@@ -1226,7 +1226,7 @@ if ( ! function_exists( 'ot_type_text' ) ) {
       echo '<div class="format-setting-inner">';
       
         /* build text input */
-        echo '<input type="text" name="' . $field_name . '" id="' . $field_id . '" value="' . ( $field_value ? esc_attr( $field_value ) : $field_std  ). '" class="widefat option-tree-ui-input ' . $field_class . '" />';
+        echo '<input type="text" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" value="' . ( $field_value ? esc_attr( $field_value ) : esc_attr( $field_std )  ). '" class="widefat option-tree-ui-input ' . esc_attr( $field_class ) . '" />';
         
       echo '</div>';
     
@@ -1269,12 +1269,12 @@ if ( ! function_exists( 'ot_type_textarea' ) ) {
         /* build textarea */
         wp_editor( 
           $field_value, 
-          $field_id, 
+          esc_attr( $field_id ), 
           array(
             'wpautop'       => apply_filters( 'ot_wpautop', false, $field_id ),
             'media_buttons' => apply_filters( 'ot_media_buttons', true, $field_id ),
-            'textarea_name' => $field_name,
-            'textarea_rows' => $field_rows,
+            'textarea_name' => esc_attr( $field_name ),
+            'textarea_rows' => esc_attr( $field_rows ),
             'tinymce'       => apply_filters( 'ot_tinymce', true, $field_id ),              
             'quicktags'     => apply_filters( 'ot_quicktags', array( 'buttons' => 'strong,em,link,block,del,ins,img,ul,ol,li,code,spell,close' ), $field_id )
           ) 
@@ -1321,12 +1321,12 @@ if ( ! function_exists( 'ot_type_textarea_simple' ) ) {
         /* build textarea simple */
         wp_editor( 
           $field_value, 
-          $field_id, 
+          esc_attr( $field_id ), 
           array(
             'wpautop'       => apply_filters( 'ot_wpautop', false, $field_id ),
             'media_buttons' => false,
-            'textarea_name' => $field_name,
-            'textarea_rows' => $field_rows,
+            'textarea_name' => esc_attr( $field_name ),
+            'textarea_rows' => esc_attr( $field_rows ),
             'tinymce'       => false,              
             'quicktags'     => false
           ) 
@@ -1434,24 +1434,24 @@ if ( ! function_exists( 'ot_type_typography' ) ) {
         echo '<div class="option-tree-ui-colorpicker-input-wrap">';
           
           /* colorpicker JS */      
-          echo '<script>jQuery(document).ready(function($) { OT_UI.bind_colorpicker("' . $field_id . '-picker"); });</script>';
+          echo '<script>jQuery(document).ready(function($) { OT_UI.bind_colorpicker("' . esc_attr( $field_id ) . '-picker"); });</script>';
           
           /* set background color */
-          $background_color = isset( $field_value['font-color'] ) ? $field_value['font-color'] : '';
+          $background_color = isset( $field_value['font-color'] ) ? esc_attr( $field_value['font-color'] ) : '';
           
           /* set border color */
           $border_color = in_array( $background_color, array( '#FFFFFF', '#FFF', '#ffffff', '#fff' ) ) ? '#ccc' : $background_color;
           
           /* input */
-          echo '<input type="text" name="' . $field_name . '[font-color]" id="' . $field_id . '-picker" value="' . esc_attr( $background_color ) . '" class="widefat option-tree-ui-input cp_input ' . $field_class . '" autocomplete="off" />';
+          echo '<input type="text" name="' . esc_attr( $field_name ) . '[font-color]" id="' . esc_attr( $field_id ) . '-picker" value="' . esc_attr( $background_color ) . '" class="widefat option-tree-ui-input cp_input ' . esc_attr( $field_class ) . '" autocomplete="off" />';
 
-          echo '<div id="cp_' . $field_id . '-picker" class="cp_box"' . ( $background_color ? " style='background-color:$background_color; border-color:$border_color;'" : '' ) . '></div>';
+          echo '<div id="cp_' . esc_attr( $field_id ) . '-picker" class="cp_box"' . ( $background_color ? " style='background-color:$background_color; border-color:$border_color;'" : '' ) . '></div>';
         
         echo '</div>';
         
         /* build font family */
-        $font_family = isset( $field_value['font-family'] ) ? $field_value['font-family'] : '';
-        echo '<select name="' . $field_name . '[font-family]" id="' . $field_id . '-family" class="option-tree-ui-select ' . $field_class . '">';
+        $font_family = isset( $field_value['font-family'] ) ? esc_attr( $field_value['font-family'] ) : '';
+        echo '<select name="' . esc_attr( $field_name ) . '[font-family]" id="' . esc_attr( $field_id ) . '-family" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
           echo '<option value="">font-family</option>';
           foreach ( ot_recognized_font_families( $field_id ) as $key => $value ) {
             echo '<option value="' . esc_attr( $key ) . '" ' . selected( $font_family, $key, false ) . '>' . esc_attr( $value ) . '</option>';
@@ -1459,8 +1459,8 @@ if ( ! function_exists( 'ot_type_typography' ) ) {
         echo '</select>';
         
         /* build font style */
-        $font_style = isset( $field_value['font-style'] ) ? $field_value['font-style'] : '';
-        echo '<select name="' . $field_name . '[font-style]" id="' . $field_id . '-style" class="option-tree-ui-select ' . $field_class . '">';
+        $font_style = isset( $field_value['font-style'] ) ? esc_attr( $field_value['font-style'] ) : '';
+        echo '<select name="' . esc_attr( $field_name ) . '[font-style]" id="' . esc_attr( $field_id ) . '-style" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
           echo '<option value="">font-style</option>';
           foreach ( ot_recognized_font_styles( $field_id ) as $key => $value ) {
             echo '<option value="' . esc_attr( $key ) . '" ' . selected( $font_style, $key, false ) . '>' . esc_attr( $value ) . '</option>';
@@ -1468,8 +1468,8 @@ if ( ! function_exists( 'ot_type_typography' ) ) {
         echo '</select>';
         
         /* build font variant */
-        $font_variant = isset( $field_value['font-variant'] ) ? $field_value['font-variant'] : '';
-        echo '<select name="' . $field_name . '[font-variant]" id="' . $field_id . '-variant" class="option-tree-ui-select ' . $field_class . '">';
+        $font_variant = isset( $field_value['font-variant'] ) ? esc_attr( $field_value['font-variant'] ) : '';
+        echo '<select name="' . esc_attr( $field_name ) . '[font-variant]" id="' . esc_attr( $field_id ) . '-variant" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
           echo '<option value="">font-variant</option>';
           foreach ( ot_recognized_font_variants( $field_id ) as $key => $value ) {
             echo '<option value="' . esc_attr( $key ) . '" ' . selected( $font_variant, $key, false ) . '>' . esc_attr( $value ) . '</option>';
@@ -1477,8 +1477,8 @@ if ( ! function_exists( 'ot_type_typography' ) ) {
         echo '</select>';
         
         /* build font weight */
-        $font_weight = isset( $field_value['font-weight'] ) ? $field_value['font-weight'] : '';
-        echo '<select name="' . $field_name . '[font-weight]" id="' . $field_id . '-weight" class="option-tree-ui-select ' . $field_class . '">';
+        $font_weight = isset( $field_value['font-weight'] ) ? esc_attr( $field_value['font-weight'] ) : '';
+        echo '<select name="' . esc_attr( $field_name ) . '[font-weight]" id="' . esc_attr( $field_id ) . '-weight" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
           echo '<option value="">font-weight</option>';
           foreach ( ot_recognized_font_weights( $field_id ) as $key => $value ) {
             echo '<option value="' . esc_attr( $key ) . '" ' . selected( $font_weight, $key, false ) . '>' . esc_attr( $value ) . '</option>';
@@ -1486,8 +1486,8 @@ if ( ! function_exists( 'ot_type_typography' ) ) {
         echo '</select>';
         
         /* build font size */
-        $font_size = isset( $field_value['font-size'] ) ? $field_value['font-size'] : '';
-        echo '<select name="' . $field_name . '[font-size]" id="' . $field_id . '-size" class="option-tree-ui-select ' . $field_class . '">';
+        $font_size = isset( $field_value['font-size'] ) ? esc_attr( $field_value['font-size'] ) : '';
+        echo '<select name="' . esc_attr( $field_name ) . '[font-size]" id="' . esc_attr( $field_id ) . '-size" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
           echo '<option value="">font-size</option>';
           for ( $i = 8; $i <= 72; $i++ ) { 
             $size = $i . 'px';
@@ -1537,7 +1537,7 @@ if ( ! function_exists( 'ot_type_upload' ) ) {
         echo '<div class="option-tree-ui-upload-parent">';
           
           /* input */
-          echo '<input type="text" name="' . $field_name . '" id="' . $field_id . '" value="' . esc_attr( $field_value ) . '" class="widefat option-tree-ui-upload-input ' . $field_class . '" />';
+          echo '<input type="text" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" value="' . esc_attr( $field_value ) . '" class="widefat option-tree-ui-upload-input ' . esc_attr( $field_class ) . '" />';
           
           /* add media button */
           echo '<a href="javascript:void(0);" class="ot_upload_media option-tree-ui-button blue light" rel="0" title="' . __( 'Add Media', 'option-tree' ) . '"><span class="icon upload">' . __( 'Add Media', 'option-tree' ) . '</span></a>';
@@ -1547,10 +1547,10 @@ if ( ! function_exists( 'ot_type_upload' ) ) {
         /* media */
         if ( $field_value ) {
         
-          echo '<div class="option-tree-ui-media-wrap" id="' . $field_id . '_media">';
+          echo '<div class="option-tree-ui-media-wrap" id="' . esc_attr( $field_id ) . '_media">';
           
             if ( preg_match( '/\.(?:jpe?g|png|gif|ico)$/i', $field_value ) )
-              echo '<div class="option-tree-ui-image-wrap"><img src="' . $field_value . '" alt="" /></div>';
+              echo '<div class="option-tree-ui-image-wrap"><img src="' . esc_url( $field_value ) . '" alt="" /></div>';
             
             echo '<a href="javascript:(void);" class="option-tree-ui-remove-media option-tree-ui-button" title="' . __( 'Remove Media', 'option-tree' ) . '"><span class="icon trash-can">' . __( 'Remove Media', 'option-tree' ) . '</span></a>';
             
