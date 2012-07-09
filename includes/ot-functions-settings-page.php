@@ -182,8 +182,11 @@ if ( ! function_exists( 'ot_type_import_xml' ) ) {
             /* input */
             echo '<input type="text" name="import_xml" id="import_xml" value="" class="widefat option-tree-ui-upload-input" />';
             
+            /* get media post_id */
+            $post_id = ( $id = ot_get_media_post_ID() ) ? (int) $id : 0;
+          
             /* add xml button */
-            echo '<a href="javascript:void(0);" class="ot_upload_media option-tree-ui-button blue light" rel="0" title="' . __( 'Add XML', 'option-tree' ) . '"><span class="icon upload">' . __( 'Add XML', 'option-tree' ) . '</span></a>';
+            echo '<a href="javascript:void(0);" class="ot_upload_media option-tree-ui-button blue light" rel="' . $post_id . '" title="' . __( 'Add XML', 'option-tree' ) . '"><span class="icon upload">' . __( 'Add XML', 'option-tree' ) . '</span></a>';
           
           echo '</div>';
           

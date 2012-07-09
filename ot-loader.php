@@ -196,6 +196,9 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       /* save layouts */
       add_action( 'admin_init', 'ot_modify_layouts', 6 );
       
+      /* create media post */
+      add_action( 'admin_init', 'ot_create_media_post', 7 );
+      
       /* global CSS */
       add_action( 'admin_head', array( &$this, 'global_admin_css' ) );
       

@@ -211,7 +211,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
      */
     public function display_page() {
       $screen = get_current_screen();
-  
+      
       /* loop through settings */
       foreach( (array) $this->options as $option ) {
   

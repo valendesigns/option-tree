@@ -132,8 +132,11 @@ if ( ! function_exists( 'ot_type_background' ) ) {
           /* input */
           echo '<input type="text" name="' . esc_attr( $field_name ) . '[background-image]" id="' . esc_attr( $field_id ) . '" value="' . ( isset( $field_value['background-image'] ) ? esc_attr( $field_value['background-image'] ) : '' ) . '" class="widefat option-tree-ui-upload-input ' . esc_attr( $field_class ) . '" />';
           
+          /* get media post_id */
+          $post_id = ( $id = ot_get_media_post_ID() ) ? (int) $id : 0;
+          
           /* add media button */
-          echo '<a href="javascript:void(0);" class="ot_upload_media option-tree-ui-button blue light" rel="0" title="' . __( 'Add Media', 'option-tree' ) . '"><span class="icon upload">' . __( 'Add Media', 'option-tree' ) . '</span></a>';
+          echo '<a href="javascript:void(0);" class="ot_upload_media option-tree-ui-button blue light" rel="' . $post_id . '" title="' . __( 'Add Media', 'option-tree' ) . '"><span class="icon upload">' . __( 'Add Media', 'option-tree' ) . '</span></a>';
         
         echo '</div>';
         
@@ -1539,8 +1542,11 @@ if ( ! function_exists( 'ot_type_upload' ) ) {
           /* input */
           echo '<input type="text" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" value="' . esc_attr( $field_value ) . '" class="widefat option-tree-ui-upload-input ' . esc_attr( $field_class ) . '" />';
           
+          /* get media post_id */
+          $post_id = ( $id = ot_get_media_post_ID() ) ? (int) $id : 0;
+          
           /* add media button */
-          echo '<a href="javascript:void(0);" class="ot_upload_media option-tree-ui-button blue light" rel="0" title="' . __( 'Add Media', 'option-tree' ) . '"><span class="icon upload">' . __( 'Add Media', 'option-tree' ) . '</span></a>';
+          echo '<a href="javascript:void(0);" class="ot_upload_media option-tree-ui-button blue light" rel="' . $post_id . '" title="' . __( 'Add Media', 'option-tree' ) . '"><span class="icon upload">' . __( 'Add Media', 'option-tree' ) . '</span></a>';
         
         echo '</div>';
         

@@ -172,6 +172,70 @@ if ( ! function_exists( 'ot_admin_scripts' ) ) {
 }
 
 /**
+ * Returns the ID of a custom post type by post_name.
+ *
+ * @uses        get_results()
+ *
+ * @return      int
+ *
+ * @access      public
+ * @since       2.0
+ */
+function ot_get_media_post_ID() {
+  global $wpdb;
+  
+  return $wpdb->get_var( "SELECT ID FROM $wpdb->posts WHERE `post_name` = 'media' AND `post_type` = 'option-tree' AND `post_status` = 'private'" );
+  
+}
+
+/**
+ * Register custom post type & create the media post used to attach images.
+ *
+ * @uses        get_results()
+ *
+ * @return      void
+ *
+ * @access      public
+ * @since       2.0
+ */
+function ot_create_media_post() {
+  global $current_user;
+  
+  register_post_type( 'option-tree', array(
+    'labels'              => array( 'name' => __( 'Option Tree', 'option-tree' ) ),
+    'public'              => true,
+    'show_ui'             => false,
+    'capability_type'     => 'post',
+    'exclude_from_search' => true,
+    'hierarchical'        => false,
+    'rewrite'             => false,
+    'supports'            => array( 'title', 'editor' ),
+    'can_export'          => true,
+    'show_in_nav_menus'   => false
+  ) );
+
+  /* look for custom page */
+  $post_id = ot_get_media_post_ID();
+    
+  /* no post exists */
+  if ( $post_id > 0 ) {
+    
+    /* create post object */
+    $_p = array();
+    $_p['post_title']     = 'Media';
+    $_p['post_status']    = 'private';
+    $_p['post_type']      = 'option-tree';
+    $_p['comment_status'] = 'closed';
+    $_p['ping_status']    = 'closed';
+    
+    /* insert the post into the database */
+    wp_insert_post( $_p );
+    
+  }
+
+}
+
+/**
  * Setup default settings array.
  *
  * @return    void
