@@ -1553,7 +1553,7 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
               $font = array();
               
               if ( ! empty( $value['font-color'] ) )
-                $font[] = "font-color: " . $value['font-color'] . ";";
+                $font[] = "color: " . $value['font-color'] . ";";
               
               if ( ! empty( $value['font-family'] ) ) {
                 foreach ( ot_recognized_font_families() as $key => $v ) {
@@ -1597,7 +1597,7 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
               if ( ! empty( $value['background-position'] ) )
                 $bg[] = $value['background-position'];
               
-              /* set $re$valueturn with background properties or empty string */
+              /* set $value with background properties or empty string */
               $value = ! empty( $bg ) ? 'background: ' . implode( " ", $bg ) . ';' : '';
             }
           
