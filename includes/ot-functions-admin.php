@@ -102,10 +102,6 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
       
       $input['font-color'] = ot_validate_setting( $input['font-color'], 'colorpicker' );
          
-    }  else if ( in_array( $type, array( 'list-item', 'slider' ) ) ) {
-      
-      /* TODO */
-         
     }
  
     return $input;
