@@ -222,15 +222,15 @@ if ( ! class_exists( 'OT_Settings' ) ) {
           if ( ! isset( $page['hidden_page'] ) && $screen->id == $this->page_hook[$page['id']] ) {
             
             $show_buttons = isset( $page['show_buttons'] ) && $page['show_buttons'] == false ? false : true;
-            
+
             /* update active layout content */
-            if ( isset( $_REQUEST['settings-updated'] ) && $_REQUEST['settings-updated'] == true ) {
+            if ( isset( $_REQUEST['settings-updated'] ) && $_REQUEST['settings-updated'] == 'true' ) {
   
               $layouts = get_option( 'option_tree_layouts' );
               
               /* has active layout */
               if ( isset( $layouts['active_layout'] ) ) {
-                $option_tree = get_option( $page['id'] );
+                $option_tree = get_option( $option['id'] );
                 $layouts[$layouts['active_layout']] = base64_encode( serialize( $option_tree ) );
                 update_option( 'option_tree_layouts', $layouts );
               }

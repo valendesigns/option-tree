@@ -1018,7 +1018,7 @@ if ( ! function_exists( 'ot_modify_layouts' ) ) {
       
       /* redirect */
       if ( isset( $_REQUEST['page'] ) && $_REQUEST['page'] == 'ot-theme-options' ) {
-        $query_args = add_query_arg( array( 'settings-updated' => 'true' ), remove_query_arg( array( 'action', 'message' ), $_POST['_wp_http_referer'] ) );
+        $query_args = add_query_arg( array( 'settings-updated' => 'layout' ), remove_query_arg( array( 'action', 'message' ), $_POST['_wp_http_referer'] ) );
       } else {
         $query_args = add_query_arg( array( 'action' => 'save-layouts', 'message' => $message ), $_POST['_wp_http_referer'] );
       }
@@ -1060,9 +1060,13 @@ if ( ! function_exists( 'ot_alert_message' ) ) {
       
         return '<div id="message" class="updated fade below-h2"><p>' . $page['reset_message'] . '</p></div>';
         
-      } else if ( isset( $_GET['settings-updated'] ) && $_GET['settings-updated'] == true ) {  
+      } else if ( isset( $_GET['settings-updated'] ) && $_GET['settings-updated'] == 'true' ) {  
        
         return '<div id="message" class="updated fade below-h2"><p>' . $page['updated_message'] . '</p></div>';
+        
+      } else if ( isset( $_GET['settings-updated'] ) && $_GET['settings-updated'] == 'layout' ) {  
+       
+        return '<div id="message" class="updated fade below-h2"><p>' . __( 'Layout activated.', 'option-tree' ) . '</p></div>';
         
       }
       
