@@ -253,20 +253,6 @@ if ( ! class_exists( 'OT_Meta_Box' ) ) {
       }
   
     }
-    
-    /**
-     * AJAX utility function for adding a new list item.
-     */
-    function add_meta_list_item() {
-      $list_item_id = $_GET['list_item_id'];
-      $list_item    = array();
-      $post_id      = $_GET['post_id'];
-      $count        = $_GET['count'] + 1;
-      $fields       = isset( $_GET['list_item_fields'] ) ? unserialize( base64_decode( $_GET['list_item_fields'] ) ) : array();
-  
-      view_list_item( $list_item_id, $list_item_id, $list_item, $post_id, $count, $fields, true );
-      die();
-    }
   
   }
 
