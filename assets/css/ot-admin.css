@@ -59,7 +59,8 @@
 .format-setting-label                 { border-bottom: 1px dashed #ddd; margin: 0 0 14px 0; padding: 5px 0px 1px 0px; width: 100%; }
 
 #option-tree-settings-api .description h3,
-#option-tree-settings-api .format-setting-label .label { background: none; border: none; color: #333; cursor: text; display: block; font-family: sans-serif; font-size: 1.2em; font-weight: bold; letter-spacing: 0; padding: 0 0 9px 0 !important; -webkit-user-select: text; text-shadow: none; }
+#option-tree-settings-api .format-setting-label .label,
+.metabox-holder .format-setting-label .label { background: none; border: none; color: #333; cursor: text; display: block; font-family: sans-serif !important; font-size: 1.2em !important; font-weight: bold !important; letter-spacing: 0; padding: 0 0 9px 0 !important; -webkit-user-select: text; text-shadow: none; }
     
 /* -------------------------------------------------- 
   :: Format Setting
@@ -130,7 +131,12 @@ input:focus.option-tree-ui-input      { border-color: #bbb !important; }
   ---------------------------------------------------*/
 .fill-area .description,
 .fill-area .format-setting-inner      { width: 100% !important; }
-.textarea                             { width: 99.9%; border: 1px solid #ccc; font-family: Consolas, Monaco, monospace; line-height: 150%; outline: 0; padding: 10px; resize: vertical; }
+
+.wp-editor-area { display: block;}
+.textarea,
+.ot-metabox-wrapper textarea          { width: 99.9%; border: 1px solid #ccc; font-family: Consolas, Monaco, monospace; line-height: 150%; outline: 0; padding: 10px; resize: vertical; }
+.ot-metabox-wrapper .wp-editor-container { border: none; }
+.ot-metabox-wrapper textarea:focus    { border-color: #bbb !important; }
 
 @media only screen and (max-width: 1105px) { .type-textarea .description, .type-textarea .format-setting-inner { width: 100%; } }
 

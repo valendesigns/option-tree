@@ -63,6 +63,18 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       define( 'OT_VERSION', '2.0beta' );
       
       /**
+       * For developers: Allow Unfiltered HTML in all the textareas.
+       *
+       * Run a filter and set to true if you want all the
+       * users to be able to post anything in the textareas.
+       * WARNING: This opens a security hole for low level users
+       * to be able to post malicious scripts, you've been warned.
+       *
+       * @since     2.0
+       */
+      define( 'OT_ALLOW_UNFILTERED_HTML', apply_filters( 'ot_allow_unfiltered_html', false ) );
+      
+      /**
        * For developers: Theme mode.
        *
        * Run a filter and set to true to enable OptionTree theme mode.
@@ -126,6 +138,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
         'ot-functions-option-types',
         'ot-functions-compat',
         'ot-settings-api',
+        'ot-meta-box-api',
         'ot-ui-theme-options'
       );
       
@@ -178,6 +191,14 @@ if ( ! class_exists( 'OT_Loader' ) ) {
      */
     public function hooks() {
       
+      /* add scripts for metaboxes to post-new.php & post.php */
+      add_action( 'admin_print_scripts-post-new.php', 'ot_admin_scripts', 11 );
+      add_action( 'admin_print_scripts-post.php', 'ot_admin_scripts', 11 );
+            
+      /* add styles for metaboxes to post-new.php & post.php */
+      add_action( 'admin_print_styles-post-new.php', 'ot_admin_styles', 11 );
+      add_action( 'admin_print_styles-post.php', 'ot_admin_styles', 11 );
+
       /* prepares the after save do_action */
       add_action( 'admin_init', 'ot_after_theme_options_save', 1 );
       
@@ -256,6 +277,14 @@ if ( ! class_exists( 'OT_Loader' ) ) {
     }
     
     /**
+     * AJAX utility function for adding a new list item setting.
+     */
+    public function add_list_item_setting() {
+      echo ot_settings_view( $_GET['name'] . '[settings]', $_GET['count'] );
+      die();
+    }
+    
+    /**
      * AJAX utility function for adding new contextual help content.
      */
     public function add_contextual_help() {
@@ -272,14 +301,6 @@ if ( ! class_exists( 'OT_Loader' ) ) {
     }
     
     /**
-     * AJAX utility function for adding a new list item setting.
-     */
-    public function add_list_item_setting() {
-      echo ot_settings_view( $_GET['name'] . '[settings]', $_GET['count'] );
-      die();
-    }
-    
-    /**
      * AJAX utility function for adding a new layout.
      */
     public function add_layout() {
@@ -291,7 +312,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
      * AJAX utility function for adding a new list item.
      */
     public function add_list_item() {
-      ot_list_item_view( $_GET['name'], $_GET['count'] );
+      ot_list_item_view( $_GET['name'], $_GET['count'], array(), $_GET['post_id'], $_GET['get_option'], unserialize( base64_decode( $_GET['settings'] ) ), $_GET['type'] );
       die();
     }
     

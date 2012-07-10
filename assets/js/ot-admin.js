@@ -22,6 +22,7 @@
       this.init_tabs();
       this.fix_upload_parent();
       this.fix_colorpicker();
+      this.fix_textarea();
       this.replicate_ajax();
       this.reset_settings();
     },
@@ -84,7 +85,6 @@
       $('.option-tree-help-add').live('click', function(e){
         e.preventDefault();
         OT_UI.add(this,'contextual_help');
-        OT_UI.init_sortable();
       });
       $('.option-tree-choice-add').live('click', function(e){
         e.preventDefault();
@@ -159,7 +159,13 @@
       });
     },
     add: function(elm,type) {
-      var self = this, list, list_class = '', name = '';
+      var self = this, 
+          list = '', 
+          list_class = '',
+          name = '', 
+          post_id = 0, 
+          get_option = '', 
+          settings = '';
       if ( type == 'contextual_help' ) {
         list = $(elm).parent().find('ul:last');
         list_class = 'list-contextual-help';
@@ -176,7 +182,10 @@
         list = $(elm).parent().find('ul:first');
         list_class = ( type == 'section' ) ? 'list-section' : 'list-setting';
       }
-      name = list.attr('rel');
+      name = list.data('name');
+      post_id = list.data('id');
+      get_option = list.data('getOption');
+      settings = $('#'+name+'_settings_array').val();
       if ( this.processing === false ) {
         this.processing = true;
         var count = parseInt(list.children('li').length);
@@ -186,7 +195,11 @@
           data: {
             action: 'add_' + type,
             count: count,
-            name: name
+            name: name,
+            post_id: post_id,
+            get_option: get_option,
+            settings: settings,
+            type: type
           },
           complete: function( data ) {
             if ( type == 'choice' || type == 'list_item_setting' ) {
@@ -203,6 +216,9 @@
             if ( type != 'contextual_help' ) {
               OT_UI.update_ids(list);
             }
+            setTimeout( function() {
+              OT_UI.init_sortable();
+            }, 500);
             self.processing = false;
           }
         });
@@ -360,6 +376,13 @@
             $(this).parent().next().css({'background':'#f1f1f1','border-color':'#ccc'});
           }
         });
+      });
+    },
+    fix_textarea: function() {
+      $('.wp-editor-area').focus( function(){
+        $(this).parent('div').css({borderColor:'#bbb'});
+      }).blur( function(){
+        $(this).parent('div').css({borderColor:'#ccc'});
       });
     },
     replicate_ajax: function() {

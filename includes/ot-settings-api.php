@@ -59,11 +59,11 @@ if ( ! class_exists( 'OT_Settings' ) ) {
       /* register settings */
       add_action( 'admin_init', array( &$this, 'add_settings' ) );
       
-      /* initialize settings */
-      add_action( 'admin_init', array( &$this, 'initialize_settings' ) );
-      
       /* reset options */
-      add_action( 'admin_init', array( &$this, 'reset_options' ) );
+      add_action( 'admin_init', array( &$this, 'reset_options' ), 10 );
+      
+      /* initialize settings */
+      add_action( 'admin_init', array( &$this, 'initialize_settings' ), 11 );
       
     }
   
@@ -230,7 +230,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
               
               /* has active layout */
               if ( isset( $layouts['active_layout'] ) ) {
-                $option_tree = get_option( 'option_tree' );
+                $option_tree = get_option( $page['id'] );
                 $layouts[$layouts['active_layout']] = base64_encode( serialize( $option_tree ) );
                 update_option( 'option_tree_layouts', $layouts );
               }
@@ -468,7 +468,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
       extract( $args );
       
       /* get current saved data */
-      $options = get_option( 'option_tree', false );
+      $options = get_option( $get_option, false );
       
       /* set default to standard value */
       if ( ( ! isset( $options[$id] ) || ! $options[$id] ) && isset( $std ) ) {  
@@ -487,7 +487,9 @@ if ( ! class_exists( 'OT_Settings' ) ) {
         'field_post_type'   => isset( $post_type ) && ! empty( $post_type ) ? $post_type : 'post',
         'field_class'       => isset( $class ) ? ' ' . $class : '',
         'field_choices'     => isset( $choices ) && ! empty( $choices ) ? $choices : array(),
-        'field_settings'    => isset( $settings ) && ! empty( $settings ) ? $settings : array()
+        'field_settings'    => isset( $settings ) && ! empty( $settings ) ? $settings : array(),
+        'post_id'           => ot_get_media_post_ID(),
+        'get_option'        => $get_option,
       );
       
       /* get the option HTML */
@@ -508,7 +510,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
       foreach( (array) $this->options as $option ) {
         
         /* skip if option is already set */
-        if ( isset( $option['id'] ) && get_option( $option['id'], false, false ) ) {
+        if ( isset( $option['id'] ) && get_option( $option['id'], false ) ) {
           return false;
         }
         
@@ -521,9 +523,9 @@ if ( ! class_exists( 'OT_Settings' ) ) {
           foreach( (array) $this->get_settings( $page ) as $setting ) {
             
             if ( isset( $setting['std'] ) ) {
-            
-              $defaults[$setting['id']] = ot_validate_setting( $setting['std'], $setting['type'], $setting );
               
+              $defaults[$setting['id']] = ot_validate_setting( $setting['std'], $setting['type'] );
+
             }
   
           }
@@ -546,7 +548,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
      * @since     2.0
      */
     public function sanitize_callback( $input ) {
-      
+              
       /* loop through options */
       foreach( (array) $this->options as $option ) {
           
@@ -560,8 +562,57 @@ if ( ! class_exists( 'OT_Settings' ) ) {
             if ( isset( $setting['type'] ) && isset( $input[$setting['id']] ) ) {
               
               /* validate setting */
-              $input[$setting['id']] = ot_validate_setting( $input[$setting['id']], $setting['type'], $setting );
-  
+              if ( is_array( $input[$setting['id']] ) && in_array( $setting['type'], array( 'list-item', 'slider' ) ) ) {
+                
+                /* required title setting */
+                $required_setting = array(
+                  array(
+                    'id'        => 'title',
+                    'label'     => __( 'Title', 'option-tree' ),
+                    'desc'      => '',
+                    'std'       => '',
+                    'type'      => 'text',
+                    'rows'      => '',
+                    'class'     => 'option-tree-setting-title',
+                    'post_type' => '',
+                    'choices'   => array()
+                  )
+                );
+                
+                /* get the settings array */
+                $settings = isset( $_POST[$setting['id'] . '_settings_array'] ) ? unserialize( base64_decode( $_POST[$setting['id'] . '_settings_array'] ) ) : array();
+                
+                /* settings are empty for some odd ass reason get the defaults */
+                if ( empty( $settings ) ) {
+                  $settings = 'slider' == $setting['type'] ? 
+                  ot_slider_settings( $setting['id'] ) : 
+                  ot_list_item_settings( $setting['id'] );
+                }
+                
+                /* merge the two settings array */
+                $settings = array_merge( $required_setting, $settings );
+                
+                foreach( $input[$setting['id']] as $k => $setting_array ) {
+
+                  foreach( $settings as $sub_setting ) {
+                    
+                    /* verify sub setting has a type & value */
+                    if ( isset( $sub_setting['type'] ) && isset( $input[$setting['id']][$k][$sub_setting['id']] ) ) {
+                      
+                      $input[$setting['id']][$k][$sub_setting['id']] = ot_validate_setting( $input[$setting['id']][$k][$sub_setting['id']], $sub_setting['type'] );
+                      
+                    }
+                    
+                  }
+                
+                }
+              
+              } else {
+                
+                $input[$setting['id']] = ot_validate_setting( $input[$setting['id']], $setting['type'] );
+                
+              }
+
             }
   		
           }

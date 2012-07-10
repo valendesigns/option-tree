@@ -132,9 +132,6 @@ if ( ! function_exists( 'ot_type_background' ) ) {
           /* input */
           echo '<input type="text" name="' . esc_attr( $field_name ) . '[background-image]" id="' . esc_attr( $field_id ) . '" value="' . ( isset( $field_value['background-image'] ) ? esc_attr( $field_value['background-image'] ) : '' ) . '" class="widefat option-tree-ui-upload-input ' . esc_attr( $field_class ) . '" />';
           
-          /* get media post_id */
-          $post_id = ( $id = ot_get_media_post_ID() ) ? (int) $id : 0;
-          
           /* add media button */
           echo '<a href="javascript:void(0);" class="ot_upload_media option-tree-ui-button blue light" rel="' . $post_id . '" title="' . __( 'Add Media', 'option-tree' ) . '"><span class="icon upload">' . __( 'Add Media', 'option-tree' ) . '</span></a>';
         
@@ -200,7 +197,7 @@ if ( ! function_exists( 'ot_type_category_checkbox' ) ) {
           $count = 0;
           foreach ( $categories as $category ) {
             echo '<p>';
-              echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[' . esc_attr( $count ) . ']" id="' . esc_attr( $field_id ) . '-' . esc_attr( $count ) . '" value="' . esc_attr( $category->term_id ) . '" ' . ( isset( $field_value[$count] ) ? checked( $field_value[$count], $category->term_id, false ) : '' ) . ' class="checkbox option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
+              echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[' . esc_attr( $count ) . ']" id="' . esc_attr( $field_id ) . '-' . esc_attr( $count ) . '" value="' . esc_attr( $category->term_id ) . '" ' . ( isset( $field_value[$count] ) ? checked( $field_value[$count], $category->term_id, false ) : '' ) . ' class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
               echo '<label for="' . esc_attr( $field_id ) . '-' . esc_attr( $count ) . '">' . esc_attr( $category->name ) . '</label>';
             echo '</p>';
             $count++;
@@ -306,7 +303,7 @@ if ( ! function_exists( 'ot_type_checkbox' ) ) {
         foreach ( (array) $field_choices as $key => $choice ) {
           if ( isset( $choice['value'] ) && isset( $choice['label'] ) ) {
             echo '<p>';
-              echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[' . esc_attr( $key ) . ']" id="' . esc_attr( $field_id ) . '-' . esc_attr( $key ) . '" value="' . esc_attr( $choice['value'] ) . '" ' . ( isset( $field_value[$key] ) ? checked( $field_value[$key], $choice['value'], false ) : '' ) . ' class="checkbox option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
+              echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[' . esc_attr( $key ) . ']" id="' . esc_attr( $field_id ) . '-' . esc_attr( $key ) . '" value="' . esc_attr( $choice['value'] ) . '" ' . ( isset( $field_value[$key] ) ? checked( $field_value[$key], $choice['value'], false ) : '' ) . ' class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
               echo '<label for="' . esc_attr( $field_id ) . '-' . esc_attr( $key ) . '">' . esc_attr( $choice['label'] ) . '</label>';
             echo '</p>';
           }
@@ -468,7 +465,7 @@ if ( ! function_exists( 'ot_type_custom_post_type_checkbox' ) ) {
           while ( $query->have_posts() ) {
             $query->the_post();
             echo '<p>';
-              echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[' . esc_attr( $count ) . ']" id="' . esc_attr( $field_id ) . '-' . esc_attr( $count ) . '" value="' . esc_attr( get_the_ID() ) . '" ' . ( isset( $field_value[$count] ) ? checked( $field_value[$count], get_the_ID(), false ) : '' ) . ' class="checkbox option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
+              echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[' . esc_attr( $count ) . ']" id="' . esc_attr( $field_id ) . '-' . esc_attr( $count ) . '" value="' . esc_attr( get_the_ID() ) . '" ' . ( isset( $field_value[$count] ) ? checked( $field_value[$count], get_the_ID(), false ) : '' ) . ' class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
               echo '<label for="' . esc_attr( $field_id ) . '-' . esc_attr( $count ) . '">' . get_the_title() . '</label>';
             echo '</p>';
             $count++;
@@ -574,15 +571,26 @@ if ( ! function_exists( 'ot_type_list_item' ) ) {
       /* format setting inner wrapper */
       echo '<div class="format-setting-inner">';
         
+        /* pass the settings array arround */
+        echo '<input type="hidden" name="' . esc_attr( $field_id ) . '_settings_array" id="' . esc_attr( $field_id ) . '_settings_array" value="' . base64_encode( serialize( $field_settings ) ) . '" />';
+        
+        /** 
+         * settings pages have array wrappers like 'option_tree'.
+         * So we need that value to create a proper array to save to.
+         * This is only for NON metaboxes settings.
+         */
+        if ( ! isset( $get_option ) )
+          $get_option = '';
+          
         /* build list items */
-        echo '<ul class="option-tree-setting-wrap option-tree-sortable" rel="' . esc_attr( $field_id ) . '">';
+        echo '<ul class="option-tree-setting-wrap option-tree-sortable" data-name="' . esc_attr( $field_id ) . '" data-id="' . esc_attr( $post_id ) . '" data-get-option="' . esc_attr( $get_option ) . '" data-type="' . esc_attr( $type ) . '">';
         
         if ( is_array( $field_value ) && ! empty( $field_value ) ) {
         
           foreach( $field_value as $key => $list_item ) {
             
             echo '<li class="ui-state-default list-list-item">';
-              ot_list_item_view( $field_id, $key, $list_item );
+              ot_list_item_view( $field_id, $key, $list_item, $post_id, $get_option, $field_settings, $type );
             echo '</li>';
             
           }
@@ -699,7 +707,7 @@ if ( ! function_exists( 'ot_type_page_checkbox' ) ) {
           while ( $query->have_posts() ) {
             $query->the_post();
             echo '<p>';
-              echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[' . esc_attr( $count ) . ']" id="' . esc_attr( $field_id ) . '-' . esc_attr( $count ) . '" value="' . esc_attr( get_the_ID() ) . '" ' . ( isset( $field_value[$count] ) ? checked( $field_value[$count], get_the_ID(), false ) : '' ) . ' class="checkbox option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
+              echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[' . esc_attr( $count ) . ']" id="' . esc_attr( $field_id ) . '-' . esc_attr( $count ) . '" value="' . esc_attr( get_the_ID() ) . '" ' . ( isset( $field_value[$count] ) ? checked( $field_value[$count], get_the_ID(), false ) : '' ) . ' class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
               echo '<label for="' . esc_attr( $field_id ) . '-' . esc_attr( $count ) . '">' . get_the_title() . '</label>';
             echo '</p>';
             $count++;
@@ -802,15 +810,26 @@ if ( ! function_exists( 'ot_type_slider' ) ) {
       /* format setting inner wrapper */
       echo '<div class="format-setting-inner">';
         
+        /* pass the settings array arround */
+        echo '<input type="hidden" name="' . esc_attr( $field_id ) . '_settings_array" id="' . esc_attr( $field_id ) . '_settings_array" value="' . base64_encode( serialize( $field_settings ) ) . '" />';
+        
+        /** 
+         * settings pages have array wrappers like 'option_tree'.
+         * So we need that value to create a proper array to save to.
+         * This is only for NON metaboxes settings.
+         */
+        if ( ! isset( $get_option ) )
+          $get_option = '';
+          
         /* build list items */
-        echo '<ul class="option-tree-setting-wrap option-tree-sortable" rel="' . esc_attr( $field_id ) . '">';
+        echo '<ul class="option-tree-setting-wrap option-tree-sortable" data-name="' . esc_attr( $field_id ) . '" data-id="' . esc_attr( $post_id ) . '" data-get-option="' . esc_attr( $get_option ) . '" data-type="' . esc_attr( $type ) . '">';
         
         if ( is_array( $field_value ) && ! empty( $field_value ) ) {
         
           foreach( $field_value as $key => $list_item ) {
             
             echo '<li class="ui-state-default list-list-item">';
-              ot_list_item_view( $field_id, $key, $list_item );
+              ot_list_item_view( $field_id, $key, $list_item, $post_id, $get_option, $field_settings, $type );
             echo '</li>';
             
           }
@@ -872,7 +891,7 @@ if ( ! function_exists( 'ot_type_post_checkbox' ) ) {
           while ( $query->have_posts() ) {
             $query->the_post();
             echo '<p>';
-              echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[' . esc_attr( $count ) . ']" id="' . esc_attr( $field_id ) . '-' . esc_attr( $count ) . '" value="' . esc_attr( get_the_ID() ) . '" ' . ( isset( $field_value[$count] ) ? checked( $field_value[$count], get_the_ID(), false ) : '' ) . ' class="checkbox option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
+              echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[' . esc_attr( $count ) . ']" id="' . esc_attr( $field_id ) . '-' . esc_attr( $count ) . '" value="' . esc_attr( get_the_ID() ) . '" ' . ( isset( $field_value[$count] ) ? checked( $field_value[$count], get_the_ID(), false ) : '' ) . ' class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
               echo '<label for="' . esc_attr( $field_id ) . '-' . esc_attr( $count ) . '">' . esc_attr( get_the_title() ) . '</label>';
             echo '</p>';
             $count++;
@@ -1126,7 +1145,7 @@ if ( ! function_exists( 'ot_type_tag_checkbox' ) ) {
           $count = 0;
           foreach( $tags as $tag ) {
             echo '<p>';
-              echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[' . esc_attr( $count ) . ']" id="' . esc_attr( $field_id ) . '-' . esc_attr( $count ) . '" value="' . esc_attr( $tag->term_id ) . '" ' . ( isset( $field_value[$count] ) ? checked( $field_value[$count], $tag->term_id, false ) : '' ) . ' class="checkbox option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
+              echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[' . esc_attr( $count ) . ']" id="' . esc_attr( $field_id ) . '-' . esc_attr( $count ) . '" value="' . esc_attr( $tag->term_id ) . '" ' . ( isset( $field_value[$count] ) ? checked( $field_value[$count], $tag->term_id, false ) : '' ) . ' class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
               echo '<label for="' . esc_attr( $field_id ) . '-' . esc_attr( $count ) . '">' . esc_attr( $tag->name ) . '</label>';
             echo '</p>';
             $count++;
@@ -1541,9 +1560,6 @@ if ( ! function_exists( 'ot_type_upload' ) ) {
           
           /* input */
           echo '<input type="text" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" value="' . esc_attr( $field_value ) . '" class="widefat option-tree-ui-upload-input ' . esc_attr( $field_class ) . '" />';
-          
-          /* get media post_id */
-          $post_id = ( $id = ot_get_media_post_ID() ) ? (int) $id : 0;
           
           /* add media button */
           echo '<a href="javascript:void(0);" class="ot_upload_media option-tree-ui-button blue light" rel="' . $post_id . '" title="' . __( 'Add Media', 'option-tree' ) . '"><span class="icon upload">' . __( 'Add Media', 'option-tree' ) . '</span></a>';

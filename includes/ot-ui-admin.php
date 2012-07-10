@@ -12,7 +12,7 @@ if ( function_exists( 'ot_register_settings' ) ) {
 
   ot_register_settings( array(
       array(
-        'id'                  => 'ot_settings',
+        'id'                  => 'option_tree_settings',
         'pages'               => array( 
           array( 
             'id'              => 'ot',

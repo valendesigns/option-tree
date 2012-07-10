@@ -84,7 +84,11 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
     
     } else if ( in_array( $type, array( 'css', 'textarea', 'textarea-simple' ) ) ) {
       
-      $input = wp_kses_post( $input );
+      if ( ! current_user_can( 'unfiltered_html' ) && OT_ALLOW_UNFILTERED_HTML == false ) {
+      
+        $input = wp_kses_post( $input );
+        
+      }
             
     } else if ( 'measurement' == $type ) {
     
@@ -1500,8 +1504,7 @@ if ( ! function_exists( 'ot_measurement_unit_types' ) ) {
  * @return    array
  *
  * @access    public
- * @since     1.1.8
- * @updated   2.0
+ * @since     2.0
  */
 if ( ! function_exists( 'ot_radio_images' ) ) {
   
@@ -1539,6 +1542,143 @@ if ( ! function_exists( 'ot_radio_images' ) ) {
         'src'     => OT_URL . 'assets/images/layout/right-dual-sidebar.png'
       )
     ), $field_id );
+    
+  }
+
+}
+
+/**
+ * Default List Item Settings array.
+ *
+ * Returns an array of the default list item settings.
+ * You can filter this function to change the settings
+ * on a per option basis.
+ *
+ * @uses      apply_filters()
+ *
+ * @return    array
+ *
+ * @access    public
+ * @since     2.0
+ */
+if ( ! function_exists( 'ot_list_item_settings' ) ) {
+
+  function ot_list_item_settings( $id ) {
+    
+    $settings = apply_filters( 'ot_list_item_settings', array(
+      array(
+        'id'        => 'image',
+        'label'     => __( 'Image', 'option-tree' ),
+        'desc'      => '',
+        'std'       => '',
+        'type'      => 'upload',
+        'rows'      => '',
+        'class'     => '',
+        'post_type' => '',
+        'choices'   => array()
+      ),
+      array(
+        'id'        => 'link',
+        'label'     => __( 'Link', 'option-tree' ),
+        'desc'      => '',
+        'std'       => '',
+        'type'      => 'text',
+        'rows'      => '',
+        'class'     => '',
+        'post_type' => '',
+        'choices'   => array()
+      ),
+      array(
+        'id'        => 'caption',
+        'label'     => __( 'Caption', 'option-tree' ),
+        'desc'      => '',
+        'std'       => '',
+        'type'      => 'textarea-simple',
+        'rows'      => 10,
+        'class'     => '',
+        'post_type' => '',
+        'choices'   => array()
+      )
+    ), $id );
+    
+    return $settings;
+  
+  }
+
+}
+
+/**
+ * Default Slider Settings array.
+ *
+ * Returns an array of the default slider settings.
+ * You can filter this function to change the settings
+ * on a per option basis.
+ *
+ * @uses      apply_filters()
+ *
+ * @return    array
+ *
+ * @access    public
+ * @since     2.0
+ */
+if ( ! function_exists( 'ot_slider_settings' ) ) {
+
+  function ot_slider_settings( $id ) {
+    
+    $settings = apply_filters( 'image_slider_fields', array(
+      array(
+        'name'      => 'image',
+        'type'      => 'image',
+        'label'     => __( 'Image', 'option-tree' ),
+        'class'     => ''
+      ),
+      array(
+        'name'      => 'link',
+        'type'      => 'text',
+        'label'     => __( 'Link', 'option-tree' ),
+        'class'     => ''
+      ),
+      array(
+        'name'      => 'description',
+        'type'      => 'textarea',
+        'label'     => __( 'Description', 'option-tree' ),
+        'class'     => ''
+      )
+    ), $id );
+    
+    /* fix the array keys, values, and just get it 2.0 ready */
+    foreach( $settings as $_k => $setting ) {
+    
+      foreach( $setting as $s_key => $s_value ) {
+        
+        if ( 'name' == $s_key ) {
+        
+          $settings[$_k]['id'] = $s_value;
+          unset($settings[$_k]['name']);
+          
+        } else if ( 'type' == $s_key ) {
+          
+          if ( 'input' == $s_value ) {
+          
+            $settings[$_k]['type'] = 'text';
+            
+          } else if ( 'textarea' == $s_value ) {
+          
+            $settings[$_k]['type'] = 'textarea-simple';
+            
+          } else if ( 'image' == $s_value ) {
+          
+            $settings[$_k]['type'] = 'upload';
+            
+          }
+          
+        }
+        
+      } 
+      
+    }
+    
+    return $settings;
     
   }
 
@@ -2046,7 +2186,7 @@ if ( ! function_exists( 'ot_settings_view' ) ) {
           <div class="format-setting type-textblock wide-desc">
             <div class="description">' . __( '<strong>Choices</strong>: This will only affect the following option types: Checkbox, Radio, Select & Select Image.', 'option-tree' ) . '</div>
             <div class="format-setting-inner">
-              <ul class="option-tree-setting-wrap option-tree-sortable" rel="' . esc_attr( $name ) . '[' . esc_attr( $key ) . ']">
+              <ul class="option-tree-setting-wrap option-tree-sortable" data-name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . ']">
                 ' . ( isset( $setting['choices'] ) ? ot_loop_through_choices( $name . '[' . $key . ']', $setting['choices'] ) : '' ) . '
               </ul>
               <a href="javascript:void(0);" class="option-tree-choice-add option-tree-ui-button hug-left">' . __( 'Add Choice', 'option-tree' ) . '</a>
@@ -2057,7 +2197,7 @@ if ( ! function_exists( 'ot_settings_view' ) ) {
           <div class="format-setting type-textblock wide-desc">
             <div class="description">' . __( '<strong>Settings</strong>: This will only affect the List Item option type.', 'option-tree' ) . '</div>
             <div class="format-setting-inner">
-              <ul class="option-tree-setting-wrap option-tree-sortable" rel="' . esc_attr( $name ) . '[' . esc_attr( $key ) . ']">
+              <ul class="option-tree-setting-wrap option-tree-sortable" data-name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . ']">
                 ' . ( isset( $setting['settings'] ) ? ot_loop_through_sub_settings( $name . '[' . $key . '][settings]', $setting['settings'] ) : '' ) . '
               </ul>
               <a href="javascript:void(0);" class="option-tree-list-item-setting-add option-tree-ui-button hug-left">' . __( 'Add Setting', 'option-tree' ) . '</a>
@@ -2275,9 +2415,9 @@ if ( ! function_exists( 'ot_layouts_view' ) ) {
  */
 if ( ! function_exists( 'ot_list_item_view' ) ) {
 
-  function ot_list_item_view( $name, $key, $list_item = array() ) {
+  function ot_list_item_view( $name, $key, $list_item = array(), $post_id = 0, $get_option = '', $settings = array(), $type = '' ) {
     
-    /* required list item setting */
+    /* required title setting */
     $required_setting = array(
       array(
         'id'        => 'title',
@@ -2292,132 +2432,26 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
       )
     );
     
-    /* get saved settings */
-    $option_tree_settings = get_option( 'option_tree_settings' );
-    
-    /* loop through settings and find the list items settings array */
-    foreach( $option_tree_settings['settings'] as $setting ) {
-    
-      if ( $setting['id'] == $name && isset( $setting['settings'] ) ) {
-      
-        $settings = $setting['settings'];
-        
-      }
-      
-      if ( $setting['id'] == $name ) {
-      
-        $_type = $setting['type'];
-        
-      }
-      
-    }
-    
     /* load the old filterable slider settings */
-    if ( isset( $_type ) && 'slider' == $_type ) {
+    if ( 'slider' == $type ) {
       
-      $settings = apply_filters( 'image_slider_fields', array(
-        array(
-          'name'      => 'image',
-          'type'      => 'image',
-          'label'     => __( 'Image', 'option-tree' ),
-          'class'     => ''
-        ),
-        array(
-          'name'      => 'link',
-          'type'      => 'text',
-          'label'     => __( 'Link', 'option-tree' ),
-          'class'     => ''
-        ),
-        array(
-          'name'      => 'description',
-          'type'      => 'textarea',
-          'label'     => __( 'Description', 'option-tree' ),
-          'class'     => ''
-        )
-      ), $name );
-      
-      /* fix the array keys, values, and just get it 2.0 ready */
-      foreach( $settings as $_k => $setting ) {
-      
-        foreach( $setting as $s_key => $s_value ) {
-          
-          if ( 'name' == $s_key ) {
-          
-            $settings[$_k]['id'] = $s_value;
-            unset($settings[$_k]['name']);
-            
-          } else if ( 'type' == $s_key ) {
-            
-            if ( 'input' == $s_value ) {
-            
-              $settings[$_k]['type'] = 'text';
-              
-            } else if ( 'textarea' == $s_value ) {
-            
-              $settings[$_k]['type'] = 'textarea-simple';
-              
-            } else if ( 'image' == $s_value ) {
-            
-              $settings[$_k]['type'] = 'upload';
-              
-            }
-            
-          }
-          
-        } 
-        
-      }
+      $settings = ot_slider_settings( $name );
     
     }
       
     /* if no settings array load the filterable list item settings */
-    if ( ! isset( $settings ) && empty( $settings ) ) {
+    if ( empty( $settings ) ) {
       
-      $settings = apply_filters( 'ot_list_item_fields', array(
-        array(
-          'id'        => 'image',
-          'label'     => __( 'Image', 'option-tree' ),
-          'desc'      => '',
-          'std'       => '',
-          'type'      => 'upload',
-          'rows'      => '',
-          'class'     => '',
-          'post_type' => '',
-          'choices'   => array()
-        ),
-        array(
-          'id'        => 'link',
-          'label'     => __( 'Link', 'option-tree' ),
-          'desc'      => '',
-          'std'       => '',
-          'type'      => 'text',
-          'rows'      => '',
-          'class'     => '',
-          'post_type' => '',
-          'choices'   => array()
-        ),
-        array(
-          'id'        => 'caption',
-          'label'     => __( 'Caption', 'option-tree' ),
-          'desc'      => '',
-          'std'       => '',
-          'type'      => 'textarea-simple',
-          'rows'      => 10,
-          'class'     => '',
-          'post_type' => '',
-          'choices'   => array()
-        )
-      ), $name );
+      $settings = ot_list_item_settings( $name );
       
     }
     
     /* merge the two settings array */
     $settings = array_merge( $required_setting, $settings );
-    $fallback_title = isset( $_type ) && 'slider' == $_type ? 'Slide ' : 'Item ';
     
     echo '
     <div class="option-tree-setting">
-      <div class="open">' . ( isset( $list_item['title'] ) ? esc_attr( $list_item['title'] ) : $fallback_title . ( $key + 1 ) ) . '</div>
+      <div class="open">' . ( isset( $list_item['title'] ) ? esc_attr( $list_item['title'] ) : 'Item ' . ( $key + 1 ) ) . '</div>
       <div class="button-section">
         <a href="javascript:void(0);" class="option-tree-setting-edit option-tree-ui-button left-item" title="' . __( 'Edit', 'option-tree' ) . '">
           <span class="icon pencil">' . __( 'Edit', 'option-tree' ) . '</span>
@@ -2434,19 +2468,24 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
         if ( ! isset( $list_item[$field['id']] ) && isset( $field['std'] ) ) {  
           $list_item[$field['id']] = trim( $field['std'] );
         }
-              
+          
+        /* make life easier */
+        $_field_name = $get_option ? $get_option . '[' . $name . ']' : $name;
+             
         /* build the arguments array */
         $_args = array(
           'type'              => $field['type'],
           'field_id'          => $field['id'] . '_' . $key,
-          'field_name'        => 'option_tree[' . $name . '][' . $key . '][' . $field['id'] . ']',
+          'field_name'        => $_field_name . '[' . $key . '][' . $field['id'] . ']',
           'field_value'       => isset( $list_item[$field['id']] ) ? $list_item[$field['id']] : '',
           'field_desc'        => isset( $field['desc'] ) ? $field['desc'] : '',
           'field_std'         => isset( $field['std'] ) ? $field['std'] : '',
           'field_rows'        => isset( $rows ) ? $rows : 10,
           'field_class'       => isset( $field['class'] ) ? ' ' . $field['class'] : '',
           'field_choices'     => isset( $field['choices'] ) && ! empty( $field['choices'] ) ? $field['choices'] : array(),
-          'field_settings'    => isset( $field['settings'] ) && ! empty( $field['settings'] ) ? $field['settings'] : array()
+          'field_settings'    => isset( $field['settings'] ) && ! empty( $field['settings'] ) ? $field['settings'] : array(),
+          'post_id'           => $post_id,
+          'get_option'        => $get_option
         );
           
         /* option label */

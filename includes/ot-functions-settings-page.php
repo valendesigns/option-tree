@@ -52,7 +52,7 @@ if ( ! function_exists( 'ot_type_theme_options_ui' ) ) {
           $count = 0;
   
           /* loop through each section and its settings */
-          echo '<ul class="option-tree-setting-wrap option-tree-sortable" id="option_tree_settings_list" rel="option_tree_settings[settings]">';
+          echo '<ul class="option-tree-setting-wrap option-tree-sortable" id="option_tree_settings_list" data-name="option_tree_settings[settings]">';
           
           if ( isset( $settings['sections'] ) ) {
           
@@ -111,7 +111,7 @@ if ( ! function_exists( 'ot_type_theme_options_ui' ) ) {
           $count = 0;
           
           /* loop through each contextual_help content section */
-          echo '<ul class="option-tree-setting-wrap option-tree-sortable" id="option_tree_settings_help" rel="option_tree_settings[contextual_help][content]">';
+          echo '<ul class="option-tree-setting-wrap option-tree-sortable" id="option_tree_settings_help" data-name="option_tree_settings[contextual_help][content]">';
           
           if ( isset( $settings['contextual_help']['content'] ) ) {
           

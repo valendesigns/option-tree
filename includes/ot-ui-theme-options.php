@@ -29,7 +29,7 @@ if ( function_exists( 'ot_register_settings' ) ) {
         'id'                  => 'option_tree',
         'pages'               => array( 
           array(
-            'id'              => 'theme_options',
+            'id'              => 'ot_theme_options',
             'parent_slug'     => 'themes.php',
             'page_title'      => __( 'Theme Options', 'option-tree' ),
             'menu_title'      => __( 'Theme Options', 'option-tree' ),
