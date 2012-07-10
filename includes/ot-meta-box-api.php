@@ -40,30 +40,6 @@ if ( ! class_exists( 'OT_Meta_Box' ) ) {
     }
     
     /**
-     * Loads the scripts
-     *
-     * @return    void
-     *
-     * @access    public
-     * @since     2.0
-     */
-    public function scripts() {
-      ot_admin_scripts();
-    }
-    
-    /**
-     * Loads the styles
-     *
-     * @return    void
-     *
-     * @access    public
-     * @since     2.0
-     */
-    public function styles() {
-      ot_admin_styles();
-    }
-    
-    /**
      * Adds meta box to any post type
      *
      * @uses      add_meta_box()
