@@ -258,7 +258,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
                 echo '</ul>';
                 
                 /* layouts form */
-                if ( $page['id'] == 'theme_options' )
+                if ( $page['id'] == 'ot_theme_options' )
                   ot_theme_options_layouts_form();
               
               echo '</div>';
