@@ -726,8 +726,8 @@ include_once( \'option-tree/ot-loader.php\' );
         echo '<h5>' . __( 'Step 2: Create Theme Options without using the UI Builder.', 'option-tree' ) . '</h5>';
         echo '<ul class="docs-ul">';
           echo '<li>'. __( 'Create a file and name it anything you want, maybe <code>theme-options.php</code>.', 'option-tree' ) . '</li>';
-          echo '<li>'. __( 'You\'ll probably want to create a directory named <code>includes</code> to put it into and keep you file structure tidy, as well.', 'option-tree' ) . '</li>';
-          echo '<li>' . __( 'Add the following code to the your <code>functions.php</code>.', 'option-tree' ) . '</li>';
+          echo '<li>'. __( 'As well, you\'ll probably want to create a directory named <code>includes</code> to put your <code>theme-options.php</code> into which will help keep you file structure nice and tidy.', 'option-tree' ) . '</li>';
+          echo '<li>' . __( 'Add the following code to your <code>functions.php</code>.', 'option-tree' ) . '</li>';
         echo '</ul>';
         
         echo '<pre><code>/**
@@ -735,8 +735,12 @@ include_once( \'option-tree/ot-loader.php\' );
  */
 include_once( \'includes/theme-options.php\' );
 </code></pre>';
-
-        echo '<p>' . __( 'In your <code>theme-options.php</code> add the following code, but obviously filled in with all your custom array values for contextual help (optional), sections (required), and settings (required). The code below is a boilerplate to get your started. For a full list of the available option types click the "Option Types" tab above. Also a quick note, you don\'t need to put OptionTree in theme mode to manually create options but you will want to hide the docs and settings as each time you load the admin area the settings be be written over with the code below. However, this ensures your settings do not get tampered with by the end-user.', 'option-tree' ) . '</p>';
+        
+        echo '<ul class="docs-ul">';
+          echo '<li>' . __( 'Add a variation of the following code to your <code>theme-options.php</code>. You\'ll obviously need to fill it in with all your custom array values for contextual help (optional), sections (required), and settings (required).', 'option-tree' ) . '</li>';
+        echo '</ul>';
+        
+        echo '<p>' . __( 'The code below is a boilerplate to get your started. For a full list of the available option types click the "Option Types" tab above. Also a quick note, you don\'t need to put OptionTree in theme mode to manually create options but you will want to hide the docs and settings as each time you load the admin area the settings be be written over with the code below if they\'ve changed in any way. However, this ensures your settings do not get tampered with by the end-user.', 'option-tree' ) . '</p>';
         
         echo "<pre><code>/**
  * Initialize the options before anything else. 

@@ -84,7 +84,7 @@
 .aside                                { border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 15px; }
 .deprecated                           { border-bottom: 1px solid #eee; color: #b94029; padding-bottom: 15px; margin-bottom: 15px; }
 .warning                              { color: #b94029; }
-.docs-ul                              { line-height: 1em; margin: 0; padding: 0 0 1em 0; }
+.docs-ul                              { line-height: 1.3em; margin: 0; padding: 0 0 1em 0; }
 .docs-ul li                           { list-style-type: square; margin-left: 20px; }
 #contextual-help-setting              { float: left; padding: 10px 0 5px 0; width: 100%; }
 #contextual-help-label                { float: left; padding-top: 20px; width: 100%; }
