@@ -662,11 +662,189 @@ if ( ! function_exists( 'ot_type_theme_integration' ) ) {
       /* description */
       echo '<div class="description">';
         
-        echo '<h4>'. __( 'Needs to be written!', 'option-tree' ) . '</h4>';
+        echo '<h4>'. __( 'Theme Include Mode', 'option-tree' ) . '</h4>';
         
-        echo '<p>' . __( 'This will be an exhaustive write-up before the release of 2.0rc1. Basically, you can include the plugin in your themes root directory change a few settings via filters and manually create your settings without touching the core of OptionTree and everything will work just like if it were a plugin, minus the docs and settings pages. As well, you\'ll be able to update with each new release without worry about if you changed any of the files, because you being the great developer you are didn\'t hack the core.', 'option-tree' ) . '</p>';
+        echo '<p>' . __( 'There are a few simple steps you need to take in order to use OptionTree as a theme included module. In the code below I\'ll show you a basic demo of how to include the entire plugin as a module, which will allow you to have the most up-to-date version of OptionTree without ever needing to hack the core of the plugin.', 'option-tree' ) . '</p>';
         
-        echo '<p>' . __( 'Quick and dirty version put the OptionTree directory in the root of you theme and add <code>add_filter( \'ot_theme_mode\', \'__return_true\' );</code> and <code>include_once(\'option-tree/ot-loader.php\');</code> to your <code>functions.php</code> If you want to hide the settings and docs also add <code>add_filter( \'ot_show_pages\', \'__return_false\' );</code> above the include. I\'ll update these docs with info on how to create settings without the UI builder later.', 'option-tree' ) . '</p>';
+        echo '<h5>' . __( 'Step 1: Include the plugin & turn on theme mode.', 'option-tree' ) . '</h5>';
+        echo '<ul class="docs-ul">';
+          echo '<li>'. __( 'Download the latest version of <a href="http://wordpress.org/extend/plugins/option-tree/" rel="nofollow" target="_blank">OptionTree</a>.', 'option-tree' ) . '</li>';
+          echo '<li>' . __( 'Unpack the ZIP archive.', 'option-tree' ) . '</li>';
+          echo '<li>' . __( 'Put the <code>option-tree</code> directory in the root of your theme. For example, the server path would be <code>/wp-content/themes/theme-name/option-tree/</code>.', 'option-tree' ) . '</li>';
+          echo '<li>' . __( 'Add the following code to the beginning of your <code>functions.php</code>.', 'option-tree' ) . '</li>';
+        echo '</ul>';
+        
+        echo '<pre><code>/**
+ * Optional: set \'ot_show_pages\' filter to false.
+ * This will hide the settings & documentation pages.
+ */
+add_filter( \'ot_show_pages\', \'__return_false\' );
+
+/**
+ * Required: set \'ot_theme_mode\' filter to true.
+ */
+add_filter( \'ot_theme_mode\', \'__return_true\' );
+
+/**
+ * Required: include OptionTree.
+ */
+include_once( \'option-tree/ot-loader.php\' );
+</code></pre>';
+        
+        echo '<p class="aside">' . __( 'It\'s that simple! You now have OptionTree built into your theme and anytime there\'s an update to the plugin you just replace the old version and you\'re good to go..', 'option-tree' ) . '</p>';
+        
+        echo '<h5>' . __( 'Step 2: Create Theme Options without using the UI Builder.', 'option-tree' ) . '</h5>';
+        echo '<ul class="docs-ul">';
+          echo '<li>'. __( 'Create a file and name it anything you want, maybe <code>theme-options.php</code>.', 'option-tree' ) . '</li>';
+          echo '<li>'. __( 'You\'ll probably want to create a directory named <code>includes</code> to put it into and keep you file structure tidy, as well.', 'option-tree' ) . '</li>';
+          echo '<li>' . __( 'Add the following code to the your <code>functions.php</code>.', 'option-tree' ) . '</li>';
+        echo '</ul>';
+        
+        echo '<pre><code>/**
+ * Theme Options
+ */
+include_once( \'includes/theme-options.php\' );
+</code></pre>';
+
+        echo '<p>' . __( 'In your <code>theme-options.php</code> add the following code, but obviously filled in with all your custom array values for contextual help (optional), sections (required), and settings (required). The code below is a boilerplate to get your started. For a full list of the available option types click the "Option Types" tab above. Also a quick note, you don\'t need to put OptionTree in theme mode to manually create options but you will want to hide the docs and settings as each time you load the admin area the settings be be written over with the code below. However, this ensures your settings do not get tampered with by the end-user.', 'option-tree' ) . '</p>';
+        
+        echo "<pre><code>/**
+ * Initialize the options before anything else. 
+ */
+add_action( 'admin_init', 'custom_theme_options', 1 );
+
+function custom_theme_options() {
+  /**
+   * Get a copy of the saved settings array. 
+   */
+  &#36;saved_settings = get_option( 'option_tree_settings', array() );
+  
+  /**
+   * Create your own custom array that will be passes to the 
+   * OptionTree Settings API Class.
+   */
+  &#36;custom_settings = array(
+    'contextual_help' => array(
+      'content'       => array( 
+        array(
+          'id'        => 'general_help',
+          'title'     => 'General',
+          'content'   => '&lt;p&gt;Help content goes here!&lt;/p&gt;'
+        )
+      ),
+      'sidebar'       => '&lt;p&gt;Sidebar content goes here!&lt;/p&gt;',
+    ),
+    'sections'        => array(
+      array(
+        'id'          => 'general',
+        'title'       => 'General'
+      )
+    ),
+    'settings'        => array(
+      array(
+        'id'          => 'my_checkbox',
+        'label'       => 'Checkbox',
+        'desc'        => '',
+        'std'         => '',
+        'type'        => 'checkbox',
+        'section'     => 'general',
+        'class'       => '',
+        'choices'     => array(
+          array( 
+            'value' => 'yes',
+            'label' => 'Yes' 
+          )
+        )
+      ),
+      array(
+        'id'          => 'my_layout',
+        'label'       => 'Layout',
+        'desc'        => 'Choose a layout for your theme',
+        'std'         => 'right-sidebar',
+        'type'        => 'radio-image',
+        'section'     => 'general',
+        'class'       => '',
+        'choices'     => array(
+          array(
+            'value'   => 'left-sidebar',
+            'label'   => 'Left Sidebar',
+            'src'     => OT_URL . '/assets/images/layout/left-sidebar.png'
+          ),
+          array(
+            'value'   => 'right-sidebar',
+            'label'   => 'Right Sidebar',
+            'src'     => OT_URL . '/assets/images/layout/right-sidebar.png'
+          ),
+          array(
+            'value'   => 'full-width',
+            'label'   => 'Full Width (no sidebar)',
+            'src'     => OT_URL . '/assets/images/layout/full-width.png'
+          ),
+          array(
+            'value'   => 'dual-sidebar',
+            'label'   => __( 'Dual Sidebar', 'option-tree' ),
+            'src'     => OT_URL . '/assets/images/layout/dual-sidebar.png'
+          ),
+          array(
+            'value'   => 'left-dual-sidebar',
+            'label'   => __( 'Left Dual Sidebar', 'option-tree' ),
+            'src'     => OT_URL . '/assets/images/layout/left-dual-sidebar.png'
+          ),
+          array(
+            'value'   => 'right-dual-sidebar',
+            'label'   => __( 'Right Dual Sidebar', 'option-tree' ),
+            'src'     => OT_URL . '/assets/images/layout/right-dual-sidebar.png'
+          )
+        )
+      ),
+      array(
+        'id'          => 'my_slider',
+        'label'       => 'Images',
+        'desc'        => '',
+        'std'         => '',
+        'type'        => 'list-item',
+        'section'     => 'general',
+        'class'       => '',
+        'choices'     => array(
+          array(
+            'id'      => 'slider_image',
+            'label'   => 'Image',
+            'desc'    => '',
+            'std'     => '',
+            'type'    => 'upload',
+            'class'   => '',
+            'choices' => array()
+          ),
+          array(
+            'id'      => 'slider_link',
+            'label'   => 'Link to Post',
+            'desc'    => 'Enter the posts url.',
+            'std'     => '',
+            'type'    => 'text',
+            'class'   => '',
+            'choices' => array()
+          ),
+          array(
+            'id'      => 'slider_description',
+            'label'   => 'Description',
+            'desc'    => 'This text is used to add fancy captions in the slider.',
+            'std'     => '',
+            'type'    => 'textarea',
+            'class'   => '',
+            'choices' => array()
+          )
+        )
+      )
+    )
+  );
+  
+  /* settings are not the same update the DB */
+  if ( &#36;saved_settings !== &#36;custom_settings ) {
+    update_option( 'option_tree_settings', &#36;custom_settings ); 
+  }
+  
+}
+</code></pre>";
         
       echo '</div>';
       

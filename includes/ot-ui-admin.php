@@ -13,7 +13,7 @@ if ( function_exists( 'ot_register_settings' ) ) {
   ot_register_settings( array(
       array(
         'id'                  => 'option_tree_settings',
-        'pages'               => array( 
+        'pages'               => apply_filters( 'ot_register_pages_array', array( 
           array( 
             'id'              => 'ot',
             'page_title'      => __( 'OptionTree', 'option-tree' ),
@@ -198,7 +198,7 @@ if ( function_exists( 'ot_register_settings' ) ) {
               )
             )
           )
-        )
+        ) )
       )
     )
   );
