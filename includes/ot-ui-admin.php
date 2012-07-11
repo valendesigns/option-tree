@@ -141,16 +141,20 @@ if ( function_exists( 'ot_register_settings' ) ) {
                 'title'       => __( 'Function References', 'option-tree' )
               ),
               array(
+                'id'          => 'theme_integration',
+                'title'       => __( 'Theme Integration', 'option-tree' )
+              ),
+              array(
+                'id'          => 'meta_boxes',
+                'title'       => __( 'Meta Boxes', 'option-tree' )
+              ),
+              array(
                 'id'          => 'examples',
                 'title'       => __( 'Code Examples', 'option-tree' )
               ),
               array(
                 'id'          => 'layouts_overview',
                 'title'       => __( 'Layouts Overview', 'option-tree' )
-              ),
-              array(
-                'id'          => 'theme_integration',
-                'title'       => __( 'Theme Integration', 'option-tree' )
               )
             ),
             'settings'        => array(
@@ -179,6 +183,18 @@ if ( function_exists( 'ot_register_settings' ) ) {
                 'section'     => 'functions'
               ),
               array(
+                'id'          => 'theme_integration_text',
+                'label'       => __( 'Integrate OptionTree seamlessly!', 'option-tree' ),
+                'type'        => 'theme-integration',
+                'section'     => 'theme_integration'
+              ),
+              array(
+                'id'          => 'meta_boxes_text',
+                'label'       => __( 'Meta Boxes', 'option-tree' ),
+                'type'        => 'meta-boxes',
+                'section'     => 'meta_boxes'
+              ),
+              array(
                 'id'          => 'example_text',
                 'label'       => __( 'Code examples for front-end development.', 'option-tree' ),
                 'type'        => 'examples',
@@ -189,12 +205,6 @@ if ( function_exists( 'ot_register_settings' ) ) {
                 'label'       => __( 'What\'s a layouts anyhow?', 'option-tree' ),
                 'type'        => 'layouts-overview',
                 'section'     => 'layouts_overview'
-              ),
-              array(
-                'id'          => 'theme_integration_text',
-                'label'       => __( 'Integrate OptionTree seamlessly!', 'option-tree' ),
-                'type'        => 'theme-integration',
-                'section'     => 'theme_integration'
               )
             )
           )

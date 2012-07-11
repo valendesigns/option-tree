@@ -572,7 +572,7 @@ if ( ! function_exists( 'ot_type_layouts_overview' ) ) {
         
         echo '<h4>'. __( 'It\'s Super Simple', 'option-tree' ) . '</h4>';
         
-        echo '<p>' . __( 'Layouts make your theme awesome! With theme options data that you can save/import/export you can package themes with different color variations, or make it easy to do A/B testing on text and so much more. Basically, you save a snapshot of your data as a layout.</p>', 'option-tree' ) . '</p>';
+        echo '<p>' . __( 'Layouts make your theme awesome! With theme options data that you can save/import/export you can package themes with different color variations, or make it easy to do A/B testing on text and so much more. Basically, you save a snapshot of your data as a layout.', 'option-tree' ) . '</p>';
         
         echo '<p>' . __( 'Once you have created all your different layouts, or theme variations, you can save them to a separate text file for repackaging with your theme. Alternatively, you could just make different variations for yourself and change your theme with the click of a button, all without deleting your previous options data.', 'option-tree' ) . '</p>';
 
@@ -635,6 +635,36 @@ if ( ! function_exists( 'ot_type_layouts_overview' ) ) {
           echo '<li>' . __( 'Modify and save your theme options and the layout will be updated automatically.', 'option-tree' ) . '</li>';
           echo '<li>' . __( 'Saving theme options data will update the currently active layout, so before you start saving make sure you want to modify the current layout.', 'option-tree' ) . '</li>';
         echo '</ul>';
+        
+      echo '</div>';
+      
+    echo '</div>';
+    
+  }
+  
+}
+
+/**
+ * Meta Boxes option type.
+ *
+ * @return    string
+ *
+ * @access    public
+ * @since     2.0
+ */
+if ( ! function_exists( 'ot_type_meta_boxes' ) ) {
+  
+  function ot_type_meta_boxes() {
+    
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-textblock wide-desc">';
+      
+      /* description */
+      echo '<div class="description">';
+        
+        echo '<h4>'. __( 'How-to-guide', 'option-tree' ) . '</h4>';
+        
+        echo '<p>' . __( 'The Guide', 'option-tree' ) . '</p>';
         
       echo '</div>';
       
