@@ -662,7 +662,7 @@ if ( ! function_exists( 'ot_type_theme_integration' ) ) {
       /* description */
       echo '<div class="description">';
         
-        echo '<h4>'. __( 'Theme Include Mode', 'option-tree' ) . '</h4>';
+        echo '<h4>'. __( 'Theme Mode', 'option-tree' ) . '</h4>';
         
         echo '<p>' . __( 'There are a few simple steps you need to take in order to use OptionTree as a theme included module. In the code below I\'ll show you a basic demo of how to include the entire plugin as a module, which will allow you to have the most up-to-date version of OptionTree without ever needing to hack the core of the plugin.', 'option-tree' ) . '</p>';
         
