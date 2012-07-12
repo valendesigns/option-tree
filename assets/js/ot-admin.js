@@ -20,6 +20,7 @@
       this.init_upload();
       this.init_upload_remove();
       this.init_tabs();
+      this.init_radio_image_select();
       this.fix_upload_parent();
       this.fix_colorpicker();
       this.fix_textarea();
@@ -334,6 +335,13 @@
         }
       }).bind("tabsselect", function(event, ui) {
         $("input[name=\'_wp_http_referer\']").val(ui.tab);
+      });
+    },
+    init_radio_image_select: function() {
+      $('.option-tree-ui-radio-image').live('click', function() {
+        $('.option-tree-ui-radio-image').removeClass('option-tree-ui-radio-image-selected');
+        $(this).toggleClass('option-tree-ui-radio-image-selected');
+        $(this).parent().find('.option-tree-ui-radio').attr('checked', true);
       });
     },
     bind_colorpicker: function(field_id) {

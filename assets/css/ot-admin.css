@@ -81,6 +81,7 @@
 #option-tree-settings-api h4          { color: #333; font-size: 1.12em; font-weight: bold; margin: 1em 0 0.5em 0; padding: 0; }
 #option-tree-settings-api h5          { color: #444; font-size: 1em; font-weight: bold; margin: 1em 0 0.5em 0; padding: 0; }
 #option-tree-settings-api p           { margin: 0 0 1.5em 0 !important; }
+#post .format-setting-inner p         { float: left; width: 100%; margin: 0 0 1.05em 0 !important; }
 .aside                                { border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 15px; }
 .deprecated                           { border-bottom: 1px solid #eee; color: #b94029; padding-bottom: 15px; margin-bottom: 15px; }
 .warning                              { color: #b94029; }
@@ -210,7 +211,7 @@ li ul .format-setting-label         { border: none; padding: 0px; margin: 0px; }
   :: Radio Images
   ---------------------------------------------------*/
 .type-radio-image .option-tree-ui-radio-images { float: left; margin: 0 10px 10px 0px; }
-.type-radio-image .option-tree-ui-radio-images img { border: 1px solid #ccc; cursor: pointer; padding: 5px; border-radius: 3px; -webkit-border-radius: 3px; -moz-border-radius: 3px; }
+.type-radio-image .option-tree-ui-radio-images img { background: #fff; border: 1px solid #ccc; cursor: pointer; padding: 5px; border-radius: 3px; -webkit-border-radius: 3px; -moz-border-radius: 3px; }
 .type-radio-image .option-tree-ui-radio-images img.option-tree-ui-radio-image-selected,
 .type-radio-image .option-tree-ui-radio-images img:hover { border-color: #464646; -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.05); box-shadow:0 1px 3px rgba(0,0,0,0.05); }
       
