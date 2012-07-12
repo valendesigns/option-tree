@@ -17,13 +17,7 @@ With OptionTree you can create as many Theme Options as your project requires an
 
 Included is the ability to Import/Export all the theme options and data for packaging with custom themes or local development. With the Import/Export feature you can get a theme set up on a live server in minutes. Theme authors can now create different version of their themes and include them with the download. It makes setting up different theme styles & options easier than ever because a theme user installs the plugin and theme and either adds their own settings or imports your defaults.
 
-**Update**: v1.1.8.1 Removed get_option_tree() in the WordPress admin area due to theme conflicts.
-
-**Update**: Since v1.1.8 you can build custom CSS code that will automatically get inserted into dynamic.css (created by the server) or any file you choose, just be sure it's permissions are writable. As well, typography & background options were added with a ton of filters to extend them.
-
-**Update**: Since v1.1.7 you can create layouts (theme variations) and import/export those layouts. You can also activate them at anytime from the Theme Options page. Added an upload feature to the slider.
-
-**Update**: Since v1.1.6 it's now possible to have a default XML file included in your theme to populate the theme options and hide the 'Settings' and 'Documentation' pages from the end uses. You can read more about this in the plugins built in documentation by clicking the 'Theme Integration' tab.
+A new feature in OptionTree 2.0 is the ability to include the plugin directly in your themes root directory. Not only does that mean your theme is guaranteed to have the plugin installed you also get the ability to interact directly with OptionTree through settings and meta box arrays. You can now tell OptionTree what settings you want and know that nobody will break your theme by changing settings through the UI Building. 
 
 OptionTree is a project sponsored by <a href="http://themeforest.net/?ref=valendesigns">ThemeForest</a>, the largest WordPress theme marketplace on the web, and was originally conceived to help ThemeForest authors quickly power up their themes. But it's here for the benefit of one and all, so option up folks!
 
@@ -31,14 +25,13 @@ OptionTree is a project sponsored by <a href="http://themeforest.net/?ref=valend
 
 1. Upload `option-tree` to the `/wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
-1. If included in your theme, import the XML file & data by going to `OptionTree->Settings->Import`
 1. Click the `OptionTree->Documentation` link in the WordPress admin sidebar menu for further setup assistance.
 
 == Frequently Asked Questions ==
 
 = Is this plugin PHP5 only? =
 
-Sorry, but yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
+Yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
 
 == Screenshots ==
 
