@@ -76,33 +76,33 @@
       });
     },
     init_add: function() {
-      $('.option-tree-section-add').live('click', function(e){
+      $('.option-tree-section-add').live('click', function(e) {
         e.preventDefault();
         OT_UI.add(this,'section');
       });
-      $('.option-tree-setting-add').live('click', function(e){
+      $('.option-tree-setting-add').live('click', function(e) {
         e.preventDefault();
         OT_UI.add(this,'setting');
       });
-      $('.option-tree-help-add').live('click', function(e){
+      $('.option-tree-help-add').live('click', function(e) {
         e.preventDefault();
         OT_UI.add(this,'contextual_help');
       });
-      $('.option-tree-choice-add').live('click', function(e){
+      $('.option-tree-choice-add').live('click', function(e) {
         e.preventDefault();
         OT_UI.add(this,'choice');
       });
-      $('.option-tree-list-item-add').live('click', function(e){
+      $('.option-tree-list-item-add').live('click', function(e) {
         e.preventDefault();
         OT_UI.add(this,'list_item');
       });
-      $('.option-tree-list-item-setting-add').live('click', function(e){
+      $('.option-tree-list-item-setting-add').live('click', function(e) {
         e.preventDefault();
         OT_UI.add(this,'list_item_setting');
       });
     },
     init_edit: function() {
-      $('.option-tree-setting-edit').live('click', function(e){
+      $('.option-tree-setting-edit').live('click', function(e) {
         e.preventDefault();
         if ( $(this).parents().hasClass('option-tree-setting-body') ) {
           OT_UI.init_remove_active($(this),'child');
@@ -116,7 +116,7 @@
       });
     },
     init_remove: function() {
-      $('.option-tree-setting-remove').live('click', function(event){
+      $('.option-tree-setting-remove').live('click', function(event) {
         event.preventDefault();
         if ( $(this).parents('li').hasClass('ui-state-disabled') ) {
           alert(option_tree.remove_no);
@@ -134,7 +134,7 @@
       });
     },
     init_edit_title: function() {
-      $('.option-tree-setting-title').live('keyup', function(){
+      $('.option-tree-setting-title').live('keyup', function() {
         OT_UI.edit_title(this);
       });
     },
@@ -144,13 +144,13 @@
       });
     },
     init_activate_layout: function() {
-      $('.option-tree-layout-activate').live('click', function(){ 
+      $('.option-tree-layout-activate').live('click', function() { 
         var active = $(this).parents('.option-tree-setting').find('.open').text();
         $('.option-tree-layout-activate').removeClass('active');
         $(this).toggleClass('active');
         $('.active-layout-input').attr({'value':active});
       });
-      $('#option-tree-options-layouts-form select').live('change', function(){
+      $('#option-tree-options-layouts-form select').live('change', function() {
         var agree = confirm(option_tree.activate_layout_agree);
         if (agree) {
           $('#option-tree-options-layouts-form').submit();
@@ -348,8 +348,10 @@
     },
     init_select_wrapper: function() {
       $('.option-tree-ui-select').each(function () {
-        $(this).wrap('<div class="select-wrapper" />');
-        $(this).parent('.select-wrapper.').prepend('<span>' + $(this).find('option:selected').text() + '</span>')
+        if ( ! $(this).parent().hasClass('select-wrapper') ) {
+          $(this).wrap('<div class="select-wrapper" />');
+          $(this).parent('.select-wrapper.').prepend('<span>' + $(this).find('option:selected').text() + '</span>');
+        }
       });
       $('.option-tree-ui-select').live('change', function () {
         $(this).prev('span').replaceWith('<span>' + $(this).find('option:selected').text() + '</span>');
