@@ -394,7 +394,7 @@ if ( ! function_exists( 'ot_save_css' ) ) {
           /* insert CSS into dynamic.css */
           if ( isset( $options[$setting['id']] ) && '' !== $options[$setting['id']] ) {
             
-            ot_insert_css_with_markers( $setting['id'], $options );
+            ot_insert_css_with_markers( $setting['id'], $options[$setting['id']] );
           
           /* remove old CSS from dynamic.css */
           } else {
@@ -1702,10 +1702,10 @@ if ( ! function_exists( 'ot_slider_settings' ) ) {
  */
 if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
 
-  function ot_insert_css_with_markers( $field_id = '', $options = array() ) {
+  function ot_insert_css_with_markers( $field_id = '', $insertion = '' ) {
     
-    /* missing $field_id or $options exit early */
-    if ( '' == $field_id || empty( $options ) )
+    /* missing $field_id or $insertion exit early */
+    if ( '' == $field_id || '' == $insertion )
       return;
     
     /* path to the dynamic.css file */
@@ -1715,9 +1715,9 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
     $filepath = apply_filters( 'css_option_file_path', $filepath, $field_id );
         
     /* insert CSS into file */
-    if ( file_exists( $filepath ) && $f = @fopen( $filepath, 'w' ) ) {
+    if ( file_exists( $filepath ) ) {
       
-      $insertion   = ot_normalize_css( $options[$field_id] );
+      $insertion   = ot_normalize_css( $insertion );
       $regex       = "/{{([a-zA-Z0-9\_\-\#\|\=]+)}}/";
       $marker      = $field_id;
       
@@ -1727,7 +1727,6 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
       /* Loop through CSS */
       foreach( $matches[0] as $option ) {
         
-        $set_flag     = true;
         $value        = '';
         $option_id    = str_replace( array( '{{', '}}' ), '', $option );
         $option_array = explode( '|', $option_id );
@@ -1816,32 +1815,31 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
         
         /* insert CSS, even if the value is empty */
        	$insertion = stripslashes( str_replace( $option, $value, $insertion ) );
+       	
       }
   	
-      /* file doesn't exist */
-      if ( ! file_exists( $filepath ) ) {
-        $markerdata = '';
-      /* file exist, create array from the lines of code */
-      } else {
-        $markerdata = explode( "\n", implode( '', file( $filepath ) ) );
-      }
+      /* create array from the lines of code */
+      $markerdata = explode( "\n", implode( '', file( $filepath ) ) );
       
+      /* can't write to the file return false */
+      if ( ! $f = @fopen( $filepath, 'w' ) )
+        return false;
+      
+      $searching = true;
       $foundit = false;
       
       /* has array of lines */
-      if ( $markerdata ) {
-        
-        $searching = true;
+      if ( ! empty( $markerdata ) ) {
         
         /* foreach line of code */
-        foreach ( $markerdata as $n => $markerline ) {
+        foreach( $markerdata as $n => $markerline ) {
           
           /* found begining of marker, set $searching to false  */
-          if ( strpos( $markerline, '/* BEGIN ' . $marker . ' */' ) !== false )
+          if ( $markerline == "/* BEGIN {$marker} */" )
             $searching = false;
           
-          /* $searching is true, keep rewrite each line of CSS  */
-          if ( $searching ) {
+          /* keep rewrite each line of CSS  */
+          if ( $searching == true ) {
             if ( $n + 1 < count( $markerdata ) )
               fwrite( $f, "{$markerline}\n" );
             else
@@ -1849,7 +1847,7 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
           }
           
           /* found end marker write code */
-          if ( strpos( $markerline, '/* END ' . $marker . ' */' ) !== false ) {
+          if ( $markerline == "/* END {$marker} */" ) {
             fwrite( $f, "/* BEGIN {$marker} */\n" );
             fwrite( $f, "{$insertion}\n" );
             fwrite( $f, "/* END {$marker} */\n" );
@@ -1914,20 +1912,20 @@ if ( ! function_exists( 'ot_remove_old_css' ) ) {
       if ( ! $f = @fopen( $filepath, 'w' ) )
         return false;
       
+      $searching = true;
+      
       /* has array of lines */
-      if ( $markerdata ) {
-        
-        $searching = true;
+      if ( ! empty( $markerdata ) ) {
         
         /* foreach line of code */
         foreach ( $markerdata as $n => $markerline ) {
           
           /* found begining of marker, set $searching to false  */
-          if ( strpos( $markerline, '/* BEGIN ' . $field_id . ' */' ) !== false )
+          if ( $markerline == "/* BEGIN {$field_id} */" )
             $searching = false;
           
           /* $searching is true, keep rewrite each line of CSS  */
-          if ( $searching ) {
+          if ( $searching == true ) {
             if ( $n + 1 < count( $markerdata ) )
               fwrite( $f, "{$markerline}\n" );
             else
@@ -1935,7 +1933,7 @@ if ( ! function_exists( 'ot_remove_old_css' ) ) {
           }
           
           /* found end marker delete old CSS */
-          if ( strpos( $markerline, '/* END ' . $field_id . ' */' ) !== false ) {
+          if ( $markerline == "/* END {$field_id} */" ) {
             fwrite( $f, "" );
             $searching = true;
           }

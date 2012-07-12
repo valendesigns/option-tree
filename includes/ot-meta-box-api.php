@@ -218,6 +218,23 @@ if ( ! class_exists( 'OT_Meta_Box' ) ) {
             $new = ot_validate_setting( $_POST[$field['id']], $field['type'] );
             
           }
+          
+          /* insert CSS */
+          if ( $field['type'] == 'css' ) {
+            
+            /* insert CSS into dynamic.css */
+            if ( '' !== $new ) {
+              
+              ot_insert_css_with_markers( $field['id'], $new );
+            
+            /* remove old CSS from dynamic.css */
+            } else {
+            
+              ot_remove_old_css( $field['id'] );
+              
+            }
+          
+          }
         
         }
         
