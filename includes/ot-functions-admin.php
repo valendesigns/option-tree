@@ -51,7 +51,6 @@ if ( ! function_exists( 'ot_after_theme_options_save' ) ) {
  *
  * @param     mixed     Setting value
  * @param     string    Setting type
- * @param     array     The array of settings
  * @return    mixed
  *
  * @access    public
@@ -59,7 +58,7 @@ if ( ! function_exists( 'ot_after_theme_options_save' ) ) {
  */
 if ( ! function_exists( 'ot_validate_setting' ) ) {
 
-  function ot_validate_setting( $input, $type, $setting = null ) {
+  function ot_validate_setting( $input, $type ) {
     
     /* exit early if missing data */
     if ( ! $input || ! $type )
@@ -104,7 +103,7 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
          
     }
  
-    return $input;
+    return apply_filters( 'ot_validate_setting', $input, $type );
     
   }
 
