@@ -69,6 +69,9 @@ if ( ! class_exists( 'OT_Meta_Box' ) ) {
            
         /* Use nonce for verification */
         echo '<input type="hidden" name="' . $this->meta_box['id'] . '_nonce" value="' . wp_create_nonce( $this->meta_box['id'] ) . '" />';
+        
+        /* meta box description */
+        echo isset( $this->meta_box['desc'] ) ? '<div class="description" style="padding-top:10px;">' . htmlspecialchars_decode( $this->meta_box['desc'] ) . '</div>' : '';
       
         /* loop through meta box fields */
         foreach ( $this->meta_box['fields'] as $field ) {
@@ -107,7 +110,7 @@ if ( ! class_exists( 'OT_Meta_Box' ) ) {
             echo '<div class="format-setting-label">';
               echo '<label for="' . $_args['field_id'] . '" class="label">' . $field['label'] . '</label>';
             echo '</div>';
-  
+      
             /* get the option HTML */
             echo ot_display_by_type( $_args );
             

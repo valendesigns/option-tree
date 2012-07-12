@@ -664,7 +664,56 @@ if ( ! function_exists( 'ot_type_meta_boxes' ) ) {
         
         echo '<h4>'. __( 'How-to-guide', 'option-tree' ) . '</h4>';
         
-        echo '<p>' . __( 'The Guide', 'option-tree' ) . '</p>';
+        echo '<p>' . __( 'There are a few simple steps you need to take in order to use OptionTree\'s built in Meta Box API. In the code below I\'ll show you a basic demo of how to create your very own custom meta box using any number of the option types you have at your disposal.', 'option-tree' ) . '</p>';
+        
+        echo '<h5>' . __( 'Create and include your custom meta boxes file.', 'option-tree' ) . '</h5>';
+        echo '<ul class="docs-ul">';
+          echo '<li>'. __( 'Create a file and name it anything you want, maybe <code>meta-boxes.php</code>.', 'option-tree' ) . '</li>';
+          echo '<li>'. __( 'As well, you\'ll probably want to create a directory named <code>includes</code> to put your <code>meta-boxes.php</code> into which will help keep you file structure nice and tidy.', 'option-tree' ) . '</li>';
+          echo '<li>' . __( 'Add the following code to your <code>functions.php</code>.', 'option-tree' ) . '</li>';
+        echo '</ul>';
+        
+        echo '<pre><code>/**
+ * Meta Boxes
+ */
+include_once( \'includes/meta-boxes.php\' );
+</code></pre>';
+        
+        echo '<ul class="docs-ul">';
+          echo '<li>' . __( 'Add a variation of the following code to your <code>meta-boxes.php</code>. You\'ll obviously need to fill it in with all your custom array values. It\'s important to note here that we use the <code>admin_init</code> filter because if you were to call the <code>ot_register_meta_box</code> function before OptionTree was loaded the sky would fall on your head.', 'option-tree' ) . '</li>';
+        echo '</ul>';
+        
+        echo "<pre><code>/**
+ * Initialize the meta boxes. 
+ */
+add_action( 'admin_init', 'custom_meta_boxes' );
+
+function custom_meta_boxes() {
+
+  &#36;my_meta_box = array(
+    'id'        => 'my_meta_box',
+    'title'     => 'My Meta Box',
+    'desc'      => '',
+    'pages'     => array( 'post' ),
+    'context'   => 'normal',
+    'priority'  => 'high',
+    'fields'    => array(
+      array(
+        'id'          => 'background',
+        'label'       => 'Background',
+        'desc'        => '',
+        'std'         => '',
+        'type'        => 'background',
+        'section'     => 'general',
+        'class'       => '',
+        'choices'     => array()
+      )
+    )
+  );
+  
+  ot_register_meta_box( &#36;my_meta_box );
+
+}</code></pre>";  
         
       echo '</div>';
       
@@ -675,16 +724,16 @@ if ( ! function_exists( 'ot_type_meta_boxes' ) ) {
 }
 
 /**
- * Theme Integration option type.
+ * Theme Mode option type.
  *
  * @return    string
  *
  * @access    public
  * @since     2.0
  */
-if ( ! function_exists( 'ot_type_theme_integration' ) ) {
+if ( ! function_exists( 'ot_type_theme_mode' ) ) {
   
-  function ot_type_theme_integration() {
+  function ot_type_theme_mode() {
   
     /* format setting outer wrapper */
     echo '<div class="format-setting type-textblock wide-desc">';
@@ -692,7 +741,7 @@ if ( ! function_exists( 'ot_type_theme_integration' ) ) {
       /* description */
       echo '<div class="description">';
         
-        echo '<h4>'. __( 'Theme Mode', 'option-tree' ) . '</h4>';
+        echo '<h4>'. __( 'How-to-guide', 'option-tree' ) . '</h4>';
         
         echo '<p>' . __( 'There are a few simple steps you need to take in order to use OptionTree as a theme included module. In the code below I\'ll show you a basic demo of how to include the entire plugin as a module, which will allow you to have the most up-to-date version of OptionTree without ever needing to hack the core of the plugin.', 'option-tree' ) . '</p>';
         

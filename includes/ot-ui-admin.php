@@ -141,8 +141,8 @@ if ( function_exists( 'ot_register_settings' ) ) {
                 'title'       => __( 'Function References', 'option-tree' )
               ),
               array(
-                'id'          => 'theme_integration',
-                'title'       => __( 'Theme Integration', 'option-tree' )
+                'id'          => 'theme_mode',
+                'title'       => __( 'Theme Mode', 'option-tree' )
               ),
               array(
                 'id'          => 'meta_boxes',
@@ -183,10 +183,10 @@ if ( function_exists( 'ot_register_settings' ) ) {
                 'section'     => 'functions'
               ),
               array(
-                'id'          => 'theme_integration_text',
-                'label'       => __( 'Integrate OptionTree seamlessly!', 'option-tree' ),
-                'type'        => 'theme-integration',
-                'section'     => 'theme_integration'
+                'id'          => 'theme_mode_text',
+                'label'       => __( 'Theme Mode', 'option-tree' ),
+                'type'        => 'theme-mode',
+                'section'     => 'theme_mode'
               ),
               array(
                 'id'          => 'meta_boxes_text',
@@ -202,7 +202,7 @@ if ( function_exists( 'ot_register_settings' ) ) {
               ),
               array(
                 'id'          => 'layouts_overview_text',
-                'label'       => __( 'What\'s a layouts anyhow?', 'option-tree' ),
+                'label'       => __( 'What\'s a layout anyhow?', 'option-tree' ),
                 'type'        => 'layouts-overview',
                 'section'     => 'layouts_overview'
               )
