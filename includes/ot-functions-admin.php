@@ -2554,7 +2554,7 @@ if ( ! function_exists( 'ot_theme_options_layouts_form' ) ) {
         
         echo '<input type="hidden" id="the_current_layout" value="' . $active_layout . '" />';
         
-        echo '<select name="option_tree_layouts[active_layout]" class="option-tree-active-layout">';
+        echo '<select name="option_tree_layouts[active_layout]" class="option-tree-ui-select option-tree-active-layout">';
     
           foreach( $layouts as $key => $data ) { 
             

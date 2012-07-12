@@ -176,20 +176,37 @@ li ul .format-setting-label         { border: none; padding: 0px; margin: 0px; }
 .option-tree-save-layout            { width: 234px; overflow: hidden; }
 .option-tree-save-layout .widefat   { float: left; width: 128px !important; }
 .option-tree-save-layout button     { margin: 0 0 0 10px; }
-.option-tree-active-layout          { left: 244px; position: absolute; top: 0; }
+.option-tree-active-layout          {  }
 
 @-moz-document url-prefix() {
   .option-tree-save-layout          { width: 240px; }
-  .option-tree-active-layout        { left: 250px; }
 }
+
 /* -------------------------------------------------- 
   :: Select
   ---------------------------------------------------*/
-.settings-wrap select               { border: 1px solid #ccc; height: 29px; margin: 0 5px 5px 0; }
-.settings-wrap select:focus         { border-color: #bbb; }
+.select-group                       { margin-right: 53px; }
+.select-wrapper                     { background: #fff url(../images/ot-select.png) no-repeat right center; border: 1px solid #ccc; display: block; float: left; font-size: 12px; height: 27px; margin: 0 5px 5px 0; width: auto; border-radius: 2px; -webkit-border-radius: 2px; -moz-border-radius: 2px; -moz-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05); -webkit-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05); box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05); }
+.select-wrapper:hover               { background-image: url(../images/ot-select-hover.png); border-color: #bbb; }
+select.option-tree-ui-select        { cursor: pointer; filter: alpha(opacity: 0); height: 29px; margin: 0; -moz-opacity: 0; opacity: 0; padding: 0 !important; position: relative; width: inherit; z-index: 4; }
+select.option-tree-ui-select option { padding: 3px 15px !important; }
+.select-wrapper span                { height: 27px; line-height: 27px; padding-left: 7px; position: absolute; z-index: 2; }
+
+
+#option-tree-options-layouts-form .select-wrapper { left: 244px; position: absolute; top: 0; float: none; }
 
 @-moz-document url-prefix() {
-  .settings-wrap select             { height: 29px; padding: 6px 0; }
+  #option-tree-options-layouts-form .select-wrapper { left: 250px; }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) { 
+  select.option-tree-ui-select {
+    font-size: 14px;
+  }
+  .select-wrapper span {
+    height: 26px;
+    line-height: 26px;
+  }
 }
 
 /* -------------------------------------------------- 

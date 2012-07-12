@@ -21,6 +21,7 @@
       this.init_upload_remove();
       this.init_tabs();
       this.init_radio_image_select();
+      this.init_select_wrapper();
       this.fix_upload_parent();
       this.fix_colorpicker();
       this.fix_textarea();
@@ -155,7 +156,7 @@
           $('#option-tree-options-layouts-form').submit();
         } else {
           var active = $('#the_current_layout').attr('value');
-          $('#option-tree-options-layouts-form select option[value="' + active + '"]').attr({'selected':'selected'}) ;
+          $('#option-tree-options-layouts-form select').prev('span').replaceWith('<span>' + active + '</span>');
         }
       });
     },
@@ -219,6 +220,7 @@
             }
             setTimeout( function() {
               OT_UI.init_sortable();
+              OT_UI.init_select_wrapper();
             }, 500);
             self.processing = false;
           }
@@ -342,6 +344,18 @@
         $('.option-tree-ui-radio-image').removeClass('option-tree-ui-radio-image-selected');
         $(this).toggleClass('option-tree-ui-radio-image-selected');
         $(this).parent().find('.option-tree-ui-radio').attr('checked', true);
+      });
+    },
+    init_select_wrapper: function() {
+      $('.option-tree-ui-select').each(function () {
+        $(this).wrap('<div class="select-wrapper" />');
+        $(this).parent('.select-wrapper.').prepend('<span>' + $(this).find('option:selected').text() + '</span>')
+      });
+      $('.option-tree-ui-select').live('change', function () {
+        $(this).prev('span').replaceWith('<span>' + $(this).find('option:selected').text() + '</span>');
+      });
+      $('.option-tree-ui-select').bind($.browser.msie ? 'click' : 'change', function(event) {
+        $(this).prev('span').replaceWith('<span>' + $(this).find('option:selected').text() + '</span>');
       });
     },
     bind_colorpicker: function(field_id) {

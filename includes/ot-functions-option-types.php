@@ -99,32 +99,36 @@ if ( ! function_exists( 'ot_type_background' ) ) {
         
         echo '</div>';
         
-        /* build background repeat */
-        $background_repeat = isset( $field_value['background-repeat'] ) ? esc_attr( $field_value['background-repeat'] ) : '';
-        echo '<select name="' . esc_attr( $field_name ) . '[background-repeat]" id="' . esc_attr( $field_id ) . '-repeat" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
-          echo '<option value="">' . __( 'background-repeat', 'option-tree' ) . '</option>';
-          foreach ( ot_recognized_background_repeat( $field_id ) as $key => $value ) {
-            echo '<option value="' . esc_attr( $key ) . '" ' . selected( $background_repeat, $key, false ) . '>' . esc_attr( $value ) . '</option>';
-          }
-        echo '</select>';
+        echo '<div class="select-group">';
         
-        /* build background attachment */
-        $background_attachment = isset( $field_value['background-attachment'] ) ? esc_attr( $field_value['background-attachment'] ) : '';
-        echo '<select name="' . esc_attr( $field_name ) . '[background-attachment]" id="' . esc_attr( $field_id ) . '-attachment" class="option-tree-ui-select ' . $field_class . '">';
-          echo '<option value="">' . __( 'background-attachment', 'option-tree' ) . '</option>';
-          foreach ( ot_recognized_background_attachment( $field_id ) as $key => $value ) {
-            echo '<option value="' . esc_attr( $key ) . '" ' . selected( $background_attachment, $key, false ) . '>' . esc_attr( $value ) . '</option>';
-          }
-        echo '</select>';
+          /* build background repeat */
+          $background_repeat = isset( $field_value['background-repeat'] ) ? esc_attr( $field_value['background-repeat'] ) : '';
+          echo '<select name="' . esc_attr( $field_name ) . '[background-repeat]" id="' . esc_attr( $field_id ) . '-repeat" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
+            echo '<option value="">' . __( 'background-repeat', 'option-tree' ) . '</option>';
+            foreach ( ot_recognized_background_repeat( $field_id ) as $key => $value ) {
+              echo '<option value="' . esc_attr( $key ) . '" ' . selected( $background_repeat, $key, false ) . '>' . esc_attr( $value ) . '</option>';
+            }
+          echo '</select>';
+          
+          /* build background attachment */
+          $background_attachment = isset( $field_value['background-attachment'] ) ? esc_attr( $field_value['background-attachment'] ) : '';
+          echo '<select name="' . esc_attr( $field_name ) . '[background-attachment]" id="' . esc_attr( $field_id ) . '-attachment" class="option-tree-ui-select ' . $field_class . '">';
+            echo '<option value="">' . __( 'background-attachment', 'option-tree' ) . '</option>';
+            foreach ( ot_recognized_background_attachment( $field_id ) as $key => $value ) {
+              echo '<option value="' . esc_attr( $key ) . '" ' . selected( $background_attachment, $key, false ) . '>' . esc_attr( $value ) . '</option>';
+            }
+          echo '</select>';
+          
+          /* build background position */
+          $background_position = isset( $field_value['background-position'] ) ? esc_attr( $field_value['background-position'] ) : '';
+          echo '<select name="' . esc_attr( $field_name ) . '[background-position]" id="' . esc_attr( $field_id ) . '-position" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
+            echo '<option value="">' . __( 'background-position', 'option-tree' ) . '</option>';
+            foreach ( ot_recognized_background_position( $field_id ) as $key => $value ) {
+              echo '<option value="' . esc_attr( $key ) . '" ' . selected( $background_position, $key, false ) . '>' . esc_attr( $value ) . '</option>';
+            }
+          echo '</select>';
         
-        /* build background position */
-        $background_position = isset( $field_value['background-position'] ) ? esc_attr( $field_value['background-position'] ) : '';
-        echo '<select name="' . esc_attr( $field_name ) . '[background-position]" id="' . esc_attr( $field_id ) . '-position" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
-          echo '<option value="">' . __( 'background-position', 'option-tree' ) . '</option>';
-          foreach ( ot_recognized_background_position( $field_id ) as $key => $value ) {
-            echo '<option value="' . esc_attr( $key ) . '" ' . selected( $background_position, $key, false ) . '>' . esc_attr( $value ) . '</option>';
-          }
-        echo '</select>';
+        echo '</div>';
         
         /* build background image */
         echo '<div class="option-tree-ui-upload-parent">';
@@ -181,7 +185,7 @@ if ( ! function_exists( 'ot_type_category_checkbox' ) ) {
     $has_desc = $field_desc ? true : false;
     
     /* format setting outer wrapper */
-    echo '<div class="format-setting type-checkbox ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+    echo '<div class="format-setting type-category-checkbox type-checkbox ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
       
       /* description */
       echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
@@ -236,7 +240,7 @@ if ( ! function_exists( 'ot_type_category_select' ) ) {
     $has_desc = $field_desc ? true : false;
     
     /* format setting outer wrapper */
-    echo '<div class="format-setting type-select ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+    echo '<div class="format-setting type-category-select ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
       
       /* description */
       echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
@@ -393,7 +397,7 @@ if ( ! function_exists( 'ot_type_css' ) ) {
     $has_desc = $field_desc ? true : false;
     
     /* format setting outer wrapper */
-    echo '<div class="format-setting type-textarea simple ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+    echo '<div class="format-setting type-css simple ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
       
       /* description */
       echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
@@ -445,7 +449,7 @@ if ( ! function_exists( 'ot_type_custom_post_type_checkbox' ) ) {
     $has_desc = $field_desc ? true : false;
     
     /* format setting outer wrapper */
-    echo '<div class="format-setting type-checkbox ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+    echo '<div class="format-setting type-custom-post-type-checkbox type-checkbox ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
       
       /* description */
       echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
@@ -504,7 +508,7 @@ if ( ! function_exists( 'ot_type_custom_post_type_select' ) ) {
     $has_desc = $field_desc ? true : false;
     
     /* format setting outer wrapper */
-    echo '<div class="format-setting type-select ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+    echo '<div class="format-setting type-custom-post-type-select ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
       
       /* description */
       echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
@@ -635,7 +639,7 @@ if ( ! function_exists( 'ot_type_measurement' ) ) {
     $has_desc = $field_desc ? true : false;
     
     /* format setting outer wrapper */
-    echo '<div class="format-setting type-select ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+    echo '<div class="format-setting type-measurement ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
       
       /* description */
       echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
@@ -690,7 +694,7 @@ if ( ! function_exists( 'ot_type_page_checkbox' ) ) {
     $has_desc = $field_desc ? true : false;
     
     /* format setting outer wrapper */
-    echo '<div class="format-setting type-checkbox ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+    echo '<div class="format-setting type-page-checkbox type-checkbox ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
       
       /* description */
       echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
@@ -746,7 +750,7 @@ if ( ! function_exists( 'ot_type_page_select' ) ) {
     $has_desc = $field_desc ? true : false;
     
     /* format setting outer wrapper */
-    echo '<div class="format-setting type-select ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+    echo '<div class="format-setting type-page-select ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
       
       /* description */
       echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
@@ -802,7 +806,7 @@ if ( ! function_exists( 'ot_type_slider' ) ) {
     $has_desc = $field_desc ? true : false;
 
     /* format setting outer wrapper */
-    echo '<div class="format-setting type-list-item ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+    echo '<div class="format-setting type-slider ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
       
       /* description */
       echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
@@ -874,7 +878,7 @@ if ( ! function_exists( 'ot_type_post_checkbox' ) ) {
     $has_desc = $field_desc ? true : false;
     
     /* format setting outer wrapper */
-    echo '<div class="format-setting type-checkbox ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+    echo '<div class="format-setting type-post-checkbox type-checkbox ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
       
       /* description */
       echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
@@ -930,7 +934,7 @@ if ( ! function_exists( 'ot_type_post_select' ) ) {
     $has_desc = $field_desc ? true : false;
     
     /* format setting outer wrapper */
-    echo '<div class="format-setting type-select ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+    echo '<div class="format-setting type-post-select ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
       
       /* description */
       echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
@@ -1129,7 +1133,7 @@ if ( ! function_exists( 'ot_type_tag_checkbox' ) ) {
     $has_desc = $field_desc ? true : false;
     
     /* format setting outer wrapper */
-    echo '<div class="format-setting type-checkbox ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+    echo '<div class="format-setting type-tag-checkbox type-checkbox ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
       
       /* description */
       echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
@@ -1184,7 +1188,7 @@ if ( ! function_exists( 'ot_type_tag_select' ) ) {
     $has_desc = $field_desc ? true : false;
     
     /* format setting outer wrapper */
-    echo '<div class="format-setting type-select ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+    echo '<div class="format-setting type-tag-select ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
       
       /* description */
       echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
@@ -1411,7 +1415,7 @@ if ( ! function_exists( 'ot_type_textblock_titled' ) ) {
     extract( $args );
     
     /* format setting outer wrapper */
-    echo '<div class="format-setting type-textblock wide-desc">';
+    echo '<div class="format-setting type-textblock titled wide-desc">';
       
       /* description */
       echo '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>';
@@ -1444,7 +1448,7 @@ if ( ! function_exists( 'ot_type_typography' ) ) {
     $has_desc = $field_desc ? true : false;
     
     /* format setting outer wrapper */
-    echo '<div class="format-setting type-background ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+    echo '<div class="format-setting type-typography ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
       
       /* description */
       echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
