@@ -704,7 +704,6 @@ function custom_meta_boxes() {
         'desc'        => '',
         'std'         => '',
         'type'        => 'background',
-        'section'     => 'general',
         'class'       => '',
         'choices'     => array()
       )
