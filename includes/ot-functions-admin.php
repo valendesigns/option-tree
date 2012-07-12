@@ -64,6 +64,8 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
     if ( ! $input || ! $type )
       return $input;
     
+    $input = apply_filters( 'ot_validate_setting', $input, $type );
+    
     if ( 'background' == $type ) {
 
       $input['background-color'] = ot_validate_setting( $input['background-color'], 'colorpicker' );
@@ -103,7 +105,7 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
          
     }
  
-    return apply_filters( 'ot_validate_setting', $input, $type );
+    return $input;
     
   }
 
