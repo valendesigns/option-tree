@@ -162,7 +162,8 @@ if ( ! function_exists( 'ot_admin_scripts' ) ) {
       'reset_agree'           => __( 'Are you sure you want to reset back to the defaults?', 'option-tree' ),
       'remove_no'             => __( 'You can\'t remove this! But you can edit the values.', 'option-tree' ),
       'remove_agree'          => __( 'Are you sure you want to remove this?', 'option-tree' ),
-      'activate_layout_agree' => __( 'Are you sure you want to activate this layout?', 'option-tree' )
+      'activate_layout_agree' => __( 'Are you sure you want to activate this layout?', 'option-tree' ),
+      'setting_limit'         => __( 'Sorry, you can\'t have settings three levels deep.', 'option-tree' )
     );
     
     /* localized script attached to 'option_tree' */

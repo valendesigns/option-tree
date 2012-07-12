@@ -98,6 +98,10 @@
       });
       $('.option-tree-list-item-setting-add').live('click', function(e) {
         e.preventDefault();
+        if ( $(this).parents('ul').parents('ul').hasClass('ui-sortable') ) {
+          alert(option_tree.setting_limit);
+          return false;
+        }
         OT_UI.add(this,'list_item_setting');
       });
     },
