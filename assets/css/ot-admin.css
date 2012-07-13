@@ -185,7 +185,7 @@ li ul .format-setting-label         { border: none; padding: 0px; margin: 0px; }
 /* -------------------------------------------------- 
   :: Select
   ---------------------------------------------------*/
-.select-group                       { margin-right: 53px; }
+.select-group                       { margin-right: 53px; overflow: hidden; width: auto; }
 .select-wrapper                     { background: #fff url(../images/ot-select.png) no-repeat right center; border: 1px solid #ccc; display: block; float: left; font-size: 12px; height: 27px; margin: 0 5px 5px 0; width: auto; border-radius: 2px; -webkit-border-radius: 2px; -moz-border-radius: 2px; -moz-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05); -webkit-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05); box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05); }
 .select-wrapper:hover               { background-image: url(../images/ot-select-hover.png); border-color: #bbb; }
 select.option-tree-ui-select        { cursor: pointer; filter: alpha(opacity: 0); height: 29px; margin: 0; -moz-opacity: 0; opacity: 0; padding: 0 !important; position: relative; width: inherit; z-index: 4; min-width: 118px; }
@@ -325,7 +325,7 @@ button.reset-settings                 { position: relative; top: -45px; left: 8p
 .option-tree-ui-button.grey:active    { box-shadow: inset 1px 1px 3px rgba(0,0,0, 0.2); -moz-box-shadow: inset 1px 1px 3px rgba(0,0,0, 0.2); -webkit-box-shadow: inset 1px 1px 3px rgba(0,0,0, 0.2); }
 
 /* -------------------------------------------------- 
-  :: Motif UI Button Icons 
+  :: OptionTree UI Button Icons 
   ---------------------------------------------------*/
 .option-tree-ui-button .icon          { background: url(../images/ot-ui-sprite.png) no-repeat; display: inline-block; float: left; height: 18px; margin-top: 4px; opacity: 0.65; overflow: hidden; text-indent: -9999px; width: 18px; }
 button.option-tree-ui-button .icon    { margin-top: -3px; }
