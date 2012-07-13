@@ -256,7 +256,7 @@ if ( ! function_exists( 'ot_default_settings' ) ) {
       $settings_count = 0;
       $settings = array();
       
-      if ( $old_settings = $wpdb->get_results( "SELECT * FROM {$table_prefix}option_tree" ) ) {
+      if ( mysql_num_rows( mysql_query( "SHOW TABLES LIKE '{$table_prefix}option_tree'" ) ) == 1 && $old_settings = $wpdb->get_results( "SELECT * FROM {$table_prefix}option_tree" ) ) {
         
         foreach ( $old_settings as $setting ) {
           
