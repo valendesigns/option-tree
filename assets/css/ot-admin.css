@@ -188,12 +188,14 @@ li ul .format-setting-label         { border: none; padding: 0px; margin: 0px; }
 .select-group                       { margin-right: 53px; }
 .select-wrapper                     { background: #fff url(../images/ot-select.png) no-repeat right center; border: 1px solid #ccc; display: block; float: left; font-size: 12px; height: 27px; margin: 0 5px 5px 0; width: auto; border-radius: 2px; -webkit-border-radius: 2px; -moz-border-radius: 2px; -moz-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05); -webkit-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05); box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05); }
 .select-wrapper:hover               { background-image: url(../images/ot-select-hover.png); border-color: #bbb; }
-select.option-tree-ui-select        { cursor: pointer; filter: alpha(opacity: 0); height: 29px; margin: 0; -moz-opacity: 0; opacity: 0; padding: 0 !important; position: relative; width: inherit; z-index: 4; }
+select.option-tree-ui-select        { cursor: pointer; filter: alpha(opacity: 0); height: 29px; margin: 0; -moz-opacity: 0; opacity: 0; padding: 0 !important; position: relative; width: inherit; z-index: 4; min-width: 118px; }
 select.option-tree-ui-select option { padding: 3px 15px !important; }
 .select-wrapper span                { height: 27px; line-height: 27px; padding-left: 7px; position: absolute; z-index: 2; }
 
-
 #option-tree-options-layouts-form .select-wrapper { left: 244px; position: absolute; top: 0; float: none; }
+
+.type-measurement select.option-tree-ui-select { min-width: 68px !important; }
+.type-measurement .select-wrapper   { position: absolute; right: 0px; top: 0px; }
 
 @-moz-document url-prefix() {
   #option-tree-options-layouts-form .select-wrapper { left: 250px; }
