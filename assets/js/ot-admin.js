@@ -301,9 +301,6 @@
           OT_UI.fix_upload_parent();
           tb_remove();
           window.clearInterval(intval);
-          $(window).bind('tb_unload', function() {
-            $('#TB_iframeContent').contents().find('#tab-type_url').show();
-          });
           window.send_to_editor = backup;
   	    };
         return false;
