@@ -7,7 +7,7 @@
  * @copyright Copyright (c) 2012, Derek Herman
  * @since     2.0
  */
-
+      
 /**
  * Get Option.
  *
@@ -34,6 +34,61 @@ if ( ! function_exists( 'ot_get_option' ) ) {
     }
     
     return $default;
+    
+  }
+  
+}
+
+/**
+ * Enqueue the dynamic CSS.
+ *
+ * @return    void
+ *
+ * @access    public
+ * @since     2.0
+ */
+if ( ! function_exists( 'ot_load_dynamic_css' ) ) {
+
+  function ot_load_dynamic_css() {
+    
+    /* don't load in the admin */
+    if ( is_admin() )
+      return;
+    
+    /* grab a copy of the paths */
+    $ot_css_file_paths = get_option( 'ot_css_file_paths', array() );
+    
+    if ( ! empty( $ot_css_file_paths ) ) {
+      
+      $last_css = '';
+      
+      /* loop through paths */
+      foreach( $ot_css_file_paths as $key => $path ) {
+        
+        if ( '' != $path && file_exists( $path ) ) {
+        
+          $parts = explode( '/wp-content', $path );
+          
+          if ( isset( $parts[1] ) ) {
+            
+            $css = home_url( '/wp-content' . $parts[1] );
+            
+            if ( $last_css !== $css ) {
+              
+              /* enqueue filtered file */
+              wp_enqueue_style( 'ot-dynamic-' . $key, $css, false, OT_VERSION );
+              
+              $last_css = $css;
+              
+            }
+            
+          }
+      
+        }
+        
+      }
+    
+    }
     
   }
   
