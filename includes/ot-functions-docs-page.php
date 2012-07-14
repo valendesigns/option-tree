@@ -537,7 +537,7 @@ if ( ! function_exists( 'ot_type_examples' ) ) {
       echo \'
       &lt;li&gt;
         &lt;a href="\' . $slide[\'link\'] . \'"&gt;&lt;img src="\' . $slide[\'image\'] . \'" alt="\' . $slide[\'title\'] . \'" /&gt;&lt;/a&gt;
-        &lt;div class="description">\' . $slide[\'description\'] . \'&lt;/div&gt;
+        &lt;div class="description">\' . $slide[\'caption\'] . \'&lt;/div&gt;
       &lt;/li&gt;\';
     }
   }
@@ -887,7 +887,8 @@ function custom_theme_options() {
         'type'        => 'list-item',
         'section'     => 'general',
         'class'       => '',
-        'choices'     => array(
+        'choices'     => array(),
+        'settings'     => array(
           array(
             'id'      => 'slider_image',
             'label'   => 'Image',
