@@ -83,7 +83,7 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
       
       }
     
-    } else if ( in_array( $type, array( 'css', 'textarea', 'textarea-simple' ) ) ) {
+    } else if ( in_array( $type, array( 'css', 'text', 'textarea', 'textarea-simple' ) ) ) {
       
       if ( ! current_user_can( 'unfiltered_html' ) && OT_ALLOW_UNFILTERED_HTML == false ) {
       
@@ -95,13 +95,13 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
     
       $input[0] = sanitize_text_field( $input[0] );
       
-    } else if ( in_array( $type, array( 'text', 'upload' ) ) ) {
-
-      $input = sanitize_text_field( $input );
-    
     } else if ( 'typography' == $type ) {
       
       $input['font-color'] = ot_validate_setting( $input['font-color'], 'colorpicker' );
+    
+    } else if ( 'upload' == $type ) {
+
+      $input = sanitize_text_field( $input );
          
     }
  
