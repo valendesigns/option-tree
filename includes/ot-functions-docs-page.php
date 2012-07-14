@@ -887,7 +887,8 @@ function custom_theme_options() {
         'type'        => 'list-item',
         'section'     => 'general',
         'class'       => '',
-        'choices'     => array(
+        'choices'     => array(),
+        'settings'    => array(
           array(
             'id'      => 'slider_image',
             'label'   => 'Image',
