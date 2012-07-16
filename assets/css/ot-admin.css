@@ -171,16 +171,11 @@ li ul .format-setting-label         { border: none; padding: 0px; margin: 0px; }
   :: Layouts
   ---------------------------------------------------*/
 #option_tree_layouts                { display: none; padding-top: 12px; }
-
 #option-tree-options-layouts-form   { left: 13px; position: absolute; top: 40px; z-index: 100; }
-.option-tree-save-layout            { width: 234px; overflow: hidden; }
+.option-tree-save-layout            { width: 250px; overflow: hidden; }
 .option-tree-save-layout .widefat   { float: left; width: 128px !important; }
 .option-tree-save-layout button     { margin: 0 0 0 10px; }
 .option-tree-active-layout          {  }
-
-@-moz-document url-prefix() {
-  .option-tree-save-layout          { width: 240px; }
-}
 
 /* -------------------------------------------------- 
   :: Select
