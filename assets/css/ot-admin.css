@@ -183,7 +183,7 @@ li ul .format-setting-label         { border: none; padding: 0px; margin: 0px; }
 .select-group                       { margin-right: 53px; overflow: hidden; width: auto; }
 .select-wrapper                     { background: #fff url(../images/ot-select.png) no-repeat right center; border: 1px solid #ccc; display: block; float: left; font-size: 12px; height: 27px; margin: 0 5px 5px 0; width: auto; border-radius: 2px; -webkit-border-radius: 2px; -moz-border-radius: 2px; -moz-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05); -webkit-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05); box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05); }
 .select-wrapper:hover               { background-image: url(../images/ot-select-hover.png); border-color: #bbb; }
-select.option-tree-ui-select        { cursor: pointer; filter: alpha(opacity: 0); height: 29px; margin: 0; -moz-opacity: 0; opacity: 0; padding: 0 !important; position: relative; width: inherit; z-index: 4; min-width: 118px; }
+select.option-tree-ui-select        { cursor: pointer; filter: alpha(opacity: 0); font-size: 14px; height: 29px; margin: 0; -moz-opacity: 0; opacity: 0; padding: 0 !important; position: relative; width: inherit; z-index: 4; min-width: 118px; }
 select.option-tree-ui-select option { padding: 3px 15px !important; }
 .select-wrapper span                { height: 27px; line-height: 27px; padding-left: 7px; position: absolute; z-index: 2; }
 
@@ -192,17 +192,23 @@ select.option-tree-ui-select option { padding: 3px 15px !important; }
 .type-measurement select.option-tree-ui-select { min-width: 68px !important; }
 .type-measurement .select-wrapper   { position: absolute; right: 0px; top: 0px; }
 
+/* FireFox */
 @-moz-document url-prefix() {
   #option-tree-options-layouts-form .select-wrapper { left: 250px; }
 }
 
+/* Webkit */
 @media screen and (-webkit-min-device-pixel-ratio:0) { 
-  select.option-tree-ui-select {
-    font-size: 14px;
-  }
   .select-wrapper span {
     height: 26px;
     line-height: 26px;
+  }
+}
+
+/* Opera 11 */
+@media not screen and (1) {
+  .select-wrapper  {
+    height: 26px;
   }
 }
 
@@ -259,6 +265,10 @@ select.option-tree-ui-select option { padding: 3px 15px !important; }
 .colorpicker_submit.colorpicker_focus { background-position: bottom; }
 .colorpicker_slider                   { background-position: bottom; }
 
+@media not screen and (1) {
+  .format-settings .cp_box            { height: 26px; }
+}
+
 /* -------------------------------------------------- 
   :: OptionTree UI Buttons 
   ---------------------------------------------------*/
@@ -289,6 +299,11 @@ button.option-tree-ui-button          { height: 29px; line-height: 11px; padding
 .option-tree-ui-button:focus          { outline: none;  }
 button.reset-settings                 { position: relative; top: -45px; left: 8px; }
 
+
+@media not screen and (1) {
+  .option-tree-ui-button              { height: 26px; }
+  button.option-tree-ui-button        { height: 28px !important; }
+}
 /* -------------------------------------------------- 
   :: OptionTree UI Button Colors 
   ---------------------------------------------------*/
