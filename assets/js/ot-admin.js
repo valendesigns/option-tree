@@ -278,12 +278,11 @@
             backup      = window.send_to_editor,
             btnContent  = '',
             intval      = window.setInterval(function() {
-                            var str = $('#TB_iframeContent').attr('src');
-                            if ( str.indexOf( "&field_id=" ) !== -1 ) {
+                            if ( $('#TB_iframeContent').attr('src').indexOf( "&field_id=" ) !== -1 ) {
                               $('#TB_iframeContent').contents().find('#tab-type_url').hide();
                             }
                             $('#TB_iframeContent').contents().find('.savesend .button').val(option_tree.upload_text); 
-                          }, 500);
+                          }, 50);
         tb_show('', 'media-upload.php?post_id='+post_id+'&field_id='+field_id+'&type=image&TB_iframe=1');
         window.send_to_editor = function(html) {
           var href = $(html).attr('href');

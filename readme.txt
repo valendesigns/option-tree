@@ -41,6 +41,10 @@ Yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
 
 == Changelog ==
 
+= 2.0 =
+* Complete rewrite form the ground up.
+* More coming soon.
+
 = 1.1.8.1 =
 * Removed get_option_tree() in the WordPress admin area due to theme conflicts.
 * Removed demo files in the assets folder at the request of WordPress
