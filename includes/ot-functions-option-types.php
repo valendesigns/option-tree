@@ -1209,7 +1209,123 @@ if ( ! function_exists( 'ot_type_tag_select' ) ) {
             echo '<option value="' . esc_attr( $tag->term_id ) . '"' . selected( $field_value, $tag->term_id, false ) . '>' . esc_attr( $tag->name ) . '</option>';
           }
         } else {
-          echo '<option value="">' . __( 'No Tgas Found', 'option-tree' ) . '</option>';
+          echo '<option value="">' . __( 'No Tags Found', 'option-tree' ) . '</option>';
+        }
+        echo '</select>';
+      
+      echo '</div>';
+      
+    echo '</div>';
+    
+  }
+  
+}
+
+/**
+ * Taxonomy Checkbox option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.0
+ */
+if ( ! function_exists( 'ot_type_taxonomy_checkbox' ) ) {
+  
+  function ot_type_taxonomy_checkbox( $args = array() ) {
+    
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+    
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-taxonomy-checkbox type-checkbox ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+      
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+      
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+        
+        /* setup the taxonomy */
+        $taxonomy = isset( $field_taxonomy ) ? explode( ',', $field_taxonomy ) : array( 'category' );
+        
+        /* get taxonomies */
+        $taxonomies = get_categories( array( 'hide_empty' => false, 'taxonomy' => $taxonomy ) );
+        
+        /* has tags */
+        if ( $taxonomies ) {
+          $count = 0;
+          foreach( $taxonomies as $taxonomy ) {
+            echo '<p>';
+              echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[' . esc_attr( $count ) . ']" id="' . esc_attr( $field_id ) . '-' . esc_attr( $count ) . '" value="' . esc_attr( $taxonomy->term_id ) . '" ' . ( isset( $field_value[$count] ) ? checked( $field_value[$count], $taxonomy->term_id, false ) : '' ) . ' class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
+              echo '<label for="' . esc_attr( $field_id ) . '-' . esc_attr( $count ) . '">' . esc_attr( $taxonomy->name ) . '</label>';
+            echo '</p>';
+            $count++;
+          } 
+        } else {
+          echo '<p>' . __( 'No Taxonomies Found', 'option-tree' ) . '</p>';
+        }
+        
+      echo '</div>';
+    
+    echo '</div>';
+    
+  }
+  
+}
+
+/**
+ * Taxonomy Select option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.0
+ */
+if ( ! function_exists( 'ot_type_taxonomy_select' ) ) {
+  
+  function ot_type_taxonomy_select( $args = array() ) {
+
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+    
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-tag-select ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+      
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+      
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+      
+        /* build tag select */
+        echo '<select name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" class="option-tree-ui-select ' . $field_class . '">';
+        
+        /* setup the taxonomy */
+        $taxonomy = isset( $field_taxonomy ) ? explode( ',', $field_taxonomy ) : array( 'category' );
+        
+        /* get taxonomies */
+        $taxonomies = get_categories( array( 'hide_empty' => false, 'taxonomy' => $taxonomy ) );
+        
+        /* has tags */
+        if ( $taxonomies ) {
+          echo '<option value="">-- ' . __( 'Choose One', 'option-tree' ) . ' --</option>';
+          foreach( $taxonomies as $taxonomy ) {
+            echo '<option value="' . esc_attr( $taxonomy->term_id ) . '"' . selected( $field_value, $taxonomy->term_id, false ) . '>' . esc_attr( $taxonomy->name ) . '</option>';
+          }
+        } else {
+          echo '<option value="">' . __( 'No Taxonomies Found', 'option-tree' ) . '</option>';
         }
         echo '</select>';
       

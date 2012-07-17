@@ -1178,6 +1178,8 @@ if ( ! function_exists( 'ot_option_types_array' ) ) {
       'slider'                    => 'Slider',
       'tag-checkbox'              => 'Tag Checkbox',
       'tag-select'                => 'Tag Select',
+      'taxonomy-checkbox'         => 'Taxonomy Checkbox',
+      'taxonomy-select'           => 'Taxonomy Select',
       'text'                      => 'Text',
       'textarea'                  => 'Textarea',
       'textarea-simple'           => 'Textarea Simple',
@@ -2237,6 +2239,14 @@ if ( ! function_exists( 'ot_settings_view' ) ) {
             </div>
           </div>
         </div>
+        <div class="format-settings">
+          <div class="format-setting type-text wide-desc">
+            <div class="description">' . __( '<strong>Taxonomy</strong>: Add a comma separated list of taxonomies like \'category,post_tag\'. This will only affect the following option types: Taxonomy Checkbox, & Taxonomy Select.', 'option-tree' ) . '</div>
+            <div class="format-setting-inner">
+              <input type="text" name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][taxonomy]" value="' . ( isset( $setting['taxonomy'] ) ? esc_attr( $setting['taxonomy'] ) : '' ) . '" class="widefat option-tree-ui-input" autocomplete="off" />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     ' . ( ! $child ? '<input type="hidden" class="hidden-section" name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][section]" value="' . ( isset( $setting['section'] ) ? esc_attr( $setting['section'] ) : '' ) . '" />' : '' );
@@ -2490,7 +2500,9 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
           'field_desc'        => isset( $field['desc'] ) ? $field['desc'] : '',
           'field_std'         => isset( $field['std'] ) ? $field['std'] : '',
           'field_rows'        => isset( $rows ) ? $rows : 10,
-          'field_class'       => isset( $field['class'] ) ? ' ' . $field['class'] : '',
+          'field_post_type'   => isset( $field['post_type'] ) && ! empty( $field['post_type'] ) ? $field['post_type'] : 'post',
+          'field_taxonomy'    => isset( $field['taxonomy'] ) && ! empty( $field['taxonomy'] ) ? $field['taxonomy'] : 'category',
+          'field_class'       => isset( $field['class'] ) ? $field['class'] : '',
           'field_choices'     => isset( $field['choices'] ) && ! empty( $field['choices'] ) ? $field['choices'] : array(),
           'field_settings'    => isset( $field['settings'] ) && ! empty( $field['settings'] ) ? $field['settings'] : array(),
           'post_id'           => $post_id,
