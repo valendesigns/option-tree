@@ -407,7 +407,7 @@
           if( reg.test(val) && val != '' ) { 
             $(el).attr('value', '#'+val)
           } else if ( val == '' ) {
-            $(this).parent().next().css({'background':'#f1f1f1','border-color':'#ccc'});
+            $(this).next('.cp_box').css({'background':'#f1f1f1','border-color':'#ccc'});
           }
         });
       });
