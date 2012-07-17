@@ -17,7 +17,7 @@ With OptionTree you can create as many Theme Options as your project requires an
 
 Included is the ability to Import/Export all the theme options and data for packaging with custom themes or local development. With the Import/Export feature you can get a theme set up on a live server in minutes. Theme authors can now create different version of their themes and include them with the download. It makes setting up different theme styles & options easier than ever because a theme user installs the plugin and theme and either adds their own settings or imports your defaults.
 
-A new feature in OptionTree 2.0 is the ability to include the plugin directly in your themes root directory. Not only does that mean your theme is guaranteed to have the plugin installed you also get the ability to interact directly with OptionTree through settings and meta box arrays. You can now tell OptionTree what settings you want and know that nobody will break your theme by changing settings through the UI Building. 
+A new feature in OptionTree 2.0 is the ability to include the plugin directly in your themes root directory. Not only does that mean your theme is guaranteed to have the plugin installed you also get the ability to interact directly with OptionTree through settings and meta box arrays. You can now tell OptionTree what settings you want and know that nobody will break your theme by changing settings through the UI Builder. It's just a better plugin now!
 
 OptionTree is a project sponsored by <a href="http://themeforest.net/?ref=valendesigns">ThemeForest</a>, the largest WordPress theme marketplace on the web, and was originally conceived to help ThemeForest authors quickly power up their themes. But it's here for the benefit of one and all, so option up folks!
 
@@ -35,15 +35,27 @@ Yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
 
 == Screenshots ==
 
-1. Settings
-2. Theme Options
+1. Theme Options
+2. Settings
 3. Documentation
 
 == Changelog ==
 
 = 2.0 =
 * Complete rewrite form the ground up.
-* More coming soon.
+* Better Theme Options UI Builder.
+* New in-plugin documentation.
+* Brand new responsive UI.
+* Add new option types, most notable the List Item which should eventually replace the Slider.
+* Added the simpler ot_get_option() function to eventually replace get_option_tree().
+* Added support for Meta Boxes.
+* Added Theme Mode where you can now include the plugin directly in your theme.
+* Better validation on saved data.
+* Simplified the import process.
+* Added support for contextual help.
+* Permanently move the Theme Option to the Appearance tab.
+* Added a ton of filters.
+* Made huge improvements to the code base and tested rigorously.
 
 = 1.1.8.1 =
 * Removed get_option_tree() in the WordPress admin area due to theme conflicts.

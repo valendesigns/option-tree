@@ -211,11 +211,11 @@ add_filter( \'ot_measurement_unit_types\', \'filter_measurement_unit_types\', 10
 }
 add_filter( \'ot_radio_images\', \'filter_radio_images\', 10, 1 );</code></pre>';
         
-        echo '<h4>'. __( 'Section', 'option-tree' ) . ':</h4>';
-        echo '<p>' . __( 'The Section option type is only used on the settings page to separate Theme Options into sections to make life easier. A Section will create a navigation menu item on the Theme Options page.', 'option-tree' ) . '</p>';
-        
         echo '<h4>'. __( 'Select', 'option-tree' ) . ':</h4>'; 
         echo '<p>' . __( 'The Select option type is used to list anything you want that would be chosen from a select list.', 'option-tree' ) . '</p>';
+        
+        echo '<h4>'. __( 'Slider', 'option-tree' ) . ':</h4>';
+        echo '<p>' . __( 'The Slider option type is technically deprecated. Use the List Item option type instead, as it\'s infinitely more customizable. Typical use is for creating sliding image content.', 'option-tree' ) . '</p>';
         
         echo '<h4>'. __( 'Tag Checkbox', 'option-tree' ) . ':</h4>';      
         echo '<p>' . __( 'The Tag Checkbox option type displays a list of tag IDs. It allows the user to check multiple tag IDs and will return that value as an array for use in a custom function or loop.', 'option-tree' ) . '</p>';
@@ -673,7 +673,7 @@ if ( ! function_exists( 'ot_type_meta_boxes' ) ) {
         
         echo '<h4>'. __( 'How-to-guide', 'option-tree' ) . '</h4>';
         
-        echo '<p>' . __( 'There are a few simple steps you need to take in order to use OptionTree\'s built in Meta Box API. In the code below I\'ll show you a basic demo of how to create your very own custom meta box using any number of the option types you have at your disposal.', 'option-tree' ) . '</p>';
+        echo '<p>' . __( 'There are a few simple steps you need to take in order to use OptionTree\'s built in Meta Box API. In the code below I\'ll show you a basic demo of how to create your very own custom meta box using any number of the option types you have at your disposal. If you would like to see some demo code, there is a directory named <code>theme-mode</code> inside the <code>assets</code> directory that contains a file named <code>demo-meta-boxes.php</code> you can reference.', 'option-tree' ) . '</p>';
         
         echo '<h5>' . __( 'Create and include your custom meta boxes file.', 'option-tree' ) . '</h5>';
         echo '<ul class="docs-ul">';
@@ -751,7 +751,7 @@ if ( ! function_exists( 'ot_type_theme_mode' ) ) {
         
         echo '<h4>'. __( 'How-to-guide', 'option-tree' ) . '</h4>';
         
-        echo '<p>' . __( 'There are a few simple steps you need to take in order to use OptionTree as a theme included module. In the code below I\'ll show you a basic demo of how to include the entire plugin as a module, which will allow you to have the most up-to-date version of OptionTree without ever needing to hack the core of the plugin.', 'option-tree' ) . '</p>';
+        echo '<p>' . __( 'There are a few simple steps you need to take in order to use OptionTree as a theme included module. In the code below I\'ll show you a basic demo of how to include the entire plugin as a module, which will allow you to have the most up-to-date version of OptionTree without ever needing to hack the core of the plugin. If you would like to see some demo code, there is a directory named <code>theme-mode</code> inside the <code>assets</code> directory that contains a file named <code>demo-theme-options.php</code> you can reference.', 'option-tree' ) . '</p>';
         
         echo '<h5>' . __( 'Step 1: Include the plugin & turn on theme mode.', 'option-tree' ) . '</h5>';
         echo '<ul class="docs-ul">';
