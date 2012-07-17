@@ -1,10 +1,10 @@
 === OptionTree ===
 Contributors: valendesigns
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=accounts@valendesigns.com&item_name=OptionTree
-Tags: admin, theme options, options, admin interface, ajax
-Requires at least: 3.0
-Tested up to: 3.2.1
-Stable tag: 1.1.8.1
+Donate link: http://bit.ly/NuXI3T
+Tags: admin, theme options, meta boxes, options, admin interface, ajax
+Requires at least: 3.3
+Tested up to: 3.5
+Stable tag: 2.0
 License: GPLv2
 
 Theme Options UI Builder for WordPress. A simple way to create & save Theme Options for free or premium themes.
@@ -134,6 +134,9 @@ Yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
 * Initial version
 
 == Upgrade Notice ==
+
+= 2.0 =
+The plugin has undertaken a complete rebuild! If you are not the theme developer, I urge you to contact that person before you upgrade and ask them to test the themes compatibility.
 
 = 1.1.8.1 =
 Removed get_option_tree() in the WordPress admin area due to theme conflicts.
