@@ -64,6 +64,9 @@ if ( ! function_exists( 'ot_type_creating_options' ) ) {
           echo '<li><code>attachment</code></li>';
         echo '</ul>';
         
+        echo '<h4>'. __( 'Taxonomy', 'option-tree' ) . ':</h4>';
+        echo '<p>' . __( 'Add a comma separated list of any registered taxonomy like <code>category,post_tag</code>. This will only affect the following option types: Taxonomy Checkbox, & Taxonomy Select.', 'option-tree' ) . '</p>';
+        
       echo '</div>';
       
     echo '</div>';
@@ -214,11 +217,17 @@ add_filter( \'ot_radio_images\', \'filter_radio_images\', 10, 1 );</code></pre>'
         echo '<h4>'. __( 'Select', 'option-tree' ) . ':</h4>'; 
         echo '<p>' . __( 'The Select option type is used to list anything you want that would be chosen from a select list.', 'option-tree' ) . '</p>';
         
+        echo '<h4>'. __( 'Tag Checkbox', 'option-tree' ) . ':</h4>';      
+        echo '<p>' . __( 'The Tag Checkbox option type displays a list of tag IDs. It allows the user to check multiple tag IDs and will return that value as an array for use in a custom function or loop.', 'option-tree' ) . '</p>';
+        
         echo '<h4>'. __( 'Tag Select', 'option-tree' ) . ':</h4>';    
         echo '<p>' . __( 'The Tag Select option type displays a list of tag IDs. It allows the user to select only one tag ID and will return that value for use in a custom function or loop.', 'option-tree' ) . '</p>';
         
-        echo '<h4>'. __( 'Tag Checkbox', 'option-tree' ) . ':</h4>';      
-        echo '<p>' . __( 'The Tag Checkbox option type displays a list of tag IDs. It allows the user to check multiple tag IDs and will return that value as an array for use in a custom function or loop.', 'option-tree' ) . '</p>';
+        echo '<h4>'. __( 'Taxonomy Checkbox', 'option-tree' ) . ':</h4>';      
+        echo '<p>' . __( 'The Taxonomy Checkbox option type displays a list of taxonomy IDs. It allows the user to check multiple taxonomy IDs and will return that value as an array for use in a custom function or loop.', 'option-tree' ) . '</p>';
+        
+        echo '<h4>'. __( 'Taxonomy Select', 'option-tree' ) . ':</h4>';    
+        echo '<p>' . __( 'The Taxonomy Select option type displays a list of taxonomy IDs. It allows the user to select only one taxonomy ID and will return that value for use in a custom function or loop.', 'option-tree' ) . '</p>';
         
         echo '<h4>'. __( 'Text (Input)', 'option-tree' ) . ':</h4>'; 
         echo '<p>' . __( 'The Text option type would be used to save a string value. For example, a link to feedburner, your Twitter username, or Google Analytics ID are all good candidates. Any optional or required text that is of reasonably short character length.', 'option-tree' ) . '</p>';
