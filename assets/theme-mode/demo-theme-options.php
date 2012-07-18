@@ -149,7 +149,7 @@ function _custom_theme_options() {
       ),
       array(
         'label'       => 'List Item',
-        'id'          => 'mt_list_item',
+        'id'          => 'my_list_item',
         'type'        => 'list-item',
         'desc'        => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         'settings'    => array(
