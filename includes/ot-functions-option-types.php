@@ -1368,7 +1368,7 @@ if ( ! function_exists( 'ot_type_text' ) ) {
       echo '<div class="format-setting-inner">';
       
         /* build text input */
-        echo '<input type="text" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" value="' . ( $field_value ? esc_attr( $field_value ) : esc_attr( $field_std )  ). '" class="widefat option-tree-ui-input ' . esc_attr( $field_class ) . '" />';
+        echo '<input type="text" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" value="' . esc_attr( $field_value ) . '" class="widefat option-tree-ui-input ' . esc_attr( $field_class ) . '" />';
         
       echo '</div>';
     

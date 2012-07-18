@@ -471,7 +471,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
       $options = get_option( $get_option, false );
       
       /* set default to standard value */
-      if ( ( ! isset( $options[$id] ) || ! $options[$id] ) && isset( $std ) ) {  
+      if ( ! isset( $options[$id] ) && isset( $std ) ) {  
         $options[$id] = trim( $std );
       }
       
