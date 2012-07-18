@@ -42,7 +42,7 @@ Yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
 == Changelog ==
 
 = 2.0.3 =
-* Had an incorrect conditional statement causing an issue where the plugin was attempting to create the 'option-tree' image attachment page, even though it was already create.
+* Had an incorrect conditional statement causing an issue where the plugin was attempting to create the 'option-tree' image attachment page, even though it was already created.
 * The above also fixed a conflict with 'The Events Calendar' plugin.
 
 = 2.0.2 =
