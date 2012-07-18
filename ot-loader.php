@@ -3,7 +3,7 @@
  * Plugin Name: OptionTree
  * Plugin URI:  http://wp.envato.com
  * Description: Theme Options UI Builder for WordPress. A simple way to create & save Theme Options and Meta Boxes for free or premium themes.
- * Version:     2.0.1
+ * Version:     2.0.2
  * Author:      Derek Herman
  * Author URI:  http://valendesigns.com
  * License:     GPLv2
@@ -34,14 +34,17 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       /* setup the constants */
       add_action( 'after_setup_theme', array( &$this, 'constants' ), 2 );
       
+      /* load text domain */
+      add_action( 'after_setup_theme', array( &$this, 'load_textdomain' ), 3 );
+      
       /* include the required admin files */
-      add_action( 'after_setup_theme', array( &$this, 'admin_includes' ), 3 );
+      add_action( 'after_setup_theme', array( &$this, 'admin_includes' ), 4 );
       
       /* include the required files */
-      add_action( 'after_setup_theme', array( &$this, 'includes' ), 4 );
+      add_action( 'after_setup_theme', array( &$this, 'includes' ), 5 );
       
       /* hook into WordPress */
-      add_action( 'after_setup_theme', array( &$this, 'hooks' ), 5 );
+      add_action( 'after_setup_theme', array( &$this, 'hooks' ), 6 );
     }
     
     /**
@@ -60,7 +63,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       /**
        * Current Version number.
        */
-      define( 'OT_VERSION', '2.0.1' );
+      define( 'OT_VERSION', '2.0.2' );
       
       /**
        * For developers: Allow Unfiltered HTML in all the textareas.
@@ -114,6 +117,22 @@ if ( ! class_exists( 'OT_Loader' ) ) {
         define( 'OT_URL', trailingslashit( get_template_directory_uri() ) . trailingslashit( basename( dirname( __FILE__ ) ) ) );
       }
   
+    }
+    
+    /**
+     * Load the text domain.
+     *
+     * @return    void
+     *
+     * @access    private
+     * @since     2.0
+     */
+    public function load_textdomain() {
+      if ( false == OT_THEME_MODE ) {
+        load_plugin_textdomain( 'option-tree', false, OT_DIR . 'languages' );
+      } else {
+        load_theme_textdomain( 'option-tree', OT_DIR . 'languages' );
+      }
     }
     
     /**
