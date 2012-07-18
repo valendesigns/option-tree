@@ -1705,7 +1705,7 @@ if ( ! function_exists( 'ot_slider_settings' ) ) {
  */
 if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
 
-  function ot_insert_css_with_markers( $field_id = '', $insertion = '' ) {
+  function ot_insert_css_with_markers( $field_id = '', $insertion = '', $meta = false ) {
     
     /* missing $field_id or $insertion exit early */
     if ( '' == $field_id || '' == $insertion )
@@ -1743,14 +1743,21 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
         $option_id    = str_replace( array( '{{', '}}' ), '', $option );
         $option_array = explode( '|', $option_id );
         
-        /* get value array by key or option_id */
-        if ( is_array( $option_array ) && isset( $options[$option_array[0]] ) ) {
+        /* get the array value */
+        if ( $meta ) {
+          global $post;
           
-          $value = $options[$option_array[0]];
-
-        } else if ( isset( $options[$option_id] ) ) {
+          $value = get_post_meta( $post->ID, $option_array[0], true );
           
-          $value = $options[$option_id];
+        } else {
+        
+          $options = get_option( 'option_tree' );
+          
+          if ( isset( $options[$option_array[0]] ) ) {
+            
+            $value = $options[$option_array[0]];
+  
+          }
           
         }
         

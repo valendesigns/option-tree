@@ -229,7 +229,7 @@ if ( ! class_exists( 'OT_Meta_Box' ) ) {
             /* insert CSS into dynamic.css */
             if ( '' !== $new ) {
               
-              ot_insert_css_with_markers( $field['id'], $new );
+              ot_insert_css_with_markers( $field['id'], $new, true );
             
             /* remove old CSS from dynamic.css */
             } else {
