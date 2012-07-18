@@ -41,8 +41,9 @@ Yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
 
 == Changelog ==
 
-= 2.0.1 =
+= 2.0.2 =
 * Added I18n support, let the translations begin. The option-tree.pot file is inside the languages directory.
+* Trim whitespace on imported choices array.
 
 = 2.0.1 =
 * Import from table was not mapping settings correctly. It is now.

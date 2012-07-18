@@ -2711,8 +2711,8 @@ if ( ! function_exists( 'ot_convert_string_to_array' ) ) {
             $choices[$k]['src'] = trim( $split[2] );
             
         } else {
-          $choices[$k]['value'] = $choice;
-          $choices[$k]['label'] = $choice;
+          $choices[$k]['value'] = trim( $choice );
+          $choices[$k]['label'] = trim( $choice );
         }
         
       }
