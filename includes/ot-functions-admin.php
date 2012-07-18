@@ -2502,7 +2502,7 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
         /* build the arguments array */
         $_args = array(
           'type'              => $field['type'],
-          'field_id'          => $field['id'] . '_' . $key,
+          'field_id'          => $name . '_' . $field['id'] . '_' . $key,
           'field_name'        => $_field_name . '[' . $key . '][' . $field['id'] . ']',
           'field_value'       => isset( $list_item[$field['id']] ) ? $list_item[$field['id']] : '',
           'field_desc'        => isset( $field['desc'] ) ? $field['desc'] : '',
