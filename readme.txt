@@ -41,6 +41,9 @@ Yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
 
 == Changelog ==
 
+= 2.0.1 =
+* Import from table was not mapping settings correctly. It is now.
+
 = 2.0 =
 * Complete rewrite form the ground up.
 * Better Theme Options UI Builder.
@@ -135,7 +138,7 @@ Yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
 
 == Upgrade Notice ==
 
-= 2.0 =
+= 2.0.1 =
 The plugin has undertaken a complete rebuild! If you are not the theme developer, I urge you to contact that person before you upgrade and ask them to test the themes compatibility.
 
 = 1.1.8.1 =
