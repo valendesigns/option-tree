@@ -366,8 +366,31 @@ if ( ! function_exists( 'ot_default_settings' ) ) {
         
       }
       
-      /* update the DB */
+      /* update the settings array */
       update_option( 'option_tree_settings', $settings );
+      
+      /* get option tree array */
+      $options = get_option( 'option_tree' );
+      
+      /* validate options */
+      if ( is_array( $options ) ) {
+
+        foreach( $settings['settings'] as $setting ) {
+        
+          if ( isset( $options[$setting['id']] ) ) {
+            
+            $content = ot_stripslashes( $options[$setting['id']] );
+            
+            $options[$setting['id']] = ot_validate_setting( $content, $setting['type'] );
+            
+          }
+        
+        }
+        
+        /* update the option tree array */
+        update_option( 'option_tree', $options );
+        
+      }
       
     }
     
@@ -2790,6 +2813,47 @@ if ( ! function_exists( 'ot_array_keys_exists' ) ) {
     return false;
   }
   
+}
+
+/**
+ * Custom stripslashes from single value or array.
+ *
+ * @param       mixed $input
+ * @return      mixed
+ *
+ * @access      public
+ * @since       2.0
+ */
+if ( ! function_exists( 'ot_stripslashes' ) ) {
+
+  function ot_stripslashes( $input ) {
+  
+    if ( is_array( $input ) ) {
+    
+      foreach( $input as &$val ) {
+      
+        if ( is_array( $val ) ) {
+        
+          $val = ot_stripslashes( $val );
+          
+        } else {
+        
+          $val = stripslashes( trim( $val ) );
+          
+        }
+        
+      }
+      
+    } else {
+    
+      $input = stripslashes( trim( $input ) );
+      
+    }
+    
+    return $input;
+    
+  }
+
 }
 
 /* End of file ot-functions-admin.php */
