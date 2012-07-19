@@ -42,7 +42,8 @@ Yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
 == Changelog ==
 
 = 2.0.4 =
-* Fix a typo in the slider array where textarea's were not saving the first time.
+* Run the 'option_tree' array through validation when upgrading from the 1.0 branch to the 2.0 branch for the first time.
+* Fix a typo in the slider array where textarea's were not saving the first time due to an incorrect array key.
 
 = 2.0.3 =
 * Had an incorrect conditional statement causing an issue where the plugin was attempting to create the 'option-tree' image attachment page, even though it was already created.
