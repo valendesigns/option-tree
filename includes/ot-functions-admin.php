@@ -1600,8 +1600,8 @@ if ( ! function_exists( 'ot_list_item_settings' ) ) {
         'choices'   => array()
       ),
       array(
-        'id'        => 'caption',
-        'label'     => __( 'Caption', 'option-tree' ),
+        'id'        => 'description',
+        'label'     => __( 'Description', 'option-tree' ),
         'desc'      => '',
         'std'       => '',
         'type'      => 'textarea-simple',
