@@ -878,7 +878,8 @@ if ( ! function_exists( 'ot_validate_settings_array' ) ) {
           
         } else {
           
-          if ( isset( $setting['label'] ) ) {
+          /* validate label */
+          if ( '' != $setting['label'] ) {
           
             $settings[$k]['label'] = wp_kses_post( $setting['label'] );
             
@@ -897,12 +898,12 @@ if ( ! function_exists( 'ot_validate_settings_array' ) ) {
           }
           
           /* sanitize ID once everything has been checked first */
-          $settings[$k]['id'] = ot_sanitize_option_id( $setting['id'] );
+          $settings[$k]['id'] = ot_sanitize_option_id( wp_kses_post( $setting['id'] ) );
           
         }
         
-        /* validate textarea description */
-        if ( isset( $setting['desc'] ) && '' != $setting['desc']  ) {
+        /* validate description */
+        if ( '' != $setting['desc']  ) {
         
           $settings[$k]['desc'] = wp_kses_post( $setting['desc'] );
           
