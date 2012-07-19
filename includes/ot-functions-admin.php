@@ -870,6 +870,7 @@ if ( ! function_exists( 'ot_validate_settings_array' ) ) {
       /* loop through settings */
       foreach( $settings as $k => $setting ) {
         
+        
         /* remove from array if missing values */
         if ( ! $setting['label'] && ! $setting['id'] ) {
         
@@ -877,27 +878,34 @@ if ( ! function_exists( 'ot_validate_settings_array' ) ) {
           
         } else {
           
+          /* validate label */
+          if ( '' != $setting['label'] ) {
+          
+            $settings[$k]['label'] = wp_kses_post( $setting['label'] );
+            
+          }
+          
           /* missing label set to unfiltered ID */
           if ( ! $setting['label'] ) {
             
-            $settings[$k]['label'] = esc_attr( $setting['id'] );
+            $settings[$k]['label'] = $setting['id'];
           
           /* missing ID set to label */ 
           } else if ( ! $setting['id'] ) {
             
-            $setting['id'] = esc_attr( $setting['label'] );
+            $setting['id'] = wp_kses_post( $setting['label'] );
             
           }
           
           /* sanitize ID once everything has been checked first */
-          $settings[$k]['id'] = ot_sanitize_option_id( $setting['id'] );
+          $settings[$k]['id'] = ot_sanitize_option_id( wp_kses_post( $setting['id'] ) );
           
         }
         
-        /* validate textarea description */
-        if ( isset( $setting['desc'] ) ) {
+        /* validate description */
+        if ( '' != $setting['desc']  ) {
         
-          $settings[$k]['desc'] = esc_html( stripcslashes( $setting['desc'] ) );
+          $settings[$k]['desc'] = wp_kses_post( $setting['desc'] );
           
         }
         
@@ -917,12 +925,12 @@ if ( ! function_exists( 'ot_validate_settings_array' ) ) {
               /* missing label set to unfiltered ID */
               if ( ! $choice['label'] ) {
                 
-                $setting['choices'][$ck]['label'] = esc_attr( $choice['value'] );
+                $setting['choices'][$ck]['label'] = wp_kses_post( $choice['value'] );
               
               /* missing value set to label */ 
               } else if ( ! $choice['value'] ) {
                 
-                $setting['choices'][$ck]['value'] = ot_sanitize_option_id( $choice['label'] );
+                $setting['choices'][$ck]['value'] = ot_sanitize_option_id( wp_kses_post( $choice['label'] ) );
                 
               }
               
@@ -946,7 +954,8 @@ if ( ! function_exists( 'ot_validate_settings_array' ) ) {
     
     }
     
-    return $settings;
+    /* return array but strip those damn slashes out first!!! */
+    return ot_stripslashes( $settings );
     
   }
 
