@@ -748,7 +748,7 @@ if ( ! function_exists( 'ot_import' ) ) {
         
         }
         
-         /* update the option tree array */
+        /* update the option tree array */
         if ( isset( $layouts['active_layout'] ) ) {
         
           update_option( 'option_tree', unserialize( base64_decode( $layouts[$layouts['active_layout']] ) ) );
