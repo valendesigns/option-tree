@@ -59,7 +59,7 @@
         if ( $(this).children('li').length ) {
           var elm = $(this);
           elm.show();
-          $(this).sortable({
+          elm.sortable({
             items: 'li:not(.ui-state-disabled)',
             placeholder: 'ui-state-highlight',
             stop: function(evt, ui) {
@@ -71,7 +71,10 @@
               )
             }
           });
-          $(this).children('li').disableSelection();	
+          elm.children('li').disableSelection();
+          elm.find('.option-tree-setting-body').bind('mousedown.ui-disableSelection selectstart.ui-disableSelection', function(e) {
+            e.stopImmediatePropagation();
+          });
         }
       });
     },
