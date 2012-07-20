@@ -662,17 +662,41 @@ if ( ! function_exists( 'ot_import' ) ) {
     
     /* check and verify import theme options data nonce */
     if ( isset( $_POST['import_data_nonce'] ) && wp_verify_nonce( $_POST['import_data_nonce'], 'import_data_form' ) ) {
-
-      /* textarea value */
-      $textarea = isset( $_POST['import_data'] ) ? unserialize( base64_decode( $_POST['import_data'] ) ) : '';
       
       /* default message */
       $message = 'failed';
       
-      /* is array: save & show success message */
-      if ( is_array( $textarea ) ) {
-        update_option( 'option_tree', $textarea );
+      /* textarea value */
+      $options = isset( $_POST['import_data'] ) ? unserialize( base64_decode( $_POST['import_data'] ) ) : '';
+      
+      /* get settings array */
+      $settings = get_option( 'option_tree_settings' );
+      
+      /* has options */
+      if ( is_array( $options ) ) {
+        
+        /* validate options */
+        if ( is_array( $settings ) ) {
+        
+          foreach( $settings as $setting ) {
+          
+            if ( isset( $options[$setting['id']] ) ) {
+              
+              $content = ot_stripslashes( $options[$setting['id']] );
+              
+              $options[$setting['id']] = ot_validate_setting( $content, $setting['type'] );
+              
+            }
+          
+          }
+        
+        }
+        
+        /* update the option tree array */
+        update_option( 'option_tree', $options );
+        
         $message = 'success';
+        
       }
       
       /* redirect accordingly */
