@@ -100,6 +100,16 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       define( 'OT_SHOW_PAGES', apply_filters( 'ot_show_pages', true ) );
       
       /**
+       * For developers: Meta Boxes.
+       *
+       * Run a filter and set to false to keep OptionTree from
+       * loading the meta box resources.
+       *
+       * @since     2.0
+       */
+      define( 'OT_META_BOXES', apply_filters( 'ot_meta_boxes', true ) );
+      
+      /**
        * Check if in theme mode.
        *
        * If theme mode is false then set the directory path & URL
@@ -157,9 +167,13 @@ if ( ! class_exists( 'OT_Loader' ) ) {
         'ot-functions-option-types',
         'ot-functions-compat',
         'ot-settings-api',
-        'ot-meta-box-api',
         'ot-ui-theme-options'
       );
+      
+      /* include the meta box api */
+      if ( OT_META_BOXES == true ) {
+        $files[] = 'ot-meta-box-api';
+      }
       
       /* include the settings & docs pages */
       if ( OT_SHOW_PAGES == true ) {
@@ -210,13 +224,17 @@ if ( ! class_exists( 'OT_Loader' ) ) {
      */
     public function hooks() {
       
-      /* add scripts for metaboxes to post-new.php & post.php */
-      add_action( 'admin_print_scripts-post-new.php', 'ot_admin_scripts', 11 );
-      add_action( 'admin_print_scripts-post.php', 'ot_admin_scripts', 11 );
-            
-      /* add styles for metaboxes to post-new.php & post.php */
-      add_action( 'admin_print_styles-post-new.php', 'ot_admin_styles', 11 );
-      add_action( 'admin_print_styles-post.php', 'ot_admin_styles', 11 );
+      if ( OT_META_BOXES == true ) {
+      
+        /* add scripts for metaboxes to post-new.php & post.php */
+        add_action( 'admin_print_scripts-post-new.php', 'ot_admin_scripts', 11 );
+        add_action( 'admin_print_scripts-post.php', 'ot_admin_scripts', 11 );
+              
+        /* add styles for metaboxes to post-new.php & post.php */
+        add_action( 'admin_print_styles-post-new.php', 'ot_admin_styles', 11 );
+        add_action( 'admin_print_styles-post.php', 'ot_admin_styles', 11 );
+      
+      }
 
       /* prepares the after save do_action */
       add_action( 'admin_init', 'ot_after_theme_options_save', 1 );
