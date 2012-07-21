@@ -42,7 +42,8 @@ Yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
 == Changelog ==
 
 = 2.0.7 =
-* Now compatible with Cudazi themes.
+* Fixed the load order to be compatible with 1.x version themes that think the get_option_tree() function doesn't exist yet.
+* Tested and compatible with Cudazi themes, but the nag message is still visible.
 
 = 2.0.6 =
 * Run the 'option_tree' array through validation when importing data and layouts.
@@ -163,7 +164,7 @@ Yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
 
 == Upgrade Notice ==
 
-= 2.0.6 =
+= 2.0.7 =
 The plugin has undertaken a complete rebuild! If you are not the theme developer, I urge you to contact that person before you upgrade and ask them to test the themes compatibility.
 
 = 1.1.8.1 =
