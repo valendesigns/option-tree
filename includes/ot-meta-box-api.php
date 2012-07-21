@@ -1,4 +1,4 @@
-<?php if ( ! defined( 'TEMPLATEPATH') ) exit( 'No direct script access allowed' );
+<?php if ( ! defined( 'OT_VERSION' ) ) exit( 'No direct script access allowed' );
 /**
  * OptionTree Meta Box API
  *
