@@ -808,24 +808,33 @@ if ( ! function_exists( 'ot_save_settings' ) ) {
             
           } else {
             
+            /* validate label */
+            if ( '' != $section['title'] ) {
+            
+             $settings['sections'][$k]['title'] = wp_kses_post( $section['title'] );
+              
+            }
+            
             /* missing title set to unfiltered ID */
             if ( ! $section['title'] ) {
               
-              $settings['sections'][$k]['title'] = esc_attr( $section['id'] );
+              $settings['sections'][$k]['title'] = wp_kses_post( $section['id'] );
             
             /* missing ID set to title */ 
             } else if ( ! $section['id'] ) {
               
-              $section['id'] = esc_attr( $section['title'] );
+              $section['id'] = wp_kses_post( $section['title'] );
               
             }
             
             /* sanitize ID once everything has been checked first */
-            $settings['sections'][$k]['id'] = ot_sanitize_option_id( $section['id'] );
+            $settings['sections'][$k]['id'] = ot_sanitize_option_id( wp_kses_post( $section['id'] ) );
             
           }
           
         }
+        
+        $settings['sections'] = ot_stripslashes( $settings['sections'] );
       
       }
       
@@ -852,27 +861,34 @@ if ( ! function_exists( 'ot_save_settings' ) ) {
             
           } else {
             
+            /* validate label */
+            if ( '' != $content['title'] ) {
+            
+             $settings['contextual_help']['content'][$k]['title'] = wp_kses_post( $content['title'] );
+              
+            }
+          
             /* missing title set to unfiltered ID */
             if ( ! $content['title'] ) {
               
-              $settings['contextual_help']['content'][$k]['title'] = esc_attr( $content['id'] );
+              $settings['contextual_help']['content'][$k]['title'] = wp_kses_post( $content['id'] );
             
             /* missing ID set to title */ 
             } else if ( ! $content['id'] ) {
               
-              $content['id'] = esc_attr( $content['title'] );
+              $content['id'] = wp_kses_post( $content['title'] );
               
             }
             
             /* sanitize ID once everything has been checked first */
-            $settings['contextual_help']['content'][$k]['id'] = ot_sanitize_option_id( $content['id'] );
+            $settings['contextual_help']['content'][$k]['id'] = ot_sanitize_option_id( wp_kses_post( $content['id'] ) );
             
           }
           
           /* validate textarea description */
           if ( isset( $content['content'] ) ) {
           
-            $settings['contextual_help']['content'][$k]['content'] = esc_html( stripcslashes( $content['content'] ) );
+            $settings['contextual_help']['content'][$k]['content'] = wp_kses_post( $content['content'] );
             
           }
           
@@ -883,9 +899,12 @@ if ( ! function_exists( 'ot_save_settings' ) ) {
       /* validate contextual_help sidebar */
       if ( isset( $settings['contextual_help']['sidebar'] ) ) {
       
-        $settings['contextual_help']['sidebar'] = esc_html( stripcslashes( $settings['contextual_help']['sidebar'] ) );
+        $settings['contextual_help']['sidebar'] = wp_kses_post( $settings['contextual_help']['sidebar'] );
         
       }
+      
+      
+      $settings['contextual_help'] = ot_stripslashes( $settings['contextual_help'] );
       
       /* default message */
       $message = 'failed';
