@@ -154,7 +154,7 @@ if ( ! function_exists( 'ot_type_import_xml' ) ) {
   
   function ot_type_import_xml() {
     
-    echo '<form method="post" id="import-settings-form">';
+    echo '<form method="post" id="import-xml-form">';
       
       /* form nonce */
       wp_nonce_field( 'import_xml_form', 'import_xml_nonce' );
@@ -304,7 +304,7 @@ if ( ! function_exists( 'ot_type_import_layouts' ) ) {
   
   function ot_type_import_layouts() {
     
-    echo '<form method="post" id="import-data-form">';
+    echo '<form method="post" id="import-layouts-form">';
       
       /* form nonce */
       wp_nonce_field( 'import_layouts_form', 'import_layouts_nonce' );
@@ -340,6 +340,49 @@ if ( ! function_exists( 'ot_type_import_layouts' ) ) {
 }
 
 /**
+ * Export Settings File option type.
+ *
+ * @return    string
+ *
+ * @access    public
+ * @since     2.0.8
+ */
+if ( ! function_exists( 'ot_type_export_settings_file' ) ) {
+  
+  function ot_type_export_settings_file() {
+    global $blog_id;
+    
+    echo '<form method="post" id="export-settings-file-form">';
+    
+      /* form nonce */
+      wp_nonce_field( 'export_settings_file_form', 'export_settings_file_nonce' );
+      
+      /* format setting outer wrapper */
+      echo '<div class="format-setting type-textarea simple has-desc">';
+        
+        /* description */
+        echo '<div class="description">';
+          
+          echo '<p>' . sprintf( __( 'Export your Settings into a fully functional <code>theme-options.php</code> file by clicking this button. For more information on how to use this file read the theme mode %s.', 'option-tree' ), '<a href="' . get_admin_url( $blog_id, 'admin.php?page=ot-documentation#section_theme_mode' ) . '"><code>OptionTree->Documentation</code></a>' ) . '</p>';
+          
+        echo '</div>';
+          
+        echo '<div class="format-setting-inner">';
+            
+          /* button */
+          echo '<button class="option-tree-ui-button grey hug-left">' . __( 'Export Settings File', 'option-tree' ) . '</button>';
+          
+        echo '</div>';
+        
+      echo '</div>';
+    
+    echo '</form>';
+    
+  }
+  
+}
+
+/**
  * Export Settings option type.
  *
  * @return    string
@@ -366,9 +409,7 @@ if ( ! function_exists( 'ot_type_export_settings' ) ) {
       $settings = ! empty( $settings ) ?  base64_encode( serialize( $settings ) ) : '';
         
       echo '<div class="format-setting-inner">';
-        echo '<form action="options.php" method="post" id="option-tree-settings-api">';
-          echo '<textarea rows="10" cols="40" name="export_settings" id="export_settings" class="textarea">' . $settings . '</textarea>';
-        echo '</form>';
+        echo '<textarea rows="10" cols="40" name="export_settings" id="export_settings" class="textarea">' . $settings . '</textarea>';
       echo '</div>';
       
     echo '</div>';

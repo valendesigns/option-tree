@@ -248,14 +248,17 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       /* import */
       add_action( 'admin_init', 'ot_import', 4 );
       
+      /* export */
+      add_action( 'admin_init', 'ot_export', 5 );
+      
       /* save settings */
-      add_action( 'admin_init', 'ot_save_settings', 5 );
+      add_action( 'admin_init', 'ot_save_settings', 6 );
       
       /* save layouts */
-      add_action( 'admin_init', 'ot_modify_layouts', 6 );
+      add_action( 'admin_init', 'ot_modify_layouts', 7 );
       
       /* create media post */
-      add_action( 'admin_init', 'ot_create_media_post', 7 );
+      add_action( 'admin_init', 'ot_create_media_post', 8 );
       
       /* global CSS */
       add_action( 'admin_head', array( &$this, 'global_admin_css' ) );

@@ -43,6 +43,7 @@ Yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
 
 = 2.0.8 =
 * Add auto import for backwards compatibility of old 1.x files.
+* Added the ability to export settings into a fully functional theme-options.php.
 * Fix typo in docs regarding the filter demo code.
 * Removed slashes in the section and contextual help titles.
 

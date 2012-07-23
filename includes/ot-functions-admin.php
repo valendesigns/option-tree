@@ -508,7 +508,7 @@ if ( ! function_exists( 'ot_xml_mime_type_icon' ) ) {
 }
 
 /**
- * Import data before the screen is displayed.
+ * Import before the screen is displayed.
  *
  * @return    void
  *
@@ -695,6 +695,29 @@ if ( ! function_exists( 'ot_import' ) ) {
 }
 
 /**
+ * Export before the screen is displayed.
+ *
+ * @return    void
+ *
+ * @access    public
+ * @since     2.0.8
+ */
+if ( ! function_exists( 'ot_export' ) ) {
+
+  function ot_export() {
+    
+    /* check and verify export settings file nonce */
+    if ( isset( $_POST['export_settings_file_nonce'] ) && wp_verify_nonce( $_POST['export_settings_file_nonce'], 'export_settings_file_form' ) ) {
+
+      ot_export_php_settings_array();
+      
+    }
+    
+  }
+  
+}
+
+/**
  * Reusable XMl import helper function.
  *
  * @param     string    $file The path to the file.
@@ -793,6 +816,229 @@ if ( ! function_exists( 'ot_import_xml' ) ) {
     }
     
     return false;
+  }
+
+}
+
+/**
+ * Export the Theme Mode theme-options.php
+ *
+ * @return    attachment
+ *
+ * @access    public
+ * @since     2.0.8
+ */
+if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
+
+  function ot_export_php_settings_array() {
+    
+    $content              = '';
+    $build_settings       = '';
+    $contextual_help      = '';
+    $sections             = '';
+    $settings             = '';
+    $option_tree_settings = get_option( 'option_tree_settings', array() );
+    
+    header( "Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0");
+    header( "Pragma: no-cache ");
+    header( "Content-Description: File Transfer" );
+    header( 'Content-Disposition: attachment; filename="theme-options.php"');
+    header( "Content-Type: application/octet-stream");
+    header( "Content-Transfer-Encoding: binary" );
+    
+    /* build contextual help content */
+    if ( isset( $option_tree_settings['contextual_help']['content'] ) ) {
+      $help = '';
+      foreach( $option_tree_settings['contextual_help']['content'] as $value ) {
+        $_id = $value['id'];
+        $_title = str_replace( "'", "\'", $value['title'] );
+        $_content = html_entity_decode(  str_replace( "'", "\'", $value['content'] ) );
+        $help.= "
+        array(
+          'id'        => '$_id',
+          'title'     => '$_title',
+          'content'   => '$_content'
+        ),";
+      }
+      $help = substr_replace( $help, '' , -1 );
+      $contextual_help = "'content'       => array( $help
+      ),";
+    }
+    
+    /* build contextual help sidebar */
+    if ( isset( $option_tree_settings['contextual_help']['sidebar'] ) ) {
+      $contextual_help.= "
+      'sidebar'       => '" . html_entity_decode(  str_replace( "'", "\'", $option_tree_settings['contextual_help']['sidebar'] ) ) . "'";
+    }
+    
+    /* check that $contexual_help has a value and add to $build_settings */
+    if ( '' != $contextual_help ) {
+      $build_settings.= "
+    'contextual_help' => array(
+      $contextual_help
+    )";
+    }
+    
+    /* build sections */
+    if ( isset( $option_tree_settings['sections'] ) ) {
+      foreach( $option_tree_settings['sections'] as $value ) {
+        $_id = $value['id'];
+        $_title = str_replace( "'", "\'", $value['title'] );
+        $sections.= "
+      array(
+        'id'          => '$_id',
+        'title'       => '$_title'
+      ),";
+      }
+      $sections = substr_replace( $sections, '' , -1 );
+    }
+    
+    /* check that $sections has a value and add to $build_settings */
+    if ( '' != $sections ) {
+      $build_settings.= ",
+    'sections'        => array( $sections
+    )";
+    }
+    
+    /* build settings */
+    if ( isset( $option_tree_settings['settings'] ) ) {
+      foreach( $option_tree_settings['settings'] as $value ) {
+        $_id = $value['id'];
+        $_label = str_replace( "'", "\'", $value['label'] );
+        $_desc = str_replace( "'", "\'", $value['desc'] );
+        $_std = $value['std'];
+        $_type = $value['type'];
+        $_section = $value['section'];
+        $_rows = $value['rows'];
+        $_post_type = $value['post_type'];
+        $_taxonomy = $value['taxonomy'];
+        $_class = $value['class'];
+        
+        $choices = '';
+        if ( isset( $value['choices'] ) && ! empty( $value['choices'] ) ) {
+          foreach( $value['choices'] as $choice ) {
+            $_value = $choice['value'];
+            $_label = str_replace( "'", "\'", $choice['label'] );
+            $_src = isset( $choice['src'] ) ? str_replace( "'", "\'", $choice['src'] ) : '';
+            $choices.= "
+          array(
+            'value'       => '$_value',
+            'label'       => '$_label',
+            'src'         => '$_src'
+          ),";
+          }
+          $choices = substr_replace( $choices, '' , -1 );
+          $choices = ",
+        'choices'     => array( $choices
+        ),";
+        }
+        
+        $sub_settings = '';
+        if ( isset( $value['settings'] ) && ! empty( $value['settings'] ) ) {
+          foreach( $value['settings'] as $setting ) {
+            $_sub_id = $setting['id'];
+            $_sub_label = str_replace( "'", "\'", $setting['label'] );
+            $_sub_desc = str_replace( "'", "\'", $setting['desc'] );
+            $_sub_std = $setting['std'];
+            $_sub_type = $setting['type'];
+            $_sub_rows = $setting['rows'];
+            $_sub_post_type = $setting['post_type'];
+            $_sub_taxonomy = $setting['taxonomy'];
+            $_sub_class = $setting['class'];
+            
+            $sub_choices = '';
+            if ( isset( $setting['choices'] ) && ! empty( $setting['choices'] ) ) {
+              foreach( $setting['choices'] as $sub_choice ) {
+                $_sub_choice_value = $sub_choice['value'];
+                $_sub_choice_label = str_replace( "'", "\'", $sub_choice['label'] );
+                $_sub_choice_src = isset( $sub_choice['src'] ) ? str_replace( "'", "\'", $sub_choice['src'] ) : '';
+                $sub_choices.= "
+              array(
+                'value'       => '$_sub_choice_value',
+                'label'       => '$_sub_choice_label',
+                'src'         => '$_sub_choice_src'
+              ),";
+              }
+              $sub_choices = substr_replace( $sub_choices, '' , -1 );
+              $sub_choices = ",
+            'choices'     => array( $sub_choices
+            ),";
+            }
+        
+            $sub_settings.= "
+          array(
+            'id'          => '$_sub_id',
+            'label'       => '$_sub_label',
+            'desc'        => '$_sub_desc',
+            'std'         => '$_sub_std',
+            'type'        => '$_sub_type',
+            'rows'        => '$_sub_rows',
+            'post_type'   => '$_sub_post_type',
+            'taxonomy'    => '$_sub_taxonomy',
+            'class'       => '$_sub_class'$sub_choices
+          ),";
+          }
+          $sub_settings = substr_replace( $sub_settings, '' , -1 );
+          $sub_settings = ",
+        'settings'    => array( $sub_settings
+        )";
+        }
+        
+        $settings.= "
+      array(
+        'id'          => '$_id',
+        'label'       => '$_label',
+        'desc'        => '$_desc',
+        'std'         => '$_std',
+        'type'        => '$_type',
+        'section'     => '$_section',
+        'rows'        => '$_rows',
+        'post_type'   => '$_post_type',
+        'taxonomy'    => '$_taxonomy',
+        'class'       => '$_class'$choices$sub_settings
+      ),";
+      }
+      $settings = substr_replace( $settings, '' , -1 );
+    }
+    
+    /* check that $sections has a value and add to $build_settings */
+    if ( '' != $settings ) {
+      $build_settings.= ",
+    'settings'        => array( $settings
+    )";
+    }
+    
+    $content.= "<?php
+/**
+ * Initialize the options before anything else.
+ */
+add_action( 'admin_init', 'custom_theme_options', 1 );
+
+/**
+ * Build the custom settings & update OptionTree.
+ */
+function custom_theme_options() {
+  /**
+   * Get a copy of the saved settings array. 
+   */
+  \$saved_settings = get_option( 'option_tree_settings', array() );
+  
+  /**
+   * Custom settings array that will be passes to the 
+   * OptionTree Settings API Class.
+   */
+  \$custom_settings = array( $build_settings
+  );
+   
+  /* settings are not the same update the DB */
+  if ( \$saved_settings !== \$custom_settings ) {
+    update_option( 'option_tree_settings', \$custom_settings ); 
+  }
+  
+}";
+
+    echo $content;
+    die();
   }
 
 }

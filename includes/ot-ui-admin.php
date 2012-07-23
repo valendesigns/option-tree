@@ -88,6 +88,12 @@ if ( function_exists( 'ot_register_settings' ) ) {
                 'section'     => 'import'
               ),
               array(
+                'id'          => 'export_settings_file_text',
+                'label'       => __( 'Settings PHP File', 'option-tree' ),
+                'type'        => 'export-settings-file',
+                'section'     => 'export'
+              ),
+              array(
                 'id'          => 'export_settings_text',
                 'label'       => __( 'Settings', 'option-tree' ),
                 'type'        => 'export-settings',
