@@ -152,7 +152,7 @@ body {
   
   return $array;
 }
-add_filter( \'ot_measurement_unit_types\', \'filter_measurement_unit_types\', 10, 1 );</code></pre>';
+add_filter( \'ot_measurement_unit_types\', \'filter_measurement_unit_types\', 10, 2 );</code></pre>';
 
         echo '<p>' . __( 'Example filter to completely change the units in the Measurement option type. Added to <code>functions.php</code>.', 'option-tree' ) . '</p>';
         echo '<pre><code>function filter_measurement_unit_types( $array, $field_id ) {
@@ -167,7 +167,7 @@ add_filter( \'ot_measurement_unit_types\', \'filter_measurement_unit_types\', 10
   
   return $array;
 }
-add_filter( \'ot_measurement_unit_types\', \'filter_measurement_unit_types\', 10, 1 );</code></pre>';
+add_filter( \'ot_measurement_unit_types\', \'filter_measurement_unit_types\', 10, 2 );</code></pre>';
 
         echo '<h4>'. __( 'Page Select', 'option-tree' ) . ':</h4>'; 
         echo '<p>' . __( 'The Page Select option type displays a list of page IDs. It will return a single page ID for use in a custom function or loop.', 'option-tree' ) . '</p>';
@@ -209,7 +209,7 @@ add_filter( \'ot_measurement_unit_types\', \'filter_measurement_unit_types\', 10
   return $array;
   
 }
-add_filter( \'ot_radio_images\', \'filter_radio_images\', 10, 1 );</code></pre>';
+add_filter( \'ot_radio_images\', \'filter_radio_images\', 10, 2 );</code></pre>';
         
         echo '<h4>'. __( 'Select', 'option-tree' ) . ':</h4>'; 
         echo '<p>' . __( 'The Select option type is used to list anything you want that would be chosen from a select list.', 'option-tree' ) . '</p>';
@@ -261,7 +261,7 @@ add_filter( \'ot_wpautop\', \'filter_textarea_wpautop\', 10, 1 );</code></pre>';
   return $content;
   
 }
-add_filter( \'ot_media_buttons\', \'filter_textarea_media_buttons\', 10, 1 );</code></pre>';
+add_filter( \'ot_media_buttons\', \'filter_textarea_media_buttons\', 10, 2 );</code></pre>';
         
         echo '<p>' . __( 'This example keeps WordPress from executing the <code>tinymce</code> filter on the textarea WYSIWYG. The default is <code>true</code> which means show the tinymce.', 'option-tree' ) . '</p>';
         echo '<pre><code>function filter_textarea_tinymce( $content, $field_id ) {
@@ -274,7 +274,7 @@ add_filter( \'ot_media_buttons\', \'filter_textarea_media_buttons\', 10, 1 );</c
   return $content;
   
 }
-add_filter( \'ot_tinymce\', \'filter_textarea_tinymce\', 10, 1 );</code></pre>';
+add_filter( \'ot_tinymce\', \'filter_textarea_tinymce\', 10, 2 );</code></pre>';
 
         echo '<p>' . __( 'This example alters the <code>quicktags</code> filter on the textarea WYSIWYG. The default is <code>array( \'buttons\' => \'strong,em,link,block,del,ins,img,ul,ol,li,code,spell,close\' )</code> which means show those quicktags. It also means you can filter in your own custom quicktags.', 'option-tree' ) . '</p>';
         echo '<pre><code>function filter_textarea_quicktags( $content, $field_id ) {
@@ -305,7 +305,7 @@ add_filter( \'ot_quicktags\', \'filter_textarea_quicktags\', 10, 1 );</code></pr
   return $content;
   
 }
-add_filter( \'ot_wpautop\', \'filter_textarea_simple_wpautop\', 10, 1 );</code></pre>';
+add_filter( \'ot_wpautop\', \'filter_textarea_simple_wpautop\', 10, 2 );</code></pre>';
         
         echo '<h4>'. __( 'Textblock', 'option-tree' ) . ':</h4>'; 
         echo '<p>' . __( 'The Textblock option type is used only on the Theme Option page. It will allow you to create & display HTML on your Theme Options page but has no title above the text block. You can then use the Textblock to add a more detailed set of instruction on how the options are used in your theme. You would NEVER use this in your themes template files as it does not save a value.', 'option-tree' ) . '</p>';
@@ -331,7 +331,7 @@ add_filter( \'ot_wpautop\', \'filter_textarea_simple_wpautop\', 10, 1 );</code><
   return $array;
   
 }
-add_filter( \'ot_recognized_font_families\', \'filter_ot_recognized_font_families\', 10, 1 );</code></pre>';
+add_filter( \'ot_recognized_font_families\', \'filter_ot_recognized_font_families\', 10, 2 );</code></pre>';
 
         echo '<h4>'. __( 'Upload', 'option-tree' ) . ':</h4>'; 
         echo '<p>' . __( 'The Upload option type is used to upload any WordPress supported media. After uploading, users are required to press the "Send to OptionTree" button in order to populate the input with the URI of that media. There is one caveat of this feature. If you import the theme options and have uploaded media on one site the old URI will not reflect the URI of your new site. You\'ll have to re-upload or FTP any media to your new server and change the URIs if necessary.', 'option-tree' ) . '</p>';
