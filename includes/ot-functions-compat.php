@@ -8,7 +8,8 @@
  * @since     2.0
  */
 
-/* add all the old filters */
+/* run the actions & filters */
+add_action( 'admin_init',                         'compat_ot_import_from_files', 1 );
 add_filter( 'ot_option_types_array',              'compat_ot_option_types_array', 10, 1 );
 add_filter( 'ot_recognized_font_styles',          'compat_ot_recognized_font_styles', 10, 2 );
 add_filter( 'ot_recognized_font_weights',         'compat_ot_recognized_font_weights', 10, 2 );
@@ -17,6 +18,150 @@ add_filter( 'ot_recognized_font_families',        'compat_ot_recognized_font_fam
 add_filter( 'ot_recognized_background_repeat',    'compat_ot_recognized_background_repeat', 10, 2 );
 add_filter( 'ot_recognized_background_position',  'compat_ot_recognized_background_position', 10, 2 );
 add_filter( 'ot_measurement_unit_types',          'compat_ot_measurement_unit_types', 10, 2 );
+
+/**
+ * Import from the old 1.x files for backwards compatibility.
+ *
+ * @return    void
+ *
+ * @access    private
+ * @since     2.0.8
+ */
+if ( ! function_exists( 'compat_ot_import_from_files' ) ) {
+
+  function compat_ot_import_from_files() {
+    
+    /* file path & name without extention */
+    $ot_xml     = '/option-tree/theme-options.xml';
+    $ot_data    = '/option-tree/theme-options.txt';
+    $ot_layout  = '/option-tree/layouts.txt';
+    
+    /* XML file path - child theme first then parent */
+    $xml_file = get_stylesheet_directory() . $ot_xml;
+    if ( ! is_readable( $xml_file ) )
+      $xml_file = get_template_directory() . $ot_xml;
+    
+    /* Data file path - child theme first then parent */
+    $data_file = get_stylesheet_directory() . $ot_data;
+    if ( ! is_readable( $data_file ) )
+      $data_file = get_template_directory() . $ot_data;
+    
+    /* Layout file path - child theme first then parent */
+    $layout_file = get_stylesheet_directory() . $ot_layout;
+    if ( ! is_readable( $layout_file ) )
+      $layout_file = get_template_directory() . $ot_layout;
+    
+    /* check for files */
+    $has_xml    = ( is_readable( $xml_file ) ) ? true : false;
+    $has_data   = ( is_readable( $data_file ) ) ? true : false;
+    $has_layout = ( is_readable( $layout_file ) ) ? true : false;
+    
+    /* auto import XML file */
+    if ( $has_xml == true && ! get_option( 'option_tree_settings' ) && class_exists( 'SimpleXMLElement' ) && function_exists( 'file_get_contents' ) ) {
+    
+      $settings = ot_import_xml( $xml_file );
+      
+      if ( isset( $settings ) && ! empty( $settings ) ) {
+        
+        update_option( 'option_tree_settings', $settings );
+        
+      }
+      
+    }
+    
+    /* auto import Data file */
+    if ( $has_data == true && ! get_option( 'option_tree' ) && function_exists( 'file_get_contents' ) ) {
+    
+      $rawdata = @file_get_contents( $data_file );
+      $options = unserialize( base64_decode( $rawdata ) );
+      
+      /* get settings array */
+      $settings = get_option( 'option_tree_settings' );
+      
+      /* has options */
+      if ( is_array( $options ) ) {
+        
+        /* validate options */
+        if ( is_array( $settings ) ) {
+        
+          foreach( $settings['settings'] as $setting ) {
+          
+            if ( isset( $options[$setting['id']] ) ) {
+              
+              $content = ot_stripslashes( $options[$setting['id']] );
+              
+              $options[$setting['id']] = ot_validate_setting( $content, $setting['type'] );
+              
+            }
+          
+          }
+        
+        }
+        
+        /* update the option tree array */
+        update_option( 'option_tree', $options );
+        
+      }
+      
+    }
+    
+    /* auto import Layout file */
+    if ( $has_layout == true && ! get_option( 'option_tree_layouts' ) && function_exists( 'file_get_contents' ) ) {
+    
+      $rawdata = @file_get_contents( $layout_file );
+      $layouts = unserialize( base64_decode( $rawdata ) );
+      
+      /* get settings array */
+      $settings = get_option( 'option_tree_settings' );
+      
+      /* has layouts */
+      if ( is_array( $layouts ) ) {
+        
+        /* validate options */
+        if ( is_array( $settings ) ) {
+          
+          foreach( $layouts as $key => $value ) {
+            
+            if ( $key == 'active_layout' )
+              continue;
+              
+            $options = unserialize( base64_decode( $value ) );
+            
+            foreach( $settings['settings'] as $setting ) {
+
+              if ( isset( $options[$setting['id']] ) ) {
+                
+                $content = ot_stripslashes( $options[$setting['id']] );
+                
+                $options[$setting['id']] = ot_validate_setting( $content, $setting['type'] );
+                
+              }
+            
+            }
+
+            $layouts[$key] = base64_encode( serialize( $options ) );
+          
+          }
+        
+        }
+        
+        /* update the option tree array */
+        if ( isset( $layouts['active_layout'] ) ) {
+        
+          update_option( 'option_tree', unserialize( base64_decode( $layouts[$layouts['active_layout']] ) ) );
+          
+        }
+        
+        /* update the option tree layouts array */
+        update_option( 'option_tree_layouts', $layouts );
+        
+      }
+      
+    }
+    
+  }
+
+}
 
 /**
  * Filters the option types array.

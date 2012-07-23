@@ -527,89 +527,9 @@ if ( ! function_exists( 'ot_import' ) ) {
       
       /* validate xml file */
       if ( preg_match( "/(.xml)$/i", $file ) && class_exists( 'SimpleXMLElement' ) && function_exists( 'file_get_contents' ) ) {
-
-        if ( $rawdata = @file_get_contents( $file ) ) {
-          
-          $section_count = 0;
-          $settings_count = 0;
-          
-          $section = '';
-          
-          $settings = array();
-          $xml = new SimpleXMLElement( $rawdata );
       
-          foreach ( $xml->row as $value ) {
-            
-            /* heading is a section now */
-            if ( $value->item_type == 'heading' ) {
-              
-              /* add section to the sections array */
-              $settings['sections'][$section_count]['id'] = (string) $value->item_id;
-              $settings['sections'][$section_count]['title'] = (string) $value->item_title;
-              
-              /* save the last section id to use in creating settings */
-              $section = (string) $value->item_id;
-              
-              /* increment the section count */
-              $section_count++;
-              
-            } else {
-              
-              /* add setting to the settings array */
-              $settings['settings'][$settings_count]['id'] = (string) $value->item_id;
-              $settings['settings'][$settings_count]['label'] = (string) $value->item_title;
-              $settings['settings'][$settings_count]['desc'] = (string) $value->item_desc;
-              $settings['settings'][$settings_count]['section'] = $section;
-              $settings['settings'][$settings_count]['type'] = ot_map_old_option_types( (string) $value->item_type );
-              $settings['settings'][$settings_count]['std'] = '';
-              $settings['settings'][$settings_count]['class'] = '';
-              
-              /* textarea rows */
-              $rows = '';
-              if ( in_array( $settings['settings'][$settings_count]['type'], array( 'css', 'textarea' ) ) ) {
-                if ( (int) $value->item_options > 0 ) {
-                  $rows = (int) $value->item_options;
-                } else {
-                  $rows = 15;
-                }
-              }
-              $settings['settings'][$settings_count]['rows'] = $rows;
-              
-              /* post type */
-              $post_type = '';
-              if ( in_array( $settings['settings'][$settings_count]['type'], array( 'custom-post-type-select', 'custom-post-type-checkbox' ) ) ) {
-                if ( '' != (string) $value->item_options ) {
-                  $post_type = (string) $value->item_options;
-                } else {
-                  $post_type = 'post';
-                }
-              }
-              $settings['settings'][$settings_count]['post_type'] = $post_type;
-              
-              /* choices */
-              $choices = array();
-              if ( in_array( $settings['settings'][$settings_count]['type'], array( 'checkbox', 'radio', 'select' ) ) ) {
-                if ( '' != (string) $value->item_options ) {
-                  $choices = ot_convert_string_to_array( (string) $value->item_options );
-                }
-              }
-              $settings['settings'][$settings_count]['choices'] = $choices;
-              
-              $settings_count++;
-            }
- 
-          }
-          
-          /* make sure each setting has a section just incase */
-          if ( isset( $settings['sections'] ) && isset( $settings['settings'] ) ) {
-            foreach( $settings['settings'] as $k => $setting ) {
-              if ( '' == $setting['section'] ) {
-                $settings['settings'][$k]['section'] = $settings['sections'][0]['id'];
-              }
-            }
-          }
-          
-        }
+        $settings = ot_import_xml( $file );
+        
       }
       
       /* default message */
@@ -772,6 +692,109 @@ if ( ! function_exists( 'ot_import' ) ) {
 
   }
   
+}
+
+/**
+ * Reusable XMl import helper function.
+ *
+ * @param     string    $file The path to the file.
+ * @return    mixed     False or an array of settings.
+ *
+ * @access    public
+ * @since     2.0.8
+ */
+if ( ! function_exists( 'ot_import_xml' ) ) {
+
+  function ot_import_xml( $file ) {
+    
+    if ( $rawdata = @file_get_contents( $file ) ) {
+      
+      $section_count = 0;
+      $settings_count = 0;
+      
+      $section = '';
+      
+      $settings = array();
+      $xml = new SimpleXMLElement( $rawdata );
+  
+      foreach ( $xml->row as $value ) {
+        
+        /* heading is a section now */
+        if ( $value->item_type == 'heading' ) {
+          
+          /* add section to the sections array */
+          $settings['sections'][$section_count]['id'] = (string) $value->item_id;
+          $settings['sections'][$section_count]['title'] = (string) $value->item_title;
+          
+          /* save the last section id to use in creating settings */
+          $section = (string) $value->item_id;
+          
+          /* increment the section count */
+          $section_count++;
+          
+        } else {
+          
+          /* add setting to the settings array */
+          $settings['settings'][$settings_count]['id'] = (string) $value->item_id;
+          $settings['settings'][$settings_count]['label'] = (string) $value->item_title;
+          $settings['settings'][$settings_count]['desc'] = (string) $value->item_desc;
+          $settings['settings'][$settings_count]['section'] = $section;
+          $settings['settings'][$settings_count]['type'] = ot_map_old_option_types( (string) $value->item_type );
+          $settings['settings'][$settings_count]['std'] = '';
+          $settings['settings'][$settings_count]['class'] = '';
+          
+          /* textarea rows */
+          $rows = '';
+          if ( in_array( $settings['settings'][$settings_count]['type'], array( 'css', 'textarea' ) ) ) {
+            if ( (int) $value->item_options > 0 ) {
+              $rows = (int) $value->item_options;
+            } else {
+              $rows = 15;
+            }
+          }
+          $settings['settings'][$settings_count]['rows'] = $rows;
+          
+          /* post type */
+          $post_type = '';
+          if ( in_array( $settings['settings'][$settings_count]['type'], array( 'custom-post-type-select', 'custom-post-type-checkbox' ) ) ) {
+            if ( '' != (string) $value->item_options ) {
+              $post_type = (string) $value->item_options;
+            } else {
+              $post_type = 'post';
+            }
+          }
+          $settings['settings'][$settings_count]['post_type'] = $post_type;
+          
+          /* choices */
+          $choices = array();
+          if ( in_array( $settings['settings'][$settings_count]['type'], array( 'checkbox', 'radio', 'select' ) ) ) {
+            if ( '' != (string) $value->item_options ) {
+              $choices = ot_convert_string_to_array( (string) $value->item_options );
+            }
+          }
+          $settings['settings'][$settings_count]['choices'] = $choices;
+          
+          $settings_count++;
+        }
+  
+      }
+      
+      /* make sure each setting has a section just incase */
+      if ( isset( $settings['sections'] ) && isset( $settings['settings'] ) ) {
+        foreach( $settings['settings'] as $k => $setting ) {
+          if ( '' == $setting['section'] ) {
+            $settings['settings'][$k]['section'] = $settings['sections'][0]['id'];
+          }
+        }
+      }
+      
+      return $settings;
+      
+    }
+    
+    return false;
+  }
+
 }
 
 /**

@@ -42,7 +42,9 @@ Yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
 == Changelog ==
 
 = 2.0.8 =
+* Add auto import for backwards compatibility of old 1.x files.
 * Fix typo in docs regarding the filter demo code.
+* Removed slashes in the section and contextual help titles.
 
 = 2.0.7 =
 * Fixed the load order to be compatible with 1.x version themes that think the get_option_tree() function doesn't exist yet.
