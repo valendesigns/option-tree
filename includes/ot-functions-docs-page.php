@@ -366,7 +366,7 @@ if ( ! function_exists( 'ot_type_ot_get_option' ) ) {
         
         echo '<h4>'. __( 'Description', 'option-tree' ) . ':</h4>';
         
-        echo '<p>' . __( 'This function returns a value from the "option_tree" array of saved values or the default value supplied. The returned value would be mixed. Meaning it could be a string, integer, or array.', 'option-tree' ) . '</p>';
+        echo '<p>' . __( 'This function returns a value from the "option_tree" array of saved values or the default value supplied. The returned value would be mixed. Meaning it could be a string, integer, boolean, or array.', 'option-tree' ) . '</p>';
         
         echo '<h4>' . __( 'Usage', 'option-tree' ) . ':</h4>';
         
@@ -782,7 +782,7 @@ include_once( \'option-tree/ot-loader.php\' );
         
         echo '<h5>' . __( 'Step 2: Create Theme Options without using the UI Builder.', 'option-tree' ) . '</h5>';
         echo '<ul class="docs-ul">';
-          echo '<li>'. __( 'Create a file and name it anything you want, maybe <code>theme-options.php</code>.', 'option-tree' ) . '</li>';
+          echo '<li>'. __( 'Create a file and name it anything you want, maybe <code>theme-options.php</code>, or use the built in file export to create it for you. Remember, you should always check the file for errors before including it in your theme.', 'option-tree' ) . '</li>';
           echo '<li>'. __( 'As well, you\'ll probably want to create a directory named <code>includes</code> to put your <code>theme-options.php</code> into which will help keep you file structure nice and tidy.', 'option-tree' ) . '</li>';
           echo '<li>' . __( 'Add the following code to your <code>functions.php</code>.', 'option-tree' ) . '</li>';
         echo '</ul>';
@@ -804,6 +804,9 @@ include_once( \'includes/theme-options.php\' );
  */
 add_action( 'admin_init', 'custom_theme_options', 1 );
 
+/**
+ * Build the custom settings & update OptionTree.
+ */
 function custom_theme_options() {
   /**
    * Get a copy of the saved settings array. 
@@ -811,8 +814,8 @@ function custom_theme_options() {
   &#36;saved_settings = get_option( 'option_tree_settings', array() );
   
   /**
-   * Create your own custom array that will be passes to the 
-   * OptionTree Settings API Class.
+   * Custom settings array that will eventually be 
+   * passes to the OptionTree Settings API Class.
    */
   &#36;custom_settings = array(
     'contextual_help' => array(

@@ -1024,8 +1024,8 @@ function custom_theme_options() {
   \$saved_settings = get_option( 'option_tree_settings', array() );
   
   /**
-   * Custom settings array that will be passes to the 
-   * OptionTree Settings API Class.
+   * Custom settings array that will eventually be 
+   * passes to the OptionTree Settings API Class.
    */
   \$custom_settings = array( $build_settings
   );

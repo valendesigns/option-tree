@@ -363,7 +363,7 @@ if ( ! function_exists( 'ot_type_export_settings_file' ) ) {
         /* description */
         echo '<div class="description">';
           
-          echo '<p>' . sprintf( __( 'Export your Settings into a fully functional <code>theme-options.php</code> file by clicking this button. For more information on how to use this file read the theme mode %s.', 'option-tree' ), '<a href="' . get_admin_url( $blog_id, 'admin.php?page=ot-documentation#section_theme_mode' ) . '"><code>OptionTree->Documentation</code></a>' ) . '</p>';
+          echo '<p>' . sprintf( __( 'Export your Settings into a fully functional <code>theme-options.php</code> file by clicking this button. For more information on how to use this file read the theme mode %s. Remember, you should always check the file for errors before including it in your theme.', 'option-tree' ), '<a href="' . get_admin_url( $blog_id, 'admin.php?page=ot-documentation#section_theme_mode' ) . '"><code>OptionTree->Documentation</code></a>' ) . '</p>';
           
         echo '</div>';
           
