@@ -850,9 +850,9 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
     if ( isset( $option_tree_settings['contextual_help']['content'] ) ) {
       $help = '';
       foreach( $option_tree_settings['contextual_help']['content'] as $value ) {
-        $_id = $value['id'];
-        $_title = str_replace( "'", "\'", $value['title'] );
-        $_content = html_entity_decode(  str_replace( "'", "\'", $value['content'] ) );
+        $_id = isset( $value['id'] ) ? $value['id'] : '';
+        $_title = isset( $value['title'] ) ? str_replace( "'", "\'", $value['title'] ) : '';
+        $_content = isset( $value['content'] ) ? html_entity_decode(  str_replace( "'", "\'", $value['content'] ) ) : '';
         $help.= "
         array(
           'id'        => '$_id',
@@ -882,8 +882,8 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
     /* build sections */
     if ( isset( $option_tree_settings['sections'] ) ) {
       foreach( $option_tree_settings['sections'] as $value ) {
-        $_id = $value['id'];
-        $_title = str_replace( "'", "\'", $value['title'] );
+        $_id = isset( $value['id'] ) ? $value['id'] : '';
+        $_title = isset( $value['title'] ) ? str_replace( "'", "\'", $value['title'] ) : '';
         $sections.= "
       array(
         'id'          => '$_id',
@@ -903,22 +903,22 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
     /* build settings */
     if ( isset( $option_tree_settings['settings'] ) ) {
       foreach( $option_tree_settings['settings'] as $value ) {
-        $_id = $value['id'];
-        $_label = str_replace( "'", "\'", $value['label'] );
-        $_desc = str_replace( "'", "\'", $value['desc'] );
-        $_std = $value['std'];
-        $_type = $value['type'];
-        $_section = $value['section'];
-        $_rows = $value['rows'];
-        $_post_type = $value['post_type'];
-        $_taxonomy = $value['taxonomy'];
-        $_class = $value['class'];
+        $_id = isset( $value['id'] ) ? $value['id'] : '';
+        $_label = isset( $value['label'] ) ? str_replace( "'", "\'", $value['label'] ) : '';
+        $_desc = isset( $value['desc'] ) ? str_replace( "'", "\'", $value['desc'] ) : '';
+        $_std = isset( $value['std'] ) ? $value['std'] : '';
+        $_type = isset( $value['type'] ) ? $value['type'] : '';
+        $_section = isset( $value['section'] ) ? $value['section'] : '';
+        $_rows = isset( $value['rows'] ) ? $value['rows'] : '';
+        $_post_type = isset( $value['post_type'] ) ? $value['post_type'] : '';
+        $_taxonomy = isset( $value['taxonomy'] ) ? $value['taxonomy'] : '';
+        $_class = isset( $value['class'] ) ? $value['class'] : '';
         
         $choices = '';
         if ( isset( $value['choices'] ) && ! empty( $value['choices'] ) ) {
           foreach( $value['choices'] as $choice ) {
-            $_value = $choice['value'];
-            $_label = str_replace( "'", "\'", $choice['label'] );
+            $_value = isset( $choice['value'] ) ? $choice['value'] : '';
+            $_label = isset( $choice['label'] ) ? str_replace( "'", "\'", $choice['label'] ) : '';
             $_src = isset( $choice['src'] ) ? str_replace( "'", "\'", $choice['src'] ) : '';
             $choices.= "
           array(
@@ -936,21 +936,21 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
         $sub_settings = '';
         if ( isset( $value['settings'] ) && ! empty( $value['settings'] ) ) {
           foreach( $value['settings'] as $setting ) {
-            $_sub_id = $setting['id'];
-            $_sub_label = str_replace( "'", "\'", $setting['label'] );
-            $_sub_desc = str_replace( "'", "\'", $setting['desc'] );
-            $_sub_std = $setting['std'];
-            $_sub_type = $setting['type'];
-            $_sub_rows = $setting['rows'];
-            $_sub_post_type = $setting['post_type'];
-            $_sub_taxonomy = $setting['taxonomy'];
-            $_sub_class = $setting['class'];
+            $_sub_id = isset( $setting['id'] ) ? $setting['id'] : '';
+            $_sub_label = isset( $setting['label'] ) ? str_replace( "'", "\'", $setting['label'] ) : '';
+            $_sub_desc = isset( $setting['desc'] ) ? str_replace( "'", "\'", $setting['desc'] ) : '';
+            $_sub_std = isset( $setting['std'] ) ? $setting['std'] : '';
+            $_sub_type = isset( $setting['type'] ) ? $setting['type'] : '';
+            $_sub_rows = isset( $setting['rows'] ) ? $setting['rows'] : '';
+            $_sub_post_type = isset( $setting['post_type'] ) ? $setting['post_type'] : '';
+            $_sub_taxonomy = isset( $setting['taxonomy'] ) ? $setting['taxonomy'] : '';
+            $_sub_class = isset( $setting['class'] ) ? $setting['class'] : '';
             
             $sub_choices = '';
             if ( isset( $setting['choices'] ) && ! empty( $setting['choices'] ) ) {
               foreach( $setting['choices'] as $sub_choice ) {
-                $_sub_choice_value = $sub_choice['value'];
-                $_sub_choice_label = str_replace( "'", "\'", $sub_choice['label'] );
+                $_sub_choice_value = isset( $sub_choice['value'] ) ? $sub_choice['value'] : '';
+                $_sub_choice_label = isset( $sub_choice['label'] ) ? str_replace( "'", "\'", $sub_choice['label'] ) : '';
                 $_sub_choice_src = isset( $sub_choice['src'] ) ? str_replace( "'", "\'", $sub_choice['src'] ) : '';
                 $sub_choices.= "
               array(
