@@ -410,6 +410,7 @@ if ( ! function_exists( 'ot_type_css' ) ) {
           $field_value, 
           esc_attr( $field_id ), 
           array(
+            'editor_class'  => esc_attr( $field_class ),
             'wpautop'       => false,
             'media_buttons' => false,
             'textarea_name' => esc_attr( $field_name ),
@@ -1413,6 +1414,7 @@ if ( ! function_exists( 'ot_type_textarea' ) ) {
           $field_value, 
           esc_attr( $field_id ), 
           array(
+            'editor_class'  => esc_attr( $field_class ),
             'wpautop'       => apply_filters( 'ot_wpautop', false, $field_id ),
             'media_buttons' => apply_filters( 'ot_media_buttons', true, $field_id ),
             'textarea_name' => esc_attr( $field_name ),
@@ -1465,6 +1467,7 @@ if ( ! function_exists( 'ot_type_textarea_simple' ) ) {
           $field_value, 
           esc_attr( $field_id ), 
           array(
+            'editor_class'  => esc_attr( $field_class ),
             'wpautop'       => apply_filters( 'ot_wpautop', false, $field_id ),
             'media_buttons' => false,
             'textarea_name' => esc_attr( $field_name ),
