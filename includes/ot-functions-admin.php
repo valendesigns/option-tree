@@ -51,6 +51,7 @@ if ( ! function_exists( 'ot_after_theme_options_save' ) ) {
  *
  * @param     mixed     Setting value
  * @param     string    Setting type
+ * @param     string    Setting field ID
  * @return    mixed
  *
  * @access    public
@@ -58,19 +59,19 @@ if ( ! function_exists( 'ot_after_theme_options_save' ) ) {
  */
 if ( ! function_exists( 'ot_validate_setting' ) ) {
 
-  function ot_validate_setting( $input, $type ) {
+  function ot_validate_setting( $input, $type, $field_id ) {
     
     /* exit early if missing data */
-    if ( ! $input || ! $type )
+    if ( ! $input || ! $type || ! $field_id )
       return $input;
     
-    $input = apply_filters( 'ot_validate_setting', $input, $type );
+    $input = apply_filters( 'ot_validate_setting', $input, $type, $field_id );
     
     if ( 'background' == $type ) {
 
-      $input['background-color'] = ot_validate_setting( $input['background-color'], 'colorpicker' );
+      $input['background-color'] = ot_validate_setting( $input['background-color'], 'colorpicker', $field_id );
       
-      $input['background-image'] = ot_validate_setting( $input['background-image'], 'upload' );
+      $input['background-image'] = ot_validate_setting( $input['background-image'], 'upload', $field_id );
       
     } else if ( 'colorpicker' == $type ) {
 
@@ -97,13 +98,15 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
       
     } else if ( 'typography' == $type ) {
       
-      $input['font-color'] = ot_validate_setting( $input['font-color'], 'colorpicker' );
+      $input['font-color'] = ot_validate_setting( $input['font-color'], 'colorpicker', $field_id );
     
     } else if ( 'upload' == $type ) {
 
       $input = sanitize_text_field( $input );
          
     }
+    
+    $input = apply_filters( 'ot_after_validate_setting', $input, $type, $field_id );
  
     return $input;
     
@@ -381,7 +384,7 @@ if ( ! function_exists( 'ot_default_settings' ) ) {
             
             $content = ot_stripslashes( $options[$setting['id']] );
             
-            $options[$setting['id']] = ot_validate_setting( $content, $setting['type'] );
+            $options[$setting['id']] = ot_validate_setting( $content, $setting['type'], $setting['id'] );
             
           }
         
@@ -604,7 +607,7 @@ if ( ! function_exists( 'ot_import' ) ) {
               
               $content = ot_stripslashes( $options[$setting['id']] );
               
-              $options[$setting['id']] = ot_validate_setting( $content, $setting['type'] );
+              $options[$setting['id']] = ot_validate_setting( $content, $setting['type'], $setting['id'] );
               
             }
           
@@ -656,7 +659,7 @@ if ( ! function_exists( 'ot_import' ) ) {
                 
                 $content = ot_stripslashes( $options[$setting['id']] );
                 
-                $options[$setting['id']] = ot_validate_setting( $content, $setting['type'] );
+                $options[$setting['id']] = ot_validate_setting( $content, $setting['type'], $setting['id'] );
                 
               }
             
@@ -3178,7 +3181,7 @@ if ( ! function_exists( 'ot_array_keys_exists' ) ) {
 /**
  * Custom stripslashes from single value or array.
  *
- * @param       mixed $input
+ * @param       mixed   $input
  * @return      mixed
  *
  * @access      public
@@ -3212,6 +3215,39 @@ if ( ! function_exists( 'ot_stripslashes' ) ) {
     
     return $input;
     
+  }
+
+}
+
+/**
+ * Reverse wpautop.
+ *
+ * @param     string    $string The string to be filtered
+ * @return    string
+ *
+ * @access    public
+ * @since     2.0.9
+ */
+if ( ! function_exists( 'ot_reverse_wpautop' ) ) {
+
+  function ot_reverse_wpautop( $string = '' ) {
+    
+    /* return if string is empty */
+    if ( trim( $string ) === '' )
+  		return '';
+  		
+    /* remove all new lines & <p> tags */
+    $string = str_replace( array( "\n", "<p>" ), "", $string );
+  
+    /* replace <br /> with \r */
+    $string = str_replace( array( "<br />", "<br>", "<br/>" ), "\r", $string );
+  
+    /* replace </p> with \r\n */
+    $string = str_replace( "</p>", "\r\n", $string );
+    
+    /* return clean string */
+    return trim( $string );
+                
   }
 
 }

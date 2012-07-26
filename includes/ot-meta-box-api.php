@@ -205,7 +205,7 @@ if ( ! class_exists( 'OT_Meta_Box' ) ) {
                 /* verify sub setting has a type & value */
                 if ( isset( $sub_setting['type'] ) && isset( $_POST[$field['id']][$k][$sub_setting['id']] ) ) {
                   
-                  $_POST[$field['id']][$k][$sub_setting['id']] = ot_validate_setting( $_POST[$field['id']][$k][$sub_setting['id']], $sub_setting['type'] );
+                  $_POST[$field['id']][$k][$sub_setting['id']] = ot_validate_setting( $_POST[$field['id']][$k][$sub_setting['id']], $sub_setting['type'], $sub_setting['id'] );
                   
                 }
                 
@@ -219,7 +219,7 @@ if ( ! class_exists( 'OT_Meta_Box' ) ) {
           } else {
             
             /* run through validattion */
-            $new = ot_validate_setting( $_POST[$field['id']], $field['type'] );
+            $new = ot_validate_setting( $_POST[$field['id']], $field['type'], $field['id'] );
             
           }
           
