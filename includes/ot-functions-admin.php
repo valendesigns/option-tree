@@ -917,14 +917,14 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
         $choices = '';
         if ( isset( $value['choices'] ) && ! empty( $value['choices'] ) ) {
           foreach( $value['choices'] as $choice ) {
-            $_value = isset( $choice['value'] ) ? $choice['value'] : '';
-            $_label = isset( $choice['label'] ) ? str_replace( "'", "\'", $choice['label'] ) : '';
-            $_src = isset( $choice['src'] ) ? str_replace( "'", "\'", $choice['src'] ) : '';
+            $_choice_value = isset( $choice['value'] ) ? $choice['value'] : '';
+            $_choice_label = isset( $choice['label'] ) ? str_replace( "'", "\'", $choice['label'] ) : '';
+            $_choice_src = isset( $choice['src'] ) ? str_replace( "'", "\'", $choice['src'] ) : '';
             $choices.= "
           array(
-            'value'       => '$_value',
-            'label'       => '$_label',
-            'src'         => '$_src'
+            'value'       => '$_choice_value',
+            'label'       => '$_choice_label',
+            'src'         => '$_choice_src'
           ),";
           }
           $choices = substr_replace( $choices, '' , -1 );
@@ -933,54 +933,54 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
         ),";
         }
         
-        $sub_settings = '';
+        $setting_settings = '';
         if ( isset( $value['settings'] ) && ! empty( $value['settings'] ) ) {
           foreach( $value['settings'] as $setting ) {
-            $_sub_id = isset( $setting['id'] ) ? $setting['id'] : '';
-            $_sub_label = isset( $setting['label'] ) ? str_replace( "'", "\'", $setting['label'] ) : '';
-            $_sub_desc = isset( $setting['desc'] ) ? str_replace( "'", "\'", $setting['desc'] ) : '';
-            $_sub_std = isset( $setting['std'] ) ? $setting['std'] : '';
-            $_sub_type = isset( $setting['type'] ) ? $setting['type'] : '';
-            $_sub_rows = isset( $setting['rows'] ) ? $setting['rows'] : '';
-            $_sub_post_type = isset( $setting['post_type'] ) ? $setting['post_type'] : '';
-            $_sub_taxonomy = isset( $setting['taxonomy'] ) ? $setting['taxonomy'] : '';
-            $_sub_class = isset( $setting['class'] ) ? $setting['class'] : '';
+            $_setting_id = isset( $setting['id'] ) ? $setting['id'] : '';
+            $_setting_label = isset( $setting['label'] ) ? str_replace( "'", "\'", $setting['label'] ) : '';
+            $_setting_desc = isset( $setting['desc'] ) ? str_replace( "'", "\'", $setting['desc'] ) : '';
+            $_setting_std = isset( $setting['std'] ) ? $setting['std'] : '';
+            $_setting_type = isset( $setting['type'] ) ? $setting['type'] : '';
+            $_setting_rows = isset( $setting['rows'] ) ? $setting['rows'] : '';
+            $_setting_post_type = isset( $setting['post_type'] ) ? $setting['post_type'] : '';
+            $_setting_taxonomy = isset( $setting['taxonomy'] ) ? $setting['taxonomy'] : '';
+            $_setting_class = isset( $setting['class'] ) ? $setting['class'] : '';
             
-            $sub_choices = '';
+            $setting_choices = '';
             if ( isset( $setting['choices'] ) && ! empty( $setting['choices'] ) ) {
-              foreach( $setting['choices'] as $sub_choice ) {
-                $_sub_choice_value = isset( $sub_choice['value'] ) ? $sub_choice['value'] : '';
-                $_sub_choice_label = isset( $sub_choice['label'] ) ? str_replace( "'", "\'", $sub_choice['label'] ) : '';
-                $_sub_choice_src = isset( $sub_choice['src'] ) ? str_replace( "'", "\'", $sub_choice['src'] ) : '';
-                $sub_choices.= "
+              foreach( $setting['choices'] as $setting_choice ) {
+                $_setting_choice_value = isset( $setting_choice['value'] ) ? $setting_choice['value'] : '';
+                $_setting_choice_label = isset( $setting_choice['label'] ) ? str_replace( "'", "\'", $setting_choice['label'] ) : '';
+                $_setting_choice_src = isset( $setting_choice['src'] ) ? str_replace( "'", "\'", $setting_choice['src'] ) : '';
+                $setting_choices.= "
               array(
-                'value'       => '$_sub_choice_value',
-                'label'       => '$_sub_choice_label',
-                'src'         => '$_sub_choice_src'
+                'value'       => '$_setting_choice_value',
+                'label'       => '$_setting_choice_label',
+                'src'         => '$_setting_choice_src'
               ),";
               }
-              $sub_choices = substr_replace( $sub_choices, '' , -1 );
-              $sub_choices = ",
-            'choices'     => array( $sub_choices
+              $setting_choices = substr_replace( $setting_choices, '' , -1 );
+              $setting_choices = ",
+            'choices'     => array( $setting_choices
             ),";
             }
         
-            $sub_settings.= "
+            $setting_settings.= "
           array(
-            'id'          => '$_sub_id',
-            'label'       => '$_sub_label',
-            'desc'        => '$_sub_desc',
-            'std'         => '$_sub_std',
-            'type'        => '$_sub_type',
-            'rows'        => '$_sub_rows',
-            'post_type'   => '$_sub_post_type',
-            'taxonomy'    => '$_sub_taxonomy',
-            'class'       => '$_sub_class'$sub_choices
+            'id'          => '$_setting_id',
+            'label'       => '$_setting_label',
+            'desc'        => '$_setting_desc',
+            'std'         => '$_setting_std',
+            'type'        => '$_setting_type',
+            'rows'        => '$_setting_rows',
+            'post_type'   => '$_setting_post_type',
+            'taxonomy'    => '$_setting_taxonomy',
+            'class'       => '$_setting_class'$setting_choices
           ),";
           }
-          $sub_settings = substr_replace( $sub_settings, '' , -1 );
-          $sub_settings = ",
-        'settings'    => array( $sub_settings
+          $setting_settings = substr_replace( $setting_settings, '' , -1 );
+          $setting_settings = ",
+        'settings'    => array( $setting_settings
         )";
         }
         
@@ -995,7 +995,7 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
         'rows'        => '$_rows',
         'post_type'   => '$_post_type',
         'taxonomy'    => '$_taxonomy',
-        'class'       => '$_class'$choices$sub_settings
+        'class'       => '$_class'$choices$setting_settings
       ),";
       }
       $settings = substr_replace( $settings, '' , -1 );
