@@ -89,6 +89,9 @@
 #contextual-help-setting              { float: left; padding: 10px 0 5px 0; width: 100%; }
 #contextual-help-label                { float: left; padding-top: 20px; width: 100%; }
 #option_tree_settings_help            { float: left; width: 100%;  }
+#option-tree-settings-api blockquote  { font-style: italic; padding-left: 15px; position: relative; }
+#option-tree-settings-api blockquote:before { color: #ccc; content: "\201C"; display: block; font-size: 400%; font-style: normal; left: -10px; position: absolute; top: 10px; }
+
 
 @media only screen and (max-width: 900px) { 
   .format-setting .description, 
