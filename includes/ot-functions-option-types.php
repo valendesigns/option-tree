@@ -249,7 +249,7 @@ if ( ! function_exists( 'ot_type_category_select' ) ) {
       echo '<div class="format-setting-inner">';
       
         /* build category */
-        echo '<select name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" class="option-tree-ui-select ' . $field_class . '"">';
+        echo '<select name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" class="option-tree-ui-select ' . $field_class . '">';
         
         /* get category array */
         $categories = get_categories( array( 'hide_empty' => false ) );
