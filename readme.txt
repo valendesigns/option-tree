@@ -50,6 +50,7 @@ Yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
 * Added $field_id to the ot_validate_setting() for more precise filtering.
 * Added the ot_reverse_wpautop() function that you can run input through just incase you need it.
 * Updated the docs to include information on why WYSIWYG editors are not allowed in meta boxes and that they revert to a Textarea Simple.
+* Update option-tree.pot file.
 
 = 2.0.8 =
 * Add auto import for backwards compatibility of old 1.x files.
