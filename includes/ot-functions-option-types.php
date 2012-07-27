@@ -249,7 +249,7 @@ if ( ! function_exists( 'ot_type_category_select' ) ) {
       echo '<div class="format-setting-inner">';
       
         /* build category */
-        echo '<select name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" class="option-tree-ui-select ' . $field_class . '"">';
+        echo '<select name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" class="option-tree-ui-select ' . $field_class . '">';
         
         /* get category array */
         $categories = get_categories( array( 'hide_empty' => false ) );
@@ -404,20 +404,9 @@ if ( ! function_exists( 'ot_type_css' ) ) {
       
       /* format setting inner wrapper */
       echo '<div class="format-setting-inner">';
-      
+        
         /* build textarea for CSS */
-        wp_editor( 
-          $field_value, 
-          esc_attr( $field_id ), 
-          array(
-            'wpautop'       => false,
-            'media_buttons' => false,
-            'textarea_name' => esc_attr( $field_name ),
-            'textarea_rows' => esc_attr( $field_rows ),
-            'tinymce'       => false,              
-            'quicktags'     => false
-          ) 
-        );
+        echo '<textarea class="textarea ' . esc_attr( $field_class ) . '" rows="' . esc_attr( $field_rows )  . '" cols="40" name="' . esc_attr( $field_name ) .'" id="' . esc_attr( $field_id ) . '">' . esc_textarea( $field_value ) . '</textarea>';
         
       echo '</div>';
       
@@ -1413,6 +1402,7 @@ if ( ! function_exists( 'ot_type_textarea' ) ) {
           $field_value, 
           esc_attr( $field_id ), 
           array(
+            'editor_class'  => esc_attr( $field_class ),
             'wpautop'       => apply_filters( 'ot_wpautop', false, $field_id ),
             'media_buttons' => apply_filters( 'ot_media_buttons', true, $field_id ),
             'textarea_name' => esc_attr( $field_name ),
@@ -1459,20 +1449,16 @@ if ( ! function_exists( 'ot_type_textarea_simple' ) ) {
       
       /* format setting inner wrapper */
       echo '<div class="format-setting-inner">';
-      
+        
+        /* filter to allow wpautop */
+        $wpautop = apply_filters( 'ot_wpautop', false, $field_id );
+        
+        /* wpautop $field_value */
+        if ( $wpautop == true ) 
+          $field_value = wpautop( $field_value );
+        
         /* build textarea simple */
-        wp_editor( 
-          $field_value, 
-          esc_attr( $field_id ), 
-          array(
-            'wpautop'       => apply_filters( 'ot_wpautop', false, $field_id ),
-            'media_buttons' => false,
-            'textarea_name' => esc_attr( $field_name ),
-            'textarea_rows' => esc_attr( $field_rows ),
-            'tinymce'       => false,              
-            'quicktags'     => false
-          ) 
-        );
+        echo '<textarea class="textarea ' . esc_attr( $field_class ) . '" rows="' . esc_attr( $field_rows )  . '" cols="40" name="' . esc_attr( $field_name ) .'" id="' . esc_attr( $field_id ) . '">' . esc_textarea( $field_value ) . '</textarea>';
         
       echo '</div>';
       

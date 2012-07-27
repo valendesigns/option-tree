@@ -12,7 +12,6 @@
 /* -------------------------------------------------- 
   :: OptionTree Wrappers
   ---------------------------------------------------*/
-/* .settings-wrap                        { max-width: 1020px; } */
 #option-tree-settings-api .metabox-holder { overflow: hidden; }
 #option-tree-settings-api .postbox    { background: #fff; border: none; margin: 0 20px; }
 #option-tree-settings-api .inside     { margin: 0px !important; padding: 0px !important; }
@@ -90,6 +89,9 @@
 #contextual-help-setting              { float: left; padding: 10px 0 5px 0; width: 100%; }
 #contextual-help-label                { float: left; padding-top: 20px; width: 100%; }
 #option_tree_settings_help            { float: left; width: 100%;  }
+#option-tree-settings-api blockquote  { font-style: italic; padding-left: 15px; position: relative; }
+#option-tree-settings-api blockquote:before { color: #ccc; content: "\201C"; display: block; font-size: 400%; font-style: normal; left: -10px; position: absolute; top: 10px; }
+
 
 @media only screen and (max-width: 900px) { 
   .format-setting .description, 
@@ -144,13 +146,13 @@ input:focus.option-tree-ui-input      { border-color: #bbb !important; }
 /* -------------------------------------------------- 
   :: Setting Item with Drag & Drop
   ---------------------------------------------------*/
-.option-tree-setting-wrap           { margin-top: 0px; }
-.option-tree-setting-wrap li        { margin: 4px 0px; }
-.option-tree-setting                { border: 1px solid #ccc; cursor: move; overflow: hidden; position: relative; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; }
+.option-tree-setting-wrap             { margin-top: 0px; }
+.option-tree-setting-wrap li          { margin: 4px 0px; }
+.option-tree-setting                  { border: 1px solid #ccc; cursor: move; overflow: hidden; position: relative; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; }
 .ui-state-disabled .option-tree-setting { cursor: default; }
-.option-tree-setting a              { text-decoration: none; }
-.option-tree-setting .open          { background: #fafafa; line-height: 21px; height: 21px; padding: 10px 100px 10px 10px; display: block; }
-.option-tree-setting .open:hover    { background: #fafafa url(../images/ot-dots.png) no-repeat 4px 15px; }
+.option-tree-setting a                { text-decoration: none; }
+.option-tree-setting .open            { background: #fafafa; line-height: 21px; height: 21px; padding: 10px 100px 10px 10px; display: block; }
+.option-tree-setting .open:hover      { background: #fafafa url(../images/ot-dots.png) no-repeat 4px 15px; }
 
 .button-section                       { position: absolute; right: 0px; top: 1px; }
 
@@ -158,39 +160,39 @@ input:focus.option-tree-ui-input      { border-color: #bbb !important; }
 .option-tree-setting.is-section .open:hover { background: #e9f2fb url(../images/ot-dots.png) no-repeat 4px 15px; }
 
 .format-setting .ui-sortable-helper 
-.option-tree-setting .open          { background: #fff url(../images/ot-dots.png) no-repeat 4px 15px; }
+.option-tree-setting .open            { background: #fff url(../images/ot-dots.png) no-repeat 4px 15px; }
 
 .ui-state-highlight { border: 1px dashed #ccc; line-height: 21px; height: 21px; padding: 10px 0px; display: block; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; }
 
-.option-tree-setting-body           { background: #fff; border-top: 1px solid #ccc; display: none; padding: 10px; -webkit-border-bottom-right-radius: 3px; -webkit-border-bottom-left-radius: 3px; -moz-border-radius-bottomright: 3px; -moz-border-radius-bottomleft: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px; }
+.option-tree-setting-body             { background: #fff; border-top: 1px solid #ccc; display: none; padding: 10px; -webkit-border-bottom-right-radius: 3px; -webkit-border-bottom-left-radius: 3px; -moz-border-radius-bottomright: 3px; -moz-border-radius-bottomleft: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px; }
 
-li ul .format-settings              { padding: 0 0 10px 0; }
-li ul .format-setting-label         { border: none; padding: 0px; margin: 0px; }
+li ul .format-settings                { padding: 0 0 10px 0; }
+li ul .format-setting-label           { border: none; padding: 0px; margin: 0px; }
 
 /* -------------------------------------------------- 
   :: Layouts
   ---------------------------------------------------*/
-#option_tree_layouts                { display: none; padding-top: 12px; }
-#option-tree-options-layouts-form   { left: 13px; position: absolute; top: 40px; z-index: 100; }
-.option-tree-save-layout            { width: 250px; overflow: hidden; }
-.option-tree-save-layout .widefat   { float: left; width: 128px !important; }
-.option-tree-save-layout button     { margin: 0 0 0 10px; }
-.option-tree-active-layout          {  }
+#option_tree_layouts                  { display: none; padding-top: 12px; }
+#option-tree-options-layouts-form     { left: 13px; position: absolute; top: 40px; z-index: 100; }
+.option-tree-save-layout              { width: 250px; overflow: hidden; }
+.option-tree-save-layout .widefat     { float: left; width: 128px !important; }
+.option-tree-save-layout button       { margin: 0 0 0 10px; }
+.option-tree-active-layout            {  }
 
 /* -------------------------------------------------- 
   :: Select
   ---------------------------------------------------*/
-.select-group                       { margin-right: 53px; overflow: hidden; width: auto; }
-.select-wrapper                     { background: #fff url(../images/ot-select.png) no-repeat right center; border: 1px solid #ccc; display: block; float: left; font-size: 12px; height: 27px; margin: 0 5px 5px 0; width: auto; border-radius: 2px; -webkit-border-radius: 2px; -moz-border-radius: 2px; -moz-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05); -webkit-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05); box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05); }
-.select-wrapper:hover               { background-image: url(../images/ot-select-hover.png); border-color: #bbb; }
-select.option-tree-ui-select        { cursor: pointer; filter: alpha(opacity: 0); font-size: 14px; height: 29px; margin: 0; -moz-opacity: 0; opacity: 0; padding: 0 !important; position: relative; width: inherit; z-index: 4; min-width: 118px; }
-select.option-tree-ui-select option { padding: 3px 15px !important; }
-.select-wrapper span                { height: 27px; line-height: 27px; padding-left: 7px; position: absolute; z-index: 2; }
+.select-group                         { margin-right: 53px; overflow: hidden; width: auto; }
+.select-wrapper                       { background: #fff url(../images/ot-select.png) no-repeat right center; border: 1px solid #ccc; display: block; float: left; font-size: 12px; height: 27px; margin: 0 5px 5px 0; width: auto; border-radius: 2px; -webkit-border-radius: 2px; -moz-border-radius: 2px; -moz-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05); -webkit-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05); box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05); }
+.select-wrapper:hover                 { background-image: url(../images/ot-select-hover.png); border-color: #bbb; }
+select.option-tree-ui-select          { cursor: pointer; filter: alpha(opacity: 0); font-size: 14px; height: 29px; margin: 0; -moz-opacity: 0; opacity: 0; padding: 0 !important; position: relative; width: inherit; z-index: 4; min-width: 118px; }
+select.option-tree-ui-select option   { padding: 3px 15px !important; }
+.select-wrapper span                  { height: 27px; line-height: 27px; padding-left: 7px; position: absolute; z-index: 2; }
 
 #option-tree-options-layouts-form .select-wrapper { left: 244px; position: absolute; top: 0; float: none; }
 
 .type-measurement select.option-tree-ui-select { min-width: 68px !important; }
-.type-measurement .select-wrapper   { position: absolute; right: 0px; top: 0px; }
+.type-measurement .select-wrapper     { position: absolute; right: 0px; top: 0px; }
 
 /* FireFox */
 @-moz-document url-prefix() {

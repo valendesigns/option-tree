@@ -525,7 +525,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
             
             if ( isset( $setting['std'] ) ) {
               
-              $defaults[$setting['id']] = ot_validate_setting( $setting['std'], $setting['type'] );
+              $defaults[$setting['id']] = ot_validate_setting( $setting['std'], $setting['type'], $setting['id'] );
 
             }
   
@@ -600,7 +600,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
                     /* verify sub setting has a type & value */
                     if ( isset( $sub_setting['type'] ) && isset( $input[$setting['id']][$k][$sub_setting['id']] ) ) {
                       
-                      $input[$setting['id']][$k][$sub_setting['id']] = ot_validate_setting( $input[$setting['id']][$k][$sub_setting['id']], $sub_setting['type'] );
+                      $input[$setting['id']][$k][$sub_setting['id']] = ot_validate_setting( $input[$setting['id']][$k][$sub_setting['id']], $sub_setting['type'], $sub_setting['id'] );
                       
                     }
                     
@@ -610,7 +610,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
               
               } else {
                 
-                $input[$setting['id']] = ot_validate_setting( $input[$setting['id']], $setting['type'] );
+                $input[$setting['id']] = ot_validate_setting( $input[$setting['id']], $setting['type'], $setting['id'] );
                 
               }
 

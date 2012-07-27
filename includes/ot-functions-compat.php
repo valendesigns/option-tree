@@ -90,7 +90,7 @@ if ( ! function_exists( 'compat_ot_import_from_files' ) ) {
               
               $content = ot_stripslashes( $options[$setting['id']] );
               
-              $options[$setting['id']] = ot_validate_setting( $content, $setting['type'] );
+              $options[$setting['id']] = ot_validate_setting( $content, $setting['type'], $setting['id'] );
               
             }
           
@@ -133,7 +133,7 @@ if ( ! function_exists( 'compat_ot_import_from_files' ) ) {
                 
                 $content = ot_stripslashes( $options[$setting['id']] );
                 
-                $options[$setting['id']] = ot_validate_setting( $content, $setting['type'] );
+                $options[$setting['id']] = ot_validate_setting( $content, $setting['type'], $setting['id'] );
                 
               }
             

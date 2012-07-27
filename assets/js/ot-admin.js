@@ -201,7 +201,7 @@
         var count = parseInt(list.children('li').length);
         $.ajax({
           url: option_tree.ajax,
-          type: 'get',
+          type: 'post',
           data: {
             action: 'add_' + type,
             count: count,
