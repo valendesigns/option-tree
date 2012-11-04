@@ -1032,7 +1032,10 @@ function custom_theme_options() {
    */
   \$custom_settings = array( $build_settings
   );
-   
+  
+  /* allow settings to be filtered before saving */
+  \$custom_settings = apply_filters( 'option_tree_settings_args', \$custom_settings );
+  
   /* settings are not the same update the DB */
   if ( \$saved_settings !== \$custom_settings ) {
     update_option( 'option_tree_settings', \$custom_settings ); 
