@@ -199,6 +199,16 @@
       if ( this.processing === false ) {
         this.processing = true;
         var count = parseInt(list.children('li').length);
+        if ( type == 'list_item' ) {
+          list.find('li input.option-tree-setting-title').each(function(){
+            var settingidnumber = $(this).attr('name').replace(/[^0-9]/g, '');
+            settingidnumber = parseInt(settingidnumber);
+            settingidnumber++;
+            if ((settingidnumber) > count) {
+              count = settingidnumber;
+            }
+          });
+        }
         $.ajax({
           url: option_tree.ajax,
           type: 'post',
