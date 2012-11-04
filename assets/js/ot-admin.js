@@ -61,6 +61,7 @@
           elm.show();
           elm.sortable({
             items: 'li:not(.ui-state-disabled)',
+            handle: 'div.open',
             placeholder: 'ui-state-highlight',
             stop: function(evt, ui) {
               setTimeout(
@@ -70,10 +71,6 @@
                 200
               )
             }
-          });
-          elm.children('li').disableSelection();
-          elm.find('.option-tree-setting-body').bind('mousedown.ui-disableSelection selectstart.ui-disableSelection', function(e) {
-            e.stopImmediatePropagation();
           });
         }
       });

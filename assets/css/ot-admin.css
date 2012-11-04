@@ -148,10 +148,10 @@ input:focus.option-tree-ui-input      { border-color: #bbb !important; }
   ---------------------------------------------------*/
 .option-tree-setting-wrap             { margin-top: 0px; }
 .option-tree-setting-wrap li          { margin: 4px 0px; }
-.option-tree-setting                  { border: 1px solid #ccc; cursor: move; overflow: hidden; position: relative; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; }
-.ui-state-disabled .option-tree-setting { cursor: default; }
+.option-tree-setting                  { border: 1px solid #ccc; overflow: hidden; position: relative; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; }
 .option-tree-setting a                { text-decoration: none; }
-.option-tree-setting .open            { background: #fafafa; line-height: 21px; height: 21px; padding: 10px 100px 10px 10px; display: block; }
+.option-tree-setting .open            { background: #fafafa; cursor: move; line-height: 21px; height: 21px; padding: 10px 100px 10px 10px; display: block; }
+.ui-state-disabled .option-tree-setting .open { cursor: default; }
 .option-tree-setting .open:hover      { background: #fafafa url(../images/ot-dots.png) no-repeat 4px 15px; }
 
 .button-section                       { position: absolute; right: 0px; top: 1px; }
