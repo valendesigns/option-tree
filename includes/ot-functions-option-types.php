@@ -1617,9 +1617,58 @@ if ( ! function_exists( 'ot_type_typography' ) ) {
         $font_size = isset( $field_value['font-size'] ) ? esc_attr( $field_value['font-size'] ) : '';
         echo '<select name="' . esc_attr( $field_name ) . '[font-size]" id="' . esc_attr( $field_id ) . '-size" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
           echo '<option value="">font-size</option>';
-          for ( $i = 8; $i <= 72; $i++ ) { 
+          for ( $i = 8; $i <= 100; $i++ ) { 
             $size = $i . 'px';
             echo '<option value="' . esc_attr( $size ) . '" ' . selected( $font_size, $size, false ) . '>' . esc_attr( $size ) . '</option>';
+          }
+        echo '</select>';
+  	
+		/* build line height */
+        $line_height = isset( $field_value['line-height'] ) ? esc_attr( $field_value['line-height'] ) : '';
+        echo '<select name="' . esc_attr( $field_name ) . '[line-height]" id="' . esc_attr( $field_id ) . '-line-height" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
+          echo '<option value="">line-height</option>';
+		  echo '<option value="auto" ' . selected( $line_height, 'auto', false ) . '>Auto</option>';
+		  echo '<option value="inherit" ' . selected( $line_height, 'inherit', false ) . '>Inherit</option>';
+          for ( $i = 8; $i <= 100; $i++ ) { 
+            $height = $i . 'px';
+            echo '<option value="' . esc_attr( $height ) . '" ' . selected( $line_height, $height, false ) . '>' . esc_attr( $height ) . '</option>';
+          }
+        echo '</select>';
+		
+		/* build text transform */
+        $text_transform = isset( $field_value['text-transform'] ) ? esc_attr( $field_value['text-transform'] ) : '';
+        echo '<select name="' . esc_attr( $field_name ) . '[text-transform]" id="' . esc_attr( $field_id ) . '-transform" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
+          echo '<option value="">text-transform</option>';
+		  echo '<option value="none" ' . selected( $text_transform, 'none', false ) . '>None</option>';
+		  echo '<option value="capitalize" ' . selected( $text_transform, 'capitalize', false ) . '>Capitalize</option>';
+		  echo '<option value="uppercase" ' . selected( $text_transform, 'uppercase', false ) . '>Uppercase</option>';
+		  echo '<option value="lowercase" ' . selected( $text_transform, 'lowercase', false ) . '>Lowercase</option>';
+		  echo '<option value="inherit" ' . selected( $text_transform, 'inherit', false ) . '>Inherit</option>';
+          
+        echo '</select>';
+		
+		/* build text decoration */
+        $text_decoration = isset( $field_value['text-decoration'] ) ? esc_attr( $field_value['text-decoration'] ) : '';
+        echo '<select name="' . esc_attr( $field_name ) . '[text-decoration]" id="' . esc_attr( $field_id ) . '-decoration" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
+          echo '<option value="">text-decoration</option>';
+		  echo '<option value="none" ' . selected( $text_decoration, 'none', false ) . '>None</option>';
+		  echo '<option value="underline" ' . selected( $text_decoration, 'underline', false ) . '>Underline</option>';
+		  echo '<option value="overline" ' . selected( $text_decoration, 'overline', false ) . '>Overline</option>';
+		  echo '<option value="line-through" ' . selected( $text_decoration, 'line-through', false ) . '>Line Through</option>';
+		  echo '<option value="blink" ' . selected( $text_decoration, 'blink', false ) . '>Blink</option>';
+		  echo '<option value="inherit" ' . selected( $text_decoration, 'inherit', false ) . '>Inherit</option>';
+          
+        echo '</select>';
+		
+		/* build letter spacing */
+        $letter_spacing = isset( $field_value['letter-spacing'] ) ? esc_attr( $field_value['letter-spacing'] ) : '';
+        echo '<select name="' . esc_attr( $field_name ) . '[letter-spacing]" id="' . esc_attr( $field_id ) . '-letter-spacing" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
+          echo '<option value="">letter-spacing</option>';
+		  echo '<option value="normal" ' . selected( $letter_spacing, 'normal', false ) . '>Normal</option>';
+		  echo '<option value="inherit" ' . selected( $letter_spacing, 'inherit', false ) . '>Inherit</option>';
+          for ( $i = 1; $i <= 100; $i++ ) { 
+            $spacing = $i . 'px';
+            echo '<option value="' . esc_attr( $spacing ) . '" ' . selected( $letter_spacing, $spacing, false ) . '>' . esc_attr( $spacing ) . '</option>';
           }
         echo '</select>';
         
