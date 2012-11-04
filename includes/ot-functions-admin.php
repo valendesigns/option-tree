@@ -2920,9 +2920,12 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
         /* option label */
         echo '<div class="format-settings">';
           
+        /* don't show title with textblocks */
+        if ( $_args['type'] != 'textblock' ) {
           echo '<div class="format-setting-label">';
             echo '<h3 class="label">' . esc_attr( $field['label'] ) . '</h3>';
           echo '</div>';
+        }
         
         /* only allow simple textarea inside a list-item due to known DOM issues with wp_editor() */
         if ( $_args['type'] == 'textarea' )
