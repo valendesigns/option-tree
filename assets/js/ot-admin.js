@@ -63,6 +63,9 @@
             items: 'li:not(.ui-state-disabled)',
             handle: 'div.open',
             placeholder: 'ui-state-highlight',
+            start: function (event, ui) {
+              ui.placeholder.height(ui.helper.height());
+            },
             stop: function(evt, ui) {
               setTimeout(
                 function(){
