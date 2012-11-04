@@ -1623,7 +1623,7 @@ if ( ! function_exists( 'ot_type_typography' ) ) {
           }
         echo '</select>';
   	
-		/* build line height */
+	/* build line height */
         $line_height = isset( $field_value['line-height'] ) ? esc_attr( $field_value['line-height'] ) : '';
         echo '<select name="' . esc_attr( $field_name ) . '[line-height]" id="' . esc_attr( $field_id ) . '-line-height" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
           echo '<option value="">line-height</option>';
@@ -1635,7 +1635,7 @@ if ( ! function_exists( 'ot_type_typography' ) ) {
           }
         echo '</select>';
 		
-		/* build text transform */
+	/* build text transform */
         $text_transform = isset( $field_value['text-transform'] ) ? esc_attr( $field_value['text-transform'] ) : '';
         echo '<select name="' . esc_attr( $field_name ) . '[text-transform]" id="' . esc_attr( $field_id ) . '-transform" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
           echo '<option value="">text-transform</option>';
@@ -1647,7 +1647,7 @@ if ( ! function_exists( 'ot_type_typography' ) ) {
           
         echo '</select>';
 		
-		/* build text decoration */
+	/* build text decoration */
         $text_decoration = isset( $field_value['text-decoration'] ) ? esc_attr( $field_value['text-decoration'] ) : '';
         echo '<select name="' . esc_attr( $field_name ) . '[text-decoration]" id="' . esc_attr( $field_id ) . '-decoration" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
           echo '<option value="">text-decoration</option>';
@@ -1660,7 +1660,7 @@ if ( ! function_exists( 'ot_type_typography' ) ) {
           
         echo '</select>';
 		
-		/* build letter spacing */
+	/* build letter spacing */
         $letter_spacing = isset( $field_value['letter-spacing'] ) ? esc_attr( $field_value['letter-spacing'] ) : '';
         echo '<select name="' . esc_attr( $field_name ) . '[letter-spacing]" id="' . esc_attr( $field_id ) . '-letter-spacing" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
           echo '<option value="">letter-spacing</option>';
