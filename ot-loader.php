@@ -3,7 +3,7 @@
  * Plugin Name: OptionTree
  * Plugin URI:  http://wp.envato.com
  * Description: Theme Options UI Builder for WordPress. A simple way to create & save Theme Options and Meta Boxes for free or premium themes.
- * Version:     2.0.9
+ * Version:     2.0.10
  * Author:      Derek Herman
  * Author URI:  http://valendesigns.com
  * License:     GPLv2
@@ -34,9 +34,6 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       /* setup the constants */
       $this->constants();
       
-      /* load text domain */
-      $this->load_textdomain();
-      
       /* include the required admin files */
       $this->admin_includes();
       
@@ -63,7 +60,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       /**
        * Current Version number.
        */
-      define( 'OT_VERSION', '2.0.9' );
+      define( 'OT_VERSION', '2.0.10' );
       
       /**
        * For developers: Allow Unfiltered HTML in all the textareas.
@@ -112,10 +109,9 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       /**
        * Check if in theme mode.
        *
-       * If theme mode is false then set the directory path & URL
-       * like it's a plugin. Else make it look in the parent 
-       * theme root directory or child theme directory if 
-       * OT_CHILD_MODE is set to true. 
+       * If OT_THEME_MODE is false, set the directory path & URL
+       * like any other plugin. Otherwise, use the parent themes 
+       * root directory. 
        *
        * @since     2.0
        */
@@ -126,23 +122,13 @@ if ( ! class_exists( 'OT_Loader' ) ) {
         define( 'OT_DIR', trailingslashit( get_template_directory() ) . trailingslashit( basename( dirname( __FILE__ ) ) ) );
         define( 'OT_URL', trailingslashit( get_template_directory_uri() ) . trailingslashit( basename( dirname( __FILE__ ) ) ) );
       }
-  
-    }
-    
-    /**
-     * Load the text domain.
-     *
-     * @return    void
-     *
-     * @access    private
-     * @since     2.0
-     */
-    public function load_textdomain() {
-      if ( false == OT_THEME_MODE ) {
-        load_plugin_textdomain( 'option-tree', false, OT_DIR . 'languages' );
-      } else {
-        load_theme_textdomain( 'option-tree', OT_DIR . 'languages' );
-      }
+      
+      /**
+       * Relative path to the languages directory.
+       *
+       * @since     2.0.10
+       */
+      define( 'OT_LANG_DIR', dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
     }
     
     /**
@@ -224,6 +210,14 @@ if ( ! class_exists( 'OT_Loader' ) ) {
      */
     public function hooks() {
       
+      /* load the text domain  */
+      if ( false == OT_THEME_MODE ) {
+        add_action( 'plugins_loaded', array( &$this, 'load_textdomain' ) );
+      } else {
+        add_action( 'after_setup_theme', array( &$this, 'load_textdomain' ) );
+      }
+      
+      /* load the Meta Box assets */
       if ( OT_META_BOXES == true ) {
       
         /* add scripts for metaboxes to post-new.php & post.php */
@@ -290,6 +284,22 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       /* AJAX call to create a new list item */
       add_action( 'wp_ajax_add_list_item', array( &$this, 'add_list_item' ) );
       
+    }
+    
+    /**
+     * Load the text domain.
+     *
+     * @return    void
+     *
+     * @access    private
+     * @since     2.0
+     */
+    public function load_textdomain() {
+      if ( false == OT_THEME_MODE ) {
+        load_plugin_textdomain( 'option-tree', false, OT_LANG_DIR . 'plugin' );
+      } else {
+        load_theme_textdomain( 'option-tree', OT_LANG_DIR . 'theme-mode' );
+      }
     }
     
     /**
