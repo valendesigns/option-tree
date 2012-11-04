@@ -97,6 +97,16 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       define( 'OT_SHOW_PAGES', apply_filters( 'ot_show_pages', true ) );
       
       /**
+       * For developers: Show New Layout.
+       *
+       * Run a filter and set to false if you don't want to show the
+       * "New Layout" section at the top of the theme options page.
+       *
+       * @since     2.0.10
+       */
+      define( 'OT_SHOW_NEW_LAYOUT', apply_filters( 'ot_show_new_layout', true ) );
+      
+      /**
        * For developers: Meta Boxes.
        *
        * Run a filter and set to false to keep OptionTree from

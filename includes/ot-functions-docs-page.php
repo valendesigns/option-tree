@@ -772,6 +772,12 @@ if ( ! function_exists( 'ot_type_theme_mode' ) ) {
 add_filter( \'ot_show_pages\', \'__return_false\' );
 
 /**
+ * Optional: set \'ot_show_new_layout\' filter to false.
+ * This will hide the "New Layout" section on the Theme Options page.
+ */
+add_filter( \'ot_show_new_layout\', \'__return_false\' );
+
+/**
  * Required: set \'ot_theme_mode\' filter to true.
  */
 add_filter( \'ot_theme_mode\', \'__return_true\' );
