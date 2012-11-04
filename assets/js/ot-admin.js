@@ -64,7 +64,7 @@
             handle: 'div.open',
             placeholder: 'ui-state-highlight',
             start: function (event, ui) {
-              ui.placeholder.height(ui.helper.height());
+              ui.placeholder.height(ui.item.height()-2);
             },
             stop: function(evt, ui) {
               setTimeout(

@@ -162,7 +162,7 @@ input:focus.option-tree-ui-input      { border-color: #bbb !important; }
 .format-setting .ui-sortable-helper 
 .option-tree-setting .open            { background: #fff url(../images/ot-dots.png) no-repeat 4px 15px; }
 
-.ui-state-highlight { border: 1px dashed #ccc; line-height: 21px; height: 21px; padding: 10px 0px; display: block; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; }
+.ui-state-highlight { border: 1px dashed #ccc; display: block; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; }
 
 .option-tree-setting-body             { background: #fff; border-top: 1px solid #ccc; display: none; padding: 10px; -webkit-border-bottom-right-radius: 3px; -webkit-border-bottom-left-radius: 3px; -moz-border-radius-bottomright: 3px; -moz-border-radius-bottomleft: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px; }
 
