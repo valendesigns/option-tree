@@ -285,7 +285,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
                 echo '</div>';
                 
                 /* Navigation */
-  		          echo '<div class="ui-tabs">';
+    	          echo '<div class="ui-tabs">';
   		            
                 /* check for sections */
                 if ( isset( $page['sections'] ) && count( $page['sections'] ) > 0 ) {
@@ -764,6 +764,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
       foreach ( (array) $wp_settings_fields[$page][$section] as $field ) {
         
         echo '<div id="setting_' . $field['id'] . '" class="format-settings">';
+		echo '<div class="format-settings-wrap">';
     		  
     		  if ( $field['args']['type'] != 'textblock' ) {
     		  
@@ -776,7 +777,8 @@ if ( ! class_exists( 'OT_Settings' ) ) {
           }
     
           call_user_func( $field['callback'], $field['args'] );
-    
+		
+		echo '</div>';
         echo '</div>';
         
     	}
