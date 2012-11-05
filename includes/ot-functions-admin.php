@@ -1032,7 +1032,10 @@ function custom_theme_options() {
    */
   \$custom_settings = array( $build_settings
   );
-   
+  
+  /* allow settings to be filtered before saving */
+  \$custom_settings = apply_filters( 'option_tree_settings_args', \$custom_settings );
+  
   /* settings are not the same update the DB */
   if ( \$saved_settings !== \$custom_settings ) {
     update_option( 'option_tree_settings', \$custom_settings ); 
@@ -1769,6 +1772,67 @@ if ( ! function_exists( 'ot_recognized_font_families' ) ) {
 }
 
 /**
+ * Recognized text transformations
+ *
+ * Returns an array of all recognized text transformations.
+ * Keys are intended to be stored in the database
+ * while values are ready for display in html.
+ *
+ * @uses      apply_filters()
+ *
+ * @return    array
+ *
+ * @access    public
+ * @since     2.0.10
+ */
+if ( ! function_exists( 'ot_recognized_text_transformations' ) ) {
+  
+  function ot_recognized_text_transformations( $field_id = '' ) {
+  
+    return apply_filters( 'ot_recognized_text_transformations', array(
+      'capitalize'  => 'Capitalize',
+      'inherit'     => 'Inherit',
+      'lowercase'   => 'Lowercase',
+      'none'        => 'None',
+      'uppercase'   => 'Uppercase'
+    ), $field_id );
+    
+  }
+
+}
+
+/**
+ * Recognized text decorations
+ *
+ * Returns an array of all recognized text decorations.
+ * Keys are intended to be stored in the database
+ * while values are ready for display in html.
+ *
+ * @uses      apply_filters()
+ *
+ * @return    array
+ *
+ * @access    public
+ * @since     2.0.10
+ */
+if ( ! function_exists( 'ot_recognized_text_decorations' ) ) {
+  
+  function ot_recognized_text_decorations( $field_id = '' ) {
+  
+    return apply_filters( 'ot_recognized_text_decorations', array(
+      'blink'         => 'Blink',
+      'inherit'       => 'Inherit',
+      'line-through'  => 'Line Through',
+      'none'          => 'None',
+      'overline'      => 'Overline',
+      'underline'     => 'Underline'
+    ), $field_id );
+    
+  }
+
+}
+
+/**
  * Recognized background repeat
  *
  * Returns an array of all recognized background repeat values.
@@ -2165,7 +2229,7 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
               $value = $value[0].$value[1];
               
             /* typography */
-            } else if ( ot_array_keys_exists( $value, array( 'font-color', 'font-family', 'font-style', 'font-variant', 'font-weight', 'font-size' ) ) ) {
+            } else if ( ot_array_keys_exists( $value, array( 'font-color', 'font-family', 'font-size', 'font-style', 'font-variant', 'font-weight', 'letter-spacing', 'line-height', 'text-decoration', 'text-transform' ) ) ) {
               $font = array();
               
               if ( ! empty( $value['font-color'] ) )
@@ -2190,6 +2254,18 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
               
               if ( ! empty( $value['font-weight'] ) )
                 $font[] = "font-weight: " . $value['font-weight'] . ";";
+                
+              if ( ! empty( $value['letter-spacing'] ) )
+                $font[] = "letter-spacing: " . $value['letter-spacing'] . ";";
+              
+              if ( ! empty( $value['line-height'] ) )
+                $font[] = "line-height: " . $value['line-height'] . ";";
+              
+              if ( ! empty( $value['text-decoration'] ) )
+                $font[] = "text-decoration: " . $value['text-decoration'] . ";";
+              
+              if ( ! empty( $value['text-transform'] ) )
+                $font[] = "text-transform: " . $value['text-transform'] . ";";
               
               /* set $value with font properties or empty string */
               $value = ! empty( $font ) ? implode( "\n", $font ) : '';
@@ -2907,7 +2983,7 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
           'field_value'       => isset( $list_item[$field['id']] ) ? $list_item[$field['id']] : '',
           'field_desc'        => isset( $field['desc'] ) ? $field['desc'] : '',
           'field_std'         => isset( $field['std'] ) ? $field['std'] : '',
-          'field_rows'        => isset( $rows ) ? $rows : 10,
+          'field_rows'        => isset( $field['rows'] ) ? $field['rows'] : 10,
           'field_post_type'   => isset( $field['post_type'] ) && ! empty( $field['post_type'] ) ? $field['post_type'] : 'post',
           'field_taxonomy'    => isset( $field['taxonomy'] ) && ! empty( $field['taxonomy'] ) ? $field['taxonomy'] : 'category',
           'field_class'       => isset( $field['class'] ) ? $field['class'] : '',
@@ -2920,9 +2996,12 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
         /* option label */
         echo '<div class="format-settings">';
           
+        /* don't show title with textblocks */
+        if ( $_args['type'] != 'textblock' ) {
           echo '<div class="format-setting-label">';
             echo '<h3 class="label">' . esc_attr( $field['label'] ) . '</h3>';
           echo '</div>';
+        }
         
         /* only allow simple textarea inside a list-item due to known DOM issues with wp_editor() */
         if ( $_args['type'] == 'textarea' )

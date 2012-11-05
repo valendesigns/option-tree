@@ -33,7 +33,7 @@ if ( function_exists( 'ot_register_settings' ) ) {
             'parent_slug'     => 'themes.php',
             'page_title'      => __( 'Theme Options', 'option-tree' ),
             'menu_title'      => __( 'Theme Options', 'option-tree' ),
-            'capability'      => 'manage_options',
+            'capability'      => 'edit_theme_options',
             'menu_slug'       => 'ot-theme-options',
             'icon_url'        => null,
             'position'        => null,

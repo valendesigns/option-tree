@@ -4,7 +4,7 @@ Donate link: http://bit.ly/NuXI3T
 Tags: admin, theme options, meta boxes, options, admin interface, ajax
 Requires at least: 3.3
 Tested up to: 3.5
-Stable tag: 2.0.9
+Stable tag: 2.0.10
 License: GPLv2
 
 Theme Options UI Builder for WordPress. A simple way to create & save Theme Options and Meta Boxes for free or premium themes.
@@ -40,6 +40,23 @@ Yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
 3. Documentation
 
 == Changelog ==
+
+= 2.0.10 =
+* Fixed a bug where the Textarea row count wasn't working for List Items.
+* Added an apply_filter to the exported theme-options.php file.
+* Added CSS id's to tabs and settings.
+* Allow "New Layout" section to be hidden on the theme options page via a filter.
+* Fixed a bug where the Colorpicker was not closing in List Items.
+* Change capabilities from manage_options to edit_theme_options.
+* Remove Textblock title in List Items & Metaboxes.
+* Fixed a List Item bug that incorrectly added ID's based on counting objects - submitted by Spark
+* Fixed incorrect text domain paths for both plugin and theme mode.
+* Fixed a bug with UI Sortable not properly calculating the container height.
+* Fixed Select dropdown selector bug - submitted by Manfred Haltner
+* Fixed Radio Image remove class bug - submitted by designst
+* Added new typography fields - submitted by darknailblue
+* Added dynamic CSS support for new typography fields.
+* Added new filters to typography fields, including low/high range & unit types.
 
 = 2.0.9 =
 * Fixed the issue where the Textarea Simple and CSS option types were mysteriously being ran through wpautop.
@@ -182,7 +199,7 @@ Yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
 
 == Upgrade Notice ==
 
-= 2.0.9 =
+= 2.0.10 =
 The plugin has undertaken a complete rebuild! If you are not the theme developer, I urge you to contact that person before you upgrade and ask them to test the themes compatibility.
 
 = 1.1.8.1 =
