@@ -1772,6 +1772,67 @@ if ( ! function_exists( 'ot_recognized_font_families' ) ) {
 }
 
 /**
+ * Recognized text transformations
+ *
+ * Returns an array of all recognized text transformations.
+ * Keys are intended to be stored in the database
+ * while values are ready for display in html.
+ *
+ * @uses      apply_filters()
+ *
+ * @return    array
+ *
+ * @access    public
+ * @since     2.0.10
+ */
+if ( ! function_exists( 'ot_recognized_text_transformations' ) ) {
+  
+  function ot_recognized_text_transformations( $field_id = '' ) {
+  
+    return apply_filters( 'ot_recognized_text_transformations', array(
+      'capitalize'  => 'Capitalize',
+      'inherit'     => 'Inherit',
+      'lowercase'   => 'Lowercase',
+      'none'        => 'None',
+      'uppercase'   => 'Uppercase'
+    ), $field_id );
+    
+  }
+
+}
+
+/**
+ * Recognized text decorations
+ *
+ * Returns an array of all recognized text decorations.
+ * Keys are intended to be stored in the database
+ * while values are ready for display in html.
+ *
+ * @uses      apply_filters()
+ *
+ * @return    array
+ *
+ * @access    public
+ * @since     2.0.10
+ */
+if ( ! function_exists( 'ot_recognized_text_decorations' ) ) {
+  
+  function ot_recognized_text_decorations( $field_id = '' ) {
+  
+    return apply_filters( 'ot_recognized_text_decorations', array(
+      'blink'         => 'Blink',
+      'inherit'       => 'Inherit',
+      'line-through'  => 'Line Through',
+      'none'          => 'None',
+      'overline'      => 'Overline',
+      'underline'     => 'Underline'
+    ), $field_id );
+    
+  }
+
+}
+
+/**
  * Recognized background repeat
  *
  * Returns an array of all recognized background repeat values.
@@ -2168,7 +2229,7 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
               $value = $value[0].$value[1];
               
             /* typography */
-            } else if ( ot_array_keys_exists( $value, array( 'font-color', 'font-family', 'font-style', 'font-variant', 'font-weight', 'font-size' ) ) ) {
+            } else if ( ot_array_keys_exists( $value, array( 'font-color', 'font-family', 'font-size', 'font-style', 'font-variant', 'font-weight', 'letter-spacing', 'line-height', 'text-decoration', 'text-transform' ) ) ) {
               $font = array();
               
               if ( ! empty( $value['font-color'] ) )
@@ -2193,6 +2254,18 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
               
               if ( ! empty( $value['font-weight'] ) )
                 $font[] = "font-weight: " . $value['font-weight'] . ";";
+                
+              if ( ! empty( $value['letter-spacing'] ) )
+                $font[] = "letter-spacing: " . $value['letter-spacing'] . ";";
+              
+              if ( ! empty( $value['line-height'] ) )
+                $font[] = "line-height: " . $value['line-height'] . ";";
+              
+              if ( ! empty( $value['text-decoration'] ) )
+                $font[] = "text-decoration: " . $value['text-decoration'] . ";";
+              
+              if ( ! empty( $value['text-transform'] ) )
+                $font[] = "text-transform: " . $value['text-transform'] . ";";
               
               /* set $value with font properties or empty string */
               $value = ! empty( $font ) ? implode( "\n", $font ) : '';

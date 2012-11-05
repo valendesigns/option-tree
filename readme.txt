@@ -44,7 +44,7 @@ Yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
 = 2.0.10 =
 * Fixed a bug where the Textarea row count wasn't working for List Items.
 * Added an apply_filter to the exported theme-options.php file.
-* Add a CSS id to tabs and settings.
+* Added CSS id's to tabs and settings.
 * Allow "New Layout" section to be hidden on the theme options page via a filter.
 * Fixed a bug where the Colorpicker was not closing in List Items.
 * Change capabilities from manage_options to edit_theme_options.
@@ -54,6 +54,9 @@ Yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
 * Fixed a bug with UI Sortable not properly calculating the container height.
 * Fixed Select dropdown selector bug - submitted by Manfred Haltner
 * Fixed Radio Image remove class bug - submitted by designst
+* Added new typography fields - submitted by darknailblue
+* Added dynamic CSS support for new typography fields.
+* Added new filters to typography fields, including low/high range & unit types.
 
 = 2.0.9 =
 * Fixed the issue where the Textarea Simple and CSS option types were mysteriously being ran through wpautop.
