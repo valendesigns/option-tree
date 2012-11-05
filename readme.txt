@@ -52,6 +52,8 @@ Yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
 * Fixed a List Item bug that incorrectly added ID's based on counting objects - submitted by Spark
 * Fixed incorrect text domain paths for both plugin and theme mode.
 * Fixed a bug with UI Sortable not properly calculating the container height.
+* Fixed Select dropdown selector bug.
+* Fixed Radio Image remove class bug.
 
 = 2.0.9 =
 * Fixed the issue where the Textarea Simple and CSS option types were mysteriously being ran through wpautop.

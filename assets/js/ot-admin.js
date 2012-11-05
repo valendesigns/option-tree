@@ -364,7 +364,7 @@
     },
     init_radio_image_select: function() {
       $('.option-tree-ui-radio-image').live('click', function() {
-        $('.option-tree-ui-radio-image').removeClass('option-tree-ui-radio-image-selected');
+        $(this).closest('.type-radio-image').find('.option-tree-ui-radio-image').removeClass('option-tree-ui-radio-image-selected');
         $(this).toggleClass('option-tree-ui-radio-image-selected');
         $(this).parent().find('.option-tree-ui-radio').attr('checked', true);
       });
@@ -373,7 +373,7 @@
       $('.option-tree-ui-select').each(function () {
         if ( ! $(this).parent().hasClass('select-wrapper') ) {
           $(this).wrap('<div class="select-wrapper" />');
-          $(this).parent('.select-wrapper.').prepend('<span>' + $(this).find('option:selected').text() + '</span>');
+          $(this).parent('.select-wrapper').prepend('<span>' + $(this).find('option:selected').text() + '</span>');
         }
       });
       $('.option-tree-ui-select').live('change', function () {
