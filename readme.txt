@@ -41,6 +41,9 @@ Yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
 
 == Changelog ==
 
+= 2.0.11 =
+* Added filters to the array that builds the Theme Option UI.
+
 = 2.0.10 =
 * Fixed a bug where the Textarea row count wasn't working for List Items.
 * Added an apply_filter to the exported theme-options.php file.
