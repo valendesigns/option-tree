@@ -138,6 +138,7 @@ input:focus.option-tree-ui-input      { border-color: #bbb !important; }
 .wp-editor-area { display: block;}
 .textarea,
 .ot-metabox-wrapper textarea          { width: 99.9%; border: 1px solid #ccc; font-family: Consolas, Monaco, monospace; line-height: 150%; outline: 0; padding: 10px; resize: vertical; }
+#contextual-help-setting .textarea    { width: 99.75%; }
 .ot-metabox-wrapper .wp-editor-container { border: none; }
 .ot-metabox-wrapper textarea:focus    { border-color: #bbb !important; }
 
