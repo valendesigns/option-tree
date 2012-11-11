@@ -45,6 +45,7 @@ Yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
 * Added filters to the array that builds the Theme Option UI.
 * Added .format-setting-wrap div to allow for complex CSS layouts.
 * Added better namespacing for the Colorpicker option type.
+* Fixed theme-options.php export where it was adding an extra comma.
 
 = 2.0.10 =
 * Fixed a bug where the Textarea row count wasn't working for List Items.
