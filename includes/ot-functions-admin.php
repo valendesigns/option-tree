@@ -864,7 +864,8 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
         ),";
       }
       $help = substr_replace( $help, '' , -1 );
-      $contextual_help = "'content'       => array( $help
+      $contextual_help = "
+      'content'       => array( $help
       ),";
     }
     
@@ -877,9 +878,8 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
     /* check that $contexual_help has a value and add to $build_settings */
     if ( '' != $contextual_help ) {
       $build_settings.= "
-    'contextual_help' => array(
-      $contextual_help
-    )";
+    'contextual_help' => array( $contextual_help
+    ),";
     }
     
     /* build sections */
@@ -898,7 +898,7 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
     
     /* check that $sections has a value and add to $build_settings */
     if ( '' != $sections ) {
-      $build_settings.= ",
+      $build_settings.= "
     'sections'        => array( $sections
     )";
     }

@@ -765,17 +765,21 @@ if ( ! class_exists( 'OT_Settings' ) ) {
         
         echo '<div id="setting_' . $field['id'] . '" class="format-settings">';
     		  
-    		  if ( $field['args']['type'] != 'textblock' ) {
+    		  echo '<div class="format-setting-wrap">';
     		  
-    		    echo '<div class="format-setting-label">';
-  		  
-      		    echo '<h3 class="label">' . $field['title'] . '</h3>';     
+      		  if ( $field['args']['type'] != 'textblock' ) {
+      		  
+      		    echo '<div class="format-setting-label">';
+    		  
+        		    echo '<h3 class="label">' . $field['title'] . '</h3>';     
+            
+              echo '</div>';
+            
+            }
+      
+            call_user_func( $field['callback'], $field['args'] );
           
-            echo '</div>';
-          
-          }
-    
-          call_user_func( $field['callback'], $field['args'] );
+          echo '</div>';
     
         echo '</div>';
         
