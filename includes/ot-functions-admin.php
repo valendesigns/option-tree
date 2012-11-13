@@ -213,7 +213,7 @@ if ( ! function_exists( 'ot_create_media_post' ) ) {
     
     register_post_type( 'option-tree', array(
       'labels'              => array( 'name' => __( 'Option Tree', 'option-tree' ) ),
-      'public'              => true,
+      'public'              => false,
       'show_ui'             => false,
       'capability_type'     => 'post',
       'exclude_from_search' => true,

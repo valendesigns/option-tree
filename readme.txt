@@ -43,6 +43,7 @@ Yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
 
 = 2.0.12 =
 * Added additional filters to the array that builds the Theme Option UI.
+* Made option-tree post type private.
 
 = 2.0.11 =
 * Added filters to the array that builds the Theme Option UI.
