@@ -18,7 +18,7 @@ if ( function_exists( 'ot_register_settings' ) ) {
             'id'              => 'ot',
             'page_title'      => __( 'OptionTree', 'option-tree' ),
             'menu_title'      => __( 'OptionTree', 'option-tree' ),
-            'capability'      => 'edit_theme_options',
+            'capability'      => 'manage_options',
             'menu_slug'       => 'ot-settings',
             'icon_url'        => OT_URL . '/assets/images/ot-logo-mini.png',
             'position'        => 61,
