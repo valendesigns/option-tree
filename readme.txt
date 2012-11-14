@@ -46,6 +46,7 @@ Yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
 * Made option-tree post type private.
 * Revert capabilities back to manage_options in ot-ui-admin.php.
 * Upload now sends the URL of the selected image size to OptionTree.
+* Added new range interval filter to font-size, letter-spacing, & line-height.
 
 = 2.0.11 =
 * Added filters to the array that builds the Theme Option UI.

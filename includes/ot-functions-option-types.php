@@ -1590,9 +1590,8 @@ if ( ! function_exists( 'ot_type_typography' ) ) {
         $font_size = isset( $field_value['font-size'] ) ? esc_attr( $field_value['font-size'] ) : '';
         echo '<select name="' . esc_attr( $field_name ) . '[font-size]" id="' . esc_attr( $field_id ) . '-font-size" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
           echo '<option value="">font-size</option>';
-          for ( $i = apply_filters( 'ot_font_size_low_range', 0, $field_id ); $i <= apply_filters( 'ot_font_size_high_range', 150, $field_id ); $i++ ) { 
-            $size = $i . apply_filters( 'ot_font_size_unit_type', 'px', $field_id );
-            echo '<option value="' . esc_attr( $size ) . '" ' . selected( $font_size, $size, false ) . '>' . esc_attr( $size ) . '</option>';
+          foreach( ot_recognized_font_sizes( $field_id ) as $option ) { 
+            echo '<option value="' . esc_attr( $option ) . '" ' . selected( $font_size, $option, false ) . '>' . esc_attr( $option ) . '</option>';
           }
         echo '</select>';
         
@@ -1627,9 +1626,8 @@ if ( ! function_exists( 'ot_type_typography' ) ) {
         $letter_spacing = isset( $field_value['letter-spacing'] ) ? esc_attr( $field_value['letter-spacing'] ) : '';
         echo '<select name="' . esc_attr( $field_name ) . '[letter-spacing]" id="' . esc_attr( $field_id ) . '-letter-spacing" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
           echo '<option value="">letter-spacing</option>';
-          for ( $i = apply_filters( 'ot_letter_spacing_low_range', 0, $field_id ); $i <= apply_filters( 'ot_letter_spacing_high_range', 150, $field_id ); $i++ ) { 
-            $size = $i . apply_filters( 'ot_letter_spacing_unit_type', 'px', $field_id );
-            echo '<option value="' . esc_attr( $size ) . '" ' . selected( $letter_spacing, $size, false ) . '>' . esc_attr( $size ) . '</option>';
+          foreach( ot_recognized_letter_spacing( $field_id ) as $option ) { 
+            echo '<option value="' . esc_attr( $option ) . '" ' . selected( $letter_spacing, $option, false ) . '>' . esc_attr( $option ) . '</option>';
           }
         echo '</select>';
         
@@ -1637,9 +1635,8 @@ if ( ! function_exists( 'ot_type_typography' ) ) {
         $line_height = isset( $field_value['line-height'] ) ? esc_attr( $field_value['line-height'] ) : '';
         echo '<select name="' . esc_attr( $field_name ) . '[line-height]" id="' . esc_attr( $field_id ) . '-line-height" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
           echo '<option value="">line-height</option>';
-          for ( $i = apply_filters( 'ot_line_height_low_range', 0, $field_id ); $i <= apply_filters( 'ot_line_height_high_range', 150, $field_id ); $i++ ) { 
-            $size = $i . apply_filters( 'ot_line_height_unit_type', 'px', $field_id );
-            echo '<option value="' . esc_attr( $size ) . '" ' . selected( $line_height, $size, false ) . '>' . esc_attr( $size ) . '</option>';
+          foreach( ot_recognized_line_heights( $field_id ) as $option ) { 
+            echo '<option value="' . esc_attr( $option ) . '" ' . selected( $line_height, $option, false ) . '>' . esc_attr( $option ) . '</option>';
           }
         echo '</select>';
         
