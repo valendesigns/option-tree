@@ -298,9 +298,12 @@
                           }, 50);
         tb_show('', 'media-upload.php?post_id='+post_id+'&field_id='+field_id+'&type=image&TB_iframe=1');
         window.send_to_editor = function(html) {
-          var href = $(html).attr('href');
-          var image = /\.(?:jpe?g|png|gif|ico)$/i;
+          var href = $(html).find('img').attr('src');
+          if ( typeof href == 'undefined') {
+            href = $(html).attr('href');
+          }
           if (OT_UI.url_exists(href)) {
+            var image = /\.(?:jpe?g|png|gif|ico)$/i;
             if (href.match(image)) {
               btnContent += '<div class="option-tree-ui-image-wrap"><img src="'+href+'" alt="" /></div>';
             }

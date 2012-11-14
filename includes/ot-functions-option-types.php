@@ -1577,89 +1577,117 @@ if ( ! function_exists( 'ot_type_typography' ) ) {
         
         echo '</div>';
         
+        /* allow fields to be filtered */
+        $ot_recognized_typography_fields = apply_filters( 'ot_recognized_typography_fields', array( 
+          'font-family', 
+          'font-size', 
+          'font-style', 
+          'font-variant', 
+          'font-weight', 
+          'letter-spacing', 
+          'line-height', 
+          'text-decoration', 
+          'text-transform' 
+        ), $field_id );
+        
         /* build font family */
-        $font_family = isset( $field_value['font-family'] ) ? esc_attr( $field_value['font-family'] ) : '';
-        echo '<select name="' . esc_attr( $field_name ) . '[font-family]" id="' . esc_attr( $field_id ) . '-font-family" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
-          echo '<option value="">font-family</option>';
-          foreach ( ot_recognized_font_families( $field_id ) as $key => $value ) {
-            echo '<option value="' . esc_attr( $key ) . '" ' . selected( $font_family, $key, false ) . '>' . esc_attr( $value ) . '</option>';
-          }
-        echo '</select>';
+        if ( in_array( 'font-family', $ot_recognized_typography_fields ) ) {
+          $font_family = isset( $field_value['font-family'] ) ? esc_attr( $field_value['font-family'] ) : '';
+          echo '<select name="' . esc_attr( $field_name ) . '[font-family]" id="' . esc_attr( $field_id ) . '-font-family" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
+            echo '<option value="">font-family</option>';
+            foreach ( ot_recognized_font_families( $field_id ) as $key => $value ) {
+              echo '<option value="' . esc_attr( $key ) . '" ' . selected( $font_family, $key, false ) . '>' . esc_attr( $value ) . '</option>';
+            }
+          echo '</select>';
+        }
         
         /* build font size */
-        $font_size = isset( $field_value['font-size'] ) ? esc_attr( $field_value['font-size'] ) : '';
-        echo '<select name="' . esc_attr( $field_name ) . '[font-size]" id="' . esc_attr( $field_id ) . '-font-size" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
-          echo '<option value="">font-size</option>';
-          for ( $i = apply_filters( 'ot_font_size_low_range', 0, $field_id ); $i <= apply_filters( 'ot_font_size_high_range', 150, $field_id ); $i++ ) { 
-            $size = $i . apply_filters( 'ot_font_size_unit_type', 'px', $field_id );
-            echo '<option value="' . esc_attr( $size ) . '" ' . selected( $font_size, $size, false ) . '>' . esc_attr( $size ) . '</option>';
-          }
-        echo '</select>';
+        if ( in_array( 'font-size', $ot_recognized_typography_fields ) ) {
+          $font_size = isset( $field_value['font-size'] ) ? esc_attr( $field_value['font-size'] ) : '';
+          echo '<select name="' . esc_attr( $field_name ) . '[font-size]" id="' . esc_attr( $field_id ) . '-font-size" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
+            echo '<option value="">font-size</option>';
+            foreach( ot_recognized_font_sizes( $field_id ) as $option ) { 
+              echo '<option value="' . esc_attr( $option ) . '" ' . selected( $font_size, $option, false ) . '>' . esc_attr( $option ) . '</option>';
+            }
+          echo '</select>';
+        }
         
         /* build font style */
-        $font_style = isset( $field_value['font-style'] ) ? esc_attr( $field_value['font-style'] ) : '';
-        echo '<select name="' . esc_attr( $field_name ) . '[font-style]" id="' . esc_attr( $field_id ) . '-font-style" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
-          echo '<option value="">font-style</option>';
-          foreach ( ot_recognized_font_styles( $field_id ) as $key => $value ) {
-            echo '<option value="' . esc_attr( $key ) . '" ' . selected( $font_style, $key, false ) . '>' . esc_attr( $value ) . '</option>';
-          }
-        echo '</select>';
+        if ( in_array( 'font-style', $ot_recognized_typography_fields ) ) {
+          $font_style = isset( $field_value['font-style'] ) ? esc_attr( $field_value['font-style'] ) : '';
+          echo '<select name="' . esc_attr( $field_name ) . '[font-style]" id="' . esc_attr( $field_id ) . '-font-style" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
+            echo '<option value="">font-style</option>';
+            foreach ( ot_recognized_font_styles( $field_id ) as $key => $value ) {
+              echo '<option value="' . esc_attr( $key ) . '" ' . selected( $font_style, $key, false ) . '>' . esc_attr( $value ) . '</option>';
+            }
+          echo '</select>';
+        }
         
         /* build font variant */
-        $font_variant = isset( $field_value['font-variant'] ) ? esc_attr( $field_value['font-variant'] ) : '';
-        echo '<select name="' . esc_attr( $field_name ) . '[font-variant]" id="' . esc_attr( $field_id ) . '-font-variant" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
-          echo '<option value="">font-variant</option>';
-          foreach ( ot_recognized_font_variants( $field_id ) as $key => $value ) {
-            echo '<option value="' . esc_attr( $key ) . '" ' . selected( $font_variant, $key, false ) . '>' . esc_attr( $value ) . '</option>';
-          }
-        echo '</select>';
+        if ( in_array( 'font-variant', $ot_recognized_typography_fields ) ) {
+          $font_variant = isset( $field_value['font-variant'] ) ? esc_attr( $field_value['font-variant'] ) : '';
+          echo '<select name="' . esc_attr( $field_name ) . '[font-variant]" id="' . esc_attr( $field_id ) . '-font-variant" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
+            echo '<option value="">font-variant</option>';
+            foreach ( ot_recognized_font_variants( $field_id ) as $key => $value ) {
+              echo '<option value="' . esc_attr( $key ) . '" ' . selected( $font_variant, $key, false ) . '>' . esc_attr( $value ) . '</option>';
+            }
+          echo '</select>';
+        }
         
         /* build font weight */
-        $font_weight = isset( $field_value['font-weight'] ) ? esc_attr( $field_value['font-weight'] ) : '';
-        echo '<select name="' . esc_attr( $field_name ) . '[font-weight]" id="' . esc_attr( $field_id ) . '-font-weight" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
-          echo '<option value="">font-weight</option>';
-          foreach ( ot_recognized_font_weights( $field_id ) as $key => $value ) {
-            echo '<option value="' . esc_attr( $key ) . '" ' . selected( $font_weight, $key, false ) . '>' . esc_attr( $value ) . '</option>';
-          }
-        echo '</select>';
+        if ( in_array( 'font-weight', $ot_recognized_typography_fields ) ) {
+          $font_weight = isset( $field_value['font-weight'] ) ? esc_attr( $field_value['font-weight'] ) : '';
+          echo '<select name="' . esc_attr( $field_name ) . '[font-weight]" id="' . esc_attr( $field_id ) . '-font-weight" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
+            echo '<option value="">font-weight</option>';
+            foreach ( ot_recognized_font_weights( $field_id ) as $key => $value ) {
+              echo '<option value="' . esc_attr( $key ) . '" ' . selected( $font_weight, $key, false ) . '>' . esc_attr( $value ) . '</option>';
+            }
+          echo '</select>';
+        }
         
         /* build letter spacing */
-        $letter_spacing = isset( $field_value['letter-spacing'] ) ? esc_attr( $field_value['letter-spacing'] ) : '';
-        echo '<select name="' . esc_attr( $field_name ) . '[letter-spacing]" id="' . esc_attr( $field_id ) . '-letter-spacing" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
-          echo '<option value="">letter-spacing</option>';
-          for ( $i = apply_filters( 'ot_letter_spacing_low_range', 0, $field_id ); $i <= apply_filters( 'ot_letter_spacing_high_range', 150, $field_id ); $i++ ) { 
-            $size = $i . apply_filters( 'ot_letter_spacing_unit_type', 'px', $field_id );
-            echo '<option value="' . esc_attr( $size ) . '" ' . selected( $letter_spacing, $size, false ) . '>' . esc_attr( $size ) . '</option>';
-          }
-        echo '</select>';
+        if ( in_array( 'letter-spacing', $ot_recognized_typography_fields ) ) {
+          $letter_spacing = isset( $field_value['letter-spacing'] ) ? esc_attr( $field_value['letter-spacing'] ) : '';
+          echo '<select name="' . esc_attr( $field_name ) . '[letter-spacing]" id="' . esc_attr( $field_id ) . '-letter-spacing" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
+            echo '<option value="">letter-spacing</option>';
+            foreach( ot_recognized_letter_spacing( $field_id ) as $option ) { 
+              echo '<option value="' . esc_attr( $option ) . '" ' . selected( $letter_spacing, $option, false ) . '>' . esc_attr( $option ) . '</option>';
+            }
+          echo '</select>';
+        }
         
         /* build line height */
-        $line_height = isset( $field_value['line-height'] ) ? esc_attr( $field_value['line-height'] ) : '';
-        echo '<select name="' . esc_attr( $field_name ) . '[line-height]" id="' . esc_attr( $field_id ) . '-line-height" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
-          echo '<option value="">line-height</option>';
-          for ( $i = apply_filters( 'ot_line_height_low_range', 0, $field_id ); $i <= apply_filters( 'ot_line_height_high_range', 150, $field_id ); $i++ ) { 
-            $size = $i . apply_filters( 'ot_line_height_unit_type', 'px', $field_id );
-            echo '<option value="' . esc_attr( $size ) . '" ' . selected( $line_height, $size, false ) . '>' . esc_attr( $size ) . '</option>';
-          }
-        echo '</select>';
+        if ( in_array( 'line-height', $ot_recognized_typography_fields ) ) {
+          $line_height = isset( $field_value['line-height'] ) ? esc_attr( $field_value['line-height'] ) : '';
+          echo '<select name="' . esc_attr( $field_name ) . '[line-height]" id="' . esc_attr( $field_id ) . '-line-height" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
+            echo '<option value="">line-height</option>';
+            foreach( ot_recognized_line_heights( $field_id ) as $option ) { 
+              echo '<option value="' . esc_attr( $option ) . '" ' . selected( $line_height, $option, false ) . '>' . esc_attr( $option ) . '</option>';
+            }
+          echo '</select>';
+        }
         
         /* build text decoration */
-        $text_decoration = isset( $field_value['text-decoration'] ) ? esc_attr( $field_value['text-decoration'] ) : '';
-        echo '<select name="' . esc_attr( $field_name ) . '[text-decoration]" id="' . esc_attr( $field_id ) . '-text-decoration" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
-          echo '<option value="">text-decoration</option>';
-          foreach ( ot_recognized_text_decorations( $field_id ) as $key => $value ) {
-            echo '<option value="' . esc_attr( $key ) . '" ' . selected( $text_decoration, $key, false ) . '>' . esc_attr( $value ) . '</option>';
-          }
-        echo '</select>';
+        if ( in_array( 'text-decoration', $ot_recognized_typography_fields ) ) {
+          $text_decoration = isset( $field_value['text-decoration'] ) ? esc_attr( $field_value['text-decoration'] ) : '';
+          echo '<select name="' . esc_attr( $field_name ) . '[text-decoration]" id="' . esc_attr( $field_id ) . '-text-decoration" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
+            echo '<option value="">text-decoration</option>';
+            foreach ( ot_recognized_text_decorations( $field_id ) as $key => $value ) {
+              echo '<option value="' . esc_attr( $key ) . '" ' . selected( $text_decoration, $key, false ) . '>' . esc_attr( $value ) . '</option>';
+            }
+          echo '</select>';
+        }
         
         /* build text transform */
-        $text_transform = isset( $field_value['text-transform'] ) ? esc_attr( $field_value['text-transform'] ) : '';
-        echo '<select name="' . esc_attr( $field_name ) . '[text-transform]" id="' . esc_attr( $field_id ) . '-text-transform" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
-          echo '<option value="">text-transform</option>';
-          foreach ( ot_recognized_text_transformations( $field_id ) as $key => $value ) {
-            echo '<option value="' . esc_attr( $key ) . '" ' . selected( $text_transform, $key, false ) . '>' . esc_attr( $value ) . '</option>';
-          }
-        echo '</select>'; 
+        if ( in_array( 'text-transform', $ot_recognized_typography_fields ) ) {
+          $text_transform = isset( $field_value['text-transform'] ) ? esc_attr( $field_value['text-transform'] ) : '';
+          echo '<select name="' . esc_attr( $field_name ) . '[text-transform]" id="' . esc_attr( $field_id ) . '-text-transform" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
+            echo '<option value="">text-transform</option>';
+            foreach ( ot_recognized_text_transformations( $field_id ) as $key => $value ) {
+              echo '<option value="' . esc_attr( $key ) . '" ' . selected( $text_transform, $key, false ) . '>' . esc_attr( $value ) . '</option>';
+            }
+          echo '</select>';
+        }
         
       echo '</div>';
       
