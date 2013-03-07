@@ -386,7 +386,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
    *
    * @since     2.0
    */
-  $ot_loader =& new OT_Loader();
+  $ot_loader = new OT_Loader();
 
 }
 
