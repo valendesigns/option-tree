@@ -42,7 +42,7 @@ Yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
 == Changelog ==
 
 = 2.0.13 =
-* Remove almost all messages from the Theme Check plugin.
+* Removed almost all of the Theme Check nag messages when in 'ot_theme_mode'.
 
 = 2.0.12 =
 * Added additional filters to the array that builds the Theme Option UI.
