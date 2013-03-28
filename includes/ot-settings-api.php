@@ -851,7 +851,7 @@ if ( ! function_exists( 'ot_register_settings' ) ) {
     if ( ! $args )
       return;
       
-    $ot_settings =& new OT_Settings( $args );
+    $ot_settings = new OT_Settings( $args );
   }
 
 }
