@@ -280,7 +280,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       add_action( 'wp_ajax_add_setting', array( &$this, 'add_setting' ) );
       
       /* AJAX call to create a new contextual help */
-      add_action( 'wp_ajax_add_contextual_help', array( &$this, 'add_contextual_help' ) );
+      add_action( 'wp_ajax_add_the_contextual_help', array( &$this, 'add_the_contextual_help' ) );
       
       /* AJAX call to create a new choice */
       add_action( 'wp_ajax_add_choice', array( &$this, 'add_choice' ) );
@@ -350,7 +350,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
     /**
      * AJAX utility function for adding new contextual help content.
      */
-    public function add_contextual_help() {
+    public function add_the_contextual_help() {
       echo ot_contextual_help_view( $_REQUEST['name'], $_REQUEST['count'] );
       die();
     }

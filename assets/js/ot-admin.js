@@ -89,7 +89,7 @@
       });
       $('.option-tree-help-add').live('click', function(e) {
         e.preventDefault();
-        OT_UI.add(this,'contextual_help');
+        OT_UI.add(this,'the_contextual_help');
       });
       $('.option-tree-choice-add').live('click', function(e) {
         e.preventDefault();
@@ -176,7 +176,7 @@
           post_id = 0, 
           get_option = '', 
           settings = '';
-      if ( type == 'contextual_help' ) {
+      if ( type == 'the_contextual_help' ) {
         list = $(elm).parent().find('ul:last');
         list_class = 'list-contextual-help';
       } else if ( type == 'choice' ) {
@@ -233,7 +233,7 @@
             list.children().last().find('.option-tree-setting-edit').toggleClass('active');
             list.children().last().find('.option-tree-setting-body').toggle();
             list.children().last().find('.option-tree-setting-title').focus();
-            if ( type != 'contextual_help' ) {
+            if ( type != 'the_contextual_help' ) {
               OT_UI.update_ids(list);
             }
             setTimeout( function() {
