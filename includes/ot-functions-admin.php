@@ -23,6 +23,24 @@ function ot_decode( $input ) {
   
 }
 
+function ot_file_open( $filename, $mode ) {
+
+  @fopen( $filename, $mode );
+  
+}
+
+function ot_file_close( $handle ) {
+
+  fclose( $handle );
+  
+}
+
+function ot_file_write( $handle, $string ) {
+
+  fwrite( $handle, $string );
+  
+}
+
 /**
  * Runs directly after the Theme Options are save.
  *
@@ -2426,7 +2444,7 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
       $markerdata = explode( "\n", implode( '', file( $filepath ) ) );
       
       /* can't write to the file return false */
-      if ( ! $f = @fopen( $filepath, 'w' ) )
+      if ( ! $f = ot_file_open( $filepath, 'w' ) )
         return false;
       
       $searching = true;
@@ -2445,16 +2463,16 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
           /* keep rewrite each line of CSS  */
           if ( $searching == true ) {
             if ( $n + 1 < count( $markerdata ) )
-              fwrite( $f, "{$markerline}\n" );
+              ot_file_write( $f, "{$markerline}\n" );
             else
-              fwrite( $f, "{$markerline}" );
+              ot_file_write( $f, "{$markerline}" );
           }
           
           /* found end marker write code */
           if ( $markerline == "/* END {$marker} */" ) {
-            fwrite( $f, "/* BEGIN {$marker} */\n" );
-            fwrite( $f, "{$insertion}\n" );
-            fwrite( $f, "/* END {$marker} */\n" );
+            ot_file_write( $f, "/* BEGIN {$marker} */\n" );
+            ot_file_write( $f, "{$insertion}\n" );
+            ot_file_write( $f, "/* END {$marker} */\n" );
             $searching = true;
             $foundit = true;
           }
@@ -2465,13 +2483,13 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
       
       /* nothing inserted, write code. DO IT, DO IT! */
       if ( ! $foundit ) {
-        fwrite( $f, "/* BEGIN {$marker} */\n" );
-        fwrite( $f, "{$insertion}\n" );
-        fwrite( $f, "/* END {$marker} */\n" );
+        ot_file_write( $f, "/* BEGIN {$marker} */\n" );
+        ot_file_write( $f, "{$insertion}\n" );
+        ot_file_write( $f, "/* END {$marker} */\n" );
       }
       
       /* close file */
-      fclose( $f );
+      ot_file_close( $f );
       return true;
     }
     
@@ -2513,7 +2531,7 @@ if ( ! function_exists( 'ot_remove_old_css' ) ) {
       $markerdata = explode( "\n", implode( '', file( $filepath ) ) );
       
       /* can't write to the file return false */
-      if ( ! $f = @fopen( $filepath, 'w' ) )
+      if ( ! $f = ot_file_open( $filepath, 'w' ) )
         return false;
       
       $searching = true;
@@ -2531,14 +2549,14 @@ if ( ! function_exists( 'ot_remove_old_css' ) ) {
           /* $searching is true, keep rewrite each line of CSS  */
           if ( $searching == true ) {
             if ( $n + 1 < count( $markerdata ) )
-              fwrite( $f, "{$markerline}\n" );
+              ot_file_write( $f, "{$markerline}\n" );
             else
-              fwrite( $f, "{$markerline}" );
+              ot_file_write( $f, "{$markerline}" );
           }
           
           /* found end marker delete old CSS */
           if ( $markerline == "/* END {$field_id} */" ) {
-            fwrite( $f, "" );
+            ot_file_write( $f, "" );
             $searching = true;
           }
           
@@ -2547,7 +2565,7 @@ if ( ! function_exists( 'ot_remove_old_css' ) ) {
       }
       
       /* close file */
-      fclose( $f );
+      ot_file_close( $f );
       return true;
       
     }
