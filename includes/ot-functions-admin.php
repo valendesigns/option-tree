@@ -541,7 +541,7 @@ if ( ! function_exists( 'ot_import' ) ) {
       $file = isset( $_POST['import_xml'] ) ? esc_url( $_POST['import_xml'] ) : '';
       
       /* validate xml file */
-      if ( preg_match( "/(.xml)$/i", $file ) && class_exists( 'SimpleXMLElement' ) && function_exists( 'file_get_contents' ) ) {
+      if ( preg_match( "/(.xml)$/i", $file ) && class_exists( 'SimpleXMLElement' ) ) {
       
         $settings = ot_import_xml( $file );
         
@@ -745,7 +745,10 @@ if ( ! function_exists( 'ot_import_xml' ) ) {
 
   function ot_import_xml( $file ) {
     
-    if ( $rawdata = @file_get_contents( $file ) ) {
+    $get_data = wp_remote_get( $file );
+    $rawdata = isset( $get_data['body'] ) ? $get_data['body'] : false;
+
+    if ( $rawdata ) {
       
       $section_count = 0;
       $settings_count = 0;
