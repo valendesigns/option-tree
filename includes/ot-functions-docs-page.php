@@ -689,7 +689,7 @@ if ( ! function_exists( 'ot_type_meta_boxes' ) ) {
         echo '<pre><code>/**
  * Meta Boxes
  */
-include_once( \'includes/meta-boxes.php\' );
+load_template( trailingslashit( get_template_directory() ) . \'includes/meta-boxes.php\' );
 </code></pre>';
         
         echo '<ul class="docs-ul">';
@@ -785,7 +785,7 @@ add_filter( \'ot_theme_mode\', \'__return_true\' );
 /**
  * Required: include OptionTree.
  */
-include_once( \'option-tree/ot-loader.php\' );
+load_template( trailingslashit( get_template_directory() ) . \'option-tree/ot-loader.php\' );
 </code></pre>';
         
         echo '<p class="aside">' . __( 'It\'s that simple! You now have OptionTree built into your theme and anytime there\'s an update to the plugin you just replace the old version and you\'re good to go..', 'option-tree' ) . '</p>';
@@ -800,7 +800,7 @@ include_once( \'option-tree/ot-loader.php\' );
         echo '<pre><code>/**
  * Theme Options
  */
-include_once( \'includes/theme-options.php\' );
+load_template( trailingslashit( get_template_directory() ) . \'includes/theme-options.php\' );
 </code></pre>';
         
         echo '<ul class="docs-ul">';

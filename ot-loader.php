@@ -180,7 +180,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       
       /* require the files */
       foreach ( $files as $file ) {
-        require_once( OT_DIR . "includes/{$file}.php" );
+        load_template( OT_DIR . "includes/{$file}.php" );
       }
       
     }
@@ -205,7 +205,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       
       /* require the files */
       foreach ( $files as $file ) {
-        require_once( OT_DIR . "includes/{$file}.php" );
+        load_template( OT_DIR . "includes/{$file}.php" );
       }
       
     }
