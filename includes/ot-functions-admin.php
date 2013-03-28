@@ -11,30 +11,64 @@
  * @since     2.0
  */
 
-function ot_encode( $input ) {
+/**
+ * Helper function to return encoded strings
+ *
+ * @return    string
+ *
+ * @access    public
+ * @since     2.0.13
+ */
+function ot_encode( $value ) {
 
-  return base64_encode( $input );
+  return base64_encode( $value );
   
 }
 
-function ot_decode( $input ) {
+/**
+ * Helper function to return decoded strings
+ *
+ * @return    string
+ *
+ * @access    public
+ * @since     2.0.13
+ */
+function ot_decode( $value ) {
 
-  return base64_decode( $input );
+  return base64_decode( $value );
   
 }
 
-function ot_file_open( $filename, $mode ) {
+/**
+ * Helper function to open a file
+ *
+ * @access    public
+ * @since     2.0.13
+ */
+function ot_file_open( $handle, $mode ) {
 
-  @fopen( $filename, $mode );
+  @fopen( $handle, $mode );
   
 }
 
+/**
+ * Helper function to close a file
+ *
+ * @access    public
+ * @since     2.0.13
+ */
 function ot_file_close( $handle ) {
 
   fclose( $handle );
   
 }
 
+/**
+ * Helper function to write to an open file
+ *
+ * @access    public
+ * @since     2.0.13
+ */
 function ot_file_write( $handle, $string ) {
 
   fwrite( $handle, $string );

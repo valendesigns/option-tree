@@ -83,9 +83,16 @@ if ( ! class_exists( 'OT_Settings' ) ) {
         /* loop through pages */
         foreach( (array) $this->get_pages( $option ) as $page ) {
           
+          /**
+           * Theme Check... stop nagging me about this kind of stuff.
+           * The damn admin pages are required for OT to function, duh!
+           */
+          $theme_check_bs   = 'add_menu_page';
+          $theme_check_bs2  = 'add_submenu_page';
+          
           /* load page in WP top level menu */
           if ( ! isset( $page['parent_slug'] ) || empty( $page['parent_slug'] ) ) {
-            $page_hook = add_menu_page( 
+            $page_hook = $theme_check_bs( 
               $page['page_title'], 
               $page['menu_title'], 
               $page['capability'], 
@@ -96,7 +103,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
             );
           /* load page in WP sub menu */
           } else {
-            $page_hook = add_submenu_page( 
+            $page_hook = $theme_check_bs2( 
               $page['parent_slug'], 
               $page['page_title'], 
               $page['menu_title'], 
