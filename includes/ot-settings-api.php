@@ -434,7 +434,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
         foreach( (array) $this->get_pages( $option ) as $page ) {
           
           /* loop through page settings */
-          foreach( (array) $this->get_settings( $page ) as $setting ) {
+          foreach( (array) $this->get_the_settings( $page ) as $setting ) {
             
             /* skip if no setting ID */
             if ( ! isset( $setting['id'] ) )
@@ -528,7 +528,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
         foreach( (array) $this->get_pages( $option ) as $page ) {
             
           /* loop through page settings */
-          foreach( (array) $this->get_settings( $page ) as $setting ) {
+          foreach( (array) $this->get_the_settings( $page ) as $setting ) {
             
             if ( isset( $setting['std'] ) ) {
               
@@ -564,7 +564,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
         foreach( (array) $this->get_pages( $option ) as $page ) {
             
           /* loop through page settings */
-          foreach( (array) $this->get_settings( $page ) as $setting ) {
+          foreach( (array) $this->get_the_settings( $page ) as $setting ) {
   
             /* verify setting has a type & value */
             if ( isset( $setting['type'] ) && isset( $input[$setting['id']] ) ) {
@@ -691,7 +691,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
      * @access    public
      * @since     2.0
      */
-    public function get_settings( $page = array() ) {
+    public function get_the_settings( $page = array() ) {
       
       if ( empty( $page ) )
         return false;
