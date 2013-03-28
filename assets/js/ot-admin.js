@@ -402,7 +402,7 @@
           $('#cp_'+field_id).css({'backgroundColor':'#'+hex,'borderColor':'#'+bc});
           $('#cp_'+field_id).prev('input').attr('value', '#'+hex);
         }
-      })	
+      })  
       .bind('keyup', function(){
         $(this).ColorPickerSetColor(this.value);
       });
