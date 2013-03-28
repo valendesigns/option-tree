@@ -11,6 +11,18 @@
  * @since     2.0
  */
 
+function ot_encode( $input ) {
+
+  return base64_encode( $input );
+  
+}
+
+function ot_decode( $input ) {
+
+  return base64_decode( $input );
+  
+}
+
 /**
  * Runs directly after the Theme Options are save.
  *
@@ -566,7 +578,7 @@ if ( ! function_exists( 'ot_import' ) ) {
     if ( isset( $_POST['import_settings_nonce'] ) && wp_verify_nonce( $_POST['import_settings_nonce'], 'import_settings_form' ) ) {
 
       /* textarea value */
-      $textarea = isset( $_POST['import_settings'] ) ? unserialize( base64_decode( $_POST['import_settings'] ) ) : '';
+      $textarea = isset( $_POST['import_settings'] ) ? unserialize( ot_decode( $_POST['import_settings'] ) ) : '';
       
       /* default message */
       $message = 'failed';
@@ -590,7 +602,7 @@ if ( ! function_exists( 'ot_import' ) ) {
       $message = 'failed';
       
       /* textarea value */
-      $options = isset( $_POST['import_data'] ) ? unserialize( base64_decode( $_POST['import_data'] ) ) : '';
+      $options = isset( $_POST['import_data'] ) ? unserialize( ot_decode( $_POST['import_data'] ) ) : '';
       
       /* get settings array */
       $settings = get_option( 'option_tree_settings' );
@@ -635,7 +647,7 @@ if ( ! function_exists( 'ot_import' ) ) {
       $message = 'failed';
       
       /* textarea value */
-      $layouts = isset( $_POST['import_layouts'] ) ? unserialize( base64_decode( $_POST['import_layouts'] ) ) : '';
+      $layouts = isset( $_POST['import_layouts'] ) ? unserialize( ot_decode( $_POST['import_layouts'] ) ) : '';
       
       /* get settings array */
       $settings = get_option( 'option_tree_settings' );
@@ -651,7 +663,7 @@ if ( ! function_exists( 'ot_import' ) ) {
             if ( $key == 'active_layout' )
               continue;
               
-            $options = unserialize( base64_decode( $value ) );
+            $options = unserialize( ot_decode( $value ) );
             
             foreach( $settings['settings'] as $setting ) {
 
@@ -665,7 +677,7 @@ if ( ! function_exists( 'ot_import' ) ) {
             
             }
 
-            $layouts[$key] = base64_encode( serialize( $options ) );
+            $layouts[$key] = ot_encode( serialize( $options ) );
           
           }
         
@@ -674,7 +686,7 @@ if ( ! function_exists( 'ot_import' ) ) {
         /* update the option tree array */
         if ( isset( $layouts['active_layout'] ) ) {
         
-          update_option( 'option_tree', unserialize( base64_decode( $layouts[$layouts['active_layout']] ) ) );
+          update_option( 'option_tree', unserialize( ot_decode( $layouts[$layouts['active_layout']] ) ) );
           
         }
         
@@ -1353,7 +1365,7 @@ if ( ! function_exists( 'ot_modify_layouts' ) ) {
         /* add new and overwrite active layout */
         if ( isset( $layouts['_add_new_layout_'] ) && '' != $layouts['_add_new_layout_'] ) {
           $rebuild['active_layout'] = ot_sanitize_layout_id( $layouts['_add_new_layout_'] );
-          $rebuild[$rebuild['active_layout']] = base64_encode( serialize( get_option( 'option_tree' ) ) );
+          $rebuild[$rebuild['active_layout']] = ot_encode( serialize( get_option( 'option_tree' ) ) );
         }
         
         $first_layout = '';
@@ -1389,7 +1401,7 @@ if ( ! function_exists( 'ot_modify_layouts' ) ) {
       if ( count( $rebuild ) > 1 ) {
         
         /* rebuild the theme options */
-        $rebuild_option_tree = unserialize( base64_decode( $rebuild[$rebuild['active_layout']] ) );
+        $rebuild_option_tree = unserialize( ot_decode( $rebuild[$rebuild['active_layout']] ) );
         if ( is_array( $rebuild_option_tree ) ) {
           update_option( 'option_tree', $rebuild_option_tree );
         }

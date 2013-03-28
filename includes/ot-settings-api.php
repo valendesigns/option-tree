@@ -231,7 +231,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
               /* has active layout */
               if ( isset( $layouts['active_layout'] ) ) {
                 $option_tree = get_option( $option['id'] );
-                $layouts[$layouts['active_layout']] = base64_encode( serialize( $option_tree ) );
+                $layouts[$layouts['active_layout']] = ot_encode( serialize( $option_tree ) );
                 update_option( 'option_tree_layouts', $layouts );
               }
               
@@ -581,7 +581,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
                 );
                 
                 /* get the settings array */
-                $settings = isset( $_POST[$setting['id'] . '_settings_array'] ) ? unserialize( base64_decode( $_POST[$setting['id'] . '_settings_array'] ) ) : array();
+                $settings = isset( $_POST[$setting['id'] . '_settings_array'] ) ? unserialize( ot_decode( $_POST[$setting['id'] . '_settings_array'] ) ) : array();
                 
                 /* settings are empty for some odd ass reason get the defaults */
                 if ( empty( $settings ) ) {

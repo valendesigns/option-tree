@@ -73,7 +73,7 @@ if ( ! function_exists( 'compat_ot_import_from_files' ) ) {
     if ( $has_data == true && ! get_option( 'option_tree' ) && function_exists( 'file_get_contents' ) ) {
     
       $rawdata = @file_get_contents( $data_file );
-      $options = unserialize( base64_decode( $rawdata ) );
+      $options = unserialize( ot_decode( $rawdata ) );
       
       /* get settings array */
       $settings = get_option( 'option_tree_settings' );
@@ -109,7 +109,7 @@ if ( ! function_exists( 'compat_ot_import_from_files' ) ) {
     if ( $has_layout == true && ! get_option( 'option_tree_layouts' ) && function_exists( 'file_get_contents' ) ) {
     
       $rawdata = @file_get_contents( $layout_file );
-      $layouts = unserialize( base64_decode( $rawdata ) );
+      $layouts = unserialize( ot_decode( $rawdata ) );
       
       /* get settings array */
       $settings = get_option( 'option_tree_settings' );
@@ -125,7 +125,7 @@ if ( ! function_exists( 'compat_ot_import_from_files' ) ) {
             if ( $key == 'active_layout' )
               continue;
               
-            $options = unserialize( base64_decode( $value ) );
+            $options = unserialize( ot_decode( $value ) );
             
             foreach( $settings['settings'] as $setting ) {
 
@@ -139,7 +139,7 @@ if ( ! function_exists( 'compat_ot_import_from_files' ) ) {
             
             }
 
-            $layouts[$key] = base64_encode( serialize( $options ) );
+            $layouts[$key] = ot_encode( serialize( $options ) );
           
           }
         
@@ -148,7 +148,7 @@ if ( ! function_exists( 'compat_ot_import_from_files' ) ) {
         /* update the option tree array */
         if ( isset( $layouts['active_layout'] ) ) {
         
-          update_option( 'option_tree', unserialize( base64_decode( $layouts[$layouts['active_layout']] ) ) );
+          update_option( 'option_tree', unserialize( ot_decode( $layouts[$layouts['active_layout']] ) ) );
           
         }
         

@@ -565,7 +565,7 @@ if ( ! function_exists( 'ot_type_list_item' ) ) {
       echo '<div class="format-setting-inner">';
         
         /* pass the settings array arround */
-        echo '<input type="hidden" name="' . esc_attr( $field_id ) . '_settings_array" id="' . esc_attr( $field_id ) . '_settings_array" value="' . base64_encode( serialize( $field_settings ) ) . '" />';
+        echo '<input type="hidden" name="' . esc_attr( $field_id ) . '_settings_array" id="' . esc_attr( $field_id ) . '_settings_array" value="' . ot_encode( serialize( $field_settings ) ) . '" />';
         
         /** 
          * settings pages have array wrappers like 'option_tree'.
@@ -804,7 +804,7 @@ if ( ! function_exists( 'ot_type_slider' ) ) {
       echo '<div class="format-setting-inner">';
         
         /* pass the settings array arround */
-        echo '<input type="hidden" name="' . esc_attr( $field_id ) . '_settings_array" id="' . esc_attr( $field_id ) . '_settings_array" value="' . base64_encode( serialize( $field_settings ) ) . '" />';
+        echo '<input type="hidden" name="' . esc_attr( $field_id ) . '_settings_array" id="' . esc_attr( $field_id ) . '_settings_array" value="' . ot_encode( serialize( $field_settings ) ) . '" />';
         
         /** 
          * settings pages have array wrappers like 'option_tree'.

@@ -406,7 +406,7 @@ if ( ! function_exists( 'ot_type_export_settings' ) ) {
         
       /* get theme options data */
       $settings = get_option( 'option_tree_settings' );
-      $settings = ! empty( $settings ) ?  base64_encode( serialize( $settings ) ) : '';
+      $settings = ! empty( $settings ) ?  ot_encode( serialize( $settings ) ) : '';
         
       echo '<div class="format-setting-inner">';
         echo '<textarea rows="10" cols="40" name="export_settings" id="export_settings" class="textarea">' . $settings . '</textarea>';
@@ -442,7 +442,7 @@ if ( ! function_exists( 'ot_type_export_data' ) ) {
       
       /* get theme options data */
       $data = get_option( 'option_tree' );
-      $data = ! empty( $data ) ? base64_encode( serialize( $data ) ) : '';
+      $data = ! empty( $data ) ? ot_encode( serialize( $data ) ) : '';
         
       echo '<div class="format-setting-inner">';
         echo '<textarea rows="10" cols="40" name="export_data" id="export_data" class="textarea">' . $data . '</textarea>';
@@ -479,7 +479,7 @@ if ( ! function_exists( 'ot_type_export_layouts' ) ) {
       
       /* get layout data */
       $layouts = get_option( 'option_tree_layouts' );
-      $layouts = ! empty( $layouts ) ? base64_encode( serialize( $layouts ) ) : '';
+      $layouts = ! empty( $layouts ) ? ot_encode( serialize( $layouts ) ) : '';
         
       echo '<div class="format-setting-inner">';
         echo '<textarea rows="10" cols="40" name="export_layouts" id="export_layouts" class="textarea">' . $layouts . '</textarea>';
