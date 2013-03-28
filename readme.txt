@@ -41,6 +41,9 @@ Yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
 
 == Changelog ==
 
+= 2.0.14 =
+* Removed deprecated assigning of return value in PHP.
+
 = 2.0.13 =
 * Removed almost all of the Theme Check nag messages when in 'ot_theme_mode'.
 
