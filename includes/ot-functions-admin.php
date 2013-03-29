@@ -3023,7 +3023,7 @@ if ( ! function_exists( 'ot_contextual_help_view' ) ) {
  */
 if ( ! function_exists( 'ot_layouts_view' ) ) {
 
-  function ot_layout_view( $key, $data, $active_layout ) {
+  function ot_layout_view( $key, $data = '', $active_layout = '' ) {
   
     return '
     <div class="option-tree-setting">
@@ -3036,7 +3036,7 @@ if ( ! function_exists( 'ot_layouts_view' ) ) {
           <span class="icon trash-can">' . __( 'Delete', 'option-tree' ) . '</span>
         </a>
       </div>
-      <input type="hidden" name="option_tree_layouts[' . esc_attr( $key ) . ']" value="' . ( isset( $data ) ? $data : '' ) . '" />
+      <input type="hidden" name="option_tree_layouts[' . esc_attr( $key ) . ']" value="' . $data . '" />
     </div>';
     
   }
