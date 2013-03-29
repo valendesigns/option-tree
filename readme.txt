@@ -41,6 +41,9 @@ Yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
 
 == Changelog ==
 
+= 2.0.15 =
+* Added support for the WPML plugin.
+
 = 2.0.14 =
 * Removed deprecated assigning of return value in PHP.
 * Patch to fix PHP notice regression with the use of load_template in a plugin after Theme Check update.
