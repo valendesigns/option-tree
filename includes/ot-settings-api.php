@@ -620,7 +620,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
                         
                         $new_ids[] = $wmpl_id;
                         
-                        wpml_register_string( $wmpl_id, $input[$setting['id']][$k][$sub_setting['id']] );
+                        //wpml_register_string( $wmpl_id, $input[$setting['id']][$k][$sub_setting['id']] );
                         
                       }
                       
@@ -642,7 +642,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
                       
                       if ( ! in_array( $temp_id, $new_ids ) ) {
                       
-                        wpml_unregister_string( $temp_id );
+                        //wpml_unregister_string( $temp_id );
                       
                       }
                     
@@ -658,11 +658,11 @@ if ( ! class_exists( 'OT_Settings' ) ) {
                 // WPML Register and Unregister strings
                 if ( ! empty( $input[$setting['id']] ) ) {
                 
-                  wpml_register_string( $setting['id'], $input[$setting['id']] );
+                  //wpml_register_string( $setting['id'], $input[$setting['id']] );
                   
                 } else {
                 
-                  wpml_unregister_string( $setting['id'] );
+                  //wpml_unregister_string( $setting['id'] );
                   
                 }
                 

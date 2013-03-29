@@ -1220,7 +1220,7 @@ if ( ! function_exists( 'ot_save_settings' ) ) {
             
               if ( ! in_array( $setting['id'], $new_ids ) ) {
 
-                wpml_unregister_string( $setting['id'] );
+                //wpml_unregister_string( $setting['id'] );
                 
               }
               
