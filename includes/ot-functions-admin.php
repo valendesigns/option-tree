@@ -1216,7 +1216,6 @@ if ( ! function_exists( 'ot_save_settings' ) ) {
             }
             
             // Remove IDs from WPML
-            /*
             foreach( $current['settings'] as $setting ) {
             
               if ( ! in_array( $setting['id'], $new_ids ) ) {
@@ -1226,7 +1225,6 @@ if ( ! function_exists( 'ot_save_settings' ) ) {
               }
               
             }
-            */
 
           }
           
