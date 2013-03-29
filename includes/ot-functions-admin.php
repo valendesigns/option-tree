@@ -1195,6 +1195,7 @@ if ( ! function_exists( 'ot_save_settings' ) ) {
       if ( is_array( $settings ) ) {
         
         // WPML unregister ID's that have been removed
+        /*
         if ( function_exists( 'icl_unregister_string' ) ) {
           
           $current = get_option( 'option_tree_settings' );
@@ -1229,6 +1230,7 @@ if ( ! function_exists( 'ot_save_settings' ) ) {
           }
           
         }
+        */
         
         update_option( 'option_tree_settings', $settings );
         $message = 'success';

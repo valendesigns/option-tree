@@ -31,7 +31,7 @@ if ( ! function_exists( 'ot_get_option' ) ) {
     /* look for the saved value */
     if ( isset( $options[$option_id] ) && '' != $options[$option_id] ) {
         
-      return ot_wpml_filter( $options, $option_id );
+      return $options[$option_id];
       
     }
     
