@@ -178,7 +178,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
         $files[] = 'ot-ui-admin';
       }
       
-      // Patch to fix PHP notice regression after Theme Check update
+      // Temporary patch to fix PHP notice regression after Theme Check update
       global $wp_query;
       $wp_query->query_vars['option_tree'] = true;
       
@@ -208,7 +208,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
         'ot-functions-deprecated'
       );
       
-      // Patch to fix PHP notice regression after Theme Check update
+      // Temporary patch to fix PHP notice regression after Theme Check update
       global $wp_query;
       $wp_query->query_vars['option_tree'] = true;
       
