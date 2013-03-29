@@ -601,7 +601,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
                 $settings = array_merge( $required_setting, $settings );
                 
                 // Empty ID's array
-                $new_ids = array();
+                //$new_ids = array();
                 
                 foreach( $input[$setting['id']] as $k => $setting_array ) {
 
@@ -613,16 +613,18 @@ if ( ! class_exists( 'OT_Settings' ) ) {
                       $input[$setting['id']][$k][$sub_setting['id']] = ot_validate_setting( $input[$setting['id']][$k][$sub_setting['id']], $sub_setting['type'], $sub_setting['id'] );
                       
                       // Item ID
-                      $wmpl_id = $setting['id'] . '_' . $sub_setting['id'] . '_' . $k;
+                      //$wmpl_id = $setting['id'] . '_' . $sub_setting['id'] . '_' . $k;
                       
                       // WPML Register strings
+                      /*
                       if ( ! empty( $input[$setting['id']][$k][$sub_setting['id']] ) ) {
                         
                         $new_ids[] = $wmpl_id;
                         
-                        //wpml_register_string( $wmpl_id, $input[$setting['id']][$k][$sub_setting['id']] );
+                        wpml_register_string( $wmpl_id, $input[$setting['id']][$k][$sub_setting['id']] );
                         
                       }
+                      */
                       
                     }
                     
@@ -631,6 +633,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
                 }
                 
                 // WPML Unregister strings
+                /*
                 $options = get_option( 'option_tree' );
                 if ( isset( $options[$setting['id']] ) ) {
                   
@@ -642,7 +645,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
                       
                       if ( ! in_array( $temp_id, $new_ids ) ) {
                       
-                        //wpml_unregister_string( $temp_id );
+                        wpml_unregister_string( $temp_id );
                       
                       }
                     
@@ -650,21 +653,24 @@ if ( ! class_exists( 'OT_Settings' ) ) {
                   }
                   
                 }
+                */
               
               } else {
                 
                 $input[$setting['id']] = ot_validate_setting( $input[$setting['id']], $setting['type'], $setting['id'] );
                 
                 // WPML Register and Unregister strings
+                /*
                 if ( ! empty( $input[$setting['id']] ) ) {
                 
-                  //wpml_register_string( $setting['id'], $input[$setting['id']] );
+                  wpml_register_string( $setting['id'], $input[$setting['id']] );
                   
                 } else {
                 
-                  //wpml_unregister_string( $setting['id'] );
+                  wpml_unregister_string( $setting['id'] );
                   
                 }
+                */
                 
               }
 
