@@ -10,71 +10,7 @@
  * @copyright Copyright (c) 2012, Derek Herman
  * @since     2.0
  */
-
-/**
- * Helper function to return encoded strings
- *
- * @return    string
- *
- * @access    public
- * @since     2.0.13
- */
-function ot_encode( $value ) {
-
-  return base64_encode( $value );
-  
-}
-
-/**
- * Helper function to return decoded strings
- *
- * @return    string
- *
- * @access    public
- * @since     2.0.13
- */
-function ot_decode( $value ) {
-
-  return base64_decode( $value );
-  
-}
-
-/**
- * Helper function to open a file
- *
- * @access    public
- * @since     2.0.13
- */
-function ot_file_open( $handle, $mode ) {
-
-  @fopen( $handle, $mode );
-  
-}
-
-/**
- * Helper function to close a file
- *
- * @access    public
- * @since     2.0.13
- */
-function ot_file_close( $handle ) {
-
-  fclose( $handle );
-  
-}
-
-/**
- * Helper function to write to an open file
- *
- * @access    public
- * @since     2.0.13
- */
-function ot_file_write( $handle, $string ) {
-
-  fwrite( $handle, $string );
-  
-}
-
+    
 /**
  * Runs directly after the Theme Options are save.
  *
@@ -1253,8 +1189,46 @@ if ( ! function_exists( 'ot_save_settings' ) ) {
       
       /* is array: save & show success message */
       if ( is_array( $settings ) ) {
+        
+        // WPML unregister ID's that have been removed
+        if ( function_exists( 'icl_unregister_string' ) ) {
+          
+          $current = get_option( 'option_tree_settings' );
+          
+          if ( isset( $current['settings'] ) ) {
+            
+            // Empty ID array
+            $new_ids      = array();
+            
+            // Build the IDs
+            foreach( $settings['settings'] as $setting ) {
+            
+              if ( $setting['id'] ) {
+              
+                $new_ids[] = $setting['id'];
+                
+              }
+              
+            }
+            
+            // Remove IDs from WPML
+            foreach( $current['settings'] as $setting ) {
+            
+              if ( ! in_array( $setting['id'], $new_ids ) ) {
+
+                wpml_unregister_string( $setting['id'] );
+                
+              }
+              
+            }
+
+          }
+          
+        }
+        
         update_option( 'option_tree_settings', $settings );
         $message = 'success';
+        
       }
       
       /* redirect */
@@ -3530,6 +3504,102 @@ function ot_range( $start, $limit, $step = 1 ) {
   }
   
   return $range;
+}
+
+/**
+ * Helper function to return encoded strings
+ *
+ * @return    string
+ *
+ * @access    public
+ * @since     2.0.13
+ */
+function ot_encode( $value ) {
+
+  return base64_encode( $value );
+  
+}
+
+/**
+ * Helper function to return decoded strings
+ *
+ * @return    string
+ *
+ * @access    public
+ * @since     2.0.13
+ */
+function ot_decode( $value ) {
+
+  return base64_decode( $value );
+  
+}
+
+/**
+ * Helper function to open a file
+ *
+ * @access    public
+ * @since     2.0.13
+ */
+function ot_file_open( $handle, $mode ) {
+
+  @fopen( $handle, $mode );
+  
+}
+
+/**
+ * Helper function to close a file
+ *
+ * @access    public
+ * @since     2.0.13
+ */
+function ot_file_close( $handle ) {
+
+  fclose( $handle );
+  
+}
+
+/**
+ * Helper function to write to an open file
+ *
+ * @access    public
+ * @since     2.0.13
+ */
+function ot_file_write( $handle, $string ) {
+
+  fwrite( $handle, $string );
+  
+}
+
+/**
+ * Helper function to register a WPML string
+ *
+ * @access    public
+ * @since     2.0.14
+ */
+function wpml_register_string( $id, $value ) {
+
+  if ( function_exists( 'icl_register_string' ) ) {
+      
+    icl_register_string( 'OptionTree', $id, $value );
+      
+  }
+  
+}
+
+/**
+ * Helper function to unregister a WPML string
+ *
+ * @access    public
+ * @since     2.0.14
+ */
+function wpml_unregister_string( $id ) {
+
+  if ( function_exists( 'icl_unregister_string' ) ) {
+      
+    icl_unregister_string( 'OptionTree', $id );
+      
+  }
+  
 }
 
 /* End of file ot-functions-admin.php */

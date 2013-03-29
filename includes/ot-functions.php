@@ -32,8 +32,46 @@ if ( ! function_exists( 'ot_get_option' ) ) {
     if ( isset( $options[$option_id] ) && '' != $options[$option_id] ) {
       
       // Return single translated strings with WMPL
-      if ( function_exists('icl_t') )
-        return icl_t( 'OptionTree', $option_id, $options[$option_id] );
+      if ( function_exists('icl_t') ) {
+        
+        $settings = get_option( 'option_tree_settings' );
+        
+        if ( isset( $settings['settings'] ) ) {
+        
+          foreach( $settings['settings'] as $setting ) {
+            
+            if ( $option_id == $setting['id'] && in_array( $setting['type'], array( 'list-item', 'slider' ) ) ) {
+            
+              $is_list = true;
+              
+            }
+            
+          }
+        
+        }
+        
+        // List Item & Slider
+        if ( isset( $is_list ) ) {
+          
+          foreach( $options[$option_id] as $key => $value ) {
+            
+            foreach( $value as $ckey => $cvalue ) {
+              
+              $id = $option_id . '_' . $ckey . '_' . $key;
+              $options[$option_id][$key][$ckey] = icl_t( 'OptionTree', $id, $cvalue );
+              
+            }
+          
+          }
+        
+        // All none array values
+        } else if ( ! is_array( $options[$option_id] ) ) {
+        
+          $options[$option_id] = icl_t( 'OptionTree', $option_id, $options[$option_id] );
+          
+        }
+      
+      }
         
       return $options[$option_id];
       
