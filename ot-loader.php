@@ -178,6 +178,10 @@ if ( ! class_exists( 'OT_Loader' ) ) {
         $files[] = 'ot-ui-admin';
       }
       
+      // Patch to fix PHP notice regression after Theme Check update
+      global $wp_query;
+      $wp_query->query_vars['option_tree'] = true;
+      
       /* require the files */
       foreach ( $files as $file ) {
         load_template( OT_DIR . "includes/{$file}.php" );
@@ -198,10 +202,15 @@ if ( ! class_exists( 'OT_Loader' ) ) {
      */
     public function includes() {
       
+		
       $files = array( 
         'ot-functions',
         'ot-functions-deprecated'
       );
+      
+      // Patch to fix PHP notice regression after Theme Check update
+      global $wp_query;
+      $wp_query->query_vars['option_tree'] = true;
       
       /* require the files */
       foreach ( $files as $file ) {
