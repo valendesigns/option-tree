@@ -1198,7 +1198,7 @@ if ( ! function_exists( 'ot_save_settings' ) ) {
           if ( isset( $current['settings'] ) ) {
             
             // Empty ID array
-            $new_ids      = array();
+            $new_ids = array();
             
             // Build the IDs
             foreach( $settings['settings'] as $setting ) {

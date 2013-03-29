@@ -599,7 +599,10 @@ if ( ! class_exists( 'OT_Settings' ) ) {
                 
                 /* merge the two settings array */
                 $settings = array_merge( $required_setting, $settings );
-
+                
+                // Empty ID's array
+                $new_ids = array();
+                
                 foreach( $input[$setting['id']] as $k => $setting_array ) {
 
                   foreach( $settings as $sub_setting ) {
@@ -612,14 +615,12 @@ if ( ! class_exists( 'OT_Settings' ) ) {
                       // Item ID
                       $wmpl_id = $setting['id'] . '_' . $sub_setting['id'] . '_' . $k;
                       
-                      // WPML Register and Unregister strings
-                      if ( ! empty( $input[$setting['id']] ) ) {
-                      
-                        wpml_register_string( $wmpl_id, $input[$setting['id']][$k][$sub_setting['id']] );
+                      // WPML Register strings
+                      if ( ! empty( $input[$setting['id']][$k][$sub_setting['id']] ) ) {
                         
-                      } else {
-                      
-                        wpml_unregister_string( $wmpl_id );
+                        $new_ids[] = $wmpl_id;
+                        
+                        wpml_register_string( $wmpl_id, $input[$setting['id']][$k][$sub_setting['id']] );
                         
                       }
                       
@@ -627,6 +628,27 @@ if ( ! class_exists( 'OT_Settings' ) ) {
                     
                   }
                 
+                }
+                
+                // WPML Unregister strings
+                $options = get_option( 'option_tree' );
+                if ( isset( $options[$setting['id']] ) ) {
+                  
+                  foreach( $options[$setting['id']] as $key => $value ) {
+                    
+                    foreach( $value as $ckey => $cvalue ) {
+
+                      $temp_id = $setting['id'] . '_' . $ckey . '_' . $key;
+                      
+                      if ( ! in_array( $temp_id, $new_ids ) ) {
+                      
+                        wpml_unregister_string( $temp_id );
+                      
+                      }
+                    
+                    }
+                  }
+                  
                 }
               
               } else {
