@@ -571,7 +571,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
               
               /* validate setting */
               if ( is_array( $input[$setting['id']] ) && in_array( $setting['type'], array( 'list-item', 'slider' ) ) ) {
-                
+
                 /* required title setting */
                 $required_setting = array(
                   array(
@@ -619,6 +619,18 @@ if ( ! class_exists( 'OT_Settings' ) ) {
                 
                 $input[$setting['id']] = ot_validate_setting( $input[$setting['id']], $setting['type'], $setting['id'] );
                 
+                // WPML Register and Unregister
+                if ( ! empty(  $input[$setting['id']] ) ) {
+                
+                  $this->wpml_register_string( $setting['id'], $input[$setting['id']] );
+                  
+                } else {
+                
+                  $this->wpml_unregister_string( $setting['id'] );
+                  
+                }
+                
+                
               }
 
             }
@@ -630,6 +642,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
       }
       
       return $input;
+      
     }
   
     /**
@@ -828,6 +841,27 @@ if ( ! class_exists( 'OT_Settings' ) ) {
       }
       
       return false;
+      
+    }
+    
+    private function wpml_register_string( $id, $value ) {
+
+      if ( function_exists( 'icl_register_string' ) ) {
+          
+        icl_register_string( 'OptionTree', $id, $value );
+          
+      }
+      
+    }
+
+    private function wpml_unregister_string( $id ) {
+    
+      if ( function_exists( 'icl_unregister_string' ) ) {
+          
+        icl_unregister_string( 'OptionTree', $id );
+          
+      }
+      
     }
     
   }

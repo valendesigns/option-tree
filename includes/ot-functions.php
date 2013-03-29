@@ -30,7 +30,13 @@ if ( ! function_exists( 'ot_get_option' ) ) {
     
     /* look for the saved value */
     if ( isset( $options[$option_id] ) && '' != $options[$option_id] ) {
+      
+      // Return single translated strings with WMPL
+      if ( function_exists('icl_t') )
+        return icl_t( 'OptionTree', $option_id, $options[$option_id] );
+        
       return $options[$option_id];
+      
     }
     
     return $default;
