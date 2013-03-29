@@ -1592,7 +1592,7 @@ if ( ! function_exists( 'ot_type_typography' ) ) {
         
         /* build font family */
         if ( in_array( 'font-family', $ot_recognized_typography_fields ) ) {
-          $font_family = isset( $field_value['font-family'] ) ? esc_attr( $field_value['font-family'] ) : '';
+          $font_family = isset( $field_value['font-family'] ) ? $field_value['font-family'] : '';
           echo '<select name="' . esc_attr( $field_name ) . '[font-family]" id="' . esc_attr( $field_id ) . '-font-family" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
             echo '<option value="">font-family</option>';
             foreach ( ot_recognized_font_families( $field_id ) as $key => $value ) {
