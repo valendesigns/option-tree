@@ -609,7 +609,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
                       
                       $input[$setting['id']][$k][$sub_setting['id']] = ot_validate_setting( $input[$setting['id']][$k][$sub_setting['id']], $sub_setting['type'], $sub_setting['id'] );
                       
-                      // Temp ID
+                      // Item ID
                       $wmpl_id = $setting['id'] . '_' . $sub_setting['id'] . '_' . $k;
                       
                       // WPML Register and Unregister strings
