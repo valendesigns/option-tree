@@ -30,7 +30,7 @@ if ( function_exists( 'ot_register_settings' ) ) {
         'pages'               => array( 
           array(
             'id'              => 'ot_theme_options',
-            'parent_slug'     => 'themes.php',
+            'parent_slug'     => apply_filters( 'ot_theme_options_parent_slug', 'themes.php' ),
             'page_title'      => apply_filters( 'ot_theme_options_page_title', __( 'Theme Options', 'option-tree' ) ),
             'menu_title'      => apply_filters( 'ot_theme_options_menu_title', __( 'Theme Options', 'option-tree' ) ),
             'capability'      => apply_filters( 'ot_theme_options_capability', 'edit_theme_options' ),
