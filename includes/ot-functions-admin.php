@@ -734,6 +734,10 @@ if ( ! function_exists( 'ot_import_xml' ) ) {
   function ot_import_xml( $file ) {
     
     $get_data = wp_remote_get( $file );
+    
+    if ( is_wp_error( $get_data ) )
+      return false;
+        
     $rawdata = isset( $get_data['body'] ) ? $get_data['body'] : false;
 
     if ( $rawdata ) {

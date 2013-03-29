@@ -73,6 +73,10 @@ if ( ! function_exists( 'compat_ot_import_from_files' ) ) {
     if ( $has_data == true && ! get_option( 'option_tree' ) ) {
       
       $get_data = wp_remote_get( $data_file );
+      
+      if ( is_wp_error( $get_data ) )
+        return false;
+        
       $rawdata = isset( $get_data['body'] ) ? $get_data['body'] : '';
       $options = unserialize( ot_decode( $rawdata ) );
       
@@ -110,6 +114,10 @@ if ( ! function_exists( 'compat_ot_import_from_files' ) ) {
     if ( $has_layout == true && ! get_option( 'option_tree_layouts' ) ) {
     
       $get_data = wp_remote_get( $data_file );
+      
+      if ( is_wp_error( $get_data ) )
+        return false;
+        
       $rawdata = isset( $get_data['body'] ) ? $get_data['body'] : '';
       $layouts = unserialize( ot_decode( $rawdata ) );
       
