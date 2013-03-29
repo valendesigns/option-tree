@@ -30,50 +30,8 @@ if ( ! function_exists( 'ot_get_option' ) ) {
     
     /* look for the saved value */
     if ( isset( $options[$option_id] ) && '' != $options[$option_id] ) {
-      
-      // Return single translated strings with WMPL
-      if ( function_exists('icl_t') ) {
         
-        $settings = get_option( 'option_tree_settings' );
-        
-        if ( isset( $settings['settings'] ) ) {
-        
-          foreach( $settings['settings'] as $setting ) {
-            
-            if ( $option_id == $setting['id'] && in_array( $setting['type'], array( 'list-item', 'slider' ) ) ) {
-            
-              $is_list = true;
-              
-            }
-            
-          }
-        
-        }
-        
-        // List Item & Slider
-        if ( isset( $is_list ) ) {
-          
-          foreach( $options[$option_id] as $key => $value ) {
-            
-            foreach( $value as $ckey => $cvalue ) {
-              
-              $id = $option_id . '_' . $ckey . '_' . $key;
-              $options[$option_id][$key][$ckey] = icl_t( 'OptionTree', $id, $cvalue );
-              
-            }
-          
-          }
-        
-        // All none array values
-        } else if ( ! is_array( $options[$option_id] ) ) {
-        
-          $options[$option_id] = icl_t( 'OptionTree', $option_id, $options[$option_id] );
-          
-        }
-      
-      }
-        
-      return $options[$option_id];
+      return ot_wpml_filter( $options, $option_id );
       
     }
     
@@ -81,6 +39,80 @@ if ( ! function_exists( 'ot_get_option' ) ) {
     
   }
   
+}
+
+/**
+ * Filter the return values through WPML
+ *
+ * @param     array     $options The current options    
+ * @param     string    $option_id The option ID
+ * @return    mixed
+ *
+ * @access    public
+ * @since     2.0.14
+ */
+if ( ! function_exists( 'ot_wpml_filter' ) ) {
+
+  function ot_wpml_filter( $options, $option_id ) {
+      
+    // Return translated strings using WMPL
+    if ( function_exists('icl_t') ) {
+      
+      $settings = get_option( 'option_tree_settings' );
+      
+      if ( isset( $settings['settings'] ) ) {
+      
+        foreach( $settings['settings'] as $setting ) {
+          
+          if ( $option_id == $setting['id'] && in_array( $setting['type'], array( 'list-item', 'slider' ) ) ) {
+          
+            $is_list = true;
+            
+          }
+          
+        }
+      
+      }
+      
+      // List Item & Slider
+      if ( isset( $is_list ) ) {
+        
+        foreach( $options[$option_id] as $key => $value ) {
+          
+          foreach( $value as $ckey => $cvalue ) {
+            
+            $id = $option_id . '_' . $ckey . '_' . $key;
+            $_string = icl_t( 'OptionTree', $id, $cvalue );
+            
+            if ( ! empty( $_string ) ) {
+            
+              $options[$option_id][$key][$ckey] = $_string;
+              
+            }
+            
+          }
+        
+        }
+      
+      // All none array values
+      } else if ( ! is_array( $options[$option_id] ) ) {
+      
+        $_string = icl_t( 'OptionTree', $option_id, $options[$option_id] );
+        
+        if ( ! empty( $options[$option_id] ) ) {
+        
+          $options[$option_id] = $_string;
+        
+        }
+        
+      }
+    
+    }
+    
+    return $options[$option_id];
+  
+  }
+
 }
 
 /**
