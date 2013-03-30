@@ -247,7 +247,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
     public function hooks() {
       
       /* load the text domain  */
-      if ( false == OT_THEME_MODE ) {
+      if ( false == OT_THEME_MODE && false == OT_CHILD_THEME_MODE ) {
         add_action( 'plugins_loaded', array( &$this, 'load_textdomain' ) );
       } else {
         add_action( 'after_setup_theme', array( &$this, 'load_textdomain' ) );
@@ -331,7 +331,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
      * @since     2.0
      */
     public function load_textdomain() {
-      if ( false == OT_THEME_MODE ) {
+      if ( false == OT_THEME_MODE && false == OT_CHILD_THEME_MODE ) {
         load_plugin_textdomain( 'option-tree', false, OT_LANG_DIR . 'plugin' );
       } else {
         load_theme_textdomain( 'option-tree', OT_LANG_DIR . 'theme-mode' );
