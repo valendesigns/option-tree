@@ -327,7 +327,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
     public function global_admin_css() {
       echo '
       <style>
-        #adminmenu #toplevel_page_ot-settings .wp-menu-image img { padding: 4px 0px 1px 2px !important; }
+        #adminmenu #toplevel_page_ot-settings .wp-menu-image img { padding: 5px 0px 1px 6px !important; }
       </style>
       ';
     }
