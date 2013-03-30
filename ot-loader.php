@@ -87,6 +87,18 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       define( 'OT_THEME_MODE', apply_filters( 'ot_theme_mode', false ) );
       
       /**
+       * For developers: Child Theme mode. TODO document
+       *
+       * Run a filter and set to true to enable OptionTree child theme mode.
+       * You must have this files parent directory inside of 
+       * your themes root directory. As well, you must include 
+       * a reference to this file in your themes functions.php.
+       *
+       * @since     2.0.15
+       */
+      define( 'OT_CHILD_THEME_MODE', apply_filters( 'ot_child_theme_mode', false ) );
+      
+      /**
        * For developers: Show Pages.
        *
        * Run a filter and set to false if you don't want to load the
@@ -119,18 +131,23 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       /**
        * Check if in theme mode.
        *
-       * If OT_THEME_MODE is false, set the directory path & URL
-       * like any other plugin. Otherwise, use the parent themes 
-       * root directory. 
+       * If OT_THEME_MODE and OT_CHILD_THEME_MODE is false, set the 
+       * directory path & URL like any other plugin. Otherwise, use 
+       * the parent or child themes root directory. 
        *
        * @since     2.0
        */
-      if ( false == OT_THEME_MODE ) {
+      if ( false == OT_THEME_MODE && false == OT_CHILD_THEME_MODE ) {
         define( 'OT_DIR', plugin_dir_path( __FILE__ ) );
         define( 'OT_URL', plugin_dir_url( __FILE__ ) );
       } else {
-        define( 'OT_DIR', trailingslashit( get_template_directory() ) . trailingslashit( basename( dirname( __FILE__ ) ) ) );
-        define( 'OT_URL', trailingslashit( get_template_directory_uri() ) . trailingslashit( basename( dirname( __FILE__ ) ) ) );
+        if ( true == OT_CHILD_THEME_MODE ) {
+          define( 'OT_DIR', trailingslashit( get_stylesheet_directory() ) . trailingslashit( basename( dirname( __FILE__ ) ) ) );
+          define( 'OT_URL', trailingslashit( get_stylesheet_directory_uri() ) . trailingslashit( basename( dirname( __FILE__ ) ) ) );
+        } else {
+          define( 'OT_DIR', trailingslashit( get_template_directory() ) . trailingslashit( basename( dirname( __FILE__ ) ) ) );
+          define( 'OT_URL', trailingslashit( get_template_directory_uri() ) . trailingslashit( basename( dirname( __FILE__ ) ) ) );
+        }
       }
       
       /**
