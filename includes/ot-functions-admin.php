@@ -2343,7 +2343,7 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
       
       /* Loop through CSS */
       foreach( $matches[0] as $option ) {
-        
+
         $value        = '';
         $option_id    = str_replace( array( '{{', '}}' ), '', $option );
         $option_array = explode( '|', $option_id );
@@ -2448,9 +2448,12 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
           }
          
         }
-        
+
         /* insert CSS, even if the value is empty */
        	$insertion = stripslashes( str_replace( $option, $value, $insertion ) );
+       	
+       	// Filter the CSS
+       	$insertion = apply_filters( 'ot_insert_css_with_markers_insertion', $insertion, $option, $value, $option_id );
        	
       }
   	
