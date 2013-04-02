@@ -3551,7 +3551,7 @@ function ot_decode( $value ) {
  */
 function ot_file_open( $handle, $mode ) {
 
-  @fopen( $handle, $mode );
+  return @fopen( $handle, $mode );
   
 }
 
@@ -3563,7 +3563,7 @@ function ot_file_open( $handle, $mode ) {
  */
 function ot_file_close( $handle ) {
 
-  fclose( $handle );
+  return fclose( $handle );
   
 }
 
@@ -3575,7 +3575,7 @@ function ot_file_close( $handle ) {
  */
 function ot_file_write( $handle, $string ) {
 
-  fwrite( $handle, $string );
+  return fwrite( $handle, $string );
   
 }
 
