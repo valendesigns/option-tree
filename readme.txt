@@ -48,6 +48,7 @@ Yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
 * Fixed none saving dynamic.css regression from 2.0.13.
 * Added 'ot_before_theme_options_save' action hook.
 * Fix 'indexOf' JS error when upload is closed without uploading.
+* Add textarea std value when option type is 'textarea', 'textarea-simple', or 'css'.
 
 = 2.0.14 =
 * Removed deprecated assigning of return value in PHP.

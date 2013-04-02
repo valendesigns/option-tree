@@ -2750,7 +2750,14 @@ if ( ! function_exists( 'ot_settings_view' ) ) {
   function ot_settings_view( $name, $key, $setting = array() ) {
     
     $child = ( strpos( $name, '][settings]') !== false ) ? true : false;
-
+    $type = isset( $setting['type'] ) ? $setting['type'] : '';
+    
+    if ( in_array( $type, array( 'textarea', 'textarea-simple', 'css' ) ) ) {
+      $std_form_element = '<textarea class="textarea" rows="10" cols="40" name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][std]">' . ( isset( $setting['std'] ) ? esc_html( $setting['std'] ) : '' ) . '</textarea>';
+    } else {
+      $std_form_element = '<input type="text" name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][std]" value="' . ( isset( $setting['std'] ) ? esc_attr( $setting['std'] ) : '' ) . '" class="widefat option-tree-ui-input" autocomplete="off" />';
+    }
+    
     return '
     <div class="option-tree-setting">
       <div class="open">' . ( isset( $setting['label'] ) ? esc_attr( $setting['label'] ) : 'Setting ' . ( $key + 1 ) ) . '</div>
@@ -2783,9 +2790,9 @@ if ( ! function_exists( 'ot_settings_view' ) ) {
           <div class="format-setting type-select wide-desc">
             <div class="description">' . __( '<strong>Type</strong>: Choose one of the available option types from the dropdown.', 'option-tree' ) . '</div>
             <div class="format-setting-inner">
-              <select name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][type]" value="' . ( isset( $setting['type'] ) ? esc_attr( $setting['type'] ) : '' ) . '" class="option-tree-ui-select">
-              ' . ( isset( $setting['type'] ) ? ot_loop_through_option_types( $setting['type'], $child ) : ot_loop_through_option_types( '', $child ) ) . '                     
-              
+              <select name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][type]" value="' . esc_attr( $type ) . '" class="option-tree-ui-select">
+              ' . ot_loop_through_option_types( $type, $child ) . '                     
+               
               </select>
             </div>
           </div>
@@ -2824,7 +2831,7 @@ if ( ! function_exists( 'ot_settings_view' ) ) {
           <div class="format-setting type-text wide-desc">
             <div class="description">' . __( '<strong>Standard</strong>: Setting the standard value for your option only works for some option types. Read the <code>OptionTree->Documentation</code> for more information on which ones.', 'option-tree' ) . '</div>
             <div class="format-setting-inner">
-              <input type="text" name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][std]" value="' . ( isset( $setting['std'] ) ? esc_attr( $setting['std'] ) : '' ) . '" class="widefat option-tree-ui-input" autocomplete="off" />
+              ' . $std_form_element . '
             </div>
           </div>
         </div>
