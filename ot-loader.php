@@ -55,7 +55,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
      * @access    private
      * @since     2.0
      */
-    public function constants() {
+    private function constants() {
       
       /**
        * Current Version number.
@@ -168,7 +168,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
      * @access    private
      * @since     2.0
      */
-    public function admin_includes() {
+    private function admin_includes() {
       
       /* exit early if we're not on an admin page */
       if ( ! is_admin() )
@@ -195,13 +195,9 @@ if ( ! class_exists( 'OT_Loader' ) ) {
         $files[] = 'ot-ui-admin';
       }
       
-      // Temporary patch to fix PHP notice regression after Theme Check update
-      global $wp_query;
-      $wp_query->query_vars['option_tree'] = true;
-      
       /* require the files */
       foreach ( $files as $file ) {
-        load_template( OT_DIR . "includes/{$file}.php" );
+        $this->load_file( OT_DIR . "includes/{$file}.php" );
       }
       
     }
@@ -217,21 +213,16 @@ if ( ! class_exists( 'OT_Loader' ) ) {
      * @access    private
      * @since     2.0
      */
-    public function includes() {
-      
+    private function includes() {
 		
       $files = array( 
         'ot-functions',
         'ot-functions-deprecated'
       );
-      
-      // Temporary patch to fix PHP notice regression after Theme Check update
-      global $wp_query;
-      $wp_query->query_vars['option_tree'] = true;
-      
+
       /* require the files */
       foreach ( $files as $file ) {
-        load_template( OT_DIR . "includes/{$file}.php" );
+        $this->load_file( OT_DIR . "includes/{$file}.php" );
       }
       
     }
@@ -244,7 +235,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
      * @access    public
      * @since     2.0
      */
-    public function hooks() {
+    private function hooks() {
       
       /* load the text domain  */
       if ( false == OT_THEME_MODE && false == OT_CHILD_THEME_MODE ) {
@@ -319,6 +310,20 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       
       /* AJAX call to create a new list item */
       add_action( 'wp_ajax_add_list_item', array( &$this, 'add_list_item' ) );
+      
+    }
+    
+    /**
+     * Load a file
+     *
+     * @return    void
+     *
+     * @access    private
+     * @since     2.0.15
+     */
+    private function load_file( $file ){
+      
+      include_once( $file );
       
     }
     
