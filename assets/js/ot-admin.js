@@ -291,7 +291,7 @@
             backup      = window.send_to_editor,
             btnContent  = '',
             intval      = window.setInterval(function() {
-                            if ( $('#TB_iframeContent').attr('src').indexOf( "&field_id=" ) !== -1 ) {
+                            if ( $('#TB_iframeContent').length > 0 && $('#TB_iframeContent').attr('src').indexOf( "&field_id=" ) !== -1 ) {
                               $('#TB_iframeContent').contents().find('#tab-type_url').hide();
                             }
                             $('#TB_iframeContent').contents().find('.savesend .button').val(option_tree.upload_text); 
