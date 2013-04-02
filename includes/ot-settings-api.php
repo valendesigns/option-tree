@@ -492,6 +492,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
         'field_name'        => 'option_tree[' . $id . ']',
         'field_value'       => $field_value,
         'field_desc'        => isset( $desc ) ? $desc : '',
+        'field_std'         => isset( $std ) ? $std : '',
         'field_rows'        => isset( $rows ) && ! empty( $rows ) ? $rows : 15,
         'field_post_type'   => isset( $post_type ) && ! empty( $post_type ) ? $post_type : 'post',
         'field_taxonomy'    => isset( $taxonomy ) && ! empty( $taxonomy ) ? $taxonomy : 'category',

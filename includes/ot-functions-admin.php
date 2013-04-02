@@ -954,6 +954,17 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
         ),";
         }
         
+        $std = "'$_std'";
+        if ( is_array( $_std ) ) {
+          $std_array = array();
+          foreach( $_std as $_sk => $_sv ) {
+            $std_array[] = "'$_sk' => '$_sv'";
+          }
+          $std = 'array(
+' . implode( ",\n", $std_array ) . '
+          )';
+        }
+        
         $setting_settings = '';
         if ( isset( $value['settings'] ) && ! empty( $value['settings'] ) ) {
           foreach( $value['settings'] as $setting ) {
@@ -985,13 +996,24 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
             'choices'     => array( $setting_choices
             ),";
             }
+            
+            $setting_std = "'$_setting_std'";
+            if ( is_array( $_setting_std ) ) {
+              $setting_std_array = array();
+              foreach( $_setting_std as $_ssk => $_ssv ) {
+                $setting_std_array[] = "'$_ssk' => '$_ssv'";
+              }
+              $setting_std = 'array(
+' . implode( ",\n", $setting_std_array ) . '
+              )';
+            }
         
             $setting_settings.= "
           array(
             'id'          => '$_setting_id',
             'label'       => '$_setting_label',
             'desc'        => '$_setting_desc',
-            'std'         => '$_setting_std',
+            'std'         => $setting_std,
             'type'        => '$_setting_type',
             'rows'        => '$_setting_rows',
             'post_type'   => '$_setting_post_type',
@@ -1010,7 +1032,7 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
         'id'          => '$_id',
         'label'       => '$_label',
         'desc'        => '$_desc',
-        'std'         => '$_std',
+        'std'         => $std,
         'type'        => '$_type',
         'section'     => '$_section',
         'rows'        => '$_rows',
@@ -1031,9 +1053,9 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
     
     $content.= "<?php
 /**
- * Initialize the options before anything else.
+ * Initialize the custom theme options.
  */
-add_action( 'admin_init', 'custom_theme_options', 1 );
+add_action( 'admin_init', 'custom_theme_options' );
 
 /**
  * Build the custom settings & update OptionTree.
@@ -2751,11 +2773,17 @@ if ( ! function_exists( 'ot_settings_view' ) ) {
     
     $child = ( strpos( $name, '][settings]') !== false ) ? true : false;
     $type = isset( $setting['type'] ) ? $setting['type'] : '';
+    $std = isset( $setting['std'] ) ? $setting['std'] : '';
+    
+    // Serialize the standard value just incase
+    if ( is_array( $std ) ) {
+      $std = maybe_serialize( $std );
+    }
     
     if ( in_array( $type, array( 'textarea', 'textarea-simple', 'css' ) ) ) {
-      $std_form_element = '<textarea class="textarea" rows="10" cols="40" name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][std]">' . ( isset( $setting['std'] ) ? esc_html( $setting['std'] ) : '' ) . '</textarea>';
+      $std_form_element = '<textarea class="textarea" rows="10" cols="40" name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][std]">' . esc_html( $std ) . '</textarea>';
     } else {
-      $std_form_element = '<input type="text" name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][std]" value="' . ( isset( $setting['std'] ) ? esc_attr( $setting['std'] ) : '' ) . '" class="widefat option-tree-ui-input" autocomplete="off" />';
+      $std_form_element = '<input type="text" name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][std]" value="' . esc_attr( $std ) . '" class="widefat option-tree-ui-input" autocomplete="off" />';
     }
     
     return '
@@ -3121,6 +3149,7 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
           'field_name'        => $_field_name . '[' . $key . '][' . $field['id'] . ']',
           'field_value'       => $field_value,
           'field_desc'        => isset( $field['desc'] ) ? $field['desc'] : '',
+          'field_std'         => isset( $field['std'] ) ? $field['std'] : '',
           'field_rows'        => isset( $field['rows'] ) ? $field['rows'] : 10,
           'field_post_type'   => isset( $field['post_type'] ) && ! empty( $field['post_type'] ) ? $field['post_type'] : 'post',
           'field_taxonomy'    => isset( $field['taxonomy'] ) && ! empty( $field['taxonomy'] ) ? $field['taxonomy'] : 'category',
@@ -3577,6 +3606,8 @@ function ot_file_write( $handle, $string ) {
  * @since     2.0.15
  */
 function ot_filter_std_value( $value = '', $std = '' ) {
+  
+  $std = maybe_unserialize( $std );
   
   if ( is_array( $value ) && is_array( $std ) ) {
   
