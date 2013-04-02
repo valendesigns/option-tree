@@ -2448,12 +2448,12 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
           }
          
         }
-
+        
+        // Filter the CSS
+       	$value = apply_filters( 'ot_insert_css_with_markers_value', $value, $option_id );
+       	
         /* insert CSS, even if the value is empty */
        	$insertion = stripslashes( str_replace( $option, $value, $insertion ) );
-       	
-       	// Filter the CSS
-       	$insertion = apply_filters( 'ot_insert_css_with_markers_insertion', $insertion, $option, $value, $option_id );
        	
       }
   	
