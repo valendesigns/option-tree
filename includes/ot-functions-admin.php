@@ -390,6 +390,9 @@ if ( ! function_exists( 'ot_default_settings' ) ) {
         
         }
         
+        /* execute the action hook and pass the theme options to it */
+        do_action( 'ot_before_theme_options_save', $options );
+        
         /* update the option tree array */
         update_option( 'option_tree', $options );
         
@@ -615,6 +618,9 @@ if ( ! function_exists( 'ot_import' ) ) {
         
         }
         
+        /* execute the action hook and pass the theme options to it */
+        do_action( 'ot_before_theme_options_save', $options );
+      
         /* update the option tree array */
         update_option( 'option_tree', $options );
         
@@ -673,8 +679,13 @@ if ( ! function_exists( 'ot_import' ) ) {
         
         /* update the option tree array */
         if ( isset( $layouts['active_layout'] ) ) {
+          
+          $new_options = unserialize( ot_decode( $layouts[$layouts['active_layout']] ) );
+          
+          /* execute the action hook and pass the theme options to it */
+          do_action( 'ot_before_theme_options_save', $new_options );
         
-          update_option( 'option_tree', unserialize( ot_decode( $layouts[$layouts['active_layout']] ) ) );
+          update_option( 'option_tree', $new_options );
           
         }
         
@@ -1400,7 +1411,12 @@ if ( ! function_exists( 'ot_modify_layouts' ) ) {
         /* rebuild the theme options */
         $rebuild_option_tree = unserialize( ot_decode( $rebuild[$rebuild['active_layout']] ) );
         if ( is_array( $rebuild_option_tree ) ) {
+          
+          /* execute the action hook and pass the theme options to it */
+          do_action( 'ot_before_theme_options_save', $rebuild_option_tree );
+          
           update_option( 'option_tree', $rebuild_option_tree );
+          
         }
         
         /* rebuild the layouts */
@@ -3538,38 +3554,6 @@ function ot_file_close( $handle ) {
 function ot_file_write( $handle, $string ) {
 
   return fwrite( $handle, $string );
-  
-}
-
-/**
- * Helper function to register a WPML string
- *
- * @access    public
- * @since     2.0.15
- */
-function ot_wpml_register_string( $id, $value ) {
-
-  if ( function_exists( 'icl_register_string' ) ) {
-      
-    icl_register_string( 'OptionTree', $id, $value );
-      
-  }
-  
-}
-
-/**
- * Helper function to unregister a WPML string
- *
- * @access    public
- * @since     2.0.15
- */
-function ot_wpml_unregister_string( $id ) {
-
-  if ( function_exists( 'icl_unregister_string' ) ) {
-      
-    icl_unregister_string( 'OptionTree', $id );
-      
-  }
   
 }
 

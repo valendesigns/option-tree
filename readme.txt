@@ -42,11 +42,11 @@ Yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
 == Changelog ==
 
 = 2.0.15 =
-* Added support for the WPML plugin.
 * Added support for Child Theme mode.
 * Remove load_template and revert back to include_once.
 * Add filter for CSS insertion value.
-* Fixed none saving dynamic.css regression from 2.0.13
+* Fixed none saving dynamic.css regression from 2.0.13.
+* Added 'ot_before_theme_options_save' action hook.
 
 = 2.0.14 =
 * Removed deprecated assigning of return value in PHP.
