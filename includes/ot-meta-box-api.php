@@ -79,9 +79,9 @@ if ( ! class_exists( 'OT_Meta_Box' ) ) {
           /* get current post meta data */
           $field_value = get_post_meta( $post->ID, $field['id'], true );
           
-          /* set default to standard value */
-          if ( '' == $field_value && isset( $field['std'] ) ) {  
-            $field_value = trim( $field['std'] );
+          /* set standard value */
+          if ( isset( $field['std'] ) ) {  
+            $field_value = ot_filter_std_value( $field_value, $field['std'] );
           }
           
           /* build the arguments array */
@@ -91,7 +91,6 @@ if ( ! class_exists( 'OT_Meta_Box' ) ) {
             'field_name'        => $field['id'],
             'field_value'       => $field_value,
             'field_desc'        => isset( $field['desc'] ) ? $field['desc'] : '',
-            'field_std'         => isset( $field['std'] ) ? $field['std'] : '',
             'field_rows'        => isset( $field['rows'] ) && ! empty( $field['rows'] ) ? $field['rows'] : 10,
             'field_post_type'   => isset( $field['post_type'] ) && ! empty( $field['post_type'] ) ? $field['post_type'] : 'post',
             'field_taxonomy'    => isset( $field['taxonomy'] ) && ! empty( $field['taxonomy'] ) ? $field['taxonomy'] : 'category',

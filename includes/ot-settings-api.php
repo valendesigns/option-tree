@@ -477,9 +477,12 @@ if ( ! class_exists( 'OT_Settings' ) ) {
       /* get current saved data */
       $options = get_option( $get_option, false );
       
-      /* set default to standard value */
-      if ( ! isset( $options[$id] ) && isset( $std ) ) {  
-        $options[$id] = trim( $std );
+      // Set field value
+      $field_value = isset( $options[$id] ) ? $options[$id] : '';
+      
+      /* set standard value */
+      if ( isset( $std ) ) {  
+        $field_value = ot_filter_std_value( $field_value, $std );
       }
       
       /* build the arguments array */
@@ -487,9 +490,8 @@ if ( ! class_exists( 'OT_Settings' ) ) {
         'type'              => $type,
         'field_id'          => $id,
         'field_name'        => 'option_tree[' . $id . ']',
-        'field_value'       => isset( $options[$id] ) ? $options[$id] : '',
+        'field_value'       => $field_value,
         'field_desc'        => isset( $desc ) ? $desc : '',
-        'field_std'         => isset( $std ) ? $std : '',
         'field_rows'        => isset( $rows ) && ! empty( $rows ) ? $rows : 15,
         'field_post_type'   => isset( $post_type ) && ! empty( $post_type ) ? $post_type : 'post',
         'field_taxonomy'    => isset( $taxonomy ) && ! empty( $taxonomy ) ? $taxonomy : 'category',

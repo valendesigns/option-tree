@@ -96,7 +96,7 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
     
       $input[0] = sanitize_text_field( $input[0] );
       
-    } else if ( 'typography' == $type ) {
+    } else if ( 'typography' == $type && isset( $input['font-color'] ) ) {
       
       $input['font-color'] = ot_validate_setting( $input['font-color'], 'colorpicker', $field_id );
     
@@ -3103,9 +3103,12 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
         
       foreach( $settings as $field ) {
         
+        // Set field value
+        $field_value = isset( $list_item[$field['id']] ) ? $list_item[$field['id']] : '';
+        
         /* set default to standard value */
-        if ( ! isset( $list_item[$field['id']] ) && isset( $field['std'] ) ) {  
-          $list_item[$field['id']] = trim( $field['std'] );
+        if ( isset( $field['std'] ) ) {  
+          $field_value = ot_filter_std_value( $field_value, $field['std'] );
         }
           
         /* make life easier */
@@ -3116,9 +3119,8 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
           'type'              => $field['type'],
           'field_id'          => $name . '_' . $field['id'] . '_' . $key,
           'field_name'        => $_field_name . '[' . $key . '][' . $field['id'] . ']',
-          'field_value'       => isset( $list_item[$field['id']] ) ? $list_item[$field['id']] : '',
+          'field_value'       => $field_value,
           'field_desc'        => isset( $field['desc'] ) ? $field['desc'] : '',
-          'field_std'         => isset( $field['std'] ) ? $field['std'] : '',
           'field_rows'        => isset( $field['rows'] ) ? $field['rows'] : 10,
           'field_post_type'   => isset( $field['post_type'] ) && ! empty( $field['post_type'] ) ? $field['post_type'] : 'post',
           'field_taxonomy'    => isset( $field['taxonomy'] ) && ! empty( $field['taxonomy'] ) ? $field['taxonomy'] : 'category',
@@ -3561,6 +3563,40 @@ function ot_file_close( $handle ) {
 function ot_file_write( $handle, $string ) {
 
   return fwrite( $handle, $string );
+  
+}
+
+/**
+ * Helper function to filter standard option values.
+ *
+ * @param     mixed     $value Saved string or array value
+ * @param     mixed     $std Standard string or array value
+ * @return    mixed     String or array
+ *
+ * @access    public
+ * @since     2.0.15
+ */
+function ot_filter_std_value( $value = '', $std = '' ) {
+  
+  if ( is_array( $value ) && is_array( $std ) ) {
+  
+    foreach( $value as $k => $v ) {
+      
+      if ( empty( $value[$k] ) && isset( $std[$k] ) ) {
+      
+        $value[$k] = $std[$k];
+        
+      }
+      
+    }
+  
+  } else if ( empty( $value ) && ! empty( $std ) ) {
+  
+    $value = $std;
+    
+  }
+
+  return $value;
   
 }
 
