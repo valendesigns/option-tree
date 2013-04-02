@@ -1194,44 +1194,6 @@ if ( ! function_exists( 'ot_save_settings' ) ) {
       /* is array: save & show success message */
       if ( is_array( $settings ) ) {
         
-        // WPML unregister ID's that have been removed
-        /*
-        if ( function_exists( 'icl_unregister_string' ) ) {
-          
-          $current = get_option( 'option_tree_settings' );
-          
-          if ( isset( $current['settings'] ) ) {
-            
-            // Empty ID array
-            $new_ids = array();
-            
-            // Build the IDs
-            foreach( $settings['settings'] as $setting ) {
-            
-              if ( $setting['id'] ) {
-              
-                $new_ids[] = $setting['id'];
-                
-              }
-              
-            }
-            
-            // Remove IDs from WPML
-            foreach( $current['settings'] as $setting ) {
-            
-              if ( ! in_array( $setting['id'], $new_ids ) ) {
-
-                wpml_unregister_string( $setting['id'] );
-                
-              }
-              
-            }
-
-          }
-          
-        }
-        */
-        
         update_option( 'option_tree_settings', $settings );
         $message = 'success';
         
@@ -3583,9 +3545,9 @@ function ot_file_write( $handle, $string ) {
  * Helper function to register a WPML string
  *
  * @access    public
- * @since     2.0.14
+ * @since     2.0.15
  */
-function wpml_register_string( $id, $value ) {
+function ot_wpml_register_string( $id, $value ) {
 
   if ( function_exists( 'icl_register_string' ) ) {
       
@@ -3599,9 +3561,9 @@ function wpml_register_string( $id, $value ) {
  * Helper function to unregister a WPML string
  *
  * @access    public
- * @since     2.0.14
+ * @since     2.0.15
  */
-function wpml_unregister_string( $id ) {
+function ot_wpml_unregister_string( $id ) {
 
   if ( function_exists( 'icl_unregister_string' ) ) {
       
