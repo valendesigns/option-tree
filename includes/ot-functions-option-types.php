@@ -1558,27 +1558,9 @@ if ( ! function_exists( 'ot_type_typography' ) ) {
       /* format setting inner wrapper */
       echo '<div class="format-setting-inner">'; 
         
-        /* build background colorpicker */  
-        echo '<div class="option-tree-ui-colorpicker-input-wrap">';
-          
-          /* colorpicker JS */      
-          echo '<script>jQuery(document).ready(function($) { OT_UI.bind_colorpicker("' . esc_attr( $field_id ) . '-picker"); });</script>';
-          
-          /* set background color */
-          $background_color = isset( $field_value['font-color'] ) ? esc_attr( $field_value['font-color'] ) : '';
-          
-          /* set border color */
-          $border_color = in_array( $background_color, array( '#FFFFFF', '#FFF', '#ffffff', '#fff' ) ) ? '#ccc' : $background_color;
-          
-          /* input */
-          echo '<input type="text" name="' . esc_attr( $field_name ) . '[font-color]" id="' . esc_attr( $field_id ) . '-picker" value="' . esc_attr( $background_color ) . '" class="widefat option-tree-ui-input cp_input ' . esc_attr( $field_class ) . '" autocomplete="off" placeholder="font-color" />';
-
-          echo '<div id="cp_' . esc_attr( $field_id ) . '-picker" class="cp_box"' . ( $background_color ? " style='background-color:$background_color; border-color:$border_color;'" : '' ) . '></div>';
-        
-        echo '</div>';
-        
         /* allow fields to be filtered */
         $ot_recognized_typography_fields = apply_filters( 'ot_recognized_typography_fields', array( 
+          'font-color',
           'font-family', 
           'font-size', 
           'font-style', 
@@ -1589,6 +1571,29 @@ if ( ! function_exists( 'ot_type_typography' ) ) {
           'text-decoration', 
           'text-transform' 
         ), $field_id );
+        
+        /* build background colorpicker */
+        if ( in_array( 'font-color', $ot_recognized_typography_fields ) ) {
+        
+          echo '<div class="option-tree-ui-colorpicker-input-wrap">';
+            
+            /* colorpicker JS */      
+            echo '<script>jQuery(document).ready(function($) { OT_UI.bind_colorpicker("' . esc_attr( $field_id ) . '-picker"); });</script>';
+            
+            /* set background color */
+            $background_color = isset( $field_value['font-color'] ) ? esc_attr( $field_value['font-color'] ) : '';
+            
+            /* set border color */
+            $border_color = in_array( $background_color, array( '#FFFFFF', '#FFF', '#ffffff', '#fff' ) ) ? '#ccc' : $background_color;
+            
+            /* input */
+            echo '<input type="text" name="' . esc_attr( $field_name ) . '[font-color]" id="' . esc_attr( $field_id ) . '-picker" value="' . esc_attr( $background_color ) . '" class="widefat option-tree-ui-input cp_input ' . esc_attr( $field_class ) . '" autocomplete="off" placeholder="font-color" />';
+  
+            echo '<div id="cp_' . esc_attr( $field_id ) . '-picker" class="cp_box"' . ( $background_color ? " style='background-color:$background_color; border-color:$border_color;'" : '' ) . '></div>';
+          
+          echo '</div>';
+        
+        }
         
         /* build font family */
         if ( in_array( 'font-family', $ot_recognized_typography_fields ) ) {
