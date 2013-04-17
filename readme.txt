@@ -42,7 +42,7 @@ Yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
 == Changelog ==
 
 = 2.0.16 =
-* Fixed the upload regression bug. Thanks to @anonumus via github.
+* Fixed an urgent JS regression bug that caused the upload option type to break. Code contributed by @anonumus via github.
 * Added 'font-color' to the typography filter.
 
 = 2.0.15 =
@@ -238,6 +238,9 @@ Yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
 * Initial version
 
 == Upgrade Notice ==
+
+= 2.0.16 =
+There was an issue with the upload option type's JavaScript not allowing anything other than images to be sent to the editor. This urgent issue is now fixed and why this version is light on changes.
 
 = 2.0.12 =
 The plugin has undertaken a complete rebuild! If you are not the theme developer, I urge you to contact that person before you upgrade and ask them to test the themes compatibility.
