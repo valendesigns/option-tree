@@ -198,13 +198,11 @@ if ( ! function_exists( 'ot_type_category_checkbox' ) ) {
         
         /* build categories */
         if ( ! empty( $categories ) ) {
-          $count = 0;
           foreach ( $categories as $category ) {
             echo '<p>';
-              echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[' . esc_attr( $count ) . ']" id="' . esc_attr( $field_id ) . '-' . esc_attr( $count ) . '" value="' . esc_attr( $category->term_id ) . '" ' . ( isset( $field_value[$count] ) ? checked( $field_value[$count], $category->term_id, false ) : '' ) . ' class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
-              echo '<label for="' . esc_attr( $field_id ) . '-' . esc_attr( $count ) . '">' . esc_attr( $category->name ) . '</label>';
+              echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[' . esc_attr( $category->term_id ) . ']" id="' . esc_attr( $field_id ) . '-' . esc_attr( $category->term_id ) . '" value="' . esc_attr( $category->term_id ) . '" ' . ( isset( $field_value[$category->term_id] ) ? checked( $field_value[$category->term_id], $category->term_id, false ) : '' ) . ' class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
+              echo '<label for="' . esc_attr( $field_id ) . '-' . esc_attr( $category->term_id ) . '">' . esc_attr( $category->name ) . '</label>';
             echo '</p>';
-            $count++;
           } 
         } else {
           echo '<p>' . __( 'No Categories Found', 'option-tree' ) . '</p>';
@@ -454,14 +452,12 @@ if ( ! function_exists( 'ot_type_custom_post_type_checkbox' ) ) {
         
         /* has posts */
         if ( $query->have_posts() ) {
-          $count = 0;
           while ( $query->have_posts() ) {
             $query->the_post();
             echo '<p>';
-              echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[' . esc_attr( $count ) . ']" id="' . esc_attr( $field_id ) . '-' . esc_attr( $count ) . '" value="' . esc_attr( get_the_ID() ) . '" ' . ( isset( $field_value[$count] ) ? checked( $field_value[$count], get_the_ID(), false ) : '' ) . ' class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
-              echo '<label for="' . esc_attr( $field_id ) . '-' . esc_attr( $count ) . '">' . get_the_title() . '</label>';
+              echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[' . esc_attr( get_the_ID() ) . ']" id="' . esc_attr( $field_id ) . '-' . esc_attr( get_the_ID() ) . '" value="' . esc_attr( get_the_ID() ) . '" ' . ( isset( $field_value[get_the_ID()] ) ? checked( $field_value[get_the_ID()], get_the_ID(), false ) : '' ) . ' class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
+              echo '<label for="' . esc_attr( $field_id ) . '-' . esc_attr( get_the_ID() ) . '">' . get_the_title() . '</label>';
             echo '</p>';
-            $count++;
           } 
         } else {
           echo '<p>' . __( 'No Posts Found', 'option-tree' ) . '</p>';
@@ -696,14 +692,12 @@ if ( ! function_exists( 'ot_type_page_checkbox' ) ) {
         
         /* has pages */
         if ( $query->have_posts() ) {
-          $count = 0;
           while ( $query->have_posts() ) {
             $query->the_post();
             echo '<p>';
-              echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[' . esc_attr( $count ) . ']" id="' . esc_attr( $field_id ) . '-' . esc_attr( $count ) . '" value="' . esc_attr( get_the_ID() ) . '" ' . ( isset( $field_value[$count] ) ? checked( $field_value[$count], get_the_ID(), false ) : '' ) . ' class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
-              echo '<label for="' . esc_attr( $field_id ) . '-' . esc_attr( $count ) . '">' . get_the_title() . '</label>';
+              echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[' . esc_attr( get_the_ID() ) . ']" id="' . esc_attr( $field_id ) . '-' . esc_attr( get_the_ID() ) . '" value="' . esc_attr( get_the_ID() ) . '" ' . ( isset( $field_value[get_the_ID()] ) ? checked( $field_value[get_the_ID()], get_the_ID(), false ) : '' ) . ' class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
+              echo '<label for="' . esc_attr( $field_id ) . '-' . esc_attr( get_the_ID() ) . '">' . get_the_title() . '</label>';
             echo '</p>';
-            $count++;
           } 
         } else {
           echo '<p>' . __( 'No Pages Found', 'option-tree' ) . '</p>';
@@ -880,14 +874,12 @@ if ( ! function_exists( 'ot_type_post_checkbox' ) ) {
         
         /* has posts */
         if ( $query->have_posts() ) {
-          $count = 0;
           while ( $query->have_posts() ) {
             $query->the_post();
             echo '<p>';
-              echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[' . esc_attr( $count ) . ']" id="' . esc_attr( $field_id ) . '-' . esc_attr( $count ) . '" value="' . esc_attr( get_the_ID() ) . '" ' . ( isset( $field_value[$count] ) ? checked( $field_value[$count], get_the_ID(), false ) : '' ) . ' class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
-              echo '<label for="' . esc_attr( $field_id ) . '-' . esc_attr( $count ) . '">' . esc_attr( get_the_title() ) . '</label>';
+              echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[' . esc_attr( get_the_ID() ) . ']" id="' . esc_attr( $field_id ) . '-' . esc_attr( get_the_ID() ) . '" value="' . esc_attr( get_the_ID() ) . '" ' . ( isset( $field_value[get_the_ID()] ) ? checked( $field_value[get_the_ID()], get_the_ID(), false ) : '' ) . ' class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
+              echo '<label for="' . esc_attr( $field_id ) . '-' . esc_attr( get_the_ID() ) . '">' . esc_attr( get_the_title() ) . '</label>';
             echo '</p>';
-            $count++;
           } 
         } else {
           echo '<p>' . __( 'No Posts Found', 'option-tree' ) . '</p>';
@@ -1135,13 +1127,11 @@ if ( ! function_exists( 'ot_type_tag_checkbox' ) ) {
         
         /* has tags */
         if ( $tags ) {
-          $count = 0;
           foreach( $tags as $tag ) {
             echo '<p>';
-              echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[' . esc_attr( $count ) . ']" id="' . esc_attr( $field_id ) . '-' . esc_attr( $count ) . '" value="' . esc_attr( $tag->term_id ) . '" ' . ( isset( $field_value[$count] ) ? checked( $field_value[$count], $tag->term_id, false ) : '' ) . ' class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
-              echo '<label for="' . esc_attr( $field_id ) . '-' . esc_attr( $count ) . '">' . esc_attr( $tag->name ) . '</label>';
+              echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[' . esc_attr( $tag->term_id ) . ']" id="' . esc_attr( $field_id ) . '-' . esc_attr( $tag->term_id ) . '" value="' . esc_attr( $tag->term_id ) . '" ' . ( isset( $field_value[$tag->term_id] ) ? checked( $field_value[$tag->term_id], $tag->term_id, false ) : '' ) . ' class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
+              echo '<label for="' . esc_attr( $field_id ) . '-' . esc_attr( $tag->term_id ) . '">' . esc_attr( $tag->name ) . '</label>';
             echo '</p>';
-            $count++;
           } 
         } else {
           echo '<p>' . __( 'No Tags Found', 'option-tree' ) . '</p>';
@@ -1248,13 +1238,11 @@ if ( ! function_exists( 'ot_type_taxonomy_checkbox' ) ) {
         
         /* has tags */
         if ( $taxonomies ) {
-          $count = 0;
           foreach( $taxonomies as $taxonomy ) {
             echo '<p>';
-              echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[' . esc_attr( $count ) . ']" id="' . esc_attr( $field_id ) . '-' . esc_attr( $count ) . '" value="' . esc_attr( $taxonomy->term_id ) . '" ' . ( isset( $field_value[$count] ) ? checked( $field_value[$count], $taxonomy->term_id, false ) : '' ) . ' class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
-              echo '<label for="' . esc_attr( $field_id ) . '-' . esc_attr( $count ) . '">' . esc_attr( $taxonomy->name ) . '</label>';
+              echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[' . esc_attr( $taxonomy->term_id ) . ']" id="' . esc_attr( $field_id ) . '-' . esc_attr( $taxonomy->term_id ) . '" value="' . esc_attr( $taxonomy->term_id ) . '" ' . ( isset( $field_value[$taxonomy->term_id] ) ? checked( $field_value[$taxonomy->term_id], $taxonomy->term_id, false ) : '' ) . ' class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
+              echo '<label for="' . esc_attr( $field_id ) . '-' . esc_attr( $taxonomy->term_id ) . '">' . esc_attr( $taxonomy->name ) . '</label>';
             echo '</p>';
-            $count++;
           } 
         } else {
           echo '<p>' . __( 'No Taxonomies Found', 'option-tree' ) . '</p>';
