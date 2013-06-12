@@ -294,7 +294,14 @@
                             if ( $('#TB_iframeContent').length > 0 && $('#TB_iframeContent').attr('src').indexOf( "&field_id=" ) !== -1 ) {
                               $('#TB_iframeContent').contents().find('#tab-type_url').hide();
                             }
-                            $('#TB_iframeContent').contents().find('.savesend .button').val(option_tree.upload_text); 
+                            $('#TB_iframeContent').contents().find('.savesend .button').val(option_tree.upload_text);
+
+                            if(!$('#TB_iframeContent').contents().find('.savesend input.button').length) {
+                                $('#TB_iframeContent').contents().find('.savesend').each(function(){
+                                    mediaItemID = $(this).closest('.media-item').attr('id').substring(11);
+                                    $(this).prepend('<input type="submit" name="send['+mediaItemID+']" class="button" value="'+option_tree.upload_text+'" />');
+                                });
+                            }
                           }, 50);
         tb_show('', 'media-upload.php?post_id='+post_id+'&field_id='+field_id+'&type=image&TB_iframe=1');
         window.send_to_editor = function(html) {
