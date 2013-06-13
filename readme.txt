@@ -43,6 +43,7 @@ Yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
 
 = 2.0.17 =
 * Added a new filter 'ot_show_options_ui' which allows you to hide the Theme Options UI from end users in theme mode.
+* Upload option type now uses the new media uploader introduced in WordPress 3.5. Some code contributed by @htvu via github.
 * Removed additional deprecated assigning of return value in PHP.
 * Fix missing "Send to OptionTree" button in CPT. Code contributed by @jomaddim via github.
 * Fix option types that use $count instead of an array key to select the option value.

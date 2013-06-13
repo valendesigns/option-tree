@@ -323,6 +323,9 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       /* AJAX call to create a new list item */
       add_action( 'wp_ajax_add_list_item', array( $this, 'add_list_item' ) );
       
+      /* Modify the media uploader button */
+      add_filter( 'gettext', array( $this, 'change_image_button' ), 10, 3 );
+      
     }
     
     /**
@@ -420,6 +423,29 @@ if ( ! class_exists( 'OT_Loader' ) ) {
     public function add_list_item() {
       ot_list_item_view( $_REQUEST['name'], $_REQUEST['count'], array(), $_REQUEST['post_id'], $_REQUEST['get_option'], unserialize( ot_decode( $_REQUEST['settings'] ) ), $_REQUEST['type'] );
       die();
+    }
+    
+    /**
+     * Filters the media uploader button.
+     *
+     * @return    string
+     *
+     * @access    public
+     * @since     2.0.17
+     */
+    public function change_image_button( $translation, $text, $domain ) {
+      global $pagenow;
+    
+      if ( $pagenow == 'themes.php' && 'default' == $domain && 'Insert into post' == $text ) {
+        
+        // Once is enough.
+        remove_filter( 'gettext', array( $this, 'ot_change_image_button' ) );
+        return 'Send to OptionTree';
+        
+      }
+      
+      return $translation;
+      
     }
     
   }
