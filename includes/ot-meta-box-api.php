@@ -33,9 +33,9 @@ if ( ! class_exists( 'OT_Meta_Box' ) ) {
         
       $this->meta_box = $meta_box;
       
-      add_action( 'add_meta_boxes', array( &$this, 'add_meta_boxes' ) );
+      add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ) );
       
-      add_action( 'save_post', array( &$this, 'save_meta_box' ), 1, 2 );
+      add_action( 'save_post', array( $this, 'save_meta_box' ), 1, 2 );
       
     }
     
@@ -51,7 +51,7 @@ if ( ! class_exists( 'OT_Meta_Box' ) ) {
      */
     function add_meta_boxes() {
       foreach ( (array) $this->meta_box['pages'] as $page ) {
-        add_meta_box( $this->meta_box['id'], $this->meta_box['title'], array( &$this, 'build_meta_box' ), $page, $this->meta_box['context'], $this->meta_box['priority'], $this->meta_box['fields'] );
+        add_meta_box( $this->meta_box['id'], $this->meta_box['title'], array( $this, 'build_meta_box' ), $page, $this->meta_box['context'], $this->meta_box['priority'], $this->meta_box['fields'] );
       }
     }
     

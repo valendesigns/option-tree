@@ -51,19 +51,19 @@ if ( ! class_exists( 'OT_Settings' ) ) {
     public function hooks() {
       
       /* add pages & menu items */
-      add_action( 'admin_menu', array( &$this, 'add_page' ) );
+      add_action( 'admin_menu', array( $this, 'add_page' ) );
       
       /* register sections */
-      add_action( 'admin_init', array( &$this, 'add_sections' ) );
+      add_action( 'admin_init', array( $this, 'add_sections' ) );
       
       /* register settings */
-      add_action( 'admin_init', array( &$this, 'add_settings' ) );
+      add_action( 'admin_init', array( $this, 'add_settings' ) );
       
       /* reset options */
-      add_action( 'admin_init', array( &$this, 'reset_options' ), 10 );
+      add_action( 'admin_init', array( $this, 'reset_options' ), 10 );
       
       /* initialize settings */
-      add_action( 'admin_init', array( &$this, 'initialize_settings' ), 11 );
+      add_action( 'admin_init', array( $this, 'initialize_settings' ), 11 );
       
     }
   
@@ -97,7 +97,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
               $page['menu_title'], 
               $page['capability'], 
               $page['menu_slug'], 
-              array( &$this, 'display_page' ), 
+              array( $this, 'display_page' ), 
               $page['icon_url'],
               $page['position'] 
             );
@@ -109,7 +109,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
               $page['menu_title'], 
               $page['capability'], 
               $page['menu_slug'], 
-              array( &$this, 'display_page' ) 
+              array( $this, 'display_page' ) 
             );
           }
           
@@ -120,13 +120,13 @@ if ( ! class_exists( 'OT_Settings' ) ) {
             $this->page_hook[$page['id']] = $page_hook;
             
             /* add scripts */
-            add_action( 'admin_print_scripts-' . $page_hook, array( &$this, 'scripts' ) );
+            add_action( 'admin_print_scripts-' . $page_hook, array( $this, 'scripts' ) );
             
             /* add styles */
-            add_action( 'admin_print_styles-' . $page_hook, array( &$this, 'styles' ) );
+            add_action( 'admin_print_styles-' . $page_hook, array( $this, 'styles' ) );
             
             /* add contextual help */
-            add_action( 'load-' . $page_hook, array( &$this, 'help' ) );
+            add_action( 'load-' . $page_hook, array( $this, 'help' ) );
           
           }
           
@@ -390,7 +390,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
             add_settings_section( 
               $section['id'], 
               $section['title'], 
-              array( &$this, 'display_section' ), 
+              array( $this, 'display_section' ), 
               $page['menu_slug'] 
             );
             
@@ -428,7 +428,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
       /* loop through options */
       foreach( (array) $this->options as $option ) {
           
-        register_setting( $option['id'], $option['id'], array ( &$this, 'sanitize_callback' ) );
+        register_setting( $option['id'], $option['id'], array ( $this, 'sanitize_callback' ) );
           
         /* loop through pages */
         foreach( (array) $this->get_pages( $option ) as $page ) {
@@ -447,7 +447,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
             add_settings_field( 
               $setting['id'], 
               $setting['label'], 
-              array( &$this, 'display_setting' ), 
+              array( $this, 'display_setting' ), 
               $page['menu_slug'],
               $setting['section'],
               $setting

@@ -239,9 +239,9 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       
       /* load the text domain  */
       if ( false == OT_THEME_MODE && false == OT_CHILD_THEME_MODE ) {
-        add_action( 'plugins_loaded', array( &$this, 'load_textdomain' ) );
+        add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
       } else {
-        add_action( 'after_setup_theme', array( &$this, 'load_textdomain' ) );
+        add_action( 'after_setup_theme', array( $this, 'load_textdomain' ) );
       }
       
       /* load the Meta Box assets */
@@ -282,7 +282,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       add_action( 'admin_init', 'ot_create_media_post', 8 );
       
       /* global CSS */
-      add_action( 'admin_head', array( &$this, 'global_admin_css' ) );
+      add_action( 'admin_head', array( $this, 'global_admin_css' ) );
       
       /* dynamic front-end CSS */
       add_action( 'wp_enqueue_scripts', 'ot_load_dynamic_css' );
@@ -291,25 +291,25 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       add_action( 'ot_after_theme_options_save', 'ot_save_css' );
       
       /* AJAX call to create a new section */
-      add_action( 'wp_ajax_add_section', array( &$this, 'add_section' ) );
+      add_action( 'wp_ajax_add_section', array( $this, 'add_section' ) );
       
       /* AJAX call to create a new setting */
-      add_action( 'wp_ajax_add_setting', array( &$this, 'add_setting' ) );
+      add_action( 'wp_ajax_add_setting', array( $this, 'add_setting' ) );
       
       /* AJAX call to create a new contextual help */
-      add_action( 'wp_ajax_add_the_contextual_help', array( &$this, 'add_the_contextual_help' ) );
+      add_action( 'wp_ajax_add_the_contextual_help', array( $this, 'add_the_contextual_help' ) );
       
       /* AJAX call to create a new choice */
-      add_action( 'wp_ajax_add_choice', array( &$this, 'add_choice' ) );
+      add_action( 'wp_ajax_add_choice', array( $this, 'add_choice' ) );
       
       /* AJAX call to create a new list item setting */
-      add_action( 'wp_ajax_add_list_item_setting', array( &$this, 'add_list_item_setting' ) );
+      add_action( 'wp_ajax_add_list_item_setting', array( $this, 'add_list_item_setting' ) );
       
       /* AJAX call to create a new layout */
-      add_action( 'wp_ajax_add_layout', array( &$this, 'add_layout' ) );
+      add_action( 'wp_ajax_add_layout', array( $this, 'add_layout' ) );
       
       /* AJAX call to create a new list item */
-      add_action( 'wp_ajax_add_list_item', array( &$this, 'add_list_item' ) );
+      add_action( 'wp_ajax_add_list_item', array( $this, 'add_list_item' ) );
       
     }
     
