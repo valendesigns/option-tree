@@ -23,7 +23,7 @@ $contextual_help = isset( $get_settings['contextual_help'] ) ? $get_settings['co
 
 /* build the Theme Options */
 if ( function_exists( 'ot_register_settings' ) ) {
-
+  
   ot_register_settings( array(
       array(
         'id'                  => 'option_tree',
@@ -33,7 +33,7 @@ if ( function_exists( 'ot_register_settings' ) ) {
             'parent_slug'     => apply_filters( 'ot_theme_options_parent_slug', 'themes.php' ),
             'page_title'      => apply_filters( 'ot_theme_options_page_title', __( 'Theme Options', 'option-tree' ) ),
             'menu_title'      => apply_filters( 'ot_theme_options_menu_title', __( 'Theme Options', 'option-tree' ) ),
-            'capability'      => apply_filters( 'ot_theme_options_capability', 'edit_theme_options' ),
+            'capability'      => $caps = apply_filters( 'ot_theme_options_capability', 'edit_theme_options' ),
             'menu_slug'       => 'ot-theme-options',
             'icon_url'        => apply_filters( 'ot_theme_options_icon_url', null ),
             'position'        => apply_filters( 'ot_theme_options_position', null ),
@@ -49,6 +49,9 @@ if ( function_exists( 'ot_register_settings' ) ) {
       )
     ) 
   );
+  
+  // Filters the options.php to add the minimum user capabilities.
+  add_filter( 'option_page_capability_option_tree', create_function( '$caps', "return '$caps';" ), 999 );
 
 }
 
