@@ -276,7 +276,7 @@ if ( ! function_exists( 'ot_register_meta_box' ) ) {
     if ( ! $args )
       return;
       
-    $ot_meta_box =& new OT_Meta_Box( $args );
+    $ot_meta_box = new OT_Meta_Box( $args );
   }
 
 }
