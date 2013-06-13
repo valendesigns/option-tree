@@ -3,7 +3,7 @@
  * Plugin Name: OptionTree
  * Plugin URI:  http://wp.envato.com
  * Description: Theme Options UI Builder for WordPress. A simple way to create & save Theme Options and Meta Boxes for free or premium themes.
- * Version:     2.0.16
+ * Version:     2.0.17
  * Author:      Derek Herman
  * Author URI:  http://valendesigns.com
  * License:     GPLv2
@@ -60,7 +60,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       /**
        * Current Version number.
        */
-      define( 'OT_VERSION', '2.0.16' );
+      define( 'OT_VERSION', '2.0.17' );
       
       /**
        * For developers: Allow Unfiltered HTML in all the textareas.
@@ -107,6 +107,18 @@ if ( ! class_exists( 'OT_Loader' ) ) {
        * @since     2.0
        */
       define( 'OT_SHOW_PAGES', apply_filters( 'ot_show_pages', true ) );
+      
+      /**
+       * For developers: Show Theme Options UI Builder
+       *
+       * Run a filter and set to false if you want to hide the
+       * Theme Options UI page in the admin area of WordPress.
+       * This will also hide the Layouts if OT_SHOW_NEW_LAYOUT == false.
+       * Like most of these filters, only works in theme mode.
+       *
+       * @since     2.0.17
+       */
+      define( 'OT_SHOW_OPTIONS_UI', apply_filters( 'ot_show_options_ui', true ) );
       
       /**
        * For developers: Show New Layout.
