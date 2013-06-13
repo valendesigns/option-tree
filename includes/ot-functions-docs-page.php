@@ -807,7 +807,7 @@ load_template( trailingslashit( get_template_directory() ) . \'includes/theme-op
           echo '<li>' . __( 'Add a variation of the following code to your <code>theme-options.php</code>. You\'ll obviously need to fill it in with all your custom array values for contextual help (optional), sections (required), and settings (required).', 'option-tree' ) . '</li>';
         echo '</ul>';
         
-        echo '<p>' . __( 'The code below is a boilerplate to get your started. For a full list of the available option types click the "Option Types" tab above. Also a quick note, you don\'t need to put OptionTree in theme mode to manually create options but you will want to hide the docs and settings as each time you load the admin area the settings be be written over with the code below if they\'ve changed in any way. However, this ensures your settings do not get tampered with by the end-user.', 'option-tree' ) . '</p>';
+        echo '<p>' . __( 'The code below is a boilerplate to get your started. For a full list of the available option types click the "Option Types" tab above. Also a quick note, you don\'t need to put OptionTree in theme mode to manually create options but you will want to hide the docs and settings as each time you load the admin area the settings be written over with the code below if they\'ve changed in any way. However, this ensures your settings do not get tampered with by the end-user.', 'option-tree' ) . '</p>';
         
         echo "<pre><code>/**
  * Initialize the options before anything else. 
