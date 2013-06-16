@@ -404,8 +404,18 @@
           opacity: "toggle", 
           duration: "fast" 
         }
-      }).bind("tabsselect", function(event, ui) {
-        $("input[name=\'_wp_http_referer\']").val(ui.tab);
+      });
+      $(".wrap.settings-wrap .ui-tabs a.ui-tabs-anchor").on("click", function(event, ui) {
+        var url = $("input[name=\'_wp_http_referer\']").val(),
+            hash = $(this).attr('href');
+        if ( url.indexOf("#") != -1 ) {
+          var o = url.split("#")[1],
+              n = hash.split("#")[1];
+          url = url.replace(o, n);
+        } else {
+          url = url + hash;
+        }
+        $("input[name=\'_wp_http_referer\']").val( url );
       });
     },
     init_radio_image_select: function() {
