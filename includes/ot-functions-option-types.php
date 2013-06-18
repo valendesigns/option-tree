@@ -592,7 +592,7 @@ if ( ! function_exists( 'ot_type_list_item' ) ) {
         echo '<a href="javascript:void(0);" class="option-tree-list-item-add option-tree-ui-button blue right hug-right" title="' . __( 'Add New', 'option-tree' ) . '">' . __( 'Add New', 'option-tree' ) . '</a>';
         
         /* description */
-        echo '<div class="list-item-description">' . __( 'You can re-order with drag & drop, the order will update after saving.', 'option-tree' ) . '</div>';
+        echo '<div class="list-item-description">' . apply_filters( 'ot_list_item_description', __( 'You can re-order with drag & drop, the order will update after saving.', 'option-tree' ), $field_id ) . '</div>';
       
       echo '</div>';
 

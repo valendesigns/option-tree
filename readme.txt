@@ -47,6 +47,7 @@ Yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
 * Removed additional deprecated assigning of return value in PHP.
 * Fix missing "Send to OptionTree" button in CPT. Code contributed by @jomaddim via github.
 * Fix option types that use $count instead of an array key to select the option value.
+* Added a new filter 'ot_list_item_description' which allows you to change the default list item description text.
 
 = 2.0.16 =
 * Fixed an urgent JS regression bug that caused the upload option type to break. Code contributed by @anonumus via github.
