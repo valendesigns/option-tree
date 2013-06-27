@@ -286,15 +286,13 @@
     },
     init_upload: function() {
       // Check for wp object only available in WP 3.5+
-      if (typeof wp !== 'undefined') {
-        var _custom_media = true
-          , _orig_send_attachment = wp.media.editor.send.attachment;         
+      if (typeof wp !== 'undefined') {       
         $('.ot_upload_media').on('click', function(event) {
           var field_id = $(this).parent('.option-tree-ui-upload-parent').find('input').attr('id')
             , post_id = $(this).attr('rel')
             , btnContent  = ''
-            , send_attachment_bkp = wp.media.editor.send.attachment;      
-    			_custom_media = true;			
+            , _orig_send_attachment = wp.media.editor.send.attachment
+            , _custom_media = true;			
     			wp.media.editor.send.attachment = function(props, attachment) {
     				if ( _custom_media ) {
               var href = attachment.url
@@ -309,7 +307,7 @@
               $('#'+field_id+'_media').append(btnContent).slideDown();
               OT_UI.fix_upload_parent();
             } else {
-    				  return _orig_send_attachment.apply( this, [props, attachment] );
+              return _orig_send_attachment.apply( this, [props, attachment] );
             };
           }
           wp.media.editor.open($(this));
