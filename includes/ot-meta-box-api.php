@@ -110,7 +110,7 @@ if ( ! class_exists( 'OT_Meta_Box' ) ) {
           echo '<div class="format-settings">';
             
             /* don't show title with textblocks */
-            if ( $_args['type'] != 'textblock' ) {
+            if ( $_args['type'] != 'textblock' && ! empty( $field['label'] ) ) {
               echo '<div class="format-setting-label">';
                 echo '<label for="' . $_args['field_id'] . '" class="label">' . $field['label'] . '</label>';
               echo '</div>';
