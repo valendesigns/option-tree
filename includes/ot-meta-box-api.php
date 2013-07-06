@@ -71,7 +71,7 @@ if ( ! class_exists( 'OT_Meta_Box' ) ) {
         echo '<input type="hidden" name="' . $this->meta_box['id'] . '_nonce" value="' . wp_create_nonce( $this->meta_box['id'] ) . '" />';
         
         /* meta box description */
-        echo isset( $this->meta_box['desc'] ) ? '<div class="description" style="padding-top:10px;">' . htmlspecialchars_decode( $this->meta_box['desc'] ) . '</div>' : '';
+        echo isset( $this->meta_box['desc'] ) && ! empty( $this->meta_box['desc'] ) ? '<div class="description" style="padding-top:10px;">' . htmlspecialchars_decode( $this->meta_box['desc'] ) . '</div>' : '';
       
         /* loop through meta box fields */
         foreach ( $this->meta_box['fields'] as $field ) {
