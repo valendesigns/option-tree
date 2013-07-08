@@ -559,9 +559,12 @@ li ul .format-setting-label {
   z-index: 100;
 }
 .option-tree-save-layout {
-  border-left: 1px solid #fff;
   float: left;
-  padding: 10px 0 10px 9px;
+  padding: 10px 0;
+}
+.option-tree-save-layout.active-layout {
+  border-left: 1px solid #fff;
+  padding-left: 9px;
 }
 .option-tree-save-layout .widefat {
   float: left;

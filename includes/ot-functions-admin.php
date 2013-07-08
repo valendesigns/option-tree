@@ -3203,7 +3203,7 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
  */
 if ( ! function_exists( 'ot_theme_options_layouts_form' ) ) {
 
-  function ot_theme_options_layouts_form() {
+  function ot_theme_options_layouts_form( $active = false ) {
     
     echo '<form method="post" id="option-tree-options-layouts-form">';
         
@@ -3250,7 +3250,7 @@ if ( ! function_exists( 'ot_theme_options_layouts_form' ) ) {
       }
       
       /* new layout wrapper */
-      echo '<div class="option-tree-save-layout">';
+      echo '<div class="option-tree-save-layout' . ( ! empty( $active_layout ) ? ' active-layout' : '' ) . '">';
         
         /* add new layout */
         echo '<input type="text" name="option_tree_layouts[_add_new_layout_]" value="" class="widefat option-tree-ui-input" autocomplete="off" />';
