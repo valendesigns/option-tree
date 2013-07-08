@@ -112,7 +112,7 @@ if ( function_exists( 'ot_register_settings' ) ) {
           ),
           array(
             'id'          => 'modify_layouts_text',
-            'label'       => __( 'Add, Activate, & Remove Layouts', 'option-tree' ),
+            'label'       => __( 'Layout Management', 'option-tree' ),
             'type'        => 'modify-layouts',
             'section'     => 'layouts'
           )
