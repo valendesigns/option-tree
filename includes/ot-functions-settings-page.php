@@ -517,7 +517,7 @@ if ( ! function_exists( 'ot_type_modify_layouts' ) ) {
           echo '<p>' . __( 'To add a new layout enter a unique lower case alphanumeric string (dashes allowed) in the text field and click "Save Layouts".', 'option-tree' ) . '</p>';
           echo '<p>' . __( 'As well, you can activate, remove, and drag & drop the order; all situations require you to click "Save Layouts" for the changes to be applied.', 'option-tree' ) . '</p>';
           echo '<p>' . __( 'When you create a new layout it will become active and any changes made to the Theme Options will be applied to it. If you switch back to a different layout immediately after creating a new layout that new layout will have a snapshot of the current Theme Options data attached to it.', 'option-tree' ) . '</p>';
-          echo '<p>' . __( 'Visit <code>OptionTree->Documentation->Layouts Overview</code> to see a more in-depth description of what layouts are and how to use them.', 'option-tree' ) . '</p>';
+          if ( OT_SHOW_DOCS ) echo '<p>' . __( 'Visit <code>OptionTree->Documentation->Layouts Overview</code> to see a more in-depth description of what layouts are and how to use them.', 'option-tree' ) . '</p>';
           
         echo '</div>';
         
