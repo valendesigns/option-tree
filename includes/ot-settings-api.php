@@ -484,12 +484,12 @@ if ( ! class_exists( 'OT_Settings' ) ) {
       if ( isset( $std ) ) {  
         $field_value = ot_filter_std_value( $field_value, $std );
       }
-      
+
       /* build the arguments array */
       $_args = array(
         'type'              => $type,
         'field_id'          => $id,
-        'field_name'        => 'option_tree[' . $id . ']',
+        'field_name'        => $get_option . '[' . $id . ']',
         'field_value'       => $field_value,
         'field_desc'        => isset( $desc ) ? $desc : '',
         'field_std'         => isset( $std ) ? $std : '',

@@ -1493,25 +1493,6 @@ if ( ! function_exists( 'ot_alert_message' ) ) {
     $action = isset( $_REQUEST['action'] ) ? $_REQUEST['action'] : '';
     $message = isset( $_REQUEST['message'] ) ? $_REQUEST['message'] : '';
     
-    /* theme options messages */
-    if ( $current_page == 'ot-theme-options' ) {
-    
-      if ( isset( $_POST['action'] ) && $_POST['action'] == 'reset' ) {
-      
-        return '<div id="message" class="updated fade below-h2"><p>' . $page['reset_message'] . '</p></div>';
-        
-      } else if ( isset( $_GET['settings-updated'] ) && $_GET['settings-updated'] == 'true' ) {  
-       
-        return '<div id="message" class="updated fade below-h2"><p>' . $page['updated_message'] . '</p></div>';
-        
-      } else if ( isset( $_GET['settings-updated'] ) && $_GET['settings-updated'] == 'layout' ) {  
-       
-        return '<div id="message" class="updated fade below-h2"><p>' . __( 'Layout activated.', 'option-tree' ) . '</p></div>';
-        
-      }
-      
-    }
-    
     /* settings messages */
     if ( $current_page == 'ot-settings' ) {
       
@@ -1579,6 +1560,23 @@ if ( ! function_exists( 'ot_alert_message' ) ) {
         }
 
              
+      }
+    
+    /* theme options messages */
+    } else {
+    
+      if ( isset( $_POST['action'] ) && $_POST['action'] == 'reset' ) {
+      
+        return '<div id="message" class="updated fade below-h2"><p>' . $page['reset_message'] . '</p></div>';
+        
+      } else if ( isset( $_GET['settings-updated'] ) && $_GET['settings-updated'] == 'true' ) {  
+       
+        return '<div id="message" class="updated fade below-h2"><p>' . $page['updated_message'] . '</p></div>';
+        
+      } else if ( isset( $_GET['settings-updated'] ) && $_GET['settings-updated'] == 'layout' ) {  
+       
+        return '<div id="message" class="updated fade below-h2"><p>' . __( 'Layout activated.', 'option-tree' ) . '</p></div>';
+        
       }
       
     }
