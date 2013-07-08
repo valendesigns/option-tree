@@ -3220,7 +3220,7 @@ if ( ! function_exists( 'ot_theme_options_layouts_form' ) ) {
         /* add new layout */
         echo '<input type="text" name="option_tree_layouts[_add_new_layout_]" value="" class="widefat option-tree-ui-input" autocomplete="off" />';
         
-        echo '<button type="submit" class="option-tree-ui-button blue light save-layout" title="' . __( 'New Layout', 'option-tree' ) . '">' . __( 'New Layout', 'option-tree' ) . '</button>';
+        echo '<button type="submit" class="option-tree-ui-button save-layout" title="' . __( 'New Layout', 'option-tree' ) . '">' . __( 'New Layout', 'option-tree' ) . '</button>';
       
       echo '</div>';
     

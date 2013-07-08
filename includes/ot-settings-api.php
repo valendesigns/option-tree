@@ -287,7 +287,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
                 echo '<div id="option-tree-sub-header">';
                   
                 if ( $show_buttons )
-                  echo '<button class="option-tree-ui-button grey right">' . $page['button_text'] . '</button>';
+                  echo '<button class="option-tree-ui-button blue right">' . $page['button_text'] . '</button>';
                   
                 echo '</div>';
                 
@@ -332,7 +332,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
               
                 echo '<div class="option-tree-ui-buttons">';
                 
-                  echo '<button class="option-tree-ui-button grey right">' . $page['button_text'] . '</button>';
+                  echo '<button class="option-tree-ui-button blue right">' . $page['button_text'] . '</button>';
                   
                 echo '</div>';
                 
@@ -350,7 +350,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
         
                   echo '<input type="hidden" name="action" value="reset" />';
                   
-                  echo '<button type="submit" class="option-tree-ui-button red light left reset-settings" title="' . __( 'Reset Options', 'option-tree' ) . '">' . __( 'Reset Options', 'option-tree' ) . '</button>';
+                  echo '<button type="submit" class="option-tree-ui-button red left reset-settings" title="' . __( 'Reset Options', 'option-tree' ) . '">' . __( 'Reset Options', 'option-tree' ) . '</button>';
                 
                 echo '</form>';
                 
