@@ -216,44 +216,74 @@ if ( function_exists( 'ot_register_settings' ) ) {
     ) 
   );
   
-  // Remove the Theme Options UI & maybe the Layouts page.
-  if ( OT_SHOW_OPTIONS_UI == false ) {
-  
-    foreach( $ot_register_pages_array as $key => $page ) {
+  // Loop over the settings and remove as needed.
+  foreach( $ot_register_pages_array as $key => $page ) {
+    
+    // Remove various options from the Settings UI.
+    if ( $page['id'] == 'settings' ) {
       
-      if ( $page['id'] == 'settings' ) {
-        
-        // Remove the Theme Options UI
+      // Remove the Theme Options UI
+      if ( OT_SHOW_OPTIONS_UI == false ) {
+      
         foreach( $page['sections'] as $section_key => $section ) {
           if ( $section['id'] == 'create_setting' ) {
             unset($ot_register_pages_array[$key]['sections'][$section_key]);
           }
         }
+      
+      }
+      
+      foreach( $page['settings'] as $setting_key => $setting ) {
+        if ( $setting['section'] == 'create_setting' ) {
+          unset($ot_register_pages_array[$key]['settings'][$setting_key]);
+        }
+      }
+      
+      // Remove parts of the Imports UI
+      if ( OT_SHOW_SETTINGS_IMPORT == false ) {
         
         foreach( $page['settings'] as $setting_key => $setting ) {
-          if ( $setting['section'] == 'create_setting' ) {
+          if ( $setting['section'] == 'import' && in_array( $setting['id'], array('import_xml_text', 'import_settings_text' ) ) ) {
             unset($ot_register_pages_array[$key]['settings'][$setting_key]);
           }
         }
+      
+      }
+      
+      // Remove parts of the Export UI
+      if ( OT_SHOW_SETTINGS_EXPORT == false ) {
         
-        // Remove the Layouts UI
-        if ( OT_SHOW_NEW_LAYOUT == false ) {
-
-          foreach( $page['sections'] as $section_key => $section ) {
-            if ( $section['id'] == 'layouts' ) {
-              unset($ot_register_pages_array[$key]['sections'][$section_key]);
-            }
+        foreach( $page['settings'] as $setting_key => $setting ) {
+          if ( $setting['section'] == 'export' && in_array( $setting['id'], array('export_settings_file_text', 'export_settings_text' ) ) ) {
+            unset($ot_register_pages_array[$key]['settings'][$setting_key]);
           }
-          
-          foreach( $page['settings'] as $setting_key => $setting ) {
-            if ( $setting['section'] == 'layouts' ) {
-              unset($ot_register_pages_array[$key]['settings'][$setting_key]);
-            }
-          }
-        
         }
       
-      } 
+      }
+      
+      // Remove the Layouts UI
+      if ( OT_SHOW_NEW_LAYOUT == false ) {
+
+        foreach( $page['sections'] as $section_key => $section ) {
+          if ( $section['id'] == 'layouts' ) {
+            unset($ot_register_pages_array[$key]['sections'][$section_key]);
+          }
+        }
+        
+        foreach( $page['settings'] as $setting_key => $setting ) {
+          if ( $setting['section'] == 'layouts' ) {
+            unset($ot_register_pages_array[$key]['settings'][$setting_key]);
+          }
+        }
+      
+      }
+    
+    }
+    
+    // Remove the Documentation UI.
+    if ( OT_SHOW_DOCS == false && $page['id'] == 'documentation' ) {
+      
+      unset( $ot_register_pages_array[$key] );
     
     }
   

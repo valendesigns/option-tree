@@ -113,12 +113,31 @@ if ( ! class_exists( 'OT_Loader' ) ) {
        *
        * Run a filter and set to false if you want to hide the
        * Theme Options UI page in the admin area of WordPress.
-       * This will also hide the Layouts if OT_SHOW_NEW_LAYOUT == false.
-       * Like most of these filters, only works in theme mode.
        *
        * @since     2.0.17
        */
       define( 'OT_SHOW_OPTIONS_UI', apply_filters( 'ot_show_options_ui', true ) );
+      
+      /**
+       * For developers: Hide Settings Import
+       *
+       * Run a filter and set to false if you want to hide the
+       * Settings Import options on the Import page.
+       *
+       * @since     2.0.17
+       */
+      define( 'OT_SHOW_SETTINGS_IMPORT', apply_filters( 'ot_show_settings_import', true ) );
+      
+      /**
+       * For developers: Hide Settings Export
+       *
+       * Run a filter and set to false if you want to hide the
+       * Settings Import options on the Import page. This will get 
+       * hidden if OT_SHOW_OPTIONS_UI == false.
+       *
+       * @since     2.0.17
+       */
+      define( 'OT_SHOW_SETTINGS_EXPORT', apply_filters( 'ot_show_settings_export', true ) );
       
       /**
        * For developers: Show New Layout.
@@ -129,6 +148,15 @@ if ( ! class_exists( 'OT_Loader' ) ) {
        * @since     2.0.10
        */
       define( 'OT_SHOW_NEW_LAYOUT', apply_filters( 'ot_show_new_layout', true ) );
+      
+      /**
+       * For developers: Show Documentation
+       *
+       * Run a filter and set to false if you want to hide the Documentation.
+       *
+       * @since     2.0.17
+       */
+      define( 'OT_SHOW_DOCS', apply_filters( 'ot_show_docs', true ) );
       
       /**
        * For developers: Meta Boxes.
