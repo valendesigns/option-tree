@@ -3213,34 +3213,28 @@ if ( ! function_exists( 'ot_theme_options_layouts_form' ) ) {
       
       /* set active layout */
       $active_layout = isset( $layouts['active_layout'] ) ? $layouts['active_layout'] : '';
-      
-      /* new layout wrapper */
-      echo '<div class="option-tree-save-layout">';
-        
-        /* add new layout */
-        echo '<input type="text" name="option_tree_layouts[_add_new_layout_]" value="" class="widefat option-tree-ui-input" autocomplete="off" />';
-        
-        echo '<button type="submit" class="option-tree-ui-button save-layout" title="' . __( 'New Layout', 'option-tree' ) . '">' . __( 'New Layout', 'option-tree' ) . '</button>';
-      
-      echo '</div>';
-    
+
       if ( is_array( $layouts ) && count( $layouts ) > 1 ) {
         
         $active_layout = esc_attr( $layouts['active_layout'] );
         
         echo '<input type="hidden" id="the_current_layout" value="' . $active_layout . '" />';
         
-        echo '<select name="option_tree_layouts[active_layout]" class="option-tree-ui-select option-tree-active-layout">';
-    
-          foreach( $layouts as $key => $data ) { 
-            
-            if ( $key == 'active_layout' )
-              continue;
-            
-            echo '<option' . selected( $key, $active_layout, false ) . ' value="' . esc_attr( $key ) . '">' . esc_attr( $key ) . '</option>';
-          }
-     		
-        echo '</select>';
+        echo '<div class="option-tree-active-layout">';
+        
+          echo '<select name="option_tree_layouts[active_layout]" class="option-tree-ui-select">';
+      
+            foreach( $layouts as $key => $data ) { 
+              
+              if ( $key == 'active_layout' )
+                continue;
+              
+              echo '<option' . selected( $key, $active_layout, false ) . ' value="' . esc_attr( $key ) . '">' . esc_attr( $key ) . '</option>';
+            }
+       		
+          echo '</select>';
+        
+        echo '</div>';
      		
         foreach( $layouts as $key => $data ) {
           
@@ -3252,6 +3246,16 @@ if ( ! function_exists( 'ot_theme_options_layouts_form' ) ) {
         }
    		
       }
+      
+      /* new layout wrapper */
+      echo '<div class="option-tree-save-layout">';
+        
+        /* add new layout */
+        echo '<input type="text" name="option_tree_layouts[_add_new_layout_]" value="" class="widefat option-tree-ui-input" autocomplete="off" />';
+        
+        echo '<button type="submit" class="option-tree-ui-button blue save-layout" title="' . __( 'New Layout', 'option-tree' ) . '">' . __( 'New Layout', 'option-tree' ) . '</button>';
+      
+      echo '</div>';
       
     echo '</form>';
     

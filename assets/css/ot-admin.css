@@ -555,24 +555,29 @@ li ul .format-setting-label {
   padding-top: 12px;
 }
 #option-tree-options-layouts-form {
-  left: 13px;
+  left: 15px;
   position: absolute;
-  top: 40px;
+  top: 30px;
   z-index: 100;
 }
 .option-tree-save-layout {
+  border-left: 1px solid #fff;
   width: 250px;
-  overflow: hidden;
+  float: left;
+  padding: 10px 0 10px 12px;
 }
 .option-tree-save-layout .widefat {
   float: left;
   width: 128px !important;
+  margin: 0;
 }
-.option-tree-save-layout button {
+.option-tree-save-layout button.blue {
   margin: 0 0 0 10px;
 }
 .option-tree-active-layout {
-
+  border-right: 1px solid #ccc;
+  float: left;
+  padding: 10px 12px 10px 0;
 }
 
 /* -------------------------------------------------- 
@@ -617,6 +622,7 @@ select.option-tree-ui-select {
   z-index: 4;
   min-width: 118px;
 }
+
 select.option-tree-ui-select option {
   padding: 3px 15px !important;
 }
@@ -628,10 +634,10 @@ select.option-tree-ui-select option {
   z-index: 2;
 }
 #option-tree-options-layouts-form .select-wrapper {
-  left: 244px;
-  position: absolute;
-  top: 0;
-  float: none;
+  margin: 0px;
+}
+#option-tree-options-layouts-form select.option-tree-ui-select {
+  min-width: 120px;
 }
 .type-measurement select.option-tree-ui-select {
   min-width: 68px !important;
