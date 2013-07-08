@@ -40,12 +40,11 @@
   position: relative;
   -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.05);
   box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-  -webkit-border-bottom-right-radius: 3px;
-  -webkit-border-bottom-left-radius: 3px;
-  -moz-border-radius-bottomright: 3px;
-  -moz-border-radius-bottomleft: 3px;
-  border-bottom-right-radius: 3px;
-  border-bottom-left-radius: 3px;
+  -webkit-border-radius: 0 0 4px 4px;
+   -khtml-border-radius: 0 0 4px 4px;
+     -moz-border-radius: 0 0 4px 4px;
+       -o-border-radius: 0 0 4px 4px;
+          border-radius: 0 0 4px 4px; 
 }
 
 /* -------------------------------------------------- 
@@ -65,12 +64,11 @@
   background-image: -webkit-linear-gradient(bottom, #373737, #464646 5px);
   -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.05);
   box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-  -webkit-border-top-left-radius: 3px;
-  -webkit-border-top-right-radius: 3px;
-  -moz-border-radius-topleft: 3px;
-  -moz-border-radius-topright: 3px;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
+  -webkit-border-radius: 4px 4px 0 0;
+   -khtml-border-radius: 4px 4px 0 0;
+     -moz-border-radius: 4px 4px 0 0;
+       -o-border-radius: 4px 4px 0 0;
+          border-radius: 4px 4px 0 0;
 }
 #option-tree-header li {
   display: block;
@@ -105,9 +103,9 @@
   background-image: -webkit-gradient(linear,left bottom,left top,from(#3a3a3a),to(#222));
   background-image: -webkit-linear-gradient(bottom,#3a3a3a,#222);
   background-image: linear-gradient(bottom,#3a3a3a,#222);
-  -webkit-border-top-left-radius: 4px;
-  -moz-border-radius-topleft: 4px;
-  border-top-left-radius: 4px;
+  -webkit-border-top-left-radius: 5px;
+  -moz-border-radius-topleft: 5px;
+  border-top-left-radius: 5px;
 }
 #option-tree-header #option-tree-version {
 
@@ -481,11 +479,11 @@ div.option-tree-ui-media-wrap {
   border: 1px solid #ccc; 
   overflow: hidden; 
   position: relative; 
-  -webkit-border-radius: 3px;
-   -khtml-border-radius: 3px;
-     -moz-border-radius: 3px;
-       -o-border-radius: 3px;
-          border-radius: 3px; 
+  -webkit-border-radius: 4px;
+   -khtml-border-radius: 4px;
+     -moz-border-radius: 4px;
+       -o-border-radius: 4px;
+          border-radius: 4px; 
 }
 .option-tree-setting a { 
   text-decoration: none; 
@@ -522,9 +520,9 @@ div.option-tree-ui-media-wrap {
 .ui-state-highlight {
   border: 1px dashed #ccc;
   display: block;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
 }
 .option-tree-setting-body {
   background: #fff;
@@ -563,7 +561,7 @@ li ul .format-setting-label {
 .option-tree-save-layout {
   border-left: 1px solid #fff;
   float: left;
-  padding: 10px 5px 10px 9px;
+  padding: 10px 0 10px 9px;
 }
 .option-tree-save-layout .widefat {
   float: left;
@@ -1210,9 +1208,11 @@ input[type="submit"].option-tree-ui-button::-moz-focus-inner {
   position: relative;
   -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.05);
   box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
+  -webkit-border-radius: 4px;
+   -khtml-border-radius: 4px;
+     -moz-border-radius: 4px;
+       -o-border-radius: 4px;
+          border-radius: 4px;
 }
 .option-tree-ui-buttons.alt {
   background: #f5f5f5;
