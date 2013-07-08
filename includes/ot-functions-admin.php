@@ -1388,12 +1388,12 @@ if ( ! function_exists( 'ot_modify_layouts' ) ) {
       if ( is_array( $layouts ) && ! empty( $layouts ) ) {
         
         /* setup active layout */
-        if ( isset( $layouts['active_layout'] ) && '' != $layouts['active_layout'] ) {
+        if ( isset( $layouts['active_layout'] ) && ! empty( $layouts['active_layout'] ) ) {
           $rebuild['active_layout'] = $layouts['active_layout'];
         }
         
         /* add new and overwrite active layout */
-        if ( isset( $layouts['_add_new_layout_'] ) && '' != $layouts['_add_new_layout_'] ) {
+        if ( isset( $layouts['_add_new_layout_'] ) && ! empty( $layouts['_add_new_layout_'] ) ) {
           $rebuild['active_layout'] = ot_sanitize_layout_id( $layouts['_add_new_layout_'] );
           $rebuild[$rebuild['active_layout']] = ot_encode( serialize( get_option( 'option_tree' ) ) );
         }
@@ -1408,7 +1408,7 @@ if ( ! function_exists( 'ot_modify_layouts' ) ) {
             continue;
           
           /* check if the key exists then set value */
-          if ( isset( $option_tree_layouts[$key] ) ) {
+          if ( isset( $option_tree_layouts[$key] ) && ! empty( $option_tree_layouts[$key] ) ) {
             $rebuild[$key] = $option_tree_layouts[$key];
             if ( '' == $first_layout ) {
               $first_layout = $key;
@@ -1417,8 +1417,7 @@ if ( ! function_exists( 'ot_modify_layouts' ) ) {
           
         }
         
-        
-        if ( ! isset( $rebuild[$rebuild['active_layout']] ) && '' != $first_layout ) {
+        if ( isset( $rebuild['active_layout'] ) && ! isset( $rebuild[$rebuild['active_layout']] ) && ! empty( $first_layout ) ) {
           $rebuild['active_layout'] = $first_layout;
         }
         
@@ -1429,7 +1428,7 @@ if ( ! function_exists( 'ot_modify_layouts' ) ) {
       
       /* is array: save & show success message */
       if ( count( $rebuild ) > 1 ) {
-        
+
         /* rebuild the theme options */
         $rebuild_option_tree = unserialize( ot_decode( $rebuild[$rebuild['active_layout']] ) );
         if ( is_array( $rebuild_option_tree ) ) {
@@ -1448,7 +1447,7 @@ if ( ! function_exists( 'ot_modify_layouts' ) ) {
         $message = 'success';
         
       } else if ( count( $rebuild ) <= 1 ) {
-        
+
         /* delete layouts option */
         delete_option( 'option_tree_layouts' );
         
@@ -1573,7 +1572,12 @@ if ( ! function_exists( 'ot_alert_message' ) ) {
           
           return '<div id="message" class="error fade below-h2"><p>' . __( 'Layouts could not be updated.', 'option-tree' ) . '</p></div>';
           
+        } else if ( $message == 'deleted' ) {
+          
+          return '<div id="message" class="updated fade below-h2"><p>' . __( 'Layouts have been deleted.', 'option-tree' ) . '</p></div>';
+          
         }
+
              
       }
       
