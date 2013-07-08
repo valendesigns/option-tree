@@ -220,7 +220,7 @@ if ( ! function_exists( 'ot_create_media_post' ) ) {
       'hierarchical'        => false,
       'rewrite'             => false,
       'supports'            => array( 'title', 'editor' ),
-      'can_export'          => true,
+      'can_export'          => false,
       'show_in_nav_menus'   => false
     ) );
   
