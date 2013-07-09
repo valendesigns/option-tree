@@ -159,6 +159,16 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       define( 'OT_SHOW_DOCS', apply_filters( 'ot_show_docs', true ) );
       
       /**
+       * For developers: Custom Theme Option page
+       *
+       * Run a filter and set to true if you want to hide the OptionTree 
+       * Theme Option page and build your own.
+       *
+       * @since     2.0.17
+       */
+      define( 'OT_USE_THEME_OPTIONS', apply_filters( 'ot_use_theme_options', true ) );
+      
+      /**
        * For developers: Meta Boxes.
        *
        * Run a filter and set to false to keep OptionTree from

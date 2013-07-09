@@ -779,7 +779,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
     		  
     		  echo '<div class="format-setting-wrap">';
     		  
-      		  if ( $field['args']['type'] != 'textblock' ) {
+      		  if ( $field['args']['type'] != 'textblock' && ! empty( $field['title'] ) ) {
       		  
       		    echo '<div class="format-setting-label">';
     		  

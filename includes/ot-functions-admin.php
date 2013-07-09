@@ -3166,7 +3166,7 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
         echo '<div class="format-settings">';
           
         /* don't show title with textblocks */
-        if ( $_args['type'] != 'textblock' ) {
+        if ( $_args['type'] != 'textblock' && ! empty( $field['label'] ) ) {
           echo '<div class="format-setting-label">';
             echo '<h3 class="label">' . esc_attr( $field['label'] ) . '</h3>';
           echo '</div>';

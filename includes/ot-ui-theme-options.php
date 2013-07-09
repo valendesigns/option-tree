@@ -22,7 +22,7 @@ $settings = isset( $get_settings['settings'] ) ? $get_settings['settings'] : arr
 $contextual_help = isset( $get_settings['contextual_help'] ) ? $get_settings['contextual_help'] : array();
 
 /* build the Theme Options */
-if ( function_exists( 'ot_register_settings' ) ) {
+if ( function_exists( 'ot_register_settings' ) && OT_USE_THEME_OPTIONS ) {
   
   ot_register_settings( array(
       array(
