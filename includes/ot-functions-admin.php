@@ -27,7 +27,7 @@ if ( ! function_exists( 'ot_after_theme_options_save' ) ) {
     $updated = isset( $_REQUEST['settings-updated'] ) && $_REQUEST['settings-updated'] == 'true' ? true : false;
     
     /* only execute after the theme options are saved */
-    if ( 'ot-theme-options' == $page && $updated ) {
+    if ( apply_filters( 'ot_theme_options_menu_slug', 'ot-theme-options' ) == $page && $updated ) {
       
       /* grab a copy of the theme options */
       $options = get_option( 'option_tree' );
@@ -1457,7 +1457,7 @@ if ( ! function_exists( 'ot_modify_layouts' ) ) {
       }
       
       /* redirect */
-      if ( isset( $_REQUEST['page'] ) && $_REQUEST['page'] == 'ot-theme-options' ) {
+      if ( isset( $_REQUEST['page'] ) && $_REQUEST['page'] == apply_filters( 'ot_theme_options_menu_slug', 'ot-theme-options' ) ) {
         $query_args = add_query_arg( array( 'settings-updated' => 'layout' ), remove_query_arg( array( 'action', 'message' ), $_POST['_wp_http_referer'] ) );
       } else {
         $query_args = add_query_arg( array( 'action' => 'save-layouts', 'message' => $message ), $_POST['_wp_http_referer'] );
@@ -1489,99 +1489,93 @@ if ( ! function_exists( 'ot_alert_message' ) ) {
     if ( empty( $page ) )
       return false;
     
-    $current_page = isset( $_REQUEST['page'] ) ? $_REQUEST['page'] : '';
     $action = isset( $_REQUEST['action'] ) ? $_REQUEST['action'] : '';
     $message = isset( $_REQUEST['message'] ) ? $_REQUEST['message'] : '';
+    $updated = isset( $_REQUEST['settings-updated'] ) ? $_REQUEST['settings-updated'] : '';
     
-    /* settings messages */
-    if ( $current_page == 'ot-settings' ) {
-      
-      if ( $action == 'save-settings' ) {
-      
-        if ( $message == 'success' ) {
-          
-          return '<div id="message" class="updated fade below-h2"><p>' . __( 'Settings updated.', 'option-tree' ) . '</p></div>';
-          
-        } else if ( $message == 'failed' ) {
-          
-          return '<div id="message" class="error fade below-h2"><p>' . __( 'Settings could not be saved.', 'option-tree' ) . '</p></div>';
-          
-        }
-        
-      } else if ( $action == 'import-xml' || $action == 'import-settings' ) {
-        
-        if ( $message == 'success' ) {
-          
-          return '<div id="message" class="updated fade below-h2"><p>' . __( 'Settings Imported.', 'option-tree' ) . '</p></div>';
-          
-        } else if ( $message == 'failed' ) {
-          
-          return '<div id="message" class="error fade below-h2"><p>' . __( 'Settings could not be imported.', 'option-tree' ) . '</p></div>';
-          
-        }
-      } else if ( $action == 'import-data' ) {
-        
-        if ( $message == 'success' ) {
-          
-          return '<div id="message" class="updated fade below-h2"><p>' . __( 'Data Imported.', 'option-tree' ) . '</p></div>';
-          
-        } else if ( $message == 'failed' ) {
-          
-          return '<div id="message" class="error fade below-h2"><p>' . __( 'Data could not be imported.', 'option-tree' ) . '</p></div>';
-          
-        }
-      
-      } else if ( $action == 'import-layouts' ) {
-        
-        if ( $message == 'success' ) {
-          
-          return '<div id="message" class="updated fade below-h2"><p>' . __( 'Layouts Imported.', 'option-tree' ) . '</p></div>';
-          
-        } else if ( $message == 'failed' ) {
-          
-          return '<div id="message" class="error fade below-h2"><p>' . __( 'Layouts could not be imported.', 'option-tree' ) . '</p></div>';
-          
-        }
-             
-      } else if ( $action == 'save-layouts' ) {
-        
-        if ( $message == 'success' ) {
-          
-          return '<div id="message" class="updated fade below-h2"><p>' . __( 'Layouts Updated.', 'option-tree' ) . '</p></div>';
-          
-        } else if ( $message == 'failed' ) {
-          
-          return '<div id="message" class="error fade below-h2"><p>' . __( 'Layouts could not be updated.', 'option-tree' ) . '</p></div>';
-          
-        } else if ( $message == 'deleted' ) {
-          
-          return '<div id="message" class="updated fade below-h2"><p>' . __( 'Layouts have been deleted.', 'option-tree' ) . '</p></div>';
-          
-        }
-
-             
-      }
+    if ( $action == 'save-settings' ) {
     
-    /* theme options messages */
-    } else {
-    
-      if ( isset( $_POST['action'] ) && $_POST['action'] == 'reset' ) {
-      
-        return '<div id="message" class="updated fade below-h2"><p>' . $page['reset_message'] . '</p></div>';
+      if ( $message == 'success' ) {
         
-      } else if ( isset( $_GET['settings-updated'] ) && $_GET['settings-updated'] == 'true' ) {  
-       
-        return '<div id="message" class="updated fade below-h2"><p>' . $page['updated_message'] . '</p></div>';
+        return '<div id="message" class="updated fade below-h2"><p>' . __( 'Settings updated.', 'option-tree' ) . '</p></div>';
         
-      } else if ( isset( $_GET['settings-updated'] ) && $_GET['settings-updated'] == 'layout' ) {  
-       
-        return '<div id="message" class="updated fade below-h2"><p>' . __( 'Layout activated.', 'option-tree' ) . '</p></div>';
+      } else if ( $message == 'failed' ) {
+        
+        return '<div id="message" class="error fade below-h2"><p>' . __( 'Settings could not be saved.', 'option-tree' ) . '</p></div>';
         
       }
       
+    } else if ( $action == 'import-xml' || $action == 'import-settings' ) {
+      
+      if ( $message == 'success' ) {
+        
+        return '<div id="message" class="updated fade below-h2"><p>' . __( 'Settings Imported.', 'option-tree' ) . '</p></div>';
+        
+      } else if ( $message == 'failed' ) {
+        
+        return '<div id="message" class="error fade below-h2"><p>' . __( 'Settings could not be imported.', 'option-tree' ) . '</p></div>';
+        
+      }
+    } else if ( $action == 'import-data' ) {
+      
+      if ( $message == 'success' ) {
+        
+        return '<div id="message" class="updated fade below-h2"><p>' . __( 'Data Imported.', 'option-tree' ) . '</p></div>';
+        
+      } else if ( $message == 'failed' ) {
+        
+        return '<div id="message" class="error fade below-h2"><p>' . __( 'Data could not be imported.', 'option-tree' ) . '</p></div>';
+        
+      }
+    
+    } else if ( $action == 'import-layouts' ) {
+      
+      if ( $message == 'success' ) {
+        
+        return '<div id="message" class="updated fade below-h2"><p>' . __( 'Layouts Imported.', 'option-tree' ) . '</p></div>';
+        
+      } else if ( $message == 'failed' ) {
+        
+        return '<div id="message" class="error fade below-h2"><p>' . __( 'Layouts could not be imported.', 'option-tree' ) . '</p></div>';
+        
+      }
+           
+    } else if ( $action == 'save-layouts' ) {
+      
+      if ( $message == 'success' ) {
+        
+        return '<div id="message" class="updated fade below-h2"><p>' . __( 'Layouts Updated.', 'option-tree' ) . '</p></div>';
+        
+      } else if ( $message == 'failed' ) {
+        
+        return '<div id="message" class="error fade below-h2"><p>' . __( 'Layouts could not be updated.', 'option-tree' ) . '</p></div>';
+        
+      } else if ( $message == 'deleted' ) {
+        
+        return '<div id="message" class="updated fade below-h2"><p>' . __( 'Layouts have been deleted.', 'option-tree' ) . '</p></div>';
+        
+      }
+    
+    } else if ( $updated == 'layout' ) {  
+       
+      return '<div id="message" class="updated fade below-h2"><p>' . __( 'Layout activated.', 'option-tree' ) . '</p></div>';
+        
+    } else if ( $action == 'reset' ) {
+      
+      return '<div id="message" class="updated fade below-h2"><p>' . $page['reset_message'] . '</p></div>';
+        
     }
     
+    do_action( 'ot_custom_page_messages' );
+    
+    if ( $updated == 'true' ) {  
+       
+      return '<div id="message" class="updated fade below-h2"><p>' . $page['updated_message'] . '</p></div>';
+        
+    } 
+    
     return false;
+    
   }
   
 }
