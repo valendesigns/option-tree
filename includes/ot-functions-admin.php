@@ -148,8 +148,13 @@ if ( ! function_exists( 'ot_admin_scripts' ) ) {
 
   function ot_admin_scripts() {
 
-    /* enqueue admin scripts */
-    add_thickbox();
+    if( function_exists( 'wp_enqueue_media' ) ) {
+      /* WP 3.5 Media Uploader */
+      wp_enqueue_media();
+    } else {
+      /* enqueue admin scripts */
+      add_thickbox();
+    }
     
     /* load the colorpicker */
     wp_enqueue_script( 'ot-colorpicker-js', OT_URL . 'assets/js/ot-colorpicker.js', array( 'jquery' ), OT_VERSION );
