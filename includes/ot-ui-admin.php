@@ -228,13 +228,13 @@ if ( function_exists( 'ot_register_settings' ) ) {
             unset($ot_register_pages_array[$key]['sections'][$section_key]);
           }
         }
-      
-      }
-      
-      foreach( $page['settings'] as $setting_key => $setting ) {
-        if ( $setting['section'] == 'create_setting' ) {
-          unset($ot_register_pages_array[$key]['settings'][$setting_key]);
+        
+        foreach( $page['settings'] as $setting_key => $setting ) {
+          if ( $setting['section'] == 'create_setting' ) {
+            unset($ot_register_pages_array[$key]['settings'][$setting_key]);
+          }
         }
+      
       }
       
       // Remove parts of the Imports UI
