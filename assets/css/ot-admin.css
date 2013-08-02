@@ -507,15 +507,22 @@ div.option-tree-ui-media-wrap {
   right: 0px;
   top: 1px;
 }
+.option-tree-setting.is-section { 
+  border: 1px solid #464646; 
+}
 .option-tree-setting.is-section .open {
-  background: #e9f2fb;
+  background: #464646;
+  color: #ccc;
 }
-.option-tree-setting.is-section .open:hover {
-  background: #e9f2fb url(../images/ot-dots.png) no-repeat 4px 15px;
+.option-tree-setting.is-section .option-tree-ui-button {
+  border-color: #151515 !important;
 }
-.format-setting .ui-sortable-helper 
-.option-tree-setting .open {
+.format-setting .ui-sortable-helper .option-tree-setting .open {
   background: #fff url(../images/ot-dots.png) no-repeat 4px 15px;
+}
+.option-tree-setting.is-section .open:hover,
+.format-setting .ui-sortable-helper .option-tree-setting.is-section .open {
+  background: #464646 url(../images/ot-dots.png) no-repeat 4px 15px;
 }
 .ui-state-highlight {
   border: 1px dashed #ccc;

@@ -2724,9 +2724,9 @@ if ( ! function_exists( 'ot_sections_view' ) ) {
       <div class="open">' . ( isset( $section['title'] ) ? esc_attr( $section['title'] ) : 'Section ' . ( $key + 1 ) ) . '</div>
       <div class="button-section">
         <a href="javascript:void(0);" class="option-tree-setting-edit option-tree-ui-button left-item" title="' . __( 'edit', 'option-tree' ) . '">
-          <span class="icon pencil">' . __( 'Edit', 'option-tree' ) . '</span>
+          <span class="icon pencil">' . __( 'Edit', 'option-tree' ) . '</span> 
         </a>
-        <a href="javascript:void(0);" class="option-tree-setting-remove option-tree-ui-button right-item" title="' . __( 'Delete', 'option-tree' ) . '">
+        <a href="javascript:void(0);" class="option-tree-setting-remove option-tree-ui-button red light right-item" title="' . __( 'Delete', 'option-tree' ) . '">
           <span class="icon trash-can">' . __( 'Delete', 'option-tree' ) . '</span>
         </a>
       </div>
@@ -2794,7 +2794,7 @@ if ( ! function_exists( 'ot_settings_view' ) ) {
         <a href="javascript:void(0);" class="option-tree-setting-edit option-tree-ui-button left-item" title="' . __( 'Edit', 'option-tree' ) . '">
           <span class="icon pencil">' . __( 'Edit', 'option-tree' ) . '</span>
         </a>
-        <a href="javascript:void(0);" class="option-tree-setting-remove option-tree-ui-button right-item" title="' . __( 'Delete', 'option-tree' ) . '">
+        <a href="javascript:void(0);" class="option-tree-setting-remove option-tree-ui-button red light right-item" title="' . __( 'Delete', 'option-tree' ) . '">
           <span class="icon trash-can">' . __( 'Delete', 'option-tree' ) . '</span>
         </a>
       </div>
@@ -2930,7 +2930,7 @@ if ( ! function_exists( 'ot_choices_view' ) ) {
         <a href="javascript:void(0);" class="option-tree-setting-edit option-tree-ui-button left-item" title="' . __( 'Edit', 'option-tree' ) . '">
           <span class="icon pencil">' . __( 'Edit', 'option-tree' ) . '</span>
         </a>
-        <a href="javascript:void(0);" class="option-tree-setting-remove option-tree-ui-button right-item" title="' . __( 'Delete', 'option-tree' ) . '">
+        <a href="javascript:void(0);" class="option-tree-setting-remove option-tree-ui-button red light right-item" title="' . __( 'Delete', 'option-tree' ) . '">
           <span class="icon trash-can">' . __( 'Delete', 'option-tree' ) . '</span>
         </a>
       </div>
@@ -2996,7 +2996,7 @@ if ( ! function_exists( 'ot_contextual_help_view' ) ) {
         <a href="javascript:void(0);" class="option-tree-setting-edit option-tree-ui-button left-item" title="' . __( 'Edit', 'option-tree' ) . '">
           <span class="icon pencil">' . __( 'Edit', 'option-tree' ) . '</span>
         </a>
-        <a href="javascript:void(0);" class="option-tree-setting-remove option-tree-ui-button right-item" title="' . __( 'Delete', 'option-tree' ) . '">
+        <a href="javascript:void(0);" class="option-tree-setting-remove option-tree-ui-button red light right-item" title="' . __( 'Delete', 'option-tree' ) . '">
           <span class="icon trash-can">' . __( 'Delete', 'option-tree' ) . '</span>
         </a>
       </div>
@@ -3055,7 +3055,7 @@ if ( ! function_exists( 'ot_layouts_view' ) ) {
         <a href="javascript:void(0);" class="option-tree-layout-activate option-tree-ui-button left-item' . ( $active_layout == $key ? ' active' : '' ) . '" title="' . __( 'Activate', 'option-tree' ) . '">
           <span class="icon check">' . __( 'Activate', 'option-tree' ) . '</span>
         </a>
-        <a href="javascript:void(0);" class="option-tree-setting-remove option-tree-ui-button right-item" title="'. __( 'Delete', 'option-tree' ) . '">
+        <a href="javascript:void(0);" class="option-tree-setting-remove option-tree-ui-button red light right-item" title="'. __( 'Delete', 'option-tree' ) . '">
           <span class="icon trash-can">' . __( 'Delete', 'option-tree' ) . '</span>
         </a>
       </div>
@@ -3124,7 +3124,7 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
         <a href="javascript:void(0);" class="option-tree-setting-edit option-tree-ui-button left-item" title="' . __( 'Edit', 'option-tree' ) . '">
           <span class="icon pencil">' . __( 'Edit', 'option-tree' ) . '</span>
         </a>
-        <a href="javascript:void(0);" class="option-tree-setting-remove option-tree-ui-button right-item" title="' . __( 'Delete', 'option-tree' ) . '">
+        <a href="javascript:void(0);" class="option-tree-setting-remove option-tree-ui-button red light right-item" title="' . __( 'Delete', 'option-tree' ) . '">
           <span class="icon trash-can">' . __( 'Delete', 'option-tree' ) . '</span>
         </a>
       </div>
