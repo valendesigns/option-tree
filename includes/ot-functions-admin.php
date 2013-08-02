@@ -10,7 +10,377 @@
  * @copyright Copyright (c) 2012, Derek Herman
  * @since     2.0
  */
+
+/**
+ * Registers the Theme Option page
+ *
+ * @uses      ot_register_settings()
+ *
+ * @return    void
+ *
+ * @access    public
+ * @since     2.0.17
+ */
+if ( ! function_exists( 'ot_register_theme_options_page' ) ) {
+
+  function ot_register_theme_options_page() {
+  
+    /* get the settings array */
+    $get_settings = get_option( 'option_tree_settings' );
     
+    /* sections array */
+    $sections = isset( $get_settings['sections'] ) ? $get_settings['sections'] : array();
+    
+    /* settings array */
+    $settings = isset( $get_settings['settings'] ) ? $get_settings['settings'] : array();
+    
+    /* contexual_help array */
+    $contextual_help = isset( $get_settings['contextual_help'] ) ? $get_settings['contextual_help'] : array();
+    
+    /* build the Theme Options */
+    if ( function_exists( 'ot_register_settings' ) && OT_USE_THEME_OPTIONS ) {
+      
+      ot_register_settings( array(
+          array(
+            'id'                  => 'option_tree',
+            'pages'               => array( 
+              array(
+                'id'              => 'ot_theme_options',
+                'parent_slug'     => apply_filters( 'ot_theme_options_parent_slug', 'themes.php' ),
+                'page_title'      => apply_filters( 'ot_theme_options_page_title', __( 'Theme Options', 'option-tree' ) ),
+                'menu_title'      => apply_filters( 'ot_theme_options_menu_title', __( 'Theme Options', 'option-tree' ) ),
+                'capability'      => $caps = apply_filters( 'ot_theme_options_capability', 'edit_theme_options' ),
+                'menu_slug'       => apply_filters( 'ot_theme_options_menu_slug', 'ot-theme-options' ),
+                'icon_url'        => apply_filters( 'ot_theme_options_icon_url', null ),
+                'position'        => apply_filters( 'ot_theme_options_position', null ),
+                'updated_message' => apply_filters( 'ot_theme_options_updated_message', __( 'Theme Options updated.', 'option-tree' ) ),
+                'reset_message'   => apply_filters( 'ot_theme_options_reset_message', __( 'Theme Options reset.', 'option-tree' ) ),
+                'button_text'     => apply_filters( 'ot_theme_options_button_text', __( 'Save Changes', 'option-tree' ) ),
+                'screen_icon'     => 'themes',
+                'contextual_help' => $contextual_help,
+                'sections'        => $sections,
+                'settings'        => $settings
+              )
+            )
+          )
+        ) 
+      );
+      
+      // Filters the options.php to add the minimum user capabilities.
+      add_filter( 'option_page_capability_option_tree', create_function( '$caps', "return '$caps';" ), 999 );
+    
+    }
+  
+  }
+
+}
+
+/**
+ * Registers the Settings page
+ *
+ * @uses      ot_register_settings()
+ *
+ * @return    void
+ *
+ * @access    public
+ * @since     2.0.17
+ */
+if ( ! function_exists( 'ot_register_settings_page' ) ) {
+
+  function ot_register_settings_page() {
+  
+    // Create the filterable pages array
+    $ot_register_pages_array =  array( 
+      array( 
+        'id'              => 'ot',
+        'page_title'      => __( 'OptionTree', 'option-tree' ),
+        'menu_title'      => __( 'OptionTree', 'option-tree' ),
+        'capability'      => 'edit_theme_options',
+        'menu_slug'       => 'ot-settings',
+        'icon_url'        => OT_URL . '/assets/images/ot-logo-mini.png',
+        'position'        => 61,
+        'hidden_page'     => true
+      ),
+      array(
+        'id'              => 'settings',
+        'parent_slug'     => 'ot-settings',
+        'page_title'      => __( 'Settings', 'option-tree' ),
+        'menu_title'      => __( 'Settings', 'option-tree' ),
+        'capability'      => 'edit_theme_options',
+        'menu_slug'       => 'ot-settings',
+        'icon_url'        => null,
+        'position'        => null,
+        'updated_message' => __( 'Theme Options updated.', 'option-tree' ),
+        'reset_message'   => __( 'Theme Options reset.', 'option-tree' ),
+        'button_text'     => __( 'Save Settings', 'option-tree' ),
+        'show_buttons'    => false,
+        'screen_icon'     => 'themes',
+        'sections'        => array(
+          array(
+            'id'          => 'create_setting',
+            'title'       => __( 'Theme Options UI', 'option-tree' )
+          ),
+          array(
+            'id'          => 'import',
+            'title'       => __( 'Import', 'option-tree' )
+          ),
+          array(
+            'id'          => 'export',
+            'title'       => __( 'Export', 'option-tree' )
+          ),
+          array(
+            'id'          => 'layouts',
+            'title'       => __( 'Layouts', 'option-tree' )
+          )
+        ),
+        'settings'        => array(
+          array(
+            'id'          => 'theme_options_ui_text',
+            'label'       => __( 'Theme Options UI Builder', 'option-tree' ),
+            'type'        => 'theme_options_ui',
+            'section'     => 'create_setting'
+          ),
+          array(
+            'id'          => 'import_xml_text',
+            'label'       => __( 'Settings XML', 'option-tree' ),
+            'type'        => 'import-xml',
+            'section'     => 'import'
+          ),
+          array(
+            'id'          => 'import_settings_text',
+            'label'       => __( 'Settings', 'option-tree' ),
+            'type'        => 'import-settings',
+            'section'     => 'import'
+          ),
+          array(
+            'id'          => 'import_data_text',
+            'label'       => __( 'Theme Options', 'option-tree' ),
+            'type'        => 'import-data',
+            'section'     => 'import'
+          ),
+          array(
+            'id'          => 'import_layouts_text',
+            'label'       => __( 'Layouts', 'option-tree' ),
+            'type'        => 'import-layouts',
+            'section'     => 'import'
+          ),
+          array(
+            'id'          => 'export_settings_file_text',
+            'label'       => __( 'Settings PHP File', 'option-tree' ),
+            'type'        => 'export-settings-file',
+            'section'     => 'export'
+          ),
+          array(
+            'id'          => 'export_settings_text',
+            'label'       => __( 'Settings', 'option-tree' ),
+            'type'        => 'export-settings',
+            'section'     => 'export'
+          ),
+          array(
+            'id'          => 'export_data_text',
+            'label'       => __( 'Theme Options', 'option-tree' ),
+            'type'        => 'export-data',
+            'section'     => 'export'
+          ),
+          array(
+            'id'          => 'export_layout_text',
+            'label'       => __( 'Layouts', 'option-tree' ),
+            'type'        => 'export-layouts',
+            'section'     => 'export'
+          ),
+          array(
+            'id'          => 'modify_layouts_text',
+            'label'       => __( 'Layout Management', 'option-tree' ),
+            'type'        => 'modify-layouts',
+            'section'     => 'layouts'
+          )
+        )
+      ),
+      array(
+        'id'              => 'documentation',
+        'parent_slug'     => 'ot-settings',
+        'page_title'      => __( 'Documentation', 'option-tree' ),
+        'menu_title'      => __( 'Documentation', 'option-tree' ),
+        'capability'      => 'edit_theme_options',
+        'menu_slug'       => 'ot-documentation',
+        'icon_url'        => null,
+        'position'        => null,
+        'updated_message' => __( 'Theme Options updated.', 'option-tree' ),
+        'reset_message'   => __( 'Theme Options reset.', 'option-tree' ),
+        'button_text'     => __( 'Save Settings', 'option-tree' ),
+        'show_buttons'    => false,
+        'screen_icon'     => 'themes',
+        'sections'        => array(
+          array(
+            'id'          => 'creating_options',
+            'title'       => __( 'Creating Options', 'option-tree' )
+          ),
+          array(
+            'id'          => 'option_types',
+            'title'       => __( 'Option Types', 'option-tree' )
+          ),
+          array(
+            'id'          => 'functions',
+            'title'       => __( 'Function References', 'option-tree' )
+          ),
+          array(
+            'id'          => 'theme_mode',
+            'title'       => __( 'Theme Mode', 'option-tree' )
+          ),
+          array(
+            'id'          => 'meta_boxes',
+            'title'       => __( 'Meta Boxes', 'option-tree' )
+          ),
+          array(
+            'id'          => 'examples',
+            'title'       => __( 'Code Examples', 'option-tree' )
+          ),
+          array(
+            'id'          => 'layouts_overview',
+            'title'       => __( 'Layouts Overview', 'option-tree' )
+          )
+        ),
+        'settings'        => array(
+          array(
+            'id'          => 'creating_options_text',
+            'label'       => __( 'Overview of available Theme Option fields.', 'option-tree' ),
+            'type'        => 'creating-options',
+            'section'     => 'creating_options'
+          ),
+          array(
+            'id'          => 'option_types_text',
+            'label'       => __( 'Option types in alphabetical order & hooks to filter them.', 'option-tree' ),
+            'type'        => 'option-types',
+            'section'     => 'option_types'
+          ),
+          array(
+            'id'          => 'functions_ot_get_option',
+            'label'       => __( 'Function Reference:ot_get_option()', 'option-tree' ),
+            'type'        => 'ot-get-option',
+            'section'     => 'functions'
+          ),
+          array(
+            'id'          => 'functions_get_option_tree',
+            'label'       => __( 'Function Reference:get_option_tree()', 'option-tree' ),
+            'type'        => 'get-option-tree',
+            'section'     => 'functions'
+          ),
+          array(
+            'id'          => 'theme_mode_text',
+            'label'       => __( 'Theme Mode', 'option-tree' ),
+            'type'        => 'theme-mode',
+            'section'     => 'theme_mode'
+          ),
+          array(
+            'id'          => 'meta_boxes_text',
+            'label'       => __( 'Meta Boxes', 'option-tree' ),
+            'type'        => 'meta-boxes',
+            'section'     => 'meta_boxes'
+          ),
+          array(
+            'id'          => 'example_text',
+            'label'       => __( 'Code examples for front-end development.', 'option-tree' ),
+            'type'        => 'examples',
+            'section'     => 'examples'
+          ),
+          array(
+            'id'          => 'layouts_overview_text',
+            'label'       => __( 'What\'s a layout anyhow?', 'option-tree' ),
+            'type'        => 'layouts-overview',
+            'section'     => 'layouts_overview'
+          )
+        )
+      )
+    );
+    
+    // Loop over the settings and remove as needed.
+    foreach( $ot_register_pages_array as $key => $page ) {
+      
+      // Remove various options from the Settings UI.
+      if ( $page['id'] == 'settings' ) {
+        
+        // Remove the Theme Options UI
+        if ( OT_SHOW_OPTIONS_UI == false ) {
+        
+          foreach( $page['sections'] as $section_key => $section ) {
+            if ( $section['id'] == 'create_setting' ) {
+              unset($ot_register_pages_array[$key]['sections'][$section_key]);
+            }
+          }
+          
+          foreach( $page['settings'] as $setting_key => $setting ) {
+            if ( $setting['section'] == 'create_setting' ) {
+              unset($ot_register_pages_array[$key]['settings'][$setting_key]);
+            }
+          }
+        
+        }
+        
+        // Remove parts of the Imports UI
+        if ( OT_SHOW_SETTINGS_IMPORT == false ) {
+          
+          foreach( $page['settings'] as $setting_key => $setting ) {
+            if ( $setting['section'] == 'import' && in_array( $setting['id'], array('import_xml_text', 'import_settings_text' ) ) ) {
+              unset($ot_register_pages_array[$key]['settings'][$setting_key]);
+            }
+          }
+        
+        }
+        
+        // Remove parts of the Export UI
+        if ( OT_SHOW_SETTINGS_EXPORT == false ) {
+          
+          foreach( $page['settings'] as $setting_key => $setting ) {
+            if ( $setting['section'] == 'export' && in_array( $setting['id'], array('export_settings_file_text', 'export_settings_text' ) ) ) {
+              unset($ot_register_pages_array[$key]['settings'][$setting_key]);
+            }
+          }
+        
+        }
+        
+        // Remove the Layouts UI
+        if ( OT_SHOW_NEW_LAYOUT == false ) {
+  
+          foreach( $page['sections'] as $section_key => $section ) {
+            if ( $section['id'] == 'layouts' ) {
+              unset($ot_register_pages_array[$key]['sections'][$section_key]);
+            }
+          }
+          
+          foreach( $page['settings'] as $setting_key => $setting ) {
+            if ( $setting['section'] == 'layouts' ) {
+              unset($ot_register_pages_array[$key]['settings'][$setting_key]);
+            }
+          }
+        
+        }
+      
+      }
+      
+      // Remove the Documentation UI.
+      if ( OT_SHOW_DOCS == false && $page['id'] == 'documentation' ) {
+        
+        unset( $ot_register_pages_array[$key] );
+      
+      }
+    
+    }
+    
+    $ot_register_pages_array = apply_filters( 'ot_register_pages_array', $ot_register_pages_array );
+    
+    // Register the pages.
+    ot_register_settings( array(
+        array(
+          'id'              => 'option_tree_settings',
+          'pages'           => $ot_register_pages_array
+        )
+      )
+    );
+  
+  }
+
+}
+
 /**
  * Runs directly after the Theme Options are save.
  *

@@ -229,8 +229,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
         'ot-functions-admin',
         'ot-functions-option-types',
         'ot-functions-compat',
-        'ot-settings-api',
-        'ot-ui-theme-options'
+        'ot-settings-api'
       );
       
       /* include the meta box api */
@@ -242,7 +241,6 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       if ( OT_SHOW_PAGES == true ) {
         $files[] = 'ot-functions-settings-page';
         $files[] = 'ot-functions-docs-page';
-        $files[] = 'ot-ui-admin';
       }
       
       /* require the files */
@@ -306,7 +304,13 @@ if ( ! class_exists( 'OT_Loader' ) ) {
         add_action( 'admin_print_styles-post.php', 'ot_admin_styles', 11 );
       
       }
-
+      
+      /* Registers the Theme Option page */
+      add_action( 'init', 'ot_register_theme_options_page' );
+      
+      /* Registers the Theme Option page */
+      add_action( 'init', 'ot_register_settings_page' );
+      
       /* prepares the after save do_action */
       add_action( 'admin_init', 'ot_after_theme_options_save', 1 );
       
