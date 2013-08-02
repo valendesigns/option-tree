@@ -161,7 +161,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       /**
        * For developers: Custom Theme Option page
        *
-       * Run a filter and set to true if you want to hide the OptionTree 
+       * Run a filter and set to false if you want to hide the OptionTree 
        * Theme Option page and build your own.
        *
        * @since     2.0.17
