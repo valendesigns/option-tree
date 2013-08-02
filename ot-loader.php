@@ -248,6 +248,14 @@ if ( ! class_exists( 'OT_Loader' ) ) {
         $this->load_file( OT_DIR . "includes/{$file}.php" );
       }
       
+      /* Registers the Theme Option page */
+      add_action( 'init', 'ot_register_theme_options_page' );
+      
+      /* Registers the Settings page */
+      if ( OT_SHOW_PAGES == true ) {
+        add_action( 'init', 'ot_register_settings_page' );
+      }
+      
     }
     
     /**
@@ -305,11 +313,8 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       
       }
       
-      /* Registers the Theme Option page */
-      add_action( 'init', 'ot_register_theme_options_page' );
-      
-      /* Registers the Theme Option page */
-      add_action( 'init', 'ot_register_settings_page' );
+      /* Adds the Theme Option page to the admin bar */
+      add_action( 'admin_bar_menu', 'ot_register_theme_options_admin_bar_menu', 999 );
       
       /* prepares the after save do_action */
       add_action( 'admin_init', 'ot_after_theme_options_save', 1 );
