@@ -344,7 +344,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       add_action( 'admin_head', array( $this, 'global_admin_css' ) );
       
       /* dynamic front-end CSS */
-      add_action( 'wp_enqueue_scripts', 'ot_load_dynamic_css' );
+      add_action( 'wp_enqueue_scripts', 'ot_load_dynamic_css', 999 );
 
       /* insert theme CSS dynamically */
       add_action( 'ot_after_theme_options_save', 'ot_save_css' );
