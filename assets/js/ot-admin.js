@@ -285,70 +285,57 @@
       });
     },
     init_upload: function() {
-      // Check for wp object only available in WP 3.5+
-      if (typeof wp !== 'undefined') {       
-        $('.ot_upload_media').on('click', function(event) {
-          var field_id = $(this).parent('.option-tree-ui-upload-parent').find('input').attr('id')
-            , post_id = $(this).attr('rel')
-            , btnContent = ''
-            , _orig_send_attachment = wp.media.editor.send.attachment
-            , _custom_media = true;			
-    			wp.media.editor.send.attachment = function(props, attachment) {
-    				if ( _custom_media ) {
-              var href = attachment.url
-                , image = /\.(?:jpe?g|png|gif|ico)$/i;          
-  		        if ( href.match(image) && OT_UI.url_exists(href) ) {
-                btnContent += '<div class="option-tree-ui-image-wrap"><img src="'+href+'" alt="" /></div>';
-              }               
-              btnContent += '<a href="javascript:(void);" class="option-tree-ui-remove-media option-tree-ui-button red light" title="'+option_tree.remove_media_text+'"><span class="icon trash-can">'+option_tree.remove_media_text+'</span></a>';       
-              $('#'+field_id).val(href);
-              $('#'+field_id+'_media').remove();
-              $('#'+field_id).parent().parent('div').append('<div class="option-tree-ui-media-wrap" id="'+field_id+'_media" />');
-              $('#'+field_id+'_media').append(btnContent).slideDown();
-              OT_UI.fix_upload_parent();
-            } else {
-              return _orig_send_attachment.apply( this, [props, attachment] );
-            };
-          }
-          wp.media.editor.open($(this));
-          return false;
-        });
-        $('a.add_media').on('click', function() {
-          _custom_media = false;
-        });
-      } else {
-        $('.ot_upload_media').live('click', function() {
-          var field_id    = $(this).parent('.option-tree-ui-upload-parent').find('input').attr('id'),
-              post_id     = $(this).attr('rel'),
-              backup      = window.send_to_editor,
-              btnContent  = '',
-              intval      = window.setInterval(function() {
-                              if ( $('#TB_iframeContent').length > 0 && $('#TB_iframeContent').attr('src').indexOf( "&field_id=" ) !== -1 ) {
-                                $('#TB_iframeContent').contents().find('#tab-type_url').hide();
-                              }
-                              $('#TB_iframeContent').contents().find('.savesend .button').val(option_tree.upload_text);
-  
-                              if(!$('#TB_iframeContent').contents().find('.savesend input.button').length) {
-                                  $('#TB_iframeContent').contents().find('.savesend').each(function(){
-                                      mediaItemID = $(this).closest('.media-item').attr('id').substring(11);
-                                      $(this).prepend('<input type="submit" name="send['+mediaItemID+']" class="button" value="'+option_tree.upload_text+'" />');
-                                  });
-                              }
-                            }, 50);
+      $('.ot_upload_media').on('click', function() {
+        var field_id    = $(this).parent('.option-tree-ui-upload-parent').find('input').attr('id'),
+            post_id     = $(this).attr('rel'),
+            btnContent  = '';
+        if ( window.wp && wp.media ) {
+          window.ot_media_frame = window.ot_media_frame || new wp.media.view.MediaFrame.Select({
+            title: $(this).attr('title'),
+            button: {
+              text: option_tree.upload_text
+            }, 
+            multiple: false
+          });
+          window.ot_media_frame.on('select', function() {
+            var attachment = window.ot_media_frame.state().get('selection').first(), 
+                href = attachment.attributes.url, 
+                mime = attachment.attributes.mime,
+                regex = /^image\/(?:jpe?g|png|gif|x-icon)$/i;
+
+            if (mime.match(regex) && OT_UI.url_exists(href)) {
+              btnContent += '<div class="option-tree-ui-image-wrap"><img src="'+href+'" alt="" /></div>';
+            }
+            btnContent += '<a href="javascript:(void);" class="option-tree-ui-remove-media option-tree-ui-button red light" title="'+option_tree.remove_media_text+'"><span class="icon trash-can">'+option_tree.remove_media_text+'</span></a>';
+            $('#'+field_id).val(href);
+            $('#'+field_id+'_media').remove();
+            $('#'+field_id).parent().parent('div').append('<div class="option-tree-ui-media-wrap" id="'+field_id+'_media" />');
+            $('#'+field_id+'_media').append(btnContent).slideDown();
+            window.ot_media_frame.off('select');
+          }).open();
+        } else {
+          var backup = window.send_to_editor,
+              intval = window.setInterval( 
+                function() {
+                  if ( $('#TB_iframeContent').length > 0 && $('#TB_iframeContent').attr('src').indexOf( "&field_id=" ) !== -1 ) {
+                    $('#TB_iframeContent').contents().find('#tab-type_url').hide();
+                  }
+                  $('#TB_iframeContent').contents().find('.savesend .button').val(option_tree.upload_text); 
+                }, 50);
           tb_show('', 'media-upload.php?post_id='+post_id+'&field_id='+field_id+'&type=image&TB_iframe=1');
           window.send_to_editor = function(html) {
             var href = $(html).find('img').attr('src');
             if ( typeof href == 'undefined') {
               href = $(html).attr('src');
             } 
-  		      if ( typeof href == 'undefined') {
+    	      if ( typeof href == 'undefined') {
               href = $(html).attr('href');
             }
             var image = /\.(?:jpe?g|png|gif|ico)$/i;
             if (href.match(image) && OT_UI.url_exists(href)) {
               btnContent += '<div class="option-tree-ui-image-wrap"><img src="'+href+'" alt="" /></div>';
             }
-            btnContent += '<a href="javascript:(void);" class="option-tree-ui-remove-media option-tree-ui-button red light" title="'+option_tree.remove_media_text+'"><span class="icon trash-can">'+option_tree.remove_media_text+'</span></a>';
+            btnContent += '<a href="javascript:(void);" class="option-tree-ui-remove-media option-tree-ui-button" title="'+option_tree.remove_media_text+'"><span class="icon trash-can">'+option_tree.remove_media_text+'</span></a>';
             $('#'+field_id).val(href);
             $('#'+field_id+'_media').remove();
             $('#'+field_id).parent().parent('div').append('<div class="option-tree-ui-media-wrap" id="'+field_id+'_media" />');
@@ -358,9 +345,9 @@
             window.clearInterval(intval);
             window.send_to_editor = backup;
           };
-          return false;
-        });
-      }
+        }
+        return false;
+      });
     },
     init_upload_remove: function() {
       $('.option-tree-ui-remove-media').live('click', function(event) {
