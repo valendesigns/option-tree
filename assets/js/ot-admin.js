@@ -303,7 +303,7 @@
                 mime = attachment.attributes.mime,
                 regex = /^image\/(?:jpe?g|png|gif|x-icon)$/i;
 
-            if (mime.match(regex) && OT_UI.url_exists(href)) {
+            if ( mime.match(regex) ) {
               btnContent += '<div class="option-tree-ui-image-wrap"><img src="'+href+'" alt="" /></div>';
             }
             btnContent += '<a href="javascript:(void);" class="option-tree-ui-remove-media option-tree-ui-button red light" title="'+option_tree.remove_media_text+'"><span class="icon trash-can">'+option_tree.remove_media_text+'</span></a>';
