@@ -290,7 +290,7 @@
         $('.ot_upload_media').on('click', function(event) {
           var field_id = $(this).parent('.option-tree-ui-upload-parent').find('input').attr('id')
             , post_id = $(this).attr('rel')
-            , btnContent  = ''
+            , btnContent = ''
             , _orig_send_attachment = wp.media.editor.send.attachment
             , _custom_media = true;			
     			wp.media.editor.send.attachment = function(props, attachment) {
