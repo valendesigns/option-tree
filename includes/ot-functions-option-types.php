@@ -448,7 +448,7 @@ if ( ! function_exists( 'ot_type_custom_post_type_checkbox' ) ) {
         $post_type = isset( $field_post_type ) ? explode( ',', $field_post_type ) : array( 'post' );
         
         /* query posts array */
-        $query = new WP_Query( array( 'post_type' => $post_type, 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC', 'post_status' => 'any' ) );
+        $query = new WP_Query( apply_filters( 'ot_type_custom_post_type_checkbox_query', array( 'post_type' => $post_type, 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC', 'post_status' => 'any' ), $field_id ) );
         
         /* has posts */
         if ( $query->have_posts() ) {
@@ -508,7 +508,7 @@ if ( ! function_exists( 'ot_type_custom_post_type_select' ) ) {
         $post_type = isset( $field_post_type ) ? explode( ',', $field_post_type ) : array( 'post' );
         
         /* query posts array */
-        $query = new WP_Query( array( 'post_type' => $post_type, 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC', 'post_status' => 'any' ) );
+        $query = new WP_Query( apply_filters( 'ot_type_custom_post_type_select_query', array( 'post_type' => $post_type, 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC', 'post_status' => 'any' ), $field_id ) );
         
         /* has posts */
         if ( $query->have_posts() ) {
@@ -688,7 +688,7 @@ if ( ! function_exists( 'ot_type_page_checkbox' ) ) {
       echo '<div class="format-setting-inner">';
       
         /* query pages array */
-        $query = new WP_Query( array( 'post_type' => array( 'page' ), 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC', 'post_status' => 'any' ) );
+        $query = new WP_Query( apply_filters( 'ot_type_page_checkbox_query', array( 'post_type' => array( 'page' ), 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC', 'post_status' => 'any' ), $field_id ) );
         
         /* has pages */
         if ( $query->have_posts() ) {
@@ -745,7 +745,7 @@ if ( ! function_exists( 'ot_type_page_select' ) ) {
         echo '<select name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" class="option-tree-ui-select ' . $field_class . '">';
         
         /* query pages array */
-        $query = new WP_Query( array( 'post_type' => array( 'page' ), 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC', 'post_status' => 'any' ) );
+        $query = new WP_Query( apply_filters( 'ot_type_page_select_query', array( 'post_type' => array( 'page' ), 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC', 'post_status' => 'any' ), $field_id ) );
         
         /* has pages */
         if ( $query->have_posts() ) {
@@ -870,7 +870,7 @@ if ( ! function_exists( 'ot_type_post_checkbox' ) ) {
       echo '<div class="format-setting-inner">';
       
         /* query posts array */
-        $query = new WP_Query( array( 'post_type' => array( 'post' ), 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC', 'post_status' => 'any' ) );
+        $query = new WP_Query( apply_filters( 'ot_type_post_checkbox_query', array( 'post_type' => array( 'post' ), 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC', 'post_status' => 'any' ), $field_id ) );
         
         /* has posts */
         if ( $query->have_posts() ) {
@@ -927,7 +927,7 @@ if ( ! function_exists( 'ot_type_post_select' ) ) {
         echo '<select name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" class="option-tree-ui-select ' . $field_class . '">';
         
         /* query posts array */
-        $query = new WP_Query( array( 'post_type' => array( 'post' ), 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC', 'post_status' => 'any' ) );
+        $query = new WP_Query( apply_filters( 'ot_type_post_select_query', array( 'post_type' => array( 'post' ), 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC', 'post_status' => 'any' ), $field_id ) );
         
         /* has posts */
         if ( $query->have_posts() ) {
