@@ -1101,6 +1101,70 @@ if ( ! function_exists( 'ot_type_select' ) ) {
 }
 
 /**
+ * @title
+ *
+ * @description
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     @version
+ */
+if ( ! function_exists( 'ot_type_sidebar_select' ) ) {
+  
+  function ot_type_sidebar_select( $args = array() ) {
+  
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+    
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-sidebar-select ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+      
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+      
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+      
+        /* build page select */
+        echo '<select name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" class="option-tree-ui-select ' . $field_class . '">';
+
+        /* get the registered sidebars */
+        global $wp_registered_sidebars;
+
+        $sidebars = array();
+        foreach( $wp_registered_sidebars as $id=>$sidebar ) {
+          $sidebars[ $id ] = $sidebar[ 'name' ];
+        }
+
+        /* filters to restrict which sidebars are allowed to be selected, for example we can restrict footer sidebars to be selectable on a blog page */
+        $sidebars = apply_filters( 'ot_recognized_sidebars', $sidebars );
+        $sidebars = apply_filters( 'ot_recognized_sidebars_' . $field_id, $sidebars );
+
+        /* has sidebars */
+        if ( count( $sidebars ) ) {
+          echo '<option value="">-- ' . __( 'Choose Sidebar', 'option-tree' ) . ' --</option>';
+          foreach ( $sidebars as $id => $sidebar ) {
+            echo '<option value="' . esc_attr( $id ) . '"' . selected( $field_value, $id, false ) . '>' . esc_attr( $sidebar ) . '</option>';
+          }
+        } else {
+          echo '<option value="">' . __( 'No Sidebars', 'option-tree' ) . '</option>';
+        }
+        echo '</select>';
+        
+      echo '</div>';
+      
+    echo '</div>';
+    
+  }
+  
+}
+
+/**
  * Tag Checkbox option type.
  *
  * See @ot_display_by_type to see the full list of available arguments.
