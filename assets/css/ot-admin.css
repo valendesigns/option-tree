@@ -237,7 +237,16 @@ select.option-tree-ui-select option   { padding: 3px 15px !important; }
 .type-radio-image .option-tree-ui-radio-images img { background: #fff; border: 1px solid #ccc; cursor: pointer; padding: 5px; border-radius: 3px; -webkit-border-radius: 3px; -moz-border-radius: 3px; }
 .type-radio-image .option-tree-ui-radio-images img.option-tree-ui-radio-image-selected,
 .type-radio-image .option-tree-ui-radio-images img:hover { border-color: #464646; -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.05); box-shadow:0 1px 3px rgba(0,0,0,0.05); }
-      
+
+/* -------------------------------------------------- 
+  :: Numeric Slider
+  ---------------------------------------------------*/
+.option-tree-ui-numeric-slider-input-wrap { margin-right: 80px; }
+.option-tree-ui-numeric-slider-input-wrap .ot-numeric-slider-helper-input { position: absolute; right: 0; top: 0; width: 71px; }
+.ot-numeric-slider.ui-slider { position: relative; border: 1px solid #ccc; margin: 8px 9px 12px; border-radius: 2px; -moz-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05); box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05); }
+.ot-numeric-slider.ui-slider-horizontal { height: 12px; }
+.ot-numeric-slider.ui-slider .ui-slider-handle { display: block; position: absolute; margin: -4px -9px; width: 18px; height: 18px; background: #f5f5f5; border: 1px solid #ccc; cursor: pointer; background: -moz-linear-gradient(top,  #f5f5f5 0%, #f1f1f1 100%); background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f5f5f5), color-stop(100%,#f1f1f1)); background: -webkit-linear-gradient(top,  #f5f5f5 0%,#f1f1f1 100%); background: -o-linear-gradient(top,  #f5f5f5 0%,#f1f1f1 100%); background: -ms-linear-gradient(top,  #f5f5f5 0%,#f1f1f1 100%); background: linear-gradient(top,  #f5f5f5 0%,#f1f1f1 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f5f5', endColorstr='#f1f1f1',GradientType=0 ); border-radius: 2px; }
+   
 /* -------------------------------------------------- 
   :: Colorpicker
   ---------------------------------------------------*/
