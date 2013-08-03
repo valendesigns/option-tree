@@ -356,6 +356,18 @@
         $(elm).parent().next('.option-tree-ui-media-wrap').remove();
       }
     },
+    init_numeric_slider: function() {
+      $(".option-tree-ui-numeric-slider-input-wrap").each(function() {
+        var hidden = $(".ot-numeric-slider-hidden-input", this),
+            helper = $(".ot-numeric-slider-helper-input", this);
+        $(".ot-numeric-slider", this).slider({
+          value: hidden.val(), 
+          slide: function(event, ui) {
+            hidden.add(helper).val(ui.value);
+          }
+        });
+      });
+    },
     init_tabs: function() {
       $(".wrap.settings-wrap .ui-tabs").tabs({ 
         fx: { 
