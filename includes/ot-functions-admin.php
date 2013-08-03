@@ -1611,6 +1611,7 @@ if ( ! function_exists( 'ot_option_types_array' ) ) {
       'custom-post-type-select'   => 'Custom Post Type Select',
       'list-item'                 => 'List Item',
       'measurement'               => 'Measurement',
+      'numeric-slider'            => 'Numeric Slider',
       'page-checkbox'             => 'Page Checkbox',
       'page-select'               => 'Page Select',
       'post-checkbox'             => 'Post Checkbox',
