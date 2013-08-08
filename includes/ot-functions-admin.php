@@ -1623,7 +1623,6 @@ if ( ! function_exists( 'ot_save_settings' ) ) {
         
       }
       
-      
       $settings['contextual_help'] = ot_stripslashes( $settings['contextual_help'] );
       
       /* default message */
@@ -1631,6 +1630,42 @@ if ( ! function_exists( 'ot_save_settings' ) ) {
       
       /* is array: save & show success message */
       if ( is_array( $settings ) ) {
+        
+        /* WPML unregister ID's that have been removed */
+        if ( function_exists( 'icl_unregister_string' ) ) {
+          
+          $current = get_option( 'option_tree_settings' );
+          
+          if ( isset( $current['settings'] ) ) {
+            
+            /* Empty ID array */
+            $new_ids = array();
+            
+            /* Build the IDs */
+            foreach( $settings['settings'] as $setting ) {
+            
+              if ( $setting['id'] ) {
+              
+                $new_ids[] = $setting['id'];
+                
+              }
+              
+            }
+            
+            /* Remove IDs from WPML */
+            foreach( $current['settings'] as $setting ) {
+            
+              if ( ! in_array( $setting['id'], $new_ids ) ) {
+
+                ot_wpml_unregister_string( $setting['id'] );
+                
+              }
+              
+            }
+
+          }
+          
+        }
         
         update_option( 'option_tree_settings', $settings );
         $message = 'success';

@@ -573,6 +573,10 @@ if ( ! class_exists( 'OT_Settings' ) ) {
             /* verify setting has a type & value */
             if ( isset( $setting['type'] ) && isset( $input[$setting['id']] ) ) {
               
+              /* get the defaults */
+              $current_settings = get_option( 'option_tree_settings' );
+              $current_options = get_option( $option['id'] );
+                
               /* validate setting */
               if ( is_array( $input[$setting['id']] ) && in_array( $setting['type'], array( 'list-item', 'slider' ) ) ) {
 
@@ -604,21 +608,22 @@ if ( ! class_exists( 'OT_Settings' ) ) {
                 /* merge the two settings array */
                 $settings = array_merge( $required_setting, $settings );
                 
+                /* create an empty WPML id array */
                 $wpml_ids = array();
                 
                 foreach( $input[$setting['id']] as $k => $setting_array ) {
 
                   foreach( $settings as $sub_setting ) {
                     
+                    /* setup the WPML ID */
+                    $wpml_id = $setting['id'] . '_' . $sub_setting['id'] . '_' . $k;
+                    
+                    /* add id to array */
+                    $wpml_ids[] = $wpml_id;
+                      
                     /* verify sub setting has a type & value */
                     if ( isset( $sub_setting['type'] ) && isset( $input[$setting['id']][$k][$sub_setting['id']] ) ) {
-                      
-                      /* setup the WPML ID */
-                      $wpml_id = $setting['id'] . '_' . $sub_setting['id'] . '_' . $k;
-                      
-                      /* add id to array */
-                      $wpml_ids[] = $wpml_id;
-                      
+
                       /* validate setting */
                       $input[$setting['id']][$k][$sub_setting['id']] = ot_validate_setting( $input[$setting['id']][$k][$sub_setting['id']], $sub_setting['type'], $sub_setting['id'], $wpml_id );
                       
@@ -627,47 +632,45 @@ if ( ! class_exists( 'OT_Settings' ) ) {
                   }
                 
                 }
-  
-                /* get the defaults */
-                $check_settings = get_option( 'option_tree_settings' );
-                $check_options = get_option( $option['id'] );
-                
-                /* unregister WPML strings that were deleted */
-                if ( isset( $check_settings['settings'] ) ) {
-                
-                  foreach( $check_settings['settings'] as $check_setting ) {
-                    
-                    // List Item & Slider
-                    if ( $setting['id'] == $check_setting['id'] ) {
-                    
-                      foreach( $check_options[$setting['id']] as $key => $value ) {
-                    
-                        foreach( $value as $ckey => $cvalue ) {
-                          
-                          $id = $setting['id'] . '_' . $ckey . '_' . $key;
-                          
-                          if ( ! in_array( $id, $wpml_ids ) ) {
-                          
-                            ot_wpml_unregister_string( $id );
-                            
-                          }
-                          
-                        }
-                      
-                      }
-                    
-                    }
-                    
-                  }
-                  
-                }
-              
+
               } else {
                 
                 $input[$setting['id']] = ot_validate_setting( $input[$setting['id']], $setting['type'], $setting['id'], $setting['id'] );
                  
               }
-
+            
+            }
+            
+            /* unregister WPML strings that were deleted from lists and sliders */
+            if ( isset( $current_settings['settings'] ) && isset( $setting['type'] ) && in_array( $setting['type'], array( 'list-item', 'slider' ) ) ) {
+              
+              if ( ! isset( $wpml_ids ) )
+                $wpml_ids = array();
+                
+              foreach( $current_settings['settings'] as $check_setting ) {
+              
+                if ( $setting['id'] == $check_setting['id'] && ! empty( $current_options[$setting['id']] ) ) {
+                
+                  foreach( $current_options[$setting['id']] as $key => $value ) {
+                
+                    foreach( $value as $ckey => $cvalue ) {
+                      
+                      $id = $setting['id'] . '_' . $ckey . '_' . $key;
+                      
+                      if ( ! in_array( $id, $wpml_ids ) ) {
+                      
+                        ot_wpml_unregister_string( $id );
+                        
+                      }
+                      
+                    }
+                  
+                  }
+                
+                }
+                
+              }
+              
             }
   		
           }
