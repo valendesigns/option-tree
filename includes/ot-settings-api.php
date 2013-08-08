@@ -569,25 +569,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
             
           /* loop through page settings */
           foreach( (array) $this->get_the_settings( $page ) as $setting ) {
-            
-            /* Allow filtering on the single string option types */
-            $single_string_types = apply_filters( 'ot_wpml_single_string_types', array( 'text', 'textarea', 'textarea-simple' ) );
-            
-            /* WPML Register and Unregister single strings */
-            if ( isset( $setting['type'] ) && in_array( $setting['type'], $single_string_types ) ) {
-            
-              if ( ! empty( $input[$setting['id']] ) ) {
-              
-                ot_wpml_register_string( $setting['id'], $input[$setting['id']] );
-                
-              } else {
-              
-                ot_wpml_unregister_string( $setting['id'] );
-                
-              }
-            
-            }
-            
+
             /* verify setting has a type & value */
             if ( isset( $setting['type'] ) && isset( $input[$setting['id']] ) ) {
               
@@ -622,6 +604,8 @@ if ( ! class_exists( 'OT_Settings' ) ) {
                 /* merge the two settings array */
                 $settings = array_merge( $required_setting, $settings );
                 
+                $wpml_ids = array();
+                
                 foreach( $input[$setting['id']] as $k => $setting_array ) {
 
                   foreach( $settings as $sub_setting ) {
@@ -629,18 +613,58 @@ if ( ! class_exists( 'OT_Settings' ) ) {
                     /* verify sub setting has a type & value */
                     if ( isset( $sub_setting['type'] ) && isset( $input[$setting['id']][$k][$sub_setting['id']] ) ) {
                       
-                      $input[$setting['id']][$k][$sub_setting['id']] = ot_validate_setting( $input[$setting['id']][$k][$sub_setting['id']], $sub_setting['type'], $sub_setting['id'] );
+                      /* setup the WPML ID */
+                      $wpml_id = $setting['id'] . '_' . $sub_setting['id'] . '_' . $k;
                       
+                      /* add id to array */
+                      $wpml_ids[] = $wpml_id;
+                      
+                      /* validate setting */
+                      $input[$setting['id']][$k][$sub_setting['id']] = ot_validate_setting( $input[$setting['id']][$k][$sub_setting['id']], $sub_setting['type'], $sub_setting['id'], $wpml_id );
                       
                     }
                     
                   }
                 
-                }   
+                }
+  
+                /* get the defaults */
+                $check_settings = get_option( 'option_tree_settings' );
+                $check_options = get_option( $option['id'] );
+                
+                /* unregister WPML strings that were deleted */
+                if ( isset( $check_settings['settings'] ) ) {
+                
+                  foreach( $check_settings['settings'] as $check_setting ) {
+                    
+                    // List Item & Slider
+                    if ( $setting['id'] == $check_setting['id'] ) {
+                    
+                      foreach( $check_options[$setting['id']] as $key => $value ) {
+                    
+                        foreach( $value as $ckey => $cvalue ) {
+                          
+                          $id = $setting['id'] . '_' . $ckey . '_' . $key;
+                          
+                          if ( ! in_array( $id, $wpml_ids ) ) {
+                          
+                            ot_wpml_unregister_string( $id );
+                            
+                          }
+                          
+                        }
+                      
+                      }
+                    
+                    }
+                    
+                  }
+                  
+                }
               
               } else {
                 
-                $input[$setting['id']] = ot_validate_setting( $input[$setting['id']], $setting['type'], $setting['id'] );
+                $input[$setting['id']] = ot_validate_setting( $input[$setting['id']], $setting['type'], $setting['id'], $setting['id'] );
                  
               }
 

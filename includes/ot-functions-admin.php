@@ -422,6 +422,7 @@ if ( ! function_exists( 'ot_after_theme_options_save' ) ) {
  * @param     mixed     Setting value
  * @param     string    Setting type
  * @param     string    Setting field ID
+ * @param     string    WPML field ID
  * @return    mixed
  *
  * @access    public
@@ -429,7 +430,7 @@ if ( ! function_exists( 'ot_after_theme_options_save' ) ) {
  */
 if ( ! function_exists( 'ot_validate_setting' ) ) {
 
-  function ot_validate_setting( $input, $type, $field_id ) {
+  function ot_validate_setting( $input, $type, $field_id, $wmpl_id = '' ) {
     
     /* exit early if missing data */
     if ( ! $input || ! $type || ! $field_id )
@@ -437,6 +438,28 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
     
     $input = apply_filters( 'ot_validate_setting', $input, $type, $field_id );
     
+    /* WPML Register and Unregister strings */
+    if ( ! empty( $wmpl_id ) ) {
+    
+      /* Allow filtering on the WPML option types */
+      $single_string_types = apply_filters( 'ot_wpml_option_types', array( 'text', 'textarea', 'textarea-simple' ) );
+              
+      if ( in_array( $type, $single_string_types ) ) {
+      
+        if ( ! empty( $input ) ) {
+        
+          ot_wpml_register_string( $wmpl_id, $input );
+          
+        } else {
+        
+          ot_wpml_unregister_string( $wmpl_id );
+          
+        }
+      
+      }
+    
+    }
+            
     if ( 'background' == $type ) {
 
       $input['background-color'] = ot_validate_setting( $input['background-color'], 'colorpicker', $field_id );
@@ -3505,7 +3528,7 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
     
     echo '
     <div class="option-tree-setting">
-      <div class="open">' . ( isset( $list_item['title'] ) ? esc_attr( $list_item['title'] ) : 'Item ' . ( $key + 1 ) ) . '</div>
+      <div class="open">' . ( isset( $list_item['title'] ) ? esc_attr( $list_item['title'] ) : '' ) . '</div>
       <div class="button-section">
         <a href="javascript:void(0);" class="option-tree-setting-edit option-tree-ui-button left-item" title="' . __( 'Edit', 'option-tree' ) . '">
           <span class="icon pencil">' . __( 'Edit', 'option-tree' ) . '</span>
@@ -4033,7 +4056,7 @@ function ot_wpml_register_string( $id, $value ) {
 
   if ( function_exists( 'icl_register_string' ) ) {
       
-    icl_register_string( 'OptionTree', $id, $value );
+    icl_register_string( 'Theme Options', $id, $value );
       
   }
   
@@ -4049,7 +4072,7 @@ function ot_wpml_unregister_string( $id ) {
 
   if ( function_exists( 'icl_unregister_string' ) ) {
       
-    icl_unregister_string( 'OptionTree', $id );
+    icl_unregister_string( 'Theme Options', $id );
       
   }
   
