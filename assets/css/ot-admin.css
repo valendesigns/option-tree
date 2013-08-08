@@ -736,8 +736,8 @@ select.option-tree-ui-select option {
 .type-numeric-slider .format-setting-inner {
   background: #fafafa;
   border: 1px solid #ccc;
-  min-height: 52px;
-  padding: 10px;
+  min-height: 42px;
+  padding: 5px;
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
           box-sizing: border-box;
@@ -746,19 +746,19 @@ select.option-tree-ui-select option {
           border-radius: 3px;
 }
 .ot-numeric-slider-wrap {
-  margin: 0 110px 0 0;
+  margin: 0 96px 0 0;
 }
 .ot-numeric-slider-wrap .ot-numeric-slider-helper-input { 
   position: absolute; 
-  right: 10px;
+  right: 5px;
   text-align: center;
-  top: 10px;
-  width: 100px;
+  top: 5px;
+  width: 90px;
 }
 .ot-numeric-slider.ui-slider { 
   background: #fff;
   border: 1px solid #ccc;
-  margin: 8px 10px; 
+  margin: 8px 10px 0 10px; 
   position: relative; 
   -webkit-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05);
      -moz-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05); 
@@ -771,16 +771,15 @@ select.option-tree-ui-select option {
   height: 12px;
 }
 .ot-numeric-slider.ui-slider .ui-slider-handle { 
-  display: block; 
-  position: absolute; 
-  margin: -5px -10px; 
-  width: 20px; 
-  height: 20px; 
-  background: #f5f5f5; 
-  border: 1px solid #21759b; 
+  background-color: #21759b; 
+  border: 1px solid #21759b;
   cursor: pointer;
+  display: block;
+  height: 20px; 
+  margin: -5px -10px;
   outline: 0;
-  background-color: #21759b;
+  position: absolute; 
+  width: 20px; 
   background-image: -webkit-gradient(linear,left top,left bottom,from(#2a95c5),to(#21759b));
   background-image: -webkit-linear-gradient(top,#2a95c5,#21759b);
   background-image: -moz-linear-gradient(top,#2a95c5,#21759b);
