@@ -569,7 +569,25 @@ if ( ! class_exists( 'OT_Settings' ) ) {
             
           /* loop through page settings */
           foreach( (array) $this->get_the_settings( $page ) as $setting ) {
-  
+            
+            /* Allow filtering on the single string option types */
+            $single_string_types = apply_filters( 'ot_wpml_single_string_types', array( 'text', 'textarea', 'textarea-simple' ) );
+            
+            /* WPML Register and Unregister single strings */
+            if ( isset( $setting['type'] ) && in_array( $setting['type'], $single_string_types ) ) {
+            
+              if ( ! empty( $input[$setting['id']] ) ) {
+              
+                ot_wpml_register_string( $setting['id'], $input[$setting['id']] );
+                
+              } else {
+              
+                ot_wpml_unregister_string( $setting['id'] );
+                
+              }
+            
+            }
+            
             /* verify setting has a type & value */
             if ( isset( $setting['type'] ) && isset( $input[$setting['id']] ) ) {
               

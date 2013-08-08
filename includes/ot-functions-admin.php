@@ -4023,5 +4023,37 @@ function ot_filter_std_value( $value = '', $std = '' ) {
   
 }
 
+/**
+ * Helper function to register a WPML string
+ *
+ * @access    public
+ * @since     2.1
+ */
+function ot_wpml_register_string( $id, $value ) {
+
+  if ( function_exists( 'icl_register_string' ) ) {
+      
+    icl_register_string( 'OptionTree', $id, $value );
+      
+  }
+  
+}
+
+/**
+ * Helper function to unregister a WPML string
+ *
+ * @access    public
+ * @since     2.1
+ */
+function ot_wpml_unregister_string( $id ) {
+
+  if ( function_exists( 'icl_unregister_string' ) ) {
+      
+    icl_unregister_string( 'OptionTree', $id );
+      
+  }
+  
+}
+
 /* End of file ot-functions-admin.php */
 /* Location: ./includes/ot-functions-admin.php */
