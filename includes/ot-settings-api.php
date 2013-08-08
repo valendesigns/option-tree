@@ -496,6 +496,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
         'field_rows'        => isset( $rows ) && ! empty( $rows ) ? $rows : 15,
         'field_post_type'   => isset( $post_type ) && ! empty( $post_type ) ? $post_type : 'post',
         'field_taxonomy'    => isset( $taxonomy ) && ! empty( $taxonomy ) ? $taxonomy : 'category',
+        'field_min_max_step'=> isset( $min_max_step ) && ! empty( $min_max_step ) ? $min_max_step : '0,100,1',
         'field_class'       => isset( $class ) ? $class : '',
         'field_choices'     => isset( $choices ) && ! empty( $choices ) ? $choices : array(),
         'field_settings'    => isset( $settings ) && ! empty( $settings ) ? $settings : array(),

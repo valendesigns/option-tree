@@ -19,6 +19,7 @@
       this.init_activate_layout();
       this.init_upload();
       this.init_upload_remove();
+      this.init_numeric_slider();
       this.init_tabs();
       this.init_radio_image_select();
       this.init_select_wrapper();
@@ -381,6 +382,26 @@
       } else if ( val == '' || ! OT_UI.url_exists(val) ) {
         $(elm).parent().next('.option-tree-ui-media-wrap').remove();
       }
+    },
+    init_numeric_slider: function() {
+      $(".ot-numeric-slider-wrap").each(function() {
+        var hidden = $(".ot-numeric-slider-hidden-input", this),
+            value  = hidden.val(),
+            helper = $(".ot-numeric-slider-helper-input", this);
+        if ( ! value ) {
+          value = 0;
+          helper.val(value)
+        }
+        $(".ot-numeric-slider", this).slider({
+          min: hidden.data("min"),
+          max: hidden.data("max"),
+          step: hidden.data("step"),
+          value: value, 
+          slide: function(event, ui) {
+            hidden.add(helper).val(ui.value);
+          }
+        });
+      });
     },
     init_tabs: function() {
       $(".wrap.settings-wrap .ui-tabs").tabs({ 

@@ -67,6 +67,12 @@ if ( ! function_exists( 'ot_type_creating_options' ) ) {
         echo '<h4>'. __( 'Taxonomy', 'option-tree' ) . ':</h4>';
         echo '<p>' . __( 'Add a comma separated list of any registered taxonomy like <code>category,post_tag</code>. This will only affect the following option types: Taxonomy Checkbox, & Taxonomy Select.', 'option-tree' ) . '</p>';
         
+        echo '<h4>'. __( 'Min, Max, & Step', 'option-tree' ) . ':</h4>';
+        echo '<p>' . __( 'Add a comma separated list of options in the following format <code>0,100,1</code> (slide from <code>0-100</code> in intervals of <code>1</code>). The three values represent the minimum, maximum, and step options and will only affect the Numeric Slider option type.', 'option-tree' ) . '</p>';
+        
+        echo '<h4>'. __( 'CSS Class', 'option-tree' ) . ':</h4>';
+        echo '<p>' . __( 'Add and optional class to any option type.', 'option-tree' ) . '</p>';
+        
       echo '</div>';
       
     echo '</div>';
@@ -168,7 +174,10 @@ add_filter( \'ot_measurement_unit_types\', \'filter_measurement_unit_types\', 10
   return $array;
 }
 add_filter( \'ot_measurement_unit_types\', \'filter_measurement_unit_types\', 10, 2 );</code></pre>';
-
+        
+        echo '<h4>'. __( 'Numeric Slider', 'option-tree' ) . ':</h4>'; 
+        echo '<p>' . __( 'The Numeric Slider option type displays a jQuery UI slider. It will return a single numerical value for use in a custom function or loop.', 'option-tree' ) . '</p>';
+        
         echo '<h4>'. __( 'Page Select', 'option-tree' ) . ':</h4>'; 
         echo '<p>' . __( 'The Page Select option type displays a list of page IDs. It will return a single page ID for use in a custom function or loop.', 'option-tree' ) . '</p>';
         
