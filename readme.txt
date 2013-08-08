@@ -41,7 +41,8 @@ Yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
 
 == Changelog ==
 
-= 2.0.17 =
+= 2.1 =
+* Added a numeric horizontal slider. Some code contributed by @maimairel via github.
 * Added a new filter 'ot_show_options_ui' which allows you to hide the Theme Options UI from end users in theme mode.
 * Upload option type now uses the new media uploader introduced in WordPress 3.5. Some code contributed by @htvu via github.
 * Removed additional deprecated assigning of return value in PHP.
