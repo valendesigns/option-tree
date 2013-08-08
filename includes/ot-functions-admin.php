@@ -1311,6 +1311,7 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
         $_rows = isset( $value['rows'] ) ? $value['rows'] : '';
         $_post_type = isset( $value['post_type'] ) ? $value['post_type'] : '';
         $_taxonomy = isset( $value['taxonomy'] ) ? $value['taxonomy'] : '';
+        $_min_max_step = isset( $value['min_max_step'] ) ? $value['min_max_step'] : '';
         $_class = isset( $value['class'] ) ? $value['class'] : '';
         
         $choices = '';
@@ -1354,6 +1355,7 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
             $_setting_rows = isset( $setting['rows'] ) ? $setting['rows'] : '';
             $_setting_post_type = isset( $setting['post_type'] ) ? $setting['post_type'] : '';
             $_setting_taxonomy = isset( $setting['taxonomy'] ) ? $setting['taxonomy'] : '';
+            $_setting_min_max_step = isset( $setting['min_max_step'] ) ? $setting['min_max_step'] : '';
             $_setting_class = isset( $setting['class'] ) ? $setting['class'] : '';
             
             $setting_choices = '';
@@ -1396,6 +1398,7 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
             'rows'        => '$_setting_rows',
             'post_type'   => '$_setting_post_type',
             'taxonomy'    => '$_setting_taxonomy',
+            'min_max_step'=> '$_setting_min_max_step',
             'class'       => '$_setting_class'$setting_choices
           ),";
           }
@@ -1416,6 +1419,7 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
         'rows'        => '$_rows',
         'post_type'   => '$_post_type',
         'taxonomy'    => '$_taxonomy',
+        'min_max_step'=> '$_min_max_step',
         'class'       => '$_class'$choices$setting_settings
       ),";
       }
@@ -3264,6 +3268,14 @@ if ( ! function_exists( 'ot_settings_view' ) ) {
         </div>
         <div class="format-settings">
           <div class="format-setting type-text wide-desc">
+            <div class="description">' . __( '<strong>Min, Max, & Step</strong>: Add a comma separated value for the minimum, maximum, and step settings like \'<tt>0,2000,100</tt>\'. This will only affect the Numeric Slider option type.', 'option-tree' ) . '</div>
+            <div class="format-setting-inner">
+              <input type="text" name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][min_max_step]" value="' . ( isset( $setting['min_max_step'] ) ? esc_attr( $setting['min_max_step'] ) : '' ) . '" class="widefat option-tree-ui-input" autocomplete="off" />
+            </div>
+          </div>
+        </div>
+        <div class="format-settings">
+          <div class="format-setting type-text wide-desc">
             <div class="description">' . __( '<strong>CSS Class</strong>: Add and optional class to this option type.', 'option-tree' ) . '</div>
             <div class="format-setting-inner">
               <input type="text" name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][class]" value="' . ( isset( $setting['class'] ) ? esc_attr( $setting['class'] ) : '' ) . '" class="widefat option-tree-ui-input" autocomplete="off" />
@@ -3528,6 +3540,7 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
           'field_rows'        => isset( $field['rows'] ) ? $field['rows'] : 10,
           'field_post_type'   => isset( $field['post_type'] ) && ! empty( $field['post_type'] ) ? $field['post_type'] : 'post',
           'field_taxonomy'    => isset( $field['taxonomy'] ) && ! empty( $field['taxonomy'] ) ? $field['taxonomy'] : 'category',
+          'field_min_max_step'=> isset( $field['min_max_step'] ) && ! empty( $field['min_max_step'] ) ? $field['min_max_step'] : '0,100,1',
           'field_class'       => isset( $field['class'] ) ? $field['class'] : '',
           'field_choices'     => isset( $field['choices'] ) && ! empty( $field['choices'] ) ? $field['choices'] : array(),
           'field_settings'    => isset( $field['settings'] ) && ! empty( $field['settings'] ) ? $field['settings'] : array(),

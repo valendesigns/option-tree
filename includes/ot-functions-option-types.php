@@ -677,6 +677,11 @@ if( ! function_exists( 'ot_type_numeric_slider' ) ) {
     
     /* verify a description */
     $has_desc = $field_desc ? true : false;
+    
+    $_options = explode( ',', $field_min_max_step );
+    $min = isset( $_options[0] ) ? $_options[0] : 0;
+    $max = isset( $_options[1] ) ? $_options[1] : 100;
+    $step = isset( $_options[2] ) ? $_options[2] : 1;
 
     /* format setting outer wrapper */
     echo '<div class="format-setting type-numeric-slider ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
@@ -689,7 +694,7 @@ if( ! function_exists( 'ot_type_numeric_slider' ) ) {
 
         echo '<div class="ot-numeric-slider-wrap">';
 
-          echo '<input type="hidden" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" class="ot-numeric-slider-hidden-input" value="' . esc_attr( $field_value ) . '">';
+          echo '<input type="hidden" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" class="ot-numeric-slider-hidden-input" value="' . esc_attr( $field_value ) . '" data-min="' . esc_attr( $min ) . '" data-max="' . esc_attr( $max ) . '" data-step="' . esc_attr( $step ) . '">';
 
           echo '<input type="text" class="ot-numeric-slider-helper-input widefat option-tree-ui-input" value="' . esc_attr( $field_value ) . '" readonly>';
 
