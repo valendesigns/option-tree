@@ -529,6 +529,9 @@ if ( ! function_exists( 'ot_admin_scripts' ) ) {
     /* load the colorpicker */
     wp_enqueue_script( 'ot-colorpicker-js', OT_URL . 'assets/js/ot-colorpicker.js', array( 'jquery' ), OT_VERSION );
     
+    /* load jQuery-ui slider */
+    wp_enqueue_script( 'jquery-ui-slider' );
+    
     /* load all the required scripts */
     wp_enqueue_script( 'ot-admin-js', OT_URL . 'assets/js/ot-admin.js', array( 'jquery', 'jquery-ui-tabs', 'jquery-ui-sortable', 'media-upload', 'thickbox' ), OT_VERSION );
     
@@ -1982,6 +1985,7 @@ if ( ! function_exists( 'ot_option_types_array' ) ) {
       'custom-post-type-select'   => 'Custom Post Type Select',
       'list-item'                 => 'List Item',
       'measurement'               => 'Measurement',
+      'numeric-slider'            => 'Numeric Slider',
       'page-checkbox'             => 'Page Checkbox',
       'page-select'               => 'Page Select',
       'post-checkbox'             => 'Post Checkbox',

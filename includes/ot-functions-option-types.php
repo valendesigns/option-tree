@@ -658,6 +658,53 @@ if ( ! function_exists( 'ot_type_measurement' ) ) {
 }
 
 /**
+ * Numeric Slider option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.1
+ */
+if( ! function_exists( 'ot_type_numeric_slider' ) ) {
+
+  function ot_type_numeric_slider( $args = array() ) {
+    
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-numeric-slider ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+      
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+      
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+
+        echo '<div class="ot-numeric-slider-wrap">';
+
+          echo '<input type="hidden" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" class="ot-numeric-slider-hidden-input" value="' . esc_attr( $field_value ) . '">';
+
+          echo '<input type="text" class="ot-numeric-slider-helper-input widefat option-tree-ui-input" value="' . esc_attr( $field_value ) . '" readonly>';
+
+          echo '<div id="ot_numeric_slider_' . esc_attr( $field_id ) . '" class="ot-numeric-slider"></div>';
+
+        echo '</div>';
+      
+      echo '</div>';
+      
+    echo '</div>';
+  }
+
+}
+
+/**
  * Page Checkbox option type.
  *
  * See @ot_display_by_type to see the full list of available arguments.
