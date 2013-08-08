@@ -387,18 +387,15 @@
       $(".ot-numeric-slider-wrap").each(function() {
         var hidden = $(".ot-numeric-slider-hidden-input", this),
             value  = hidden.val(),
-            helper = $(".ot-numeric-slider-helper-input", this),
-            min    = hidden.data("min"),
-            max    = hidden.data("max"),
-            step   = hidden.data("step");
+            helper = $(".ot-numeric-slider-helper-input", this);
         if ( ! value ) {
           value = 0;
           helper.val(value)
         }
         $(".ot-numeric-slider", this).slider({
-          min: min,
-          max: max,
-          step: step,
+          min: hidden.data("min"),
+          max: hidden.data("max"),
+          step: hidden.data("step"),
           value: value, 
           slide: function(event, ui) {
             hidden.add(helper).val(ui.value);
