@@ -1635,30 +1635,47 @@ if ( ! function_exists( 'ot_save_settings' ) ) {
         if ( function_exists( 'icl_unregister_string' ) ) {
           
           $current = get_option( 'option_tree_settings' );
+          $options = get_option( 'option_tree' );
           
           if ( isset( $current['settings'] ) ) {
             
             /* Empty ID array */
             $new_ids = array();
             
-            /* Build the IDs */
+            /* Build the WPML IDs array */
             foreach( $settings['settings'] as $setting ) {
             
               if ( $setting['id'] ) {
-              
-                $new_ids[] = $setting['id'];
                 
+                $new_ids[] = $setting['id'];
+
               }
               
             }
             
-            /* Remove IDs from WPML */
-            foreach( $current['settings'] as $setting ) {
-            
-              if ( ! in_array( $setting['id'], $new_ids ) ) {
-
-                ot_wpml_unregister_string( $setting['id'] );
+            /* Remove missing IDs from WPML */
+            foreach( $current['settings'] as $current_setting ) {
+              
+              if ( ! in_array( $current_setting['id'], $new_ids ) ) {
+              
+                if ( ! empty( $options[$current_setting['id']] ) && in_array( $current_setting['type'], array( 'list-item', 'slider' ) ) ) {
+                  
+                  foreach( $options[$current_setting['id']] as $key => $value ) {
+          
+                    foreach( $value as $ckey => $cvalue ) {
+                      
+                      ot_wpml_unregister_string( $current_setting['id'] . '_' . $ckey . '_' . $key );
+                      
+                    }
+                  
+                  }
+                  
+                } else {
                 
+                  ot_wpml_unregister_string( $current_setting['id'] );
+                  
+                }
+              
               }
               
             }
