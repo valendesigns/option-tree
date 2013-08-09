@@ -43,10 +43,10 @@ Yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
 
 = 2.1 =
 * Added support for WordPress 3.6
-* Upload now uses the media uploader introduced in WordPress 3.5. Some code contributed by @htvu & @maimairel via github.
-* Added a numeric horizontal slider. Some code contributed by @maimairel via github.
+* Upload now uses the media uploader introduced in WordPress 3.5. Contributors via github @htvu, @maimairel, and @valendesigns.
+* Added a numeric horizontal slider. Contributors via github @maimairel and @valendesigns.
 * Removed additional deprecated assigning of return value in PHP.
-* Fix missing "Send to OptionTree" button in CPT. Code contributed by @jomaddim via github.
+* Fix missing "Send to OptionTree" button in CPT. Contributors via github @jomaddim.
 * Fix option types that use $count instead of an array key to select the option value.
 * Created functions to register the Theme Options & Settings pages, and with better filtering.
 * The 'ot_theme_options_capability' filter is now working for different capabilities like editor.
