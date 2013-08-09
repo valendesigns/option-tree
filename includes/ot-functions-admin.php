@@ -1499,7 +1499,7 @@ if ( ! function_exists( 'ot_save_settings' ) ) {
         foreach( $settings['sections'] as $k => $section ) {
           
           /* remove from array if missing values */
-          if ( ! $section['title'] && ! $section['id'] ) {
+          if ( ( ! isset( $section['title'] ) && ! isset( $section['id'] ) ) || ( '' == $section['title'] && '' == $section['id'] ) ) {
           
             unset( $settings['sections'][$k] );
             
@@ -1513,12 +1513,12 @@ if ( ! function_exists( 'ot_save_settings' ) ) {
             }
             
             /* missing title set to unfiltered ID */
-            if ( ! $section['title'] ) {
+            if ( ! isset( $section['title'] ) || '' == $section['title'] ) {
               
               $settings['sections'][$k]['title'] = wp_kses_post( $section['id'] );
             
             /* missing ID set to title */ 
-            } else if ( ! $section['id'] ) {
+            } else if ( ! isset( $section['id'] ) || '' == $section['id'] ) {
               
               $section['id'] = wp_kses_post( $section['title'] );
               
@@ -1552,7 +1552,7 @@ if ( ! function_exists( 'ot_save_settings' ) ) {
         foreach( $settings['contextual_help']['content'] as $k => $content ) {
           
           /* remove from array if missing values */
-          if ( ! $content['title'] && ! $content['id'] ) {
+          if ( ( ! isset( $content['title'] ) && ! isset( $content['id'] ) ) || ( '' == $content['title'] && '' == $content['id'] ) ) {
           
             unset( $settings['contextual_help']['content'][$k] );
             
@@ -1566,12 +1566,12 @@ if ( ! function_exists( 'ot_save_settings' ) ) {
             }
           
             /* missing title set to unfiltered ID */
-            if ( ! $content['title'] ) {
+            if ( ! isset( $content['title'] ) || '' == $content['title'] ) {
               
               $settings['contextual_help']['content'][$k]['title'] = wp_kses_post( $content['id'] );
             
             /* missing ID set to title */ 
-            } else if ( ! $content['id'] ) {
+            } else if ( ! isset( $content['id'] ) || '' == $content['id'] ) {
               
               $content['id'] = wp_kses_post( $content['title'] );
               
@@ -1653,7 +1653,7 @@ if ( ! function_exists( 'ot_validate_settings_array' ) ) {
         
         
         /* remove from array if missing values */
-        if ( ! $setting['label'] && ! $setting['id'] ) {
+        if ( ( ! isset( $setting['label'] ) && ! isset( $setting['id'] ) ) || ( '' == $setting['label'] && '' == $setting['id'] ) ) {
         
           unset( $settings[$k] );
           
@@ -1667,12 +1667,12 @@ if ( ! function_exists( 'ot_validate_settings_array' ) ) {
           }
           
           /* missing label set to unfiltered ID */
-          if ( ! $setting['label'] ) {
+          if ( ! isset( $setting['label'] ) || '' == $setting['label'] ) {
             
             $settings[$k]['label'] = $setting['id'];
           
           /* missing ID set to label */ 
-          } else if ( ! $setting['id'] ) {
+          } else if ( ! isset( $setting['id'] ) || '' == $setting['id'] ) {
             
             $setting['id'] = wp_kses_post( $setting['label'] );
             
@@ -1697,19 +1697,19 @@ if ( ! function_exists( 'ot_validate_settings_array' ) ) {
           foreach( $setting['choices'] as $ck => $choice ) {
             
             /* remove from array if missing values */
-            if ( ! $choice['label'] && ! $choice['value'] ) {
+            if ( ( ! isset( $choice['label'] ) && ! isset( $choice['value'] ) ) || ( '' == $choice['label'] && '' == $choice['value'] ) ) {
         
               unset( $setting['choices'][$ck] );
               
             } else {
               
               /* missing label set to unfiltered ID */
-              if ( ! $choice['label'] ) {
+              if ( ! isset( $choice['label'] ) || '' == $choice['label'] ) {
                 
                 $setting['choices'][$ck]['label'] = wp_kses_post( $choice['value'] );
               
               /* missing value set to label */ 
-              } else if ( ! $choice['value'] ) {
+              } else if ( ! isset( $choice['value'] ) || '' == $choice['value'] ) {
                 
                 $setting['choices'][$ck]['value'] = ot_sanitize_option_id( wp_kses_post( $choice['label'] ) );
                 
@@ -4005,7 +4005,7 @@ function ot_filter_std_value( $value = '', $std = '' ) {
   
     foreach( $value as $k => $v ) {
       
-      if ( empty( $value[$k] ) && isset( $std[$k] ) ) {
+      if ( '' == $value[$k] && isset( $std[$k] ) ) {
       
         $value[$k] = $std[$k];
         
@@ -4013,7 +4013,7 @@ function ot_filter_std_value( $value = '', $std = '' ) {
       
     }
   
-  } else if ( empty( $value ) && ! empty( $std ) ) {
+  } else if ( '' == $value && ! empty( $std ) ) {
   
     $value = $std;
     
