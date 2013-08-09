@@ -48,7 +48,10 @@ Yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
 * Removed additional deprecated assigning of return value in PHP.
 * Fix missing "Send to OptionTree" button in CPT. Code contributed by @jomaddim via github.
 * Fix option types that use $count instead of an array key to select the option value.
-* Added filter 'ot_show_options_ui' which allows you to hide the Theme Options UI.
+* Created functions to register the Theme Options & Settings pages, and with better filtering.
+* The 'ot_theme_options_capability' filter is now working for different capabilities like editor.
+* The 'ot_display_by_type' filter is now being assigned to a value.
+* Added filter 'ot_show_options_ui' which allows you to hide the Theme Options UI Builder.
 * Added filter 'ot_show_settings_import' which allows you to hide the Settings Import options on the Import page.
 * Added filter 'ot_show_settings_export' which allows you to hide the Settings Export options on the Export page.
 * Added filter 'ot_show_docs' which allows you to hide the Documentation.
