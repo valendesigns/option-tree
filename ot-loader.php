@@ -200,6 +200,17 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       }
       
       /**
+       * Template directory URI for the current theme.
+       *
+       * @since     2.1
+       */
+      if ( true == OT_CHILD_THEME_MODE ) {
+        define( 'OT_THEME_URL', get_stylesheet_directory_uri() );
+      } else {
+        define( 'OT_THEME_URL', get_template_directory_uri() );
+      }
+      
+      /**
        * Relative path to the languages directory.
        *
        * @since     2.0.10
