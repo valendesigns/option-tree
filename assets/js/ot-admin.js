@@ -201,12 +201,14 @@
         this.processing = true;
         var count = parseInt(list.children('li').length);
         if ( type == 'list_item' ) {
-          list.find('li input.option-tree-setting-title').each(function(){
-            var settingidnumber = $(this).attr('name').replace(/[^0-9]/g, '');
-            settingidnumber = parseInt(settingidnumber);
-            settingidnumber++;
-            if ((settingidnumber) > count) {
-              count = settingidnumber;
+          list.find('li input.option-tree-setting-title', self).each(function(){
+            var setting = $(this).attr('name'),
+                regex = /\[([0-9]+)\]/,
+                matches = setting.match(regex),
+                id = null != matches ? parseInt(matches[1]) : 0;
+            id++;
+            if ( id > count) {
+              count = id;
             }
           });
         }
