@@ -51,6 +51,7 @@ Yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
 * Created functions to register the Theme Options & Settings pages, and with better filtering.
 * Added relative path support for Radio Image choices.
 * Added dynamic replacement of 'OT_URL' & 'OT_THEME_URL' in the Radio Image source path.
+* Make '0' possible as a field value. Validate for empty strings instead of empty(). Contributors via github @maimairel.
 * The 'ot_theme_options_capability' filter is now working for different capabilities like editor.
 * The 'ot_display_by_type' filter is now being assigned to a value.
 * Added filter 'ot_show_options_ui' which allows you to hide the Theme Options UI Builder.
