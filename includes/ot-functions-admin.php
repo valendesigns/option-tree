@@ -3422,7 +3422,7 @@ if ( ! function_exists( 'ot_choices_view' ) ) {
           </div>
           <div class="format-setting type-text wide-desc">
             <div class="format-setting-inner">
-              <input type="text" name="' . esc_attr( $name ) . '[choices][' . esc_attr( $key ) . '][src]" value="' . ( isset( $choice['src'] ) ? esc_url( $choice['src'] ) : '' ) . '" class="widefat option-tree-ui-input" autocomplete="off" />
+              <input type="text" name="' . esc_attr( $name ) . '[choices][' . esc_attr( $key ) . '][src]" value="' . ( isset( $choice['src'] ) ? esc_attr( $choice['src'] ) : '' ) . '" class="widefat option-tree-ui-input" autocomplete="off" />
             </div>
           </div>
         </div>
