@@ -3,7 +3,7 @@
  * Plugin Name: OptionTree
  * Plugin URI:  http://wp.envato.com
  * Description: Theme Options UI Builder for WordPress. A simple way to create & save Theme Options and Meta Boxes for free or premium themes.
- * Version:     2.0.17
+ * Version:     2.1beta
  * Author:      Derek Herman
  * Author URI:  http://valendesigns.com
  * License:     GPLv2
@@ -60,7 +60,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       /**
        * Current Version number.
        */
-      define( 'OT_VERSION', '2.0.17' );
+      define( 'OT_VERSION', '2.1beta' );
       
       /**
        * For developers: Allow Unfiltered HTML in all the textareas.
@@ -114,7 +114,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
        * Run a filter and set to false if you want to hide the
        * Theme Options UI page in the admin area of WordPress.
        *
-       * @since     2.0.17
+       * @since     2.1
        */
       define( 'OT_SHOW_OPTIONS_UI', apply_filters( 'ot_show_options_ui', true ) );
       
@@ -124,7 +124,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
        * Run a filter and set to false if you want to hide the
        * Settings Import options on the Import page.
        *
-       * @since     2.0.17
+       * @since     2.1
        */
       define( 'OT_SHOW_SETTINGS_IMPORT', apply_filters( 'ot_show_settings_import', true ) );
       
@@ -132,12 +132,11 @@ if ( ! class_exists( 'OT_Loader' ) ) {
        * For developers: Hide Settings Export
        *
        * Run a filter and set to false if you want to hide the
-       * Settings Import options on the Import page. This will get 
-       * hidden if OT_SHOW_OPTIONS_UI == false.
+       * Settings Import options on the Import page.
        *
-       * @since     2.0.17
+       * @since     2.1
        */
-      define( 'OT_SHOW_SETTINGS_EXPORT', apply_filters( 'ot_show_settings_export', true ) );
+      define( 'OT_SHOW_SETTINGS_EXPORT', apply_filters( 'ot_show_settings_export', false ) );
       
       /**
        * For developers: Show New Layout.
@@ -154,7 +153,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
        *
        * Run a filter and set to false if you want to hide the Documentation.
        *
-       * @since     2.0.17
+       * @since     2.1
        */
       define( 'OT_SHOW_DOCS', apply_filters( 'ot_show_docs', true ) );
       
@@ -164,7 +163,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
        * Run a filter and set to false if you want to hide the OptionTree 
        * Theme Option page and build your own.
        *
-       * @since     2.0.17
+       * @since     2.1
        */
       define( 'OT_USE_THEME_OPTIONS', apply_filters( 'ot_use_theme_options', true ) );
       
@@ -478,7 +477,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
      * @return    string
      *
      * @access    public
-     * @since     2.0.17
+     * @since     2.1
      */
     public function change_image_button( $translation, $text, $domain ) {
       global $pagenow;

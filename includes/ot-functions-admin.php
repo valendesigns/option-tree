@@ -19,7 +19,7 @@
  * @return    void
  *
  * @access    public
- * @since     2.0.17
+ * @since     2.1
  */
 if ( ! function_exists( 'ot_register_theme_options_page' ) ) {
 
@@ -83,7 +83,7 @@ if ( ! function_exists( 'ot_register_theme_options_page' ) ) {
  * @return    void
  *
  * @access    public
- * @since     2.0.17
+ * @since     2.1
  */
 if ( ! function_exists( 'ot_register_settings_page' ) ) {
 

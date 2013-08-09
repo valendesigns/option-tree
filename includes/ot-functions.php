@@ -172,7 +172,7 @@ if ( ! function_exists( 'ot_load_dynamic_css' ) ) {
  * @return    void
  *
  * @access    public
- * @since     2.0.17
+ * @since     2.1
  */
 if ( ! function_exists( 'ot_register_theme_options_admin_bar_menu' ) ) {
 
