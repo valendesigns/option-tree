@@ -1149,15 +1149,23 @@ if ( ! function_exists( 'ot_type_select' ) ) {
 }
 
 /**
- * @title
+ * Sidebar Select option type.
  *
- * @description
+ * This option type makes it possible for users to select a WordPress registered sidebar 
+ * to use on a specific area. By using the two provided filters, 'ot_recognized_sidebars', 
+ * and 'ot_recognized_sidebars_{$field_id}' we can be selective about which sidebars are 
+ * available on a specific content area.
+ *
+ * For example, if we create a WordPress theme that provides the ability to change the 
+ * Blog Sidebar and we don't want to have the footer sidebars available on this area, 
+ * we can unset those sidebars either manually or by using a regular expression if we 
+ * have a common name like footer-sidebar-$i.
  *
  * @param     array     An array of arguments.
  * @return    string
  *
  * @access    public
- * @since     @version
+ * @since     2.1
  */
 if ( ! function_exists( 'ot_type_sidebar_select' ) ) {
   
@@ -1202,6 +1210,7 @@ if ( ! function_exists( 'ot_type_sidebar_select' ) ) {
         } else {
           echo '<option value="">' . __( 'No Sidebars', 'option-tree' ) . '</option>';
         }
+        
         echo '</select>';
         
       echo '</div>';
