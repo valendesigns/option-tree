@@ -1997,6 +1997,7 @@ if ( ! function_exists( 'ot_option_types_array' ) ) {
       'radio'                     => 'Radio',
       'radio-image'               => 'Radio Image',
       'select'                    => 'Select',
+      'sidebar-select'            => 'Sidebar Select', 
       'slider'                    => 'Slider',
       'tag-checkbox'              => 'Tag Checkbox',
       'tag-select'                => 'Tag Select',
