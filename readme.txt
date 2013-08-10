@@ -42,7 +42,8 @@ Yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
 == Changelog ==
 
 = 2.1 =
-* Added support for WordPress 3.6
+* Added support for WordPress 3.6.
+* UI got a small but needed update, and is now more inline with WordPress.
 * Upload now uses the media uploader introduced in WordPress 3.5. Contributors via github @htvu, @maimairel, and @valendesigns.
 * Added a horizontal Numeric Slider option type. Contributors via github @maimairel and @valendesigns.
 * Added a Sidebar Select option type. Contributors via github @maimairel.
