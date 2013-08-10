@@ -734,9 +734,9 @@ select.option-tree-ui-select option {
   :: Numeric Slider
   ---------------------------------------------------*/
 .type-numeric-slider .format-setting-inner {
-  background: #fafafa;
+  background: #fcfcfc;
   border: 1px solid #ccc;
-  min-height: 42px;
+  min-height: 41px;
   padding: 5px;
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
@@ -758,7 +758,7 @@ select.option-tree-ui-select option {
 .ot-numeric-slider.ui-slider { 
   background: #fff;
   border: 1px solid #ccc;
-  margin: 8px 10px 0 10px; 
+  margin: 8px 8px 0 8px; 
   position: relative; 
   -webkit-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05);
      -moz-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05); 
@@ -768,25 +768,28 @@ select.option-tree-ui-select option {
           border-radius: 2px;
 }
 .ot-numeric-slider.ui-slider-horizontal { 
-  height: 12px;
+  height: 11px;
 }
 .ot-numeric-slider.ui-slider .ui-slider-handle { 
   background-color: #21759b; 
   border: 1px solid #21759b;
+  border-bottom-color: #1e6a8d;
   cursor: pointer;
   display: block;
-  height: 20px; 
-  margin: -5px -10px;
+  height: 27px; 
+  margin: -9px -8px;
   outline: 0;
   position: absolute; 
-  width: 20px; 
+  width: 16px; 
   background-image: -webkit-gradient(linear,left top,left bottom,from(#2a95c5),to(#21759b));
   background-image: -webkit-linear-gradient(top,#2a95c5,#21759b);
   background-image: -moz-linear-gradient(top,#2a95c5,#21759b);
   background-image: -ms-linear-gradient(top,#2a95c5,#21759b);
   background-image: -o-linear-gradient(top,#2a95c5,#21759b);
   background-image: linear-gradient(to bottom,#2a95c5,#21759b);
-  border-bottom-color: #1e6a8d;
+  -webkit-box-shadow: inset 0 1px 0 rgba(120,200,230,0.5);
+     -moz-box-shadow: inset 0 1px 0 rgba(120,200,230,0.5);
+          box-shadow: inset 0 1px 0 rgba(120,200,230,0.5);
   -webkit-border-radius: 3px;
      -moz-border-radius: 3px;
           border-radius: 3px;
@@ -1007,13 +1010,14 @@ select.option-tree-ui-select option {
   cursor: pointer;
   border-width: 1px;
   border-style: solid;
-  -webkit-border-radius: 3px;
   -webkit-appearance: none;
-  border-radius: 3px;
   white-space: nowrap;
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;
   -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
 }
 button.option-tree-ui-button::-moz-focus-inner,
 input[type="reset"].option-tree-ui-button::-moz-focus-inner,
