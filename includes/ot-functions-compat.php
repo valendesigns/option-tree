@@ -37,24 +37,42 @@ if ( ! function_exists( 'compat_ot_import_from_files' ) ) {
     $ot_layout  = '/option-tree/layouts.txt';
     
     /* XML file path - child theme first then parent */
-    $xml_file = get_stylesheet_directory() . $ot_xml;
-    if ( ! is_readable( $xml_file ) )
-      $xml_file = get_template_directory() . $ot_xml;
+    if ( is_readable( get_stylesheet_directory() . $ot_xml ) ) {
+    
+      $xml_file = get_stylesheet_directory_uri() . $ot_xml;
+    
+    } else if ( is_readable( get_template_directory() . $ot_xml ) ) {
+    
+      $xml_file = get_template_directory_uri() . $ot_xml;
+    
+    }
     
     /* Data file path - child theme first then parent */
-    $data_file = get_stylesheet_directory() . $ot_data;
-    if ( ! is_readable( $data_file ) )
-      $data_file = get_template_directory() . $ot_data;
+    if ( is_readable( get_stylesheet_directory() . $ot_data ) ) {
+    
+      $data_file = get_stylesheet_directory_uri() . $ot_data;
+    
+    } else if ( is_readable( get_template_directory() . $ot_data ) ) {
+    
+      $data_file = get_template_directory_uri() . $ot_data;
+    
+    }
     
     /* Layout file path - child theme first then parent */
-    $layout_file = get_stylesheet_directory() . $ot_layout;
-    if ( ! is_readable( $layout_file ) )
-      $layout_file = get_template_directory() . $ot_layout;
+    if ( is_readable( get_stylesheet_directory() . $ot_layout ) ) {
+    
+      $layout_file = get_stylesheet_directory_uri() . $ot_layout;
+    
+    } else if ( is_readable( get_template_directory() . $ot_layout ) ) {
+    
+      $layout_file = get_template_directory_uri() . $ot_layout;
+    
+    }
     
     /* check for files */
-    $has_xml    = ( is_readable( $xml_file ) ) ? true : false;
-    $has_data   = ( is_readable( $data_file ) ) ? true : false;
-    $has_layout = ( is_readable( $layout_file ) ) ? true : false;
+    $has_xml    = isset( $xml_file ) ? true : false;
+    $has_data   = isset( $data_file ) ? true : false;
+    $has_layout = isset( $layout_file ) ? true : false;
     
     /* auto import XML file */
     if ( $has_xml == true && ! get_option( 'option_tree_settings' ) && class_exists( 'SimpleXMLElement' ) ) {
