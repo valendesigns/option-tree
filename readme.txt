@@ -45,7 +45,8 @@ Yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
 * Added support for WordPress 3.6
 * Added WPML support for the Text, Textarea, and Textarea Simple option types, and within list items; even after drag & drop.
 * Upload now uses the media uploader introduced in WordPress 3.5. Contributors via github @htvu, @maimairel, and @valendesigns.
-* Added a numeric horizontal slider. Contributors via github @maimairel and @valendesigns.
+* Added a horizontal Numeric Slider option type. Contributors via github @maimairel and @valendesigns.
+* Added a Sidebar Select option type. Contributors via github @maimairel.
 * Removed additional deprecated assigning of return value in PHP.
 * Fix missing "Send to OptionTree" button in CPT. Contributors via github @jomaddim.
 * Fix option types that use $count instead of an array key to select the option value.

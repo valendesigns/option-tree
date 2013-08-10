@@ -1149,6 +1149,79 @@ if ( ! function_exists( 'ot_type_select' ) ) {
 }
 
 /**
+ * Sidebar Select option type.
+ *
+ * This option type makes it possible for users to select a WordPress registered sidebar 
+ * to use on a specific area. By using the two provided filters, 'ot_recognized_sidebars', 
+ * and 'ot_recognized_sidebars_{$field_id}' we can be selective about which sidebars are 
+ * available on a specific content area.
+ *
+ * For example, if we create a WordPress theme that provides the ability to change the 
+ * Blog Sidebar and we don't want to have the footer sidebars available on this area, 
+ * we can unset those sidebars either manually or by using a regular expression if we 
+ * have a common name like footer-sidebar-$i.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.1
+ */
+if ( ! function_exists( 'ot_type_sidebar_select' ) ) {
+  
+  function ot_type_sidebar_select( $args = array() ) {
+  
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+    
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-sidebar-select ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+      
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+      
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+      
+        /* build page select */
+        echo '<select name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" class="option-tree-ui-select ' . $field_class . '">';
+
+        /* get the registered sidebars */
+        global $wp_registered_sidebars;
+
+        $sidebars = array();
+        foreach( $wp_registered_sidebars as $id=>$sidebar ) {
+          $sidebars[ $id ] = $sidebar[ 'name' ];
+        }
+
+        /* filters to restrict which sidebars are allowed to be selected, for example we can restrict footer sidebars to be selectable on a blog page */
+        $sidebars = apply_filters( 'ot_recognized_sidebars', $sidebars );
+        $sidebars = apply_filters( 'ot_recognized_sidebars_' . $field_id, $sidebars );
+
+        /* has sidebars */
+        if ( count( $sidebars ) ) {
+          echo '<option value="">-- ' . __( 'Choose Sidebar', 'option-tree' ) . ' --</option>';
+          foreach ( $sidebars as $id => $sidebar ) {
+            echo '<option value="' . esc_attr( $id ) . '"' . selected( $field_value, $id, false ) . '>' . esc_attr( $sidebar ) . '</option>';
+          }
+        } else {
+          echo '<option value="">' . __( 'No Sidebars', 'option-tree' ) . '</option>';
+        }
+        
+        echo '</select>';
+        
+      echo '</div>';
+      
+    echo '</div>';
+    
+  }
+  
+}
+
+/**
  * Tag Checkbox option type.
  *
  * See @ot_display_by_type to see the full list of available arguments.
