@@ -223,6 +223,10 @@ add_filter( \'ot_radio_images\', \'filter_radio_images\', 10, 2 );</code></pre>'
         echo '<h4>'. __( 'Select', 'option-tree' ) . ':</h4>'; 
         echo '<p>' . __( 'The Select option type is used to list anything you want that would be chosen from a select list.', 'option-tree' ) . '</p>';
         
+        echo '<h4>'. __( 'Sidebar Select', 'option-tree' ) . ':</h4>';
+        echo '<p>' . __( 'This option type makes it possible for users to select a WordPress registered sidebar to use on a specific area. By using the two provided filters, <code>ot_recognized_sidebars</code>, and <code>ot_recognized_sidebars_{$field_id}</code> we can be selective about which sidebars are available on a specific content area.', 'option-tree' ) . '</p>';
+        echo '<p>' . __( 'For example, if we create a WordPress theme that provides the ability to change the Blog Sidebar and we don\'t want to have the footer sidebars available on this area, we can unset those sidebars either manually or by using a regular expression if we have a common name like <code>footer-sidebar-$i</code>.', 'option-tree' ) . '</p>';
+        
         echo '<h4>'. __( 'Slider', 'option-tree' ) . ':</h4>';
         echo '<p>' . __( 'The Slider option type is technically deprecated. Use the List Item option type instead, as it\'s infinitely more customizable. Typical use is for creating sliding image content.', 'option-tree' ) . '</p>';
         
