@@ -6,7 +6,7 @@
  * Version:     2.1beta
  * Author:      Derek Herman
  * Author URI:  http://valendesigns.com
- * License:     GPLv2
+ * License:     GPLv3
  */
 
 /**
