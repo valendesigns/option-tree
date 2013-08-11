@@ -4,7 +4,7 @@ Donate link: http://bit.ly/NuXI3T
 Tags: admin, theme options, meta boxes, options, admin interface, ajax
 Requires at least: 3.5
 Tested up to: 3.6
-Stable tag: 2.1
+Stable tag: 2.1.1
 License: GPLv3
 
 Theme Options UI Builder for WordPress. A simple way to create & save Theme Options and Meta Boxes for free or premium themes.
@@ -40,6 +40,9 @@ Yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
 3. Documentation
 
 == Changelog ==
+
+= 2.1.1 =
+* Hotfix - The OT_SHOW_SETTINGS_EXPORT constant  was incorrectly set to false as the default.
 
 = 2.1 =
 * Added support for WordPress 3.6.
@@ -268,7 +271,7 @@ Yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
 
 == Upgrade Notice ==
 
-= 2.1 =
+= 2.1.1 =
 If you're not the developer of this theme, please ask them to test compatibility with version 2.1 before upgrading. If you are the developer, I urge you to do the same in a controlled environment.
 
 = 2.0.16 =
