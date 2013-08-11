@@ -268,6 +268,9 @@ Yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
 
 == Upgrade Notice ==
 
+= 2.1 =
+If your theme was purchased please ask the developer to test compatibility with version 2.1 before upgrading.
+
 = 2.0.16 =
 There was an issue with the upload option type's JavaScript not allowing anything other than images to be sent to the editor. This urgent issue is now fixed and why this version is light on changes.
 
