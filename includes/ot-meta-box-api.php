@@ -6,7 +6,7 @@
  *
  * @package   OptionTree
  * @author    Derek Herman <derek@valendesigns.com>
- * @copyright Copyright (c) 2012, Derek Herman
+ * @copyright Copyright (c) 2013, Derek Herman
  */
 if ( ! class_exists( 'OT_Meta_Box' ) ) {
 
