@@ -31,6 +31,23 @@ if ( ! class_exists( 'OT_Loader' ) ) {
      * @since     2.0
      */
     public function __construct() {
+      
+      /* load OptionTree */
+      add_action('init', array( $this, 'load' ), 1 );
+      
+    }
+    
+    /** 
+     * Load OptionTree on the 'init' action. Then filters will be availble 
+     * to the theme, and not only when in Theme Mode.
+     *
+     * @return    void
+     *
+     * @access    public
+     * @since     @todo
+     */
+    public function load() {
+    
       /* setup the constants */
       $this->constants();
       
@@ -42,6 +59,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       
       /* hook into WordPress */
       $this->hooks();
+      
     }
     
     /**
