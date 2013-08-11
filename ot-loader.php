@@ -136,7 +136,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
        *
        * @since     2.1
        */
-      define( 'OT_SHOW_SETTINGS_EXPORT', apply_filters( 'ot_show_settings_export', false ) );
+      define( 'OT_SHOW_SETTINGS_EXPORT', apply_filters( 'ot_show_settings_export', true ) );
       
       /**
        * For developers: Show New Layout.
