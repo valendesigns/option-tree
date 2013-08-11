@@ -42,7 +42,7 @@ Yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
 == Changelog ==
 
 = 2.1.1 =
-* Hotfix - The OT_SHOW_SETTINGS_EXPORT constant  was incorrectly set to false as the default.
+* Hotfix - The OT_SHOW_SETTINGS_EXPORT constant was incorrectly set to false as the default.
 
 = 2.1 =
 * Added support for WordPress 3.6.
