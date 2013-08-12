@@ -43,6 +43,7 @@ Yes. OptionTree & WordPress both require PHP5.
 
 = 2.1.3 =
 * Hotfix - Loading OptionTree on the 'init' action proved to be wrong, it now loads on 'after_setup_theme'.
+* Hotfix - Layouts were not being imported properly due to using the wrong path variable.
 
 = 2.1.2 =
 * Hotfix - Fixed a JS mistake that caused upload in list items and sliders to not open the media uploader until saved first.

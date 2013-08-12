@@ -131,7 +131,7 @@ if ( ! function_exists( 'compat_ot_import_from_files' ) ) {
     /* auto import Layout file */
     if ( $has_layout == true && ! get_option( 'option_tree_layouts' ) ) {
     
-      $get_data = wp_remote_get( $data_file );
+      $get_data = wp_remote_get( $layout_file );
       
       if ( is_wp_error( $get_data ) )
         return false;
