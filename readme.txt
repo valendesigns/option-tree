@@ -41,6 +41,9 @@ Yes. OptionTree & WordPress both require PHP5.
 
 == Changelog ==
 
+= 2.1.3 =
+* Hotfix - Loading OptionTree on the 'init' action proved to be wrong, it now loads on 'after_setup_theme'.
+
 = 2.1.2 =
 * Hotfix - Fixed a JS mistake that caused upload in list items and sliders to not open the media uploader until saved first.
 * Hotfix - Load OptionTree on the 'init' action, which allows the UI filters to properly function when not in theme mode.
@@ -275,7 +278,7 @@ Yes. OptionTree & WordPress both require PHP5.
 
 == Upgrade Notice ==
 
-= 2.1.2 =
+= 2.1.3 =
 If you're not the developer of this theme, please ask them to test compatibility with version 2.1 before upgrading. If you are the developer, I urge you to do the same in a controlled environment.
 
 = 2.0.16 =
