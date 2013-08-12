@@ -51,14 +51,16 @@ if ( ! class_exists( 'OT_Loader' ) ) {
     private function load_languages() {
     
       /**
-       * Is being called from the plugin directory
+       * A quick check to see if we're in plugin mode.
        *
        * @since     2.1.3
        */
       define( 'OT_PLUGIN_MODE', strpos( dirname( __FILE__ ), 'plugins/' . basename( dirname( __FILE__ ) ) ) !== false ? true : false );
       
       /**
-       * Path to the languages directory. Will be relative in plugin mode.
+       * Path to the languages directory. 
+       *
+       * This path will be relative in plugin mode and absolute in theme mode.
        *
        * @since     2.0.10
        */
