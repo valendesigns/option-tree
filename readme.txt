@@ -4,7 +4,7 @@ Donate link: http://bit.ly/NuXI3T
 Tags: admin, theme options, meta boxes, options, admin interface, ajax
 Requires at least: 3.5
 Tested up to: 3.6
-Stable tag: 2.1.1
+Stable tag: 2.1.2
 License: GPLv3
 
 Theme Options UI Builder for WordPress. A simple way to create & save Theme Options and Meta Boxes for free or premium themes.
@@ -31,7 +31,7 @@ OptionTree is a project sponsored by <a href="http://themeforest.net/?ref=valend
 
 = Is this plugin PHP5 only? =
 
-Yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
+Yes. OptionTree & WordPress both require PHP5.
 
 == Screenshots ==
 
@@ -41,8 +41,12 @@ Yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
 
 == Changelog ==
 
+= 2.1.2 =
+* Hotfix - Fixed a JS mistake that caused upload in list items and sliders to not open the media uploader until saved first.
+* Hotfix - Load OptionTree on the 'init' action, which allows the UI filters to properly function when not in theme mode.
+
 = 2.1.1 =
-* Hotfix - The OT_SHOW_SETTINGS_EXPORT constant  was incorrectly set to false as the default.
+* Hotfix - The OT_SHOW_SETTINGS_EXPORT constant was incorrectly set to false as the default.
 
 = 2.1 =
 * Added support for WordPress 3.6.
@@ -271,7 +275,7 @@ Yes. OptionTree requires PHP5 to work correctly (so does WP 3.2+).
 
 == Upgrade Notice ==
 
-= 2.1.1 =
+= 2.1.2 =
 If you're not the developer of this theme, please ask them to test compatibility with version 2.1 before upgrading. If you are the developer, I urge you to do the same in a controlled environment.
 
 = 2.0.16 =

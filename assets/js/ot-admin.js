@@ -288,7 +288,7 @@
       });
     },
     init_upload: function() {
-      $('.ot_upload_media').on('click', function() {
+      $(document).on('click', '.ot_upload_media', function() {
         var field_id    = $(this).parent('.option-tree-ui-upload-parent').find('input').attr('id'),
             post_id     = $(this).attr('rel'),
             btnContent  = '';
