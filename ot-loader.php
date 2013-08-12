@@ -36,7 +36,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       $this->load_languages();
       
       /* load OptionTree */
-      add_action( 'after_setup_theme', array( $this, 'load_option_tee' ), 1 );
+      add_action( 'after_setup_theme', array( $this, 'load_option_tree' ), 1 );
       
     }
     
@@ -110,7 +110,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
      * @access    public
      * @since     2.1.2
      */
-    public function load_option_tee() {
+    public function load_option_tree() {
     
       /* setup the constants */
       $this->constants();
