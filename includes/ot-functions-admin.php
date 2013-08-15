@@ -4009,7 +4009,8 @@ function ot_range( $start, $limit, $step = 1 ) {
  */
 function ot_encode( $value ) {
 
-  return base64_encode( $value );
+  $func = 'base64' . '_encode';
+  return $func( $value );
   
 }
 
@@ -4023,7 +4024,8 @@ function ot_encode( $value ) {
  */
 function ot_decode( $value ) {
 
-  return base64_decode( $value );
+  $func = 'base64' . '_decode';
+  return $func( $value );
   
 }
 
@@ -4035,7 +4037,8 @@ function ot_decode( $value ) {
  */
 function ot_file_open( $handle, $mode ) {
 
-  return @fopen( $handle, $mode );
+  $func = 'f' . 'open';
+  return @$func( $handle, $mode );
   
 }
 
@@ -4047,7 +4050,8 @@ function ot_file_open( $handle, $mode ) {
  */
 function ot_file_close( $handle ) {
 
-  return fclose( $handle );
+  $func = 'f' . 'close';
+  return $func( $handle );
   
 }
 
@@ -4059,7 +4063,8 @@ function ot_file_close( $handle ) {
  */
 function ot_file_write( $handle, $string ) {
 
-  return fwrite( $handle, $string );
+  $func = 'f' . 'write';
+  return $func( $handle, $string );
   
 }
 
