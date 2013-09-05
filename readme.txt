@@ -74,12 +74,12 @@ Yes. OptionTree & WordPress both require PHP5.
 * Added filter 'ot_show_docs' which allows you to hide the Documentation.
 * Added filter 'ot_use_theme_options' which allows you to hide the OptionTree Theme Option page (not recommended for beginners).
 * Added filter 'ot_list_item_description' which allows you to change the default list item description text.
-* Added filter 'ot_type_custom_post_type_checkbox_query' which allows you to filter the Custom Post Type Checkbox option type WP_Query array.
-* Added filter 'ot_type_custom_post_type_select_query' which allows you to filter the Custom Post Type Select option type WP_Query array.
-* Added filter 'ot_type_page_checkbox_query' which allows you to filter the Page Checkbox option type WP_Query array.
-* Added filter 'ot_type_page_select_query' which allows you to filter the Page Select option type WP_Query array.
-* Added filter 'ot_type_post_checkbox_query' which allows you to filter the Post Checkbox option type WP_Query array.
-* Added filter 'ot_type_post_select_query' which allows you to filter the Post Select option type WP_Query array.
+* Added filter 'ot_type_custom_post_type_checkbox_query' which allows you to filter the WP_Query args for Custom Post Type Checkbox.
+* Added filter 'ot_type_custom_post_type_select_query' which allows you to filter the WP_Query args for Custom Post Type Select.
+* Added filter 'ot_type_page_checkbox_query' which allows you to filter the WP_Query args for Page Checkbox.
+* Added filter 'ot_type_page_select_query' which allows you to filter the WP_Query args for Page Select.
+* Added filter 'ot_type_post_checkbox_query' which allows you to filter the WP_Query args for Post Checkbox.
+* Added filter 'ot_type_post_select_query' which allows you to filter the WP_Query args for Post Select.
 
 = 2.0.16 =
 * Fixed an urgent JS regression bug that caused the upload option type to break. Code contributed by @anonumus via github.
