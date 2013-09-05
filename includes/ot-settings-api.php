@@ -292,8 +292,8 @@ if ( ! class_exists( 'OT_Settings' ) ) {
                 echo '</div>';
                 
                 /* Navigation */
-  		          echo '<div class="ui-tabs">';
-  		            
+                echo '<div class="ui-tabs">';
+                  
                 /* check for sections */
                 if ( isset( $page['sections'] ) && count( $page['sections'] ) > 0 ) {
                 
@@ -314,12 +314,12 @@ if ( ! class_exists( 'OT_Settings' ) ) {
                     echo '<div id="post-body">';
                     
                       echo '<div id="post-body-content">';
-    		                
+                        
                         $this->do_settings_sections( $_GET['page'] );
                 
                       echo '</div>';
-    		            
-    		            echo '</div>';
+                    
+                    echo '</div>';
                   
                   echo '</div>';
                   
@@ -672,7 +672,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
               }
               
             }
-  		
+      
           }
         
         }
@@ -814,22 +814,22 @@ if ( ! class_exists( 'OT_Settings' ) ) {
      * @since     2.0
      */
     public function do_settings_fields( $page, $section ) {
-    	global $wp_settings_fields;
+      global $wp_settings_fields;
     
-    	if ( !isset($wp_settings_fields) || !isset($wp_settings_fields[$page]) || !isset($wp_settings_fields[$page][$section]) )
-    		return;
+      if ( !isset($wp_settings_fields) || !isset($wp_settings_fields[$page]) || !isset($wp_settings_fields[$page][$section]) )
+        return;
     
       foreach ( (array) $wp_settings_fields[$page][$section] as $field ) {
         
         echo '<div id="setting_' . $field['id'] . '" class="format-settings">';
-    		  
-    		  echo '<div class="format-setting-wrap">';
-    		  
-      		  if ( $field['args']['type'] != 'textblock' && ! empty( $field['title'] ) ) {
-      		  
-      		    echo '<div class="format-setting-label">';
-    		  
-        		    echo '<h3 class="label">' . $field['title'] . '</h3>';     
+          
+          echo '<div class="format-setting-wrap">';
+          
+            if ( $field['args']['type'] != 'textblock' && ! empty( $field['title'] ) ) {
+            
+              echo '<div class="format-setting-label">';
+          
+                echo '<h3 class="label">' . $field['title'] . '</h3>';     
             
               echo '</div>';
             
@@ -841,8 +841,8 @@ if ( ! class_exists( 'OT_Settings' ) ) {
     
         echo '</div>';
         
-    	}
-    	
+      }
+      
     }
     
     /**

@@ -356,7 +356,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
      * @since     2.0
      */
     private function includes() {
-		
+    
       $files = array( 
         'ot-functions',
         'ot-functions-deprecated'

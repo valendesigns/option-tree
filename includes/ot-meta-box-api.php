@@ -167,7 +167,7 @@ if ( ! class_exists( 'OT_Meta_Box' ) ) {
         if ( ! current_user_can( 'edit_post', $post_id ) )
           return $post_id;
       }
-    	
+      
       foreach ( $this->meta_box['fields'] as $field ) {
         
         $old = get_post_meta( $post_id, $field['id'], true );

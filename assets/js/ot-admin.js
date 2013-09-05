@@ -331,7 +331,7 @@
             if ( typeof href == 'undefined') {
               href = $(html).attr('src');
             } 
-    	      if ( typeof href == 'undefined') {
+            if ( typeof href == 'undefined') {
               href = $(html).attr('href');
             }
             var image = /\.(?:jpe?g|png|gif|ico)$/i;
@@ -464,7 +464,7 @@
           $('#cp_'+field_id).css({'backgroundColor':'#'+hex,'borderColor':'#'+bc});
           $('#cp_'+field_id).prev('input').attr('value', '#'+hex);
         }
-      })	
+      })  
       .bind('keyup', function(){
         $(this).ColorPickerSetColor(this.value);
       });
