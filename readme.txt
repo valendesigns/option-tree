@@ -42,6 +42,8 @@ Yes. OptionTree & WordPress both require PHP5.
 == Changelog ==
 
 = 2.1.4 =
+* Hotfix - Allow single quotes in std and choice value when exporting theme-options.php. Contributors via github @maimairel.
+* Hotfix - Additional Themecheck bypass for required functions. Contributors via github @maimairel.
 * Hotfix - Fix for post meta information being lost when loading revisions. Contributors via github @live-mesh.
 * Hotfix - Removed template queries in option types. Contributors via github @live-mesh.
 
