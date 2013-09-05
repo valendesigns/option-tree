@@ -368,11 +368,11 @@
               cal.appendTo(document.body);
             }
             options.fields = cal
-                      .find('input')
-                        .bind('keydown', keyDown)
-                        .bind('change', change)
-                        .bind('blur', blur)
-                        .bind('focus', focus);
+              .find('input')
+              .bind('keydown', keyDown)
+              .bind('change', change)
+              .bind('blur', blur)
+              .bind('focus', focus);
             cal.find('span').bind('mousedown', downIncrement);
             options.selector = cal.find('div.colorpicker_color').bind('mousedown', downSelector);
             options.selectorIndic = options.selector.find('div div');
