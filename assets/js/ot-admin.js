@@ -392,7 +392,7 @@
             value  = hidden.val(),
             helper = $(".ot-numeric-slider-helper-input", this);
         if ( ! value ) {
-          value = 0;
+          value = hidden.data("min");
           helper.val(value)
         }
         $(".ot-numeric-slider", this).slider({
