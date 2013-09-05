@@ -242,6 +242,7 @@
             setTimeout( function() {
               OT_UI.init_sortable();
               OT_UI.init_select_wrapper();
+              OT_UI.init_numeric_slider();
             }, 500);
             self.processing = false;
           }
