@@ -139,9 +139,9 @@ if ( ! class_exists( 'OT_Meta_Box' ) ) {
     function save_meta_box( $post_id, $post_object ) {
       global $pagenow;
 
-        /* live-mesh - Fix for losing the meta information upon restore of page. Check for ($pagenow == 'revision.php') below will also help */
-        if ( empty($_POST) )
-            return $post_id;
+      /* don't save if $_POST is empty */
+      if ( empty( $_POST ) )
+        return $post_id;
       
       /* don't save during quick edit */
       if ( $pagenow == 'admin-ajax.php' )
@@ -151,10 +151,9 @@ if ( ! class_exists( 'OT_Meta_Box' ) ) {
       if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
         return $post_id;
 
-        /* don't save if viewing a revision */
-        /* live-mesh - Check for $pagenow == 'revision.php' as well to avoid losing post meta information */
-        if ( $post_object->post_type == 'revision' || $pagenow == 'revision.php' )
-            return $post_id;
+      /* don't save if viewing a revision */
+      if ( $post_object->post_type == 'revision' || $pagenow == 'revision.php' )
+        return $post_id;
   
       /* verify nonce */
       if ( isset( $_POST[ $this->meta_box['id'] . '_nonce'] ) && ! wp_verify_nonce( $_POST[ $this->meta_box['id'] . '_nonce'], $this->meta_box['id'] ) )
