@@ -51,7 +51,7 @@ function _custom_meta_boxes() {
         'taxonomy'    => '',
         'class'       => ''
       )
-  	)
+    )
   );
   
   /**

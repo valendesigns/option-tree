@@ -242,6 +242,7 @@
             setTimeout( function() {
               OT_UI.init_sortable();
               OT_UI.init_select_wrapper();
+              OT_UI.init_numeric_slider();
             }, 500);
             self.processing = false;
           }
@@ -330,7 +331,7 @@
             if ( typeof href == 'undefined') {
               href = $(html).attr('src');
             } 
-    	      if ( typeof href == 'undefined') {
+            if ( typeof href == 'undefined') {
               href = $(html).attr('href');
             }
             var image = /\.(?:jpe?g|png|gif|ico)$/i;
@@ -391,7 +392,7 @@
             value  = hidden.val(),
             helper = $(".ot-numeric-slider-helper-input", this);
         if ( ! value ) {
-          value = 0;
+          value = hidden.data("min");
           helper.val(value)
         }
         $(".ot-numeric-slider", this).slider({
@@ -463,7 +464,7 @@
           $('#cp_'+field_id).css({'backgroundColor':'#'+hex,'borderColor':'#'+bc});
           $('#cp_'+field_id).prev('input').attr('value', '#'+hex);
         }
-      })	
+      })  
       .bind('keyup', function(){
         $(this).ColorPickerSetColor(this.value);
       });

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/option-tree\n"
-"POT-Creation-Date: 2013-08-11 08:44:35+00:00\n"
+"POT-Creation-Date: 2013-09-09 11:09:05+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -147,7 +147,7 @@ msgstr ""
 
 #: includes/ot-functions-admin.php:565
 #: includes/ot-functions-option-types.php:152
-#: includes/ot-functions-option-types.php:1871
+#: includes/ot-functions-option-types.php:1872
 msgid "Remove Media"
 msgstr ""
 
@@ -425,7 +425,7 @@ msgstr ""
 msgid "Activate"
 msgstr ""
 
-#: includes/ot-functions-admin.php:3554 includes/ot-meta-box-api.php:182
+#: includes/ot-functions-admin.php:3554 includes/ot-meta-box-api.php:186
 #: includes/ot-settings-api.php:587
 msgid "Title"
 msgstr ""
@@ -1482,7 +1482,7 @@ msgid "background-position"
 msgstr ""
 
 #: includes/ot-functions-option-types.php:140
-#: includes/ot-functions-option-types.php:1859
+#: includes/ot-functions-option-types.php:1860
 msgid "Add Media"
 msgstr ""
 
@@ -1493,45 +1493,45 @@ msgstr ""
 
 #: includes/ot-functions-option-types.php:257
 #: includes/ot-functions-option-types.php:515
-#: includes/ot-functions-option-types.php:804
-#: includes/ot-functions-option-types.php:986
-#: includes/ot-functions-option-types.php:1315
+#: includes/ot-functions-option-types.php:803
+#: includes/ot-functions-option-types.php:984
+#: includes/ot-functions-option-types.php:1314
 #: includes/ot-functions-option-types.php:1429
 msgid "Choose One"
 msgstr ""
 
 #: includes/ot-functions-option-types.php:463
-#: includes/ot-functions-option-types.php:521
-#: includes/ot-functions-option-types.php:937
-#: includes/ot-functions-option-types.php:992
+#: includes/ot-functions-option-types.php:520
+#: includes/ot-functions-option-types.php:935
+#: includes/ot-functions-option-types.php:989
 msgid "No Posts Found"
 msgstr ""
 
 #: includes/ot-functions-option-types.php:592
-#: includes/ot-functions-option-types.php:881
+#: includes/ot-functions-option-types.php:880
 msgid "Add New"
 msgstr ""
 
 #: includes/ot-functions-option-types.php:595
-#: includes/ot-functions-option-types.php:884
+#: includes/ot-functions-option-types.php:883
 msgid "You can re-order with drag & drop, the order will update after saving."
 msgstr ""
 
-#: includes/ot-functions-option-types.php:755
-#: includes/ot-functions-option-types.php:810
+#: includes/ot-functions-option-types.php:754
+#: includes/ot-functions-option-types.php:808
 msgid "No Pages Found"
 msgstr ""
 
-#: includes/ot-functions-option-types.php:1206
+#: includes/ot-functions-option-types.php:1205
 msgid "Choose Sidebar"
 msgstr ""
 
-#: includes/ot-functions-option-types.php:1211
+#: includes/ot-functions-option-types.php:1210
 msgid "No Sidebars"
 msgstr ""
 
-#: includes/ot-functions-option-types.php:1266
-#: includes/ot-functions-option-types.php:1320
+#: includes/ot-functions-option-types.php:1265
+#: includes/ot-functions-option-types.php:1319
 msgid "No Tags Found"
 msgstr ""
 

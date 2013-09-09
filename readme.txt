@@ -4,7 +4,7 @@ Donate link: http://bit.ly/NuXI3T
 Tags: admin, theme options, meta boxes, options, admin interface, ajax
 Requires at least: 3.5
 Tested up to: 3.6
-Stable tag: 2.1.3
+Stable tag: 2.1.4
 License: GPLv3
 
 Theme Options UI Builder for WordPress. A simple way to create & save Theme Options and Meta Boxes for free or premium themes.
@@ -41,6 +41,14 @@ Yes. OptionTree & WordPress both require PHP5.
 
 == Changelog ==
 
+= 2.1.4 =
+* Hotfix - Fixed the Numeric Slider not work inside of a newly added List item.
+* Hotfix - Fixed the numeric slider fallback value being set to 0, it now becomes the minimum value if no standard is set.
+* Hotfix - Allow single quotes in std and choice value when exporting theme-options.php. Contributors via github @maimairel.
+* Hotfix - Additional Themecheck bypass for required functions. Contributors via github @maimairel.
+* Hotfix - Fixed post meta information being lost when loading revisions. Contributors via github @live-mesh.
+* Hotfix - Removed template queries in option types. Contributors via github @live-mesh.
+
 = 2.1.3 =
 * Hotfix - Loading OptionTree on the 'init' action proved to be wrong, it now loads on 'after_setup_theme'.
 * Hotfix - Layouts were not being imported properly due to using the wrong path variable.
@@ -74,12 +82,12 @@ Yes. OptionTree & WordPress both require PHP5.
 * Added filter 'ot_show_docs' which allows you to hide the Documentation.
 * Added filter 'ot_use_theme_options' which allows you to hide the OptionTree Theme Option page (not recommended for beginners).
 * Added filter 'ot_list_item_description' which allows you to change the default list item description text.
-* Added filter 'ot_type_custom_post_type_checkbox_query' which allows you to filter the Custom Post Type Checkbox option type WP_Query array.
-* Added filter 'ot_type_custom_post_type_select_query' which allows you to filter the Custom Post Type Select option type WP_Query array.
-* Added filter 'ot_type_page_checkbox_query' which allows you to filter the Page Checkbox option type WP_Query array.
-* Added filter 'ot_type_page_select_query' which allows you to filter the Page Select option type WP_Query array.
-* Added filter 'ot_type_post_checkbox_query' which allows you to filter the Post Checkbox option type WP_Query array.
-* Added filter 'ot_type_post_select_query' which allows you to filter the Post Select option type WP_Query array.
+* Added filter 'ot_type_custom_post_type_checkbox_query' which allows you to filter the get_posts() args for Custom Post Type Checkbox.
+* Added filter 'ot_type_custom_post_type_select_query' which allows you to filter the get_posts() args for Custom Post Type Select.
+* Added filter 'ot_type_page_checkbox_query' which allows you to filter the get_posts() args for Page Checkbox.
+* Added filter 'ot_type_page_select_query' which allows you to filter the get_posts() args for Page Select.
+* Added filter 'ot_type_post_checkbox_query' which allows you to filter the get_posts() args for Post Checkbox.
+* Added filter 'ot_type_post_select_query' which allows you to filter the get_posts() args for Post Select.
 
 = 2.0.16 =
 * Fixed an urgent JS regression bug that caused the upload option type to break. Code contributed by @anonumus via github.
@@ -279,7 +287,7 @@ Yes. OptionTree & WordPress both require PHP5.
 
 == Upgrade Notice ==
 
-= 2.1.3 =
+= 2.1.4 =
 If you're not the developer of this theme, please ask them to test compatibility with version 2.1 before upgrading. If you are the developer, I urge you to do the same in a controlled environment.
 
 = 2.0.16 =

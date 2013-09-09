@@ -261,6 +261,7 @@ if ( ! function_exists( 'ot_type_category_select' ) ) {
         } else {
           echo '<option value="">' . __( 'No Categories Found', 'option-tree' ) . '</option>';
         }
+        
         echo '</select>';
       
       echo '</div>';
@@ -446,19 +447,18 @@ if ( ! function_exists( 'ot_type_custom_post_type_checkbox' ) ) {
         
         /* setup the post types */
         $post_type = isset( $field_post_type ) ? explode( ',', $field_post_type ) : array( 'post' );
-        
+
         /* query posts array */
-        $query = new WP_Query( apply_filters( 'ot_type_custom_post_type_checkbox_query', array( 'post_type' => $post_type, 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC', 'post_status' => 'any' ), $field_id ) );
-        
+        $my_posts = get_posts( apply_filters( 'ot_type_custom_post_type_checkbox_query', array( 'post_type' => $post_type, 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC', 'post_status' => 'any' ), $field_id ) );
+
         /* has posts */
-        if ( $query->have_posts() ) {
-          while ( $query->have_posts() ) {
-            $query->the_post();
+        if ( is_array( $my_posts ) && ! empty( $my_posts ) ) {
+          foreach( $my_posts as $my_post ){
             echo '<p>';
-              echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[' . esc_attr( get_the_ID() ) . ']" id="' . esc_attr( $field_id ) . '-' . esc_attr( get_the_ID() ) . '" value="' . esc_attr( get_the_ID() ) . '" ' . ( isset( $field_value[get_the_ID()] ) ? checked( $field_value[get_the_ID()], get_the_ID(), false ) : '' ) . ' class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
-              echo '<label for="' . esc_attr( $field_id ) . '-' . esc_attr( get_the_ID() ) . '">' . get_the_title() . '</label>';
+            echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[' . esc_attr( $my_post->ID ) . ']" id="' . esc_attr( $field_id ) . '-' . esc_attr( $my_post->ID ) . '" value="' . esc_attr( $my_post->ID ) . '" ' . ( isset( $field_value[$my_post->ID] ) ? checked( $field_value[$my_post->ID], $my_post->ID, false ) : '' ) . ' class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
+            echo '<label for="' . esc_attr( $field_id ) . '-' . esc_attr( $my_post->ID ) . '">' . $my_post->post_title . '</label>';
             echo '</p>';
-          } 
+          }
         } else {
           echo '<p>' . __( 'No Posts Found', 'option-tree' ) . '</p>';
         }
@@ -508,18 +508,18 @@ if ( ! function_exists( 'ot_type_custom_post_type_select' ) ) {
         $post_type = isset( $field_post_type ) ? explode( ',', $field_post_type ) : array( 'post' );
         
         /* query posts array */
-        $query = new WP_Query( apply_filters( 'ot_type_custom_post_type_select_query', array( 'post_type' => $post_type, 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC', 'post_status' => 'any' ), $field_id ) );
+        $my_posts = get_posts( apply_filters( 'ot_type_custom_post_type_select_query', array( 'post_type' => $post_type, 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC', 'post_status' => 'any' ), $field_id ) );
         
         /* has posts */
-        if ( $query->have_posts() ) {
+        if ( is_array( $my_posts ) && ! empty( $my_posts ) ) {
           echo '<option value="">-- ' . __( 'Choose One', 'option-tree' ) . ' --</option>';
-          while ( $query->have_posts() ) {
-            $query->the_post();
-            echo '<option value="' . esc_attr( get_the_ID() ) . '"' . selected( $field_value, get_the_ID(), false ) . '>' . esc_attr( get_the_title() ) . '</option>';
+          foreach( $my_posts as $my_post ){
+            echo '<option value="' . esc_attr( $my_post->ID ) . '"' . selected( $field_value, $my_post->ID, false ) . '>' . esc_attr( $my_post->post_title ) . '</option>';
           }
         } else {
           echo '<option value="">' . __( 'No Posts Found', 'option-tree' ) . '</option>';
         }
+        
         echo '</select>';
         
       echo '</div>';
@@ -738,22 +738,21 @@ if ( ! function_exists( 'ot_type_page_checkbox' ) ) {
       
       /* format setting inner wrapper */
       echo '<div class="format-setting-inner">';
-      
-        /* query pages array */
-        $query = new WP_Query( apply_filters( 'ot_type_page_checkbox_query', array( 'post_type' => array( 'page' ), 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC', 'post_status' => 'any' ), $field_id ) );
-        
-        /* has pages */
-        if ( $query->have_posts() ) {
-          while ( $query->have_posts() ) {
-            $query->the_post();
-            echo '<p>';
-              echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[' . esc_attr( get_the_ID() ) . ']" id="' . esc_attr( $field_id ) . '-' . esc_attr( get_the_ID() ) . '" value="' . esc_attr( get_the_ID() ) . '" ' . ( isset( $field_value[get_the_ID()] ) ? checked( $field_value[get_the_ID()], get_the_ID(), false ) : '' ) . ' class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
-              echo '<label for="' . esc_attr( $field_id ) . '-' . esc_attr( get_the_ID() ) . '">' . get_the_title() . '</label>';
-            echo '</p>';
-          } 
-        } else {
-          echo '<p>' . __( 'No Pages Found', 'option-tree' ) . '</p>';
+
+      /* query pages array */
+      $my_posts = get_posts( apply_filters( 'ot_type_page_checkbox_query', array( 'post_type' => array( 'page' ), 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC', 'post_status' => 'any' ), $field_id ) );
+
+      /* has pages */
+      if ( is_array( $my_posts ) && ! empty( $my_posts ) ) {
+        foreach( $my_posts as $my_post ){
+          echo '<p>';
+            echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[' . esc_attr( $my_post->ID ) . ']" id="' . esc_attr( $field_id ) . '-' . esc_attr( $my_post->ID ) . '" value="' . esc_attr( $my_post->ID ) . '" ' . ( isset( $field_value[$my_post->ID] ) ? checked( $field_value[$my_post->ID], $my_post->ID, false ) : '' ) . ' class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
+            echo '<label for="' . esc_attr( $field_id ) . '-' . esc_attr( $my_post->ID ) . '">' . $my_post->post_title . '</label>';
+          echo '</p>';
         }
+      } else {
+        echo '<p>' . __( 'No Pages Found', 'option-tree' ) . '</p>';
+      }
       
       echo '</div>';
       
@@ -797,18 +796,18 @@ if ( ! function_exists( 'ot_type_page_select' ) ) {
         echo '<select name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" class="option-tree-ui-select ' . $field_class . '">';
         
         /* query pages array */
-        $query = new WP_Query( apply_filters( 'ot_type_page_select_query', array( 'post_type' => array( 'page' ), 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC', 'post_status' => 'any' ), $field_id ) );
+        $my_posts = get_posts( apply_filters( 'ot_type_page_select_query', array( 'post_type' => array( 'page' ), 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC', 'post_status' => 'any' ), $field_id ) );
         
         /* has pages */
-        if ( $query->have_posts() ) {
+        if ( is_array( $my_posts ) && ! empty( $my_posts ) ) {
           echo '<option value="">-- ' . __( 'Choose One', 'option-tree' ) . ' --</option>';
-          while ( $query->have_posts() ) {
-            $query->the_post();
-            echo '<option value="' . esc_attr( get_the_ID() ) . '"' . selected( $field_value, get_the_ID(), false ) . '>' . esc_attr( get_the_title() ) . '</option>';
+          foreach( $my_posts as $my_post ) {
+            echo '<option value="' . esc_attr( $my_post->ID ) . '"' . selected( $field_value, $my_post->ID, false ) . '>' . esc_attr( $my_post->post_title ) . '</option>';
           }
         } else {
           echo '<option value="">' . __( 'No Pages Found', 'option-tree' ) . '</option>';
         }
+        
         echo '</select>';
         
       echo '</div>';
@@ -922,15 +921,14 @@ if ( ! function_exists( 'ot_type_post_checkbox' ) ) {
       echo '<div class="format-setting-inner">';
       
         /* query posts array */
-        $query = new WP_Query( apply_filters( 'ot_type_post_checkbox_query', array( 'post_type' => array( 'post' ), 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC', 'post_status' => 'any' ), $field_id ) );
+        $my_posts = get_posts( apply_filters( 'ot_type_post_checkbox_query', array( 'post_type' => array( 'post' ), 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC', 'post_status' => 'any' ), $field_id ) );
         
         /* has posts */
-        if ( $query->have_posts() ) {
-          while ( $query->have_posts() ) {
-            $query->the_post();
+        if ( is_array( $my_posts ) && ! empty( $my_posts ) ) {
+          foreach( $my_posts as $my_post ){
             echo '<p>';
-              echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[' . esc_attr( get_the_ID() ) . ']" id="' . esc_attr( $field_id ) . '-' . esc_attr( get_the_ID() ) . '" value="' . esc_attr( get_the_ID() ) . '" ' . ( isset( $field_value[get_the_ID()] ) ? checked( $field_value[get_the_ID()], get_the_ID(), false ) : '' ) . ' class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
-              echo '<label for="' . esc_attr( $field_id ) . '-' . esc_attr( get_the_ID() ) . '">' . esc_attr( get_the_title() ) . '</label>';
+            echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[' . esc_attr( $my_post->ID ) . ']" id="' . esc_attr( $field_id ) . '-' . esc_attr( $my_post->ID ) . '" value="' . esc_attr( $my_post->ID ) . '" ' . ( isset( $field_value[$my_post->ID] ) ? checked( $field_value[$my_post->ID], $my_post->ID, false ) : '' ) . ' class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
+            echo '<label for="' . esc_attr( $field_id ) . '-' . esc_attr( $my_post->ID ) . '">' . esc_attr( $my_post->post_title ) . '</label>';
             echo '</p>';
           } 
         } else {
@@ -979,18 +977,18 @@ if ( ! function_exists( 'ot_type_post_select' ) ) {
         echo '<select name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" class="option-tree-ui-select ' . $field_class . '">';
         
         /* query posts array */
-        $query = new WP_Query( apply_filters( 'ot_type_post_select_query', array( 'post_type' => array( 'post' ), 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC', 'post_status' => 'any' ), $field_id ) );
+        $my_posts = get_posts( apply_filters( 'ot_type_post_select_query', array( 'post_type' => array( 'post' ), 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC', 'post_status' => 'any' ), $field_id ) );
         
         /* has posts */
-        if ( $query->have_posts() ) {
+        if ( is_array( $my_posts ) && ! empty( $my_posts ) ) {
           echo '<option value="">-- ' . __( 'Choose One', 'option-tree' ) . ' --</option>';
-          while ( $query->have_posts() ) {
-            $query->the_post();
-            echo '<option value="' . esc_attr( get_the_ID() ) . '"' . selected( $field_value, get_the_ID(), false ) . '>' . esc_attr( get_the_title() ) . '</option>';
+          foreach( $my_posts as $my_post ){
+            echo '<option value="' . esc_attr( $my_post->ID ) . '"' . selected( $field_value, $my_post->ID, false ) . '>' . esc_attr( $my_post->post_title ) . '</option>';
           }
         } else {
           echo '<option value="">' . __( 'No Posts Found', 'option-tree' ) . '</option>';
         }
+        
         echo '</select>';
         
       echo '</div>';
@@ -1138,6 +1136,7 @@ if ( ! function_exists( 'ot_type_select' ) ) {
             echo '<option value="' . esc_attr( $choice['value'] ) . '"' . selected( $field_value, $choice['value'], false ) . '>' . esc_attr( $choice['label'] ) . '</option>';
           }
         }
+        
         echo '</select>';
         
       echo '</div>';
@@ -1319,6 +1318,7 @@ if ( ! function_exists( 'ot_type_tag_select' ) ) {
         } else {
           echo '<option value="">' . __( 'No Tags Found', 'option-tree' ) . '</option>';
         }
+        
         echo '</select>';
       
       echo '</div>';
@@ -1433,6 +1433,7 @@ if ( ! function_exists( 'ot_type_taxonomy_select' ) ) {
         } else {
           echo '<option value="">' . __( 'No Taxonomies Found', 'option-tree' ) . '</option>';
         }
+        
         echo '</select>';
       
       echo '</div>';

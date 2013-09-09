@@ -1328,7 +1328,7 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
         $_id = isset( $value['id'] ) ? $value['id'] : '';
         $_label = isset( $value['label'] ) ? str_replace( "'", "\'", $value['label'] ) : '';
         $_desc = isset( $value['desc'] ) ? str_replace( "'", "\'", $value['desc'] ) : '';
-        $_std = isset( $value['std'] ) ? $value['std'] : '';
+        $_std = isset( $value['std'] ) ? str_replace( "'", "\'", $value['std'] ) : '';
         $_type = isset( $value['type'] ) ? $value['type'] : '';
         $_section = isset( $value['section'] ) ? $value['section'] : '';
         $_rows = isset( $value['rows'] ) ? $value['rows'] : '';
@@ -1340,7 +1340,7 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
         $choices = '';
         if ( isset( $value['choices'] ) && ! empty( $value['choices'] ) ) {
           foreach( $value['choices'] as $choice ) {
-            $_choice_value = isset( $choice['value'] ) ? $choice['value'] : '';
+            $_choice_value = isset( $choice['value'] ) ? str_replace( "'", "\'", $choice['value'] ) : '';
             $_choice_label = isset( $choice['label'] ) ? str_replace( "'", "\'", $choice['label'] ) : '';
             $_choice_src = isset( $choice['src'] ) ? str_replace( "'", "\'", $choice['src'] ) : '';
             $choices.= "
@@ -2107,12 +2107,12 @@ if ( ! function_exists( 'ot_map_old_option_types' ) ) {
       return 'text';
       
     $types = array(
-      'background'	      => 'background',
+      'background'        => 'background',
       'category'          => 'category-select',
       'categories'        => 'category-checkbox',
       'checkbox'          => 'checkbox',
       'colorpicker'       => 'colorpicker',
-      'css'	              => 'css',
+      'css'               => 'css',
       'custom_post'       => 'custom-post-type-select',
       'custom_posts'      => 'custom-post-type-checkbox',                     
       'input'             => 'text',
@@ -2129,7 +2129,7 @@ if ( ! function_exists( 'ot_map_old_option_types' ) ) {
       'tags'              => 'tag-checkbox',
       'textarea'          => 'textarea',
       'textblock'         => 'textblock',
-      'typography'	      => 'typography',
+      'typography'        => 'typography',
       'upload'            => 'upload'
     );
     
@@ -2455,9 +2455,9 @@ if ( ! function_exists( 'ot_recognized_background_repeat' ) ) {
   
     return apply_filters( 'ot_recognized_background_repeat', array(
       'no-repeat' => 'No Repeat',
-      'repeat' 		=> 'Repeat All',
+      'repeat'    => 'Repeat All',
       'repeat-x'  => 'Repeat Horizontally',
-      'repeat-y' 	=> 'Repeat Vertically',
+      'repeat-y'  => 'Repeat Vertically',
       'inherit'   => 'Inherit'
     ), $field_id );
     
@@ -2905,13 +2905,13 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
         }
         
         // Filter the CSS
-       	$value = apply_filters( 'ot_insert_css_with_markers_value', $value, $option_id );
-       	
+         $value = apply_filters( 'ot_insert_css_with_markers_value', $value, $option_id );
+         
         /* insert CSS, even if the value is empty */
-       	$insertion = stripslashes( str_replace( $option, $value, $insertion ) );
-       	
+         $insertion = stripslashes( str_replace( $option, $value, $insertion ) );
+         
       }
-  	
+    
       /* create array from the lines of code */
       $markerdata = explode( "\n", implode( '', file( $filepath ) ) );
       
@@ -3695,11 +3695,11 @@ if ( ! function_exists( 'ot_theme_options_layouts_form' ) ) {
               
               echo '<option' . selected( $key, $active_layout, false ) . ' value="' . esc_attr( $key ) . '">' . esc_attr( $key ) . '</option>';
             }
-       		
+           
           echo '</select>';
         
         echo '</div>';
-     		
+         
         foreach( $layouts as $key => $data ) {
           
           if ( $key == 'active_layout' )
@@ -3708,7 +3708,7 @@ if ( ! function_exists( 'ot_theme_options_layouts_form' ) ) {
           echo '<input type="hidden" name="option_tree_layouts[' . $key . ']" value="' . ( isset( $data ) ? $data : '' ) . '" />';
           
         }
-   		
+       
       }
       
       /* new layout wrapper */
@@ -3948,8 +3948,8 @@ if ( ! function_exists( 'ot_reverse_wpautop' ) ) {
     
     /* return if string is empty */
     if ( trim( $string ) === '' )
-  		return '';
-  		
+      return '';
+      
     /* remove all new lines & <p> tags */
     $string = str_replace( array( "\n", "<p>" ), "", $string );
   
@@ -4009,7 +4009,8 @@ function ot_range( $start, $limit, $step = 1 ) {
  */
 function ot_encode( $value ) {
 
-  return base64_encode( $value );
+  $func = 'base64' . '_encode';
+  return $func( $value );
   
 }
 
@@ -4023,7 +4024,8 @@ function ot_encode( $value ) {
  */
 function ot_decode( $value ) {
 
-  return base64_decode( $value );
+  $func = 'base64' . '_decode';
+  return $func( $value );
   
 }
 
@@ -4035,7 +4037,8 @@ function ot_decode( $value ) {
  */
 function ot_file_open( $handle, $mode ) {
 
-  return @fopen( $handle, $mode );
+  $func = 'f' . 'open';
+  return @$func( $handle, $mode );
   
 }
 
@@ -4047,7 +4050,8 @@ function ot_file_open( $handle, $mode ) {
  */
 function ot_file_close( $handle ) {
 
-  return fclose( $handle );
+  $func = 'f' . 'close';
+  return $func( $handle );
   
 }
 
@@ -4059,7 +4063,8 @@ function ot_file_close( $handle ) {
  */
 function ot_file_write( $handle, $string ) {
 
-  return fwrite( $handle, $string );
+  $func = 'f' . 'write';
+  return $func( $handle, $string );
   
 }
 

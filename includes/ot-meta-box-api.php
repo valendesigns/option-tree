@@ -138,6 +138,10 @@ if ( ! class_exists( 'OT_Meta_Box' ) ) {
      */
     function save_meta_box( $post_id, $post_object ) {
       global $pagenow;
+
+      /* don't save if $_POST is empty */
+      if ( empty( $_POST ) )
+        return $post_id;
       
       /* don't save during quick edit */
       if ( $pagenow == 'admin-ajax.php' )
@@ -146,9 +150,9 @@ if ( ! class_exists( 'OT_Meta_Box' ) ) {
       /* don't save during autosave */
       if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
         return $post_id;
-      
+
       /* don't save if viewing a revision */
-      if ( $post_object->post_type == 'revision' )
+      if ( $post_object->post_type == 'revision' || $pagenow == 'revision.php' )
         return $post_id;
   
       /* verify nonce */
@@ -163,7 +167,7 @@ if ( ! class_exists( 'OT_Meta_Box' ) ) {
         if ( ! current_user_can( 'edit_post', $post_id ) )
           return $post_id;
       }
-    	
+      
       foreach ( $this->meta_box['fields'] as $field ) {
         
         $old = get_post_meta( $post_id, $field['id'], true );
