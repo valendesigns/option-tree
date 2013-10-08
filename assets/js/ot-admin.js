@@ -301,6 +301,7 @@
             }, 
             multiple: false
           });
+          window.ot_media_frame.off('select');
           window.ot_media_frame.on('select', function() {
             var attachment = window.ot_media_frame.state().get('selection').first(), 
                 href = attachment.attributes.url, 
@@ -314,7 +315,6 @@
             $('#'+field_id+'_media').remove();
             $('#'+field_id).parent().parent('div').append('<div class="option-tree-ui-media-wrap" id="'+field_id+'_media" />');
             $('#'+field_id+'_media').append(btnContent).slideDown();
-            window.ot_media_frame.off('select');
           }).open();
         } else {
           var backup = window.send_to_editor,
