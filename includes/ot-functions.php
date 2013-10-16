@@ -45,7 +45,7 @@ if ( ! function_exists( 'ot_get_option' ) ) {
  * Echo Option.
  *
  * Helper function to echo the option value.
- * If no value has been saved, it returns $default.
+ * If no value has been saved, it echos $default.
  *
  * @param     string    The option ID.
  * @param     string    The default option value.
