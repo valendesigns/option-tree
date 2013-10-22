@@ -276,8 +276,18 @@ if ( ! class_exists( 'OT_Loader' ) ) {
           define( 'OT_DIR', trailingslashit( get_stylesheet_directory() ) . trailingslashit( basename( dirname( __FILE__ ) ) ) );
           define( 'OT_URL', trailingslashit( get_stylesheet_directory_uri() ) . trailingslashit( basename( dirname( __FILE__ ) ) ) );
         } else {
-          define( 'OT_DIR', trailingslashit( get_template_directory() ) . trailingslashit( basename( dirname( __FILE__ ) ) ) );
-          define( 'OT_URL', trailingslashit( get_template_directory_uri() ) . trailingslashit( basename( dirname( __FILE__ ) ) ) );
+          $array_dirname = explode( '/', dirname( __FILE__ ) );
+          $theme_folder = end( @explode( '/', get_template_directory() ) );
+          foreach ( $array_dirname as $index => $dir ) {
+            if( $dir != $theme_folder ) {
+              unset( $array_dirname[$index] );
+            }else{
+              break;
+            }
+          }
+          array_shift($array_dirname);
+          define( 'OT_DIR', trailingslashit( dirname( __FILE__ ) ) );
+          define( 'OT_URL', trailingslashit( get_template_directory_uri() ) . trailingslashit( implode('/', $array_dirname) ) );
         }
       }
       
