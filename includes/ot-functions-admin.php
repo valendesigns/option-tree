@@ -1278,8 +1278,8 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
         $help.= "
         array(
           'id'        => '$_id',
-          'title'     => '$_title',
-          'content'   => '$_content'
+          'title'     => __( '$_title', 'option-tree' ),
+          'content'   => __( '$_content', 'option-tree' )
         ),";
       }
       $help = substr_replace( $help, '' , -1 );
@@ -1309,7 +1309,7 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
         $sections.= "
       array(
         'id'          => '$_id',
-        'title'       => '$_title'
+        'title'       => __( '$_title', 'option-tree' )
       ),";
       }
       $sections = substr_replace( $sections, '' , -1 );
@@ -1348,14 +1348,14 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
             $choices.= "
           array(
             'value'       => '$_choice_value',
-            'label'       => '$_choice_label',
+            'label'       => __( '$_choice_label', 'option-tree' ),
             'src'         => '$_choice_src'
           ),";
           }
           $choices = substr_replace( $choices, '' , -1 );
           $choices = ",
         'choices'     => array( $choices
-        ),";
+        )";
         }
         
         $std = "'$_std'";
@@ -1394,14 +1394,14 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
                 $setting_choices.= "
               array(
                 'value'       => '$_setting_choice_value',
-                'label'       => '$_setting_choice_label',
+                'label'       => __( '$_setting_choice_label', 'option-tree' ),
                 'src'         => '$_setting_choice_src'
               ),";
               }
               $setting_choices = substr_replace( $setting_choices, '' , -1 );
               $setting_choices = ",
             'choices'     => array( $setting_choices
-            ),";
+            )";
             }
             
             $setting_std = "'$_setting_std'";
@@ -1418,17 +1418,17 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
             $setting_settings.= "
           array(
             'id'          => '$_setting_id',
-            'label'       => '$_setting_label',
-            'desc'        => '$_setting_desc',
+            'label'       => __( '$_setting_label', 'option-tree' ),
+            'desc'        => __( '$_setting_desc', 'option-tree' ),
             'std'         => $setting_std,
             'type'        => '$_setting_type',
             'rows'        => '$_setting_rows',
             'post_type'   => '$_setting_post_type',
             'taxonomy'    => '$_setting_taxonomy',
             'min_max_step'=> '$_setting_min_max_step',
-            'class'       => '$_setting_class'
+            'class'       => '$_setting_class',
             'condition'   => '$_setting_condition',
-            'operator'    => '$_setting_operator'$setting_choices,
+            'operator'    => '$_setting_operator'$setting_choices
           ),";
           }
           $setting_settings = substr_replace( $setting_settings, '' , -1 );
@@ -1440,8 +1440,8 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
         $settings.= "
       array(
         'id'          => '$_id',
-        'label'       => '$_label',
-        'desc'        => '$_desc',
+        'label'       => __( '$_label', 'option-tree' ),
+        'desc'        => __( '$_desc', 'option-tree' ),
         'std'         => $std,
         'type'        => '$_type',
         'section'     => '$_section',
@@ -1449,9 +1449,9 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
         'post_type'   => '$_post_type',
         'taxonomy'    => '$_taxonomy',
         'min_max_step'=> '$_min_max_step',
-        'class'       => '$_class'
+        'class'       => '$_class',
         'condition'   => '$_condition',
-        'operator'    => '$_operator'$choices$setting_settings,
+        'operator'    => '$_operator'$choices$setting_settings
       ),";
       }
       $settings = substr_replace( $settings, '' , -1 );
@@ -1463,6 +1463,9 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
     'settings'        => array( $settings
     )";
     }
+
+    /* replace any empty translation strings */
+    $build_settings = str_replace( "__( '', 'option-tree' )", "''", $build_settings );
     
     $content.= "<?php
 /**
