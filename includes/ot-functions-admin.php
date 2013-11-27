@@ -58,8 +58,8 @@ if ( ! function_exists( 'ot_register_theme_options_page' ) ) {
                 'button_text'     => apply_filters( 'ot_theme_options_button_text', __( 'Save Changes', 'option-tree' ) ),
                 'screen_icon'     => 'themes',
                 'contextual_help' => $contextual_help,
-                'sections'        => $sections,
-                'settings'        => $settings
+                'sections'        => apply_filters( 'ot_theme_options_sections', $sections ),
+                'settings'        => apply_filters( 'ot_theme_options_settings', $settings )
               )
             )
           )
