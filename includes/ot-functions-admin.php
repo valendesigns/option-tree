@@ -568,10 +568,10 @@ if ( ! function_exists( 'ot_admin_scripts' ) ) {
       'remove_agree'          => __( 'Are you sure you want to remove this?', 'option-tree' ),
       'activate_layout_agree' => __( 'Are you sure you want to activate this layout?', 'option-tree' ),
       'setting_limit'         => __( 'Sorry, you can\'t have settings three levels deep.', 'option-tree' ),
-      'delete'                => __( 'Delete Gallery', 'motif-core' ), 
-      'edit'                  => __( 'Edit Gallery', 'motif-core' ), 
-      'create'                => __( 'Create Gallery', 'motif-core' ), 
-      'confirm'               => __( 'Are you sure you want to delete this Gallery?', 'motif-core' )
+      'delete'                => __( 'Delete Gallery', 'option-tree' ), 
+      'edit'                  => __( 'Edit Gallery', 'option-tree' ), 
+      'create'                => __( 'Create Gallery', 'option-tree' ), 
+      'confirm'               => __( 'Are you sure you want to delete this Gallery?', 'option-tree' )
     );
     
     /* localized script attached to 'option_tree' */
