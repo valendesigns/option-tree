@@ -1406,6 +1406,38 @@ input.option-tree-ui-input {
 }
 
 /* -------------------------------------------------- 
+  :: Gallery
+  ---------------------------------------------------*/
+ul.ot-gallery-list {
+  float: left;
+  margin: 0;
+  width: 100%;
+}
+ul.ot-gallery-list li {
+  background: none repeat scroll 0 0 white;
+  border: 1px solid #bbbbbb;
+  float: left;
+  margin: 0px 10px 10px 0;
+  padding: 4px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+ul.ot-gallery-list li img {
+  display: block;
+  margin: 0;
+}
+
+.ot-gallery-buttons {
+  float: left;
+  width: 100%;
+}
+.ot-gallery-buttons a.option-tree-ui-button {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+/* -------------------------------------------------- 
   :: On/Off Toggle
   ---------------------------------------------------*/
 .on-off-switch .slide-button {

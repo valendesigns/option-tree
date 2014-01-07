@@ -531,6 +531,83 @@ if ( ! function_exists( 'ot_type_custom_post_type_select' ) ) {
 }
 
 /**
+ * Gallery option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     The options arguments
+ * @return    string    The gallery metabox markup.
+ *
+ * @access    public
+ * @since     2.2.0
+ */
+if ( ! function_exists( 'ot_type_gallery' ) ) {
+
+  function ot_type_gallery( $args = array() ) {
+  
+    // Turns arguments array into variables
+    extract( $args );
+  
+    // Verify a description
+    $has_desc = $field_desc ? true : false;
+  
+    // Format setting outer wrapper
+    echo '<div class="format-setting type-gallery ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+  
+      // Description
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+  
+      // Format setting inner wrapper
+      echo '<div class="format-setting-inner">';
+  
+        // Setup the post type
+        $post_type = isset( $field_post_type ) ? explode( ',', $field_post_type ) : array( 'post' );
+        
+        // Saved values
+        echo '<input type="hidden" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" value="' . esc_attr( $field_value ) . '" class="ot-gallery-value ' . esc_attr( $field_class ) . '" />';
+        
+        // Turn the field value into an array of IDs
+        $ids = ! empty( $field_value ) ? explode( ',', $field_value ) : array();
+        
+        // Has attachment IDs
+        if ( ! empty( $ids ) ) {
+          
+          echo '<ul class="ot-gallery-list">';
+          
+          foreach( $ids as $id ) {
+            
+            $thumbnail = wp_get_attachment_image_src( $id, 'thumbnail' );
+        
+            echo '<li><img  src="' . $thumbnail[0] . '" width="75" height="75" /></li>';
+        
+          }
+        
+          echo '</ul>';
+          
+          echo '
+          <div class="ot-gallery-buttons">
+            <a href="#" class="option-tree-ui-button red hug-left ot-gallery-delete">' . __( 'Delete Gallery', 'option-tree' ) . '</a>
+            <a href="#" class="option-tree-ui-button blue right hug-right ot-gallery-edit">' . __( 'Edit Gallery', 'option-tree' ) . '</a>
+          </div>';
+        
+        } else {
+        
+          echo '
+          <div class="ot-gallery-buttons">
+            <a href="#" class="option-tree-ui-button blue right hug-right ot-gallery-edit">' . __( 'Create Gallery', 'option-tree' ) . '</a>
+          </div>';
+        
+        }
+      
+      echo '</div>';
+      
+    echo '</div>';
+    
+  }
+
+}
+
+/**
  * List Item option type.
  *
  * See @ot_display_by_type to see the full list of available arguments.

@@ -567,7 +567,11 @@ if ( ! function_exists( 'ot_admin_scripts' ) ) {
       'remove_no'             => __( 'You can\'t remove this! But you can edit the values.', 'option-tree' ),
       'remove_agree'          => __( 'Are you sure you want to remove this?', 'option-tree' ),
       'activate_layout_agree' => __( 'Are you sure you want to activate this layout?', 'option-tree' ),
-      'setting_limit'         => __( 'Sorry, you can\'t have settings three levels deep.', 'option-tree' )
+      'setting_limit'         => __( 'Sorry, you can\'t have settings three levels deep.', 'option-tree' ),
+      'delete'                => __( 'Delete Gallery', 'motif-core' ), 
+      'edit'                  => __( 'Edit Gallery', 'motif-core' ), 
+      'create'                => __( 'Create Gallery', 'motif-core' ), 
+      'confirm'               => __( 'Are you sure you want to delete this Gallery?', 'motif-core' )
     );
     
     /* localized script attached to 'option_tree' */
@@ -2062,6 +2066,7 @@ if ( ! function_exists( 'ot_option_types_array' ) ) {
       'css'                       => 'CSS',
       'custom-post-type-checkbox' => 'Custom Post Type Checkbox',
       'custom-post-type-select'   => 'Custom Post Type Select',
+      'gallery'                   => 'Gallery',
       'list-item'                 => 'List Item',
       'measurement'               => 'Measurement',
       'numeric-slider'            => 'Numeric Slider',

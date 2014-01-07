@@ -449,6 +449,12 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       /* AJAX call to create a new list item */
       add_action( 'wp_ajax_add_list_item', array( $this, 'add_list_item' ) );
       
+      // Adds the temporary hacktastic shortcode
+      add_filter( 'media_view_settings', array( $this, 'shortcode' ), 10, 2 );
+    
+      // AJAX update
+      add_action( 'wp_ajax_gallery_update', array( $this, 'ajax_gallery_update' ) );
+      
       /* Modify the media uploader button */
       add_filter( 'gettext', array( $this, 'change_image_button' ), 10, 3 );
       
@@ -536,6 +542,67 @@ if ( ! class_exists( 'OT_Loader' ) ) {
     }
     
     /**
+     * Fake the gallery shortcode
+     *
+     * The JS takes over and creates the actual shortcode with 
+     * the real attachment IDs on the fly. Here we just need to 
+     * pass in the post ID to get the ball rolling.
+     *
+     * @param     array     The current settings
+     * @param     object    The post object
+     * @return    array
+     *
+     * @access    public
+     * @since     2.2.0
+     */
+    public function shortcode( $settings, $post ) {
+  
+      // Set the OptionTree post ID
+      if ( ! is_object( $post ) )
+        $settings['post']['id'] = ot_get_media_post_ID();
+      
+      // No ID return settings
+      if ( $settings['post']['id'] == 0 )
+        return $settings;
+  
+      // Set the fake shortcode
+      $settings['ot_gallery'] = array( 'shortcode' => "[gallery id='{$settings['post']['id']}']" );
+      
+      // Return settings
+      return $settings;
+      
+    }
+    
+    /**
+     * Returns the AJAX images
+     *
+     * @return    string
+     *
+     * @access    public
+     * @since     2.2.0
+     */
+    public function ajax_gallery_update() {
+    
+      if ( ! empty( $_POST['ids'] ) )  {
+        
+        $return = '';
+        
+        foreach( $_POST['ids'] as $id ) {
+        
+          $thumbnail = wp_get_attachment_image_src( $id, 'thumbnail' );
+          
+          $return .= '<li><img  src="' . $thumbnail[0] . '" width="75" height="75" /></li>';
+          
+        }
+        
+        echo $return;
+        exit();
+      
+      }
+      
+    }
+    
+    /**
      * Filters the media uploader button.
      *
      * @return    string
@@ -557,6 +624,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       return $translation;
       
     }
+    
     
   }
   
