@@ -57,9 +57,9 @@ if ( ! function_exists( 'ot_register_theme_options_page' ) ) {
                 'reset_message'   => apply_filters( 'ot_theme_options_reset_message', __( 'Theme Options reset.', 'option-tree' ) ),
                 'button_text'     => apply_filters( 'ot_theme_options_button_text', __( 'Save Changes', 'option-tree' ) ),
                 'screen_icon'     => 'themes',
-                'contextual_help' => $contextual_help,
-                'sections'        => $sections,
-                'settings'        => $settings
+                'contextual_help' => apply_filters( 'ot_theme_options_contextual_help', $contextual_help ),
+                'sections'        => apply_filters( 'ot_theme_options_sections', $sections ),
+                'settings'        => apply_filters( 'ot_theme_options_settings', $settings )
               )
             )
           )
