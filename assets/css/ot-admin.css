@@ -648,9 +648,10 @@ select.option-tree-ui-select option {
   min-width: 124px;
 }
 .type-measurement select.option-tree-ui-select {
-  min-width: 68px !important;
+  min-width: 73px !important;
 }
 .type-measurement .select-wrapper {
+  margin-right: 0;
   position: absolute;
   right: 0px;
   top: 0px;
@@ -1373,4 +1374,33 @@ button.option-tree-ui-button .icon {
 .option-tree-ui-button.active .pencil,
 .option-tree-ui-button.active .check {
   background-position: -54px -0px;
+}
+
+/* -------------------------------------------------- 
+  :: WP 3.8 Fixes (via Github @AlxMedia)
+  ---------------------------------------------------*/
+#option-tree-settings-api #poststuff,
+#option-tree-settings-api #post-body-content { 
+  min-width: 0;
+}
+#option-tree-settings-api #poststuff h3 { 
+  font-family: inherit !important;
+}
+#option-tree-settings-api .postbox { 
+  -webkit-box-shadow: none;
+     -moz-box-shadow: none;
+          box-shadow: none;
+}
+#option-tree-settings-api p input[type="checkbox"], 
+#option-tree-settings-api p input[type="radio"] { 
+  margin-top: 2px;
+}
+#option-tree-settings-api .format-setting.type-checkbox p, 
+#option-tree-settings-api .format-setting.type-radio p { 
+  margin: 0.3em 0 !important;
+}
+input.option-tree-ui-upload-input, 
+input.option-tree-ui-input { 
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
