@@ -55,7 +55,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
        *
        * @since     2.1.3
        */
-      define( 'OT_PLUGIN_MODE', strpos( dirname( __FILE__ ), 'plugins/' . basename( dirname( __FILE__ ) ) ) !== false ? true : false );
+      define( 'OT_PLUGIN_MODE', strpos( dirname( __FILE__ ), 'plugins' . DIRECTORY_SEPARATOR . basename( dirname( __FILE__ ) ) ) !== false ? true : false );
       
       /**
        * Path to the languages directory. 
@@ -64,7 +64,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
        *
        * @since     2.0.10
        */
-      define( 'OT_LANG_DIR', dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+      define( 'OT_LANG_DIR', dirname( plugin_basename( __FILE__ ) ) . DIRECTORY_SEPARATOR . 'languages' . DIRECTORY_SEPARATOR );
 
       /* load the text domain  */
       if ( OT_PLUGIN_MODE ) {
@@ -95,7 +95,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
         
       } else {
       
-        load_theme_textdomain( 'option-tree', OT_LANG_DIR . 'theme-mode' );
+        load_theme_textdomain( 'option-tree', DIRECTORY_SEPARATOR . OT_LANG_DIR . 'theme-mode' );
         
       }
       
