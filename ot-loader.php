@@ -331,7 +331,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       
       /* require the files */
       foreach ( $files as $file ) {
-        $this->load_file( OT_DIR . "includes/{$file}.php" );
+        $this->load_file( OT_DIR . "includes" . DIRECTORY_SEPARATOR . "{$file}.php" );
       }
       
       /* Registers the Theme Option page */
@@ -364,7 +364,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
 
       /* require the files */
       foreach ( $files as $file ) {
-        $this->load_file( OT_DIR . "includes/{$file}.php" );
+        $this->load_file( OT_DIR . "includes" . DIRECTORY_SEPARATOR . "{$file}.php" );
       }
       
     }
