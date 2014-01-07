@@ -42,6 +42,29 @@ if ( ! function_exists( 'ot_get_option' ) ) {
 }
 
 /**
+ * Echo Option. (via Github @joshlevinson)
+ *
+ * Helper function to echo the option value.
+ * If no value has been saved, it echos $default.
+ *
+ * @param     string    The option ID.
+ * @param     string    The default option value.
+ * @return    mixed
+ *
+ * @access    public
+ * @since     2.2
+ */
+if ( ! function_exists( 'ot_echo_option' ) ) {
+  
+  function ot_echo_option( $option_id, $default = '' ) {
+    
+    echo ot_get_option( $option_id, $default );
+  
+  }
+  
+}
+
+/**
  * Filter the return values through WPML
  *
  * @param     array     $options The current options    
