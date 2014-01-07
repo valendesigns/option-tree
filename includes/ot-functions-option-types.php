@@ -192,9 +192,9 @@ if ( ! function_exists( 'ot_type_category_checkbox' ) ) {
       
       /* format setting inner wrapper */
       echo '<div class="format-setting-inner">';
-      
+        
         /* get category array */
-        $categories = get_categories( array( 'hide_empty' => false ) );
+        $categories = get_categories( apply_filters( 'ot_type_category_checkbox_query', array( 'hide_empty' => false ), $field_id ) );
         
         /* build categories */
         if ( ! empty( $categories ) ) {
@@ -250,7 +250,7 @@ if ( ! function_exists( 'ot_type_category_select' ) ) {
         echo '<select name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" class="option-tree-ui-select ' . $field_class . '">';
         
         /* get category array */
-        $categories = get_categories( array( 'hide_empty' => false ) );
+        $categories = get_categories( apply_filters( 'ot_type_category_select_query', array( 'hide_empty' => false ), $field_id ) );
         
         /* has cats */
         if ( ! empty( $categories ) ) {
@@ -1426,7 +1426,7 @@ if ( ! function_exists( 'ot_type_taxonomy_checkbox' ) ) {
         $taxonomy = isset( $field_taxonomy ) ? explode( ',', $field_taxonomy ) : array( 'category' );
         
         /* get taxonomies */
-        $taxonomies = get_categories( array( 'hide_empty' => false, 'taxonomy' => $taxonomy ) );
+        $taxonomies = get_categories( apply_filters( 'ot_type_taxonomy_checkbox_query', array( 'hide_empty' => false, 'taxonomy' => $taxonomy ), $field_id ) );
         
         /* has tags */
         if ( $taxonomies ) {
@@ -1485,7 +1485,7 @@ if ( ! function_exists( 'ot_type_taxonomy_select' ) ) {
         $taxonomy = isset( $field_taxonomy ) ? explode( ',', $field_taxonomy ) : array( 'category' );
         
         /* get taxonomies */
-        $taxonomies = get_categories( array( 'hide_empty' => false, 'taxonomy' => $taxonomy ) );
+        $taxonomies = get_categories( apply_filters( 'ot_type_taxonomy_select_query', array( 'hide_empty' => false, 'taxonomy' => $taxonomy ), $field_id ) );
         
         /* has tags */
         if ( $taxonomies ) {

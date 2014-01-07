@@ -44,6 +44,10 @@ Yes. OptionTree & WordPress both require PHP5.
 = 2.2.0 =
 * Added UI support for WordPress 3.8.
 * Added the On/Off toggle option type.
+* Added filter 'ot_type_category_checkbox_query' which allows you to filter the get_categories() args for Category Checkbox.
+* Added filter 'ot_type_category_select_query' which allows you to filter the get_categories() args for Category Select.
+* Added filter 'ot_type_taxonomy_checkbox_query' which allows you to filter the get_categories() args for Taxonomy Checkbox.
+* Added filter 'ot_type_taxonomy_select_query' which allows you to filter the get_categories() args for Taxonomy Select.
 * Fixed the broken localization directory path in theme mode. Contributors via github @youri--.
 * Added the 'ot_echo_option' function. Contributors via github @joshlevinson.
 * Added filter 'ot_theme_options_contextual_help' which allows you to filter the Contextual Help on the Theme Options page.
