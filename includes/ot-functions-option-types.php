@@ -98,7 +98,7 @@ if ( ! function_exists( 'ot_type_background' ) ) {
           echo '<div id="cp_' . esc_attr( $field_id ) . '-picker" class="cp_box"' . ( $background_color ? " style='background-color:$background_color; border-color:$border_color;'" : '' ) . '></div>';
         
         echo '</div>';
-        
+
         echo '<div class="select-group">';
         
           /* build background repeat */
@@ -130,6 +130,9 @@ if ( ! function_exists( 'ot_type_background' ) ) {
         
         echo '</div>';
         
+        /* Build background size  */
+        echo '<input type="text" name="' . esc_attr( $field_name ) . '[background-size]" id="' . esc_attr( $field_id ) . '-size" value="' . ( isset( $field_value['background-size'] ) ? esc_attr( $field_value['background-size'] ) : '' ) . '" class="widefat option-tree-ui-input ' . esc_attr( $field_class ) . '" placeholder="' . __( 'background-size', 'option-tree' ) . '" />';
+
         /* build background image */
         echo '<div class="option-tree-ui-upload-parent">';
           
@@ -154,7 +157,7 @@ if ( ! function_exists( 'ot_type_background' ) ) {
           echo '</div>';
           
         }
-      
+
       echo '</div>';
 
     echo '</div>';

@@ -45,12 +45,13 @@ Yes. OptionTree & WordPress both require PHP5.
 * Added UI support for WordPress 3.8.
 * Added the Gallery option type.
 * Added the On/Off option type.
-* Added missing numeric-slider custom class. Contributors via github @doitmax.
+* Added 'background-size' to the Background option type.
+* Fixed the broken localization directory path in theme mode. Contributors via github @youri--.
+* Fixed missing custom class for the Numeric Slider. Contributors via github @doitmax.
 * Added filter 'ot_type_category_checkbox_query' which allows you to filter the get_categories() args for Category Checkbox.
 * Added filter 'ot_type_category_select_query' which allows you to filter the get_categories() args for Category Select.
 * Added filter 'ot_type_taxonomy_checkbox_query' which allows you to filter the get_categories() args for Taxonomy Checkbox.
 * Added filter 'ot_type_taxonomy_select_query' which allows you to filter the get_categories() args for Taxonomy Select.
-* Fixed the broken localization directory path in theme mode. Contributors via github @youri--.
 * Added the 'ot_echo_option' function. Contributors via github @joshlevinson.
 * Added filter 'ot_theme_options_contextual_help' which allows you to filter the Contextual Help on the Theme Options page.
 * Added filter 'ot_theme_options_sections' which allows you to filter the Sections on the Theme Options page. Contributors via github @joshlevinson.

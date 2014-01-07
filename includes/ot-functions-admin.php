@@ -2880,7 +2880,7 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
               $value = ! empty( $font ) ? implode( "\n", $font ) : '';
               
             /* background */
-            } else if ( ot_array_keys_exists( $value, array( 'background-color', 'background-image', 'background-repeat', 'background-attachment', 'background-position' ) ) ) {
+            } else if ( ot_array_keys_exists( $value, array( 'background-color', 'background-image', 'background-repeat', 'background-attachment', 'background-position', 'background-size' ) ) ) {
               $bg = array();
               
               if ( ! empty( $value['background-color'] ) )
@@ -2898,8 +2898,19 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
               if ( ! empty( $value['background-position'] ) )
                 $bg[] = $value['background-position'];
               
+              if ( ! empty( $value['background-size'] ) )
+                $size = $value['background-size'];
+                
               /* set $value with background properties or empty string */
               $value = ! empty( $bg ) ? 'background: ' . implode( " ", $bg ) . ';' : '';
+              
+              if ( isset( $size ) ) {
+                if ( ! empty( $bg ) ) {
+                  $value.= apply_filters( 'ot_insert_css_with_markers_bg_size_white_space', "\n\x20\x20", $option_id );
+                }
+                $value.= "background-size: $size;";
+              }
+              
             }
           
           } else {
