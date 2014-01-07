@@ -3,8 +3,8 @@ Contributors: valendesigns
 Donate link: http://bit.ly/NuXI3T
 Tags: admin, theme options, meta boxes, options, admin interface, ajax
 Requires at least: 3.5
-Tested up to: 3.6
-Stable tag: 2.1.4
+Tested up to: 3.8
+Stable tag: 2.2.0
 License: GPLv3
 
 Theme Options UI Builder for WordPress. A simple way to create & save Theme Options and Meta Boxes for free or premium themes.
@@ -40,6 +40,14 @@ Yes. OptionTree & WordPress both require PHP5.
 3. Documentation
 
 == Changelog ==
+
+= 2.2.0 =
+* Added UI support for WordPress 3.8.
+* Added the On/Off toggle option type.
+* Added the 'ot_echo_option' function. Contributors via github @joshlevinson.
+* Added filter 'ot_theme_options_contextual_help' which allows you to filter the Contextual Help on the Theme Options page.
+* Added filter 'ot_theme_options_sections' which allows you to filter the Sections on the Theme Options page. Contributors via github @joshlevinson.
+* Added filter 'ot_theme_options_settings' which allows you to filter the Settings on the Theme Options page. Contributors via github @joshlevinson.
 
 = 2.1.4 =
 * Hotfix - Fixed the Numeric Slider not work inside of a newly added List item.

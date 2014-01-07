@@ -52,7 +52,7 @@ if ( ! function_exists( 'ot_get_option' ) ) {
  * @return    mixed
  *
  * @access    public
- * @since     2.2
+ * @since     2.2.0
  */
 if ( ! function_exists( 'ot_echo_option' ) ) {
   

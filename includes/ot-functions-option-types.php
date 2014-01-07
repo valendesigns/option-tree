@@ -718,7 +718,7 @@ if( ! function_exists( 'ot_type_numeric_slider' ) ) {
  * @return    string    The gallery metabox markup.
  *
  * @access    public
- * @since     2.2
+ * @since     2.2.0
  */
 if ( ! function_exists( 'ot_type_on_off' ) ) {
   
