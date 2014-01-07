@@ -710,6 +710,69 @@ if( ! function_exists( 'ot_type_numeric_slider' ) ) {
 }
 
 /**
+ * On/Off option type
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     The options arguments
+ * @return    string    The gallery metabox markup.
+ *
+ * @access    public
+ * @since     2.2
+ */
+if ( ! function_exists( 'ot_type_on_off' ) ) {
+  
+  function ot_type_on_off( $args = array() ) {
+    
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+    
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-radio ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+      
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+      
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+      
+        // Force choices
+        $field_choices = array(
+          array(
+            'value'   => 'on',
+            'label'   => __( 'On', 'option-tree' ),
+          ),
+          array(
+            'value'   => 'off',
+            'label'   => __( 'Off', 'option-tree' ),
+          )
+        );
+        
+        echo '<div class="on-off-switch">';
+                    
+        /* build radio */
+        foreach ( (array) $field_choices as $key => $choice ) {
+          echo '
+            <input type="radio" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '-' . esc_attr( $key ) . '" value="' . esc_attr( $choice['value'] ) . '"' . checked( $field_value, $choice['value'], false ) . ' class="radio option-tree-ui-radio ' . esc_attr( $field_class ) . '" />
+            <label for="' . esc_attr( $field_id ) . '-' . esc_attr( $key ) . '">' . esc_attr( $choice['label'] ) . '</label>';
+        }
+          
+          echo '<span class="slide-button"></span>';
+          
+        echo '</div>';
+      
+      echo '</div>';
+    
+    echo '</div>';
+    
+  }
+  
+}
+
+/**
  * Page Checkbox option type.
  *
  * See @ot_display_by_type to see the full list of available arguments.

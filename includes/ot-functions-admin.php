@@ -2065,6 +2065,7 @@ if ( ! function_exists( 'ot_option_types_array' ) ) {
       'list-item'                 => 'List Item',
       'measurement'               => 'Measurement',
       'numeric-slider'            => 'Numeric Slider',
+      'on-off'                    => 'On/Off Toggle',
       'page-checkbox'             => 'Page Checkbox',
       'page-select'               => 'Page Select',
       'post-checkbox'             => 'Post Checkbox',
