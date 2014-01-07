@@ -261,7 +261,7 @@ add_filter( \'ot_radio_images\', \'filter_radio_images\', 10, 2 );</code></pre>'
   return $content;
   
 }
-add_filter( \'ot_wpautop\', \'filter_textarea_wpautop\', 10, 1 );</code></pre>';
+add_filter( \'ot_wpautop\', \'filter_textarea_wpautop\', 10, 2 );</code></pre>';
 
         echo '<p>' . __( 'This example keeps WordPress from executing the <code>media_buttons</code> filter on the textarea WYSIWYG. The default is <code>true</code> which means show the buttons.', 'option-tree' ) . '</p>';
         echo '<pre><code>function filter_textarea_media_buttons( $content, $field_id ) {
