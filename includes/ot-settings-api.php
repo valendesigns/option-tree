@@ -486,8 +486,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
       }
       
       // Allow the descriptions to be filtered before being displayed
-      $desc = isset( $desc ) ? $desc : '';
-      $desc = apply_filters( 'ot_filter_description', $desc, $id );
+      $desc = apply_filters( 'ot_filter_description', ( isset( $desc ) ? $desc : '' ), $id );
 
       /* build the arguments array */
       $_args = array(
