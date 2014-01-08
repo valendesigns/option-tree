@@ -1,36 +1,4 @@
 /* -------------------------------------------------- 
-  :: Font Icon
-  ---------------------------------------------------*/
-@font-face {
-	font-family: 'ot-font';
-	src:url('../fonts/ot-font.eot');
-	src:url('../fonts/ot-font.eot?#iefix') format('embedded-opentype'),
-		url('../fonts/ot-font.woff') format('woff'),
-		url('../fonts/ot-font.ttf') format('truetype'),
-		url('../fonts/ot-font.svg#icomoon') format('svg');
-	font-weight: normal;
-	font-style: normal;
-}
-
-#adminmenu .menu-icon-generic.toplevel_page_ot-settings div.wp-menu-image {
-	font-family: 'ot-font';
-	speak: none;
-	font-style: normal;
-	font-weight: normal;
-	font-variant: normal;
-	text-transform: none;
-	line-height: 1;
-
-	/* Better Font Rendering =========== */
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-}
-
-#adminmenu .menu-icon-generic.toplevel_page_ot-settings div.wp-menu-image:before {
-	content: "\e2014";
-}
-
-/* -------------------------------------------------- 
   :: Screen Meta & Menu Icon
   ---------------------------------------------------*/
 .appearance_page_ot-theme-options #screen-meta {
