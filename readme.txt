@@ -47,6 +47,7 @@ Yes. OptionTree & WordPress both require PHP5.
 * Added the Gallery option type.
 * Added the On/Off option type.
 * Added 'background-size' to the Background option type.
+* Fixed an issue where you could not save metabox text field values as "0". Contributors via github @sparkdevelopment.
 * Fixed the broken localization directory path in theme mode. Contributors via github @youri--.
 * Fixed missing custom class for the Numeric Slider. Contributors via github @doitmax.
 * Added filter 'ot_type_category_checkbox_query' which allows you to filter the get_categories() args for Category Checkbox.

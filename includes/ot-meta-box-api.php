@@ -251,7 +251,7 @@ if ( ! class_exists( 'OT_Meta_Box' ) ) {
         
         }
         
-        if ( $new && $new !== $old ) {
+        if ( isset( $new ) && $new !== $old ) {
           update_post_meta( $post_id, $field['id'], $new );
         } else if ( '' == $new && $old ) {
           delete_post_meta( $post_id, $field['id'], $old );
