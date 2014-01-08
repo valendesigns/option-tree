@@ -484,6 +484,9 @@ if ( ! class_exists( 'OT_Settings' ) ) {
       if ( isset( $std ) ) {  
         $field_value = ot_filter_std_value( $field_value, $std );
       }
+      
+      // Allow the descriptions to be filtered before being displayed
+      $desc = apply_filters( 'ot_filter_description', $desc, $id );
 
       /* build the arguments array */
       $_args = array(
