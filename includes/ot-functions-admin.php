@@ -97,7 +97,7 @@ if ( ! function_exists( 'ot_register_settings_page' ) ) {
         'menu_title'      => __( 'OptionTree', 'option-tree' ),
         'capability'      => 'edit_theme_options',
         'menu_slug'       => 'ot-settings',
-        'icon_url'        => OT_URL . '/assets/images/ot-logo-mini.png',
+        'icon_url'        => null,
         'position'        => 61,
         'hidden_page'     => true
       ),

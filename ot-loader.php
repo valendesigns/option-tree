@@ -480,7 +480,38 @@ if ( ! class_exists( 'OT_Loader' ) ) {
     public function global_admin_css() {
       echo '
       <style>
-        #adminmenu #toplevel_page_ot-settings .wp-menu-image img { padding: 5px 0px 1px 6px !important; }
+        @font-face {
+        	font-family: "ot-font";
+        	src:url("' . OT_URL . 'assets/fonts/ot-font.eot");
+        	src:url("' . OT_URL . 'assets/fonts/ot-font.eot?#iefix") format("embedded-opentype"),
+        		url("' . OT_URL . 'assets/fonts/ot-font.woff") format("woff"),
+        		url("' . OT_URL . 'assets/fonts/ot-font.ttf") format("truetype"),
+        		url("' . OT_URL . 'assets/fonts/ot-font.svg#icomoon") format("svg");
+        	font-weight: normal;
+        	font-style: normal;
+        }
+        #adminmenu #toplevel_page_ot-settings .menu-icon-generic div.wp-menu-image:before,
+        #option-tree-header #option-tree-logo a:before {
+        	font: normal 20px/1 "ot-font" !important;
+        	speak: none;
+        	padding: 6px 0;
+        	height: 34px;
+        	width: 20px;
+        	display: inline-block;
+        	-webkit-font-smoothing: antialiased;
+        	-moz-osx-font-smoothing: grayscale;
+        	-webkit-transition: all .1s ease-in-out;
+        	-moz-transition:    all .1s ease-in-out;
+        	transition:         all .1s ease-in-out;
+        }
+        #option-tree-header #option-tree-logo a:before {
+          height: 24px;
+          padding: 2px 0;
+        }
+        #adminmenu #toplevel_page_ot-settings .menu-icon-generic div.wp-menu-image:before,
+        #option-tree-header #option-tree-logo a:before {
+        	content: "\e2014";
+        }
       </style>
       ';
     }

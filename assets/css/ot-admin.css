@@ -1,4 +1,36 @@
 /* -------------------------------------------------- 
+  :: Font Icon
+  ---------------------------------------------------*/
+@font-face {
+	font-family: 'ot-font';
+	src:url('../fonts/ot-font.eot');
+	src:url('../fonts/ot-font.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/ot-font.woff') format('woff'),
+		url('../fonts/ot-font.ttf') format('truetype'),
+		url('../fonts/ot-font.svg#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+#adminmenu .menu-icon-generic.toplevel_page_ot-settings div.wp-menu-image {
+	font-family: 'ot-font';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+#adminmenu .menu-icon-generic.toplevel_page_ot-settings div.wp-menu-image:before {
+	content: "\e2014";
+}
+
+/* -------------------------------------------------- 
   :: Screen Meta & Menu Icon
   ---------------------------------------------------*/
 .appearance_page_ot-theme-options #screen-meta {
@@ -61,7 +93,6 @@
   min-width: 535px;
   overflow: hidden;
   position: relative;
-  background-image: -webkit-linear-gradient(bottom, #373737, #464646 5px);
   -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.05);
   box-shadow: 0 1px 3px rgba(0,0,0,0.05);
   -webkit-border-radius: 4px 4px 0 0;
@@ -84,25 +115,15 @@
   color: #fafafa;
 }
 #option-tree-header #option-tree-logo a {
-  background: transparent url(../images/ot-logo.png) no-repeat 13px center;
   border-right: 1px solid #333;
-  display: block;
   float: left;
   height: 24px;
-  line-height: 24px;
   padding: 3px 12px 3px 13px;
-  text-indent: -9999px;
-  width: 24px;
+  width: 20px;
 }
 #option-tree-header li#option-tree-logo:hover {
   color: #fafafa;
   background-color: #3a3a3a;
-  background-image: -ms-linear-gradient(bottom,#3a3a3a,#222);
-  background-image: -moz-linear-gradient(bottom,#3a3a3a,#222);
-  background-image: -o-linear-gradient(bottom,#3a3a3a,#222);
-  background-image: -webkit-gradient(linear,left bottom,left top,from(#3a3a3a),to(#222));
-  background-image: -webkit-linear-gradient(bottom,#3a3a3a,#222);
-  background-image: linear-gradient(bottom,#3a3a3a,#222);
   -webkit-border-top-left-radius: 5px;
   -moz-border-radius-topleft: 5px;
   border-top-left-radius: 5px;
