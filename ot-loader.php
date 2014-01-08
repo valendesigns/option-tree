@@ -478,6 +478,22 @@ if ( ! class_exists( 'OT_Loader' ) ) {
      * Adds the global CSS to fix the menu icon.
      */
     public function global_admin_css() {
+      global $wp_version;
+      
+      $wp_38plus = version_compare( $wp_version, '3.8', '>=' ) ? true : false;
+      $fontsize = $wp_38plus ? '20px' : '16px';
+      $wp_38minus = '';
+      
+      if ( ! $wp_38plus ) {
+        $wp_38minus = '
+        #adminmenu #toplevel_page_ot-settings .menu-icon-generic div.wp-menu-image {
+          background: none;
+        }
+        #adminmenu #toplevel_page_ot-settings .menu-icon-generic div.wp-menu-image:before {
+          padding-left: 6px;
+        }';
+      }
+
       echo '
       <style>
         @font-face {
@@ -492,7 +508,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
         }
         #adminmenu #toplevel_page_ot-settings .menu-icon-generic div.wp-menu-image:before,
         #option-tree-header #option-tree-logo a:before {
-        	font: normal 20px/1 "ot-font" !important;
+        	font: normal ' . $fontsize . '/1 "ot-font" !important;
         	speak: none;
         	padding: 6px 0;
         	height: 34px;
@@ -504,14 +520,16 @@ if ( ! class_exists( 'OT_Loader' ) ) {
         	-moz-transition:    all .1s ease-in-out;
         	transition:         all .1s ease-in-out;
         }
-        #option-tree-header #option-tree-logo a:before {
-          height: 24px;
-          padding: 2px 0;
-        }
         #adminmenu #toplevel_page_ot-settings .menu-icon-generic div.wp-menu-image:before,
         #option-tree-header #option-tree-logo a:before {
         	content: "\e2014";
         }
+        #option-tree-header #option-tree-logo a:before {
+          font-size: 20px !important;
+          height: 24px;
+          padding: 2px 0;
+        }
+        '  . $wp_38minus . '
       </style>
       ';
     }
