@@ -43,6 +43,7 @@ Yes. OptionTree & WordPress both require PHP5.
 
 = 2.2.0 =
 * Added UI support for WordPress 3.8.
+* Replaced the OptionTree image icon with a font version.
 * Added the Gallery option type.
 * Added the On/Off option type.
 * Added 'background-size' to the Background option type.
