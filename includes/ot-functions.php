@@ -164,7 +164,7 @@ if ( ! function_exists( 'ot_load_dynamic_css' ) ) {
           
           if ( isset( $parts[1] ) ) {
             
-            $css = home_url( '/wp-content' . $parts[1] );
+            $css = set_url_scheme( WP_CONTENT_URL ) . $parts[1];
             
             if ( $last_css !== $css ) {
               

@@ -48,6 +48,7 @@ Yes. OptionTree & WordPress both require PHP5.
 * Added the On/Off option type.
 * Added 'background-size' to the Background option type.
 * Added filter 'ot_filter_description' that allows the theme option descriptions to be filtered before being displayed.
+* Fixed a bug caused by using 'home_url' when loading dynamic CSS files.
 * Fixed an issue where you could not save metabox text field values as "0". Contributors via github @sparkdevelopment.
 * Fixed the broken localization directory path in theme mode. Contributors via github @youri--.
 * Fixed missing custom class for the Numeric Slider. Contributors via github @doitmax.
