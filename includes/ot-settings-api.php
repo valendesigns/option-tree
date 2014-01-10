@@ -484,6 +484,9 @@ if ( ! class_exists( 'OT_Settings' ) ) {
       if ( isset( $std ) ) {  
         $field_value = ot_filter_std_value( $field_value, $std );
       }
+      
+      // Allow the descriptions to be filtered before being displayed
+      $desc = apply_filters( 'ot_filter_description', ( isset( $desc ) ? $desc : '' ), $id );
 
       /* build the arguments array */
       $_args = array(
@@ -491,7 +494,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
         'field_id'          => $id,
         'field_name'        => $get_option . '[' . $id . ']',
         'field_value'       => $field_value,
-        'field_desc'        => isset( $desc ) ? $desc : '',
+        'field_desc'        => $desc,
         'field_std'         => isset( $std ) ? $std : '',
         'field_rows'        => isset( $rows ) && ! empty( $rows ) ? $rows : 15,
         'field_post_type'   => isset( $post_type ) && ! empty( $post_type ) ? $post_type : 'post',

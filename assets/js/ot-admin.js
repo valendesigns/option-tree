@@ -351,18 +351,18 @@
           return passed;
         });
 
-        $( this )
+        $(this)
           .toggle( passed )
           .find( ':input' )
-            .attr( 'disabled', ! passed );
+          .attr( 'disabled', ! passed );
 
       });
     },
     init_conditions: function() {
-        $( document ).on( 'change.conditionals', '.format-settings[id^="setting_"] select, .format-settings[id^="setting_"] input[type="radio"]:checked', function( e ) {
-          OT_UI.parse_condition();
-        });
-        $(OT_UI.parse_condition());
+      $( document ).on( 'change.conditionals', '.format-settings[id^="setting_"] select, .format-settings[id^="setting_"] input[type="radio"]:checked', function( e ) {
+        OT_UI.parse_condition();
+      });
+      $(OT_UI.parse_condition());
     },
     init_upload: function() {
       $(document).on('click', '.ot_upload_media', function() {
@@ -613,3 +613,132 @@
     OT_UI.init();
   });
 })(jQuery);
+
+/* Gallery*/
+!function ($) {
+  
+  ot_gallery = {
+      
+    frame: function (elm) {
+
+      if ( this._frame )
+        return this._frame
+      
+      var selection = this.select(elm)
+      
+      this._frame = wp.media({
+        id:         'ot-gallery-frame'
+      , frame:      'post'
+      , state:      'gallery-edit'
+      , title:      wp.media.view.l10n.editGalleryTitle
+      , editing:    true
+      , multiple:   true
+      , selection:  selection
+      })
+      
+      this._frame.on('update', function () {
+        var controller = ot_gallery._frame.states.get('gallery-edit')
+          , library = controller.get('library')
+          , ids = library.pluck('id')
+          , parent = $(elm).parents('.format-setting-inner')
+          , input = parent.children('.ot-gallery-value')
+        
+        input.attr('value', ids)
+                        
+        if ( parent.children('.ot-gallery-list').length <= 0 )
+          input.after('<ul class="ot-gallery-list" />')
+        
+        $.ajax({
+          type: 'POST',
+          url: ajaxurl,
+          dataType: 'html',
+          data: {
+            action: 'gallery_update',
+            ids: ids
+          },
+          success: function(res) {
+            parent.children('.ot-gallery-list').html(res)
+            if ( $(elm).parent().children('.ot-gallery-delete').length <= 0 ) {
+              $(elm).parent().append('<a href="#" class="option-tree-ui-button red hug-left ot-gallery-delete">' + option_tree.delete + '</a>')
+            }
+            $(elm).text(option_tree.edit)
+          }
+        })
+      })
+        
+      return this._frame
+      
+    }
+      
+  , select: function (elm) {
+      var ids = $(elm).parents('.format-setting-inner').children('.ot-gallery-value').attr('value')
+        , fakeShortcode = '[gallery ids="' + ids + '"]'
+        , shortcode = wp.shortcode.next('gallery', ( ids ? fakeShortcode : wp.media.view.settings.ot_gallery.shortcode ) )
+        , defaultPostId = wp.media.gallery.defaults.id
+        , attachments
+        , selection
+        
+      // Bail if we didn't match the shortcode or all of the content.
+      if ( ! shortcode )
+        return
+      
+      // Ignore the rest of the match object.
+      shortcode = shortcode.shortcode
+      
+      if ( _.isUndefined( shortcode.get('id') ) && ! _.isUndefined( defaultPostId ) )
+        shortcode.set( 'id', defaultPostId )
+      
+      attachments = wp.media.gallery.attachments( shortcode )
+
+      selection = new wp.media.model.Selection( attachments.models, {
+        props:    attachments.props.toJSON()
+      , multiple: true
+      })
+      
+      selection.gallery = attachments.gallery
+    
+      // Fetch the query's attachments, and then break ties from the query to allow for sorting.
+      selection.more().done( function () {
+        selection.props.set({ query: false })
+        selection.unmirror()
+        selection.props.unset('orderby')
+      })
+      
+      return selection
+      
+    }
+    
+  , open: function (elm) {
+      
+      ot_gallery.frame(elm).open()
+      
+    }
+  
+  , remove: function (elm) {
+      
+      if ( confirm( option_tree.confirm ) ) {
+
+        $(elm).parents('.format-setting-inner').children('.ot-gallery-value').attr('value', ' ')
+        $(elm).parents('.format-setting-inner').children('.ot-gallery-list').remove()
+        $(elm).next('.ot-gallery-edit').text( option_tree.create )
+        $(elm).remove()
+        
+      }
+
+    }
+  
+  }
+
+  // Gallery delete
+  $(document).on('click.ot_gallery.data-api', '.ot-gallery-delete', function (e) {
+    e.preventDefault()
+    ot_gallery.remove($(this))
+  })
+  
+  // Gallery edit
+  $(document).on('click.ot_gallery.data-api', '.ot-gallery-edit', function (e) {
+    e.preventDefault()
+    ot_gallery.open($(this))
+  })
+  
+}(window.jQuery);

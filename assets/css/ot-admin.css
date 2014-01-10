@@ -61,7 +61,6 @@
   min-width: 535px;
   overflow: hidden;
   position: relative;
-  background-image: -webkit-linear-gradient(bottom, #373737, #464646 5px);
   -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.05);
   box-shadow: 0 1px 3px rgba(0,0,0,0.05);
   -webkit-border-radius: 4px 4px 0 0;
@@ -84,25 +83,15 @@
   color: #fafafa;
 }
 #option-tree-header #option-tree-logo a {
-  background: transparent url(../images/ot-logo.png) no-repeat 13px center;
   border-right: 1px solid #333;
-  display: block;
   float: left;
   height: 24px;
-  line-height: 24px;
   padding: 3px 12px 3px 13px;
-  text-indent: -9999px;
-  width: 24px;
+  width: 20px;
 }
 #option-tree-header li#option-tree-logo:hover {
   color: #fafafa;
   background-color: #3a3a3a;
-  background-image: -ms-linear-gradient(bottom,#3a3a3a,#222);
-  background-image: -moz-linear-gradient(bottom,#3a3a3a,#222);
-  background-image: -o-linear-gradient(bottom,#3a3a3a,#222);
-  background-image: -webkit-gradient(linear,left bottom,left top,from(#3a3a3a),to(#222));
-  background-image: -webkit-linear-gradient(bottom,#3a3a3a,#222);
-  background-image: linear-gradient(bottom,#3a3a3a,#222);
   -webkit-border-top-left-radius: 5px;
   -moz-border-radius-topleft: 5px;
   border-top-left-radius: 5px;
@@ -648,9 +637,10 @@ select.option-tree-ui-select option {
   min-width: 124px;
 }
 .type-measurement select.option-tree-ui-select {
-  min-width: 68px !important;
+  min-width: 73px !important;
 }
 .type-measurement .select-wrapper {
+  margin-right: 0;
   position: absolute;
   right: 0px;
   top: 0px;
@@ -1373,4 +1363,184 @@ button.option-tree-ui-button .icon {
 .option-tree-ui-button.active .pencil,
 .option-tree-ui-button.active .check {
   background-position: -54px -0px;
+}
+
+/* -------------------------------------------------- 
+  :: WP 3.8 Fixes (via Github @AlxMedia)
+  ---------------------------------------------------*/
+#option-tree-settings-api #poststuff,
+#option-tree-settings-api #post-body-content { 
+  min-width: 0;
+}
+#option-tree-settings-api #poststuff h3 { 
+  font-family: inherit !important;
+}
+#option-tree-settings-api .postbox { 
+  -webkit-box-shadow: none;
+     -moz-box-shadow: none;
+          box-shadow: none;
+}
+#option-tree-settings-api p input[type="checkbox"], 
+#option-tree-settings-api p input[type="radio"] { 
+  margin-top: 2px;
+}
+#option-tree-settings-api .format-setting.type-checkbox p, 
+#option-tree-settings-api .format-setting.type-radio p { 
+  margin: 0.3em 0 !important;
+}
+input.option-tree-ui-upload-input, 
+input.option-tree-ui-input { 
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+/* -------------------------------------------------- 
+  :: Gallery
+  ---------------------------------------------------*/
+ul.ot-gallery-list {
+  float: left;
+  margin: 0;
+  width: 100%;
+}
+ul.ot-gallery-list li {
+  background: none repeat scroll 0 0 white;
+  border: 1px solid #bbbbbb;
+  float: left;
+  margin: 0px 10px 10px 0;
+  padding: 4px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+ul.ot-gallery-list li img {
+  display: block;
+  margin: 0;
+}
+
+.ot-gallery-buttons {
+  float: left;
+  width: 100%;
+}
+.ot-gallery-buttons a.option-tree-ui-button {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+/* -------------------------------------------------- 
+  :: On/Off Switch
+  ---------------------------------------------------*/
+.on-off-switch .slide-button {
+  display: none;
+}
+@media only screen {
+  .on-off-switch {
+    background-color: white;
+    border: 1px solid #cccccc;
+    color: #333333;
+    display: block;
+    font-family: sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    height: 27px;
+    position: relative;
+    padding: 0;
+    text-align: center;
+    text-transform: uppercase;
+    width: 100px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05);
+    box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05);
+  }
+  .on-off-switch * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  .on-off-switch input {
+    position: absolute;
+    opacity: 0;
+  }
+  .on-off-switch label {
+    cursor: pointer;
+    float: left;
+    height: 27px;
+    line-height: 27px;
+    margin: 0;
+    position: relative;
+    text-align: center;
+    vertical-align: middle;
+    width: 50px;
+    z-index: 2;
+  }
+  .on-off-switch input:last-of-type + label {
+    color: #333333;
+  }
+  .on-off-switch input:checked + label {
+    color: white;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  }
+  .on-off-switch input:focus + label {
+    outline: none;
+  }
+  .on-off-switch .slide-button {
+    border: 1px solid #21759b;
+    border-bottom-color: #1e6a8d;
+    color: white;
+    display: block;
+    height: 29px;
+    left: -1px;
+    padding: 0;
+    position: absolute;
+    text-decoration: none;
+    top: -1px;
+    width: 51px;
+    z-index: 1;
+    background-color: #2688b4;
+    background-image: -moz-linear-gradient(top, #2a95c5, #21759b);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#2a95c5), to(#21759b));
+    background-image: -webkit-linear-gradient(top, #2a95c5, #21759b);
+    background-image: -o-linear-gradient(top, #2a95c5, #21759b);
+    background-image: linear-gradient(to bottom, #2a95c5, #21759b);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ie-hex-str($startColor)', endColorstr='#ie-hex-str($endColor)', GradientType=0);
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    -webkit-transition: all 0.1s ease-out;
+    -moz-transition: all 0.1s ease-out;
+    -o-transition: all 0.1s ease-out;
+    transition: all 0.1s ease-out;
+  }
+  .on-off-switch input:last-of-type:checked ~ .slide-button {
+    border-color: #9b3221;
+    border-bottom-color: #8d2e1e;
+    left: 50px;
+    background-color: #b43a26;
+    background-image: -moz-linear-gradient(top, #c5402a, #9b3221);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#c5402a), to(#9b3221));
+    background-image: -webkit-linear-gradient(top, #c5402a, #9b3221);
+    background-image: -o-linear-gradient(top, #c5402a, #9b3221);
+    background-image: linear-gradient(to bottom, #c5402a, #9b3221);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ie-hex-str($startColor)', endColorstr='#ie-hex-str($endColor)', GradientType=0);
+  }
+  .on-off-switch {
+    -webkit-animation: bugfix infinite 1s;
+  }
+  @-webkit-keyframes bugfix {
+    from {
+      position: relative;
+    }
+    to {
+      position: relative;
+    }
+  }
 }

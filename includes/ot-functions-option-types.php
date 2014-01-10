@@ -80,81 +80,140 @@ if ( ! function_exists( 'ot_type_background' ) ) {
       /* format setting inner wrapper */
       echo '<div class="format-setting-inner">'; 
         
-        /* build background colorpicker */  
-        echo '<div class="option-tree-ui-colorpicker-input-wrap">';
+        /* allow fields to be filtered */
+        $ot_recognized_background_fields = apply_filters( 'ot_recognized_background_fields', array( 
+          'background-color',
+          'background-repeat', 
+          'background-attachment', 
+          'background-position',
+          'background-size',
+          'background-image'
+        ), $field_id );
+        
+        /* build background color */
+        if ( in_array( 'background-color', $ot_recognized_background_fields ) ) {
+        
+          echo '<div class="option-tree-ui-colorpicker-input-wrap">';
+            
+            /* colorpicker JS */      
+            echo '<script>jQuery(document).ready(function($) { OT_UI.bind_colorpicker("' . esc_attr( $field_id ) . '-picker"); });</script>';
+            
+            /* set background color */
+            $background_color = isset( $field_value['background-color'] ) ? esc_attr( $field_value['background-color'] ) : '';
+            
+            /* set border color */
+            $border_color = in_array( $background_color, array( '#FFFFFF', '#FFF', '#ffffff', '#fff' ) ) ? '#ccc' : $background_color;
+            
+            /* input */
+            echo '<input type="text" name="' . esc_attr( $field_name ) . '[background-color]" id="' . $field_id . '-picker" value="' . $background_color . '" class="widefat option-tree-ui-input cp_input ' . esc_attr( $field_class ) . '" autocomplete="off" />';
+  
+            echo '<div id="cp_' . esc_attr( $field_id ) . '-picker" class="cp_box"' . ( $background_color ? " style='background-color:$background_color; border-color:$border_color;'" : '' ) . '></div>';
           
-          /* colorpicker JS */      
-          echo '<script>jQuery(document).ready(function($) { OT_UI.bind_colorpicker("' . esc_attr( $field_id ) . '-picker"); });</script>';
+          echo '</div>';
+        
+        }
+        
+        /* Build the select group */
+        if ( in_array( 'background-repeat', $ot_recognized_background_fields ) ||in_array( 'background-attachment', $ot_recognized_background_fields ) || in_array( 'background-position', $ot_recognized_background_fields ) ) {
+        
+          echo '<div class="select-group">';
           
-          /* set background color */
-          $background_color = isset( $field_value['background-color'] ) ? esc_attr( $field_value['background-color'] ) : '';
+            /* build background repeat */
+            if ( in_array( 'background-repeat', $ot_recognized_background_fields ) ) {
+            
+              $background_repeat = isset( $field_value['background-repeat'] ) ? esc_attr( $field_value['background-repeat'] ) : '';
+              
+              echo '<select name="' . esc_attr( $field_name ) . '[background-repeat]" id="' . esc_attr( $field_id ) . '-repeat" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
+                
+                echo '<option value="">' . __( 'background-repeat', 'option-tree' ) . '</option>';
+                foreach ( ot_recognized_background_repeat( $field_id ) as $key => $value ) {
+                
+                  echo '<option value="' . esc_attr( $key ) . '" ' . selected( $background_repeat, $key, false ) . '>' . esc_attr( $value ) . '</option>';
+                  
+                }
+                
+              echo '</select>';
+            
+            }
+            
+            /* build background attachment */
+            if ( in_array( 'background-attachment', $ot_recognized_background_fields ) ) {
+            
+              $background_attachment = isset( $field_value['background-attachment'] ) ? esc_attr( $field_value['background-attachment'] ) : '';
+              
+              echo '<select name="' . esc_attr( $field_name ) . '[background-attachment]" id="' . esc_attr( $field_id ) . '-attachment" class="option-tree-ui-select ' . $field_class . '">';
+                
+                echo '<option value="">' . __( 'background-attachment', 'option-tree' ) . '</option>';
+                
+                foreach ( ot_recognized_background_attachment( $field_id ) as $key => $value ) {
+                
+                  echo '<option value="' . esc_attr( $key ) . '" ' . selected( $background_attachment, $key, false ) . '>' . esc_attr( $value ) . '</option>';
+                
+                }
+                
+              echo '</select>';
+            
+            }
+            
+            /* build background position */
+            if ( in_array( 'background-position', $ot_recognized_background_fields ) ) {
+            
+              $background_position = isset( $field_value['background-position'] ) ? esc_attr( $field_value['background-position'] ) : '';
+              
+              echo '<select name="' . esc_attr( $field_name ) . '[background-position]" id="' . esc_attr( $field_id ) . '-position" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
+                
+                echo '<option value="">' . __( 'background-position', 'option-tree' ) . '</option>';
+                
+                foreach ( ot_recognized_background_position( $field_id ) as $key => $value ) {
+                  
+                  echo '<option value="' . esc_attr( $key ) . '" ' . selected( $background_position, $key, false ) . '>' . esc_attr( $value ) . '</option>';
+                
+                }
+              
+              echo '</select>';
+            
+            }
           
-          /* set border color */
-          $border_color = in_array( $background_color, array( '#FFFFFF', '#FFF', '#ffffff', '#fff' ) ) ? '#ccc' : $background_color;
-          
-          /* input */
-          echo '<input type="text" name="' . esc_attr( $field_name ) . '[background-color]" id="' . $field_id . '-picker" value="' . $background_color . '" class="widefat option-tree-ui-input cp_input ' . esc_attr( $field_class ) . '" autocomplete="off" />';
+          echo '</div>';
+        
+        }
+        
+        /* Build background size  */
+        if ( in_array( 'background-size', $ot_recognized_background_fields ) ) {
+        
+          echo '<input type="text" name="' . esc_attr( $field_name ) . '[background-size]" id="' . esc_attr( $field_id ) . '-size" value="' . ( isset( $field_value['background-size'] ) ? esc_attr( $field_value['background-size'] ) : '' ) . '" class="widefat option-tree-ui-input ' . esc_attr( $field_class ) . '" placeholder="' . __( 'background-size', 'option-tree' ) . '" />';
+        
+        }
 
-          echo '<div id="cp_' . esc_attr( $field_id ) . '-picker" class="cp_box"' . ( $background_color ? " style='background-color:$background_color; border-color:$border_color;'" : '' ) . '></div>';
-        
-        echo '</div>';
-        
-        echo '<div class="select-group">';
-        
-          /* build background repeat */
-          $background_repeat = isset( $field_value['background-repeat'] ) ? esc_attr( $field_value['background-repeat'] ) : '';
-          echo '<select name="' . esc_attr( $field_name ) . '[background-repeat]" id="' . esc_attr( $field_id ) . '-repeat" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
-            echo '<option value="">' . __( 'background-repeat', 'option-tree' ) . '</option>';
-            foreach ( ot_recognized_background_repeat( $field_id ) as $key => $value ) {
-              echo '<option value="' . esc_attr( $key ) . '" ' . selected( $background_repeat, $key, false ) . '>' . esc_attr( $value ) . '</option>';
-            }
-          echo '</select>';
-          
-          /* build background attachment */
-          $background_attachment = isset( $field_value['background-attachment'] ) ? esc_attr( $field_value['background-attachment'] ) : '';
-          echo '<select name="' . esc_attr( $field_name ) . '[background-attachment]" id="' . esc_attr( $field_id ) . '-attachment" class="option-tree-ui-select ' . $field_class . '">';
-            echo '<option value="">' . __( 'background-attachment', 'option-tree' ) . '</option>';
-            foreach ( ot_recognized_background_attachment( $field_id ) as $key => $value ) {
-              echo '<option value="' . esc_attr( $key ) . '" ' . selected( $background_attachment, $key, false ) . '>' . esc_attr( $value ) . '</option>';
-            }
-          echo '</select>';
-          
-          /* build background position */
-          $background_position = isset( $field_value['background-position'] ) ? esc_attr( $field_value['background-position'] ) : '';
-          echo '<select name="' . esc_attr( $field_name ) . '[background-position]" id="' . esc_attr( $field_id ) . '-position" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
-            echo '<option value="">' . __( 'background-position', 'option-tree' ) . '</option>';
-            foreach ( ot_recognized_background_position( $field_id ) as $key => $value ) {
-              echo '<option value="' . esc_attr( $key ) . '" ' . selected( $background_position, $key, false ) . '>' . esc_attr( $value ) . '</option>';
-            }
-          echo '</select>';
-        
-        echo '</div>';
-        
         /* build background image */
-        echo '<div class="option-tree-ui-upload-parent">';
-          
-          /* input */
-          echo '<input type="text" name="' . esc_attr( $field_name ) . '[background-image]" id="' . esc_attr( $field_id ) . '" value="' . ( isset( $field_value['background-image'] ) ? esc_attr( $field_value['background-image'] ) : '' ) . '" class="widefat option-tree-ui-upload-input ' . esc_attr( $field_class ) . '" />';
-          
-          /* add media button */
-          echo '<a href="javascript:void(0);" class="ot_upload_media option-tree-ui-button blue light" rel="' . $post_id . '" title="' . __( 'Add Media', 'option-tree' ) . '"><span class="icon upload">' . __( 'Add Media', 'option-tree' ) . '</span></a>';
+        if ( in_array( 'background-image', $ot_recognized_background_fields ) ) {
         
-        echo '</div>';
-        
-        /* media */
-        if ( isset( $field_value['background-image'] ) && $field_value['background-image'] !== '' ) {
-        
-          echo '<div class="option-tree-ui-media-wrap" id="' . esc_attr( $field_id ) . '_media">';
-          
-            if ( preg_match( '/\.(?:jpe?g|png|gif|ico)$/i', $field_value['background-image'] ) )
-              echo '<div class="option-tree-ui-image-wrap"><img src="' . esc_url( $field_value['background-image'] ) . '" alt="" /></div>';
+          echo '<div class="option-tree-ui-upload-parent">';
             
-            echo '<a href="javascript:(void);" class="option-tree-ui-remove-media option-tree-ui-button red light" title="' . __( 'Remove Media', 'option-tree' ) . '"><span class="icon trash-can">' . __( 'Remove Media', 'option-tree' ) . '</span></a>';
+            /* input */
+            echo '<input type="text" name="' . esc_attr( $field_name ) . '[background-image]" id="' . esc_attr( $field_id ) . '" value="' . ( isset( $field_value['background-image'] ) ? esc_attr( $field_value['background-image'] ) : '' ) . '" class="widefat option-tree-ui-upload-input ' . esc_attr( $field_class ) . '" />';
             
+            /* add media button */
+            echo '<a href="javascript:void(0);" class="ot_upload_media option-tree-ui-button blue light" rel="' . $post_id . '" title="' . __( 'Add Media', 'option-tree' ) . '"><span class="icon upload">' . __( 'Add Media', 'option-tree' ) . '</span></a>';
+          
           echo '</div>';
           
+          /* media */
+          if ( isset( $field_value['background-image'] ) && $field_value['background-image'] !== '' ) {
+          
+            echo '<div class="option-tree-ui-media-wrap" id="' . esc_attr( $field_id ) . '_media">';
+            
+              if ( preg_match( '/\.(?:jpe?g|png|gif|ico)$/i', $field_value['background-image'] ) )
+                echo '<div class="option-tree-ui-image-wrap"><img src="' . esc_url( $field_value['background-image'] ) . '" alt="" /></div>';
+              
+              echo '<a href="javascript:(void);" class="option-tree-ui-remove-media option-tree-ui-button red light" title="' . __( 'Remove Media', 'option-tree' ) . '"><span class="icon trash-can">' . __( 'Remove Media', 'option-tree' ) . '</span></a>';
+              
+            echo '</div>';
+            
+          }
+        
         }
-      
+
       echo '</div>';
 
     echo '</div>';
@@ -192,9 +251,9 @@ if ( ! function_exists( 'ot_type_category_checkbox' ) ) {
       
       /* format setting inner wrapper */
       echo '<div class="format-setting-inner">';
-      
+        
         /* get category array */
-        $categories = get_categories( array( 'hide_empty' => false ) );
+        $categories = get_categories( apply_filters( 'ot_type_category_checkbox_query', array( 'hide_empty' => false ), $field_id ) );
         
         /* build categories */
         if ( ! empty( $categories ) ) {
@@ -250,7 +309,7 @@ if ( ! function_exists( 'ot_type_category_select' ) ) {
         echo '<select name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" class="option-tree-ui-select ' . $field_class . '">';
         
         /* get category array */
-        $categories = get_categories( array( 'hide_empty' => false ) );
+        $categories = get_categories( apply_filters( 'ot_type_category_select_query', array( 'hide_empty' => false ), $field_id ) );
         
         /* has cats */
         if ( ! empty( $categories ) ) {
@@ -531,6 +590,83 @@ if ( ! function_exists( 'ot_type_custom_post_type_select' ) ) {
 }
 
 /**
+ * Gallery option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     The options arguments
+ * @return    string    The gallery metabox markup.
+ *
+ * @access    public
+ * @since     2.2.0
+ */
+if ( ! function_exists( 'ot_type_gallery' ) ) {
+
+  function ot_type_gallery( $args = array() ) {
+  
+    // Turns arguments array into variables
+    extract( $args );
+  
+    // Verify a description
+    $has_desc = $field_desc ? true : false;
+  
+    // Format setting outer wrapper
+    echo '<div class="format-setting type-gallery ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+  
+      // Description
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+  
+      // Format setting inner wrapper
+      echo '<div class="format-setting-inner">';
+  
+        // Setup the post type
+        $post_type = isset( $field_post_type ) ? explode( ',', $field_post_type ) : array( 'post' );
+        
+        // Saved values
+        echo '<input type="hidden" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" value="' . esc_attr( $field_value ) . '" class="ot-gallery-value ' . esc_attr( $field_class ) . '" />';
+        
+        // Turn the field value into an array of IDs
+        $ids = ! empty( $field_value ) ? explode( ',', $field_value ) : array();
+        
+        // Has attachment IDs
+        if ( ! empty( $ids ) ) {
+          
+          echo '<ul class="ot-gallery-list">';
+          
+          foreach( $ids as $id ) {
+            
+            $thumbnail = wp_get_attachment_image_src( $id, 'thumbnail' );
+        
+            echo '<li><img  src="' . $thumbnail[0] . '" width="75" height="75" /></li>';
+        
+          }
+        
+          echo '</ul>';
+          
+          echo '
+          <div class="ot-gallery-buttons">
+            <a href="#" class="option-tree-ui-button red hug-left ot-gallery-delete">' . __( 'Delete Gallery', 'option-tree' ) . '</a>
+            <a href="#" class="option-tree-ui-button blue right hug-right ot-gallery-edit">' . __( 'Edit Gallery', 'option-tree' ) . '</a>
+          </div>';
+        
+        } else {
+        
+          echo '
+          <div class="ot-gallery-buttons">
+            <a href="#" class="option-tree-ui-button blue right hug-right ot-gallery-edit">' . __( 'Create Gallery', 'option-tree' ) . '</a>
+          </div>';
+        
+        }
+      
+      echo '</div>';
+      
+    echo '</div>';
+    
+  }
+
+}
+
+/**
  * List Item option type.
  *
  * See @ot_display_by_type to see the full list of available arguments.
@@ -696,7 +832,7 @@ if( ! function_exists( 'ot_type_numeric_slider' ) ) {
 
           echo '<input type="hidden" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" class="ot-numeric-slider-hidden-input" value="' . esc_attr( $field_value ) . '" data-min="' . esc_attr( $min ) . '" data-max="' . esc_attr( $max ) . '" data-step="' . esc_attr( $step ) . '">';
 
-          echo '<input type="text" class="ot-numeric-slider-helper-input widefat option-tree-ui-input" value="' . esc_attr( $field_value ) . '" readonly>';
+          echo '<input type="text" class="ot-numeric-slider-helper-input widefat option-tree-ui-input ' . esc_attr( $field_class ) . '" value="' . esc_attr( $field_value ) . '" readonly>';
 
           echo '<div id="ot_numeric_slider_' . esc_attr( $field_id ) . '" class="ot-numeric-slider"></div>';
 
@@ -707,6 +843,69 @@ if( ! function_exists( 'ot_type_numeric_slider' ) ) {
     echo '</div>';
   }
 
+}
+
+/**
+ * On/Off option type
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     The options arguments
+ * @return    string    The gallery metabox markup.
+ *
+ * @access    public
+ * @since     2.2.0
+ */
+if ( ! function_exists( 'ot_type_on_off' ) ) {
+  
+  function ot_type_on_off( $args = array() ) {
+    
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+    
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-radio ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+      
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+      
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+      
+        // Force choices
+        $field_choices = array(
+          array(
+            'value'   => 'on',
+            'label'   => __( 'On', 'option-tree' ),
+          ),
+          array(
+            'value'   => 'off',
+            'label'   => __( 'Off', 'option-tree' ),
+          )
+        );
+        
+        echo '<div class="on-off-switch">';
+                    
+        /* build radio */
+        foreach ( (array) $field_choices as $key => $choice ) {
+          echo '
+            <input type="radio" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '-' . esc_attr( $key ) . '" value="' . esc_attr( $choice['value'] ) . '"' . checked( $field_value, $choice['value'], false ) . ' class="radio option-tree-ui-radio ' . esc_attr( $field_class ) . '" />
+            <label for="' . esc_attr( $field_id ) . '-' . esc_attr( $key ) . '">' . esc_attr( $choice['label'] ) . '</label>';
+        }
+          
+          echo '<span class="slide-button"></span>';
+          
+        echo '</div>';
+      
+      echo '</div>';
+    
+    echo '</div>';
+    
+  }
+  
 }
 
 /**
@@ -1363,7 +1562,7 @@ if ( ! function_exists( 'ot_type_taxonomy_checkbox' ) ) {
         $taxonomy = isset( $field_taxonomy ) ? explode( ',', $field_taxonomy ) : array( 'category' );
         
         /* get taxonomies */
-        $taxonomies = get_categories( array( 'hide_empty' => false, 'taxonomy' => $taxonomy ) );
+        $taxonomies = get_categories( apply_filters( 'ot_type_taxonomy_checkbox_query', array( 'hide_empty' => false, 'taxonomy' => $taxonomy ), $field_id ) );
         
         /* has tags */
         if ( $taxonomies ) {
@@ -1422,7 +1621,7 @@ if ( ! function_exists( 'ot_type_taxonomy_select' ) ) {
         $taxonomy = isset( $field_taxonomy ) ? explode( ',', $field_taxonomy ) : array( 'category' );
         
         /* get taxonomies */
-        $taxonomies = get_categories( array( 'hide_empty' => false, 'taxonomy' => $taxonomy ) );
+        $taxonomies = get_categories( apply_filters( 'ot_type_taxonomy_select_query', array( 'hide_empty' => false, 'taxonomy' => $taxonomy ), $field_id ) );
         
         /* has tags */
         if ( $taxonomies ) {
@@ -1690,7 +1889,7 @@ if ( ! function_exists( 'ot_type_typography' ) ) {
           'text-transform' 
         ), $field_id );
         
-        /* build background colorpicker */
+        /* build font color */
         if ( in_array( 'font-color', $ot_recognized_typography_fields ) ) {
         
           echo '<div class="option-tree-ui-colorpicker-input-wrap">';

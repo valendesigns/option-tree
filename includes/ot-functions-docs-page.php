@@ -141,6 +141,9 @@ body {
         echo '<h4>'. __( 'Custom Post Type Checkbox', 'option-tree' ) . ':</h4>'; 
         echo '<p>' . __( 'The Custom Post Type Select option type displays a list of IDs from any available WordPress post type or custom post type. It allows the user to check multiple post IDs for use in a custom function or loop. Requires at least one valid <code>post_type</code> when created in the settings. For some reason <code>any</code> does not work correctly and will looked into in future version.', 'option-tree' ) . '</p>';
         
+        echo '<h4>'. __( 'Gallery', 'option-tree' ) . ':</h4>'; 
+        echo '<p>' . __( 'The Gallery option type saves a comma separated list of image attachment IDs. You will need to create a front-end function to display the images in your theme.', 'option-tree' ) . '</p>';
+        
         echo '<h4>'. __( 'List Item', 'option-tree' ) . ':</h4>'; 
         echo '<p>' . __( 'The list Item replaced the old Slider option type. It allows for a great deal of customization. You can add settings to the List Item and those settings will be displayed to the user when they add a new List Item. Typical use is for creating sliding content or blocks of code for custom layouts.', 'option-tree' ) . '</p>';
         
@@ -177,6 +180,9 @@ add_filter( \'ot_measurement_unit_types\', \'filter_measurement_unit_types\', 10
         
         echo '<h4>'. __( 'Numeric Slider', 'option-tree' ) . ':</h4>'; 
         echo '<p>' . __( 'The Numeric Slider option type displays a jQuery UI slider. It will return a single numerical value for use in a custom function or loop.', 'option-tree' ) . '</p>';
+        
+        echo '<h4>'. __( 'On/Off', 'option-tree' ) . ':</h4>'; 
+        echo '<p>' . __( 'The On/Off option type displays a simple switch that can be used to turn things on or off. The saved return value is either on or off.', 'option-tree' ) . '</p>';
         
         echo '<h4>'. __( 'Page Select', 'option-tree' ) . ':</h4>'; 
         echo '<p>' . __( 'The Page Select option type displays a list of page IDs. It will return a single page ID for use in a custom function or loop.', 'option-tree' ) . '</p>';
@@ -261,7 +267,7 @@ add_filter( \'ot_radio_images\', \'filter_radio_images\', 10, 2 );</code></pre>'
   return $content;
   
 }
-add_filter( \'ot_wpautop\', \'filter_textarea_wpautop\', 10, 1 );</code></pre>';
+add_filter( \'ot_wpautop\', \'filter_textarea_wpautop\', 10, 2 );</code></pre>';
 
         echo '<p>' . __( 'This example keeps WordPress from executing the <code>media_buttons</code> filter on the textarea WYSIWYG. The default is <code>true</code> which means show the buttons.', 'option-tree' ) . '</p>';
         echo '<pre><code>function filter_textarea_media_buttons( $content, $field_id ) {

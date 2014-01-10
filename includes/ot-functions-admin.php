@@ -57,9 +57,9 @@ if ( ! function_exists( 'ot_register_theme_options_page' ) ) {
                 'reset_message'   => apply_filters( 'ot_theme_options_reset_message', __( 'Theme Options reset.', 'option-tree' ) ),
                 'button_text'     => apply_filters( 'ot_theme_options_button_text', __( 'Save Changes', 'option-tree' ) ),
                 'screen_icon'     => 'themes',
-                'contextual_help' => $contextual_help,
-                'sections'        => $sections,
-                'settings'        => $settings
+                'contextual_help' => apply_filters( 'ot_theme_options_contextual_help', $contextual_help ),
+                'sections'        => apply_filters( 'ot_theme_options_sections', $sections ),
+                'settings'        => apply_filters( 'ot_theme_options_settings', $settings )
               )
             )
           )
@@ -97,7 +97,7 @@ if ( ! function_exists( 'ot_register_settings_page' ) ) {
         'menu_title'      => __( 'OptionTree', 'option-tree' ),
         'capability'      => 'edit_theme_options',
         'menu_slug'       => 'ot-settings',
-        'icon_url'        => OT_URL . '/assets/images/ot-logo-mini.png',
+        'icon_url'        => null,
         'position'        => 61,
         'hidden_page'     => true
       ),
@@ -567,7 +567,11 @@ if ( ! function_exists( 'ot_admin_scripts' ) ) {
       'remove_no'             => __( 'You can\'t remove this! But you can edit the values.', 'option-tree' ),
       'remove_agree'          => __( 'Are you sure you want to remove this?', 'option-tree' ),
       'activate_layout_agree' => __( 'Are you sure you want to activate this layout?', 'option-tree' ),
-      'setting_limit'         => __( 'Sorry, you can\'t have settings three levels deep.', 'option-tree' )
+      'setting_limit'         => __( 'Sorry, you can\'t have settings three levels deep.', 'option-tree' ),
+      'delete'                => __( 'Delete Gallery', 'option-tree' ), 
+      'edit'                  => __( 'Edit Gallery', 'option-tree' ), 
+      'create'                => __( 'Create Gallery', 'option-tree' ), 
+      'confirm'               => __( 'Are you sure you want to delete this Gallery?', 'option-tree' )
     );
     
     /* localized script attached to 'option_tree' */
@@ -2073,9 +2077,11 @@ if ( ! function_exists( 'ot_option_types_array' ) ) {
       'css'                       => 'CSS',
       'custom-post-type-checkbox' => 'Custom Post Type Checkbox',
       'custom-post-type-select'   => 'Custom Post Type Select',
+      'gallery'                   => 'Gallery',
       'list-item'                 => 'List Item',
       'measurement'               => 'Measurement',
       'numeric-slider'            => 'Numeric Slider',
+      'on-off'                    => 'On/Off',
       'page-checkbox'             => 'Page Checkbox',
       'page-select'               => 'Page Select',
       'post-checkbox'             => 'Post Checkbox',
@@ -2885,7 +2891,7 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
               $value = ! empty( $font ) ? implode( "\n", $font ) : '';
               
             /* background */
-            } else if ( ot_array_keys_exists( $value, array( 'background-color', 'background-image', 'background-repeat', 'background-attachment', 'background-position' ) ) ) {
+            } else if ( ot_array_keys_exists( $value, array( 'background-color', 'background-image', 'background-repeat', 'background-attachment', 'background-position', 'background-size' ) ) ) {
               $bg = array();
               
               if ( ! empty( $value['background-color'] ) )
@@ -2903,8 +2909,19 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
               if ( ! empty( $value['background-position'] ) )
                 $bg[] = $value['background-position'];
               
+              if ( ! empty( $value['background-size'] ) )
+                $size = $value['background-size'];
+                
               /* set $value with background properties or empty string */
               $value = ! empty( $bg ) ? 'background: ' . implode( " ", $bg ) . ';' : '';
+              
+              if ( isset( $size ) ) {
+                if ( ! empty( $bg ) ) {
+                  $value.= apply_filters( 'ot_insert_css_with_markers_bg_size_white_space', "\n\x20\x20", $option_id );
+                }
+                $value.= "background-size: $size;";
+              }
+              
             }
           
           } else {
