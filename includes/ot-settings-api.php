@@ -292,7 +292,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
                 echo '</div>';
                 
                 /* Navigation */
-                echo '<div class="ui-tabs">';
+                echo '<div class="ui-tabs ot-menu">';
                   
                 /* check for sections */
                 if ( isset( $page['sections'] ) && count( $page['sections'] ) > 0 ) {
@@ -301,7 +301,21 @@ if ( ! class_exists( 'OT_Settings' ) ) {
                   
                   /* loop through page sections */
                   foreach( (array) $page['sections'] as $section ) {
-                    echo '<li id="tab_' . $section['id'] . '"><a href="#section_' . $section['id'] . '">' . $section['title'] . '</a></li>';
+					
+					// add block section
+				    $tmq_block = '';
+					$tmq_tab_class = '';
+
+					if ( isset( $section['class'] ) ) { 
+						$tmq_tab_class = $section['class']; 
+					}
+					
+					if ( isset( $section['block'] ) ) {
+						$tmq_block = 'tab_' . $section['block'];
+						$tmq_tab_class .= ( empty( $tmq_tab_class ) ) ? 'tmq_child' : ' tmq_child';
+					}
+					
+                    echo '<li  class="' . $tmq_tab_class . '" data-opener="' . $tmq_block . '" id="tab_' . $section['id'] . '"><a href="#section_' . $section['id'] . '">' . $section['title'] . '</a></li>';
                   }
                   
                   echo '</ul>';
