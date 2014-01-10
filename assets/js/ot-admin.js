@@ -291,7 +291,7 @@
     },
     match_conditions: function(condition) {
       var match;
-      var regex = /(.+?):(is|isnot)\((.+?)\),?/g;
+      var regex = /(.+?):(is|not)\((.+?)\),?/g;
       var conditions = [];
 
       while( match = regex.exec( condition ) ) {
@@ -314,7 +314,7 @@
         $.each( conditions, function( index, condition ) {
 
           var target   = $( '#setting_' + condition.check );
-          var targetEl = !! target.length && target.find( 'select, input[type="radio"]:checked'/*, input[type="checkbox"]'*/ ).first();
+          var targetEl = !! target.length && target.find( 'select, input[type="radio"]:checked' ).first();
 
           if( ! target.length || ! targetEl.length ) {
             return;
@@ -328,7 +328,7 @@
             case 'is':
               result = ( v1 == v2 );
               break;
-            case 'isnot':
+            case 'not':
               result = ( v1 != v2 );
               break;
           }
@@ -353,8 +353,7 @@
 
         $(this)
           .toggle( passed )
-          .find( ':input' )
-          .attr( 'disabled', ! passed );
+          .find( ':input' );
 
       });
     },
