@@ -828,10 +828,10 @@ if ( ! class_exists( 'OT_Settings' ) ) {
 
         $conditions = '';
 
-        if( isset( $field['args']['condition'] ) && ! empty( $field['args']['condition'] ) ) {
+        if ( isset( $field['args']['condition'] ) && ! empty( $field['args']['condition'] ) ) {
 
-          $conditions  = ' data-condition="' . $field['args']['condition'] . '"';
-          $conditions .= isset( $field['args']['operator'] ) && in_array( $field['args']['operator'], array( 'and', 'or' ) ) ? ' data-operator="' . $field['args']['operator'] . '"' : '';
+          $conditions = ' data-condition="' . $field['args']['condition'] . '"';
+          $conditions.= isset( $field['args']['operator'] ) && in_array( $field['args']['operator'], array( 'and', 'or' ) ) ? ' data-operator="' . $field['args']['operator'] . '"' : '';
 
         }
         
