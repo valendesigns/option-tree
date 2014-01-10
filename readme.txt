@@ -44,15 +44,16 @@ Yes. OptionTree & WordPress both require PHP5.
 = 2.2.0 =
 * Added the Gallery option type.
 * Added the On/Off option type.
-* Added UI support for WordPress 3.8.
+* Added UI support for WordPress 3.8. Contributors via github @AlxMedia, and @valendesigns.
+* Added support for conditional toggling of settings fields. Contributors via github @maimairel, @valendesigns, @doitmax, and @imangm.
 * Replaced the OptionTree image icon with a font version.
 * Added 'background-size' to the Background option type.
 * Added filter 'ot_recognized_background_fields' to show/hide fields for background option types.
 * Added filter 'ot_filter_description' that allows the theme option descriptions to be filtered before being displayed.
-* Added subfolder compatibility in theme mode. Contributors via github @doitmax.
+* Added subfolder compatibility in theme mode. Contributors via github @doitmax, and @valendesigns.
 * Fixed a bug caused by using 'home_url' when loading dynamic CSS files.
-* Fixed an issue where you could not save metabox text field values as "0". Contributors via github @sparkdevelopment.
-* Fixed the broken localization directory path in theme mode. Contributors via github @youri--.
+* Fixed an issue where you could not save metabox text field values as "0". Contributors via github @sparkdevelopment, and @valendesigns.
+* Fixed the broken localization directory path in theme mode. Contributors via github @youri--, and @valendesigns.
 * Fixed missing custom class for the Numeric Slider. Contributors via github @doitmax.
 * Added filter 'ot_type_category_checkbox_query' which allows you to filter the get_categories() args for Category Checkbox.
 * Added filter 'ot_type_category_select_query' which allows you to filter the get_categories() args for Category Select.

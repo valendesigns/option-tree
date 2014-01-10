@@ -500,6 +500,8 @@ if ( ! class_exists( 'OT_Settings' ) ) {
         'field_post_type'   => isset( $post_type ) && ! empty( $post_type ) ? $post_type : 'post',
         'field_taxonomy'    => isset( $taxonomy ) && ! empty( $taxonomy ) ? $taxonomy : 'category',
         'field_min_max_step'=> isset( $min_max_step ) && ! empty( $min_max_step ) ? $min_max_step : '0,100,1',
+        'field_condition'   => isset( $condition ) && ! empty( $condition ) ? $condition : '',
+        'field_operator'    => isset( $operator ) && ! empty( $operator ) ? $operator : 'and',
         'field_class'       => isset( $class ) ? $class : '',
         'field_choices'     => isset( $choices ) && ! empty( $choices ) ? $choices : array(),
         'field_settings'    => isset( $settings ) && ! empty( $settings ) ? $settings : array(),
@@ -823,8 +825,17 @@ if ( ! class_exists( 'OT_Settings' ) ) {
         return;
     
       foreach ( (array) $wp_settings_fields[$page][$section] as $field ) {
+
+        $conditions = '';
+
+        if ( isset( $field['args']['condition'] ) && ! empty( $field['args']['condition'] ) ) {
+
+          $conditions = ' data-condition="' . $field['args']['condition'] . '"';
+          $conditions.= isset( $field['args']['operator'] ) && in_array( $field['args']['operator'], array( 'and', 'or' ) ) ? ' data-operator="' . $field['args']['operator'] . '"' : '';
+
+        }
         
-        echo '<div id="setting_' . $field['id'] . '" class="format-settings">';
+        echo '<div id="setting_' . $field['id'] . '" class="format-settings"' . $conditions . '>';
           
           echo '<div class="format-setting-wrap">';
           
