@@ -45,6 +45,7 @@ Yes. OptionTree & WordPress both require PHP5.
 * Added the Gallery option type.
 * Added the On/Off option type.
 * Added UI support for WordPress 3.8.
+* Added support for conditional toggling of settings fields. Contributors via github @maimairel, @valendesigns, and @imangm.
 * Replaced the OptionTree image icon with a font version.
 * Added 'background-size' to the Background option type.
 * Added filter 'ot_recognized_background_fields' to show/hide fields for background option types.
