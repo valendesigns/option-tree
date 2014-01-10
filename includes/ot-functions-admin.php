@@ -3254,6 +3254,7 @@ if ( ! function_exists( 'ot_settings_view' ) ) {
     $child = ( strpos( $name, '][settings]') !== false ) ? true : false;
     $type = isset( $setting['type'] ) ? $setting['type'] : '';
     $std = isset( $setting['std'] ) ? $setting['std'] : '';
+    $operator = isset( $setting['operator'] ) ? esc_attr( $setting['operator'] ) : 'and';
     
     // Serialize the standard value just incase
     if ( is_array( $std ) ) {
@@ -3395,9 +3396,9 @@ if ( ! function_exists( 'ot_settings_view' ) ) {
           <div class="format-setting type-select wide-desc">
             <div class="description">' . __( '<strong>Condition Operator</strong>: Choose the logical operator to compute the result of the conditions.', 'option-tree' ) . '</div>
             <div class="format-setting-inner">
-              <select name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][operator]" value="' . esc_attr( $type ) . '" class="option-tree-ui-select">
-                <option value="and">' . __( 'and', 'option-tree' ) . '</option>
-                <option value="or">' . __( 'or', 'option-tree' ) . '</option>
+              <select name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][operator]" value="' . $operator . '" class="option-tree-ui-select">
+                <option value="and" ' . selected( $operator, 'and', false ) . '>' . __( 'and', 'option-tree' ) . '</option>
+                <option value="or" ' . selected( $operator, 'or', false ) . '>' . __( 'or', 'option-tree' ) . '</option>
               </select>
             </div>
           </div>
