@@ -3386,7 +3386,7 @@ if ( ! function_exists( 'ot_settings_view' ) ) {
         </div>
         <div class="format-settings">
           <div class="format-setting type-text wide-desc">
-            <div class="description">' . __( '<strong>Condition</strong>: Add a comma separated list of conditions where this field will be visible, leave empty to always show the field. Conditions can be in the form of <em>field_name:is(value)</em>, <em>field_name:not(value)</em>.', 'option-tree' ) . '</div>
+            <div class="description">' . __( '<strong>Condition</strong>: Add a comma separated list of conditions where this field will be visible, leave empty to always show the field. Conditions can be in the form of <code>field_name:is(value)</code>, <code>field_name:not(value)</code>, <code>field_name:contains(value)</code>, <code>field_name:less_than(value)</code>, <code>field_name:less_than_or_equal_to(value)</code>, <code>field_name:greater_than(value)</code>, or <code>field_name:greater_than_or_equal_to(value)</code>.', 'option-tree' ) . '</div>
             <div class="format-setting-inner">
               <input type="text" name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][condition]" value="' . ( isset( $setting['condition'] ) ? esc_attr( $setting['condition'] ) : '' ) . '" class="widefat option-tree-ui-input" autocomplete="off" />
             </div>

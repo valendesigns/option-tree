@@ -291,7 +291,7 @@
     },
     match_conditions: function(condition) {
       var match;
-      var regex = /(.+?):(is|not)\((.+?)\),?/g;
+      var regex = /(.+?):(is|not|contains|less_than|less_than_or_equal_to|greater_than|greater_than_or_equal_to)\((.+?)\),?/g;
       var conditions = [];
 
       while( match = regex.exec( condition ) ) {
@@ -314,7 +314,7 @@
         $.each( conditions, function( index, condition ) {
 
           var target   = $( '#setting_' + condition.check );
-          var targetEl = !! target.length && target.find( 'select, input[type="radio"]:checked' ).first();
+          var targetEl = !! target.length && target.find( 'select, input[type="radio"]:checked, input.ot-numeric-slider-hidden-input' ).first();
 
           if( ! target.length || ! targetEl.length ) {
             return;
@@ -325,6 +325,21 @@
           var result;
 
           switch( condition.rule ) {
+            case 'less_than':
+              result = ( v1 < v2 );
+              break;
+            case 'less_than_or_equal_to':
+              result = ( v1 <= v2 );
+              break;
+            case 'greater_than':
+              result = ( v1 > v2 );
+              break;
+            case 'greater_than_or_equal_to':
+              result = ( v1 >= v2 );
+              break;
+            case 'contains':
+              result = ( v2.indexOf(v1) !== -1 ? true : false );
+              break; 
             case 'is':
               result = ( v1 == v2 );
               break;
@@ -335,7 +350,6 @@
 
           if( 'undefined' == typeof passed ) {
             passed = result;
-            return;
           }
 
           switch( operator ) {
@@ -347,8 +361,7 @@
               passed = ( passed && result );
               break;
           }
-
-          return passed;
+          
         });
 
         if ( passed ) {
@@ -356,11 +369,13 @@
         } else {
           $(this).animate({opacity: 'hide' , height: 'hide'}, 200);
         }
+        
+        delete passed;
 
       });
     },
     init_conditions: function() {
-      $( document ).on( 'change.conditionals', '.format-settings[id^="setting_"] select, .format-settings[id^="setting_"] input[type="radio"]:checked', function( e ) {
+      $( document ).on( 'change.conditionals', '.format-settings[id^="setting_"] select, .format-settings[id^="setting_"] input[type="radio"]:checked, .format-settings[id^="setting_"] input.ot-numeric-slider-hidden-input', function( e ) {
         OT_UI.parse_condition();
       });
       $(OT_UI.parse_condition());
@@ -479,6 +494,9 @@
           value: value, 
           slide: function(event, ui) {
             hidden.add(helper).val(ui.value);
+          },
+          change: function() {
+            $(OT_UI.init_conditions());
           }
         });
       });
