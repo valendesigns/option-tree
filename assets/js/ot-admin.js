@@ -351,9 +351,11 @@
           return passed;
         });
 
-        $(this)
-          .toggle( passed )
-          .find( ':input' );
+        if ( passed ) {
+          $(this).animate({opacity: 'show' , height: 'show'}, 200);
+        } else {
+          $(this).animate({opacity: 'hide' , height: 'hide'}, 200);
+        }
 
       });
     },
