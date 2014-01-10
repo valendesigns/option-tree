@@ -1393,6 +1393,12 @@ input.option-tree-ui-input {
   padding-top: 5px;
   padding-bottom: 5px;
 }
+@media screen and ( max-width: 782px ) {
+  #option-tree-settings-api p input[type="checkbox"],
+  #option-tree-settings-api p input[type="radio"] {
+    margin-top: -3px;
+  }
+}
 
 /* -------------------------------------------------- 
   :: Gallery
