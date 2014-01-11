@@ -168,8 +168,48 @@ if ( ! function_exists( 'ot_type_background' ) ) {
   
           /* Build background size  */
           if ( in_array( 'background-size', $ot_recognized_background_fields ) ) {
-          
-            echo '<input type="text" name="' . esc_attr( $field_name ) . '[background-size]" id="' . esc_attr( $field_id ) . '-size" value="' . ( isset( $field_value['background-size'] ) ? esc_attr( $field_value['background-size'] ) : '' ) . '" class="widefat ot-background-size-input option-tree-ui-input ' . esc_attr( $field_class ) . '" placeholder="' . __( 'background-size', 'option-tree' ) . '" />';
+            
+            /**
+             * Use this filter to create a select instead of an text input.
+             * Be sure to return the array in the correct format. Add an empty 
+             * value to the first choice so the user can leave it blank.
+             *
+                array( 
+                  array(
+                    'label' => 'background-size',
+                    'value' => ''
+                  ),
+                  array(
+                    'label' => 'cover',
+                    'value' => 'cover'
+                  ),
+                  array(
+                    'label' => 'contain',
+                    'value' => 'contain'
+                  )
+                )
+             *
+             */
+            $choices = apply_filters( 'ot_type_background_size_choices', '', $field_id );
+            
+            if ( is_array( $choices ) && ! empty( $choices ) ) {
+            
+              /* build select */
+              echo '<select name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
+              
+                foreach ( (array) $choices as $choice ) {
+                  if ( isset( $choice['value'] ) && isset( $choice['label'] ) ) {
+                    echo '<option value="' . esc_attr( $choice['value'] ) . '"' . selected( $field_value, $choice['value'], false ) . '>' . esc_attr( $choice['label'] ) . '</option>';
+                  }
+                }
+        
+              echo '</select>';
+            
+            } else {
+            
+              echo '<input type="text" name="' . esc_attr( $field_name ) . '[background-size]" id="' . esc_attr( $field_id ) . '-size" value="' . ( isset( $field_value['background-size'] ) ? esc_attr( $field_value['background-size'] ) : '' ) . '" class="widefat ot-background-size-input option-tree-ui-input ' . esc_attr( $field_class ) . '" placeholder="' . __( 'background-size', 'option-tree' ) . '" />';
+              
+            }
           
           }
         
