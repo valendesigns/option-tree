@@ -613,12 +613,14 @@ if ( ! function_exists( 'ot_type_gallery' ) ) {
         // Setup the post type
         $post_type = isset( $field_post_type ) ? explode( ',', $field_post_type ) : array( 'post' );
         
+        $field_value = trim( $field_value );
+        
         // Saved values
         echo '<input type="hidden" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" value="' . esc_attr( $field_value ) . '" class="ot-gallery-value ' . esc_attr( $field_class ) . '" />';
         
         // Turn the field value into an array of IDs
-        $ids = ! empty( $field_value ) ? explode( ',', $field_value ) : array();
-        
+        $ids = ! empty( $field_value ) && $field_value != '' ? explode( ',', $field_value ) : array();
+
         // Has attachment IDs
         if ( ! empty( $ids ) ) {
           
@@ -626,6 +628,9 @@ if ( ! function_exists( 'ot_type_gallery' ) ) {
           
           foreach( $ids as $id ) {
             
+            if ( $id == '' )
+              continue;
+              
             $thumbnail = wp_get_attachment_image_src( $id, 'thumbnail' );
         
             echo '<li><img  src="' . $thumbnail[0] . '" width="75" height="75" /></li>';
