@@ -815,6 +815,7 @@ select.option-tree-ui-select option {
   border-color: #ccc;
   height: 29px !important;
 	line-height: 27px !important;
+	margin-top: 0px;
 	-webkit-border-radius: 2px;
      -moz-border-radius: 2px;
           border-radius: 2px;
