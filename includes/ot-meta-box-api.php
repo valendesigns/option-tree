@@ -106,7 +106,8 @@ if ( ! class_exists( 'OT_Meta_Box' ) ) {
           );
           
           $conditions = '';
-
+          
+          /* setup the conditions */
           if ( isset( $field['condition'] ) && ! empty( $field['condition'] ) ) {
   
             $conditions = ' data-condition="' . $field['condition'] . '"';

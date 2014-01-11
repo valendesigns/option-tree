@@ -3677,8 +3677,10 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
         
         $conditions = '';
         
+        /* setup the conditions */
         if ( isset( $field['condition'] ) && ! empty( $field['condition'] ) ) {
           
+          /* doing magic on the conditions so they work in a list item */
           $conditionals = explode( ',', $field['condition'] );
           foreach( $conditionals as $conditions ) {
             $parts = explode( ':', $conditions );
