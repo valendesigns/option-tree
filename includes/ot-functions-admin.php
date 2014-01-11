@@ -2101,8 +2101,7 @@ if ( ! function_exists( 'ot_option_types_array' ) ) {
       'textblock'                 => 'Textblock',
       'textblock-titled'          => 'Textblock Titled',
       'typography'                => 'Typography',
-      'upload'                    => 'Upload',
-      'wp-colorpicker'            => 'WP Color Picker'
+      'upload'                    => 'Upload'
     ) );
     
   }
