@@ -44,6 +44,7 @@ Yes. OptionTree & WordPress both require PHP5.
 = 2.2.0 =
 * Added the Gallery option type.
 * Added the On/Off option type.
+* Replaced the old Color Picker with the default WP Color Picker.
 * Added UI support for WordPress 3.8. Contributors via github @AlxMedia, and @valendesigns.
 * Added support for conditional toggling of settings fields. Contributors via github @maimairel, @valendesigns, @doitmax, and @imangm.
 * Replaced the OptionTree image icon with a font version.

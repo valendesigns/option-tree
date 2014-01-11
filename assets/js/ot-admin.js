@@ -25,7 +25,6 @@
       this.init_radio_image_select();
       this.init_select_wrapper();
       this.fix_upload_parent();
-      this.fix_colorpicker();
       this.fix_textarea();
       this.replicate_ajax();
       this.reset_settings();
@@ -546,23 +545,7 @@
       });
     },
     bind_colorpicker: function(field_id) {
-      $('#'+field_id).ColorPicker({
-        onSubmit: function(hsb, hex, rgb) {
-          $('#'+field_id).val('#'+hex);
-        },
-        onBeforeShow: function () {
-          $(this).ColorPickerSetColor(this.value);
-          return false;
-        },
-        onChange: function (hsb, hex, rgb) {
-          var bc = $.inArray(hex, [ 'FFFFFF', 'FFF', 'ffffff', 'fff' ]) != -1 ? 'ccc' : hex;
-          $('#cp_'+field_id).css({'backgroundColor':'#'+hex,'borderColor':'#'+bc});
-          $('#cp_'+field_id).prev('input').attr('value', '#'+hex);
-        }
-      })  
-      .bind('keyup', function(){
-        $(this).ColorPickerSetColor(this.value);
-      });
+      $('#'+field_id).wpColorPicker();
     },
     fix_upload_parent: function() {
       $(document).on('focus blur', '.option-tree-ui-upload-input', function(){
@@ -573,19 +556,6 @@
     remove_image: function(e) {
       $(e).parent().parent().find('.option-tree-ui-upload-input').attr('value','');
       $(e).parent('.option-tree-ui-media-wrap').remove();
-    },
-    fix_colorpicker: function() {
-      $(document).on('blur', '.cp_input', function() {
-        $('.cp_input').each( function(index, el) {
-          var val = $(el).val();
-          var reg = /^[A-Fa-f0-9]{6}$/;
-          if( reg.test(val) && val != '' ) { 
-            $(el).attr('value', '#'+val)
-          } else if ( val == '' ) {
-            $(this).next('.cp_box').css({'background':'#f1f1f1','border-color':'#ccc'});
-          }
-        });
-      });
     },
     fix_textarea: function() {
       $('.wp-editor-area').focus( function(){

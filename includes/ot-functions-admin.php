@@ -521,6 +521,9 @@ if ( ! function_exists( 'ot_admin_styles' ) ) {
   
     wp_enqueue_style( 'ot-admin-css', OT_URL . 'assets/css/ot-admin.css', false, OT_VERSION );
     
+    /* load WP colorpicker */
+    wp_enqueue_style( 'wp-color-picker' );
+    
   }
   
 }
@@ -549,14 +552,14 @@ if ( ! function_exists( 'ot_admin_scripts' ) ) {
       add_thickbox();
     }
     
-    /* load the colorpicker */
-    wp_enqueue_script( 'ot-colorpicker-js', OT_URL . 'assets/js/ot-colorpicker.js', array( 'jquery' ), OT_VERSION );
-    
     /* load jQuery-ui slider */
     wp_enqueue_script( 'jquery-ui-slider' );
     
+    /* load WP colorpicker */
+    wp_enqueue_script( 'wp-color-picker' );
+    
     /* load all the required scripts */
-    wp_enqueue_script( 'ot-admin-js', OT_URL . 'assets/js/ot-admin.js', array( 'jquery', 'jquery-ui-tabs', 'jquery-ui-sortable', 'media-upload', 'thickbox' ), OT_VERSION );
+    wp_enqueue_script( 'ot-admin-js', OT_URL . 'assets/js/ot-admin.js', array( 'jquery', 'jquery-ui-tabs', 'jquery-ui-sortable', 'jquery-ui-slider', 'wp-color-picker' ), OT_VERSION );
     
     /* create localized JS array */
     $localized_array = array( 
@@ -2098,7 +2101,8 @@ if ( ! function_exists( 'ot_option_types_array' ) ) {
       'textblock'                 => 'Textblock',
       'textblock-titled'          => 'Textblock Titled',
       'typography'                => 'Typography',
-      'upload'                    => 'Upload'
+      'upload'                    => 'Upload',
+      'wp-colorpicker'            => 'WP Color Picker'
     ) );
     
   }
