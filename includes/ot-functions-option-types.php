@@ -169,7 +169,7 @@ if ( ! function_exists( 'ot_type_background' ) ) {
           /* Build background size  */
           if ( in_array( 'background-size', $ot_recognized_background_fields ) ) {
           
-            echo '<input type="text" name="' . esc_attr( $field_name ) . '[background-size]" id="' . esc_attr( $field_id ) . '-size" value="' . ( isset( $field_value['background-size'] ) ? esc_attr( $field_value['background-size'] ) : '' ) . '" class="widefat option-tree-ui-input ' . esc_attr( $field_class ) . '" placeholder="' . __( 'background-size', 'option-tree' ) . '" />';
+            echo '<input type="text" name="' . esc_attr( $field_name ) . '[background-size]" id="' . esc_attr( $field_id ) . '-size" value="' . ( isset( $field_value['background-size'] ) ? esc_attr( $field_value['background-size'] ) : '' ) . '" class="widefat ot-background-size-input option-tree-ui-input ' . esc_attr( $field_class ) . '" placeholder="' . __( 'background-size', 'option-tree' ) . '" />';
           
           }
         

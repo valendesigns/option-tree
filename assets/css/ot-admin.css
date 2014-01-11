@@ -323,6 +323,9 @@
   overflow: hidden;
   width: auto;
 }
+.ot-background-size-input {
+  max-width: 110px;
+}
 
 /* -------------------------------------------------- 
   :: Code formatting
