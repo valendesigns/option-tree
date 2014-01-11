@@ -13,26 +13,53 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.ot-icon-move-vertical:before {
-  content: "\e600";
-}
-.ot-icon-move-horizontal:before {
-  content: "\e601";
-}
 .ot-icon-long-arrow-down:before {
-  content: "\e602";
+  content: "\e770";
 }
 .ot-icon-long-arrow-up:before {
-  content: "\e603";
+  content: "\e771";
 }
 .ot-icon-long-arrow-left:before {
-  content: "\e604";
+  content: "\e772";
 }
 .ot-icon-long-arrow-right:before {
-  content: "\e605";
+  content: "\e773";
+}
+.ot-icon-angle-right:before {
+  content: "\e774";
+}
+.ot-icon-angle-left:before {
+  content: "\e775";
+}
+.ot-icon-angle-up:before {
+  content: "\e776";
+}
+.ot-icon-angle-down:before {
+  content: "\e777";
+}
+.ot-icon-resize-vertical:before {
+  content: "\e778";
+}
+.ot-icon-resize-horizontal:before {
+  content: "\e779";
+}
+.ot-icon-fullscreen:before {
+  content: "\e780";
+}
+.ot-icon-plus-sign:before {
+  content: "\e781";
+}
+.ot-icon-minus-sign:before {
+  content: "\e782";
+}
+.ot-icon-ok-sign:before {
+  content: "\e783";
+}
+.ot-icon-circle:before {
+  content: "\e784";
 }
 .ot-icon-option-tree:before {
-  content: "\e606";
+  content: "\e785";
 }
        
 /* -------------------------------------------------- 
