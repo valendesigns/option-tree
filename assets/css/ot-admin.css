@@ -1,4 +1,41 @@
 /* -------------------------------------------------- 
+  :: OptionTree Font
+  ---------------------------------------------------*/
+[class^="ot-icon-"], 
+[class*=" ot-icon-"] {
+  font-family: "option-tree-font";
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.ot-icon-move-vertical:before {
+  content: "\e600";
+}
+.ot-icon-move-horizontal:before {
+  content: "\e601";
+}
+.ot-icon-long-arrow-down:before {
+  content: "\e602";
+}
+.ot-icon-long-arrow-up:before {
+  content: "\e603";
+}
+.ot-icon-long-arrow-left:before {
+  content: "\e604";
+}
+.ot-icon-long-arrow-right:before {
+  content: "\e605";
+}
+.ot-icon-option-tree:before {
+  content: "\e606";
+}
+        
+/* -------------------------------------------------- 
   :: Screen Meta & Menu Icon
   ---------------------------------------------------*/
 .appearance_page_ot-theme-options #screen-meta {
@@ -814,14 +851,14 @@ select.option-tree-ui-select option {
 .option-tree-ui-colorpicker-input-wrap .wp-picker-clear {
   border-color: #ccc;
   height: 29px !important;
-	line-height: 27px !important;
-	margin-top: 0px;
-	-webkit-border-radius: 2px;
+  line-height: 27px !important;
+  margin-top: 0px;
+  -webkit-border-radius: 2px;
      -moz-border-radius: 2px;
           border-radius: 2px;
   -webkit-box-shadow: none;
      -moz-box-shadow: none;
-	        box-shadow: none;
+          box-shadow: none;
 }
 .option-tree-ui-colorpicker-input-wrap .wp-color-result {
   height: 27px;
@@ -830,7 +867,7 @@ select.option-tree-ui-select option {
   top: 0px;
   -webkit-box-shadow: none;
      -moz-box-shadow: none;
-	        box-shadow: none;
+          box-shadow: none;
 }
 .option-tree-ui-colorpicker-input-wrap .wp-color-result:after {
   line-height: 27px;
