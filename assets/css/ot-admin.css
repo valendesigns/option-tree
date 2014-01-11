@@ -1438,14 +1438,14 @@ ul.ot-gallery-list li img {
 /* -------------------------------------------------- 
   :: Simple Input Append & Prepend
   ---------------------------------------------------*/
-.input-append,
-.input-prepend {
+.ot-input-append,
+.ot-input-prepend {
   display: inline-block;
   vertical-align: middle;
   font-size: 0;
   white-space: nowrap;
 }
-.input-append input {
+.ot-input-append input {
   position: relative;
   margin-bottom: 0;
   *margin-left: 0;
@@ -1454,12 +1454,12 @@ ul.ot-gallery-list li img {
   -moz-border-radius: 0 2px 2px 0;
   border-radius: 0 2px 2px 0;
 }
-.input-append input:focus,
-.input-prepend input:focus {
+.ot-input-append input:focus,
+.ot-input-prepend input:focus {
   z-index: 2;
 }
-.input-append .add-on,
-.input-prepend .add-on {
+.ot-input-append .ot-add-on,
+.ot-input-prepend .ot-add-on {
   display: inline-block;
   width: auto;
   height: 27px;
@@ -1473,21 +1473,21 @@ ul.ot-gallery-list li img {
   background-color: #f7f7f7;
   border: 1px solid #ccc;
 }
-.input-prepend input {
+.ot-input-prepend input {
   border-left: 0 !important;
 }
-.input-prepend .add-on:first-child {
+.ot-input-prepend .ot-add-on:first-child {
   -webkit-border-radius: 2px 0 0 2px;
   -moz-border-radius: 2px 0 0 2px;
   border-radius: 2px 0 0 2px;
 }
-.input-append input {
+.ot-input-append input {
   border-right: 0 !important;
   -webkit-border-radius: 2px 0 0 2px;
   -moz-border-radius: 2px 0 0 2px;
   border-radius: 2px 0 0 2px;
 }
-.input-append input + .btn-group .btn:first-child {
+.ot-input-append input + .btn-group .btn:first-child {
   -webkit-border-top-left-radius: 0;
   -moz-border-radius-topleft: 0;
   border-top-left-radius: 0;
@@ -1495,22 +1495,22 @@ ul.ot-gallery-list li img {
   -moz-border-radius-bottomleft: 0;
   border-bottom-left-radius: 0;
 }
-.input-append .add-on:last-child {
+.ot-input-append .ot-add-on:last-child {
   -webkit-border-radius: 0 2px 2px 0;
   -moz-border-radius: 0 2px 2px 0;
   border-radius: 0 2px 2px 0;
 }
-.input-prepend.input-append input {
+.ot-input-prepend.ot-input-append input {
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   border-radius: 0;
 }
-.input-prepend.input-append .add-on:first-child {
+.ot-input-prepend.ot-input-append .ot-add-on:first-child {
   -webkit-border-radius: 2px 0 0 2px;
   -moz-border-radius: 2px 0 0 2px;
   border-radius: 2px 0 0 2px;
 }
-.input-prepend.input-append .add-on:last-child {
+.ot-input-prepend.ot-input-append .ot-add-on:last-child {
   -webkit-border-radius: 0 2px 2px 0;
   -moz-border-radius: 0 2px 2px 0;
   border-radius: 0 2px 2px 0;
