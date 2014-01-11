@@ -730,4 +730,47 @@
     ot_gallery.open($(this))
   })
   
+// Sub Sections
+  $(document).ready( function() {
+	
+	// Hide all sub menus with JS!
+	$('.ot-menu .tmq_child').each( function() {
+		$(this).animate({opacity: 'hide' , height: 'hide', margin: 'hide', padding: 'hide'}, 200);
+	});
+	
+	// On click close all sub pages
+	$('.ot-menu li').on('click', function() {
+		// if its not clicked on a child page itself
+		if ( !$(this).hasClass('tmq_child') ) {
+			$('.ot-menu .tmq_child').each( function() {
+				// Close them
+				$(this).animate({opacity: 'hide' , height: 'hide', margin: 'hide', padding: 'hide'}, 200);				
+			});
+			$('.ot-menu .ui-tabs-active').each( function() {
+				$(this).removeClass('ui-tabs-active');
+			});
+			$(this).addClass('ui-tabs-active');
+		} else {
+			var tmq_parent_id = $(this).attr('data-opener');
+			$('#' + tmq_parent_id).addClass('ui-tabs-active');
+		}
+	});
+	
+	// Open Subpages once someone clicks on a page
+	$('.ot-menu .block_parent').on('click', function() {
+	
+		// Get ID of this block
+		var tmq_id = $(this).attr('id');
+		
+		// Find data-openers and open them
+		$('.ot-menu .tmq_child').each( function() {
+			if ( $(this).attr('data-opener') == tmq_id ) {
+				// Close them
+				$(this).animate({opacity: 'show' , height: 'show', margin: 'show', padding: 'show'}, 200);
+			}
+		});
+	});
+  });
+  
 }(window.jQuery);
+
