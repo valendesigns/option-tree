@@ -499,18 +499,20 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       echo '
       <style>
         @font-face {
-        	font-family: "ot-font";
-        	src:url("' . OT_URL . 'assets/fonts/ot-font.eot");
-        	src:url("' . OT_URL . 'assets/fonts/ot-font.eot?#iefix") format("embedded-opentype"),
-        		url("' . OT_URL . 'assets/fonts/ot-font.woff") format("woff"),
-        		url("' . OT_URL . 'assets/fonts/ot-font.ttf") format("truetype"),
-        		url("' . OT_URL . 'assets/fonts/ot-font.svg#icomoon") format("svg");
+        	font-family: "option-tree-font";
+        	src:url("' . OT_URL . 'assets/fonts/option-tree-font.eot");
+        	src:url("' . OT_URL . 'assets/fonts/option-tree-font.eot?#iefix") format("embedded-opentype"),
+        		url("' . OT_URL . 'assets/fonts/option-tree-font.woff") format("woff"),
+        		url("' . OT_URL . 'assets/fonts/option-tree-font.ttf") format("truetype"),
+        		url("' . OT_URL . 'assets/fonts/option-tree-font.svg#option-tree-font") format("svg");
         	font-weight: normal;
         	font-style: normal;
         }
         #adminmenu #toplevel_page_ot-settings .menu-icon-generic div.wp-menu-image:before,
-        #option-tree-header #option-tree-logo a:before {
-        	font: normal ' . $fontsize . '/1 "ot-font" !important;
+        #option-tree-header #option-tree-logo a:before,
+        [class^="ot-icon-"], 
+        [class*=" ot-icon-"] {
+        	font: normal ' . $fontsize . '/1 "option-tree-font" !important;
         	speak: none;
         	padding: 6px 0;
         	height: 34px;
@@ -522,9 +524,28 @@ if ( ! class_exists( 'OT_Loader' ) ) {
         	-moz-transition:    all .1s ease-in-out;
         	transition:         all .1s ease-in-out;
         }
+        .ot-icon-move-vertical:before {
+        	content: "\e600";
+        }
+        .ot-icon-move-horizontal:before {
+        	content: "\e601";
+        }
+        .ot-icon-long-arrow-down:before {
+        	content: "\e602";
+        }
+        .ot-icon-long-arrow-up:before {
+        	content: "\e603";
+        }
+        .ot-icon-long-arrow-left:before {
+        	content: "\e604";
+        }
+        .ot-icon-long-arrow-right:before {
+        	content: "\e605";
+        }
+        .ot-icon-option-tree:before,
         #adminmenu #toplevel_page_ot-settings .menu-icon-generic div.wp-menu-image:before,
         #option-tree-header #option-tree-logo a:before {
-        	content: "\e2014";
+        	content: "\e606";
         }
         #option-tree-header #option-tree-logo a:before {
           font-size: 20px !important;
