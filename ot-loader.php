@@ -273,13 +273,13 @@ if ( ! class_exists( 'OT_Loader' ) ) {
         define( 'OT_URL', plugin_dir_url( __FILE__ ) );
       } else {
         if ( true == OT_CHILD_THEME_MODE ) {
-          $path = end( @explode( end( @explode( '/', get_stylesheet_directory() ) ), dirname( __FILE__ ) ) );
-          define( 'OT_DIR', trailingslashit( get_stylesheet_directory() . $path ) );
-          define( 'OT_URL', trailingslashit( get_stylesheet_directory_uri() . $path ) );
+          $path = ltrim( end( @explode( end( @explode( '/', get_stylesheet_directory() ) ), dirname( __FILE__ ) ) ), '/' );
+          define( 'OT_DIR', trailingslashit( trailingslashit( get_stylesheet_directory() ) . $path ) );
+          define( 'OT_URL', trailingslashit( trailingslashit( get_stylesheet_directory_uri() ) . $path ) );
         } else {
-          $path = end( @explode( end( @explode( '/', get_template_directory() ) ), dirname( __FILE__ ) ) );
-          define( 'OT_DIR', trailingslashit( get_template_directory() . $path ) );
-          define( 'OT_URL', trailingslashit( get_template_directory_uri() . $path ) );
+          $path = ltrim( end( @explode( end( @explode( '/', get_template_directory() ) ), dirname( __FILE__ ) ) ), '/' );
+          define( 'OT_DIR', trailingslashit( trailingslashit( get_template_directory() ) . $path ) );
+          define( 'OT_URL', trailingslashit( trailingslashit( get_template_directory_uri() ) . $path ) );
         }
       }
       
