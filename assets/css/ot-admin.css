@@ -826,6 +826,7 @@ select.option-tree-ui-select option {
   height: 27px;
   outline: 0;
   margin: 0 5px 5px 0px;
+  top: 0px;
   -webkit-box-shadow: none;
      -moz-box-shadow: none;
 	        box-shadow: none;
