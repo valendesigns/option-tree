@@ -1278,8 +1278,8 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
         $help.= "
         array(
           'id'        => '$_id',
-          'title'     => '$_title',
-          'content'   => '$_content'
+          'title'     => __( '$_title', 'option-tree' ),
+          'content'   => __( '$_content', 'option-tree' )
         ),";
       }
       $help = substr_replace( $help, '' , -1 );
@@ -1309,7 +1309,7 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
         $sections.= "
       array(
         'id'          => '$_id',
-        'title'       => '$_title'
+        'title'       => __( '$_title', 'option-tree' )
       ),";
       }
       $sections = substr_replace( $sections, '' , -1 );
@@ -1336,6 +1336,8 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
         $_taxonomy = isset( $value['taxonomy'] ) ? $value['taxonomy'] : '';
         $_min_max_step = isset( $value['min_max_step'] ) ? $value['min_max_step'] : '';
         $_class = isset( $value['class'] ) ? $value['class'] : '';
+        $_condition = isset( $value['condition'] ) ? $value['condition'] : '';
+        $_operator = isset( $value['operator'] ) ? $value['operator'] : '';
         
         $choices = '';
         if ( isset( $value['choices'] ) && ! empty( $value['choices'] ) ) {
@@ -1346,14 +1348,14 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
             $choices.= "
           array(
             'value'       => '$_choice_value',
-            'label'       => '$_choice_label',
+            'label'       => __( '$_choice_label', 'option-tree' ),
             'src'         => '$_choice_src'
           ),";
           }
           $choices = substr_replace( $choices, '' , -1 );
           $choices = ",
         'choices'     => array( $choices
-        ),";
+        )";
         }
         
         $std = "'$_std'";
@@ -1380,6 +1382,8 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
             $_setting_taxonomy = isset( $setting['taxonomy'] ) ? $setting['taxonomy'] : '';
             $_setting_min_max_step = isset( $setting['min_max_step'] ) ? $setting['min_max_step'] : '';
             $_setting_class = isset( $setting['class'] ) ? $setting['class'] : '';
+            $_setting_condition = isset( $setting['condition'] ) ? $setting['condition'] : '';
+            $_setting_operator = isset( $setting['operator'] ) ? $setting['operator'] : '';
             
             $setting_choices = '';
             if ( isset( $setting['choices'] ) && ! empty( $setting['choices'] ) ) {
@@ -1390,14 +1394,14 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
                 $setting_choices.= "
               array(
                 'value'       => '$_setting_choice_value',
-                'label'       => '$_setting_choice_label',
+                'label'       => __( '$_setting_choice_label', 'option-tree' ),
                 'src'         => '$_setting_choice_src'
               ),";
               }
               $setting_choices = substr_replace( $setting_choices, '' , -1 );
               $setting_choices = ",
             'choices'     => array( $setting_choices
-            ),";
+            )";
             }
             
             $setting_std = "'$_setting_std'";
@@ -1414,15 +1418,17 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
             $setting_settings.= "
           array(
             'id'          => '$_setting_id',
-            'label'       => '$_setting_label',
-            'desc'        => '$_setting_desc',
+            'label'       => __( '$_setting_label', 'option-tree' ),
+            'desc'        => __( '$_setting_desc', 'option-tree' ),
             'std'         => $setting_std,
             'type'        => '$_setting_type',
             'rows'        => '$_setting_rows',
             'post_type'   => '$_setting_post_type',
             'taxonomy'    => '$_setting_taxonomy',
             'min_max_step'=> '$_setting_min_max_step',
-            'class'       => '$_setting_class'$setting_choices
+            'class'       => '$_setting_class',
+            'condition'   => '$_setting_condition',
+            'operator'    => '$_setting_operator'$setting_choices
           ),";
           }
           $setting_settings = substr_replace( $setting_settings, '' , -1 );
@@ -1434,8 +1440,8 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
         $settings.= "
       array(
         'id'          => '$_id',
-        'label'       => '$_label',
-        'desc'        => '$_desc',
+        'label'       => __( '$_label', 'option-tree' ),
+        'desc'        => __( '$_desc', 'option-tree' ),
         'std'         => $std,
         'type'        => '$_type',
         'section'     => '$_section',
@@ -1443,7 +1449,9 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
         'post_type'   => '$_post_type',
         'taxonomy'    => '$_taxonomy',
         'min_max_step'=> '$_min_max_step',
-        'class'       => '$_class'$choices$setting_settings
+        'class'       => '$_class',
+        'condition'   => '$_condition',
+        'operator'    => '$_operator'$choices$setting_settings
       ),";
       }
       $settings = substr_replace( $settings, '' , -1 );
@@ -1455,6 +1463,9 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
     'settings'        => array( $settings
     )";
     }
+
+    /* replace any empty translation strings */
+    $build_settings = str_replace( "__( '', 'option-tree' )", "''", $build_settings );
     
     $content.= "<?php
 /**
@@ -3358,6 +3369,25 @@ if ( ! function_exists( 'ot_settings_view' ) ) {
             </div>
           </div>
         </div>
+        <div class="format-settings">
+          <div class="format-setting type-text wide-desc">
+            <div class="description">' . __( '<strong>Condition</strong>: Add a comma separated list of conditions where this field will be visible, leave empty to always show the field. Conditions can be in the form of <em>field_name:is(value)</em>, <em>field_name:isnot(value)</em>.', 'option-tree' ) . '</div>
+            <div class="format-setting-inner">
+              <input type="text" name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][condition]" value="' . ( isset( $setting['condition'] ) ? esc_attr( $setting['condition'] ) : '' ) . '" class="widefat option-tree-ui-input" autocomplete="off" />
+            </div>
+          </div>
+        </div>
+        <div class="format-settings">
+          <div class="format-setting type-select wide-desc">
+            <div class="description">' . __( '<strong>Condition Operator</strong>: Choose the logical operator to compute the result of the conditions.', 'option-tree' ) . '</div>
+            <div class="format-setting-inner">
+              <select name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][operator]" value="' . esc_attr( $type ) . '" class="option-tree-ui-select">
+                <option value="and">' . __( 'and', 'option-tree' ) . '</option>
+                <option value="or">' . __( 'or', 'option-tree' ) . '</option>
+              </select>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     ' . ( ! $child ? '<input type="hidden" class="hidden-section" name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][section]" value="' . ( isset( $setting['section'] ) ? esc_attr( $setting['section'] ) : '' ) . '" />' : '' );
@@ -3618,6 +3648,8 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
           'field_taxonomy'    => isset( $field['taxonomy'] ) && ! empty( $field['taxonomy'] ) ? $field['taxonomy'] : 'category',
           'field_min_max_step'=> isset( $field['min_max_step'] ) && ! empty( $field['min_max_step'] ) ? $field['min_max_step'] : '0,100,1',
           'field_class'       => isset( $field['class'] ) ? $field['class'] : '',
+          'field_condition'   => isset( $field['condition'] ) ? $field['condition'] : '',
+          'field_operator'    => isset( $field['operator'] ) ? $field['operator'] : 'and',
           'field_choices'     => isset( $field['choices'] ) && ! empty( $field['choices'] ) ? $field['choices'] : array(),
           'field_settings'    => isset( $field['settings'] ) && ! empty( $field['settings'] ) ? $field['settings'] : array(),
           'post_id'           => $post_id,
