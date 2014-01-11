@@ -3674,9 +3674,27 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
           'post_id'           => $post_id,
           'get_option'        => $get_option
         );
+        
+        $conditions = '';
+        
+        if ( isset( $field['condition'] ) && ! empty( $field['condition'] ) ) {
+          
+          $conditionals = explode( ',', $field['condition'] );
+          foreach( $conditionals as $conditions ) {
+            $parts = explode( ':', $field['condition'] );
+            if ( isset( $parts[0] ) ) {
+              $field['condition'] = str_replace( $parts[0], $name . '_' . $parts[0] . '_' . $key, $field['condition'] );
+            }
+          }
+
+          $conditions = ' data-condition="' . $field['condition'] . '"';
+          $conditions.= isset( $field['operator'] ) && in_array( $field['operator'], array( 'and', 'or' ) ) ? ' data-operator="' . $field['operator'] . '"' : '';
+        
+
+        }
           
         /* option label */
-        echo '<div class="format-settings">';
+        echo '<div id="setting_' . $_args['field_id'] . '" class="format-settings"' . $conditions . '>';
           
         /* don't show title with textblocks */
         if ( $_args['type'] != 'textblock' && ! empty( $field['label'] ) ) {
