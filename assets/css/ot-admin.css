@@ -371,14 +371,11 @@
   position: absolute;
   top: 10px;
 }
-
 @media only screen and (max-width: 900px) {
- 
   .format-setting .description, 
   .format-setting .format-setting-inner {
     width: 100%;
   }
-
   .format-setting .description {
     padding-top: 0px;
   };
