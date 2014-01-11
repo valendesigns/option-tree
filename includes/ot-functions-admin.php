@@ -2073,7 +2073,7 @@ if ( ! function_exists( 'ot_option_types_array' ) ) {
       'category-checkbox'         => 'Category Checkbox',
       'category-select'           => 'Category Select',
       'checkbox'                  => 'Checkbox',
-      'colorpicker'               => 'Colorpicker',
+      'colorpicker'               => 'Color Picker',
       'css'                       => 'CSS',
       'custom-post-type-checkbox' => 'Custom Post Type Checkbox',
       'custom-post-type-select'   => 'Custom Post Type Select',
