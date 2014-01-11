@@ -512,10 +512,11 @@ if ( ! function_exists( 'ot_type_custom_post_type_checkbox' ) ) {
 
         /* has posts */
         if ( is_array( $my_posts ) && ! empty( $my_posts ) ) {
-          foreach( $my_posts as $my_post ){
+          foreach( $my_posts as $my_post ) {
+            $post_title = '' != $my_post->post_title ? $my_post->post_title : 'Untitled';
             echo '<p>';
             echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[' . esc_attr( $my_post->ID ) . ']" id="' . esc_attr( $field_id ) . '-' . esc_attr( $my_post->ID ) . '" value="' . esc_attr( $my_post->ID ) . '" ' . ( isset( $field_value[$my_post->ID] ) ? checked( $field_value[$my_post->ID], $my_post->ID, false ) : '' ) . ' class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
-            echo '<label for="' . esc_attr( $field_id ) . '-' . esc_attr( $my_post->ID ) . '">' . $my_post->post_title . '</label>';
+            echo '<label for="' . esc_attr( $field_id ) . '-' . esc_attr( $my_post->ID ) . '">' . $post_title . '</label>';
             echo '</p>';
           }
         } else {
@@ -572,8 +573,9 @@ if ( ! function_exists( 'ot_type_custom_post_type_select' ) ) {
         /* has posts */
         if ( is_array( $my_posts ) && ! empty( $my_posts ) ) {
           echo '<option value="">-- ' . __( 'Choose One', 'option-tree' ) . ' --</option>';
-          foreach( $my_posts as $my_post ){
-            echo '<option value="' . esc_attr( $my_post->ID ) . '"' . selected( $field_value, $my_post->ID, false ) . '>' . esc_attr( $my_post->post_title ) . '</option>';
+          foreach( $my_posts as $my_post ) {
+            $post_title = '' != $my_post->post_title ? $my_post->post_title : 'Untitled';
+            echo '<option value="' . esc_attr( $my_post->ID ) . '"' . selected( $field_value, $my_post->ID, false ) . '>' . $post_title . '</option>';
           }
         } else {
           echo '<option value="">' . __( 'No Posts Found', 'option-tree' ) . '</option>';
@@ -943,10 +945,11 @@ if ( ! function_exists( 'ot_type_page_checkbox' ) ) {
 
       /* has pages */
       if ( is_array( $my_posts ) && ! empty( $my_posts ) ) {
-        foreach( $my_posts as $my_post ){
+        foreach( $my_posts as $my_post ) {
+          $post_title = '' != $my_post->post_title ? $my_post->post_title : 'Untitled';
           echo '<p>';
             echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[' . esc_attr( $my_post->ID ) . ']" id="' . esc_attr( $field_id ) . '-' . esc_attr( $my_post->ID ) . '" value="' . esc_attr( $my_post->ID ) . '" ' . ( isset( $field_value[$my_post->ID] ) ? checked( $field_value[$my_post->ID], $my_post->ID, false ) : '' ) . ' class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
-            echo '<label for="' . esc_attr( $field_id ) . '-' . esc_attr( $my_post->ID ) . '">' . $my_post->post_title . '</label>';
+            echo '<label for="' . esc_attr( $field_id ) . '-' . esc_attr( $my_post->ID ) . '">' . $post_title . '</label>';
           echo '</p>';
         }
       } else {
@@ -1001,7 +1004,8 @@ if ( ! function_exists( 'ot_type_page_select' ) ) {
         if ( is_array( $my_posts ) && ! empty( $my_posts ) ) {
           echo '<option value="">-- ' . __( 'Choose One', 'option-tree' ) . ' --</option>';
           foreach( $my_posts as $my_post ) {
-            echo '<option value="' . esc_attr( $my_post->ID ) . '"' . selected( $field_value, $my_post->ID, false ) . '>' . esc_attr( $my_post->post_title ) . '</option>';
+            $post_title = '' != $my_post->post_title ? $my_post->post_title : 'Untitled';
+            echo '<option value="' . esc_attr( $my_post->ID ) . '"' . selected( $field_value, $my_post->ID, false ) . '>' . $post_title . '</option>';
           }
         } else {
           echo '<option value="">' . __( 'No Pages Found', 'option-tree' ) . '</option>';
@@ -1124,10 +1128,11 @@ if ( ! function_exists( 'ot_type_post_checkbox' ) ) {
         
         /* has posts */
         if ( is_array( $my_posts ) && ! empty( $my_posts ) ) {
-          foreach( $my_posts as $my_post ){
+          foreach( $my_posts as $my_post ) {
+            $post_title = '' != $my_post->post_title ? $my_post->post_title : 'Untitled';
             echo '<p>';
             echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[' . esc_attr( $my_post->ID ) . ']" id="' . esc_attr( $field_id ) . '-' . esc_attr( $my_post->ID ) . '" value="' . esc_attr( $my_post->ID ) . '" ' . ( isset( $field_value[$my_post->ID] ) ? checked( $field_value[$my_post->ID], $my_post->ID, false ) : '' ) . ' class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
-            echo '<label for="' . esc_attr( $field_id ) . '-' . esc_attr( $my_post->ID ) . '">' . esc_attr( $my_post->post_title ) . '</label>';
+            echo '<label for="' . esc_attr( $field_id ) . '-' . esc_attr( $my_post->ID ) . '">' . $post_title . '</label>';
             echo '</p>';
           } 
         } else {
@@ -1181,8 +1186,9 @@ if ( ! function_exists( 'ot_type_post_select' ) ) {
         /* has posts */
         if ( is_array( $my_posts ) && ! empty( $my_posts ) ) {
           echo '<option value="">-- ' . __( 'Choose One', 'option-tree' ) . ' --</option>';
-          foreach( $my_posts as $my_post ){
-            echo '<option value="' . esc_attr( $my_post->ID ) . '"' . selected( $field_value, $my_post->ID, false ) . '>' . esc_attr( $my_post->post_title ) . '</option>';
+          foreach( $my_posts as $my_post ) {
+            $post_title = '' != $my_post->post_title ? $my_post->post_title : 'Untitled';
+            echo '<option value="' . esc_attr( $my_post->ID ) . '"' . selected( $field_value, $my_post->ID, false ) . '>' . $post_title . '</option>';
           }
         } else {
           echo '<option value="">' . __( 'No Posts Found', 'option-tree' ) . '</option>';
