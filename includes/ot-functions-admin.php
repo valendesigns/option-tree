@@ -3681,7 +3681,7 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
           
           $conditionals = explode( ',', $field['condition'] );
           foreach( $conditionals as $conditions ) {
-            $parts = explode( ':', $field['condition'] );
+            $parts = explode( ':', $conditions );
             if ( isset( $parts[0] ) ) {
               $field['condition'] = str_replace( $parts[0], $name . '_' . $parts[0] . '_' . $key, $field['condition'] );
             }
