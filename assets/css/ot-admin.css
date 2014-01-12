@@ -233,10 +233,12 @@
 /* -------------------------------------------------- 
   :: Format Settings
   ---------------------------------------------------*/
-.format-settings { 
-  padding: 10px 0 20px 0; 
+.format-settings {
   position: relative; 
   width: 100%; 
+}
+.format-setting-wrap {
+  padding: 10px 0 20px 0; 
 }
 
 /* -------------------------------------------------- 
@@ -600,7 +602,7 @@ div.option-tree-ui-media-wrap {
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px;
 }
-li ul .format-settings {
+li ul .format-setting-wrap {
   padding: 0 0 10px 0;
 }
 li ul .format-setting-label {
