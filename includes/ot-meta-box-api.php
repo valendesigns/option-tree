@@ -122,15 +122,19 @@ if ( ! class_exists( 'OT_Meta_Box' ) ) {
           /* option label */
           echo '<div id="setting_' . $field['id'] . '" class="format-settings"' . $conditions . '>';
             
-            /* don't show title with textblocks */
-            if ( $_args['type'] != 'textblock' && ! empty( $field['label'] ) ) {
-              echo '<div class="format-setting-label">';
-                echo '<label for="' . $field['id'] . '" class="label">' . $field['label'] . '</label>';
-              echo '</div>';
-            }
+            echo '<div class="format-setting-wrap">';
+            
+              /* don't show title with textblocks */
+              if ( $_args['type'] != 'textblock' && ! empty( $field['label'] ) ) {
+                echo '<div class="format-setting-label">';
+                  echo '<label for="' . $field['id'] . '" class="label">' . $field['label'] . '</label>';
+                echo '</div>';
+              }
       
-            /* get the option HTML */
-            echo ot_display_by_type( $_args );
+              /* get the option HTML */
+              echo ot_display_by_type( $_args );
+              
+            echo '</div>';
             
           echo '</div>';
           
