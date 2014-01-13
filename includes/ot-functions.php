@@ -42,6 +42,29 @@ if ( ! function_exists( 'ot_get_option' ) ) {
 }
 
 /**
+ * Echo Option. (via Github @joshlevinson)
+ *
+ * Helper function to echo the option value.
+ * If no value has been saved, it echos $default.
+ *
+ * @param     string    The option ID.
+ * @param     string    The default option value.
+ * @return    mixed
+ *
+ * @access    public
+ * @since     2.2.0
+ */
+if ( ! function_exists( 'ot_echo_option' ) ) {
+  
+  function ot_echo_option( $option_id, $default = '' ) {
+    
+    echo ot_get_option( $option_id, $default );
+  
+  }
+  
+}
+
+/**
  * Filter the return values through WPML
  *
  * @param     array     $options The current options    
@@ -141,7 +164,7 @@ if ( ! function_exists( 'ot_load_dynamic_css' ) ) {
           
           if ( isset( $parts[1] ) ) {
             
-            $css = home_url( '/wp-content' . $parts[1] );
+            $css = set_url_scheme( WP_CONTENT_URL ) . $parts[1];
             
             if ( $last_css !== $css ) {
               

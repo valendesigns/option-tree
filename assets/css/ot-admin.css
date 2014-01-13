@@ -1,4 +1,68 @@
 /* -------------------------------------------------- 
+  :: OptionTree Font
+  ---------------------------------------------------*/
+[class^="ot-icon-"], 
+[class*=" ot-icon-"] {
+  font-family: "option-tree-font";
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.ot-icon-long-arrow-down:before {
+  content: "\e770";
+}
+.ot-icon-long-arrow-up:before {
+  content: "\e771";
+}
+.ot-icon-long-arrow-left:before {
+  content: "\e772";
+}
+.ot-icon-long-arrow-right:before {
+  content: "\e773";
+}
+.ot-icon-angle-right:before {
+  content: "\e774";
+}
+.ot-icon-angle-left:before {
+  content: "\e775";
+}
+.ot-icon-angle-up:before {
+  content: "\e776";
+}
+.ot-icon-angle-down:before {
+  content: "\e777";
+}
+.ot-icon-resize-vertical:before {
+  content: "\e778";
+}
+.ot-icon-resize-horizontal:before {
+  content: "\e779";
+}
+.ot-icon-fullscreen:before {
+  content: "\e780";
+}
+.ot-icon-plus-sign:before {
+  content: "\e781";
+}
+.ot-icon-minus-sign:before {
+  content: "\e782";
+}
+.ot-icon-ok-sign:before {
+  content: "\e783";
+}
+.ot-icon-circle:before {
+  content: "\e784";
+}
+.ot-icon-option-tree:before {
+  content: "\e785";
+}
+       
+/* -------------------------------------------------- 
   :: Screen Meta & Menu Icon
   ---------------------------------------------------*/
 .appearance_page_ot-theme-options #screen-meta {
@@ -61,7 +125,6 @@
   min-width: 535px;
   overflow: hidden;
   position: relative;
-  background-image: -webkit-linear-gradient(bottom, #373737, #464646 5px);
   -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.05);
   box-shadow: 0 1px 3px rgba(0,0,0,0.05);
   -webkit-border-radius: 4px 4px 0 0;
@@ -84,25 +147,15 @@
   color: #fafafa;
 }
 #option-tree-header #option-tree-logo a {
-  background: transparent url(../images/ot-logo.png) no-repeat 13px center;
   border-right: 1px solid #333;
-  display: block;
   float: left;
   height: 24px;
-  line-height: 24px;
   padding: 3px 12px 3px 13px;
-  text-indent: -9999px;
-  width: 24px;
+  width: 20px;
 }
 #option-tree-header li#option-tree-logo:hover {
   color: #fafafa;
   background-color: #3a3a3a;
-  background-image: -ms-linear-gradient(bottom,#3a3a3a,#222);
-  background-image: -moz-linear-gradient(bottom,#3a3a3a,#222);
-  background-image: -o-linear-gradient(bottom,#3a3a3a,#222);
-  background-image: -webkit-gradient(linear,left bottom,left top,from(#3a3a3a),to(#222));
-  background-image: -webkit-linear-gradient(bottom,#3a3a3a,#222);
-  background-image: linear-gradient(bottom,#3a3a3a,#222);
   -webkit-border-top-left-radius: 5px;
   -moz-border-radius-topleft: 5px;
   border-top-left-radius: 5px;
@@ -180,10 +233,12 @@
 /* -------------------------------------------------- 
   :: Format Settings
   ---------------------------------------------------*/
-.format-settings { 
-  padding: 10px 0 20px 0; 
+.format-settings {
   position: relative; 
   width: 100%; 
+}
+.format-setting-wrap {
+  padding: 10px 0 20px 0; 
 }
 
 /* -------------------------------------------------- 
@@ -318,17 +373,21 @@
   position: absolute;
   top: 10px;
 }
-
 @media only screen and (max-width: 900px) {
- 
   .format-setting .description, 
   .format-setting .format-setting-inner {
     width: 100%;
   }
-
   .format-setting .description {
     padding-top: 0px;
   };
+}
+.ot-background-group {
+  overflow: hidden;
+  width: auto;
+}
+.ot-background-size-input {
+  max-width: 110px;
 }
 
 /* -------------------------------------------------- 
@@ -543,7 +602,7 @@ div.option-tree-ui-media-wrap {
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px;
 }
-li ul .format-settings {
+li ul .format-setting-wrap {
   padding: 0 0 10px 0;
 }
 li ul .format-setting-label {
@@ -591,11 +650,6 @@ li ul .format-setting-label {
 /* -------------------------------------------------- 
   :: Select
   ---------------------------------------------------*/
-.select-group {
-  margin-right: 53px;
-  overflow: hidden;
-  width: auto;
-}
 .select-wrapper {
   background: #fff url(../images/ot-select.png) no-repeat right center;
   border: 1px solid #ccc;
@@ -648,9 +702,10 @@ select.option-tree-ui-select option {
   min-width: 124px;
 }
 .type-measurement select.option-tree-ui-select {
-  min-width: 68px !important;
+  min-width: 73px !important;
 }
 .type-measurement .select-wrapper {
+  margin-right: 0;
   position: absolute;
   right: 0px;
   top: 0px;
@@ -812,198 +867,43 @@ select.option-tree-ui-select option {
   :: Colorpicker
   ---------------------------------------------------*/
 .option-tree-ui-colorpicker-input-wrap {
-  margin-right: 53px;
-  position: relative;
-  width: auto;
+  float: left;
 }
-.format-settings .cp_box {
-  background: #f1f1f1;
-  border: 1px solid #ccc;
-  bottom: 5px;
-  height: 27px;
-  position: absolute;
-  right: -53px;
-  width: 46px;
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
-  border-radius: 2px;
-}
-.ot_colorpicker {
-  width: 342px;
-  height: 170px;
-  overflow: hidden;
-  position: absolute;
-  background: #fafafa url(../images/colorpicker/color_bg.png);
-  font-family: Arial, Helvetica, sans-serif;
+.hide-color-picker {
   display: none;
-  border: 1px solid #bbb;
-  -moz-border-radius: 2px;
+}
+.option-tree-ui-colorpicker-input-wrap .wp-color-picker,
+.option-tree-ui-colorpicker-input-wrap .wp-picker-default,
+.option-tree-ui-colorpicker-input-wrap .wp-picker-clear {
+  border-color: #ccc;
+  height: 29px !important;
+  line-height: 27px !important;
+  margin-top: 0px;
   -webkit-border-radius: 2px;
-  border-radius: 2px;
-  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-  z-index: 100;
+     -moz-border-radius: 2px;
+          border-radius: 2px;
+  -webkit-box-shadow: none;
+     -moz-box-shadow: none;
+          box-shadow: none;
 }
-.ot_colorpicker .colorpicker_color {
-  width: 150px;
-  height: 150px;
-  left: 10px;
-  top: 10px;
-  position: absolute;
-  background: #f00;
-  overflow: hidden;
-  cursor: crosshair;
+.option-tree-ui-colorpicker-input-wrap .wp-color-result {
+  height: 27px;
+  outline: 0;
+  margin: 0 5px 5px 0px;
+  top: 0px;
+  -webkit-box-shadow: none;
+     -moz-box-shadow: none;
+          box-shadow: none;
 }
-.ot_colorpicker .colorpicker_color div {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 150px;
-  height: 150px;
-  background: url(../images/colorpicker/color_overlay.png);
+.option-tree-ui-colorpicker-input-wrap .wp-color-result:after {
+  line-height: 27px;
 }
-.ot_colorpicker .colorpicker_color div div {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 11px;
-  height: 11px;
-  overflow: hidden;
-  background: url(../images/colorpicker/color_select.gif);
-  margin: -5px 0 0 -5px;
-}
-.ot_colorpicker .colorpicker_hue {
-  position: absolute;
-  top: 10px;
-  left: 164px;
-  width: 35px;
-  height: 150px;
-  cursor: n-resize;
-}
-.ot_colorpicker .colorpicker_hue div {
-  position: absolute;
-  width: 35px;
-  height: 9px;
-  overflow: hidden;
-  background: url(../images/colorpicker/color_indicator.png) left top;
-  margin: -5px 0 0 0;
-}
-.ot_colorpicker .colorpicker_new_color {
-  position: absolute;
-  width: 60px;
-  height: 30px;
-  right: 80px;
-  top: 10px;
-  background: #f00;
-}
-.ot_colorpicker .colorpicker_current_color {
-  position: absolute;
-  width: 60px;
-  height: 30px;
-  right: 10px;
-  top: 10px;
-  background: #f00;
-}
-.ot_colorpicker input {
-  background-color: transparent !important;
-  border: 1px solid transparent !important;
-  position: absolute !important;
-  font-size: 10px !important;
-  font-family: Arial, Helvetica, sans-serif !important;
-  color: #666 !important;
-  top: 0px !important;
-  right: 12px !important;
-  text-align: right !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  height: 22px !important;
-  line-height: 22px !important;
-}
-.ot_colorpicker .colorpicker_hex {
-  position: absolute;
-  width: 72px;
-  height: 22px;
-  background: url(../images/colorpicker/color_hex.png) top;
-  left: 201px;
-  bottom: 9px;
-}
-.ot_colorpicker .colorpicker_hex input {
-  left: 13px;
-  height: 22px;
-  line-height: 22px;
-  padding: 10px;
-}
-.ot_colorpicker .colorpicker_field {
-  height: 22px;
-  width: 62px;
-  background-position: top;
-  position: absolute;
-}
-.ot_colorpicker .colorpicker_field span {
-  position: absolute;
-  width: 12px;
-  height: 22px;
-  overflow: hidden;
-  top: 0;
-  right: 0;
-  cursor: n-resize;
-}
-.ot_colorpicker .colorpicker_rgb_r {
-  background-image: url(../images/colorpicker/color_rgb_r.png);
-  top: 49px;
-  left: 201px;
-}
-.ot_colorpicker .colorpicker_rgb_g {
-  background-image: url(../images/colorpicker/color_rgb_g.png);
-  top: 79px;
-  left: 201px;
-}
-.ot_colorpicker .colorpicker_rgb_b {
-  background-image: url(../images/colorpicker/color_rgb_b.png);
-  top: 109px;
-  left: 201px;
-}
-.ot_colorpicker .colorpicker_hsb_h {
-  background-image: url(../images/colorpicker/color_hsb_h.png);
-  top: 49px;
-  right: 9px;
-}
-.ot_colorpicker .colorpicker_hsb_s {
-  background-image: url(../images/colorpicker/color_hsb_s.png);
-  top: 79px;
-  right: 9px;
-}
-.ot_colorpicker .colorpicker_hsb_b {
-  background-image: url(../images/colorpicker/color_hsb_b.png);
-  top: 109px;
-  right: 9px;
-}
-.ot_colorpicker .colorpicker_submit {
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  background: url(../images/colorpicker/color_wheel.png) top;
-  right: 10px;
-  bottom: 10px;
-  overflow: hidden;
-}
-.ot_colorpicker .colorpicker_focus {
-  background-position: center;
-}
-.ot_colorpicker .colorpicker_hex.colorpicker_focus {
-  background-position: bottom;
-}
-.ot_colorpicker .colorpicker_submit.colorpicker_focus {
-  background-position: bottom;
-}
-.ot_colorpicker .colorpicker_slider {
-  background-position: bottom;
-}
-
-@media not screen and (1) {
-  .format-settings .cp_box {
-    height: 26px;
-  };
+.option-tree-ui-colorpicker-input-wrap .wp-picker-container .iris-picker {
+  border-color: #ccc;
+  margin: 0px 5px 5px 0;
+  -webkit-border-radius: 2px;
+     -moz-border-radius: 2px;
+          border-radius: 2px;
 }
 
 /* -------------------------------------------------- 
@@ -1373,4 +1273,271 @@ button.option-tree-ui-button .icon {
 .option-tree-ui-button.active .pencil,
 .option-tree-ui-button.active .check {
   background-position: -54px -0px;
+}
+
+/* -------------------------------------------------- 
+  :: WP 3.8 Fixes (via Github @AlxMedia)
+  ---------------------------------------------------*/
+#option-tree-settings-api #poststuff,
+#option-tree-settings-api #post-body-content { 
+  min-width: 0;
+}
+#option-tree-settings-api #poststuff h3 { 
+  font-family: inherit !important;
+}
+#option-tree-settings-api .postbox { 
+  -webkit-box-shadow: none;
+     -moz-box-shadow: none;
+          box-shadow: none;
+}
+#option-tree-settings-api p input[type="checkbox"], 
+#option-tree-settings-api p input[type="radio"] { 
+  margin-top: 2px;
+}
+#option-tree-settings-api .format-setting.type-checkbox p, 
+#option-tree-settings-api .format-setting.type-radio p { 
+  margin: 0.3em 0 !important;
+}
+input.option-tree-ui-upload-input, 
+input.option-tree-ui-input { 
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+@media screen and ( max-width: 782px ) {
+  #option-tree-settings-api p input[type="checkbox"],
+  #option-tree-settings-api p input[type="radio"] {
+    margin-top: -3px;
+  }
+}
+
+/* -------------------------------------------------- 
+  :: Gallery
+  ---------------------------------------------------*/
+ul.ot-gallery-list {
+  float: left;
+  margin: 0;
+  width: 100%;
+}
+ul.ot-gallery-list li {
+  background: none repeat scroll 0 0 white;
+  border: 1px solid #bbbbbb;
+  float: left;
+  margin: 0px 10px 10px 0;
+  padding: 4px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+ul.ot-gallery-list li img {
+  display: block;
+  margin: 0;
+}
+
+.ot-gallery-buttons {
+  float: left;
+  width: 100%;
+}
+.ot-gallery-buttons a.option-tree-ui-button {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+/* -------------------------------------------------- 
+  :: On/Off Switch
+  ---------------------------------------------------*/
+.on-off-switch .slide-button {
+  display: none;
+}
+@media only screen {
+  .on-off-switch {
+    background-color: white;
+    border: 1px solid #cccccc;
+    color: #333333;
+    display: block;
+    font-family: sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    height: 27px;
+    position: relative;
+    padding: 0;
+    text-align: center;
+    text-transform: uppercase;
+    width: 100px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05);
+    box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05);
+  }
+  .on-off-switch * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  .on-off-switch input {
+    position: absolute;
+    opacity: 0;
+  }
+  .on-off-switch label {
+    cursor: pointer;
+    float: left;
+    height: 27px;
+    line-height: 27px;
+    margin: 0;
+    position: relative;
+    text-align: center;
+    vertical-align: middle;
+    width: 50px;
+    z-index: 2;
+  }
+  .on-off-switch input:last-of-type + label {
+    color: #333333;
+  }
+  .on-off-switch input:checked + label {
+    color: white;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  }
+  .on-off-switch input:focus + label {
+    outline: none;
+  }
+  .on-off-switch .slide-button {
+    border: 1px solid #21759b;
+    border-bottom-color: #1e6a8d;
+    color: white;
+    display: block;
+    height: 29px;
+    left: -1px;
+    padding: 0;
+    position: absolute;
+    text-decoration: none;
+    top: -1px;
+    width: 51px;
+    z-index: 1;
+    background-color: #2688b4;
+    background-image: -moz-linear-gradient(top, #2a95c5, #21759b);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#2a95c5), to(#21759b));
+    background-image: -webkit-linear-gradient(top, #2a95c5, #21759b);
+    background-image: -o-linear-gradient(top, #2a95c5, #21759b);
+    background-image: linear-gradient(to bottom, #2a95c5, #21759b);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ie-hex-str($startColor)', endColorstr='#ie-hex-str($endColor)', GradientType=0);
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    -webkit-transition: all 0.1s ease-out;
+    -moz-transition: all 0.1s ease-out;
+    -o-transition: all 0.1s ease-out;
+    transition: all 0.1s ease-out;
+  }
+  .on-off-switch input:last-of-type:checked ~ .slide-button {
+    border-color: #9b3221;
+    border-bottom-color: #8d2e1e;
+    left: 50px;
+    background-color: #b43a26;
+    background-image: -moz-linear-gradient(top, #c5402a, #9b3221);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#c5402a), to(#9b3221));
+    background-image: -webkit-linear-gradient(top, #c5402a, #9b3221);
+    background-image: -o-linear-gradient(top, #c5402a, #9b3221);
+    background-image: linear-gradient(to bottom, #c5402a, #9b3221);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ie-hex-str($startColor)', endColorstr='#ie-hex-str($endColor)', GradientType=0);
+  }
+  .on-off-switch {
+    -webkit-animation: bugfix infinite 1s;
+  }
+  @-webkit-keyframes bugfix {
+    from {
+      position: relative;
+    }
+    to {
+      position: relative;
+    }
+  }
+}
+
+/* -------------------------------------------------- 
+  :: Simple Input Append & Prepend
+  ---------------------------------------------------*/
+.ot-input-append,
+.ot-input-prepend {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 0;
+  white-space: nowrap;
+}
+.ot-input-append input {
+  position: relative;
+  margin-bottom: 0;
+  *margin-left: 0;
+  vertical-align: top;
+  -webkit-border-radius: 0 2px 2px 0;
+  -moz-border-radius: 0 2px 2px 0;
+  border-radius: 0 2px 2px 0;
+}
+.ot-input-append input:focus,
+.ot-input-prepend input:focus {
+  z-index: 2;
+}
+.ot-input-append .ot-add-on,
+.ot-input-prepend .ot-add-on {
+  display: inline-block;
+  width: auto;
+  height: 27px;
+  line-height: 28px;
+  min-width: 16px;
+  padding: 0 6px;
+  font-size: 16px;
+  font-weight: normal;
+  text-align: center;
+  text-shadow: 0 1px 0 white;
+  background-color: #f7f7f7;
+  border: 1px solid #ccc;
+}
+.ot-input-prepend input {
+  border-left: 0 !important;
+}
+.ot-input-prepend .ot-add-on:first-child {
+  -webkit-border-radius: 2px 0 0 2px;
+  -moz-border-radius: 2px 0 0 2px;
+  border-radius: 2px 0 0 2px;
+}
+.ot-input-append input {
+  border-right: 0 !important;
+  -webkit-border-radius: 2px 0 0 2px;
+  -moz-border-radius: 2px 0 0 2px;
+  border-radius: 2px 0 0 2px;
+}
+.ot-input-append input + .btn-group .btn:first-child {
+  -webkit-border-top-left-radius: 0;
+  -moz-border-radius-topleft: 0;
+  border-top-left-radius: 0;
+  -webkit-border-bottom-left-radius: 0;
+  -moz-border-radius-bottomleft: 0;
+  border-bottom-left-radius: 0;
+}
+.ot-input-append .ot-add-on:last-child {
+  -webkit-border-radius: 0 2px 2px 0;
+  -moz-border-radius: 0 2px 2px 0;
+  border-radius: 0 2px 2px 0;
+}
+.ot-input-prepend.ot-input-append input {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+.ot-input-prepend.ot-input-append .ot-add-on:first-child {
+  -webkit-border-radius: 2px 0 0 2px;
+  -moz-border-radius: 2px 0 0 2px;
+  border-radius: 2px 0 0 2px;
+}
+.ot-input-prepend.ot-input-append .ot-add-on:last-child {
+  -webkit-border-radius: 0 2px 2px 0;
+  -moz-border-radius: 0 2px 2px 0;
+  border-radius: 0 2px 2px 0;
 }

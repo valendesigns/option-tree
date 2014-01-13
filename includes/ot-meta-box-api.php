@@ -97,28 +97,44 @@ if ( ! class_exists( 'OT_Meta_Box' ) ) {
             'field_taxonomy'    => isset( $field['taxonomy'] ) && ! empty( $field['taxonomy'] ) ? $field['taxonomy'] : 'category',
             'field_min_max_step'=> isset( $field['min_max_step'] ) && ! empty( $field['min_max_step'] ) ? $field['min_max_step'] : '0,100,1',
             'field_class'       => isset( $field['class'] ) ? $field['class'] : '',
+            'field_condition'   => isset( $field['condition'] ) ? $field['condition'] : '',
+            'field_operator'    => isset( $field['operator'] ) ? $field['operator'] : 'and',
             'field_choices'     => isset( $field['choices'] ) ? $field['choices'] : array(),
             'field_settings'    => isset( $field['settings'] ) && ! empty( $field['settings'] ) ? $field['settings'] : array(),
             'post_id'           => $post->ID,
             'meta'              => true
           );
           
+          $conditions = '';
+          
+          /* setup the conditions */
+          if ( isset( $field['condition'] ) && ! empty( $field['condition'] ) ) {
+  
+            $conditions = ' data-condition="' . $field['condition'] . '"';
+            $conditions.= isset( $field['operator'] ) && in_array( $field['operator'], array( 'and', 'or' ) ) ? ' data-operator="' . $field['operator'] . '"' : '';
+  
+          }
+          
           /* only allow simple textarea due to DOM issues with wp_editor() */
           if ( $_args['type'] == 'textarea' )
             $_args['type'] = 'textarea-simple';
           
           /* option label */
-          echo '<div class="format-settings">';
+          echo '<div id="setting_' . $field['id'] . '" class="format-settings"' . $conditions . '>';
             
-            /* don't show title with textblocks */
-            if ( $_args['type'] != 'textblock' && ! empty( $field['label'] ) ) {
-              echo '<div class="format-setting-label">';
-                echo '<label for="' . $_args['field_id'] . '" class="label">' . $field['label'] . '</label>';
-              echo '</div>';
-            }
+            echo '<div class="format-setting-wrap">';
+            
+              /* don't show title with textblocks */
+              if ( $_args['type'] != 'textblock' && ! empty( $field['label'] ) ) {
+                echo '<div class="format-setting-label">';
+                  echo '<label for="' . $field['id'] . '" class="label">' . $field['label'] . '</label>';
+                echo '</div>';
+              }
       
-            /* get the option HTML */
-            echo ot_display_by_type( $_args );
+              /* get the option HTML */
+              echo ot_display_by_type( $_args );
+              
+            echo '</div>';
             
           echo '</div>';
           
@@ -251,7 +267,7 @@ if ( ! class_exists( 'OT_Meta_Box' ) ) {
         
         }
         
-        if ( $new && $new !== $old ) {
+        if ( isset( $new ) && $new !== $old ) {
           update_post_meta( $post_id, $field['id'], $new );
         } else if ( '' == $new && $old ) {
           delete_post_meta( $post_id, $field['id'], $old );

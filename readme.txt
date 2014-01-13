@@ -3,8 +3,8 @@ Contributors: valendesigns
 Donate link: http://bit.ly/NuXI3T
 Tags: admin, theme options, meta boxes, options, admin interface, ajax
 Requires at least: 3.5
-Tested up to: 3.6
-Stable tag: 2.1.4
+Tested up to: 3.8
+Stable tag: 2.2.0
 License: GPLv3
 
 Theme Options UI Builder for WordPress. A simple way to create & save Theme Options and Meta Boxes for free or premium themes.
@@ -40,6 +40,31 @@ Yes. OptionTree & WordPress both require PHP5.
 3. Documentation
 
 == Changelog ==
+
+= 2.2.0 =
+* Added the Gallery option type.
+* Added the On/Off option type.
+* Replaced the old Color Picker with the default WP Color Picker.
+* Added UI support for WordPress 3.8. Contributors via github @AlxMedia, and @valendesigns.
+* Added support for conditional toggling of settings fields. Contributors via github @maimairel, @valendesigns, @doitmax, and @imangm.
+* Replaced the OptionTree image icon with a font version.
+* Added 'background-size' to the Background option type.
+* Added fallback text when displaying posts without titles in various option types.
+* Added filter 'ot_recognized_background_fields' to show/hide fields for background option types.
+* Added filter 'ot_filter_description' that allows the theme option descriptions to be filtered before being displayed.
+* Added subfolder compatibility in theme mode. Contributors via github @doitmax, and @valendesigns.
+* Fixed a bug caused by using 'home_url' when loading dynamic CSS files.
+* Fixed an issue where you could not save metabox text field values as "0". Contributors via github @sparkdevelopment, and @valendesigns.
+* Fixed the broken localization directory path in theme mode. Contributors via github @youri--, and @valendesigns.
+* Fixed missing custom class for the Numeric Slider. Contributors via github @doitmax.
+* Added filter 'ot_type_category_checkbox_query' which allows you to filter the get_categories() args for Category Checkbox.
+* Added filter 'ot_type_category_select_query' which allows you to filter the get_categories() args for Category Select.
+* Added filter 'ot_type_taxonomy_checkbox_query' which allows you to filter the get_categories() args for Taxonomy Checkbox.
+* Added filter 'ot_type_taxonomy_select_query' which allows you to filter the get_categories() args for Taxonomy Select.
+* Added the 'ot_echo_option' function. Contributors via github @joshlevinson.
+* Added filter 'ot_theme_options_contextual_help' which allows you to filter the Contextual Help on the Theme Options page.
+* Added filter 'ot_theme_options_sections' which allows you to filter the Sections on the Theme Options page. Contributors via github @joshlevinson.
+* Added filter 'ot_theme_options_settings' which allows you to filter the Settings on the Theme Options page. Contributors via github @joshlevinson.
 
 = 2.1.4 =
 * Hotfix - Fixed the Numeric Slider not work inside of a newly added List item.

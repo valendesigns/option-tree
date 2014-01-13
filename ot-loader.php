@@ -3,7 +3,7 @@
  * Plugin Name: OptionTree
  * Plugin URI:  http://wp.envato.com
  * Description: Theme Options UI Builder for WordPress. A simple way to create & save Theme Options and Meta Boxes for free or premium themes.
- * Version:     2.1.4
+ * Version:     2.2.0
  * Author:      Derek Herman
  * Author URI:  http://valendesigns.com
  * License:     GPLv3
@@ -55,7 +55,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
        *
        * @since     2.1.3
        */
-      define( 'OT_PLUGIN_MODE', strpos( dirname( __FILE__ ), 'plugins/' . basename( dirname( __FILE__ ) ) ) !== false ? true : false );
+      define( 'OT_PLUGIN_MODE', strpos( dirname( __FILE__ ), 'plugins' . DIRECTORY_SEPARATOR . basename( dirname( __FILE__ ) ) ) !== false ? true : false );
       
       /**
        * Path to the languages directory. 
@@ -64,7 +64,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
        *
        * @since     2.0.10
        */
-      define( 'OT_LANG_DIR', dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+      define( 'OT_LANG_DIR', dirname( plugin_basename( __FILE__ ) ) . DIRECTORY_SEPARATOR . 'languages' . DIRECTORY_SEPARATOR );
 
       /* load the text domain  */
       if ( OT_PLUGIN_MODE ) {
@@ -95,7 +95,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
         
       } else {
       
-        load_theme_textdomain( 'option-tree', OT_LANG_DIR . 'theme-mode' );
+        load_theme_textdomain( 'option-tree', DIRECTORY_SEPARATOR . OT_LANG_DIR . 'theme-mode' );
         
       }
       
@@ -142,7 +142,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       /**
        * Current Version number.
        */
-      define( 'OT_VERSION', '2.1.4' );
+      define( 'OT_VERSION', '2.2.0' );
       
       /**
        * For developers: Allow Unfiltered HTML in all the textareas.
@@ -273,11 +273,13 @@ if ( ! class_exists( 'OT_Loader' ) ) {
         define( 'OT_URL', plugin_dir_url( __FILE__ ) );
       } else {
         if ( true == OT_CHILD_THEME_MODE ) {
-          define( 'OT_DIR', trailingslashit( get_stylesheet_directory() ) . trailingslashit( basename( dirname( __FILE__ ) ) ) );
-          define( 'OT_URL', trailingslashit( get_stylesheet_directory_uri() ) . trailingslashit( basename( dirname( __FILE__ ) ) ) );
+          $path = ltrim( end( @explode( end( @explode( '/', get_stylesheet_directory() ) ), dirname( __FILE__ ) ) ), '/' );
+          define( 'OT_DIR', trailingslashit( trailingslashit( get_stylesheet_directory() ) . $path ) );
+          define( 'OT_URL', trailingslashit( trailingslashit( get_stylesheet_directory_uri() ) . $path ) );
         } else {
-          define( 'OT_DIR', trailingslashit( get_template_directory() ) . trailingslashit( basename( dirname( __FILE__ ) ) ) );
-          define( 'OT_URL', trailingslashit( get_template_directory_uri() ) . trailingslashit( basename( dirname( __FILE__ ) ) ) );
+          $path = ltrim( end( @explode( end( @explode( '/', get_template_directory() ) ), dirname( __FILE__ ) ) ), '/' );
+          define( 'OT_DIR', trailingslashit( trailingslashit( get_template_directory() ) . $path ) );
+          define( 'OT_URL', trailingslashit( trailingslashit( get_template_directory_uri() ) . $path ) );
         }
       }
       
@@ -331,7 +333,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       
       /* require the files */
       foreach ( $files as $file ) {
-        $this->load_file( OT_DIR . "includes/{$file}.php" );
+        $this->load_file( OT_DIR . "includes" . DIRECTORY_SEPARATOR . "{$file}.php" );
       }
       
       /* Registers the Theme Option page */
@@ -364,7 +366,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
 
       /* require the files */
       foreach ( $files as $file ) {
-        $this->load_file( OT_DIR . "includes/{$file}.php" );
+        $this->load_file( OT_DIR . "includes" . DIRECTORY_SEPARATOR . "{$file}.php" );
       }
       
     }
@@ -449,6 +451,12 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       /* AJAX call to create a new list item */
       add_action( 'wp_ajax_add_list_item', array( $this, 'add_list_item' ) );
       
+      // Adds the temporary hacktastic shortcode
+      add_filter( 'media_view_settings', array( $this, 'shortcode' ), 10, 2 );
+    
+      // AJAX update
+      add_action( 'wp_ajax_gallery_update', array( $this, 'ajax_gallery_update' ) );
+      
       /* Modify the media uploader button */
       add_filter( 'gettext', array( $this, 'change_image_button' ), 10, 3 );
       
@@ -472,9 +480,57 @@ if ( ! class_exists( 'OT_Loader' ) ) {
      * Adds the global CSS to fix the menu icon.
      */
     public function global_admin_css() {
+      global $wp_version;
+      
+      $wp_38plus = version_compare( $wp_version, '3.8', '>=' ) ? true : false;
+      $fontsize = $wp_38plus ? '20px' : '16px';
+      $wp_38minus = '';
+      
+      if ( ! $wp_38plus ) {
+        $wp_38minus = '
+        #adminmenu #toplevel_page_ot-settings .menu-icon-generic div.wp-menu-image {
+          background: none;
+        }
+        #adminmenu #toplevel_page_ot-settings .menu-icon-generic div.wp-menu-image:before {
+          padding-left: 6px;
+        }';
+      }
+
       echo '
       <style>
-        #adminmenu #toplevel_page_ot-settings .wp-menu-image img { padding: 5px 0px 1px 6px !important; }
+        @font-face {
+          font-family: "option-tree-font";
+          src:url("' . OT_URL . 'assets/fonts/option-tree-font.eot");
+          src:url("' . OT_URL . 'assets/fonts/option-tree-font.eot?#iefix") format("embedded-opentype"),
+            url("' . OT_URL . 'assets/fonts/option-tree-font.woff") format("woff"),
+            url("' . OT_URL . 'assets/fonts/option-tree-font.ttf") format("truetype"),
+            url("' . OT_URL . 'assets/fonts/option-tree-font.svg#option-tree-font") format("svg");
+          font-weight: normal;
+          font-style: normal;
+        }
+        #adminmenu #toplevel_page_ot-settings .menu-icon-generic div.wp-menu-image:before,
+        #option-tree-header #option-tree-logo a:before {
+          font: normal ' . $fontsize . '/1 "option-tree-font" !important;
+          speak: none;
+          padding: 6px 0;
+          height: 34px;
+          width: 20px;
+          display: inline-block;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+          -webkit-transition: all .1s ease-in-out;
+          -moz-transition:    all .1s ease-in-out;
+          transition:         all .1s ease-in-out;
+        }
+        #adminmenu #toplevel_page_ot-settings .menu-icon-generic div.wp-menu-image:before,
+        #option-tree-header #option-tree-logo a:before {
+          content: "\e785";
+        }
+        #option-tree-header #option-tree-logo a:before {
+          font-size: 20px !important;
+          height: 24px;
+          padding: 2px 0;
+        }'  . $wp_38minus . '
       </style>
       ';
     }
@@ -536,6 +592,67 @@ if ( ! class_exists( 'OT_Loader' ) ) {
     }
     
     /**
+     * Fake the gallery shortcode
+     *
+     * The JS takes over and creates the actual shortcode with 
+     * the real attachment IDs on the fly. Here we just need to 
+     * pass in the post ID to get the ball rolling.
+     *
+     * @param     array     The current settings
+     * @param     object    The post object
+     * @return    array
+     *
+     * @access    public
+     * @since     2.2.0
+     */
+    public function shortcode( $settings, $post ) {
+  
+      // Set the OptionTree post ID
+      if ( ! is_object( $post ) )
+        $settings['post']['id'] = ot_get_media_post_ID();
+      
+      // No ID return settings
+      if ( $settings['post']['id'] == 0 )
+        return $settings;
+  
+      // Set the fake shortcode
+      $settings['ot_gallery'] = array( 'shortcode' => "[gallery id='{$settings['post']['id']}']" );
+      
+      // Return settings
+      return $settings;
+      
+    }
+    
+    /**
+     * Returns the AJAX images
+     *
+     * @return    string
+     *
+     * @access    public
+     * @since     2.2.0
+     */
+    public function ajax_gallery_update() {
+    
+      if ( ! empty( $_POST['ids'] ) )  {
+        
+        $return = '';
+        
+        foreach( $_POST['ids'] as $id ) {
+        
+          $thumbnail = wp_get_attachment_image_src( $id, 'thumbnail' );
+          
+          $return .= '<li><img  src="' . $thumbnail[0] . '" width="75" height="75" /></li>';
+          
+        }
+        
+        echo $return;
+        exit();
+      
+      }
+      
+    }
+    
+    /**
      * Filters the media uploader button.
      *
      * @return    string
@@ -557,6 +674,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       return $translation;
       
     }
+    
     
   }
   

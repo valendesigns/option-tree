@@ -57,9 +57,9 @@ if ( ! function_exists( 'ot_register_theme_options_page' ) ) {
                 'reset_message'   => apply_filters( 'ot_theme_options_reset_message', __( 'Theme Options reset.', 'option-tree' ) ),
                 'button_text'     => apply_filters( 'ot_theme_options_button_text', __( 'Save Changes', 'option-tree' ) ),
                 'screen_icon'     => 'themes',
-                'contextual_help' => $contextual_help,
-                'sections'        => $sections,
-                'settings'        => $settings
+                'contextual_help' => apply_filters( 'ot_theme_options_contextual_help', $contextual_help ),
+                'sections'        => apply_filters( 'ot_theme_options_sections', $sections ),
+                'settings'        => apply_filters( 'ot_theme_options_settings', $settings )
               )
             )
           )
@@ -97,7 +97,7 @@ if ( ! function_exists( 'ot_register_settings_page' ) ) {
         'menu_title'      => __( 'OptionTree', 'option-tree' ),
         'capability'      => 'edit_theme_options',
         'menu_slug'       => 'ot-settings',
-        'icon_url'        => OT_URL . '/assets/images/ot-logo-mini.png',
+        'icon_url'        => null,
         'position'        => 61,
         'hidden_page'     => true
       ),
@@ -521,6 +521,9 @@ if ( ! function_exists( 'ot_admin_styles' ) ) {
   
     wp_enqueue_style( 'ot-admin-css', OT_URL . 'assets/css/ot-admin.css', false, OT_VERSION );
     
+    /* load WP colorpicker */
+    wp_enqueue_style( 'wp-color-picker' );
+    
   }
   
 }
@@ -549,14 +552,14 @@ if ( ! function_exists( 'ot_admin_scripts' ) ) {
       add_thickbox();
     }
     
-    /* load the colorpicker */
-    wp_enqueue_script( 'ot-colorpicker-js', OT_URL . 'assets/js/ot-colorpicker.js', array( 'jquery' ), OT_VERSION );
-    
     /* load jQuery-ui slider */
     wp_enqueue_script( 'jquery-ui-slider' );
     
+    /* load WP colorpicker */
+    wp_enqueue_script( 'wp-color-picker' );
+    
     /* load all the required scripts */
-    wp_enqueue_script( 'ot-admin-js', OT_URL . 'assets/js/ot-admin.js', array( 'jquery', 'jquery-ui-tabs', 'jquery-ui-sortable', 'media-upload', 'thickbox' ), OT_VERSION );
+    wp_enqueue_script( 'ot-admin-js', OT_URL . 'assets/js/ot-admin.js', array( 'jquery', 'jquery-ui-tabs', 'jquery-ui-sortable', 'jquery-ui-slider', 'wp-color-picker' ), OT_VERSION );
     
     /* create localized JS array */
     $localized_array = array( 
@@ -567,7 +570,11 @@ if ( ! function_exists( 'ot_admin_scripts' ) ) {
       'remove_no'             => __( 'You can\'t remove this! But you can edit the values.', 'option-tree' ),
       'remove_agree'          => __( 'Are you sure you want to remove this?', 'option-tree' ),
       'activate_layout_agree' => __( 'Are you sure you want to activate this layout?', 'option-tree' ),
-      'setting_limit'         => __( 'Sorry, you can\'t have settings three levels deep.', 'option-tree' )
+      'setting_limit'         => __( 'Sorry, you can\'t have settings three levels deep.', 'option-tree' ),
+      'delete'                => __( 'Delete Gallery', 'option-tree' ), 
+      'edit'                  => __( 'Edit Gallery', 'option-tree' ), 
+      'create'                => __( 'Create Gallery', 'option-tree' ), 
+      'confirm'               => __( 'Are you sure you want to delete this Gallery?', 'option-tree' )
     );
     
     /* localized script attached to 'option_tree' */
@@ -1336,6 +1343,8 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
         $_taxonomy = isset( $value['taxonomy'] ) ? $value['taxonomy'] : '';
         $_min_max_step = isset( $value['min_max_step'] ) ? $value['min_max_step'] : '';
         $_class = isset( $value['class'] ) ? $value['class'] : '';
+        $_condition = isset( $value['condition'] ) ? $value['condition'] : '';
+        $_operator = isset( $value['operator'] ) ? $value['operator'] : '';
         
         $choices = '';
         if ( isset( $value['choices'] ) && ! empty( $value['choices'] ) ) {
@@ -1353,7 +1362,7 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
           $choices = substr_replace( $choices, '' , -1 );
           $choices = ",
         'choices'     => array( $choices
-        ),";
+        )";
         }
         
         $std = "'$_std'";
@@ -1380,6 +1389,8 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
             $_setting_taxonomy = isset( $setting['taxonomy'] ) ? $setting['taxonomy'] : '';
             $_setting_min_max_step = isset( $setting['min_max_step'] ) ? $setting['min_max_step'] : '';
             $_setting_class = isset( $setting['class'] ) ? $setting['class'] : '';
+            $_setting_condition = isset( $setting['condition'] ) ? $setting['condition'] : '';
+            $_setting_operator = isset( $setting['operator'] ) ? $setting['operator'] : '';
             
             $setting_choices = '';
             if ( isset( $setting['choices'] ) && ! empty( $setting['choices'] ) ) {
@@ -1397,7 +1408,7 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
               $setting_choices = substr_replace( $setting_choices, '' , -1 );
               $setting_choices = ",
             'choices'     => array( $setting_choices
-            ),";
+            )";
             }
             
             $setting_std = "'$_setting_std'";
@@ -1422,7 +1433,9 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
             'post_type'   => '$_setting_post_type',
             'taxonomy'    => '$_setting_taxonomy',
             'min_max_step'=> '$_setting_min_max_step',
-            'class'       => '$_setting_class'$setting_choices
+            'class'       => '$_setting_class',
+            'condition'   => '$_setting_condition',
+            'operator'    => '$_setting_operator'$setting_choices
           ),";
           }
           $setting_settings = substr_replace( $setting_settings, '' , -1 );
@@ -1443,7 +1456,9 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
         'post_type'   => '$_post_type',
         'taxonomy'    => '$_taxonomy',
         'min_max_step'=> '$_min_max_step',
-        'class'       => '$_class'$choices$setting_settings
+        'class'       => '$_class',
+        'condition'   => '$_condition',
+        'operator'    => '$_operator'$choices$setting_settings
       ),";
       }
       $settings = substr_replace( $settings, '' , -1 );
@@ -2058,13 +2073,15 @@ if ( ! function_exists( 'ot_option_types_array' ) ) {
       'category-checkbox'         => 'Category Checkbox',
       'category-select'           => 'Category Select',
       'checkbox'                  => 'Checkbox',
-      'colorpicker'               => 'Colorpicker',
+      'colorpicker'               => 'Color Picker',
       'css'                       => 'CSS',
       'custom-post-type-checkbox' => 'Custom Post Type Checkbox',
       'custom-post-type-select'   => 'Custom Post Type Select',
+      'gallery'                   => 'Gallery',
       'list-item'                 => 'List Item',
       'measurement'               => 'Measurement',
       'numeric-slider'            => 'Numeric Slider',
+      'on-off'                    => 'On/Off',
       'page-checkbox'             => 'Page Checkbox',
       'page-select'               => 'Page Select',
       'post-checkbox'             => 'Post Checkbox',
@@ -2874,7 +2891,7 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
               $value = ! empty( $font ) ? implode( "\n", $font ) : '';
               
             /* background */
-            } else if ( ot_array_keys_exists( $value, array( 'background-color', 'background-image', 'background-repeat', 'background-attachment', 'background-position' ) ) ) {
+            } else if ( ot_array_keys_exists( $value, array( 'background-color', 'background-image', 'background-repeat', 'background-attachment', 'background-position', 'background-size' ) ) ) {
               $bg = array();
               
               if ( ! empty( $value['background-color'] ) )
@@ -2892,8 +2909,19 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
               if ( ! empty( $value['background-position'] ) )
                 $bg[] = $value['background-position'];
               
+              if ( ! empty( $value['background-size'] ) )
+                $size = $value['background-size'];
+                
               /* set $value with background properties or empty string */
               $value = ! empty( $bg ) ? 'background: ' . implode( " ", $bg ) . ';' : '';
+              
+              if ( isset( $size ) ) {
+                if ( ! empty( $bg ) ) {
+                  $value.= apply_filters( 'ot_insert_css_with_markers_bg_size_white_space', "\n\x20\x20", $option_id );
+                }
+                $value.= "background-size: $size;";
+              }
+              
             }
           
           } else {
@@ -3229,6 +3257,7 @@ if ( ! function_exists( 'ot_settings_view' ) ) {
     $child = ( strpos( $name, '][settings]') !== false ) ? true : false;
     $type = isset( $setting['type'] ) ? $setting['type'] : '';
     $std = isset( $setting['std'] ) ? $setting['std'] : '';
+    $operator = isset( $setting['operator'] ) ? esc_attr( $setting['operator'] ) : 'and';
     
     // Serialize the standard value just incase
     if ( is_array( $std ) ) {
@@ -3355,6 +3384,25 @@ if ( ! function_exists( 'ot_settings_view' ) ) {
             <div class="description">' . __( '<strong>CSS Class</strong>: Add and optional class to this option type.', 'option-tree' ) . '</div>
             <div class="format-setting-inner">
               <input type="text" name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][class]" value="' . ( isset( $setting['class'] ) ? esc_attr( $setting['class'] ) : '' ) . '" class="widefat option-tree-ui-input" autocomplete="off" />
+            </div>
+          </div>
+        </div>
+        <div class="format-settings">
+          <div class="format-setting type-text wide-desc">
+            <div class="description">' . __( '<strong>Condition</strong>: Add a comma separated list of conditions where this field will be visible, leave empty to always show the field. Conditions can be in the form of <code>field_name:is(value)</code>, <code>field_name:not(value)</code>, <code>field_name:contains(value)</code>, <code>field_name:less_than(value)</code>, <code>field_name:less_than_or_equal_to(value)</code>, <code>field_name:greater_than(value)</code>, or <code>field_name:greater_than_or_equal_to(value)</code>.', 'option-tree' ) . '</div>
+            <div class="format-setting-inner">
+              <input type="text" name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][condition]" value="' . ( isset( $setting['condition'] ) ? esc_attr( $setting['condition'] ) : '' ) . '" class="widefat option-tree-ui-input" autocomplete="off" />
+            </div>
+          </div>
+        </div>
+        <div class="format-settings">
+          <div class="format-setting type-select wide-desc">
+            <div class="description">' . __( '<strong>Condition Operator</strong>: Choose the logical operator to compute the result of the conditions.', 'option-tree' ) . '</div>
+            <div class="format-setting-inner">
+              <select name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][operator]" value="' . $operator . '" class="option-tree-ui-select">
+                <option value="and" ' . selected( $operator, 'and', false ) . '>' . __( 'and', 'option-tree' ) . '</option>
+                <option value="or" ' . selected( $operator, 'or', false ) . '>' . __( 'or', 'option-tree' ) . '</option>
+              </select>
             </div>
           </div>
         </div>
@@ -3618,14 +3666,36 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
           'field_taxonomy'    => isset( $field['taxonomy'] ) && ! empty( $field['taxonomy'] ) ? $field['taxonomy'] : 'category',
           'field_min_max_step'=> isset( $field['min_max_step'] ) && ! empty( $field['min_max_step'] ) ? $field['min_max_step'] : '0,100,1',
           'field_class'       => isset( $field['class'] ) ? $field['class'] : '',
+          'field_condition'   => isset( $field['condition'] ) ? $field['condition'] : '',
+          'field_operator'    => isset( $field['operator'] ) ? $field['operator'] : 'and',
           'field_choices'     => isset( $field['choices'] ) && ! empty( $field['choices'] ) ? $field['choices'] : array(),
           'field_settings'    => isset( $field['settings'] ) && ! empty( $field['settings'] ) ? $field['settings'] : array(),
           'post_id'           => $post_id,
           'get_option'        => $get_option
         );
+        
+        $conditions = '';
+        
+        /* setup the conditions */
+        if ( isset( $field['condition'] ) && ! empty( $field['condition'] ) ) {
+          
+          /* doing magic on the conditions so they work in a list item */
+          $conditionals = explode( ',', $field['condition'] );
+          foreach( $conditionals as $conditions ) {
+            $parts = explode( ':', $conditions );
+            if ( isset( $parts[0] ) ) {
+              $field['condition'] = str_replace( $parts[0], $name . '_' . $parts[0] . '_' . $key, $field['condition'] );
+            }
+          }
+
+          $conditions = ' data-condition="' . $field['condition'] . '"';
+          $conditions.= isset( $field['operator'] ) && in_array( $field['operator'], array( 'and', 'or' ) ) ? ' data-operator="' . $field['operator'] . '"' : '';
+        
+
+        }
           
         /* option label */
-        echo '<div class="format-settings">';
+        echo '<div id="setting_' . $_args['field_id'] . '" class="format-settings"' . $conditions . '>';
           
         /* don't show title with textblocks */
         if ( $_args['type'] != 'textblock' && ! empty( $field['label'] ) ) {
