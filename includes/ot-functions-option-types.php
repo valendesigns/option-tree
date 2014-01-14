@@ -493,7 +493,10 @@ if ( ! function_exists( 'ot_type_css' ) ) {
       echo '<div class="format-setting-inner">';
         
         /* build textarea for CSS */
-        echo '<textarea class="textarea ' . esc_attr( $field_class ) . '" rows="' . esc_attr( $field_rows )  . '" cols="40" name="' . esc_attr( $field_name ) .'" id="' . esc_attr( $field_id ) . '">' . esc_textarea( $field_value ) . '</textarea>';
+	    	echo '<textarea class="hidden" id="textarea_' . esc_attr( $field_id ) . '" name="' . esc_attr( $field_name ) .'">' . esc_attr( $field_value ) . '</textarea>';
+		
+		    /* build pre to convert it into ace editor later */
+  	  	echo '<pre class="ot-css-editor ' . esc_attr( $field_class ) . '" id="' . esc_attr( $field_id ) . '">' . esc_textarea( $field_value ) . '</pre>';
         
       echo '</div>';
       
