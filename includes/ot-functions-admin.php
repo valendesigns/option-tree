@@ -561,6 +561,9 @@ if ( ! function_exists( 'ot_admin_scripts' ) ) {
     /* load all the required scripts */
     wp_enqueue_script( 'ot-admin-js', OT_URL . 'assets/js/ot-admin.js', array( 'jquery', 'jquery-ui-tabs', 'jquery-ui-sortable', 'jquery-ui-slider', 'wp-color-picker' ), OT_VERSION );
     
+    /* Load Ace Editor for CSS Editing */
+    wp_enqueue_script( 'ace-editor', OT_URL . 'assets/js/vendor/ace/ace.js', array( 'jquery', 'jquery-ui-tabs', 'jquery-ui-sortable', 'jquery-ui-slider', 'wp-color-picker', 'ot-admin-js' ), OT_VERSION );    
+    
     /* create localized JS array */
     $localized_array = array( 
       'ajax'                  => admin_url( 'admin-ajax.php' ),
