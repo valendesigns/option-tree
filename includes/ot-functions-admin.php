@@ -506,7 +506,7 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
   }
 
 }
-  
+
 /**
  * Setup the default admin styles
  *
@@ -518,12 +518,23 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
 if ( ! function_exists( 'ot_admin_styles' ) ) {
 
   function ot_admin_styles() {
-  
-    wp_enqueue_style( 'ot-admin-css', OT_URL . 'assets/css/ot-admin.css', false, OT_VERSION );
+    global $wp_styles;
+    
+    /* execute styles before actions */
+    do_action( 'ot_admin_styles_before' );
     
     /* load WP colorpicker */
     wp_enqueue_style( 'wp-color-picker' );
     
+    /* load admin styles */
+    wp_enqueue_style( 'ot-admin-css', OT_URL . 'assets/css/ot-admin.css', false, OT_VERSION );
+    
+    /* load the RTL stylesheet */
+    $wp_styles->add_data( 'ot-admin-css','rtl', true );
+    
+    /* execute styles after actions */
+    do_action( 'ot_admin_styles_after' );
+
   }
   
 }
@@ -543,7 +554,10 @@ if ( ! function_exists( 'ot_admin_styles' ) ) {
 if ( ! function_exists( 'ot_admin_scripts' ) ) {
 
   function ot_admin_scripts() {
-
+    
+    /* execute scripts before actions */
+    do_action( 'ot_admin_scripts_before' );
+    
     if ( function_exists( 'wp_enqueue_media' ) ) {
       /* WP 3.5 Media Uploader */
       wp_enqueue_media();
@@ -582,6 +596,9 @@ if ( ! function_exists( 'ot_admin_scripts' ) ) {
     
     /* localized script attached to 'option_tree' */
     wp_localize_script( 'ot-admin-js', 'option_tree', $localized_array );
+    
+    /* execute scripts after actions */
+    do_action( 'ot_admin_scripts_after' );
 
   }
   

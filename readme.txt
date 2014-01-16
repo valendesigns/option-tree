@@ -43,6 +43,8 @@ Yes. OptionTree & WordPress both require PHP5.
 
 = 2.3.0 =
 * Added Ace Editor to the CSS option type. Contributors via github @imangm and @valendesigns.
+* Added support for RTL languages. Contributors via github @omid-khd and @valendesigns.
+* Added actions before and after the enqueue styles and scripts.
 
 = 2.2.0 =
 * Added the Gallery option type.
