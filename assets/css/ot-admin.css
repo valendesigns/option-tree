@@ -1541,3 +1541,25 @@ ul.ot-gallery-list li img {
   -moz-border-radius: 0 2px 2px 0;
   border-radius: 0 2px 2px 0;
 }
+
+/* -------------------------------------------------- 
+  :: CSS Editor
+  ---------------------------------------------------*/
+#option-tree-settings-api pre + pre {
+	position: absolute;
+}
+#option-tree-settings-api pre.ot-css-editor {
+	bottom: 0;
+	height: 220px;
+	left: 0;
+	margin: 0 !important;
+	right: 0;
+	top: 0;
+}
+#option-tree-settings-api pre.ace-chrome {
+  background-color: #fff !important;
+  border: 1px solid #ccc;
+  -webkit-border-radius: 2px;
+     -moz-border-radius: 2px;
+          border-radius: 2px;
+}
