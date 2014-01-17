@@ -622,7 +622,7 @@ li ul .format-setting-label {
   left: 13px;
   position: absolute;
   top: 30px;
-  z-index: 100;
+  z-index: 10;
 }
 .option-tree-save-layout {
   float: left;
