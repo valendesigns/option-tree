@@ -624,6 +624,94 @@ if ( ! function_exists( 'ot_type_custom_post_type_select' ) ) {
 }
 
 /**
+ * Date Time Picker option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.3
+ */
+if ( ! function_exists( 'ot_type_datetime_picker' ) ) {
+  
+  function ot_type_datetime_picker( $args = array() ) {
+    
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+    
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-datetime-picker ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+	  
+	  /* datetime picker JS */      
+	  echo '<script>jQuery(document).ready(function($) { OT_UI.bind_datetime_picker("' . esc_attr( $field_id ) . '"); });</script>';      
+      
+	  /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+      
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+      
+        /* build datetime picker */
+        echo '<input type="text" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" value="' . esc_attr( $field_value ) . '" class="widefat option-tree-ui-input ' . esc_attr( $field_class ) . '" />';
+        
+      echo '</div>';
+    
+    echo '</div>';
+    
+  }
+  
+}
+
+/**
+ * Date Picker option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.3
+ */
+if ( ! function_exists( 'ot_type_date_picker' ) ) {
+  
+  function ot_type_date_picker( $args = array() ) {
+    
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+    
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-date-picker ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+	  
+	  /* date picker JS */      
+	  echo '<script>jQuery(document).ready(function($) { OT_UI.bind_date_picker("' . esc_attr( $field_id ) . '"); });</script>';      
+      
+	  /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+      
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+      
+        /* build date picker */
+        echo '<input type="text" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" value="' . esc_attr( $field_value ) . '" class="widefat option-tree-ui-input ' . esc_attr( $field_class ) . '" />';
+        
+      echo '</div>';
+    
+    echo '</div>';
+    
+  }
+  
+}
+
+/**
  * Gallery option type.
  *
  * See @ot_display_by_type to see the full list of available arguments.
