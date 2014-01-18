@@ -522,9 +522,9 @@ if ( ! function_exists( 'ot_admin_styles' ) ) {
     
     /* execute styles before actions */
     do_action( 'ot_admin_styles_before' );
-	
-	/* load jQuery Date & Timepicker */
-	wp_enqueue_style( 'ot-datetimepicker-css', OT_URL . 'assets/css/ot-datetimepicker.css', false, OT_VERSION );
+
+    /* load jQuery Date & Timepicker */
+    wp_enqueue_style( 'ot-datetimepicker-css', OT_URL . 'assets/css/ot-datetimepicker.css', false, OT_VERSION );
     
     /* load WP colorpicker */
     wp_enqueue_style( 'wp-color-picker' );
@@ -584,7 +584,7 @@ if ( ! function_exists( 'ot_admin_scripts' ) ) {
     /* load jQuery-ui timepicker */
     wp_enqueue_script( 'jquery-ui-datetimepicker', OT_URL . 'assets/js/ot-timepicker.js', array( 'jquery', 'jquery-ui-slider', 'jquery-ui-datepicker', 'ot-admin-js' ), OT_VERSION );
 	
-	/* Load Ace Editor for CSS Editing */
+    /* Load Ace Editor for CSS Editing */
     wp_enqueue_script( 'ace-editor', OT_URL . 'assets/js/vendor/ace/ace.js', array( 'jquery', 'jquery-ui-tabs', 'jquery-ui-sortable', 'jquery-ui-slider', 'wp-color-picker', 'ot-admin-js' ), OT_VERSION );    
     
     /* create localized JS array */
@@ -2106,8 +2106,8 @@ if ( ! function_exists( 'ot_option_types_array' ) ) {
       'css'                       => 'CSS',
       'custom-post-type-checkbox' => 'Custom Post Type Checkbox',
       'custom-post-type-select'   => 'Custom Post Type Select',
-	  'datetime-picker'			  => 'Date Time Picker',
-	  'date-picker'			 	  => 'Date Picker',
+      'datetime-picker'		  => 'Date Time Picker',
+      'date-picker'               => 'Date Picker',
       'gallery'                   => 'Gallery',
       'list-item'                 => 'List Item',
       'measurement'               => 'Measurement',
