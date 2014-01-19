@@ -1617,6 +1617,11 @@ ul.ot-gallery-list li img {
   height: 30px;
   text-align: center;
   cursor: pointer;
+  overflow: hidden;
+}
+.ui-datepicker-prev span, 
+.ui-datepicker-next span {
+  text-indent: -9999px;
 }
 .ui-datepicker-prev:hover, 
 .ui-datepicker-next:hover {
