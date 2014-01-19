@@ -437,3 +437,75 @@ ul.ot-gallery-list li {
     right: 50px;
   }
 }
+
+/* -------------------------------------------------- 
+  :: Date Picker
+  ---------------------------------------------------*/
+.ui-datepicker {
+  direction: rtl;
+}
+.ui-datepicker .ui-widget-header {
+  left: auto;
+  right: -1px;
+}
+.ui-datepicker-prev:before {
+  border-right: 0px;
+  border-left: 1px solid #555;
+  content: "\e774";
+  float: left;
+  width: 31px;
+  height: 30px;
+}
+.ui-datepicker-prev {
+  border-right: 0px;
+  border-left: 1px solid #333;
+  float: right;
+  width: 31px;
+}
+.ui-datepicker-next:before {
+  border-left: 0px;
+  border-right: 1px solid #333;
+  content: "\e775";
+  float: right;
+  width: 30px;
+  height: 30px;
+}
+.ui-datepicker-next {
+  border-left: 0px;
+  border-right: 1px solid #555;
+  float: left;
+  width: 30px;
+}
+.ui-datepicker thead th:last-child {
+  border-left: 1px solid #ccc;
+}
+.ui-datepicker tbody td {
+  border-left: 1px solid #ccc;
+}
+.ui-datepicker tbody td:first-child {
+  border-left: 0px;
+}
+.ui-datepicker .ui-datepicker-buttonpane button {
+  float: left;
+}
+.ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current {
+  float: right;
+}
+
+/* -------------------------------------------------- 
+  :: Time Picker
+  ---------------------------------------------------*/
+.ui-timepicker-div { 
+  direction: rtl; 
+}
+.ui-timepicker-div dl { 
+  text-align: right; 
+  padding: 0 5px 0 0; 
+}
+.ui-timepicker-div dl dt { 
+  float: right; 
+  clear: right; 
+}
+.ui-timepicker-div dl dd { 
+  margin: 0 45% 10px 10px; 
+}
