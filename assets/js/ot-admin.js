@@ -551,14 +551,14 @@
     bind_date_picker: function(field_id) {
       $('#'+field_id).datepicker({
         showOtherMonths: true,
-        dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+        dayNamesMin: [option_tree.sunday_min, option_tree.monday_min, option_tree.tuesday_min, option_tree.wednesday_min, option_tree.thursday_min, option_tree.friday_min, option_tree.saturday_min],
         showButtonPanel: true
       });
     },
     bind_date_time_picker: function(field_id) {
       $('#'+field_id).datetimepicker({
         showOtherMonths: true,
-        dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+        dayNamesMin: [option_tree.sunday_min, option_tree.monday_min, option_tree.tuesday_min, option_tree.wednesday_min, option_tree.thursday_min, option_tree.friday_min, option_tree.saturday_min]
       });
     },
     fix_upload_parent: function() {

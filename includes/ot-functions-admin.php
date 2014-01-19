@@ -597,7 +597,14 @@ if ( ! function_exists( 'ot_admin_scripts' ) ) {
       'delete'                => __( 'Delete Gallery', 'option-tree' ), 
       'edit'                  => __( 'Edit Gallery', 'option-tree' ), 
       'create'                => __( 'Create Gallery', 'option-tree' ), 
-      'confirm'               => __( 'Are you sure you want to delete this Gallery?', 'option-tree' )
+      'confirm'               => __( 'Are you sure you want to delete this Gallery?', 'option-tree' ),
+      'sunday_min'            => _x( 'Sun', 'Minimized version of Sunday', 'option-tree' ),
+      'monday_min'            => _x( 'Mon', 'Minimized version of Monday', 'option-tree' ),
+      'tuesday_min'           => _x( 'Tue', 'Minimized version of Tuesday', 'option-tree' ),
+      'wednesday_min'         => _x( 'Wed', 'Minimized version of Wednesday', 'option-tree' ),
+      'thursday_min'          => _x( 'Thu', 'Minimized version of Thursday', 'option-tree' ),
+      'friday_min'            => _x( 'Fri', 'Minimized version of Friday', 'option-tree' ),
+      'saturday_min'          => _x( 'Sat', 'Minimized version of Saturday', 'option-tree' ),
     );
     
     /* localized script attached to 'option_tree' */
