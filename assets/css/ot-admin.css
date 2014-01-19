@@ -1723,7 +1723,7 @@ a.ui-datepicker-next {
   border-left: 0;
   border-right: 0;
   border-bottom: 0;
-  margin: .7em 0 0 0;
+  margin: 0;
   padding: 0 .7em;
 }
 .ui-datepicker .ui-datepicker-buttonpane button {
@@ -1734,7 +1734,7 @@ a.ui-datepicker-next {
   cursor: pointer;
   float: right;
   height: auto;
-  margin: .7em .2em;
+  margin: .7em 0;
   padding: 5px 14px;
   width: auto;
   background-image: -moz-linear-gradient(top, #2a95c5, #21759b);
@@ -1754,13 +1754,16 @@ a.ui-datepicker-next {
 .ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current {
   float: left;
 }
+.ui-datepicker-calendar + .ui-datepicker-buttonpane {
+  border-bottom: 1px solid #ccc;
+}
 
 /* -------------------------------------------------- 
   :: Time Picker
   ---------------------------------------------------*/
 .ui-timepicker-div {
   border-top: 1px solid #ccc;
-  padding: 0 10px;
+  padding: 0 .4em;
 }
 .ui-timepicker-div .ui-widget-content { 
   border: 1px solid #aaaaaa;
@@ -1773,10 +1776,12 @@ a.ui-datepicker-next {
   text-align: left;
 }
 .ui-timepicker-div .ui-slider-horizontal {
-  height: .7em;
-  border-radius: 3px;
+  height: .8em;
+  bottom: -.2em;
+  position: relative;
   -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;
 }
 .ui-timepicker-div .ui-slider-horizontal .ui-slider-handle {
   background-color: #21759b; 
@@ -1785,7 +1790,7 @@ a.ui-datepicker-next {
   cursor: pointer;
   display: block;
   height: 1em; 
-  margin-left: -.6em;
+  margin-left: -.5em;
   outline: 0;
   position: absolute;
   top: -.2em;
@@ -1812,7 +1817,7 @@ a.ui-datepicker-next {
 }
 .ui-timepicker-div dl dt { 
   float: left; 
-  clear:left; 
+  clear: left; 
   padding: 0 0 0 5px; 
 }
 .ui-timepicker-div dl dd { 
@@ -1826,19 +1831,4 @@ a.ui-datepicker-next {
   border: none; 
   margin: 0; 
   padding: 0; 
-}
-/* Right to left */
-.ui-timepicker-rtl { 
-  direction: rtl; 
-}
-.ui-timepicker-rtl dl { 
-  text-align: right; 
-  padding: 0 5px 0 0; 
-}
-.ui-timepicker-rtl dl dt { 
-  float: right; 
-  clear: right; 
-}
-.ui-timepicker-rtl dl dd { 
-  margin: 0 45% 10px 10px; 
 }

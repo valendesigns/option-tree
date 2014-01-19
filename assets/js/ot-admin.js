@@ -548,14 +548,15 @@
     bind_colorpicker: function(field_id) {
       $('#'+field_id).wpColorPicker();
     },
-    bind_date_time_picker: function(field_id) {
-      $('#'+field_id).datetimepicker({
-        showOtherMonths: true,
-        dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-      });
-    },
     bind_date_picker: function(field_id) {
       $('#'+field_id).datepicker({
+        showOtherMonths: true,
+        dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+        showButtonPanel: true
+      });
+    },
+    bind_date_time_picker: function(field_id) {
+      $('#'+field_id).datetimepicker({
         showOtherMonths: true,
         dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
       });
