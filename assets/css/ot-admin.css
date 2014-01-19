@@ -1789,12 +1789,12 @@ a.ui-datepicker-next {
   border-bottom-color: #1e6a8d;
   cursor: pointer;
   display: block;
-  height: 1em; 
+  height: 1.1em; 
   margin-left: -.5em;
   outline: 0;
   position: absolute;
   top: -.2em;
-  width: 1em; 
+  width: .8em; 
   background-image: -webkit-gradient(linear,left top,left bottom,from(#2a95c5),to(#21759b));
   background-image: -webkit-linear-gradient(top,#2a95c5,#21759b);
   background-image: -moz-linear-gradient(top,#2a95c5,#21759b);
