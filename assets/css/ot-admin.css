@@ -1815,9 +1815,13 @@ a.ui-datepicker-next {
   float: left;
   width: 216px !important;
 }
+.ui-datepicker-row-break {
+  clear: both;
+  width: 100%;
+  font-size: 0;
+}
 .ui-datepicker-multi .ui-datepicker-buttonpane {
   border-top: 1px solid #ccc !important;
-  clear: both;
 }
 
 /* -------------------------------------------------- 
