@@ -550,15 +550,15 @@
     },
     bind_datetime_picker: function(field_id) {
       $('#'+field_id).datetimepicker({
-          showOtherMonths: true,
-		  dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-	  });
+        showOtherMonths: true,
+        dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+      });
     },
     bind_date_picker: function(field_id) {
       $('#'+field_id).datepicker({
-          showOtherMonths: true,
-		  dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-	  });
+        showOtherMonths: true,
+        dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+      });
     },
     fix_upload_parent: function() {
       $(document).on('focus blur', '.option-tree-ui-upload-input', function(){

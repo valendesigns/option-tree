@@ -45,7 +45,7 @@ Yes. OptionTree & WordPress both require PHP5.
 * Added Ace Editor to the CSS option type. Contributors via github @imangm and @valendesigns.
 * Added support for RTL languages. Contributors via github @omid-khd and @valendesigns.
 * Added actions before and after the enqueue styles and scripts.
-* Added Date and Time Picker. Contributors via github @jetonr and @valendesigns.
+* Added Date and Time Picker option types. Contributors via github @jetonr and @valendesigns.
 
 = 2.2.1 =
 * Hotfix - Fixed a UI bug that caused the layouts input to cover the wp menu.
