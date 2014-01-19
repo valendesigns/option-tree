@@ -548,7 +548,7 @@
     bind_colorpicker: function(field_id) {
       $('#'+field_id).wpColorPicker();
     },
-    bind_datetime_picker: function(field_id) {
+    bind_date_time_picker: function(field_id) {
       $('#'+field_id).datetimepicker({
         showOtherMonths: true,
         dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']

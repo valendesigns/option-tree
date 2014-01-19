@@ -678,9 +678,9 @@ if ( ! function_exists( 'ot_type_date_picker' ) ) {
  * @access    public
  * @since     2.3
  */
-if ( ! function_exists( 'ot_type_datetime_picker' ) ) {
+if ( ! function_exists( 'ot_type_date_time_picker' ) ) {
   
-  function ot_type_datetime_picker( $args = array() ) {
+  function ot_type_date_time_picker( $args = array() ) {
     
     /* turns arguments array into variables */
     extract( $args );
@@ -689,10 +689,10 @@ if ( ! function_exists( 'ot_type_datetime_picker' ) ) {
     $has_desc = $field_desc ? true : false;
     
     /* format setting outer wrapper */
-    echo '<div class="format-setting type-datetime-picker ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+    echo '<div class="format-setting type-date-time-picker ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
     
-    /* datetime picker JS */      
-    echo '<script>jQuery(document).ready(function($) { OT_UI.bind_datetime_picker("' . esc_attr( $field_id ) . '"); });</script>';      
+    /* date time picker JS */      
+    echo '<script>jQuery(document).ready(function($) { OT_UI.bind_date_time_picker("' . esc_attr( $field_id ) . '"); });</script>';      
       
       /* description */
       echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
@@ -700,7 +700,7 @@ if ( ! function_exists( 'ot_type_datetime_picker' ) ) {
       /* format setting inner wrapper */
       echo '<div class="format-setting-inner">';
       
-        /* build datetime picker */
+        /* build date time picker */
         echo '<input type="text" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" value="' . esc_attr( $field_value ) . '" class="widefat option-tree-ui-input ' . esc_attr( $field_class ) . '" />';
         
       echo '</div>';

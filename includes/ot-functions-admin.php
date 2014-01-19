@@ -2104,7 +2104,7 @@ if ( ! function_exists( 'ot_option_types_array' ) ) {
       'custom-post-type-checkbox' => 'Custom Post Type Checkbox',
       'custom-post-type-select'   => 'Custom Post Type Select',
       'date-picker'               => 'Date Picker',
-      'datetime-picker'           => 'Date Time Picker',
+      'date-time-picker'          => 'Date Time Picker',
       'gallery'                   => 'Gallery',
       'list-item'                 => 'List Item',
       'measurement'               => 'Measurement',
