@@ -1548,15 +1548,15 @@ ul.ot-gallery-list li img {
   :: CSS Editor
   ---------------------------------------------------*/
 #option-tree-settings-api pre + pre {
-	position: absolute;
+  position: absolute;
 }
 #option-tree-settings-api pre.ot-css-editor {
-	bottom: 0;
-	height: 280px;
-	left: 0;
-	margin: 0 !important;
-	right: 0;
-	top: 0;
+  bottom: 0;
+  height: 280px;
+  left: 0;
+  margin: 0 !important;
+  right: 0;
+  top: 0;
 }
 #option-tree-settings-api pre.ace-chrome {
   background-color: #fff !important;
@@ -1801,6 +1801,23 @@ a.ui-datepicker-next {
 }
 .ui-datepicker-calendar + .ui-datepicker-buttonpane {
   border-bottom: 1px solid #ccc;
+}
+.ui-datepicker-multi-2 {
+  width: 432px !important;
+}
+.ui-datepicker-multi-3 {
+  width: 648px !important;
+}
+.ui-datepicker-multi-4 {
+  width: 864px !important;
+}
+.ui-datepicker-group {
+  float: left;
+  width: 216px !important;
+}
+.ui-datepicker-multi .ui-datepicker-buttonpane {
+  border-top: 1px solid #ccc !important;
+  clear: both;
 }
 
 /* -------------------------------------------------- 
