@@ -979,6 +979,7 @@ input[type="submit"].option-tree-ui-button::-moz-focus-inner {
 .option-tree-ui-button.focus,
 .option-tree-ui-button:focus,
 .option-tree-ui-button.red:focus {
+  outline: 0;
   -webkit-box-shadow: 1px 1px 1px rgba(0,0,0,.2);
   box-shadow: 1px 1px 1px rgba(0,0,0,.2);
 }
@@ -1750,6 +1751,50 @@ a.ui-datepicker-next {
   -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
      -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
           box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+.ui-datepicker .ui-datepicker-buttonpane button::-moz-focus-inner {
+  border-width: 1px 0;
+  border-style: solid none;
+  border-color: transparent;
+  padding: 0;
+}
+.ui-datepicker .ui-datepicker-buttonpane button:active {
+  outline: 0;
+}
+.ui-datepicker .ui-datepicker-buttonpane button:hover,
+.ui-datepicker .ui-datepicker-buttonpane button:focus {
+  background-color: #278ab7;
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#2e9fd2),to(#21759b));
+  background-image: -webkit-linear-gradient(top,#2e9fd2,#21759b);
+  background-image: -moz-linear-gradient(top,#2e9fd2,#21759b);
+  background-image: -ms-linear-gradient(top,#2e9fd2,#21759b);
+  background-image: -o-linear-gradient(top,#2e9fd2,#21759b);
+  background-image: linear-gradient(to bottom,#2e9fd2,#21759b);
+  border-color: #1b607f;
+  -webkit-box-shadow: inset 0 1px 0 rgba(120,200,230,0.6);
+  box-shadow: inset 0 1px 0 rgba(120,200,230,0.6);
+  color: #fff;
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.3);
+}
+.ui-datepicker .ui-datepicker-buttonpane button:focus {
+  border-color: #0e3950;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 0 rgba(120,200,230,0.6),1px 1px 2px rgba(0,0,0,0.4);
+  box-shadow: inset 0 1px 0 rgba(120,200,230,0.6),1px 1px 2px rgba(0,0,0,0.4);
+}
+.ui-datepicker .ui-datepicker-buttonpane button:active {
+  background: #1b607f;
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#21759b),to(#278ab7));
+  background-image: -webkit-linear-gradient(top,#21759b,#278ab7);
+  background-image: -moz-linear-gradient(top,#21759b,#278ab7);
+  background-image: -ms-linear-gradient(top,#21759b,#278ab7);
+  background-image: -o-linear-gradient(top,#21759b,#278ab7);
+  background-image: linear-gradient(to bottom,#21759b,#278ab7);
+  border-color: #124560 #2382ae #2382ae #2382ae;
+  color: rgba(255,255,255,0.95);
+  -webkit-box-shadow: inset 0 1px 0 rgba(0,0,0,0.1);
+  box-shadow: inset 0 1px 0 rgba(0,0,0,0.1);
+  text-shadow: 0 1px 0 rgba(0,0,0,0.1);
 }
 .ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current {
   float: left;
