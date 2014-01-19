@@ -491,6 +491,15 @@ ul.ot-gallery-list li {
 .ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current {
   float: right;
 }
+@-moz-document url-prefix() {
+  .ui-datepicker-calendar {
+    position: relative;
+    right: -1px;
+  }
+  .ui-datepicker-calendar thead {
+    border-right: 1px solid #ccc;
+  }
+}
 
 /* -------------------------------------------------- 
   :: Time Picker
