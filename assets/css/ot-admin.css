@@ -1749,7 +1749,6 @@ a.ui-datepicker-next {
   background-image: -o-linear-gradient(top, #2a95c5, #21759b);
   background-image: linear-gradient(to bottom, #2a95c5, #21759b);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ie-hex-str($startColor)', endColorstr='#ie-hex-str($endColor)', GradientType=0);
   -webkit-border-radius: 3px;
      -moz-border-radius: 3px;
           border-radius: 3px;
