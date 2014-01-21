@@ -53,6 +53,7 @@ Yes. OptionTree & WordPress both require PHP5.
 
 = 2.2.1 =
 * Hotfix - Fixed a UI bug that caused the layouts input to cover the wp menu.
+* Hotfix - Moved the screen shots to the WordPress SVN assets directory.
 
 = 2.2.0 =
 * Added the Gallery option type.
