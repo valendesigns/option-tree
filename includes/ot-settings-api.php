@@ -233,13 +233,13 @@ if ( ! class_exists( 'OT_Settings' ) ) {
             /* update active layout content */
             if ( isset( $_REQUEST['settings-updated'] ) && $_REQUEST['settings-updated'] == 'true' ) {
   
-              $layouts = get_option( 'option_tree_layouts' );
+              $layouts = get_option( ot_layouts_id() );
               
               /* has active layout */
               if ( isset( $layouts['active_layout'] ) ) {
                 $option_tree = get_option( $option['id'] );
                 $layouts[$layouts['active_layout']] = ot_encode( serialize( $option_tree ) );
-                update_option( 'option_tree_layouts', $layouts );
+                update_option( ot_layouts_id(), $layouts );
               }
               
             }

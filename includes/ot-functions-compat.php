@@ -129,7 +129,7 @@ if ( ! function_exists( 'compat_ot_import_from_files' ) ) {
     }
     
     /* auto import Layout file */
-    if ( $has_layout == true && ! get_option( 'option_tree_layouts' ) ) {
+    if ( $has_layout == true && ! get_option( ot_layouts_id() ) ) {
     
       $get_data = wp_remote_get( $layout_file );
       
@@ -181,7 +181,7 @@ if ( ! function_exists( 'compat_ot_import_from_files' ) ) {
         }
         
         /* update the option tree layouts array */
-        update_option( 'option_tree_layouts', $layouts );
+        update_option( ot_layouts_id(), $layouts );
         
       }
       

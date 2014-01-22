@@ -478,7 +478,7 @@ if ( ! function_exists( 'ot_type_export_layouts' ) ) {
       echo '</div>';
       
       /* get layout data */
-      $layouts = get_option( 'option_tree_layouts' );
+      $layouts = get_option( ot_layouts_id() );
       $layouts = ! empty( $layouts ) ? ot_encode( serialize( $layouts ) ) : '';
         
       echo '<div class="format-setting-inner">';
@@ -524,15 +524,15 @@ if ( ! function_exists( 'ot_type_modify_layouts' ) ) {
         echo '<div class="format-setting-inner">';
  
           /* get the saved layouts */
-          $layouts = get_option( 'option_tree_layouts' );
+          $layouts = get_option( ot_layouts_id() );
       
           /* set active layout */
           $active_layout = isset( $layouts['active_layout'] ) ? $layouts['active_layout'] : '';
           
-          echo '<input type="hidden" name="option_tree_layouts[active_layout]" value="' . esc_attr( $active_layout ) . '" class="active-layout-input" />';
+          echo '<input type="hidden" name="' . ot_layouts_id() . '[active_layout]" value="' . esc_attr( $active_layout ) . '" class="active-layout-input" />';
           
           /* add new layout */
-          echo '<input type="text" name="option_tree_layouts[_add_new_layout_]" value="" class="widefat option-tree-ui-input" autocomplete="off" />';
+          echo '<input type="text" name="' . ot_layouts_id() . '[_add_new_layout_]" value="" class="widefat option-tree-ui-input" autocomplete="off" />';
            
           /* loop through each layout */
           echo '<ul class="option-tree-setting-wrap option-tree-sortable" id="option_tree_layouts">';

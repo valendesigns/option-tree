@@ -1127,7 +1127,7 @@ if ( ! function_exists( 'ot_import' ) ) {
         }
         
         /* update the option tree layouts array */
-        update_option( 'option_tree_layouts', $layouts );
+        update_option( ot_layouts_id(), $layouts );
         
         $message = 'success';
         
@@ -1879,10 +1879,10 @@ if ( ! function_exists( 'ot_modify_layouts' ) ) {
     if ( isset( $_POST['option_tree_modify_layouts_nonce'] ) && wp_verify_nonce( $_POST['option_tree_modify_layouts_nonce'], 'option_tree_modify_layouts_form' ) ) {
       
       /* previous layouts value */
-      $option_tree_layouts = get_option( 'option_tree_layouts' );
+      $option_tree_layouts = get_option( ot_layouts_id() );
       
       /* new layouts value */
-      $layouts = isset( $_POST['option_tree_layouts'] ) ? $_POST['option_tree_layouts'] : '';
+      $layouts = isset( $_POST[ot_layouts_id()] ) ? $_POST[ot_layouts_id()] : '';
       
       /* rebuild layout array */
       $rebuild = array();
@@ -1944,7 +1944,7 @@ if ( ! function_exists( 'ot_modify_layouts' ) ) {
         }
         
         /* rebuild the layouts */
-        update_option( 'option_tree_layouts', $rebuild );
+        update_option( ot_layouts_id(), $rebuild );
         
         /* change message */
         $message = 'success';
@@ -1952,7 +1952,7 @@ if ( ! function_exists( 'ot_modify_layouts' ) ) {
       } else if ( count( $rebuild ) <= 1 ) {
 
         /* delete layouts option */
-        delete_option( 'option_tree_layouts' );
+        delete_option( ot_layouts_id() );
         
         /* change message */
         $message = 'deleted';
@@ -3602,7 +3602,7 @@ if ( ! function_exists( 'ot_layouts_view' ) ) {
           <span class="icon trash-can">' . __( 'Delete', 'option-tree' ) . '</span>
         </a>
       </div>
-      <input type="hidden" name="option_tree_layouts[' . esc_attr( $key ) . ']" value="' . $data . '" />
+      <input type="hidden" name="' . ot_layouts_id() . '[' . esc_attr( $key ) . ']" value="' . $data . '" />
     </div>';
     
   }
@@ -3787,7 +3787,7 @@ if ( ! function_exists( 'ot_theme_options_layouts_form' ) ) {
       wp_nonce_field( 'option_tree_modify_layouts_form', 'option_tree_modify_layouts_nonce' );
         
       /* get the saved layouts */
-      $layouts = get_option( 'option_tree_layouts' );
+      $layouts = get_option( ot_layouts_id() );
       
       /* set active layout */
       $active_layout = isset( $layouts['active_layout'] ) ? $layouts['active_layout'] : '';
@@ -3800,7 +3800,7 @@ if ( ! function_exists( 'ot_theme_options_layouts_form' ) ) {
         
         echo '<div class="option-tree-active-layout">';
         
-          echo '<select name="option_tree_layouts[active_layout]" class="option-tree-ui-select">';
+          echo '<select name="' . ot_layouts_id() . '[active_layout]" class="option-tree-ui-select">';
       
             foreach( $layouts as $key => $data ) { 
               
@@ -3819,7 +3819,7 @@ if ( ! function_exists( 'ot_theme_options_layouts_form' ) ) {
           if ( $key == 'active_layout' )
               continue;
               
-          echo '<input type="hidden" name="option_tree_layouts[' . $key . ']" value="' . ( isset( $data ) ? $data : '' ) . '" />';
+          echo '<input type="hidden" name="' . ot_layouts_id() . '[' . $key . ']" value="' . ( isset( $data ) ? $data : '' ) . '" />';
           
         }
        
@@ -3829,7 +3829,7 @@ if ( ! function_exists( 'ot_theme_options_layouts_form' ) ) {
       echo '<div class="option-tree-save-layout' . ( ! empty( $active_layout ) ? ' active-layout' : '' ) . '">';
         
         /* add new layout */
-        echo '<input type="text" name="option_tree_layouts[_add_new_layout_]" value="" class="widefat option-tree-ui-input" autocomplete="off" />';
+        echo '<input type="text" name="' . ot_layouts_id() . '[_add_new_layout_]" value="" class="widefat option-tree-ui-input" autocomplete="off" />';
         
         echo '<button type="submit" class="option-tree-ui-button blue save-layout" title="' . __( 'New Layout', 'option-tree' ) . '">' . __( 'New Layout', 'option-tree' ) . '</button>';
       
