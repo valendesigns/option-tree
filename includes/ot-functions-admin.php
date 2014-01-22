@@ -26,7 +26,7 @@ if ( ! function_exists( 'ot_register_theme_options_page' ) ) {
   function ot_register_theme_options_page() {
   
     /* get the settings array */
-    $get_settings = get_option( 'option_tree_settings' );
+    $get_settings = get_option( ot_settings_id() );
     
     /* sections array */
     $sections = isset( $get_settings['sections'] ) ? $get_settings['sections'] : array();
@@ -42,7 +42,7 @@ if ( ! function_exists( 'ot_register_theme_options_page' ) ) {
       
       ot_register_settings( array(
           array(
-            'id'                  => 'option_tree',
+            'id'                  => ot_options_id(),
             'pages'               => array( 
               array(
                 'id'              => 'ot_theme_options',
@@ -67,7 +67,7 @@ if ( ! function_exists( 'ot_register_theme_options_page' ) ) {
       );
       
       // Filters the options.php to add the minimum user capabilities.
-      add_filter( 'option_page_capability_option_tree', create_function( '$caps', "return '$caps';" ), 999 );
+      add_filter( 'option_page_capability_' . ot_options_id(), create_function( '$caps', "return '$caps';" ), 999 );
     
     }
   
@@ -371,7 +371,7 @@ if ( ! function_exists( 'ot_register_settings_page' ) ) {
     // Register the pages.
     ot_register_settings( array(
         array(
-          'id'              => 'option_tree_settings',
+          'id'              => ot_settings_id(),
           'pages'           => $ot_register_pages_array
         )
       )
@@ -400,7 +400,7 @@ if ( ! function_exists( 'ot_after_theme_options_save' ) ) {
     if ( apply_filters( 'ot_theme_options_menu_slug', 'ot-theme-options' ) == $page && $updated ) {
       
       /* grab a copy of the theme options */
-      $options = get_option( 'option_tree' );
+      $options = get_option( ot_options_id() );
       
       /* execute the action hook and pass the theme options to it */
       do_action( 'ot_after_theme_options_save', $options );
@@ -697,7 +697,7 @@ if ( ! function_exists( 'ot_default_settings' ) ) {
   function ot_default_settings() {
     global $wpdb, $table_prefix;
     
-    if ( ! get_option( 'option_tree_settings' ) ) {
+    if ( ! get_option( ot_settings_id() ) ) {
       
       $section_count = 0;
       $settings_count = 0;
@@ -807,10 +807,10 @@ if ( ! function_exists( 'ot_default_settings' ) ) {
       }
       
       /* update the settings array */
-      update_option( 'option_tree_settings', $settings );
+      update_option( ot_settings_id(), $settings );
       
       /* get option tree array */
-      $options = get_option( 'option_tree' );
+      $options = get_option( ot_options_id() );
       
       /* validate options */
       if ( is_array( $options ) ) {
@@ -831,7 +831,7 @@ if ( ! function_exists( 'ot_default_settings' ) ) {
         do_action( 'ot_before_theme_options_save', $options );
         
         /* update the option tree array */
-        update_option( 'option_tree', $options );
+        update_option( ot_options_id(), $options );
         
       }
       
@@ -854,7 +854,7 @@ if ( ! function_exists( 'ot_save_css' ) ) {
   function ot_save_css( $options ) {
     
     /* grab a copy of the settings */
-    $settings = get_option( 'option_tree_settings' );
+    $settings = get_option( ot_settings_id() );
       
     /* has settings */
     if ( isset( $settings['settings'] ) ) {
@@ -989,7 +989,7 @@ if ( ! function_exists( 'ot_import' ) ) {
         }
         
         /* update settings */
-        update_option( 'option_tree_settings', $settings );
+        update_option( ot_settings_id(), $settings );
         
         /* set message */
         $message = 'success';
@@ -1013,7 +1013,7 @@ if ( ! function_exists( 'ot_import' ) ) {
       
       /* is array: save & show success message */
       if ( is_array( $textarea ) ) {
-        update_option( 'option_tree_settings', $textarea );
+        update_option( ot_settings_id(), $textarea );
         $message = 'success';
       }
       
@@ -1033,7 +1033,7 @@ if ( ! function_exists( 'ot_import' ) ) {
       $options = isset( $_POST['import_data'] ) ? unserialize( ot_decode( $_POST['import_data'] ) ) : '';
       
       /* get settings array */
-      $settings = get_option( 'option_tree_settings' );
+      $settings = get_option( ot_settings_id() );
       
       /* has options */
       if ( is_array( $options ) ) {
@@ -1059,7 +1059,7 @@ if ( ! function_exists( 'ot_import' ) ) {
         do_action( 'ot_before_theme_options_save', $options );
       
         /* update the option tree array */
-        update_option( 'option_tree', $options );
+        update_option( ot_options_id(), $options );
         
         $message = 'success';
         
@@ -1081,7 +1081,7 @@ if ( ! function_exists( 'ot_import' ) ) {
       $layouts = isset( $_POST['import_layouts'] ) ? unserialize( ot_decode( $_POST['import_layouts'] ) ) : '';
       
       /* get settings array */
-      $settings = get_option( 'option_tree_settings' );
+      $settings = get_option( ot_settings_id() );
       
       /* has layouts */
       if ( is_array( $layouts ) ) {
@@ -1122,12 +1122,12 @@ if ( ! function_exists( 'ot_import' ) ) {
           /* execute the action hook and pass the theme options to it */
           do_action( 'ot_before_theme_options_save', $new_options );
         
-          update_option( 'option_tree', $new_options );
+          update_option( ot_options_id(), $new_options );
           
         }
         
         /* update the option tree layouts array */
-        update_option( 'option_tree_layouts', $layouts );
+        update_option( ot_layouts_id(), $layouts );
         
         $message = 'success';
         
@@ -1295,7 +1295,7 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
     $contextual_help      = '';
     $sections             = '';
     $settings             = '';
-    $option_tree_settings = get_option( 'option_tree_settings', array() );
+    $option_tree_settings = get_option( ot_settings_id(), array() );
     
     header( "Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0");
     header( "Pragma: no-cache ");
@@ -1500,6 +1500,8 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
     )";
     }
     
+    $ot_settings_id = ot_settings_id();
+    
     $content.= "<?php
 /**
  * Initialize the custom theme options.
@@ -1513,7 +1515,7 @@ function custom_theme_options() {
   /**
    * Get a copy of the saved settings array. 
    */
-  \$saved_settings = get_option( 'option_tree_settings', array() );
+  \$saved_settings = get_option( '$ot_settings_id', array() );
   
   /**
    * Custom settings array that will eventually be 
@@ -1523,11 +1525,11 @@ function custom_theme_options() {
   );
   
   /* allow settings to be filtered before saving */
-  \$custom_settings = apply_filters( 'option_tree_settings_args', \$custom_settings );
+  \$custom_settings = apply_filters( '{$ot_settings_id}_args', \$custom_settings );
   
   /* settings are not the same update the DB */
   if ( \$saved_settings !== \$custom_settings ) {
-    update_option( 'option_tree_settings', \$custom_settings ); 
+    update_option( '$ot_settings_id', \$custom_settings ); 
   }
   
 }";
@@ -1554,7 +1556,7 @@ if ( ! function_exists( 'ot_save_settings' ) ) {
     if ( isset( $_POST['option_tree_settings_nonce'] ) && wp_verify_nonce( $_POST['option_tree_settings_nonce'], 'option_tree_settings_form' ) ) {
 
       /* settings value */
-      $settings = isset( $_POST['option_tree_settings'] ) ? $_POST['option_tree_settings'] : '';
+      $settings = isset( $_POST[ot_settings_id()] ) ? $_POST[ot_settings_id()] : '';
       
       /* validate sections */
       if ( isset( $settings['sections'] ) ) {
@@ -1678,8 +1680,8 @@ if ( ! function_exists( 'ot_save_settings' ) ) {
         /* WPML unregister ID's that have been removed */
         if ( function_exists( 'icl_unregister_string' ) ) {
           
-          $current = get_option( 'option_tree_settings' );
-          $options = get_option( 'option_tree' );
+          $current = get_option( ot_settings_id() );
+          $options = get_option( ot_options_id() );
           
           if ( isset( $current['settings'] ) ) {
             
@@ -1728,7 +1730,7 @@ if ( ! function_exists( 'ot_save_settings' ) ) {
           
         }
         
-        update_option( 'option_tree_settings', $settings );
+        update_option( ot_settings_id(), $settings );
         $message = 'success';
         
       }
@@ -1877,10 +1879,10 @@ if ( ! function_exists( 'ot_modify_layouts' ) ) {
     if ( isset( $_POST['option_tree_modify_layouts_nonce'] ) && wp_verify_nonce( $_POST['option_tree_modify_layouts_nonce'], 'option_tree_modify_layouts_form' ) ) {
       
       /* previous layouts value */
-      $option_tree_layouts = get_option( 'option_tree_layouts' );
+      $option_tree_layouts = get_option( ot_layouts_id() );
       
       /* new layouts value */
-      $layouts = isset( $_POST['option_tree_layouts'] ) ? $_POST['option_tree_layouts'] : '';
+      $layouts = isset( $_POST[ot_layouts_id()] ) ? $_POST[ot_layouts_id()] : '';
       
       /* rebuild layout array */
       $rebuild = array();
@@ -1896,7 +1898,7 @@ if ( ! function_exists( 'ot_modify_layouts' ) ) {
         /* add new and overwrite active layout */
         if ( isset( $layouts['_add_new_layout_'] ) && ! empty( $layouts['_add_new_layout_'] ) ) {
           $rebuild['active_layout'] = ot_sanitize_layout_id( $layouts['_add_new_layout_'] );
-          $rebuild[$rebuild['active_layout']] = ot_encode( serialize( get_option( 'option_tree' ) ) );
+          $rebuild[$rebuild['active_layout']] = ot_encode( serialize( get_option( ot_options_id() ) ) );
         }
         
         $first_layout = '';
@@ -1937,12 +1939,12 @@ if ( ! function_exists( 'ot_modify_layouts' ) ) {
           /* execute the action hook and pass the theme options to it */
           do_action( 'ot_before_theme_options_save', $rebuild_option_tree );
           
-          update_option( 'option_tree', $rebuild_option_tree );
+          update_option( ot_options_id(), $rebuild_option_tree );
           
         }
         
         /* rebuild the layouts */
-        update_option( 'option_tree_layouts', $rebuild );
+        update_option( ot_layouts_id(), $rebuild );
         
         /* change message */
         $message = 'success';
@@ -1950,7 +1952,7 @@ if ( ! function_exists( 'ot_modify_layouts' ) ) {
       } else if ( count( $rebuild ) <= 1 ) {
 
         /* delete layouts option */
-        delete_option( 'option_tree_layouts' );
+        delete_option( ot_layouts_id() );
         
         /* change message */
         $message = 'deleted';
@@ -2859,7 +2861,7 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
           
         } else {
         
-          $options = get_option( 'option_tree' );
+          $options = get_option( ot_options_id() );
           
           if ( isset( $options[$option_array[0]] ) ) {
             
@@ -3600,7 +3602,7 @@ if ( ! function_exists( 'ot_layouts_view' ) ) {
           <span class="icon trash-can">' . __( 'Delete', 'option-tree' ) . '</span>
         </a>
       </div>
-      <input type="hidden" name="option_tree_layouts[' . esc_attr( $key ) . ']" value="' . $data . '" />
+      <input type="hidden" name="' . ot_layouts_id() . '[' . esc_attr( $key ) . ']" value="' . $data . '" />
     </div>';
     
   }
@@ -3785,7 +3787,7 @@ if ( ! function_exists( 'ot_theme_options_layouts_form' ) ) {
       wp_nonce_field( 'option_tree_modify_layouts_form', 'option_tree_modify_layouts_nonce' );
         
       /* get the saved layouts */
-      $layouts = get_option( 'option_tree_layouts' );
+      $layouts = get_option( ot_layouts_id() );
       
       /* set active layout */
       $active_layout = isset( $layouts['active_layout'] ) ? $layouts['active_layout'] : '';
@@ -3798,7 +3800,7 @@ if ( ! function_exists( 'ot_theme_options_layouts_form' ) ) {
         
         echo '<div class="option-tree-active-layout">';
         
-          echo '<select name="option_tree_layouts[active_layout]" class="option-tree-ui-select">';
+          echo '<select name="' . ot_layouts_id() . '[active_layout]" class="option-tree-ui-select">';
       
             foreach( $layouts as $key => $data ) { 
               
@@ -3817,7 +3819,7 @@ if ( ! function_exists( 'ot_theme_options_layouts_form' ) ) {
           if ( $key == 'active_layout' )
               continue;
               
-          echo '<input type="hidden" name="option_tree_layouts[' . $key . ']" value="' . ( isset( $data ) ? $data : '' ) . '" />';
+          echo '<input type="hidden" name="' . ot_layouts_id() . '[' . $key . ']" value="' . ( isset( $data ) ? $data : '' ) . '" />';
           
         }
        
@@ -3827,7 +3829,7 @@ if ( ! function_exists( 'ot_theme_options_layouts_form' ) ) {
       echo '<div class="option-tree-save-layout' . ( ! empty( $active_layout ) ? ' active-layout' : '' ) . '">';
         
         /* add new layout */
-        echo '<input type="text" name="option_tree_layouts[_add_new_layout_]" value="" class="widefat option-tree-ui-input" autocomplete="off" />';
+        echo '<input type="text" name="' . ot_layouts_id() . '[_add_new_layout_]" value="" class="widefat option-tree-ui-input" autocomplete="off" />';
         
         echo '<button type="submit" class="option-tree-ui-button blue save-layout" title="' . __( 'New Layout', 'option-tree' ) . '">' . __( 'New Layout', 'option-tree' ) . '</button>';
       

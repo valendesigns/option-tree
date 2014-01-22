@@ -233,13 +233,13 @@ if ( ! class_exists( 'OT_Settings' ) ) {
             /* update active layout content */
             if ( isset( $_REQUEST['settings-updated'] ) && $_REQUEST['settings-updated'] == 'true' ) {
   
-              $layouts = get_option( 'option_tree_layouts' );
+              $layouts = get_option( ot_layouts_id() );
               
               /* has active layout */
               if ( isset( $layouts['active_layout'] ) ) {
                 $option_tree = get_option( $option['id'] );
                 $layouts[$layouts['active_layout']] = ot_encode( serialize( $option_tree ) );
-                update_option( 'option_tree_layouts', $layouts );
+                update_option( ot_layouts_id(), $layouts );
               }
               
             }
@@ -579,7 +579,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
             if ( isset( $setting['type'] ) && isset( $input[$setting['id']] ) ) {
               
               /* get the defaults */
-              $current_settings = get_option( 'option_tree_settings' );
+              $current_settings = get_option( ot_settings_id() );
               $current_options = get_option( $option['id'] );
                 
               /* validate setting */
