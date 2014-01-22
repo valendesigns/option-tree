@@ -47,6 +47,8 @@ Yes. OptionTree & WordPress both require PHP5.
 * Added actions before and after the enqueue styles and scripts.
 * Added Date Picker option type. Contributors via github @jetonr and @valendesigns.
 * Added Date Time Picker option type. Contributors via github @jetonr and @valendesigns.
+* Added filter 'ot_list_item_title_label' to change the label for a List Item's required title field.
+* Added filter 'ot_list_item_title_desc' to change the description for a List Item's required title field.
 
 = 2.2.1 =
 * Hotfix - Fixed a UI bug that caused the layouts input to cover the wp menu.

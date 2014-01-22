@@ -3680,6 +3680,17 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
         if ( isset( $field['std'] ) ) {  
           $field_value = ot_filter_std_value( $field_value, $field['std'] );
         }
+        
+        // filter the title label and description
+        if ( $field['id'] == 'title' ) {
+          
+          // filter the label
+          $field['label'] = apply_filters( 'ot_list_item_title_label', $field['label'], $name );
+          
+          // filter the description
+          $field['desc'] = apply_filters( 'ot_list_item_title_desc', $field['desc'], $name );
+        
+        }
           
         /* make life easier */
         $_field_name = $get_option ? $get_option . '[' . $name . ']' : $name;
