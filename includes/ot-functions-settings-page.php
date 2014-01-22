@@ -43,7 +43,7 @@ if ( ! function_exists( 'ot_type_theme_options_ui' ) ) {
         echo '</div>';
         
         /* get the saved settings */
-        $settings = get_option( 'option_tree_settings' );
+        $settings = get_option( ot_settings_id() );
 
         /* wrap settings array */
         echo '<div class="format-setting-inner">';
@@ -52,14 +52,14 @@ if ( ! function_exists( 'ot_type_theme_options_ui' ) ) {
           $count = 0;
   
           /* loop through each section and its settings */
-          echo '<ul class="option-tree-setting-wrap option-tree-sortable" id="option_tree_settings_list" data-name="option_tree_settings[settings]">';
+          echo '<ul class="option-tree-setting-wrap option-tree-sortable" id="option_tree_settings_list" data-name="' . ot_settings_id() . '[settings]">';
           
           if ( isset( $settings['sections'] ) ) {
           
             foreach( $settings['sections'] as $section ) {
               
               /* section */
-              echo '<li class="' . ( $count == 0 ? 'ui-state-disabled' : 'ui-state-default' ) . ' list-section">' . ot_sections_view( 'option_tree_settings[sections]', $count, $section ) . '</li>';
+              echo '<li class="' . ( $count == 0 ? 'ui-state-disabled' : 'ui-state-default' ) . ' list-section">' . ot_sections_view( ot_settings_id() . '[sections]', $count, $section ) . '</li>';
               
               /* increment item count */
               $count++;
@@ -71,7 +71,7 @@ if ( ! function_exists( 'ot_type_theme_options_ui' ) ) {
                   
                   if ( isset( $setting['section'] ) && $setting['section'] == $section['id'] ) {
                     
-                    echo '<li class="ui-state-default list-setting">' . ot_settings_view( 'option_tree_settings[settings]', $count, $setting ) . '</li>';
+                    echo '<li class="ui-state-default list-setting">' . ot_settings_view( ot_settings_id() . '[settings]', $count, $setting ) . '</li>';
                     
                     /* increment item count */
                     $count++;
@@ -102,7 +102,7 @@ if ( ! function_exists( 'ot_type_theme_options_ui' ) ) {
             <div class="format-setting type-textarea no-desc">
               <div class="description"><strong>' . __( 'Contextual Help Sidebar', 'option-tree' ) . '</strong>: ' . __( 'If you decide to add contextual help to the Theme Option page, enter the optional "Sidebar" HTML here. This would be an extremely useful place to add links to your themes documentation or support forum. Only after you\'ve added some content below will this display to the user.', 'option-tree' ) . '</div>
               <div class="format-setting-inner">
-                <textarea class="textarea" rows="10" cols="40" name="option_tree_settings[contextual_help][sidebar]">' . ( isset( $settings['contextual_help']['sidebar'] ) ? esc_html( $settings['contextual_help']['sidebar'] ) : '' ) . '</textarea>
+                <textarea class="textarea" rows="10" cols="40" name="' . ot_settings_id(). '[contextual_help][sidebar]">' . ( isset( $settings['contextual_help']['sidebar'] ) ? esc_html( $settings['contextual_help']['sidebar'] ) : '' ) . '</textarea>
               </div>
             </div>
           </div>';
@@ -111,14 +111,14 @@ if ( ! function_exists( 'ot_type_theme_options_ui' ) ) {
           $count = 0;
           
           /* loop through each contextual_help content section */
-          echo '<ul class="option-tree-setting-wrap option-tree-sortable" id="option_tree_settings_help" data-name="option_tree_settings[contextual_help][content]">';
+          echo '<ul class="option-tree-setting-wrap option-tree-sortable" id="option_tree_settings_help" data-name="' . ot_settings_id(). '[contextual_help][content]">';
           
           if ( isset( $settings['contextual_help']['content'] ) ) {
           
             foreach( $settings['contextual_help']['content'] as $content ) {
               
               /* content */
-              echo '<li class="ui-state-default list-contextual-help">' . ot_contextual_help_view( 'option_tree_settings[contextual_help][content]',  $count, $content ) . '</li>';
+              echo '<li class="ui-state-default list-contextual-help">' . ot_contextual_help_view( ot_settings_id() . '[contextual_help][content]',  $count, $content ) . '</li>';
               
               /* increment content count */
               $count++;
@@ -405,7 +405,7 @@ if ( ! function_exists( 'ot_type_export_settings' ) ) {
       echo '</div>';
         
       /* get theme options data */
-      $settings = get_option( 'option_tree_settings' );
+      $settings = get_option( ot_settings_id() );
       $settings = ! empty( $settings ) ?  ot_encode( serialize( $settings ) ) : '';
         
       echo '<div class="format-setting-inner">';

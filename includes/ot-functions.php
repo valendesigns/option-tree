@@ -135,7 +135,7 @@ if ( ! function_exists( 'ot_wpml_filter' ) ) {
     // Return translated strings using WMPL
     if ( function_exists('icl_t') ) {
       
-      $settings = get_option( 'option_tree_settings' );
+      $settings = get_option( ot_settings_id() );
       
       if ( isset( $settings['settings'] ) ) {
       

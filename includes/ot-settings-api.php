@@ -579,7 +579,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
             if ( isset( $setting['type'] ) && isset( $input[$setting['id']] ) ) {
               
               /* get the defaults */
-              $current_settings = get_option( 'option_tree_settings' );
+              $current_settings = get_option( ot_settings_id() );
               $current_options = get_option( $option['id'] );
                 
               /* validate setting */

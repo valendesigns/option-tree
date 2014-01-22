@@ -75,13 +75,13 @@ if ( ! function_exists( 'compat_ot_import_from_files' ) ) {
     $has_layout = isset( $layout_file ) ? true : false;
     
     /* auto import XML file */
-    if ( $has_xml == true && ! get_option( 'option_tree_settings' ) && class_exists( 'SimpleXMLElement' ) ) {
+    if ( $has_xml == true && ! get_option( ot_settings_id() ) && class_exists( 'SimpleXMLElement' ) ) {
     
       $settings = ot_import_xml( $xml_file );
       
       if ( isset( $settings ) && ! empty( $settings ) ) {
         
-        update_option( 'option_tree_settings', $settings );
+        update_option( ot_settings_id(), $settings );
         
       }
       
@@ -99,7 +99,7 @@ if ( ! function_exists( 'compat_ot_import_from_files' ) ) {
       $options = unserialize( ot_decode( $rawdata ) );
       
       /* get settings array */
-      $settings = get_option( 'option_tree_settings' );
+      $settings = get_option( ot_settings_id() );
       
       /* has options */
       if ( is_array( $options ) ) {
@@ -140,7 +140,7 @@ if ( ! function_exists( 'compat_ot_import_from_files' ) ) {
       $layouts = unserialize( ot_decode( $rawdata ) );
       
       /* get settings array */
-      $settings = get_option( 'option_tree_settings' );
+      $settings = get_option( ot_settings_id() );
       
       /* has layouts */
       if ( is_array( $layouts ) ) {
