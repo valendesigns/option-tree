@@ -80,7 +80,7 @@ if ( ! function_exists( 'ot_get_option' ) ) {
   function ot_get_option( $option_id, $default = '' ) {
     
     /* get the saved options */ 
-    $options = get_option( 'option_tree' );
+    $options = get_option( ot_options_id() );
     
     /* look for the saved value */
     if ( isset( $options[$option_id] ) && '' != $options[$option_id] ) {

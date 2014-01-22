@@ -441,7 +441,7 @@ if ( ! function_exists( 'ot_type_export_data' ) ) {
       echo '</div>';
       
       /* get theme options data */
-      $data = get_option( 'option_tree' );
+      $data = get_option( ot_options_id() );
       $data = ! empty( $data ) ? ot_encode( serialize( $data ) ) : '';
         
       echo '<div class="format-setting-inner">';

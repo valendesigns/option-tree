@@ -42,7 +42,7 @@ if ( ! function_exists( 'ot_register_theme_options_page' ) ) {
       
       ot_register_settings( array(
           array(
-            'id'                  => 'option_tree',
+            'id'                  => ot_options_id(),
             'pages'               => array( 
               array(
                 'id'              => 'ot_theme_options',
@@ -67,7 +67,7 @@ if ( ! function_exists( 'ot_register_theme_options_page' ) ) {
       );
       
       // Filters the options.php to add the minimum user capabilities.
-      add_filter( 'option_page_capability_option_tree', create_function( '$caps', "return '$caps';" ), 999 );
+      add_filter( 'option_page_capability_' . ot_options_id(), create_function( '$caps', "return '$caps';" ), 999 );
     
     }
   
@@ -400,7 +400,7 @@ if ( ! function_exists( 'ot_after_theme_options_save' ) ) {
     if ( apply_filters( 'ot_theme_options_menu_slug', 'ot-theme-options' ) == $page && $updated ) {
       
       /* grab a copy of the theme options */
-      $options = get_option( 'option_tree' );
+      $options = get_option( ot_options_id() );
       
       /* execute the action hook and pass the theme options to it */
       do_action( 'ot_after_theme_options_save', $options );
@@ -810,7 +810,7 @@ if ( ! function_exists( 'ot_default_settings' ) ) {
       update_option( 'option_tree_settings', $settings );
       
       /* get option tree array */
-      $options = get_option( 'option_tree' );
+      $options = get_option( ot_options_id() );
       
       /* validate options */
       if ( is_array( $options ) ) {
@@ -831,7 +831,7 @@ if ( ! function_exists( 'ot_default_settings' ) ) {
         do_action( 'ot_before_theme_options_save', $options );
         
         /* update the option tree array */
-        update_option( 'option_tree', $options );
+        update_option( ot_options_id(), $options );
         
       }
       
@@ -1059,7 +1059,7 @@ if ( ! function_exists( 'ot_import' ) ) {
         do_action( 'ot_before_theme_options_save', $options );
       
         /* update the option tree array */
-        update_option( 'option_tree', $options );
+        update_option( ot_options_id(), $options );
         
         $message = 'success';
         
@@ -1122,7 +1122,7 @@ if ( ! function_exists( 'ot_import' ) ) {
           /* execute the action hook and pass the theme options to it */
           do_action( 'ot_before_theme_options_save', $new_options );
         
-          update_option( 'option_tree', $new_options );
+          update_option( ot_options_id(), $new_options );
           
         }
         
@@ -1679,7 +1679,7 @@ if ( ! function_exists( 'ot_save_settings' ) ) {
         if ( function_exists( 'icl_unregister_string' ) ) {
           
           $current = get_option( 'option_tree_settings' );
-          $options = get_option( 'option_tree' );
+          $options = get_option( ot_options_id() );
           
           if ( isset( $current['settings'] ) ) {
             
@@ -1896,7 +1896,7 @@ if ( ! function_exists( 'ot_modify_layouts' ) ) {
         /* add new and overwrite active layout */
         if ( isset( $layouts['_add_new_layout_'] ) && ! empty( $layouts['_add_new_layout_'] ) ) {
           $rebuild['active_layout'] = ot_sanitize_layout_id( $layouts['_add_new_layout_'] );
-          $rebuild[$rebuild['active_layout']] = ot_encode( serialize( get_option( 'option_tree' ) ) );
+          $rebuild[$rebuild['active_layout']] = ot_encode( serialize( get_option( ot_options_id() ) ) );
         }
         
         $first_layout = '';
@@ -1937,7 +1937,7 @@ if ( ! function_exists( 'ot_modify_layouts' ) ) {
           /* execute the action hook and pass the theme options to it */
           do_action( 'ot_before_theme_options_save', $rebuild_option_tree );
           
-          update_option( 'option_tree', $rebuild_option_tree );
+          update_option( ot_options_id(), $rebuild_option_tree );
           
         }
         
@@ -2859,7 +2859,7 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
           
         } else {
         
-          $options = get_option( 'option_tree' );
+          $options = get_option( ot_options_id() );
           
           if ( isset( $options[$option_array[0]] ) ) {
             
