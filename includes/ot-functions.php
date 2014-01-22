@@ -7,7 +7,61 @@
  * @copyright Copyright (c) 2013, Derek Herman
  * @since     2.0
  */
-      
+
+/**
+ * Theme Options ID
+ *
+ * @return    string
+ *
+ * @access    public
+ * @since     2.3.0
+ */
+if ( ! function_exists( 'ot_options_id' ) ) {
+
+  function ot_options_id() {
+    
+    return apply_filters( 'ot_options_id', 'option_tree' );
+    
+  }
+  
+}
+
+/**
+ * Theme Settings ID
+ *
+ * @return    string
+ *
+ * @access    public
+ * @since     2.3.0
+ */
+if ( ! function_exists( 'ot_settings_id' ) ) {
+
+  function ot_settings_id() {
+    
+    return apply_filters( 'ot_settings_id', 'option_tree_settings' );
+    
+  }
+  
+}
+
+/**
+ * Theme Layouts ID
+ *
+ * @return    string
+ *
+ * @access    public
+ * @since     2.3.0
+ */
+if ( ! function_exists( 'ot_layouts_id' ) ) {
+
+  function ot_layouts_id() {
+    
+    return apply_filters( 'ot_layouts_id', 'option_tree_layouts' );
+    
+  }
+  
+}
+
 /**
  * Get Option.
  *
