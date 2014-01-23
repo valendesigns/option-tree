@@ -246,7 +246,7 @@
   :: Format Setting Label
   ---------------------------------------------------*/
 .format-setting-label {
-  border-bottom: 1px dashed #ddd;
+  border-bottom: 1px dashed #ccc;
   margin: 0 0 14px 0;
   padding: 5px 0px 1px 0px;
   width: 100%;
@@ -256,14 +256,13 @@
 .metabox-holder .format-setting-label .label {
   background: none;
   border: none;
-  color: #333;
+  color: #222;
   cursor: text;
   display: block;
-  font-family: sans-serif !important;
-  font-size: 1.2em !important;
-  font-weight: bold !important;
+  font-size: 1.2em;
+  font-weight: normal;
   letter-spacing: 0;
-  padding: 0 0 9px 0 !important;
+  padding: 0 0 9px 0;
   -webkit-user-select: text;
   text-shadow: none;
 }
