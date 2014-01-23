@@ -1547,9 +1547,6 @@ ul.ot-gallery-list li img {
 /* -------------------------------------------------- 
   :: CSS Editor
   ---------------------------------------------------*/
-#option-tree-settings-api pre + pre {
-  position: absolute;
-}
 #option-tree-settings-api pre.ot-css-editor {
   bottom: 0;
   height: 280px;
