@@ -810,7 +810,7 @@
         $(this).find('.ot-metabox-tabs').tabs()
         
         // Move the orphaned settings to the top
-        $(this).find('.ot-metabox-panels > .format-settings').prependTo(".ot-metabox-wrapper")
+        $(this).find('.ot-metabox-panels > .format-settings').prependTo($(this))
       
       }
     
@@ -868,7 +868,7 @@
         $(this).find('.ot-theme-option-tabs').tabs()
         
         // Move the orphaned settings to the top
-        $(this).find('.ot-theme-option-panels > .format-settings').prependTo(".ot-theme-option-tabs")
+        $(this).find('.ot-theme-option-panels > .format-settings').prependTo($(this).find('.ot-theme-option-tabs'))
       
       }
     
