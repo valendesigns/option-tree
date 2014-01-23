@@ -3734,7 +3734,7 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
           }
 
           $conditions = ' data-condition="' . $field['condition'] . '"';
-          $conditions.= isset( $field['operator'] ) && in_array( $field['operator'], array( 'and', 'or' ) ) ? ' data-operator="' . $field['operator'] . '"' : '';
+          $conditions.= isset( $field['operator'] ) && in_array( $field['operator'], array( 'and', 'AND', 'or', 'OR' ) ) ? ' data-operator="' . $field['operator'] . '"' : '';
         
 
         }

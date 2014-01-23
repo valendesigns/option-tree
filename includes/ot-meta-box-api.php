@@ -111,7 +111,7 @@ if ( ! class_exists( 'OT_Meta_Box' ) ) {
           if ( isset( $field['condition'] ) && ! empty( $field['condition'] ) ) {
   
             $conditions = ' data-condition="' . $field['condition'] . '"';
-            $conditions.= isset( $field['operator'] ) && in_array( $field['operator'], array( 'and', 'or' ) ) ? ' data-operator="' . $field['operator'] . '"' : '';
+            $conditions.= isset( $field['operator'] ) && in_array( $field['operator'], array( 'and', 'AND', 'or', 'OR' ) ) ? ' data-operator="' . $field['operator'] . '"' : '';
   
           }
           
