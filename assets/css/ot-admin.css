@@ -654,6 +654,12 @@ li ul .format-setting-label {
   padding: 10px 10px 10px 0;
   min-width: 126px;
 }
+.button.save-layout {
+  margin: 0 0 0 5px !important;
+}
+.option-tree-layout-activate {
+  text-indent: -9999px;
+}
 
 /* -------------------------------------------------- 
   :: Select
@@ -910,12 +916,11 @@ select.option-tree-ui-select option {
   ---------------------------------------------------*/
 .option-tree-ui-button.button {
   float: left;
-  line-height: 27px;
-  height: 29px;
+  font-size: 12px !important;
+  line-height: 27px !important;
+  height: 29px !important;
   margin: 5px;
-}
-.option-tree-ui-button.button.save-layout {
-  margin: 0 0 0 5px;
+  padding: 0 10px 1px !important;
 }
 .option-tree-ui-button:active,
 .option-tree-ui-button:hover,
