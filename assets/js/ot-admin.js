@@ -763,3 +763,109 @@
   })
   
 }(window.jQuery);
+
+/*!
+ * Adds metabox tabs
+ */
+!function ($) {
+
+  $(document).on('ready', function () {
+    
+    // Loop over the metaboxes
+    $('.ot-metabox-wrapper').each( function() {
+    
+      // Only if there is a tab option
+      if ( $(this).find('.type-tab').length ) {
+        
+        // Add .ot-metabox-panels
+        $(this).find('.type-tab').parents('.ot-metabox-wrapper').wrapAll('<div class="ot-metabox-panels" />')
+        
+        // Wrapp with .ot-metabox-tabs & add .ot-metabox-nav before .ot-metabox-panels
+        $(this).parent('.ot-metabox-panels').wrap('<div class="ot-metabox-tabs" />').before('<ul class="ot-metabox-nav" />')
+        
+        // Loop over settings and build the tabs nav
+        $(this).find('.format-settings').each( function() {
+      
+          if ( $(this).find('.type-tab').length > 0 ) {
+            var title = $(this).find('.type-tab').prev().find('label').text()
+              , id = $(this).attr('id')
+  
+            // Add a class, hide & append nav item 
+            $(this).addClass('is-panel').hide()
+            $(this).parents('.ot-metabox-panels').prev('.ot-metabox-nav').append('<li><a href="#' + id + '">' + title + '</a></li>')
+            
+          }
+          
+        })
+        
+        // Loop over the panels and wrap and ID them.
+        $(this).find('.is-panel').each( function() {
+          var id = $(this).attr('id')
+          
+          $(this).add( $(this).nextUntil('.is-panel') ).wrapAll('<div id="' + id + '" class="tab-content" />')
+          
+        })
+        
+        // Create the tabs
+        $(this).parents('.ot-metabox-tabs').tabs()
+      
+      }
+    
+    })
+     
+  })
+  
+}(window.jQuery);
+
+/*!
+ * Adds theme option tabs
+ */
+!function ($) {
+
+  $(document).on('ready', function () {
+    
+    // Loop over the theme options
+    $('#option-tree-settings-api .inside').each( function() {
+    
+      // Only if there is a tab option
+      if ( $(this).find('.type-tab').length ) {
+        
+        // Add .ot-theme-option-panels
+        $(this).find('.type-tab').parents('.inside').wrapAll('<div class="ot-theme-option-panels" />')
+        
+        // Wrap with .ot-theme-option-tabs & add .ot-theme-option-nav before .ot-theme-option-panels
+        $(this).parent('.ot-theme-option-panels').wrap('<div class="ot-theme-option-tabs" />').before('<ul class="ot-theme-option-nav" />')
+        
+        // Loop over settings and build the tabs nav
+        $(this).find('.format-settings').each( function() {
+      
+          if ( $(this).find('.type-tab').length > 0 ) {
+            var title = $(this).find('.type-tab').prev().find('.label').text()
+              , id = $(this).attr('id')
+  
+            // Add a class, hide & append nav item 
+            $(this).addClass('is-panel').hide()
+            $(this).parents('.ot-theme-option-panels').prev('.ot-theme-option-nav').append('<li><a href="#' + id + '">' + title + '</a></li>')
+            
+          }
+          
+        })
+        
+        // Loop over the panels and wrap and ID them.
+        $(this).find('.is-panel').each( function() {
+          var id = $(this).attr('id')
+          
+          $(this).add( $(this).nextUntil('.is-panel') ).wrapAll('<div id="' + id + '" class="tab-content" />')
+          
+        })
+        
+        // Create the tabs
+        $(this).parents('.ot-theme-option-tabs').tabs()
+      
+      }
+    
+    })
+     
+  })
+  
+}(window.jQuery);

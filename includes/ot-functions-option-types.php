@@ -1551,6 +1551,35 @@ if ( ! function_exists( 'ot_type_sidebar_select' ) ) {
 }
 
 /**
+ * Tab option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.3.0
+ */
+if ( ! function_exists( 'ot_type_tab' ) ) {
+  
+  function ot_type_tab( $args = array() ) {
+    
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-tab">';
+
+      echo '<br />';
+    
+    echo '</div>';
+    
+  }
+  
+}
+
+/**
  * Tag Checkbox option type.
  *
  * See @ot_display_by_type to see the full list of available arguments.
