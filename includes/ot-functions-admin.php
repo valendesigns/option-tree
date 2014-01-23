@@ -4321,14 +4321,14 @@ function ot_meta_box_post_format_link( $pages = 'post' ) {
       array(
         'id'      => '_format_link_url',
         'label'   => '',
-        'desc'    => sprintf( __( 'Link URL (Include %s)', 'option-tree' ), '<code>http://</code>' ),
+        'desc'    => __( 'Link URL', 'option-tree' ),
         'std'     => '',
         'type'    => 'text'
       ),
       array(
         'id'      => '_format_link_title',
         'label'   => '',
-        'desc'    => __( 'Link Title (Post Title used if left blank)', 'option-tree' ),
+        'desc'    => __( 'Link Title', 'option-tree' ),
         'std'     => '',
         'type'    => 'text'
       )
@@ -4365,37 +4365,30 @@ function ot_meta_box_post_format_quote( $pages = 'post' ) {
     'priority'  => 'low',
     'fields'    => array(
       array(
-        'id'      => '_format_quote_desc',
-        'label'   => '',
-        'desc'    => sprintf( _x( 'By default the Post Title is hidden and the Post Content is wrapped with the %s HTML element. All fields are optional.', 'The HTML element is a blockquote.', 'option-tree' ), '<code>blockquote</code>' ),
-        'std'     => '',
-        'type'    => 'textblock'
-      ),
-      array(
         'id'      => '_format_quote_source_name',
         'label'   => '',
-        'desc'    => __( 'Enter the source Name (ex. author, singer, actor).', 'option-tree' ),
+        'desc'    => __( 'Source Name (ex. author, singer, actor)', 'option-tree' ),
         'std'     => '',
         'type'    => 'text'
       ),
       array(
         'id'      => '_format_quote_source_url',
         'label'   => '',
-        'desc'    => __( 'Enter the source URL.', 'option-tree' ),
+        'desc'    => __( 'Source URL', 'option-tree' ),
         'std'     => '',
         'type'    => 'text'
       ),
       array(
         'id'      => '_format_quote_source_title',
         'label'   => '',
-        'desc'    => __( 'Enter the source Title (ex. book, song, movie).', 'option-tree' ),
+        'desc'    => __( 'Source Title (ex. book, song, movie)', 'option-tree' ),
         'std'     => '',
         'type'    => 'text'
       ),
       array(
         'id'      => '_format_quote_source_date',
         'label'   => '',
-        'desc'    => __( 'Enter the source Date.', 'option-tree' ),
+        'desc'    => __( 'Source Date', 'option-tree' ),
         'std'     => '',
         'type'    => 'text'
       )
@@ -4434,7 +4427,7 @@ function ot_meta_box_post_format_video( $pages = 'post' ) {
       array(
         'id'      => '_format_video_embed',
         'label'   => '',
-        'desc'    => sprintf( __( 'Embed video from services like Youtube, Vimeo, or Hulu. You can find a list of supported oEmbed sites in the %1$s. Alternatively, you could use the built-in %2$s shortcode for your self hosted variety.', 'option-tree' ), '<a href="http://codex.wordpress.org/Embeds" target="_blank">' . __( 'Wordpress codex', 'option-tree' ) .'</a>', '[video]' ),
+        'desc'    => sprintf( __( 'Embed video from services like Youtube, Vimeo, or Hulu. You can find a list of supported oEmbed sites in the %1$s. Alternatively, you could use the built-in %2$s shortcode for your self hosted variety.', 'option-tree' ), '<a href="http://codex.wordpress.org/Embeds" target="_blank">' . __( 'Wordpress Codex', 'option-tree' ) .'</a>', '[video]' ),
         'std'     => '',
         'type'    => 'textarea'
       )
@@ -4473,7 +4466,7 @@ function ot_meta_box_post_format_audio( $pages = 'post' ) {
       array(
         'id'      => '_format_audio_embed',
         'label'   => '',
-        'desc'    => sprintf( __( 'Embed audio from services like SoundCloud. You can find a list of supported oEmbed sites in the %1$s. Alternatively, you could use the built-in %2$s shortcode for your self hosted variety.', 'option-tree' ), '<a href="http://codex.wordpress.org/Embeds" target="_blank">' . __( 'Wordpress codex', 'option-tree' ) .'</a>', '[audio]' ),
+        'desc'    => sprintf( __( 'Embed audio from services like SoundCloud. You can find a list of supported oEmbed sites in the %1$s. Alternatively, you could use the built-in %2$s shortcode for your self hosted variety.', 'option-tree' ), '<a href="http://codex.wordpress.org/Embeds" target="_blank">' . __( 'Wordpress Codex', 'option-tree' ) .'</a>', '[audio]' ),
         'std'     => '',
         'type'    => 'textarea'
       )
