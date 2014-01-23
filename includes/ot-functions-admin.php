@@ -568,7 +568,7 @@ if ( ! function_exists( 'ot_admin_scripts' ) ) {
     
     /* load jQuery-ui slider */
     wp_enqueue_script( 'jquery-ui-slider' );
-	
+  
     /* load jQuery-ui datepicker */
     wp_enqueue_script( 'jquery-ui-datepicker' );
     

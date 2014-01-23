@@ -845,14 +845,14 @@ select.option-tree-ui-select option {
           border-radius: 3px;
 }
 .ot-numeric-slider.ui-slider .ui-slider-handle:hover {
-	background: #fafafa;
-	border-color: #999;
-	color: #222;
+  background: #fafafa;
+  border-color: #999;
+  color: #222;
 }
 .ot-numeric-slider.ui-slider .ui-slider-handle.ui-state-active { 
   background: #eee;
-	border-color: #999;
-	color: #333;
+  border-color: #999;
+  color: #333;
 }
 
 /* -------------------------------------------------- 
@@ -904,7 +904,7 @@ select.option-tree-ui-select option {
 .option-tree-ui-button.button {
   float: left;
   line-height: 27px;
-	height: 29px;
+  height: 29px;
   margin: 5px;
 }
 .option-tree-ui-button.button.save-layout {
@@ -919,42 +919,42 @@ select.option-tree-ui-select option {
   display: none;
 }
 .option-tree-ui-button.button-secondary {
-	background: #b73b27;
-	border-color: #7f291b;
-	color: #fff;
-	-webkit-box-shadow: inset 0 1px 0 rgba(229,134,119,0.5), 0 1px 0 rgba(0,0,0,.15);
-	   -moz-box-shadow: inset 0 1px 0 rgba(229,134,119,0.5), 0 1px 0 rgba(0,0,0,.15);
- 	        box-shadow: inset 0 1px 0 rgba(229,134,119,0.5), 0 1px 0 rgba(0,0,0,.15);
+  background: #b73b27;
+  border-color: #7f291b;
+  color: #fff;
+  -webkit-box-shadow: inset 0 1px 0 rgba(229,134,119,0.5), 0 1px 0 rgba(0,0,0,.15);
+     -moz-box-shadow: inset 0 1px 0 rgba(229,134,119,0.5), 0 1px 0 rgba(0,0,0,.15);
+           box-shadow: inset 0 1px 0 rgba(229,134,119,0.5), 0 1px 0 rgba(0,0,0,.15);
 }
 .option-tree-ui-button.button-secondary.hover,
 .option-tree-ui-button.button-secondary:hover,
 .option-tree-ui-button.button-secondary.focus,
 .option-tree-ui-button.button-secondary:focus {
-	background: #9b3221;
-	border-color: #7f291b;
-	color: #fff;
-	-webkit-box-shadow: inset 0 1px 0 rgba(229,134,119,0.6);
-	   -moz-box-shadow: inset 0 1px 0 rgba(229,134,119,0.5), 0 1px 0 rgba(0,0,0,.15);
- 	        box-shadow: inset 0 1px 0 rgba(229,134,119,0.6);
+  background: #9b3221;
+  border-color: #7f291b;
+  color: #fff;
+  -webkit-box-shadow: inset 0 1px 0 rgba(229,134,119,0.6);
+     -moz-box-shadow: inset 0 1px 0 rgba(229,134,119,0.5), 0 1px 0 rgba(0,0,0,.15);
+           box-shadow: inset 0 1px 0 rgba(229,134,119,0.6);
 }
 .option-tree-ui-button.button-secondary.focus,
 .option-tree-ui-button.button-secondary:focus {
-	border-color: #4f160d;
-	-webkit-box-shadow: inset 0 1px 0 rgba(229,134,119,0.6), 1px 1px 2px rgba(0,0,0,0.4);
-	   -moz-box-shadow: inset 0 1px 0 rgba(229,134,119,0.6), 1px 1px 2px rgba(0,0,0,0.4);
-	         box-shadow: inset 0 1px 0 rgba(229,134,119,0.6), 1px 1px 2px rgba(0,0,0,0.4);
+  border-color: #4f160d;
+  -webkit-box-shadow: inset 0 1px 0 rgba(229,134,119,0.6), 1px 1px 2px rgba(0,0,0,0.4);
+     -moz-box-shadow: inset 0 1px 0 rgba(229,134,119,0.6), 1px 1px 2px rgba(0,0,0,0.4);
+           box-shadow: inset 0 1px 0 rgba(229,134,119,0.6), 1px 1px 2px rgba(0,0,0,0.4);
 }
 .option-tree-ui-button.button-secondary.active,
 .option-tree-ui-button.button-secondary.active:hover,
 .option-tree-ui-button.button-secondary.active:focus,
 .option-tree-ui-button.button-secondary:active {
-	background: #b73b27;
-	border-color: #7f291b;
-	color: rgba(255,255,255,0.95);
-	-webkit-box-shadow: inset 0 1px 0 rgba(0,0,0,0.1);
-	   -moz-box-shadow: inset 0 1px 0 rgba(0,0,0,0.1);
- 	        box-shadow: inset 0 1px 0 rgba(0,0,0,0.1);
- 	vertical-align: top;
+  background: #b73b27;
+  border-color: #7f291b;
+  color: rgba(255,255,255,0.95);
+  -webkit-box-shadow: inset 0 1px 0 rgba(0,0,0,0.1);
+     -moz-box-shadow: inset 0 1px 0 rgba(0,0,0,0.1);
+           box-shadow: inset 0 1px 0 rgba(0,0,0,0.1);
+   vertical-align: top;
 }
 .option-tree-ui-button.right {
   float: right;
@@ -1233,11 +1233,11 @@ ul.ot-gallery-list li img {
   .on-off-switch input:last-of-type:checked ~ .slide-button {
     background: #b73b27;
     border-color: #7f291b;
-  	color: #fff;
+    color: #fff;
     left: 50px;
-  	-webkit-box-shadow: inset 0 1px 0 rgba(229,134,119,0.6), 0 1px 0 rgba(0,0,0,.15);
-  	   -moz-box-shadow: inset 0 1px 0 rgba(229,134,119,0.6), 0 1px 0 rgba(0,0,0,.15);
-   	        box-shadow: inset 0 1px 0 rgba(229,134,119,0.6), 0 1px 0 rgba(0,0,0,.15);
+    -webkit-box-shadow: inset 0 1px 0 rgba(229,134,119,0.6), 0 1px 0 rgba(0,0,0,.15);
+       -moz-box-shadow: inset 0 1px 0 rgba(229,134,119,0.6), 0 1px 0 rgba(0,0,0,.15);
+             box-shadow: inset 0 1px 0 rgba(229,134,119,0.6), 0 1px 0 rgba(0,0,0,.15);
   }
 }
 @media only screen and (-webkit-max-device-pixel-ratio: 2) and (max-device-width: 1280px) {
@@ -1545,23 +1545,23 @@ a.ui-datepicker-next {
 .ui-datepicker .ui-datepicker-buttonpane button:hover,
 .ui-datepicker .ui-datepicker-buttonpane button:focus {
   background: #fafafa;
-	border-color: #999;
-	color: #222;
-	outline: 0;
+  border-color: #999;
+  color: #222;
+  outline: 0;
 }
 .ui-datepicker .ui-datepicker-buttonpane button:focus {
   -webkit-box-shadow: 1px 1px 1px rgba(0,0,0,.2);
      -moz-box-shadow: 1px 1px 1px rgba(0,0,0,.2);
-	        box-shadow: 1px 1px 1px rgba(0,0,0,.2);
+          box-shadow: 1px 1px 1px rgba(0,0,0,.2);
 }
 .ui-datepicker .ui-datepicker-buttonpane button:active {
   background: #eee;
-	border-color: #999;
-	color: #333;
-	outline: 0;
-	-webkit-box-shadow: inset 0 2px 5px -3px rgba( 0, 0, 0, 0.5 );
-	   -moz-box-shadow: inset 0 2px 5px -3px rgba( 0, 0, 0, 0.5 );
- 	        box-shadow: inset 0 2px 5px -3px rgba( 0, 0, 0, 0.5 );
+  border-color: #999;
+  color: #333;
+  outline: 0;
+  -webkit-box-shadow: inset 0 2px 5px -3px rgba( 0, 0, 0, 0.5 );
+     -moz-box-shadow: inset 0 2px 5px -3px rgba( 0, 0, 0, 0.5 );
+           box-shadow: inset 0 2px 5px -3px rgba( 0, 0, 0, 0.5 );
 }
 .ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current {
   float: left;
@@ -1636,14 +1636,14 @@ a.ui-datepicker-next {
           border-radius: 3px;
 }
 .ui-timepicker-div .ui-slider-horizontal .ui-slider-handle:hover {
-	background: #fafafa;
-	border-color: #999;
-	color: #222;
+  background: #fafafa;
+  border-color: #999;
+  color: #222;
 }
 .ui-timepicker-div .ui-slider-horizontal .ui-slider-handle.ui-state-active {
   background: #eee;
-	border-color: #999;
-	color: #333;
+  border-color: #999;
+  color: #333;
   outline: none;
 }
 .ui-timepicker-div dl { 

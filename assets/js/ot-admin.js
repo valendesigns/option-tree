@@ -602,21 +602,21 @@
       });
     },
     css_editor_mode: function() {
-    	$('.ot-css-editor').each(function() {
-    		var editor = ace.edit($(this).attr('id'));
-    		var this_textarea = jQuery('#textarea_' + $(this).attr('id'));
-    		editor.setTheme("ace/theme/chrome");
-    		editor.getSession().setMode("ace/mode/css");
-    		editor.setShowPrintMargin( false );
+      $('.ot-css-editor').each(function() {
+        var editor = ace.edit($(this).attr('id'));
+        var this_textarea = jQuery('#textarea_' + $(this).attr('id'));
+        editor.setTheme("ace/theme/chrome");
+        editor.getSession().setMode("ace/mode/css");
+        editor.setShowPrintMargin( false );
     
-    		editor.getSession().setValue(this_textarea.val());
-    		editor.getSession().on('change', function(){
-    			this_textarea.val(editor.getSession().getValue());
-    		});
-    		this_textarea.on('change', function(){
-    			editor.getSession().setValue(this_textarea.val());
-    		});
-  	  });
+        editor.getSession().setValue(this_textarea.val());
+        editor.getSession().on('change', function(){
+          this_textarea.val(editor.getSession().getValue());
+        });
+        this_textarea.on('change', function(){
+          editor.getSession().setValue(this_textarea.val());
+        });
+      });
     },
     url_exists: function(url) {
       var http = new XMLHttpRequest();
