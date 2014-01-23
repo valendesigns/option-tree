@@ -121,22 +121,22 @@ input.option-tree-ui-input {
   :: Upload
   ---------------------------------------------------*/
 div.option-tree-ui-media-wrap {
-  margin: 5px 0 0 63px;
+  margin: 5px 0 0 55px;
 }
 .option-tree-ui-media-wrap img {
   float: right;
 }
 .option-tree-ui-upload-parent {
   margin-right: 0;
-  margin-left: 53px;
+  margin-left: 45px;
 }
 .format-setting .ot_upload_media {
   right: auto;
-  left: -53px;
+  left: -45px;
 }
 .option-tree-ui-media-wrap a.option-tree-ui-remove-media {
   right: auto;
-  left: -63px;
+  left: -55px;
 }
 
 /* -------------------------------------------------- 

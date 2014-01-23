@@ -224,7 +224,7 @@ if ( ! function_exists( 'ot_type_background' ) ) {
             echo '<input type="text" name="' . esc_attr( $field_name ) . '[background-image]" id="' . esc_attr( $field_id ) . '" value="' . ( isset( $field_value['background-image'] ) ? esc_attr( $field_value['background-image'] ) : '' ) . '" class="widefat option-tree-ui-upload-input ' . esc_attr( $field_class ) . '" />';
             
             /* add media button */
-            echo '<a href="javascript:void(0);" class="ot_upload_media option-tree-ui-button blue light" rel="' . $post_id . '" title="' . __( 'Add Media', 'option-tree' ) . '"><span class="icon upload">' . __( 'Add Media', 'option-tree' ) . '</span></a>';
+            echo '<a href="javascript:void(0);" class="ot_upload_media option-tree-ui-button button button-primary blue light" rel="' . $post_id . '" title="' . __( 'Add Media', 'option-tree' ) . '"><span class="icon ot-icon-plus-sign"></span>' . __( 'Add Media', 'option-tree' ) . '</a>';
           
           echo '</div>';
           
@@ -236,7 +236,7 @@ if ( ! function_exists( 'ot_type_background' ) ) {
               if ( preg_match( '/\.(?:jpe?g|png|gif|ico)$/i', $field_value['background-image'] ) )
                 echo '<div class="option-tree-ui-image-wrap"><img src="' . esc_url( $field_value['background-image'] ) . '" alt="" /></div>';
               
-              echo '<a href="javascript:(void);" class="option-tree-ui-remove-media option-tree-ui-button red light" title="' . __( 'Remove Media', 'option-tree' ) . '"><span class="icon trash-can">' . __( 'Remove Media', 'option-tree' ) . '</span></a>';
+              echo '<a href="javascript:(void);" class="option-tree-ui-remove-media option-tree-ui-button button button-secondary light" title="' . __( 'Remove Media', 'option-tree' ) . '"><span class="icon ot-icon-minus-sign"></span>' . __( 'Remove Media', 'option-tree' ) . '</a>';
               
             echo '</div>';
             
@@ -772,15 +772,15 @@ if ( ! function_exists( 'ot_type_gallery' ) ) {
           
           echo '
           <div class="ot-gallery-buttons">
-            <a href="#" class="option-tree-ui-button red hug-left ot-gallery-delete">' . __( 'Delete Gallery', 'option-tree' ) . '</a>
-            <a href="#" class="option-tree-ui-button blue right hug-right ot-gallery-edit">' . __( 'Edit Gallery', 'option-tree' ) . '</a>
+            <a href="#" class="option-tree-ui-button button button-secondary hug-left ot-gallery-delete">' . __( 'Delete Gallery', 'option-tree' ) . '</a>
+            <a href="#" class="option-tree-ui-button button button-primary right hug-right ot-gallery-edit">' . __( 'Edit Gallery', 'option-tree' ) . '</a>
           </div>';
         
         } else {
         
           echo '
           <div class="ot-gallery-buttons">
-            <a href="#" class="option-tree-ui-button blue right hug-right ot-gallery-edit">' . __( 'Create Gallery', 'option-tree' ) . '</a>
+            <a href="#" class="option-tree-ui-button button button-primary right hug-right ot-gallery-edit">' . __( 'Create Gallery', 'option-tree' ) . '</a>
           </div>';
         
         }
@@ -852,7 +852,7 @@ if ( ! function_exists( 'ot_type_list_item' ) ) {
         echo '</ul>';
         
         /* button */
-        echo '<a href="javascript:void(0);" class="option-tree-list-item-add option-tree-ui-button blue right hug-right" title="' . __( 'Add New', 'option-tree' ) . '">' . __( 'Add New', 'option-tree' ) . '</a>';
+        echo '<a href="javascript:void(0);" class="option-tree-list-item-add option-tree-ui-button button button-primary right hug-right" title="' . __( 'Add New', 'option-tree' ) . '">' . __( 'Add New', 'option-tree' ) . '</a>';
         
         /* description */
         echo '<div class="list-item-description">' . apply_filters( 'ot_list_item_description', __( 'You can re-order with drag & drop, the order will update after saving.', 'option-tree' ), $field_id ) . '</div>';
@@ -1020,7 +1020,7 @@ if ( ! function_exists( 'ot_type_on_off' ) ) {
         foreach ( (array) $field_choices as $key => $choice ) {
           echo '
             <input type="radio" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '-' . esc_attr( $key ) . '" value="' . esc_attr( $choice['value'] ) . '"' . checked( $field_value, $choice['value'], false ) . ' class="radio option-tree-ui-radio ' . esc_attr( $field_class ) . '" />
-            <label for="' . esc_attr( $field_id ) . '-' . esc_attr( $key ) . '">' . esc_attr( $choice['label'] ) . '</label>';
+            <label for="' . esc_attr( $field_id ) . '-' . esc_attr( $key ) . '" onclick="">' . esc_attr( $choice['label'] ) . '</label>';
         }
           
           echo '<span class="slide-button"></span>';
@@ -1205,7 +1205,7 @@ if ( ! function_exists( 'ot_type_slider' ) ) {
         echo '</ul>';
         
         /* button */
-        echo '<a href="javascript:void(0);" class="option-tree-list-item-add option-tree-ui-button blue right hug-right" title="' . __( 'Add New', 'option-tree' ) . '">' . __( 'Add New', 'option-tree' ) . '</a>';
+        echo '<a href="javascript:void(0);" class="option-tree-list-item-add option-tree-ui-button button button-primary right hug-right" title="' . __( 'Add New', 'option-tree' ) . '">' . __( 'Add New', 'option-tree' ) . '</a>';
         
         /* description */
         echo '<div class="list-item-description">' . __( 'You can re-order with drag & drop, the order will update after saving.', 'option-tree' ) . '</div>';
@@ -2212,7 +2212,7 @@ if ( ! function_exists( 'ot_type_upload' ) ) {
           echo '<input type="text" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" value="' . esc_attr( $field_value ) . '" class="widefat option-tree-ui-upload-input ' . esc_attr( $field_class ) . '" />';
           
           /* add media button */
-          echo '<a href="javascript:void(0);" class="ot_upload_media option-tree-ui-button blue light" rel="' . $post_id . '" title="' . __( 'Add Media', 'option-tree' ) . '"><span class="icon upload">' . __( 'Add Media', 'option-tree' ) . '</span></a>';
+          echo '<a href="javascript:void(0);" class="ot_upload_media option-tree-ui-button button button-primary light" rel="' . $post_id . '" title="' . __( 'Add Media', 'option-tree' ) . '"><span class="icon ot-icon-plus-sign"></span>' . __( 'Add Media', 'option-tree' ) . '</a>';
         
         echo '</div>';
         
@@ -2224,7 +2224,7 @@ if ( ! function_exists( 'ot_type_upload' ) ) {
             if ( preg_match( '/\.(?:jpe?g|png|gif|ico)$/i', $field_value ) )
               echo '<div class="option-tree-ui-image-wrap"><img src="' . esc_url( $field_value ) . '" alt="" /></div>';
             
-            echo '<a href="javascript:(void);" class="option-tree-ui-remove-media option-tree-ui-button red light" title="' . __( 'Remove Media', 'option-tree' ) . '"><span class="icon trash-can">' . __( 'Remove Media', 'option-tree' ) . '</span></a>';
+            echo '<a href="javascript:(void);" class="option-tree-ui-remove-media option-tree-ui-button button button-secondary light" title="' . __( 'Remove Media', 'option-tree' ) . '"><span class="icon ot-icon-minus-sign"></span>' . __( 'Remove Media', 'option-tree' ) . '</a>';
             
           echo '</div>';
           
