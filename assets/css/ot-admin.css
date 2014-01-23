@@ -118,19 +118,18 @@
   position: relative;
 }
 #option-tree-header {
-  background: #464646;
-  color: #ccc;
+  background: #333;
+  color: #bbb;
   display: block;
   margin: 11px 5px 0 2px;
   min-width: 535px;
   overflow: hidden;
   position: relative;
   -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+     -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+          box-shadow: 0 1px 3px rgba(0,0,0,0.05);
   -webkit-border-radius: 4px 4px 0 0;
-   -khtml-border-radius: 4px 4px 0 0;
      -moz-border-radius: 4px 4px 0 0;
-       -o-border-radius: 4px 4px 0 0;
           border-radius: 4px 4px 0 0;
 }
 #option-tree-header li {
@@ -140,36 +139,223 @@
   padding: 0px;
 }
 #option-tree-header li a {
-  color: #ccc;
+  color: #999;
   text-decoration: none;
+  -webkit-transition: none;
+     -moz-transition: none;
+          transition: none;
 }
 #option-tree-header li a:hover {
-  color: #fafafa;
+  color: #0074a2;
 }
 #option-tree-header #option-tree-logo a {
-  border-right: 1px solid #333;
+  border-right: 1px solid #222;
   float: left;
   height: 24px;
   padding: 3px 12px 3px 13px;
   width: 20px;
 }
 #option-tree-header li#option-tree-logo:hover {
-  color: #fafafa;
-  background-color: #3a3a3a;
-  -webkit-border-top-left-radius: 5px;
-  -moz-border-radius-topleft: 5px;
-  border-top-left-radius: 5px;
+  background-color: #222;
+  -webkit-border-top-left-radius: 2px;
+      -moz-border-radius-topleft: 2px;
+          border-top-left-radius: 2px;
 }
-#option-tree-header #option-tree-version {
-
+#option-tree-header li#option-tree-logo:hover a {
+  border-color: #111;
 }
 #option-tree-header #option-tree-version span {
-  border-left: 1px solid #555;
+  border-left: 1px solid #444;
   display: block;
   float: left;
   height: 24px;
   line-height: 24px;
   padding: 3px 12px 3px 12px;
+}
+/* fresh */
+.admin-color-fresh #option-tree-header {
+  background: #333;
+  color: #bbb;
+}
+.admin-color-fresh #option-tree-header li a {
+  color: #999;
+}
+.admin-color-fresh #option-tree-header li a:hover {
+  color: #0074a2;
+}
+.admin-color-fresh #option-tree-header #option-tree-logo a {
+  border-right-color: #222;
+}
+.admin-color-fresh #option-tree-header li#option-tree-logo:hover {
+  color: #0074a2;
+  background-color: #222;
+}
+.admin-color-fresh #option-tree-header li#option-tree-logo:hover a {
+  border-color: #000;
+}
+.admin-color-fresh #option-tree-header #option-tree-version span {
+  border-left-color: #444;
+}
+/* light */
+.admin-color-light #option-tree-header {
+  background: #888;
+  color: #fff;
+}
+.admin-color-light #option-tree-header li a {
+  color: #ccc;
+}
+.admin-color-light #option-tree-header li a:hover {
+  color: #eee;
+}
+.admin-color-light #option-tree-header #option-tree-logo a {
+  border-right-color: #777;
+}
+.admin-color-light #option-tree-header li#option-tree-logo:hover {
+  background-color: #777;
+}
+.admin-color-light #option-tree-header li#option-tree-logo:hover a {
+  border-color: #555;
+}
+.admin-color-light #option-tree-header #option-tree-version span {
+  border-left-color: #999;
+}
+/* blue */
+.admin-color-blue #option-tree-header {
+  background: #52accc;
+  color: #fff;
+}
+.admin-color-blue #option-tree-header li a {
+  color: #e2f8ff;
+}
+.admin-color-blue #option-tree-header li a:hover {
+  color: #fff;
+}
+.admin-color-blue #option-tree-header #option-tree-logo a {
+  border-right-color: #4796B3;
+}
+.admin-color-blue #option-tree-header li#option-tree-logo:hover {
+  background-color: #006484;
+}
+.admin-color-blue #option-tree-header li#option-tree-logo:hover a {
+  border-color: #005976;
+}
+.admin-color-blue #option-tree-header #option-tree-version span {
+  border-left-color: #5dc2e6;
+}
+/* coffee */
+.admin-color-coffee #option-tree-header {
+  background: #59524c;
+  color: #c7cbc9;
+}
+.admin-color-coffee #option-tree-header li a {
+  color: #f3f2f1;
+}
+.admin-color-coffee #option-tree-header li a:hover {
+  color: #fff;
+}
+.admin-color-coffee #option-tree-header #option-tree-logo a {
+  border-right-color: #47403c;
+}
+.admin-color-coffee #option-tree-header li#option-tree-logo:hover {
+  background-color: #cca588;
+}
+.admin-color-coffee #option-tree-header li#option-tree-logo:hover a {
+  border-color: #3a3431;
+}
+.admin-color-coffee #option-tree-header #option-tree-version span {
+  border-left-color: #675f58;
+}
+/* ectoplasm */
+.admin-color-ectoplasm #option-tree-header {
+  background: #523f6d;
+  color: #c6c6d3;
+}
+.admin-color-ectoplasm #option-tree-header li a {
+  color: #f3f2f1;
+}
+.admin-color-ectoplasm #option-tree-header li a:hover {
+  color: #fff;
+}
+.admin-color-ectoplasm #option-tree-header #option-tree-logo a {
+  border-right-color: #413355;
+}
+.admin-color-ectoplasm #option-tree-header li#option-tree-logo:hover {
+  background-color: #a3b542;
+}
+.admin-color-ectoplasm #option-tree-header li#option-tree-logo:hover a {
+  border-color: #362b47;
+}
+.admin-color-ectoplasm #option-tree-header #option-tree-version span {
+  border-left-color: #644d85;
+}
+/* midnight */
+.admin-color-midnight #option-tree-header {
+  background: #363b3f;
+  color: #f1f2f3;
+}
+.admin-color-midnight #option-tree-header li a {
+  color: #f1f2f3;
+}
+.admin-color-midnight #option-tree-header li a:hover {
+  color: #fff;
+}
+.admin-color-midnight #option-tree-header #option-tree-logo a {
+  border-right-color: #25292c;
+}
+.admin-color-midnight #option-tree-header li#option-tree-logo:hover {
+  background-color: #ed543f;
+}
+.admin-color-midnight #option-tree-header li#option-tree-logo:hover a {
+  border-color: #1a1d1f;
+}
+.admin-color-midnight #option-tree-header #option-tree-version span {
+  border-left-color: #4c5359;
+}
+/* ocean */
+.admin-color-ocean #option-tree-header {
+  background: #738e96;
+  color: #f1fcff;
+}
+.admin-color-ocean #option-tree-header li a {
+  color: #f1fcff;
+}
+.admin-color-ocean #option-tree-header li a:hover {
+  color: #fff;
+}
+.admin-color-ocean #option-tree-header #option-tree-logo a {
+  border-right-color: #5e7c83;
+}
+.admin-color-ocean #option-tree-header li#option-tree-logo:hover {
+  background-color: #9ab8a0;
+}
+.admin-color-ocean #option-tree-header li#option-tree-logo:hover a {
+  border-color: #557076;
+}
+.admin-color-ocean #option-tree-header #option-tree-version span {
+  border-left-color: #87a6af;
+}
+/* sunrise */
+.admin-color-sunrise #option-tree-header {
+  background: #da4f41;
+  color: #fff;
+}
+.admin-color-sunrise #option-tree-header li a {
+  color: #f3f1f1;
+}
+.admin-color-sunrise #option-tree-header li a:hover {
+  color: #fff;
+}
+.admin-color-sunrise #option-tree-header #option-tree-logo a {
+  border-right-color: #c83d2d;
+}
+.admin-color-sunrise #option-tree-header li#option-tree-logo:hover {
+  background-color: #e88436;
+}
+.admin-color-sunrise #option-tree-header li#option-tree-logo:hover a {
+  border-color: #ba392a;
+}
+.admin-color-sunrise #option-tree-header #option-tree-version span {
+  border-left-color: #e75546;
 }
 
 /* -------------------------------------------------- 
@@ -592,6 +778,118 @@ div.option-tree-ui-media-wrap {
 .format-setting .ui-sortable-helper .option-tree-setting.is-section .open {
   background: #464646 url(../images/ot-dots.png) no-repeat 4px 15px;
 }
+/* fresh */
+.admin-color-fresh .option-tree-setting.is-section,
+.admin-color-fresh .option-tree-setting.is-section .option-tree-setting-body,
+.admin-color-fresh .option-tree-setting.is-section .option-tree-ui-button { 
+  border-color: #004f6f !important; 
+}
+.admin-color-fresh .option-tree-setting.is-section .open {
+  background: #0075a3;
+  color: #fff;
+}
+.admin-color-fresh .option-tree-setting.is-section .open:hover,
+.admin-color-fresh .format-setting .ui-sortable-helper .option-tree-setting.is-section .open {
+  background: #0075a3 url(../images/ot-dots.png) no-repeat 4px 15px;
+}
+/* light */
+.admin-color-light .option-tree-setting.is-section,
+.admin-color-light .option-tree-setting.is-section .option-tree-setting-body,
+.admin-color-light .option-tree-setting.is-section .option-tree-ui-button { 
+  border-color: #666 !important; 
+}
+.admin-color-light .option-tree-setting.is-section .open {
+  background: #888;
+  color: #fff;
+}
+.admin-color-light .option-tree-setting.is-section .open:hover,
+.admin-color-light .format-setting .ui-sortable-helper .option-tree-setting.is-section .open {
+  background: #888 url(../images/ot-dots.png) no-repeat 4px 15px;
+}
+/* blue */
+.admin-color-blue .option-tree-setting.is-section,
+.admin-color-blue .option-tree-setting.is-section .option-tree-setting-body,
+.admin-color-blue .option-tree-setting.is-section .option-tree-ui-button { 
+  border-color: #003c4f !important; 
+}
+.admin-color-blue .option-tree-setting.is-section .open {
+  background: #006484;
+  color: #fff;
+}
+.admin-color-blue .option-tree-setting.is-section .open:hover,
+.admin-color-blue .format-setting .ui-sortable-helper .option-tree-setting.is-section .open {
+  background: #006484 url(../images/ot-dots.png) no-repeat 4px 15px;
+}
+/* coffee */
+.admin-color-coffee .option-tree-setting.is-section,
+.admin-color-coffee .option-tree-setting.is-section .option-tree-setting-body,
+.admin-color-coffee .option-tree-setting.is-section .option-tree-ui-button { 
+  border-color: #7e6654 !important; 
+}
+.admin-color-coffee .option-tree-setting.is-section .open {
+  background: #cda689;
+  color: #fff;
+}
+.admin-color-coffee .option-tree-setting.is-section .open:hover,
+.admin-color-coffee .format-setting .ui-sortable-helper .option-tree-setting.is-section .open {
+  background: #cda689 url(../images/ot-dots.png) no-repeat 4px 15px;
+}
+/* ectoplasm */
+.admin-color-ectoplasm .option-tree-setting.is-section,
+.admin-color-ectoplasm .option-tree-setting.is-section .option-tree-setting-body,
+.admin-color-ectoplasm .option-tree-setting.is-section .option-tree-ui-button { 
+  border-color: #5d6725 !important; 
+}
+.admin-color-ectoplasm .option-tree-setting.is-section .open {
+  background: #a3b541;
+  color: #fff;
+}
+.admin-color-ectoplasm .option-tree-setting.is-section .open:hover,
+.admin-color-ectoplasm .format-setting .ui-sortable-helper .option-tree-setting.is-section .open {
+  background: #a3b541 url(../images/ot-dots.png) no-repeat 4px 15px;
+}
+/* midnight */
+.admin-color-midnight .option-tree-setting.is-section,
+.admin-color-midnight .option-tree-setting.is-section .option-tree-setting-body,
+.admin-color-midnight .option-tree-setting.is-section .option-tree-ui-button { 
+  border-color: #9c372a !important; 
+}
+.admin-color-midnight .option-tree-setting.is-section .open {
+  background: #ed533f;
+  color: #fff;
+}
+.admin-color-midnight .option-tree-setting.is-section .open:hover,
+.admin-color-midnight .format-setting .ui-sortable-helper .option-tree-setting.is-section .open {
+  background: #ed533f url(../images/ot-dots.png) no-repeat 4px 15px;
+}
+/* ocean */
+.admin-color-ocean .option-tree-setting.is-section,
+.admin-color-ocean .option-tree-setting.is-section .option-tree-setting-body,
+.admin-color-ocean .option-tree-setting.is-section .option-tree-ui-button { 
+  border-color: #596b5c !important; 
+}
+.admin-color-ocean .option-tree-setting.is-section .open {
+  background: #9bb9a0;
+  color: #fff;
+}
+.admin-color-ocean .option-tree-setting.is-section .open:hover,
+.admin-color-ocean .format-setting .ui-sortable-helper .option-tree-setting.is-section .open {
+  background: #9bb9a0 url(../images/ot-dots.png) no-repeat 4px 15px;
+}
+/* sunrise */
+.admin-color-sunrise .option-tree-setting.is-section,
+.admin-color-sunrise .option-tree-setting.is-section .option-tree-setting-body,
+.admin-color-sunrise .option-tree-setting.is-section .option-tree-ui-button { 
+  border-color: #995723 !important; 
+}
+.admin-color-sunrise .option-tree-setting.is-section .open {
+  background: #e78336;
+  color: #fff;
+}
+.admin-color-sunrise .option-tree-setting.is-section .open:hover,
+.admin-color-sunrise .format-setting .ui-sortable-helper .option-tree-setting.is-section .open {
+  background: #e78336 url(../images/ot-dots.png) no-repeat 4px 15px;
+}
 .ui-state-highlight {
   border: 1px dashed #ccc;
   display: block;
@@ -630,7 +928,7 @@ li ul .format-setting-label {
 #option-tree-options-layouts-form {
   left: 13px;
   position: absolute;
-  top: 30px;
+  top: 31px;
   z-index: 10;
 }
 .option-tree-save-layout {
@@ -654,6 +952,12 @@ li ul .format-setting-label {
   float: left;
   padding: 10px 10px 10px 0;
   min-width: 126px;
+}
+.button.save-layout {
+  margin: 0 0 0 5px !important;
+}
+.option-tree-layout-activate {
+  text-indent: -9999px;
 }
 
 /* -------------------------------------------------- 
@@ -911,12 +1215,11 @@ select.option-tree-ui-select option {
   ---------------------------------------------------*/
 .option-tree-ui-button.button {
   float: left;
-  line-height: 27px;
-  height: 29px;
+  font-size: 12px !important;
+  line-height: 27px !important;
+  height: 29px !important;
   margin: 5px;
-}
-.option-tree-ui-button.button.save-layout {
-  margin: 0 0 0 5px;
+  padding: 0 10px 1px !important;
 }
 .option-tree-ui-button:active,
 .option-tree-ui-button:hover,
@@ -930,6 +1233,7 @@ select.option-tree-ui-select option {
   background: #b73b27;
   border-color: #7f291b;
   color: #fff;
+  text-shadow: none;
   -webkit-box-shadow: inset 0 1px 0 rgba(229,134,119,0.5), 0 1px 0 rgba(0,0,0,.15);
      -moz-box-shadow: inset 0 1px 0 rgba(229,134,119,0.5), 0 1px 0 rgba(0,0,0,.15);
            box-shadow: inset 0 1px 0 rgba(229,134,119,0.5), 0 1px 0 rgba(0,0,0,.15);

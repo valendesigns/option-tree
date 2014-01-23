@@ -188,6 +188,9 @@ div.option-tree-ui-media-wrap {
   float: right;
   padding: 10px 0 10px 10px;
 }
+.button.save-layout {
+  margin: 0 5px 0 0 !important;
+}
 
 /* -------------------------------------------------- 
   :: Select
@@ -291,83 +294,20 @@ div.option-tree-ui-media-wrap {
 /* -------------------------------------------------- 
   :: OptionTree UI Buttons 
   ---------------------------------------------------*/
-.option-tree-ui-button,
-.option-tree-ui-button.blue,
-.option-tree-ui-button.red {
-  float: right;
-}
-.option-tree-ui-button,
-.option-tree-ui-button.red {
-  background-image: -webkit-gradient(linear,right top,right bottom,from(#fefefe),to(#f4f4f4));
-}
-.option-tree-ui-button.hover,
-.option-tree-ui-button:hover,
-.option-tree-ui-button.red:hover,
-.option-tree-ui-button.focus,
-.option-tree-ui-button:focus,
-.option-tree-ui-button.red:focus {
-  background-image: -webkit-gradient(linear,right top,right bottom,from(#fff),to(#f3f3f3));
-}
-.option-tree-ui-button.focus,
-.option-tree-ui-button:focus,
-.option-tree-ui-button.red:focus {
-  -webkit-box-shadow: -1px 1px 1px rgba(0,0,0,.2);
-  box-shadow: -1px 1px 1px rgba(0,0,0,.2);
-}
-.option-tree-ui-button.active,
-.option-tree-ui-button.active:hover,
-.option-tree-ui-button.active:focus,
-.option-tree-ui-button:active,
-.option-tree-ui-button.red:active {
-  background-image: -webkit-gradient(linear,right top,right bottom,from(#f4f4f4),to(#fefefe));
-}
-.option-tree-ui-button[disabled],
-.option-tree-ui-button:disabled,
-.option-tree-ui-button.red[disabled],
-.option-tree-ui-button.red:disabled,
-.option-tree-ui-button.disabled {
-  background-image: -webkit-gradient(linear,right top,right bottom,from(#f9f9f9),to(#f4f4f4))!important;
-}
-.option-tree-ui-button.blue {
-  background-image: -webkit-gradient(linear,right top,right bottom,from(#2a95c5),to(#21759b));
-}
-.option-tree-ui-button.blue.hover,
-.option-tree-ui-button.blue:hover,
-.option-tree-ui-button.blue.focus,
-.option-tree-ui-button.blue:focus {
-  background-image: -webkit-gradient(linear,right top,right bottom,from(#2e9fd2),to(#21759b));
-}
-.option-tree-ui-button.blue.active,
-.option-tree-ui-button.blue.active:hover,
-.option-tree-ui-button.blue.active:focus,
-.option-tree-ui-button.blue:active {
-  background-image: -webkit-gradient(linear,right top,right bottom,from(#21759b),to(#278ab7));
-}
-.option-tree-ui-button.red {
-  background-image: -webkit-gradient(linear,right top,right bottom,from(#c5402a),to(#9b3221));
-}
-.option-tree-ui-button.red.hover,
-.option-tree-ui-button.red:hover,
-.option-tree-ui-button.red.focus,
-.option-tree-ui-button.red:focus {
-  background-image: -webkit-gradient(linear,right top,right bottom,from(#d2452e),to(#9b3221));
-}
-.option-tree-ui-button.red.active,
-.option-tree-ui-button.red.active:hover,
-.option-tree-ui-button.red.active:focus,
-.option-tree-ui-button.red:active {
-  background-image: -webkit-gradient(linear,right top,right bottom,from(#9b3221),to(#b73b27));
+.option-tree-ui-button {
+  float: right !important;
 }
 .option-tree-ui-button.right {
-  float: left;
+  float: left !important;
 }
 .option-tree-ui-button.hug-left {
-  margin-left: 0px;
-}
-.option-tree-ui-button.hug-right {
   margin-right: 0px;
 }
+.option-tree-ui-button.hug-right {
+  margin-left: 0px;
+}
 .option-tree-ui-button.left-item {
+  float: right !important;
   margin: 5px 5px 5px 0;
   -webkit-border-radius: 0px 3px 3px 0px;
   -moz-border-radius: 0px 3px 3px 0px;
@@ -377,6 +317,7 @@ div.option-tree-ui-media-wrap {
   margin: 5px -1px 5px 0;
 }
 .option-tree-ui-button.right-item {
+  float: left !important;
   margin: 5px -1px 5px 5px;
   -webkit-border-radius: 3px 0px 0px 3px;
   -moz-border-radius: 3px 0px 0px 3px;
@@ -395,7 +336,7 @@ button.reset-settings {
   ---------------------------------------------------*/
 .option-tree-ui-button .icon {
   float: right;
-  text-indent: 9999px;
+  text-indent: 0;
 }
 .option-tree-ui-button .icon.left-label {
   margin-left: 10px;
