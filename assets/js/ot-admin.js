@@ -778,10 +778,10 @@
       if ( $(this).find('.type-tab').length ) {
         
         // Add .ot-metabox-panels
-        $(this).find('.type-tab').parents('.ot-metabox-wrapper').wrapAll('<div class="ot-metabox-panels" />')
+        $(this).find('.type-tab').parents('.ot-metabox-wrapper').wrapInner('<div class="ot-metabox-panels" />')
         
         // Wrapp with .ot-metabox-tabs & add .ot-metabox-nav before .ot-metabox-panels
-        $(this).parent('.ot-metabox-panels').wrap('<div class="ot-metabox-tabs" />').before('<ul class="ot-metabox-nav" />')
+        $(this).find('.ot-metabox-panels').wrap('<div class="ot-metabox-tabs" />').before('<ul class="ot-metabox-nav" />')
         
         // Loop over settings and build the tabs nav
         $(this).find('.format-settings').each( function() {
@@ -807,7 +807,10 @@
         })
         
         // Create the tabs
-        $(this).parents('.ot-metabox-tabs').tabs()
+        $(this).find('.ot-metabox-tabs').tabs()
+        
+        // Move the orphaned settings to the top
+        $(this).find('.ot-metabox-panels > .format-settings').prependTo(".ot-metabox-wrapper")
       
       }
     
@@ -831,10 +834,10 @@
       if ( $(this).find('.type-tab').length ) {
         
         // Add .ot-theme-option-panels
-        $(this).find('.type-tab').parents('.inside').wrapAll('<div class="ot-theme-option-panels" />')
+        $(this).find('.type-tab').parents('.inside').wrapInner('<div class="ot-theme-option-panels" />')
         
         // Wrap with .ot-theme-option-tabs & add .ot-theme-option-nav before .ot-theme-option-panels
-        $(this).parent('.ot-theme-option-panels').wrap('<div class="ot-theme-option-tabs" />').before('<ul class="ot-theme-option-nav" />')
+        $(this).find('.ot-theme-option-panels').wrap('<div class="ot-theme-option-tabs" />').before('<ul class="ot-theme-option-nav" />')
         
         // Loop over settings and build the tabs nav
         $(this).find('.format-settings').each( function() {
@@ -847,6 +850,8 @@
             $(this).addClass('is-panel').hide()
             $(this).parents('.ot-theme-option-panels').prev('.ot-theme-option-nav').append('<li><a href="#' + id + '">' + title + '</a></li>')
             
+          } else {
+          
           }
           
         })
@@ -860,7 +865,10 @@
         })
         
         // Create the tabs
-        $(this).parents('.ot-theme-option-tabs').tabs()
+        $(this).find('.ot-theme-option-tabs').tabs()
+        
+        // Move the orphaned settings to the top
+        $(this).find('.ot-theme-option-panels > .format-settings').prependTo(".ot-theme-option-tabs")
       
       }
     
