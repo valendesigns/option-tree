@@ -260,6 +260,16 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       define( 'OT_META_BOXES', apply_filters( 'ot_meta_boxes', true ) );
       
       /**
+       * For developers: Post Formats.
+       *
+       * Run a filter and set to true if you want OptionTree 
+       * to load meta boxes for post formats.
+       *
+       * @since     2.3.0
+       */
+      define( 'OT_POST_FORMATS', apply_filters( 'ot_post_formats', false ) );
+      
+      /**
        * Check if in theme mode.
        *
        * If OT_THEME_MODE and OT_CHILD_THEME_MODE is false, set the 
@@ -323,6 +333,11 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       /* include the meta box api */
       if ( OT_META_BOXES == true ) {
         $files[] = 'ot-meta-box-api';
+      }
+      
+      /* include the post formats api */
+      if ( OT_META_BOXES == true && OT_POST_FORMATS == true ) {
+        $files[] = 'ot-post-formats-api';
       }
       
       /* include the settings & docs pages */
