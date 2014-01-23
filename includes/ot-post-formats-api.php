@@ -119,5 +119,5 @@ if ( function_exists( 'ot_register_meta_box' ) ) {
 
 }
 
-/* End of file ot-post-formats.php */
-/* Location: ./includes/ot-post-formats.php */
+/* End of file ot-post-formats-api.php */
+/* Location: ./includes/ot-post-formats-api.php */
