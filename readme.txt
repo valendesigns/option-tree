@@ -44,6 +44,7 @@ Yes. OptionTree & WordPress both require PHP5.
 = 2.3.0 =
 * Added the Tab option type.
 * Added Ace Editor to the CSS option type. Contributors via github @imangm and @valendesigns.
+* Added support for WordPress 3.8 color schemes.
 * Added support for RTL languages. Contributors via github @omid-khd and @valendesigns.
 * Added actions before and after the enqueue styles and scripts.
 * Added Date Picker option type. Contributors via github @jetonr and @valendesigns.
