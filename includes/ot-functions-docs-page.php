@@ -242,6 +242,9 @@ add_filter( \'ot_radio_images\', \'filter_radio_images\', 10, 2 );</code></pre>'
         echo '<h4>'. __( 'Slider', 'option-tree' ) . ':</h4>';
         echo '<p>' . __( 'The Slider option type is technically deprecated. Use the List Item option type instead, as it\'s infinitely more customizable. Typical use is for creating sliding image content.', 'option-tree' ) . '</p>';
         
+        echo '<h4>'. __( 'Tab', 'option-tree' ) . ':</h4>';      
+        echo '<p>' . __( 'The Tab option type will break a section or metabox into tabbed content.', 'option-tree' ) . '</p>';
+        
         echo '<h4>'. __( 'Tag Checkbox', 'option-tree' ) . ':</h4>';      
         echo '<p>' . __( 'The Tag Checkbox option type displays a list of tag IDs. It allows the user to check multiple tag IDs and will return that value as an array for use in a custom function or loop.', 'option-tree' ) . '</p>';
         

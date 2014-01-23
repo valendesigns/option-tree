@@ -2126,6 +2126,7 @@ if ( ! function_exists( 'ot_option_types_array' ) ) {
       'select'                    => 'Select',
       'sidebar-select'            => 'Sidebar Select', 
       'slider'                    => 'Slider',
+      'tab'                       => 'Tab',
       'tag-checkbox'              => 'Tag Checkbox',
       'tag-select'                => 'Tag Select',
       'taxonomy-checkbox'         => 'Taxonomy Checkbox',

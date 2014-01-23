@@ -94,7 +94,7 @@
   margin: 0px !important;
   padding: 0px !important;
 }
-#option-tree-settings-api .ui-tabs {
+#option-tree-settings-api > .ui-tabs {
   background: #fff url(../images/ot-menu-bg.png) repeat-y 0 0;
   border: 1px solid #ccc;
   border-top: none;
@@ -1902,4 +1902,139 @@ a.ui-datepicker-next {
   border: none; 
   margin: 0; 
   padding: 0; 
+}
+
+/* -------------------------------------------------- 
+  :: Theme Option Tabs
+  ---------------------------------------------------*/
+.ot-theme-option-tabs.ui-tabs {
+  position: relative;
+}
+.ot-theme-option-tabs.ui-tabs .inside {
+  overflow: hidden;
+}
+.ot-theme-option-tabs.ui-tabs .ot-theme-option-panels {
+  margin: 0;
+  overflow: hidden;
+  width: 100%;
+}
+.ot-theme-option-tabs.ui-tabs .ot-theme-option-nav.ui-tabs-nav {
+  border-bottom: 1px solid #ccc;
+  float: none;
+  font-size: 12px !important;
+  height: 30px;
+  list-style: none;
+  margin: 2px 0 0 0;
+  padding: 0;
+  width: 100%;
+}
+.ot-theme-option-tabs.ui-tabs .ot-theme-option-nav.ui-tabs-nav li.ui-state-default {
+  background: #fafafa;
+  border: 1px solid #ccc;
+  border-width: 1px 1px 0px 1px;
+  display: block;
+  float: left;
+  margin: 0 0 0 3px;
+  padding: 0;
+  outline: 0;
+  -webkit-border-radius: 3px 3px 0 0;
+  -moz-border-radius: 3px 3px 0 0;
+  border-radius: 3px 3px 0 0;
+}
+.ot-theme-option-tabs.ui-tabs .ot-theme-option-nav.ui-tabs-nav li:hover {
+  background: #f1f1f1;
+  border: 1px solid #ccc;
+  border-width: 1px 1px 0px 1px;
+}
+.ot-theme-option-tabs.ui-tabs .ot-theme-option-nav.ui-tabs-nav li.ui-state-active {
+  background: white;
+  border-color: #ccc;
+  border-width: 1px 1px 0px 1px;
+  color: black;
+  padding: 0;
+  -webkit-border-radius: 3px 3px 0 0;
+  -moz-border-radius: 3px 3px 0 0;
+  border-radius: 3px 3px 0 0;
+}
+.ot-theme-option-tabs.ui-tabs .ot-theme-option-nav.ui-tabs-nav li a {
+  color: #21759b;
+  display: block;
+  line-height: 18px;
+  outline: 0;
+  padding: 6px 12px 5px 12px !important;
+  text-decoration: none;
+}
+.ot-theme-option-tabs.ui-tabs .ot-theme-option-nav.ui-tabs-nav li a:hover {
+  color: black;
+  outline: none;
+}
+.ot-theme-option-tabs.ui-tabs .ot-theme-option-nav.ui-tabs-nav li.ui-state-active a {
+  color: black;
+  outline: none;
+  padding: 6px 12px 6px 12px !important;
+}
+.ot-theme-option-tabs.ui-tabs .ot-theme-option-panel {
+  clear: both;
+}
+
+/* -------------------------------------------------- 
+  :: Meta Box Tabs
+  ---------------------------------------------------*/
+.ot-metabox-tabs {
+  position: relative;
+}
+.ot-metabox-tabs .ot-metabox-wrapper {
+  overflow: hidden;
+}
+.ot-metabox-tabs .ot-metabox-panels {
+  background: white;
+  border: 1px solid #ccc;
+  margin: 12px 0 0 0;
+  min-height: 140px;
+  overflow: hidden;
+  padding: 12px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+.ot-metabox-tabs .ot-metabox-nav {
+  float: left;
+  list-style: none;
+  margin: 0 -1px 0 0;
+  padding: 1em 0;
+  width: 151px;
+}
+.ot-metabox-tabs .ot-metabox-nav li {
+  border: 1px solid transparent;
+  border-right-width: 0px;
+  display: block;
+  margin: 0;
+  outline: 0;
+  -webkit-border-radius: 3px 0 0 3px;
+  -moz-border-radius: 3px 0 0 3px;
+  border-radius: 3px 0 0 3px;
+}
+.ot-metabox-tabs .ot-metabox-nav li.ui-state-active {
+  background: white;
+  border-color: #ccc;
+  color: black;
+}
+.ot-metabox-tabs .ot-metabox-nav li a {
+  color: #21759b;
+  display: block;
+  line-height: 18px;
+  outline: 0;
+  padding: 5px 5px 5px 12px;
+  text-decoration: none;
+}
+.ot-metabox-tabs .ot-metabox-nav li a:hover {
+  color: black;
+  outline: none;
+}
+.ot-metabox-tabs .ot-metabox-nav li.ui-state-active a {
+  color: black;
+  outline: none;
+}
+.ot-metabox-tabs .ot-metabox-panel {
+  clear: both;
 }

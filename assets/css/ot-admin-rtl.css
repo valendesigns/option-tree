@@ -9,7 +9,7 @@
 /* -------------------------------------------------- 
   :: OptionTree Wrappers
   ---------------------------------------------------*/
-#option-tree-settings-api .ui-tabs {
+#option-tree-settings-api > .ui-tabs {
   background: #fff url(../images/ot-menu-bg-rtl.png) repeat-y right 0;
   margin: 0px 2px 0 5px;
 }
@@ -517,4 +517,29 @@ ul.ot-gallery-list li {
 }
 .ui-timepicker-div dl dd { 
   margin: 0 45% 10px 10px; 
+}
+
+/* -------------------------------------------------- 
+  :: Theme Option Tabs
+  ---------------------------------------------------*/
+.ot-theme-option-tabs.ui-tabs .ot-theme-option-nav.ui-tabs-nav li.ui-state-default {
+  float: right;
+  margin: 0 3px 0 0;
+}
+
+/* -------------------------------------------------- 
+  :: Meta Box Tabs
+  ---------------------------------------------------*/
+.ot-metabox-tabs .ot-metabox-nav {
+  float: right;
+  margin: 0 0 0 -1px;
+}
+.ot-metabox-tabs .ot-metabox-nav li {
+  border-width: 1px 1px 1px 0px;
+  -webkit-border-radius: 0 0 3px 3px;
+  -moz-border-radius: 0 0 3px 3px;
+  border-radius: 0 0 3px 3px;
+}
+.ot-metabox-tabs .ot-metabox-nav li a {
+  padding: 5px 12px 5px 5px;
 }
