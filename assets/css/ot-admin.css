@@ -396,7 +396,8 @@
   ---------------------------------------------------*/
 #option-tree-settings-api code {
   background-color: #f1f1f1;
-  color: #000;
+  color: #333;
+  font-size: 12px;
 }
 #option-tree-settings-api pre {
   font-size: 13px;
