@@ -14,52 +14,52 @@
   -moz-osx-font-smoothing: grayscale;
 }
 .ot-icon-long-arrow-down:before {
-  content: "\e770";
+	content: "\e770";
 }
 .ot-icon-long-arrow-up:before {
-  content: "\e771";
+	content: "\e771";
 }
 .ot-icon-long-arrow-left:before {
-  content: "\e772";
+	content: "\e772";
 }
 .ot-icon-long-arrow-right:before {
-  content: "\e773";
+	content: "\e773";
 }
 .ot-icon-angle-right:before {
-  content: "\e774";
+	content: "\e774";
 }
 .ot-icon-angle-left:before {
-  content: "\e775";
+	content: "\e775";
 }
 .ot-icon-angle-up:before {
-  content: "\e776";
+	content: "\e776";
 }
 .ot-icon-angle-down:before {
-  content: "\e777";
+	content: "\e777";
 }
 .ot-icon-resize-vertical:before {
-  content: "\e778";
+	content: "\e778";
 }
 .ot-icon-resize-horizontal:before {
-  content: "\e779";
+	content: "\e779";
 }
 .ot-icon-fullscreen:before {
-  content: "\e780";
+	content: "\e780";
 }
 .ot-icon-plus-sign:before {
-  content: "\e781";
+	content: "\e781";
+}
+.ot-icon-trash:before {
+	content: "\e783";
+}
+.ot-icon-pencil:before {
+	content: "\e784";
 }
 .ot-icon-minus-sign:before {
-  content: "\e782";
-}
-.ot-icon-ok-sign:before {
-  content: "\e783";
-}
-.ot-icon-circle:before {
-  content: "\e784";
+	content: "\e782";
 }
 .ot-icon-option-tree:before {
-  content: "\e785";
+	content: "\e785";
 }
        
 /* -------------------------------------------------- 
@@ -176,7 +176,7 @@
   :: Sub Header
   ---------------------------------------------------*/
 #option-tree-sub-header { 
-  background: #fafafa url(../images/ot-sub-header-bg.png) repeat-x 0 0; 
+  background: #fafafa; 
   border: 1px solid #ccc; 
   border-top: none; 
   display: block; 
@@ -185,8 +185,9 @@
   overflow: hidden; 
   padding: 5px; 
   position: relative; 
-  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.05); 
-  box-shadow:0 1px 3px rgba(0,0,0,0.05); 
+  -webkit-box-shadow: inset 0 1px 0 #fff, 0 1px 3px rgba(0,0,0,0.05);
+     -moz-box-shadow: inset 0 1px 0 #fff, 0 1px 3px rgba(0,0,0,0.05);
+          box-shadow: inset 0 1px 0 #fff, 0 1px 3px rgba(0,0,0,0.05);
 }
 
 /* -------------------------------------------------- 
@@ -389,6 +390,10 @@
 .ot-background-size-input {
   max-width: 110px;
 }
+.option-tree-setting-edit,
+.option-tree-setting-remove {
+  text-indent: -9999px;
+}
 
 /* -------------------------------------------------- 
   :: Code formatting
@@ -484,12 +489,14 @@ div.option-tree-ui-media-wrap {
   margin: 0px !important;
   position: absolute;
   right: -45px;
+  text-indent: -9999px;
 }
 .option-tree-ui-media-wrap a.option-tree-ui-remove-media {
   float: none !important;
   margin: 0px !important;
   position: absolute !important;
   right: -55px;
+  text-indent: -9999px;
   top: 1px;
 }
 
@@ -1035,21 +1042,23 @@ button.reset-settings {
   :: OptionTree UI Button Icons 
   ---------------------------------------------------*/
 .option-tree-ui-button .icon {
-  background: url(../images/ot-ui-sprite.png) no-repeat;
+  color: #333;
   display: inline-block;
   float: left;
-  height: 18px;
-  margin-top: 4px;
+  font-size: 20px;
+  height: 20px;
+  margin-top: 3px;
   opacity: 0.65;
   overflow: hidden;
-  text-indent: -9999px;
+  text-align: center;
+  text-indent: 0;
   width: 18px;
 }
 button.option-tree-ui-button .icon {
   margin-top: -3px;
 }
 .option-tree-ui-button.light .icon {
-  background-image: url(../images/ot-ui-light-sprite.png);
+  color: #fff;
   opacity: 0.9;
 }
 .option-tree-ui-button.active .icon,
