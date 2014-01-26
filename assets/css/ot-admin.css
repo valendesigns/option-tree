@@ -2541,14 +2541,14 @@ ul.ot-gallery-list li img {
 }
 @media only screen {
   .on-off-switch {
-    background-color: white;
-    border: 1px solid #cccccc;
-    color: #333333;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    color: #333;
     display: block;
     font-size: 12px;
     font-weight: normal;
     height: 27px;
-    margin: 1px;
+    margin: 2px 1px;
     position: relative;
     padding: 0;
     text-align: center;
@@ -2595,8 +2595,8 @@ ul.ot-gallery-list li img {
     outline: none;
   }
   .on-off-switch .slide-button {
-    border: 1px solid #546248;
-    background: #8dbd40;
+    background: #b2d27e;
+    border: 1px solid #7c9258;
     display: block;
     height: 29px;
     left: -1px;
@@ -2609,9 +2609,9 @@ ul.ot-gallery-list li img {
     -webkit-border-radius: 3px;
        -moz-border-radius: 3px;
             border-radius: 3px;
-    -webkit-box-shadow: inset 0 1px 0 #bbd583, 0 1px 0 rgba(0,0,0,.08);
-       -moz-box-shadow: inset 0 1px 0 #bbd583, 0 1px 0 rgba(0,0,0,.08);
-            box-shadow: inset 0 1px 0 #bbd583, 0 1px 0 rgba(0,0,0,.08);
+    -webkit-box-shadow: inset 0 1px 0 #c8eb8e, 0 1px 0 rgba(0,0,0,.08);
+       -moz-box-shadow: inset 0 1px 0 #c8eb8e, 0 1px 0 rgba(0,0,0,.08);
+            box-shadow: inset 0 1px 0 #c8eb8e, 0 1px 0 rgba(0,0,0,.08);
     -webkit-transition: all 0.2s ease-out;
        -moz-transition: all 0.2s ease-out;
             transition: all 0.2s ease-out; 
