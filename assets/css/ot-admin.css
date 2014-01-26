@@ -3470,3 +3470,83 @@ a.ui-datepicker-next {
 #side-sortables .ot-metabox-tabs.ui-tabs .ot-metabox-panel {
   clear: both;
 }
+
+/* -------------------------------------------------- 
+  :: Metabox Tabs for Small Screens & Mobile Devices
+  ---------------------------------------------------*/
+@media screen and ( max-width: 1020px ) {
+  .ot-metabox-tabs.ui-tabs {
+    position: relative;
+  }
+  .ot-metabox-tabs.ui-tabs .ot-metabox-wrapper {
+    overflow: hidden;
+  }
+  .ot-metabox-tabs.ui-tabs .ot-metabox-panels {
+    border: 0;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    width: 100%;
+  }
+  .ot-metabox-tabs.ui-tabs .ot-metabox-nav.ui-tabs-nav {
+    border-bottom: 1px solid #ccc;
+    float: none;
+    font-size: 12px !important;
+    height: 30px;
+    list-style: none;
+    margin: 2px 0 0 0;
+    padding: 0;
+    width: 100%;
+  }
+  #side-sortables .ot-metabox-tabs.ui-tabs .ot-metabox-nav.ui-tabs-nav {
+    margin-top: 10px;
+  }
+  .ot-metabox-tabs.ui-tabs .ot-metabox-nav.ui-tabs-nav li.ui-state-default {
+    background: #fafafa;
+    border: 1px solid #ccc;
+    border-width: 1px 1px 0px 1px;
+    display: block;
+    float: left;
+    margin: 0 0 0 3px;
+    padding: 0;
+    outline: 0;
+    -webkit-border-radius: 3px 3px 0 0;
+    -moz-border-radius: 3px 3px 0 0;
+    border-radius: 3px 3px 0 0;
+  }
+  .ot-metabox-tabs.ui-tabs .ot-metabox-nav.ui-tabs-nav li:hover {
+    background: #f1f1f1;
+    border: 1px solid #ccc;
+    border-width: 1px 1px 0px 1px;
+  }
+  .ot-metabox-tabs.ui-tabs .ot-metabox-nav.ui-tabs-nav li.ui-state-active {
+    background: white;
+    border-color: #ccc;
+    border-width: 1px 1px 0px 1px;
+    color: black;
+    padding: 0;
+    -webkit-border-radius: 3px 3px 0 0;
+    -moz-border-radius: 3px 3px 0 0;
+    border-radius: 3px 3px 0 0;
+  }
+  .ot-metabox-tabs.ui-tabs .ot-metabox-nav.ui-tabs-nav li a {
+    color: #21759b;
+    display: block;
+    line-height: 18px;
+    outline: 0;
+    padding: 6px 12px 5px 12px !important;
+    text-decoration: none;
+  }
+  .ot-metabox-tabs.ui-tabs .ot-metabox-nav.ui-tabs-nav li a:hover {
+    color: black;
+    outline: none;
+  }
+  .ot-metabox-tabs.ui-tabs .ot-metabox-nav.ui-tabs-nav li.ui-state-active a {
+    color: black;
+    outline: none;
+    padding: 6px 12px 6px 12px !important;
+  }
+  .ot-metabox-tabs.ui-tabs .ot-metabox-panel {
+    clear: both;
+  }
+}
