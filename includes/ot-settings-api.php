@@ -258,12 +258,12 @@ if ( ! class_exists( 'OT_Settings' ) ) {
               
                 echo '<ul id="option-tree-header">';
                   
-                  echo '<li id="option-tree-logo">' . apply_filters( 'ot_header_logo_link', '<a href="http://wordpress.org/extend/plugins/option-tree/" target="_blank">OptionTree</a>' ) . '</li>';
+                  echo '<li id="option-tree-logo">' . apply_filters( 'ot_header_logo_link', '<a href="http://wordpress.org/extend/plugins/option-tree/" target="_blank">OptionTree</a>', $screen->id ) . '</li>';
                   
-                  echo '<li id="option-tree-version"><span>' . apply_filters( 'ot_header_version_text', 'OptionTree ' . OT_VERSION ) . '</span></li>';
+                  echo '<li id="option-tree-version"><span>' . apply_filters( 'ot_header_version_text', 'OptionTree ' . OT_VERSION, $screen->id ) . '</span></li>';
                   
                   // Add additional theme specific links here.
-                  do_action( 'ot_header_list' );
+                  do_action( 'ot_header_list', $screen->id );
                 
                 echo '</ul>';
                 
