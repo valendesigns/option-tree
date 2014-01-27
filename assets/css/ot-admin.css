@@ -2746,6 +2746,7 @@ ul.ot-gallery-list li img {
 .ui-datepicker {
   background: #fff;
   border: 1px solid #ccc;
+<<<<<<< HEAD
   height: auto;
   margin: 5px auto 0;
   width: 216px;
@@ -2758,6 +2759,22 @@ ul.ot-gallery-list li img {
 }
 .ui-datepicker a {
   text-decoration: none;
+=======
+  cursor: pointer;
+  opacity: 0.8;
+  padding: 5px;
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;
+}
+.type-radio-image .option-tree-ui-radio-images img.option-tree-ui-radio-image-selected,
+.type-radio-image .option-tree-ui-radio-images img:hover {
+  border-color: #464646;
+  opacity: 1;
+  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+     -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+          box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+>>>>>>> hotfix-2.2.2
 }
 .ui-datepicker table {
   border-collapse: collapse;
@@ -3474,8 +3491,24 @@ a.ui-datepicker-next {
 /* -------------------------------------------------- 
   :: Metabox Tabs for Small Screens & Mobile Devices
   ---------------------------------------------------*/
+<<<<<<< HEAD
 @media screen and ( max-width: 1020px ) {
   .ot-metabox-tabs.ui-tabs {
+=======
+.on-off-switch .slide-button {
+  display: none;
+}
+@media only screen {
+  .on-off-switch {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    color: #333;
+    display: block;
+    font-size: 12px;
+    font-weight: normal;
+    height: 27px;
+    margin: 2px 1px;
+>>>>>>> hotfix-2.2.2
     position: relative;
   }
   .ot-metabox-tabs.ui-tabs .ot-metabox-wrapper {
@@ -3486,6 +3519,7 @@ a.ui-datepicker-next {
     margin: 0;
     overflow: hidden;
     padding: 0;
+<<<<<<< HEAD
     width: 100%;
   }
   .ot-metabox-tabs.ui-tabs .ot-metabox-nav.ui-tabs-nav {
@@ -3497,6 +3531,22 @@ a.ui-datepicker-next {
     margin: 2px 0 0 0;
     padding: 0;
     width: 100%;
+=======
+    text-align: center;
+    text-transform: uppercase;
+    width: 100px;
+    -webkit-border-radius: 2px;
+       -moz-border-radius: 2px;
+            border-radius: 2px;
+    -webkit-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05);
+       -moz-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05);
+            box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05);
+  }
+  .on-off-switch * {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box; 
+>>>>>>> hotfix-2.2.2
   }
   #side-sortables .ot-metabox-tabs.ui-tabs .ot-metabox-nav.ui-tabs-nav {
     margin-top: 10px;
@@ -3507,6 +3557,7 @@ a.ui-datepicker-next {
     border-width: 1px 1px 0px 1px;
     display: block;
     float: left;
+<<<<<<< HEAD
     margin: 0 0 0 3px;
     padding: 0;
     outline: 0;
@@ -3518,6 +3569,25 @@ a.ui-datepicker-next {
     background: #f1f1f1;
     border: 1px solid #ccc;
     border-width: 1px 1px 0px 1px;
+=======
+    height: 27px;
+    line-height: 27px;
+    margin: 0;
+    position: relative;
+    text-align: center;
+    vertical-align: middle;
+    width: 50px;
+    z-index: 2;
+  }
+  .on-off-switch input:last-of-type + label {
+    color: #333;
+  }
+  .on-off-switch input:checked + label {
+    color: #333;
+  }
+  .on-off-switch input:last-of-type:checked + label {
+    color: #fff;
+>>>>>>> hotfix-2.2.2
   }
   .ot-metabox-tabs.ui-tabs .ot-metabox-nav.ui-tabs-nav li.ui-state-active {
     background: white;
@@ -3529,13 +3599,20 @@ a.ui-datepicker-next {
     -moz-border-radius: 3px 3px 0 0;
     border-radius: 3px 3px 0 0;
   }
+<<<<<<< HEAD
   .ot-metabox-tabs.ui-tabs .ot-metabox-nav.ui-tabs-nav li a {
     color: #21759b;
+=======
+  .on-off-switch .slide-button {
+    background: #b2d27e;
+    border: 1px solid #7c9258;
+>>>>>>> hotfix-2.2.2
     display: block;
     line-height: 18px;
     outline: 0;
     padding: 6px 12px 5px 12px !important;
     text-decoration: none;
+<<<<<<< HEAD
   }
   .ot-metabox-tabs.ui-tabs .ot-metabox-nav.ui-tabs-nav li a:hover {
     color: black;
@@ -3549,4 +3626,122 @@ a.ui-datepicker-next {
   .ot-metabox-tabs.ui-tabs .ot-metabox-panel {
     clear: both;
   }
+=======
+    top: -1px;
+    width: 51px;
+    z-index: 1;
+    -webkit-border-radius: 3px;
+       -moz-border-radius: 3px;
+            border-radius: 3px;
+    -webkit-box-shadow: inset 0 1px 0 #c8eb8e, 0 1px 0 rgba(0,0,0,.08);
+       -moz-box-shadow: inset 0 1px 0 #c8eb8e, 0 1px 0 rgba(0,0,0,.08);
+            box-shadow: inset 0 1px 0 #c8eb8e, 0 1px 0 rgba(0,0,0,.08);
+    -webkit-transition: all 0.2s ease-out;
+       -moz-transition: all 0.2s ease-out;
+            transition: all 0.2s ease-out; 
+  }
+  .on-off-switch input:last-of-type:checked ~ .slide-button {
+    background: #b73b27;
+    border-color: #7f291b;
+    color: #fff;
+    left: 50px;
+    -webkit-box-shadow: inset 0 1px 0 rgba(229,134,119,0.6), 0 1px 0 rgba(0,0,0,.15);
+       -moz-box-shadow: inset 0 1px 0 rgba(229,134,119,0.6), 0 1px 0 rgba(0,0,0,.15);
+             box-shadow: inset 0 1px 0 rgba(229,134,119,0.6), 0 1px 0 rgba(0,0,0,.15);
+  }
+}
+@media only screen and (-webkit-max-device-pixel-ratio: 2) and (max-device-width: 1280px) {
+  .on-off-switch {
+    -webkit-animation: webkitSiblingBugfix infinite 1s; 
+  } 
+}
+@-webkit-keyframes webkitSiblingBugfix {
+  from {
+    -webkit-transform: translate3d(0, 0, 0); 
+  }
+  to {
+    -webkit-transform: translate3d(0, 0, 0); 
+  } 
+}
+
+/* -------------------------------------------------- 
+  :: Simple Input Append & Prepend
+  ---------------------------------------------------*/
+.ot-input-append,
+.ot-input-prepend {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 0;
+  white-space: nowrap;
+}
+.ot-input-append input {
+  position: relative;
+  margin-bottom: 0;
+  *margin-left: 0;
+  vertical-align: top;
+  -webkit-border-radius: 0 2px 2px 0;
+  -moz-border-radius: 0 2px 2px 0;
+  border-radius: 0 2px 2px 0;
+}
+.ot-input-append input:focus,
+.ot-input-prepend input:focus {
+  z-index: 2;
+}
+.ot-input-append .ot-add-on,
+.ot-input-prepend .ot-add-on {
+  display: inline-block;
+  width: auto;
+  height: 27px;
+  line-height: 28px;
+  min-width: 16px;
+  padding: 0 6px;
+  font-size: 16px;
+  font-weight: normal;
+  text-align: center;
+  text-shadow: 0 1px 0 white;
+  background-color: #f7f7f7;
+  border: 1px solid #ccc;
+}
+.ot-input-prepend input {
+  border-left: 0 !important;
+}
+.ot-input-prepend .ot-add-on:first-child {
+  -webkit-border-radius: 2px 0 0 2px;
+  -moz-border-radius: 2px 0 0 2px;
+  border-radius: 2px 0 0 2px;
+}
+.ot-input-append input {
+  border-right: 0 !important;
+  -webkit-border-radius: 2px 0 0 2px;
+  -moz-border-radius: 2px 0 0 2px;
+  border-radius: 2px 0 0 2px;
+}
+.ot-input-append input + .btn-group .btn:first-child {
+  -webkit-border-top-left-radius: 0;
+  -moz-border-radius-topleft: 0;
+  border-top-left-radius: 0;
+  -webkit-border-bottom-left-radius: 0;
+  -moz-border-radius-bottomleft: 0;
+  border-bottom-left-radius: 0;
+}
+.ot-input-append .ot-add-on:last-child {
+  -webkit-border-radius: 0 2px 2px 0;
+  -moz-border-radius: 0 2px 2px 0;
+  border-radius: 0 2px 2px 0;
+}
+.ot-input-prepend.ot-input-append input {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+.ot-input-prepend.ot-input-append .ot-add-on:first-child {
+  -webkit-border-radius: 2px 0 0 2px;
+  -moz-border-radius: 2px 0 0 2px;
+  border-radius: 2px 0 0 2px;
+}
+.ot-input-prepend.ot-input-append .ot-add-on:last-child {
+  -webkit-border-radius: 0 2px 2px 0;
+  -moz-border-radius: 0 2px 2px 0;
+  border-radius: 0 2px 2px 0;
+>>>>>>> hotfix-2.2.2
 }
