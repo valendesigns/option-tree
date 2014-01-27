@@ -73,6 +73,12 @@ if ( ! function_exists( 'ot_type_creating_options' ) ) {
         echo '<h4>'. __( 'CSS Class', 'option-tree' ) . ':</h4>';
         echo '<p>' . __( 'Add and optional class to any option type.', 'option-tree' ) . '</p>';
         
+        echo '<h4>'. __( 'Condition', 'option-tree' ) . ':</h4>';
+        echo '<p>' . sprintf( __( 'Add a comma separated list (no spaces) of conditions in which the field will be visible, leave this setting empty to always show the field. In these examples, %s is a placeholder for your condition, which can be in the form of %s.', 'option-tree' ), '<code>value</code>', '<code>field_id:is(value)</code>, <code>field_id:not(value)</code>, <code>field_id:contains(value)</code>, <code>field_id:less_than(value)</code>, <code>field_id:less_than_or_equal_to(value)</code>, <code>field_id:greater_than(value)</code>, or <code>field_id:greater_than_or_equal_to(value)</code>' ) . '</p>';
+        
+        echo '<h4>'. __( 'Operator', 'option-tree' ) . ':</h4>';
+        echo '<p>' . sprintf( __( 'Choose the logical operator to compute the result of the conditions. Your options are %s and %s.', 'option-tree' ), '<code>and</code>', '<code>or</code>' ) . '</p>';
+        
       echo '</div>';
       
     echo '</div>';

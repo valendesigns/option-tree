@@ -395,7 +395,8 @@
   ---------------------------------------------------*/
 #option-tree-settings-api code {
   background-color: #f1f1f1;
-  color: #000;
+  color: #333;
+  font-size: 12px;
 }
 #option-tree-settings-api pre {
   font-size: 13px;
@@ -773,16 +774,19 @@ select.option-tree-ui-select option {
   background: #fff;
   border: 1px solid #ccc;
   cursor: pointer;
+  opacity: 0.8;
   padding: 5px;
-  border-radius: 3px;
   -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;
 }
 .type-radio-image .option-tree-ui-radio-images img.option-tree-ui-radio-image-selected,
 .type-radio-image .option-tree-ui-radio-images img:hover {
   border-color: #464646;
+  opacity: 1;
   -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+     -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+          box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 
 /* -------------------------------------------------- 
@@ -1350,32 +1354,30 @@ ul.ot-gallery-list li img {
 }
 @media only screen {
   .on-off-switch {
-    background-color: white;
-    border: 1px solid #cccccc;
-    color: #333333;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    color: #333;
     display: block;
-    font-family: sans-serif;
     font-size: 12px;
     font-weight: normal;
     height: 27px;
+    margin: 2px 1px;
     position: relative;
     padding: 0;
     text-align: center;
     text-transform: uppercase;
     width: 100px;
     -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    border-radius: 2px;
+       -moz-border-radius: 2px;
+            border-radius: 2px;
     -webkit-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05);
-    -moz-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05);
-    box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05);
+       -moz-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05);
+            box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05);
   }
   .on-off-switch * {
     -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    -o-box-sizing: border-box;
-    box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box; 
   }
   .on-off-switch input {
     position: absolute;
@@ -1394,19 +1396,20 @@ ul.ot-gallery-list li img {
     z-index: 2;
   }
   .on-off-switch input:last-of-type + label {
-    color: #333333;
+    color: #333;
   }
   .on-off-switch input:checked + label {
-    color: white;
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    color: #333;
+  }
+  .on-off-switch input:last-of-type:checked + label {
+    color: #fff;
   }
   .on-off-switch input:focus + label {
     outline: none;
   }
   .on-off-switch .slide-button {
-    border: 1px solid #21759b;
-    border-bottom-color: #1e6a8d;
-    color: white;
+    background: #b2d27e;
+    border: 1px solid #7c9258;
     display: block;
     height: 29px;
     left: -1px;
@@ -1416,49 +1419,38 @@ ul.ot-gallery-list li img {
     top: -1px;
     width: 51px;
     z-index: 1;
-    background-color: #2688b4;
-    background-image: -moz-linear-gradient(top, #2a95c5, #21759b);
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#2a95c5), to(#21759b));
-    background-image: -webkit-linear-gradient(top, #2a95c5, #21759b);
-    background-image: -o-linear-gradient(top, #2a95c5, #21759b);
-    background-image: linear-gradient(to bottom, #2a95c5, #21759b);
-    background-repeat: repeat-x;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ie-hex-str($startColor)', endColorstr='#ie-hex-str($endColor)', GradientType=0);
     -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
-    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
-    -webkit-transition: all 0.1s ease-out;
-    -moz-transition: all 0.1s ease-out;
-    -o-transition: all 0.1s ease-out;
-    transition: all 0.1s ease-out;
+       -moz-border-radius: 3px;
+            border-radius: 3px;
+    -webkit-box-shadow: inset 0 1px 0 #c8eb8e, 0 1px 0 rgba(0,0,0,.08);
+       -moz-box-shadow: inset 0 1px 0 #c8eb8e, 0 1px 0 rgba(0,0,0,.08);
+            box-shadow: inset 0 1px 0 #c8eb8e, 0 1px 0 rgba(0,0,0,.08);
+    -webkit-transition: all 0.2s ease-out;
+       -moz-transition: all 0.2s ease-out;
+            transition: all 0.2s ease-out; 
   }
   .on-off-switch input:last-of-type:checked ~ .slide-button {
-    border-color: #9b3221;
-    border-bottom-color: #8d2e1e;
+    background: #b73b27;
+    border-color: #7f291b;
+    color: #fff;
     left: 50px;
-    background-color: #b43a26;
-    background-image: -moz-linear-gradient(top, #c5402a, #9b3221);
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#c5402a), to(#9b3221));
-    background-image: -webkit-linear-gradient(top, #c5402a, #9b3221);
-    background-image: -o-linear-gradient(top, #c5402a, #9b3221);
-    background-image: linear-gradient(to bottom, #c5402a, #9b3221);
-    background-repeat: repeat-x;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ie-hex-str($startColor)', endColorstr='#ie-hex-str($endColor)', GradientType=0);
+    -webkit-box-shadow: inset 0 1px 0 rgba(229,134,119,0.6), 0 1px 0 rgba(0,0,0,.15);
+       -moz-box-shadow: inset 0 1px 0 rgba(229,134,119,0.6), 0 1px 0 rgba(0,0,0,.15);
+             box-shadow: inset 0 1px 0 rgba(229,134,119,0.6), 0 1px 0 rgba(0,0,0,.15);
   }
+}
+@media only screen and (-webkit-max-device-pixel-ratio: 2) and (max-device-width: 1280px) {
   .on-off-switch {
-    -webkit-animation: bugfix infinite 1s;
+    -webkit-animation: webkitSiblingBugfix infinite 1s; 
+  } 
+}
+@-webkit-keyframes webkitSiblingBugfix {
+  from {
+    -webkit-transform: translate3d(0, 0, 0); 
   }
-  @-webkit-keyframes bugfix {
-    from {
-      position: relative;
-    }
-    to {
-      position: relative;
-    }
-  }
+  to {
+    -webkit-transform: translate3d(0, 0, 0); 
+  } 
 }
 
 /* -------------------------------------------------- 
