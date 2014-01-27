@@ -3389,7 +3389,7 @@ if ( ! function_exists( 'ot_settings_view' ) ) {
         </div>
         <div class="format-settings">
           <div class="format-setting type-text wide-desc">
-            <div class="description">' . __( '<strong>Condition</strong>: Add a comma separated list of conditions where this field will be visible, leave empty to always show the field. Conditions can be in the form of <code>field_name:is(value)</code>, <code>field_name:not(value)</code>, <code>field_name:contains(value)</code>, <code>field_name:less_than(value)</code>, <code>field_name:less_than_or_equal_to(value)</code>, <code>field_name:greater_than(value)</code>, or <code>field_name:greater_than_or_equal_to(value)</code>.', 'option-tree' ) . '</div>
+            <div class="description">' . sprintf( __( '<strong>Condition</strong>: Add a comma separated list (no spaces) of conditions in which the field will be visible, leave this setting empty to always show the field. In these examples, <code>value</code> is a placeholder for your condition, which can be in the form of %s.', 'option-tree' ), '<code>field_id:is(value)</code>, <code>field_id:not(value)</code>, <code>field_id:contains(value)</code>, <code>field_id:less_than(value)</code>, <code>field_id:less_than_or_equal_to(value)</code>, <code>field_id:greater_than(value)</code>, or <code>field_id:greater_than_or_equal_to(value)</code>' ) . '</div>
             <div class="format-setting-inner">
               <input type="text" name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][condition]" value="' . ( isset( $setting['condition'] ) ? esc_attr( $setting['condition'] ) : '' ) . '" class="widefat option-tree-ui-input" autocomplete="off" />
             </div>
@@ -3397,7 +3397,7 @@ if ( ! function_exists( 'ot_settings_view' ) ) {
         </div>
         <div class="format-settings">
           <div class="format-setting type-select wide-desc">
-            <div class="description">' . __( '<strong>Condition Operator</strong>: Choose the logical operator to compute the result of the conditions.', 'option-tree' ) . '</div>
+            <div class="description">' . __( '<strong>Operator</strong>: Choose the logical operator to compute the result of the conditions.', 'option-tree' ) . '</div>
             <div class="format-setting-inner">
               <select name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][operator]" value="' . $operator . '" class="option-tree-ui-select">
                 <option value="and" ' . selected( $operator, 'and', false ) . '>' . __( 'and', 'option-tree' ) . '</option>
@@ -3689,7 +3689,7 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
           }
 
           $conditions = ' data-condition="' . $field['condition'] . '"';
-          $conditions.= isset( $field['operator'] ) && in_array( $field['operator'], array( 'and', 'or' ) ) ? ' data-operator="' . $field['operator'] . '"' : '';
+          $conditions.= isset( $field['operator'] ) && in_array( $field['operator'], array( 'and', 'AND', 'or', 'OR' ) ) ? ' data-operator="' . $field['operator'] . '"' : '';
         
 
         }

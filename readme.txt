@@ -41,6 +41,9 @@ Yes. OptionTree & WordPress both require PHP5.
 
 == Changelog ==
 
+= 2.2.2 =
+* Hotfix - Added support for both upper and lower case conditions operator.
+
 = 2.2.1 =
 * Hotfix - Fixed a UI bug that caused the layouts input to cover the wp menu.
 * Hotfix - Moved the screen shots to the WordPress SVN assets directory.
