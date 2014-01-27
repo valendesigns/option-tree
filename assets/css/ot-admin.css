@@ -774,16 +774,19 @@ select.option-tree-ui-select option {
   background: #fff;
   border: 1px solid #ccc;
   cursor: pointer;
+  opacity: 0.8;
   padding: 5px;
-  border-radius: 3px;
   -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;
 }
 .type-radio-image .option-tree-ui-radio-images img.option-tree-ui-radio-image-selected,
 .type-radio-image .option-tree-ui-radio-images img:hover {
   border-color: #464646;
+  opacity: 1;
   -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+     -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+          box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 
 /* -------------------------------------------------- 
