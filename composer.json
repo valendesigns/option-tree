@@ -10,6 +10,6 @@
     "require": {
     },
     "autoload": {
-        "classmap": ["ot-loader.php"]
+        "files": ["ot-loader.php"]
     }
 }
