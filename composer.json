@@ -8,5 +8,8 @@
         }
     ],
     "require": {
+    },
+    "autoload": {
+        "classmap": ["ot-loader.php"]
     }
 }
