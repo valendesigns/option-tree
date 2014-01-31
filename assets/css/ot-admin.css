@@ -2294,6 +2294,7 @@ select.option-tree-ui-select option {
   line-height: 27px !important;
   height: 29px !important;
   margin: 5px;
+  min-width: 40px;
   padding: 0 10px 1px !important;
 }
 .option-tree-ui-button:active,
