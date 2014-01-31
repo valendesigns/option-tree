@@ -41,6 +41,9 @@ Yes. OptionTree & WordPress both require PHP5.
 
 == Changelog ==
 
+= 2.2.3 =
+* Hotfix - Allow empty condition values. For example, `field_id:is()` or `field_id:not()` would now be valid syntax.
+
 = 2.2.2 =
 * Hotfix - Added support for both upper and lower case conditions operator.
 * Hotfix - Updated the color and font size of inline code.
