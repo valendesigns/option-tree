@@ -590,6 +590,11 @@
       });
     },
     url_exists: function(url) {
+      var link = document.createElement('a')
+      link.href = url
+      if ( link.hostname != window.location.hostname ) {
+        return true; // Stop the code from checking across domains.
+      }
       var http = new XMLHttpRequest();
       http.open('HEAD', url, false);
       http.send();
