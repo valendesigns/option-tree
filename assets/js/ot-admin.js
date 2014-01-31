@@ -457,9 +457,12 @@
     init_upload_fix: function(elm) {
       var id  = $(elm).attr('id'),
           val = $(elm).val(),
-          img = $(elm).parent().next('option-tree-ui-media-wrap').find('img'),
+          img = $(elm).parent().next('.option-tree-ui-media-wrap').find('img'),
           src = img.attr('src'),
           btnContent = '';
+      if ( val == src ) {
+        return;
+      }
       if ( val != src ) {
         img.attr('src', val);
       }
@@ -548,7 +551,7 @@
       $('#'+field_id).wpColorPicker();
     },
     fix_upload_parent: function() {
-      $(document).on('focus blur', '.option-tree-ui-upload-input', function(){
+      $('.option-tree-ui-upload-input').on('focus blur', function(){
         $(this).parent('.option-tree-ui-upload-parent').toggleClass('focus');
         OT_UI.init_upload_fix(this);
       });
