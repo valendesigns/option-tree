@@ -41,7 +41,6 @@ Yes. OptionTree & WordPress both require PHP5.
 
 == Changelog ==
 
-<<<<<<< HEAD
 = 2.3.0 =
 * Added the Tab option type.
 * Added Ace Editor to the CSS option type. Contributors via github @imangm and @valendesigns.
@@ -58,12 +57,11 @@ Yes. OptionTree & WordPress both require PHP5.
 * Added filter 'ot_header_logo_link' to change the logo link inside the header of OptionTree.
 * Added filter 'ot_header_version_text' to change the version text inside the header of OptionTree.
 * Added action 'ot_header_list' to add additional theme specific list items to the header of OptionTree.
-=======
+
 = 2.2.3 =
 * Hotfix - Allow empty condition values. For example, `field_id:is()` or `field_id:not()` would now be valid syntax.
 * Hotfix - Fixed a bug in the `init_upload_fix` JavaScript method.
 * Hotfix - Fixed a bug in the `url_exists` javaScript method. The code will no longer will check if a URL exists on another domain.
->>>>>>> hotfix-2.2.3
 
 = 2.2.2 =
 * Hotfix - Added support for both upper and lower case conditions operator.
