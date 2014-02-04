@@ -4,7 +4,7 @@ Donate link: http://bit.ly/NuXI3T
 Tags: admin, theme options, meta boxes, options, admin interface, ajax
 Requires at least: 3.5
 Tested up to: 3.8.1
-Stable tag: 2.2.2
+Stable tag: 2.2.3
 License: GPLv3
 
 Theme Options UI Builder for WordPress. A simple way to create & save Theme Options and Meta Boxes for free or premium themes.
@@ -40,6 +40,11 @@ Yes. OptionTree & WordPress both require PHP5.
 3. Documentation
 
 == Changelog ==
+
+= 2.2.3 =
+* Hotfix - Allow empty condition values. For example, `field_id:is()` or `field_id:not()` would now be valid syntax.
+* Hotfix - Fixed a bug in the `init_upload_fix` JavaScript method.
+* Hotfix - Fixed a bug in the `url_exists` javaScript method. The code will no longer will check if a URL exists on another domain.
 
 = 2.2.2 =
 * Hotfix - Added support for both upper and lower case conditions operator.
