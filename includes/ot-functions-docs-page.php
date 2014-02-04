@@ -142,10 +142,16 @@ body {
 /* END custom_background_css */</code></pre>';
         
         echo '<h4>'. __( 'Custom Post Type Select', 'option-tree' ) . ':</h4>'; 
-        echo '<p>' . __( 'The Custom Post Type Select option type displays a list of IDs from any available WordPress post type or custom post type. It will return a single post ID for use in a custom function or loop. Requires at least one valid <code>post_type</code> when created in the settings. For some reason <code>any</code> does not work correctly and will looked into in future version.', 'option-tree' ) . '</p>';
+        echo '<p>' . __( 'The Custom Post Type Select option type displays a list of IDs from any available WordPress post type or custom post type. It will return a single post ID for use in a custom function or loop. Requires at least one valid <code>post_type</code> when created in the settings. For some reason <code>any</code> does not work correctly and will be looked into in future a version.', 'option-tree' ) . '</p>';
         
         echo '<h4>'. __( 'Custom Post Type Checkbox', 'option-tree' ) . ':</h4>'; 
-        echo '<p>' . __( 'The Custom Post Type Select option type displays a list of IDs from any available WordPress post type or custom post type. It allows the user to check multiple post IDs for use in a custom function or loop. Requires at least one valid <code>post_type</code> when created in the settings. For some reason <code>any</code> does not work correctly and will looked into in future version.', 'option-tree' ) . '</p>';
+        echo '<p>' . __( 'The Custom Post Type Select option type displays a list of IDs from any available WordPress post type or custom post type. It allows the user to check multiple post IDs for use in a custom function or loop. Requires at least one valid <code>post_type</code> when created in the settings. For some reason <code>any</code> does not work correctly and will be looked into in future a version.', 'option-tree' ) . '</p>';
+        
+        echo '<h4>'. __( 'Date Picker', 'option-tree' ) . ':</h4>'; 
+        echo '<p>' . __( 'The Date Picker option type is tied to a standard form input field which displays a calendar pop-up that allow the user to pick any date when focus is given to the input field. The returned value is a date formatted string.', 'option-tree' ) . '</p>';
+        
+        echo '<h4>'. __( 'Date Time Picker', 'option-tree' ) . ':</h4>'; 
+        echo '<p>' . __( 'The Date Time Picker option type is tied to a standard form input field which displays a calendar pop-up that allow the user to pick any date and time when focus is given to the input field. The returned value is a date and time formatted string.', 'option-tree' ) . '</p>';
         
         echo '<h4>'. __( 'Gallery', 'option-tree' ) . ':</h4>'; 
         echo '<p>' . __( 'The Gallery option type saves a comma separated list of image attachment IDs. You will need to create a front-end function to display the images in your theme.', 'option-tree' ) . '</p>';
@@ -241,6 +247,9 @@ add_filter( \'ot_radio_images\', \'filter_radio_images\', 10, 2 );</code></pre>'
         
         echo '<h4>'. __( 'Slider', 'option-tree' ) . ':</h4>';
         echo '<p>' . __( 'The Slider option type is technically deprecated. Use the List Item option type instead, as it\'s infinitely more customizable. Typical use is for creating sliding image content.', 'option-tree' ) . '</p>';
+        
+        echo '<h4>'. __( 'Tab', 'option-tree' ) . ':</h4>';      
+        echo '<p>' . __( 'The Tab option type will break a section or metabox into tabbed content.', 'option-tree' ) . '</p>';
         
         echo '<h4>'. __( 'Tag Checkbox', 'option-tree' ) . ':</h4>';      
         echo '<p>' . __( 'The Tag Checkbox option type displays a list of tag IDs. It allows the user to check multiple tag IDs and will return that value as an array for use in a custom function or loop.', 'option-tree' ) . '</p>';

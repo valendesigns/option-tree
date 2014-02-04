@@ -41,6 +41,23 @@ Yes. OptionTree & WordPress both require PHP5.
 
 == Changelog ==
 
+= 2.3.0 =
+* Added the Tab option type.
+* Added Ace Editor to the CSS option type. Contributors via github @imangm and @valendesigns.
+* Added support for WordPress 3.8 color schemes.
+* Added support for RTL languages. Contributors via github @omid-khd and @valendesigns.
+* Added actions before and after the enqueue styles and scripts.
+* Added Date Picker option type. Contributors via github @jetonr and @valendesigns.
+* Added Date Time Picker option type. Contributors via github @jetonr and @valendesigns.
+* Added filter 'ot_list_item_title_label' to change the label for a List Item's required title field.
+* Added filter 'ot_list_item_title_desc' to change the description for a List Item's required title field.
+* Added filter 'ot_options_id' to change the 'option_tree' option ID to a unique value.
+* Added filter 'ot_settings_id' to change the 'option_tree_settings' option ID to a unique value.
+* Added filter 'ot_layouts_id' to change the 'option_tree_layouts' option ID to a unique value.
+* Added filter 'ot_header_logo_link' to change the logo link inside the header of OptionTree.
+* Added filter 'ot_header_version_text' to change the version text inside the header of OptionTree.
+* Added action 'ot_header_list' to add additional theme specific list items to the header of OptionTree.
+
 = 2.2.3 =
 * Hotfix - Allow empty condition values. For example, `field_id:is()` or `field_id:not()` would now be valid syntax.
 * Hotfix - Fixed a bug in the `init_upload_fix` JavaScript method.

@@ -539,7 +539,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
      * AJAX utility function for adding a new section.
      */
     public function add_section() {
-      echo ot_sections_view( 'option_tree_settings[sections]', $_REQUEST['count'] );
+      echo ot_sections_view( ot_settings_id() . '[sections]', $_REQUEST['count'] );
       die();
     }
     

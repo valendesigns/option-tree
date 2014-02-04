@@ -28,7 +28,7 @@ if ( ! function_exists( 'get_option_tree' ) ) {
   function get_option_tree( $item_id = '', $options = '', $echo = false, $is_array = false, $offset = -1 ) {
     /* load saved options */
     if ( ! $options )
-      $options = get_option( 'option_tree' );
+      $options = get_option( ot_options_id() );
     
     /* no value return */
     if ( ! isset( $options[$item_id] ) || empty( $options[$item_id] ) )

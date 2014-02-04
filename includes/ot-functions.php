@@ -7,7 +7,61 @@
  * @copyright Copyright (c) 2013, Derek Herman
  * @since     2.0
  */
-      
+
+/**
+ * Theme Options ID
+ *
+ * @return    string
+ *
+ * @access    public
+ * @since     2.3.0
+ */
+if ( ! function_exists( 'ot_options_id' ) ) {
+
+  function ot_options_id() {
+    
+    return apply_filters( 'ot_options_id', 'option_tree' );
+    
+  }
+  
+}
+
+/**
+ * Theme Settings ID
+ *
+ * @return    string
+ *
+ * @access    public
+ * @since     2.3.0
+ */
+if ( ! function_exists( 'ot_settings_id' ) ) {
+
+  function ot_settings_id() {
+    
+    return apply_filters( 'ot_settings_id', 'option_tree_settings' );
+    
+  }
+  
+}
+
+/**
+ * Theme Layouts ID
+ *
+ * @return    string
+ *
+ * @access    public
+ * @since     2.3.0
+ */
+if ( ! function_exists( 'ot_layouts_id' ) ) {
+
+  function ot_layouts_id() {
+    
+    return apply_filters( 'ot_layouts_id', 'option_tree_layouts' );
+    
+  }
+  
+}
+
 /**
  * Get Option.
  *
@@ -26,7 +80,7 @@ if ( ! function_exists( 'ot_get_option' ) ) {
   function ot_get_option( $option_id, $default = '' ) {
     
     /* get the saved options */ 
-    $options = get_option( 'option_tree' );
+    $options = get_option( ot_options_id() );
     
     /* look for the saved value */
     if ( isset( $options[$option_id] ) && '' != $options[$option_id] ) {
@@ -81,7 +135,7 @@ if ( ! function_exists( 'ot_wpml_filter' ) ) {
     // Return translated strings using WMPL
     if ( function_exists('icl_t') ) {
       
-      $settings = get_option( 'option_tree_settings' );
+      $settings = get_option( ot_settings_id() );
       
       if ( isset( $settings['settings'] ) ) {
       
