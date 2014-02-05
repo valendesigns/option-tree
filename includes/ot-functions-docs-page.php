@@ -622,7 +622,6 @@ if ( ! function_exists( 'ot_type_layouts_overview' ) ) {
         echo '<p class="aside">' . __( ' Adding a layout is ridiculously easy, follow these steps and you\'ll be on your way to having a WordPress super theme.', 'option-tree' ) . '</p>';
         
         echo '<h4>' . __( 'For Developers', 'option-tree' ) . ':</h4>';
-        echo '<p>' . __( '', 'option-tree' ) . '</p>';
         
         echo '<h5>' . __( 'Creating a Layout', 'option-tree' ) . ':</h5>';
         echo '<ul class="docs-ul">';
@@ -652,7 +651,6 @@ if ( ! function_exists( 'ot_type_layouts_overview' ) ) {
         echo '</ul>';
 
         echo '<h4>' . __( 'End-Users Mode', 'option-tree' ) . ':</h4>';
-        echo '<p>' . __( '', 'option-tree' ) . '</p>';
         
         echo '<h5>' . __( 'Creating a Layout', 'option-tree' ) . ':</h5>';
         echo '<ul class="docs-ul">';
