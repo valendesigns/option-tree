@@ -838,7 +838,26 @@ if ( ! class_exists( 'OT_Settings' ) ) {
 
         }
         
-        echo '<div id="setting_' . $field['id'] . '" class="format-settings"' . $conditions . '>';
+        // Build the setting CSS class
+        if ( isset( $field['args']['class'] ) && ! empty( $field['args']['class'] ) ) {
+          
+          $classes = explode( ' ', $field['args']['class'] );
+          
+          foreach( $classes as $key => $value ) {
+          
+            $classes[$key] = $value . '-wrap';
+            
+          }
+          
+          $class = 'format-settings ' . implode( ' ', $classes );
+          
+        } else {
+        
+          $class = 'format-settings';
+          
+        }
+        
+        echo '<div id="setting_' . $field['id'] . '" class="' . $class . '"' . $conditions . '>';
           
           echo '<div class="format-setting-wrap">';
           
