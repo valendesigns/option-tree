@@ -145,18 +145,6 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       define( 'OT_VERSION', '2.3.0' );
       
       /**
-       * For developers: Allow Unfiltered HTML in all the textareas.
-       *
-       * Run a filter and set to true if you want all the
-       * users to be able to post anything in the textareas.
-       * WARNING: This opens a security hole for low level users
-       * to be able to post malicious scripts, you've been warned.
-       *
-       * @since     2.0
-       */
-      define( 'OT_ALLOW_UNFILTERED_HTML', apply_filters( 'ot_allow_unfiltered_html', false ) );
-      
-      /**
        * For developers: Theme mode.
        *
        * Run a filter and set to true to enable OptionTree theme mode.
@@ -201,7 +189,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       define( 'OT_SHOW_OPTIONS_UI', apply_filters( 'ot_show_options_ui', true ) );
       
       /**
-       * For developers: Hide Settings Import
+       * For developers: Show Settings Import
        *
        * Run a filter and set to false if you want to hide the
        * Settings Import options on the Import page.
@@ -211,7 +199,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       define( 'OT_SHOW_SETTINGS_IMPORT', apply_filters( 'ot_show_settings_import', true ) );
       
       /**
-       * For developers: Hide Settings Export
+       * For developers: Show Settings Export
        *
        * Run a filter and set to false if you want to hide the
        * Settings Import options on the Import page.
@@ -258,6 +246,18 @@ if ( ! class_exists( 'OT_Loader' ) ) {
        * @since     2.0
        */
       define( 'OT_META_BOXES', apply_filters( 'ot_meta_boxes', true ) );
+      
+      /**
+       * For developers: Allow Unfiltered HTML in all the textareas.
+       *
+       * Run a filter and set to true if you want all the
+       * users to be able to post anything in the textareas.
+       * WARNING: This opens a security hole for low level users
+       * to be able to post malicious scripts, you've been warned.
+       *
+       * @since     2.0
+       */
+      define( 'OT_ALLOW_UNFILTERED_HTML', apply_filters( 'ot_allow_unfiltered_html', false ) );
       
       /**
        * Check if in theme mode.

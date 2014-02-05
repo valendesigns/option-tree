@@ -23,9 +23,29 @@ OptionTree is a project sponsored by <a href="http://themeforest.net/?ref=valend
 
 == Installation ==
 
+**Plugin Mode**
+
 1. Upload `option-tree` to the `/wp-content/plugins/` directory
-1. Activate the plugin through the 'Plugins' menu in WordPress
+1. Activate the plugin through the `Plugins` menu in WordPress
 1. Click the `OptionTree->Documentation` link in the WordPress admin sidebar menu for further setup assistance.
+
+**Theme Mode**
+
+1. Download the latest version of OptionTree and unarchive the `.zip` directory.
+1. Put the `option-tree` directory in the root of your theme. For example, the server path would be `/wp-content/themes/theme-name/option-tree/`.
+1. Add the following code to the beginning of your `functions.php`.
+
+`/**
+ * Required: set 'ot_theme_mode' filter to true.
+ */
+add_filter( 'ot_theme_mode', '__return_true' );
+
+/**
+ * Required: include OptionTree.
+ */
+load_template( trailingslashit( get_template_directory() ) . 'option-tree/ot-loader.php' );`
+
+For a list of all the OptionTree UI display filters refer to the `demo-functions.php` file found in the `/assets/theme-mode/` directory of this plugin. This file is the starting point for developing themes with Theme Mode.
 
 == Frequently Asked Questions ==
 

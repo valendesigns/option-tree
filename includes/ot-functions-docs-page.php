@@ -791,25 +791,12 @@ if ( ! function_exists( 'ot_type_theme_mode' ) ) {
         
         echo '<h5>' . __( 'Step 1: Include the plugin & turn on theme mode.', 'option-tree' ) . '</h5>';
         echo '<ul class="docs-ul">';
-          echo '<li>'. __( 'Download the latest version of <a href="http://wordpress.org/extend/plugins/option-tree/" rel="nofollow" target="_blank">OptionTree</a>.', 'option-tree' ) . '</li>';
-          echo '<li>' . __( 'Unpack the ZIP archive.', 'option-tree' ) . '</li>';
-          echo '<li>' . __( 'Put the <code>option-tree</code> directory in the root of your theme. For example, the server path would be <code>/wp-content/themes/theme-name/option-tree/</code>.', 'option-tree' ) . '</li>';
-          echo '<li>' . __( 'Add the following code to the beginning of your <code>functions.php</code>.', 'option-tree' ) . '</li>';
+          echo '<li>' . sprintf( __( 'Download the latest version of %s and unarchive the %s directory.', 'option-tree' ), '<a href="http://wordpress.org/extend/plugins/option-tree/" rel="nofollow" target="_blank">' . __( 'OptionTree', 'option-tree' ) . '</a>', '<code>.zip</code>' ) . '</li>';
+          echo '<li>' . sprintf( __( 'Put the %s directory in the root of your theme. For example, the server path would be %s.', 'option-tree' ), '<code>option-tree</code>', '<code>/wp-content/themes/theme-name/option-tree/</code>' ) . '</li>';
+          echo '<li>' . sprintf( __( 'Add the following code to the beginning of your %s.', 'option-tree' ), '<code>functions.php</code>' ) . '</li>';
         echo '</ul>';
         
         echo '<pre><code>/**
- * Optional: set \'ot_show_pages\' filter to false.
- * This will hide the settings & documentation pages.
- */
-add_filter( \'ot_show_pages\', \'__return_false\' );
-
-/**
- * Optional: set \'ot_show_new_layout\' filter to false.
- * This will hide the "New Layout" section on the Theme Options page.
- */
-add_filter( \'ot_show_new_layout\', \'__return_false\' );
-
-/**
  * Required: set \'ot_theme_mode\' filter to true.
  */
 add_filter( \'ot_theme_mode\', \'__return_true\' );
@@ -820,7 +807,9 @@ add_filter( \'ot_theme_mode\', \'__return_true\' );
 load_template( trailingslashit( get_template_directory() ) . \'option-tree/ot-loader.php\' );
 </code></pre>';
         
-        echo '<p class="aside">' . __( 'It\'s that simple! You now have OptionTree built into your theme and anytime there\'s an update to the plugin you just replace the old version and you\'re good to go..', 'option-tree' ) . '</p>';
+        echo '<p>' . sprintf( __( 'For a list of all the OptionTree UI display filters refer to the %s file found in the %s directory of this plugin. This file is the starting point for developing themes with Theme Mode.', 'option-tree' ), '<code>demo-functions.php</code>', '<code>/assets/theme-mode/</code>' ) . '</p>';
+        
+        echo '<p class="aside">' . __( 'You now have OptionTree built into your theme and anytime an update is available replace the old version with the new one.', 'option-tree' ) . '</p>';
         
         echo '<h5>' . __( 'Step 2: Create Theme Options without using the UI Builder.', 'option-tree' ) . '</h5>';
         echo '<ul class="docs-ul">';
