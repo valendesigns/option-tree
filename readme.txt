@@ -79,6 +79,7 @@ Yes. OptionTree & WordPress both require PHP5.
 * Added action 'ot_header_list' to add additional theme specific list items to the header of OptionTree.
 * Added filter 'ot_upload_text' to change the "Send to OptionTree" text.
 * Added the CSS Class field value to the parent `.format-settings` div in addition to the class being added to the element. Each class is now appended with `-wrap`.
+* Added support for [Composer](https://github.com/composer/composer). Contributors via github @designst.
 
 = 2.2.3 =
 * Hotfix - Allow empty condition values. For example, `field_id:is()` or `field_id:not()` would now be valid syntax.
