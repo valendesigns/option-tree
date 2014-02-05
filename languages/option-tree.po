@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OptionTree\n"
-"POT-Creation-Date: 2014-02-04 16:53-0800\n"
-"PO-Revision-Date: 2014-02-04 16:54-0800\n"
+"POT-Creation-Date: 2014-02-05 14:47-0800\n"
+"PO-Revision-Date: 2014-02-05 14:47-0800\n"
 "Last-Translator: Derek Herman <derek@valendesigns.com>\n"
 "Language-Team: Valen Designs\n"
 "Language: English\n"
@@ -48,6 +48,7 @@ msgid "Save Changes"
 msgstr ""
 
 #: ../includes/ot-functions-admin.php:96 ../includes/ot-functions-admin.php:97
+#: ../includes/ot-functions-docs-page.php:794
 msgid "OptionTree"
 msgstr ""
 
@@ -1535,7 +1536,7 @@ msgid ""
 msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:718
-#: ../includes/ot-functions-docs-page.php:829
+#: ../includes/ot-functions-docs-page.php:818
 msgid "Add the following code to your <code>functions.php</code>."
 msgstr ""
 
@@ -1564,60 +1565,62 @@ msgid "Step 1: Include the plugin & turn on theme mode."
 msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:794
-msgid ""
-"Download the latest version of <a href=\"http://wordpress.org/extend/plugins/"
-"option-tree/\" rel=\"nofollow\" target=\"_blank\">OptionTree</a>."
+#, php-format
+msgid "Download the latest version of %s and unarchive the %s directory."
 msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:795
-msgid "Unpack the ZIP archive."
+#, php-format
+msgid ""
+"Put the %s directory in the root of your theme. For example, the server path "
+"would be %s."
 msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:796
-msgid ""
-"Put the <code>option-tree</code> directory in the root of your theme. For "
-"example, the server path would be <code>/wp-content/themes/theme-name/option-"
-"tree/</code>."
+#, php-format
+msgid "Add the following code to the beginning of your %s."
 msgstr ""
 
-#: ../includes/ot-functions-docs-page.php:797
+#: ../includes/ot-functions-docs-page.php:810
+#, php-format
 msgid ""
-"Add the following code to the beginning of your <code>functions.php</code>."
+"For a list of all the OptionTree UI display filters refer to the %s file "
+"found in the %s directory of this plugin. This file is the starting point "
+"for developing themes with Theme Mode."
 msgstr ""
 
-#: ../includes/ot-functions-docs-page.php:823
+#: ../includes/ot-functions-docs-page.php:812
 msgid ""
-"It's that simple! You now have OptionTree built into your theme and anytime "
-"there's an update to the plugin you just replace the old version and you're "
-"good to go.."
+"You now have OptionTree built into your theme and anytime an update is "
+"available replace the old version with the new one."
 msgstr ""
 
-#: ../includes/ot-functions-docs-page.php:825
+#: ../includes/ot-functions-docs-page.php:814
 msgid "Step 2: Create Theme Options without using the UI Builder."
 msgstr ""
 
-#: ../includes/ot-functions-docs-page.php:827
+#: ../includes/ot-functions-docs-page.php:816
 msgid ""
 "Create a file and name it anything you want, maybe <code>theme-options.php</"
 "code>, or use the built in file export to create it for you. Remember, you "
 "should always check the file for errors before including it in your theme."
 msgstr ""
 
-#: ../includes/ot-functions-docs-page.php:828
+#: ../includes/ot-functions-docs-page.php:817
 msgid ""
 "As well, you'll probably want to create a directory named <code>includes</"
 "code> to put your <code>theme-options.php</code> into which will help keep "
 "you file structure nice and tidy."
 msgstr ""
 
-#: ../includes/ot-functions-docs-page.php:839
+#: ../includes/ot-functions-docs-page.php:828
 msgid ""
 "Add a variation of the following code to your <code>theme-options.php</"
 "code>. You'll obviously need to fill it in with all your custom array values "
 "for contextual help (optional), sections (required), and settings (required)."
 msgstr ""
 
-#: ../includes/ot-functions-docs-page.php:842
+#: ../includes/ot-functions-docs-page.php:831
 msgid ""
 "The code below is a boilerplate to get your started. For a full list of the "
 "available option types click the \"Option Types\" tab above. Also a quick "
