@@ -291,14 +291,14 @@
     },
     match_conditions: function(condition) {
       var match;
-      var regex = /(.+?):(is|not|contains|less_than|less_than_or_equal_to|greater_than|greater_than_or_equal_to)\((.+?)\),?/g;
+      var regex = /(.+?):(is|not|contains|less_than|less_than_or_equal_to|greater_than|greater_than_or_equal_to)\((.*?)\),?/g;
       var conditions = [];
 
       while( match = regex.exec( condition ) ) {
         conditions.push({
           'check': match[1], 
           'rule':  match[2], 
-          'value': match[3]
+          'value': match[3] || ''
         });
       }
 
@@ -309,22 +309,22 @@
 
         var passed;
         var conditions = OT_UI.match_conditions( $( this ).data( 'condition' ) );
-        var operator  = ( $( this ).data( 'operator' ) || 'and' ).toLowerCase();
+        var operator = ( $( this ).data( 'operator' ) || 'and' ).toLowerCase();
 
         $.each( conditions, function( index, condition ) {
 
           var target   = $( '#setting_' + condition.check );
           var targetEl = !! target.length && target.find( 'select, input[type="radio"]:checked, input.ot-numeric-slider-hidden-input' ).first();
 
-          if( ! target.length || ! targetEl.length ) {
+          if ( ! target.length || ( ! targetEl.length && condition.value.toString() != '' ) ) {
             return;
           }
 
-          var v1 = targetEl.val().toString();
+          var v1 = targetEl.length ? targetEl.val().toString() : '';
           var v2 = condition.value.toString();
           var result;
 
-          switch( condition.rule ) {
+          switch ( condition.rule ) {
             case 'less_than':
               result = ( v1 < v2 );
               break;
@@ -348,11 +348,11 @@
               break;
           }
 
-          if( 'undefined' == typeof passed ) {
+          if ( 'undefined' == typeof passed ) {
             passed = result;
           }
 
-          switch( operator ) {
+          switch ( operator ) {
             case 'or':
               passed = ( passed || result );
               break;
@@ -458,9 +458,12 @@
     init_upload_fix: function(elm) {
       var id  = $(elm).attr('id'),
           val = $(elm).val(),
-          img = $(elm).parent().next('option-tree-ui-media-wrap').find('img'),
+          img = $(elm).parent().next('.option-tree-ui-media-wrap').find('img'),
           src = img.attr('src'),
           btnContent = '';
+      if ( val == src ) {
+        return;
+      }
       if ( val != src ) {
         img.attr('src', val);
       }
@@ -563,7 +566,7 @@
       });
     },
     fix_upload_parent: function() {
-      $(document).on('focus blur', '.option-tree-ui-upload-input', function(){
+      $('.option-tree-ui-upload-input').on('focus blur', function(){
         $(this).parent('.option-tree-ui-upload-parent').toggleClass('focus');
         OT_UI.init_upload_fix(this);
       });
@@ -619,6 +622,11 @@
       });
     },
     url_exists: function(url) {
+      var link = document.createElement('a')
+      link.href = url
+      if ( link.hostname != window.location.hostname ) {
+        return true; // Stop the code from checking across domains.
+      }
       var http = new XMLHttpRequest();
       http.open('HEAD', url, false);
       http.send();

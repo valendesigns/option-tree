@@ -167,7 +167,7 @@ if ( ! function_exists( 'ot_type_import_xml' ) ) {
           
           echo '<p class="deprecated">' . __( 'This import method has been deprecated. That means it has been replaced by a new method and is no longer supported, and may be removed from future versions. All themes that use this import method should be converted to use its replacement below.', 'option-tree' ) . '</p>';
           
-          echo '<p>' . __( 'If you were given a Theme Options XML file with a premium or free theme, locate it on your hard drive and upload that file by clicking the blue upload button. A popup window will appear, upload the XML file and click "Send to OptionTree". The file URL should be in the upload input, if it is click "Import XML".', 'option-tree' ) . '</p>';
+          echo '<p>' . sprintf( __( 'If you were given a Theme Options XML file with a premium or free theme, locate it on your hard drive and upload that file by clicking the blue upload button. A popup window will appear, upload the XML file and click "%s". The file URL should be in the upload input, if it is click "Import XML".', 'option-tree' ), apply_filters( 'ot_upload_text', __( 'Send to OptionTree', 'option-tree' ) ) ) . '</p>';
           
           /* button */
           echo '<button class="option-tree-ui-button button button-primary right hug-right">' . __( 'Import XML', 'option-tree' ) . '</button>';

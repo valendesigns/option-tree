@@ -258,9 +258,12 @@ if ( ! class_exists( 'OT_Settings' ) ) {
               
                 echo '<ul id="option-tree-header">';
                   
-                  echo '<li id="option-tree-logo"><a href="http://wordpress.org/extend/plugins/option-tree/" target="_blank">OptionTree</a></li>';
+                  echo '<li id="option-tree-logo">' . apply_filters( 'ot_header_logo_link', '<a href="http://wordpress.org/extend/plugins/option-tree/" target="_blank">OptionTree</a>', $page['id'] ) . '</li>';
                   
-                  echo '<li id="option-tree-version"><span>Version ' . OT_VERSION . '</span></li>';
+                  echo '<li id="option-tree-version"><span>' . apply_filters( 'ot_header_version_text', 'OptionTree ' . OT_VERSION, $page['id'] ) . '</span></li>';
+                  
+                  // Add additional theme specific links here.
+                  do_action( 'ot_header_list', $page['id'] );
                 
                 echo '</ul>';
                 
@@ -835,7 +838,26 @@ if ( ! class_exists( 'OT_Settings' ) ) {
 
         }
         
-        echo '<div id="setting_' . $field['id'] . '" class="format-settings"' . $conditions . '>';
+        // Build the setting CSS class
+        if ( isset( $field['args']['class'] ) && ! empty( $field['args']['class'] ) ) {
+          
+          $classes = explode( ' ', $field['args']['class'] );
+          
+          foreach( $classes as $key => $value ) {
+          
+            $classes[$key] = $value . '-wrap';
+            
+          }
+          
+          $class = 'format-settings ' . implode( ' ', $classes );
+          
+        } else {
+        
+          $class = 'format-settings';
+          
+        }
+        
+        echo '<div id="setting_' . $field['id'] . '" class="' . $class . '"' . $conditions . '>';
           
           echo '<div class="format-setting-wrap">';
           

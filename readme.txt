@@ -3,8 +3,8 @@ Contributors: valendesigns
 Donate link: http://bit.ly/NuXI3T
 Tags: admin, theme options, meta boxes, options, admin interface, ajax
 Requires at least: 3.5
-Tested up to: 3.8
-Stable tag: 2.2.1
+Tested up to: 3.8.1
+Stable tag: 2.3.0
 License: GPLv3
 
 Theme Options UI Builder for WordPress. A simple way to create & save Theme Options and Meta Boxes for free or premium themes.
@@ -23,9 +23,29 @@ OptionTree is a project sponsored by <a href="http://themeforest.net/?ref=valend
 
 == Installation ==
 
+**Plugin Mode**
+
 1. Upload `option-tree` to the `/wp-content/plugins/` directory
-1. Activate the plugin through the 'Plugins' menu in WordPress
+1. Activate the plugin through the `Plugins` menu in WordPress
 1. Click the `OptionTree->Documentation` link in the WordPress admin sidebar menu for further setup assistance.
+
+**Theme Mode**
+
+1. Download the latest version of OptionTree and unarchive the `.zip` directory.
+1. Put the `option-tree` directory in the root of your theme. For example, the server path would be `/wp-content/themes/theme-name/option-tree/`.
+1. Add the following code to the beginning of your `functions.php`.
+
+`/**
+ * Required: set 'ot_theme_mode' filter to true.
+ */
+add_filter( 'ot_theme_mode', '__return_true' );
+
+/**
+ * Required: include OptionTree.
+ */
+load_template( trailingslashit( get_template_directory() ) . 'option-tree/ot-loader.php' );`
+
+For a list of all the OptionTree UI display filters refer to the `demo-functions.php` file found in the `/assets/theme-mode/` directory of this plugin. This file is the starting point for developing themes with Theme Mode.
 
 == Frequently Asked Questions ==
 
@@ -54,6 +74,23 @@ Yes. OptionTree & WordPress both require PHP5.
 * Added filter 'ot_options_id' to change the 'option_tree' option ID to a unique value.
 * Added filter 'ot_settings_id' to change the 'option_tree_settings' option ID to a unique value.
 * Added filter 'ot_layouts_id' to change the 'option_tree_layouts' option ID to a unique value.
+* Added filter 'ot_header_logo_link' to change the logo link inside the header of OptionTree.
+* Added filter 'ot_header_version_text' to change the version text inside the header of OptionTree.
+* Added action 'ot_header_list' to add additional theme specific list items to the header of OptionTree.
+* Added filter 'ot_upload_text' to change the "Send to OptionTree" text.
+* Added the CSS Class field value to the parent `.format-settings` div in addition to the class being added to the element. Each class is now appended with `-wrap`.
+* Added support for [Composer](https://github.com/composer/composer). Contributors via github @designst.
+
+= 2.2.3 =
+* Hotfix - Allow empty condition values. For example, `field_id:is()` or `field_id:not()` would now be valid syntax.
+* Hotfix - Fixed a bug in the `init_upload_fix` JavaScript method.
+* Hotfix - Fixed a bug in the `url_exists` javaScript method. The code will no longer will check if a URL exists on another domain.
+
+= 2.2.2 =
+* Hotfix - Added support for both upper and lower case conditions operator.
+* Hotfix - Updated the color and font size of inline code.
+* Hotfix - Fix an issue with IE filter and updated the style of the On/Off option type.
+* Hotfix - Added opacity to radio images to improve distinction. Contributors via github @jetonr.
 
 = 2.2.1 =
 * Hotfix - Fixed a UI bug that caused the layouts input to cover the wp menu.
