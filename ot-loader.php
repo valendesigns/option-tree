@@ -667,7 +667,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
         
         // Once is enough.
         remove_filter( 'gettext', array( $this, 'ot_change_image_button' ) );
-        return 'Send to OptionTree';
+        return apply_filters( 'ot_upload_text', __( 'Send to OptionTree', 'option-tree' ) );
         
       }
       

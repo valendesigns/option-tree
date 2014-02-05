@@ -368,7 +368,7 @@ add_filter( \'ot_wpautop\', \'filter_textarea_simple_wpautop\', 10, 2 );</code><
 add_filter( \'ot_recognized_font_families\', \'filter_ot_recognized_font_families\', 10, 2 );</code></pre>';
 
         echo '<h4>'. __( 'Upload', 'option-tree' ) . ':</h4>'; 
-        echo '<p>' . __( 'The Upload option type is used to upload any WordPress supported media. After uploading, users are required to press the "Send to OptionTree" button in order to populate the input with the URI of that media. There is one caveat of this feature. If you import the theme options and have uploaded media on one site the old URI will not reflect the URI of your new site. You\'ll have to re-upload or FTP any media to your new server and change the URIs if necessary.', 'option-tree' ) . '</p>';
+        echo '<p>' . sprintf( __( 'The Upload option type is used to upload any WordPress supported media. After uploading, users are required to press the "%s" button in order to populate the input with the URI of that media. There is one caveat of this feature. If you import the theme options and have uploaded media on one site the old URI will not reflect the URI of your new site. You\'ll have to re-upload or FTP any media to your new server and change the URIs if necessary.', 'option-tree' ), apply_filters( 'ot_upload_text', __( 'Send to OptionTree', 'option-tree' ) ) ) . '</p>';
         
       echo '</div>';
       

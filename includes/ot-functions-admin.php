@@ -587,7 +587,7 @@ if ( ! function_exists( 'ot_admin_scripts' ) ) {
     /* create localized JS array */
     $localized_array = array( 
       'ajax'                  => admin_url( 'admin-ajax.php' ),
-      'upload_text'           => __( 'Send to OptionTree', 'option-tree' ),
+      'upload_text'           => apply_filters( 'ot_upload_text', __( 'Send to OptionTree', 'option-tree' ) ),
       'remove_media_text'     => __( 'Remove Media', 'option-tree' ),
       'reset_agree'           => __( 'Are you sure you want to reset back to the defaults?', 'option-tree' ),
       'remove_no'             => __( 'You can\'t remove this! But you can edit the values.', 'option-tree' ),

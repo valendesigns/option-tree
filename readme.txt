@@ -57,6 +57,7 @@ Yes. OptionTree & WordPress both require PHP5.
 * Added filter 'ot_header_logo_link' to change the logo link inside the header of OptionTree.
 * Added filter 'ot_header_version_text' to change the version text inside the header of OptionTree.
 * Added action 'ot_header_list' to add additional theme specific list items to the header of OptionTree.
+* Added filter 'ot_upload_text' to change the "Send to OptionTree" text.
 
 = 2.2.3 =
 * Hotfix - Allow empty condition values. For example, `field_id:is()` or `field_id:not()` would now be valid syntax.
