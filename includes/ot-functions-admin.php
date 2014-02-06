@@ -1297,6 +1297,15 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
     $settings             = '';
     $option_tree_settings = get_option( ot_settings_id(), array() );
     
+    // Domain string helper
+    function ot_I18n_string( $string ) {
+      if ( ! empty( $string ) && isset( $_POST['domain'] ) && ! empty( $_POST['domain'] ) ) {
+        $domain = str_replace( ' ', '-', trim( $_POST['domain'] ) );
+        return "__( '$string', '$domain' )";
+      }
+      return "'$string'";
+    }
+    
     header( "Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0");
     header( "Pragma: no-cache ");
     header( "Content-Description: File Transfer" );
@@ -1309,13 +1318,13 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
       $help = '';
       foreach( $option_tree_settings['contextual_help']['content'] as $value ) {
         $_id = isset( $value['id'] ) ? $value['id'] : '';
-        $_title = isset( $value['title'] ) ? str_replace( "'", "\'", $value['title'] ) : '';
-        $_content = isset( $value['content'] ) ? html_entity_decode(  str_replace( "'", "\'", $value['content'] ) ) : '';
+        $_title = ot_I18n_string( isset( $value['title'] ) ? str_replace( "'", "\'", $value['title'] ) : '' );
+        $_content = ot_I18n_string( isset( $value['content'] ) ? html_entity_decode(  str_replace( "'", "\'", $value['content'] ) ) : '' );
         $help.= "
         array(
           'id'        => '$_id',
-          'title'     => '$_title',
-          'content'   => '$_content'
+          'title'     => $_title,
+          'content'   => $_content
         ),";
       }
       $help = substr_replace( $help, '' , -1 );
@@ -1327,7 +1336,7 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
     /* build contextual help sidebar */
     if ( isset( $option_tree_settings['contextual_help']['sidebar'] ) ) {
       $contextual_help.= "
-      'sidebar'       => '" . html_entity_decode(  str_replace( "'", "\'", $option_tree_settings['contextual_help']['sidebar'] ) ) . "'";
+      'sidebar'       => " . ot_I18n_string( html_entity_decode(  str_replace( "'", "\'", $option_tree_settings['contextual_help']['sidebar'] ) ) );
     }
     
     /* check that $contexual_help has a value and add to $build_settings */
@@ -1341,11 +1350,11 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
     if ( isset( $option_tree_settings['sections'] ) ) {
       foreach( $option_tree_settings['sections'] as $value ) {
         $_id = isset( $value['id'] ) ? $value['id'] : '';
-        $_title = isset( $value['title'] ) ? str_replace( "'", "\'", $value['title'] ) : '';
+        $_title = ot_I18n_string( isset( $value['title'] ) ? str_replace( "'", "\'", $value['title'] ) : '' );
         $sections.= "
       array(
         'id'          => '$_id',
-        'title'       => '$_title'
+        'title'       => $_title
       ),";
       }
       $sections = substr_replace( $sections, '' , -1 );
@@ -1362,8 +1371,8 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
     if ( isset( $option_tree_settings['settings'] ) ) {
       foreach( $option_tree_settings['settings'] as $value ) {
         $_id = isset( $value['id'] ) ? $value['id'] : '';
-        $_label = isset( $value['label'] ) ? str_replace( "'", "\'", $value['label'] ) : '';
-        $_desc = isset( $value['desc'] ) ? str_replace( "'", "\'", $value['desc'] ) : '';
+        $_label = ot_I18n_string( isset( $value['label'] ) ? str_replace( "'", "\'", $value['label'] ) : '' );
+        $_desc = ot_I18n_string( isset( $value['desc'] ) ? str_replace( "'", "\'", $value['desc'] ) : '' );
         $_std = isset( $value['std'] ) ? str_replace( "'", "\'", $value['std'] ) : '';
         $_type = isset( $value['type'] ) ? $value['type'] : '';
         $_section = isset( $value['section'] ) ? $value['section'] : '';
@@ -1379,12 +1388,12 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
         if ( isset( $value['choices'] ) && ! empty( $value['choices'] ) ) {
           foreach( $value['choices'] as $choice ) {
             $_choice_value = isset( $choice['value'] ) ? str_replace( "'", "\'", $choice['value'] ) : '';
-            $_choice_label = isset( $choice['label'] ) ? str_replace( "'", "\'", $choice['label'] ) : '';
+            $_choice_label = ot_I18n_string( isset( $choice['label'] ) ? str_replace( "'", "\'", $choice['label'] ) : '' );
             $_choice_src = isset( $choice['src'] ) ? str_replace( "'", "\'", $choice['src'] ) : '';
             $choices.= "
           array(
             'value'       => '$_choice_value',
-            'label'       => '$_choice_label',
+            'label'       => $_choice_label,
             'src'         => '$_choice_src'
           ),";
           }
@@ -1409,8 +1418,8 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
         if ( isset( $value['settings'] ) && ! empty( $value['settings'] ) ) {
           foreach( $value['settings'] as $setting ) {
             $_setting_id = isset( $setting['id'] ) ? $setting['id'] : '';
-            $_setting_label = isset( $setting['label'] ) ? str_replace( "'", "\'", $setting['label'] ) : '';
-            $_setting_desc = isset( $setting['desc'] ) ? str_replace( "'", "\'", $setting['desc'] ) : '';
+            $_setting_label = ot_I18n_string( isset( $setting['label'] ) ? str_replace( "'", "\'", $setting['label'] ) : '' );
+            $_setting_desc = ot_I18n_string( isset( $setting['desc'] ) ? str_replace( "'", "\'", $setting['desc'] ) : '' );
             $_setting_std = isset( $setting['std'] ) ? $setting['std'] : '';
             $_setting_type = isset( $setting['type'] ) ? $setting['type'] : '';
             $_setting_rows = isset( $setting['rows'] ) ? $setting['rows'] : '';
@@ -1425,12 +1434,12 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
             if ( isset( $setting['choices'] ) && ! empty( $setting['choices'] ) ) {
               foreach( $setting['choices'] as $setting_choice ) {
                 $_setting_choice_value = isset( $setting_choice['value'] ) ? $setting_choice['value'] : '';
-                $_setting_choice_label = isset( $setting_choice['label'] ) ? str_replace( "'", "\'", $setting_choice['label'] ) : '';
+                $_setting_choice_label = ot_I18n_string( isset( $setting_choice['label'] ) ? str_replace( "'", "\'", $setting_choice['label'] ) : '' );
                 $_setting_choice_src = isset( $setting_choice['src'] ) ? str_replace( "'", "\'", $setting_choice['src'] ) : '';
                 $setting_choices.= "
               array(
                 'value'       => '$_setting_choice_value',
-                'label'       => '$_setting_choice_label',
+                'label'       => $_setting_choice_label,
                 'src'         => '$_setting_choice_src'
               ),";
               }
@@ -1454,8 +1463,8 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
             $setting_settings.= "
           array(
             'id'          => '$_setting_id',
-            'label'       => '$_setting_label',
-            'desc'        => '$_setting_desc',
+            'label'       => $_setting_label,
+            'desc'        => $_setting_desc,
             'std'         => $setting_std,
             'type'        => '$_setting_type',
             'rows'        => '$_setting_rows',
@@ -1476,8 +1485,8 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
         $settings.= "
       array(
         'id'          => '$_id',
-        'label'       => '$_label',
-        'desc'        => '$_desc',
+        'label'       => $_label,
+        'desc'        => $_desc,
         'std'         => $std,
         'type'        => '$_type',
         'section'     => '$_section',
