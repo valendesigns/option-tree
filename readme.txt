@@ -81,6 +81,7 @@ Yes. OptionTree & WordPress both require PHP5.
 * Added the CSS Class field value to the parent `.format-settings` div in addition to the class being added to the element. Each class is now appended with `-wrap`.
 * Added support for [Composer](https://github.com/composer/composer). Contributors via github @designst.
 * Added support for adding I18n text domains to the exported `theme-options.php` file.
+* Fixed a bug that kept the UI from displaying when using the `ot_type_background_size_choices` filter.
 
 = 2.2.3 =
 * Hotfix - Allow empty condition values. For example, `field_id:is()` or `field_id:not()` would now be valid syntax.

@@ -195,11 +195,11 @@ if ( ! function_exists( 'ot_type_background' ) ) {
             if ( is_array( $choices ) && ! empty( $choices ) ) {
             
               /* build select */
-              echo '<select name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
+              echo '<select name="' . esc_attr( $field_name ) . '[background-size]" id="' . esc_attr( $field_id ) . '-size" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
               
                 foreach ( (array) $choices as $choice ) {
                   if ( isset( $choice['value'] ) && isset( $choice['label'] ) ) {
-                    echo '<option value="' . esc_attr( $choice['value'] ) . '"' . selected( $field_value, $choice['value'], false ) . '>' . esc_attr( $choice['label'] ) . '</option>';
+                    echo '<option value="' . esc_attr( $choice['value'] ) . '"' . selected( $field_value['background-size'], $choice['value'], false ) . '>' . esc_attr( $choice['label'] ) . '</option>';
                   }
                 }
         
