@@ -1647,10 +1647,10 @@ input.option-tree-ui-input {
   border: 1px solid #ccc !important;
   line-height: 17px;
   font-size: 12px;
-  margin-bottom: 5px;
+  margin-bottom: 5px !important;
   padding: 7px 6px;
   position: relative;
-  width: 100%;
+  width: 100% !important;
   border-radius: 2px;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
