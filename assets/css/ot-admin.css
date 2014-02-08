@@ -1660,7 +1660,7 @@ input.option-tree-ui-input {
 }
 input:focus.option-tree-ui-upload-input,
 input:focus.option-tree-ui-input {
-  border-color: #bbb !important;
+  border-color: #999 !important;
 }
 
 @media screen and (-webkit-min-device-pixel-ratio:0) {
@@ -1742,7 +1742,7 @@ div.option-tree-ui-media-wrap {
   border: none;
 }
 .ot-metabox-wrapper textarea:focus {
-  border-color: #bbb !important;
+  border-color: #999 !important;
 }
 
 @media only screen and (max-width: 1105px) {
@@ -1995,7 +1995,7 @@ li ul .format-setting-label {
 }
 .select-wrapper:hover {
   background-image: url(../images/ot-select-hover.png);
-  border-color: #bbb;
+  border-color: #999;
 }
 select.option-tree-ui-select {
   cursor: pointer;
@@ -2526,7 +2526,7 @@ ul.ot-gallery-list {
 }
 ul.ot-gallery-list li {
   background: none repeat scroll 0 0 white;
-  border: 1px solid #bbbbbb;
+  border: 1px solid #bbb;
   float: left;
   margin: 0px 10px 10px 0;
   padding: 4px;
