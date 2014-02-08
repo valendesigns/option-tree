@@ -1149,12 +1149,11 @@
   padding-bottom: 5px;
   position: relative;
   -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-  -webkit-border-radius: 0 0 4px 4px;
-   -khtml-border-radius: 0 0 4px 4px;
-     -moz-border-radius: 0 0 4px 4px;
-       -o-border-radius: 0 0 4px 4px;
-          border-radius: 0 0 4px 4px; 
+     -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+          box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  -webkit-border-radius: 0 0 2px 2px;
+     -moz-border-radius: 0 0 2px 2px;
+          border-radius: 0 0 2px 2px;
 }
 
 /* -------------------------------------------------- 
@@ -1174,9 +1173,9 @@
   -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.05);
      -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.05);
           box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-  -webkit-border-radius: 4px 4px 0 0;
-     -moz-border-radius: 4px 4px 0 0;
-          border-radius: 4px 4px 0 0;
+  -webkit-border-radius: 2px 2px 0 0;
+     -moz-border-radius: 2px 2px 0 0;
+          border-radius: 2px 2px 0 0;
 }
 #option-tree-header li {
   display: block;
@@ -1414,11 +1413,9 @@
   border: 1px solid transparent; 
   border-right-width: 0px; 
   display: block; margin: 0; 
-  -webkit-border-radius: 3px 0 0 3px;
-   -khtml-border-radius: 3px 0 0 3px;
-     -moz-border-radius: 3px 0 0 3px;
-       -o-border-radius: 3px 0 0 3px;
-          border-radius: 3px 0 0 3px; 
+  -webkit-border-radius: 2px 0 0 2px;
+     -moz-border-radius: 2px 0 0 2px;
+          border-radius: 2px 0 0 2px; 
 }
 .wrap.settings-wrap .ui-tabs-nav li.ui-state-active { 
   background: #fff; 
@@ -1651,12 +1648,12 @@ input.option-tree-ui-input {
   padding: 7px 6px;
   position: relative;
   width: 100% !important;
-  border-radius: 2px;
   -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -moz-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05);
+     -moz-border-radius: 2px;
+          border-radius: 2px;
   -webkit-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05);
-  box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05);
+     -moz-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05);
+          box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05);
 }
 input:hover.option-tree-ui-upload-input,
 input:hover.option-tree-ui-input {
@@ -1689,14 +1686,14 @@ div.option-tree-ui-media-wrap {
   background: #fafafa;
   border: 1px solid #ccc;
   padding: 4px;
-  border-radius: 2px;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
   display: block;
   float: left;
   max-width: 100%;
   height: auto;
   -ms-interpolation-mode: bicubic;
+  -webkit-border-radius: 2px;
+     -moz-border-radius: 2px;
+          border-radius: 2px;
 }
 .option-tree-ui-upload-parent {
   width: auto !important;
@@ -1777,11 +1774,9 @@ div.option-tree-ui-media-wrap {
   border: 1px solid #ccc; 
   overflow: hidden; 
   position: relative; 
-  -webkit-border-radius: 3px;
-   -khtml-border-radius: 3px;
-     -moz-border-radius: 3px;
-       -o-border-radius: 3px;
-          border-radius: 3px; 
+  -webkit-border-radius: 2px;
+     -moz-border-radius: 2px;
+          border-radius: 2px; 
 }
 .option-tree-setting:hover {
   border-color: #999;
@@ -1947,21 +1942,21 @@ div.option-tree-ui-media-wrap {
 .ui-state-highlight {
   border: 1px dashed #ccc;
   display: block;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
+  -webkit-border-radius: 2px;
+     -moz-border-radius: 2px;
+          border-radius: 2px;
 }
 .option-tree-setting-body {
   background: #fff;
   border-top: 1px solid #ccc;
   display: none;
   padding: 10px;
-  -webkit-border-bottom-right-radius: 3px;
-  -webkit-border-bottom-left-radius: 3px;
-  -moz-border-radius-bottomright: 3px;
-  -moz-border-radius-bottomleft: 3px;
-  border-bottom-right-radius: 3px;
-  border-bottom-left-radius: 3px;
+  -webkit-border-bottom-right-radius: 2px;
+   -webkit-border-bottom-left-radius: 2px;
+      -moz-border-radius-bottomright: 2px;
+       -moz-border-radius-bottomleft: 2px;
+          border-bottom-right-radius: 2px;
+           border-bottom-left-radius: 2px;
 }
 li ul .format-setting-wrap {
   padding: 0 0 10px 0;
@@ -2022,12 +2017,12 @@ li ul .format-setting-label {
   height: 27px;
   margin: 0 5px 5px 0;
   width: auto;
-  border-radius: 2px;
   -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -moz-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05);
+     -moz-border-radius: 2px;
+          border-radius: 2px;
   -webkit-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05);
-  box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05);
+     -moz-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05);
+          box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05);
 }
 .select-wrapper:hover {
   background-image: url(../images/ot-select-hover.png);
@@ -2137,9 +2132,9 @@ select.option-tree-ui-select option {
   cursor: pointer;
   opacity: 0.8;
   padding: 5px;
-  -webkit-border-radius: 3px;
-     -moz-border-radius: 3px;
-          border-radius: 3px;
+  -webkit-border-radius: 2px;
+     -moz-border-radius: 2px;
+          border-radius: 2px;
 }
 .type-radio-image .option-tree-ui-radio-images img.option-tree-ui-radio-image-selected,
 .type-radio-image .option-tree-ui-radio-images img:hover {
@@ -2161,9 +2156,9 @@ select.option-tree-ui-select option {
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
           box-sizing: border-box;
-  -webkit-border-radius: 3px;
-     -moz-border-radius: 3px;
-          border-radius: 3px;
+  -webkit-border-radius: 2px;
+     -moz-border-radius: 2px;
+          border-radius: 2px;
 }
 .ot-numeric-slider-wrap {
   margin: 0 96px 0 0;
@@ -2203,9 +2198,9 @@ select.option-tree-ui-select option {
   -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 1px 0 rgba(0,0,0,.08);
      -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 1px 0 rgba(0,0,0,.08);
           box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 1px 0 rgba(0,0,0,.08);
-  -webkit-border-radius: 3px;
-     -moz-border-radius: 3px;
-          border-radius: 3px;
+  -webkit-border-radius: 2px;
+     -moz-border-radius: 2px;
+          border-radius: 2px;
 }
 /* default */
 .ot-numeric-slider.ui-slider .ui-slider-handle {
@@ -2435,12 +2430,11 @@ select.option-tree-ui-select option {
   padding: 5px;
   position: relative;
   -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-  -webkit-border-radius: 4px;
-   -khtml-border-radius: 4px;
-     -moz-border-radius: 4px;
-       -o-border-radius: 4px;
-          border-radius: 4px;
+     -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+          box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  -webkit-border-radius: 2px;
+     -moz-border-radius: 2px;
+          border-radius: 2px;
 }
 .option-tree-ui-buttons.alt {
   background: #f5f5f5;
@@ -2565,9 +2559,9 @@ ul.ot-gallery-list li {
   float: left;
   margin: 0px 10px 10px 0;
   padding: 4px;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
+  -webkit-border-radius: 2px;
+     -moz-border-radius: 2px;
+          border-radius: 2px;
 }
 ul.ot-gallery-list li img {
   display: block;
@@ -2656,9 +2650,9 @@ ul.ot-gallery-list li img {
     top: -1px;
     width: 51px;
     z-index: 1;
-    -webkit-border-radius: 3px;
-       -moz-border-radius: 3px;
-            border-radius: 3px;
+    -webkit-border-radius: 2px;
+       -moz-border-radius: 2px;
+            border-radius: 2px;
     -webkit-box-shadow: inset 0 1px 0 #c8eb8e, 0 1px 0 rgba(0,0,0,.08);
        -moz-box-shadow: inset 0 1px 0 #c8eb8e, 0 1px 0 rgba(0,0,0,.08);
             box-shadow: inset 0 1px 0 #c8eb8e, 0 1px 0 rgba(0,0,0,.08);
@@ -2706,8 +2700,8 @@ ul.ot-gallery-list li img {
   *margin-left: 0;
   vertical-align: top;
   -webkit-border-radius: 0 2px 2px 0;
-  -moz-border-radius: 0 2px 2px 0;
-  border-radius: 0 2px 2px 0;
+     -moz-border-radius: 0 2px 2px 0;
+          border-radius: 0 2px 2px 0;
 }
 .ot-input-append input:focus,
 .ot-input-prepend input:focus {
@@ -2733,14 +2727,14 @@ ul.ot-gallery-list li img {
 }
 .ot-input-prepend .ot-add-on:first-child {
   -webkit-border-radius: 2px 0 0 2px;
-  -moz-border-radius: 2px 0 0 2px;
-  border-radius: 2px 0 0 2px;
+     -moz-border-radius: 2px 0 0 2px;
+          border-radius: 2px 0 0 2px;
 }
 .ot-input-append input {
   border-right: 0 !important;
   -webkit-border-radius: 2px 0 0 2px;
-  -moz-border-radius: 2px 0 0 2px;
-  border-radius: 2px 0 0 2px;
+     -moz-border-radius: 2px 0 0 2px;
+          border-radius: 2px 0 0 2px;
 }
 .ot-input-append input + .btn-group .btn:first-child {
   -webkit-border-top-left-radius: 0;
@@ -2752,23 +2746,23 @@ ul.ot-gallery-list li img {
 }
 .ot-input-append .ot-add-on:last-child {
   -webkit-border-radius: 0 2px 2px 0;
-  -moz-border-radius: 0 2px 2px 0;
-  border-radius: 0 2px 2px 0;
+     -moz-border-radius: 0 2px 2px 0;
+          border-radius: 0 2px 2px 0;
 }
 .ot-input-prepend.ot-input-append input {
   -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
+     -moz-border-radius: 0;
+          border-radius: 0;
 }
 .ot-input-prepend.ot-input-append .ot-add-on:first-child {
   -webkit-border-radius: 2px 0 0 2px;
-  -moz-border-radius: 2px 0 0 2px;
-  border-radius: 2px 0 0 2px;
+     -moz-border-radius: 2px 0 0 2px;
+          border-radius: 2px 0 0 2px;
 }
 .ot-input-prepend.ot-input-append .ot-add-on:last-child {
   -webkit-border-radius: 0 2px 2px 0;
-  -moz-border-radius: 0 2px 2px 0;
-  border-radius: 0 2px 2px 0;
+     -moz-border-radius: 0 2px 2px 0;
+          border-radius: 0 2px 2px 0;
 }
 
 /* -------------------------------------------------- 
@@ -2812,11 +2806,9 @@ ul.ot-gallery-list li img {
   margin: 5px auto 0;
   width: 216px;
   z-index: 101 !important;
-  -webkit-border-radius: 3px;
-  -khtml-border-radius: 3px;
-  -moz-border-radius: 3px;
-  -o-border-radius: 3px;
-  border-radius: 3px;
+  -webkit-border-radius: 2px;
+     -moz-border-radius: 2px;
+          border-radius: 2px;
 }
 .ui-datepicker a {
   text-decoration: none;
@@ -2832,9 +2824,9 @@ ul.ot-gallery-list li img {
   position: relative;
   top: -1px;
   width: 218px;
-  -webkit-border-radius: 3px 3px 0 0;
-     -moz-border-radius: 3px 3px 0 0;
-          border-radius: 3px 3px 0 0;
+  -webkit-border-radius: 2px 2px 0 0;
+     -moz-border-radius: 2px 2px 0 0;
+          border-radius: 2px 2px 0 0;
 }
 .ui-datepicker .ui-datepicker-title {
   text-align: center;
@@ -2849,14 +2841,14 @@ ul.ot-gallery-list li img {
   height: 30px;
   text-align: center;
   cursor: pointer;
-  -webkit-border-radius: 3px 0 0 0;
-     -moz-border-radius: 3px 0 0 0;
-          border-radius: 3px 0 0 0;
+  -webkit-border-radius: 2px 0 0 0;
+     -moz-border-radius: 2px 0 0 0;
+          border-radius: 2px 0 0 0;
 }
 .ui-datepicker-next {
-  -webkit-border-radius: 0 3px 0 0;
-     -moz-border-radius: 0 3px 0 0;
-          border-radius: 0 3px 0 0;
+  -webkit-border-radius: 0 2px 0 0;
+     -moz-border-radius: 0 2px 0 0;
+          border-radius: 0 2px 0 0;
 }
 .ui-datepicker-prev span, 
 .ui-datepicker-next span {
@@ -3233,9 +3225,9 @@ a.ui-datepicker-next {
   height: .8em;
   bottom: -.3em;
   position: relative;
-  -webkit-border-radius: 3px;
-     -moz-border-radius: 3px;
-          border-radius: 3px;
+  -webkit-border-radius: 2px;
+     -moz-border-radius: 2px;
+          border-radius: 2px;
 }
 .ui-timepicker-div .ui-slider-horizontal .ui-slider-handle {
   background: #f7f7f7;
@@ -3252,9 +3244,9 @@ a.ui-datepicker-next {
   -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 1px 0 rgba(0,0,0,.08);
      -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 1px 0 rgba(0,0,0,.08);
           box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 1px 0 rgba(0,0,0,.08);
-  -webkit-border-radius: 3px;
-     -moz-border-radius: 3px;
-          border-radius: 3px;
+  -webkit-border-radius: 2px;
+     -moz-border-radius: 2px;
+          border-radius: 2px;
 }
 .ui-timepicker-div .ui-slider-horizontal .ui-slider-handle:hover {
   background: #fafafa;
@@ -3398,9 +3390,9 @@ a.ui-datepicker-next {
   min-height: 140px;
   overflow: hidden;
   padding: 12px;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
+  -webkit-border-radius: 2px;
+     -moz-border-radius: 2px;
+          border-radius: 2px;
 }
 .ot-metabox-tabs.ui-tabs .ot-metabox-nav.ui-tabs-nav {
   float: left;
@@ -3415,9 +3407,9 @@ a.ui-datepicker-next {
   display: block;
   margin: 0;
   outline: 0;
-  -webkit-border-radius: 3px 0 0 3px;
-  -moz-border-radius: 3px 0 0 3px;
-  border-radius: 3px 0 0 3px;
+  -webkit-border-radius: 2px 0 0 2px;
+     -moz-border-radius: 2px 0 0 2px;
+          border-radius: 2px 0 0 2px;
 }
 .ot-metabox-tabs.ui-tabs .ot-metabox-nav.ui-tabs-nav li.ui-state-active {
   background: white;
@@ -3487,9 +3479,9 @@ a.ui-datepicker-next {
   margin: 0 0 0 3px;
   padding: 0;
   outline: 0;
-  -webkit-border-radius: 3px 3px 0 0;
-  -moz-border-radius: 3px 3px 0 0;
-  border-radius: 3px 3px 0 0;
+  -webkit-border-radius: 2px 2px 0 0;
+     -moz-border-radius: 2px 2px 0 0;
+          border-radius: 2px 2px 0 0;
 }
 .ot-theme-option-tabs.ui-tabs .ot-theme-option-nav.ui-tabs-nav li:hover,
 #side-sortables .ot-metabox-tabs.ui-tabs .ot-metabox-nav.ui-tabs-nav li:hover {
@@ -3504,9 +3496,9 @@ a.ui-datepicker-next {
   border-width: 1px 1px 0px 1px;
   color: black;
   padding: 0;
-  -webkit-border-radius: 3px 3px 0 0;
-  -moz-border-radius: 3px 3px 0 0;
-  border-radius: 3px 3px 0 0;
+  -webkit-border-radius: 2px 2px 0 0;
+     -moz-border-radius: 2px 2px 0 0;
+          border-radius: 2px 2px 0 0;
 }
 .ot-theme-option-tabs.ui-tabs .ot-theme-option-nav.ui-tabs-nav li a,
 #side-sortables .ot-metabox-tabs.ui-tabs .ot-metabox-nav.ui-tabs-nav li a {
@@ -3572,9 +3564,9 @@ a.ui-datepicker-next {
     margin: 0 0 0 3px;
     padding: 0;
     outline: 0;
-    -webkit-border-radius: 3px 3px 0 0;
-    -moz-border-radius: 3px 3px 0 0;
-    border-radius: 3px 3px 0 0;
+    -webkit-border-radius: 2px 2px 0 0;
+       -moz-border-radius: 2px 2px 0 0;
+            border-radius: 2px 2px 0 0;
   }
   .ot-metabox-tabs.ui-tabs .ot-metabox-nav.ui-tabs-nav li:hover {
     background: #f1f1f1;
@@ -3587,9 +3579,9 @@ a.ui-datepicker-next {
     border-width: 1px 1px 0px 1px;
     color: black;
     padding: 0;
-    -webkit-border-radius: 3px 3px 0 0;
-    -moz-border-radius: 3px 3px 0 0;
-    border-radius: 3px 3px 0 0;
+    -webkit-border-radius: 2px 2px 0 0;
+       -moz-border-radius: 2px 2px 0 0;
+            border-radius: 2px 2px 0 0;
   }
   .ot-metabox-tabs.ui-tabs .ot-metabox-nav.ui-tabs-nav li a {
     color: #21759b;

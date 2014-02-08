@@ -30,9 +30,9 @@
   padding: 3px 13px 3px 12px;
 }
 #option-tree-header li#option-tree-logo:hover {
-  -webkit-border-top-right-radius: 5px;
-  -moz-border-radius-topright: 5px;
-  border-top-right-radius: 5px;
+  -webkit-border-top-right-radius: 2px;
+      -moz-border-radius-topright: 2px;
+          border-top-right-radius: 2px;
 }
 #option-tree-header #option-tree-version span {
   border-left: 0;
@@ -58,11 +58,9 @@
 .wrap.settings-wrap .ui-tabs-nav li { 
   border-left-width: 0;
   border-right-width: 1px;
-  -webkit-border-radius: 0 3px 3px 0;
-   -khtml-border-radius: 0 3px 3px 0;
-     -moz-border-radius: 0 3px 3px 0;
-       -o-border-radius: 0 3px 3px 0;
-          border-radius: 0 3px 3px 0; 
+  -webkit-border-radius: 0 2px 2px 0;
+     -moz-border-radius: 0 2px 2px 0;
+          border-radius: 0 2px 2px 0; 
 }
 .wrap.settings-wrap .ui-tabs-nav li a {
   padding: 5px 12px 5px 5px; 
@@ -303,9 +301,9 @@ div.option-tree-ui-media-wrap {
 .option-tree-ui-button.left-item {
   float: right !important;
   margin: 5px 5px 5px 0;
-  -webkit-border-radius: 0px 3px 3px 0px;
-  -moz-border-radius: 0px 3px 3px 0px;
-  border-radius: 0px 3px 3px 0px;
+  -webkit-border-radius: 0px 2px 2px 0px;
+     -moz-border-radius: 0px 2px 2px 0px;
+          border-radius: 0px 2px 2px 0px;
 }
 .option-tree-ui-button.center-item {
   margin: 5px -1px 5px 0;
@@ -313,9 +311,9 @@ div.option-tree-ui-media-wrap {
 .option-tree-ui-button.right-item {
   float: left !important;
   margin: 5px -1px 5px 5px;
-  -webkit-border-radius: 3px 0px 0px 3px;
-  -moz-border-radius: 3px 0px 0px 3px;
-  border-radius: 3px 0px 0px 3px;
+  -webkit-border-radius: 2px 0px 0px 2px;
+     -moz-border-radius: 2px 0px 0px 2px;
+          border-radius: 2px 0px 0px 2px;
 }
 .option-tree-ui-buttons {
   margin: 11px 2px 0 5px;
@@ -463,9 +461,9 @@ ul.ot-gallery-list li {
 }
 .ot-metabox-tabs.ui-tabs .ot-metabox-nav.ui-tabs-nav li {
   border-width: 1px 1px 1px 0px;
-  -webkit-border-radius: 0 0 3px 3px;
-  -moz-border-radius: 0 0 3px 3px;
-  border-radius: 0 0 3px 3px;
+  -webkit-border-radius: 0 0 2px 2px;
+     -moz-border-radius: 0 0 2px 2px;
+          border-radius: 0 0 2px 2px;
 }
 .ot-metabox-tabs.ui-tabs .ot-metabox-nav.ui-tabs-nav li a {
   padding: 5px 12px 5px 5px;
