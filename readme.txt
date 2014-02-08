@@ -82,8 +82,8 @@ Yes. OptionTree & WordPress both require PHP5.
 * Added support for [Composer](https://github.com/composer/composer). Contributors via github @designst.
 * Added support for adding I18n text domains to the exported `theme-options.php` file.
 * Fixed a bug that kept the UI from displaying when using the `ot_type_background_size_choices` filter.
+* Fixed a bug that caused the Gallery option type to save a single space instead of `null`.
 * Fixed the return value of the Background, Measurement, and Typography option types. They now return `null` if no values are saved to the array.
-* Fixed a bug that caused the Gallery option type to save a single space instead of empty.
 
 = 2.2.3 =
 * Hotfix - Allow empty condition values. For example, `field_id:is()` or `field_id:not()` would now be valid syntax.
