@@ -2138,7 +2138,7 @@ select.option-tree-ui-select option {
   right: 5px;
   text-align: center;
   top: 5px;
-  width: 90px;
+  width: 90px !important;
 }
 .ot-numeric-slider.ui-slider { 
   background: #fff;
