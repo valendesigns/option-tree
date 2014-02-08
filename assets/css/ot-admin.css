@@ -1727,7 +1727,6 @@ div.option-tree-ui-media-wrap {
 .fill-area .format-setting-inner {
   width: 100% !important;
 }
-
 .wp-editor-area {
   display: block;
 }
@@ -1768,8 +1767,12 @@ div.option-tree-ui-media-wrap {
 /* -------------------------------------------------- 
   :: Setting Item with Drag & Drop
   ---------------------------------------------------*/
-.option-tree-setting-wrap             { margin-top: 0px; }
-.option-tree-setting-wrap li          { margin: 5px 0px; }
+.option-tree-setting-wrap { 
+  margin-top: 0px; 
+}
+.option-tree-setting-wrap li { 
+  margin: 5px 0px; 
+}
 .option-tree-setting { 
   border: 1px solid #ccc; 
   overflow: hidden; 
@@ -1779,6 +1782,12 @@ div.option-tree-ui-media-wrap {
      -moz-border-radius: 3px;
        -o-border-radius: 3px;
           border-radius: 3px; 
+}
+.option-tree-setting:hover {
+  border-color: #999;
+  -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.0980392);
+     -moz-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.0980392);
+          box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.0980392);
 }
 .option-tree-setting a { 
   text-decoration: none; 
@@ -1795,7 +1804,24 @@ div.option-tree-ui-media-wrap {
   cursor: default;
 }
 .option-tree-setting .open:hover {
-  background: #fafafa url(../images/ot-dots.png) no-repeat 4px 15px;
+  background: #fafafa;
+}
+.option-tree-setting .open:hover:before {
+  color: #999;
+  content: "\e715";
+  left: 4px;
+  font-family: "option-tree-font";
+  speak: none;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  position: absolute;
+  top: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 .button-section {
   position: absolute;
@@ -1814,11 +1840,11 @@ div.option-tree-ui-media-wrap {
   color: #bbb;
 }
 .format-setting .ui-sortable-helper .option-tree-setting .open {
-  background: #fff url(../images/ot-dots.png) no-repeat 4px 15px;
+  background: #fff;
 }
 .option-tree-setting.is-section .open:hover,
 .format-setting .ui-sortable-helper .option-tree-setting.is-section .open {
-  background: #333 url(../images/ot-dots.png) no-repeat 4px 15px;
+  background: #333;
 }
 /* light */
 .admin-color-light .option-tree-setting.is-section,
@@ -1832,7 +1858,7 @@ div.option-tree-ui-media-wrap {
 }
 .admin-color-light .option-tree-setting.is-section .open:hover,
 .admin-color-light .format-setting .ui-sortable-helper .option-tree-setting.is-section .open {
-  background: #888 url(../images/ot-dots.png) no-repeat 4px 15px;
+  background: #888;
 }
 /* blue */
 .admin-color-blue .option-tree-setting.is-section,
@@ -1846,7 +1872,7 @@ div.option-tree-ui-media-wrap {
 }
 .admin-color-blue .option-tree-setting.is-section .open:hover,
 .admin-color-blue .format-setting .ui-sortable-helper .option-tree-setting.is-section .open {
-  background: #52accc url(../images/ot-dots.png) no-repeat 4px 15px;
+  background: #52accc;
 }
 /* coffee */
 .admin-color-coffee .option-tree-setting.is-section,
@@ -1860,7 +1886,7 @@ div.option-tree-ui-media-wrap {
 }
 .admin-color-coffee .option-tree-setting.is-section .open:hover,
 .admin-color-coffee .format-setting .ui-sortable-helper .option-tree-setting.is-section .open {
-  background: #59524c url(../images/ot-dots.png) no-repeat 4px 15px;
+  background: #59524c;
 }
 /* ectoplasm */
 .admin-color-ectoplasm .option-tree-setting.is-section,
@@ -1874,7 +1900,7 @@ div.option-tree-ui-media-wrap {
 }
 .admin-color-ectoplasm .option-tree-setting.is-section .open:hover,
 .admin-color-ectoplasm .format-setting .ui-sortable-helper .option-tree-setting.is-section .open {
-  background: #523f6d url(../images/ot-dots.png) no-repeat 4px 15px;
+  background: #523f6d;
 }
 /* midnight */
 .admin-color-midnight .option-tree-setting.is-section,
@@ -1888,7 +1914,7 @@ div.option-tree-ui-media-wrap {
 }
 .admin-color-midnight .option-tree-setting.is-section .open:hover,
 .admin-color-midnight .format-setting .ui-sortable-helper .option-tree-setting.is-section .open {
-  background: #363b3f url(../images/ot-dots.png) no-repeat 4px 15px;
+  background: #363b3f;
 }
 /* ocean */
 .admin-color-ocean .option-tree-setting.is-section,
@@ -1902,7 +1928,7 @@ div.option-tree-ui-media-wrap {
 }
 .admin-color-ocean .option-tree-setting.is-section .open:hover,
 .admin-color-ocean .format-setting .ui-sortable-helper .option-tree-setting.is-section .open {
-  background: #738e96 url(../images/ot-dots.png) no-repeat 4px 15px;
+  background: #738e96;
 }
 /* sunrise */
 .admin-color-sunrise .option-tree-setting.is-section,
@@ -1916,7 +1942,7 @@ div.option-tree-ui-media-wrap {
 }
 .admin-color-sunrise .option-tree-setting.is-section .open:hover,
 .admin-color-sunrise .format-setting .ui-sortable-helper .option-tree-setting.is-section .open {
-  background: #da4f41 url(../images/ot-dots.png) no-repeat 4px 15px;
+  background: #da4f41;
 }
 .ui-state-highlight {
   border: 1px dashed #ccc;

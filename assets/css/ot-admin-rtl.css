@@ -145,19 +145,13 @@ div.option-tree-ui-media-wrap {
 .option-tree-setting .open {
   padding: 10px 10px 10px 100px;
 }
-.option-tree-setting .open:hover {
-   background-position: 98% 15px;
+.option-tree-setting .open:hover:before {
+  left: auto;
+  right: 4px;
 }
 .button-section {
   right: auto;
   left: 0px;
-}
-.format-setting .ui-sortable-helper .option-tree-setting .open {
-  background-position: 98% 15px;
-}
-.option-tree-setting.is-section .open:hover,
-.format-setting .ui-sortable-helper .option-tree-setting.is-section .open {
-  background-position: 98% 15px;
 }
 
 /* -------------------------------------------------- 
