@@ -1990,16 +1990,12 @@ li ul .format-setting-label {
   padding: 10px 0;
 }
 .option-tree-save-layout.active-layout {
-  border-left: 1px solid #fff;
-  padding-left: 9px;
+  padding-left: 10px;
 }
 .option-tree-save-layout .widefat {
   float: left;
   width: 128px !important;
   margin: 0;
-}
-.option-tree-save-layout button.blue {
-  margin: 0 0 0 10px;
 }
 .option-tree-active-layout {
   border-right: 1px solid #ccc;
@@ -2008,7 +2004,7 @@ li ul .format-setting-label {
   min-width: 126px;
 }
 .button.save-layout {
-  margin: 0 0 0 5px !important;
+  margin: 0 0 0 10px !important;
 }
 .option-tree-layout-activate {
   text-indent: -9999px;
