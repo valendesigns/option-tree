@@ -1210,13 +1210,21 @@
 #option-tree-header li#option-tree-logo:hover a {
   border-right-color: #000;
 }
-#option-tree-header #option-tree-version span {
+#option-tree-header #option-tree-version span,
+#option-tree-header #theme-version span {
   border-left: 1px solid #444;
   display: block;
   float: left;
   height: 24px;
   line-height: 24px;
   padding: 3px 12px 3px 12px;
+}
+#option-tree-header #theme-version:before {
+  border-right: 1px solid #000;
+  content: "";
+  display: block;
+  float: left;
+  height: 30px;
 }
 /* light */
 .admin-color-light #option-tree-header {
@@ -1229,7 +1237,8 @@
 .admin-color-light #option-tree-header li a:hover {
   color: #eee;
 }
-.admin-color-light #option-tree-header #option-tree-logo a {
+.admin-color-light #option-tree-header #option-tree-logo a,
+.admin-color-light #option-tree-header #theme-version:before {
   border-right-color: #3c3c3c;
 }
 .admin-color-light #option-tree-header li#option-tree-logo:hover {
@@ -1238,7 +1247,8 @@
 .admin-color-light #option-tree-header li#option-tree-logo:hover a {
   border-right-color: #3c3c3c;
 }
-.admin-color-light #option-tree-header #option-tree-version span {
+.admin-color-light #option-tree-header #option-tree-version span,
+.admin-color-light #option-tree-header #theme-version span {
   border-left-color: #999;
 }
 /* blue */
@@ -1252,7 +1262,8 @@
 .admin-color-blue #option-tree-header li a:hover {
   color: #fff;
 }
-.admin-color-blue #option-tree-header #option-tree-logo a {
+.admin-color-blue #option-tree-header #option-tree-logo a,
+.admin-color-blue #option-tree-header #theme-version:before {
   border-right-color: #002b39;
 }
 .admin-color-blue #option-tree-header li#option-tree-logo:hover {
@@ -1261,7 +1272,8 @@
 .admin-color-blue #option-tree-header li#option-tree-logo:hover a {
   border-right-color: #002b39;
 }
-.admin-color-blue #option-tree-header #option-tree-version span {
+.admin-color-blue #option-tree-header #option-tree-version span,
+.admin-color-blue #option-tree-header #theme-version span {
   border-left-color: #5dc2e6;
 }
 /* coffee */
@@ -1275,7 +1287,8 @@
 .admin-color-coffee #option-tree-header li a:hover {
   color: #fff;
 }
-.admin-color-coffee #option-tree-header #option-tree-logo a {
+.admin-color-coffee #option-tree-header #option-tree-logo a,
+.admin-color-coffee #option-tree-header #theme-version:before {
   border-right-color: #0f0e0d;
 }
 .admin-color-coffee #option-tree-header li#option-tree-logo:hover {
@@ -1284,7 +1297,8 @@
 .admin-color-coffee #option-tree-header li#option-tree-logo:hover a {
   border-right-color: #0f0e0d;
 }
-.admin-color-coffee #option-tree-header #option-tree-version span {
+.admin-color-coffee #option-tree-header #option-tree-version span,
+.admin-color-coffee #option-tree-header #theme-version span {
   border-left-color: #675f58;
 }
 /* ectoplasm */
@@ -1298,7 +1312,8 @@
 .admin-color-ectoplasm #option-tree-header li a:hover {
   color: #fff;
 }
-.admin-color-ectoplasm #option-tree-header #option-tree-logo a {
+.admin-color-ectoplasm #option-tree-header #option-tree-logo a,
+.admin-color-ectoplasm #option-tree-header #theme-version:before {
   border-right-color: #181220;
 }
 .admin-color-ectoplasm #option-tree-header li#option-tree-logo:hover {
@@ -1307,7 +1322,8 @@
 .admin-color-ectoplasm #option-tree-header li#option-tree-logo:hover a {
   border-right-color: #181220;
 }
-.admin-color-ectoplasm #option-tree-header #option-tree-version span {
+.admin-color-ectoplasm #option-tree-header #option-tree-version span,
+.admin-color-ectoplasm #option-tree-header #theme-version span {
   border-left-color: #644d85;
 }
 /* midnight */
@@ -1321,7 +1337,8 @@
 .admin-color-midnight #option-tree-header li a:hover {
   color: #fff;
 }
-.admin-color-midnight #option-tree-header #option-tree-logo a {
+.admin-color-midnight #option-tree-header #option-tree-logo a,
+.admin-color-midnight #option-tree-header #theme-version:before {
   border-right-color: #090a0b;
 }
 .admin-color-midnight #option-tree-header li#option-tree-logo:hover {
@@ -1330,7 +1347,8 @@
 .admin-color-midnight #option-tree-header li#option-tree-logo:hover a {
   border-right-color: #090a0b;
 }
-.admin-color-midnight #option-tree-header #option-tree-version span {
+.admin-color-midnight #option-tree-header #option-tree-version span,
+.admin-color-midnight #option-tree-header #theme-version span {
   border-left-color: #4c5359;
 }
 /* ocean */
@@ -1344,7 +1362,8 @@
 .admin-color-ocean #option-tree-header li a:hover {
   color: #fff;
 }
-.admin-color-ocean #option-tree-header #option-tree-logo a {
+.admin-color-ocean #option-tree-header #option-tree-logo a,
+.admin-color-ocean #option-tree-header #theme-version:before {
   border-right-color: #39464a;
 }
 .admin-color-ocean #option-tree-header li#option-tree-logo:hover {
@@ -1353,7 +1372,8 @@
 .admin-color-ocean #option-tree-header li#option-tree-logo:hover a {
   border-right-color: #39464a;
 }
-.admin-color-ocean #option-tree-header #option-tree-version span {
+.admin-color-ocean #option-tree-header #option-tree-version span,
+.admin-color-ocean #option-tree-header #theme-version span {
   border-left-color: #87a6af;
 }
 /* sunrise */
@@ -1367,7 +1387,8 @@
 .admin-color-sunrise #option-tree-header li a:hover {
   color: #fff;
 }
-.admin-color-sunrise #option-tree-header #option-tree-logo a {
+.admin-color-sunrise #option-tree-header #option-tree-logo a,
+.admin-color-sunrise #option-tree-header #theme-version:before {
   border-right-color: #8a322a;
 }
 .admin-color-sunrise #option-tree-header li#option-tree-logo:hover {
@@ -1376,7 +1397,8 @@
 .admin-color-sunrise #option-tree-header li#option-tree-logo:hover a {
   border-right-color: #8a322a;
 }
-.admin-color-sunrise #option-tree-header #option-tree-version span {
+.admin-color-sunrise #option-tree-header #option-tree-version span,
+.admin-color-sunrise #option-tree-header #theme-version span {
   border-left-color: #e75546;
 }
 
