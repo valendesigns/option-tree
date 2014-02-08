@@ -1594,7 +1594,7 @@
   .format-setting .description {
     padding-top: 0px;
     padding-bottom: 20px;
-  };
+  }
 }
 .ot-background-group {
   overflow: hidden;
@@ -1762,7 +1762,7 @@ div.option-tree-ui-media-wrap {
 @media only screen and (max-width: 1105px) {
   .type-textarea .description, .type-textarea .format-setting-inner {
     width: 100%;
-  };
+  }
 }
 
 /* -------------------------------------------------- 
@@ -2056,23 +2056,22 @@ select.option-tree-ui-select option {
 @-moz-document url-prefix() {
   #option-tree-options-layouts-form .select-wrapper {
     left: 250px;
-  };
+  }
 }
 
 /* Webkit */
 @media screen and (-webkit-min-device-pixel-ratio:0) {
- 
   .select-wrapper span {
     height: 26px;
     line-height: 26px;
-  };
+  }
 }
 
 /* Opera 11 */
 @media not screen and (1) {
   .select-wrapper {
     height: 26px;
-  };
+  }
 }
 
 /* -------------------------------------------------- 
