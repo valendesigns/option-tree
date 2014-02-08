@@ -466,6 +466,18 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
       
       $input['background-image'] = ot_validate_setting( $input['background-image'], 'upload', $field_id );
       
+      // Loop over array and check for values
+      foreach( $input as $key => $value ) {
+        if ( ! empty( $value ) ) {
+          $has_value = true;
+        }
+      }
+      
+      // No value; set to empty
+      if ( ! isset( $has_value ) ) {
+        $input = '';
+      }
+      
     } else if ( 'colorpicker' == $type ) {
 
       /* return empty & set error */
@@ -489,14 +501,35 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
     
       $input[0] = sanitize_text_field( $input[0] );
       
+      // No value; set to empty
+      if ( empty( $input[0] ) && empty( $input[1] ) ) {
+        $input = '';
+      }
+      
     } else if ( 'typography' == $type && isset( $input['font-color'] ) ) {
       
       $input['font-color'] = ot_validate_setting( $input['font-color'], 'colorpicker', $field_id );
-    
+      
+      // Loop over array and check for values
+      foreach( $input as $key => $value ) {
+        if ( ! empty( $value ) ) {
+          $has_value = true;
+        }
+      }
+      
+      // No value; set to empty
+      if ( ! isset( $has_value ) ) {
+        $input = '';
+      }
+      
     } else if ( 'upload' == $type ) {
 
       $input = sanitize_text_field( $input );
-         
+    
+    } else if ( 'gallery' == $type ) {
+
+      $input = trim( $input );
+           
     }
     
     $input = apply_filters( 'ot_after_validate_setting', $input, $type, $field_id );
