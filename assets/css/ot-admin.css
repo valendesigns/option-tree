@@ -1840,6 +1840,9 @@ div.option-tree-ui-media-wrap {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.option-tree-setting.is-section .open:hover:before {
+  color: #000;
+}
 .button-section {
   position: absolute;
   right: 0px;
@@ -1869,6 +1872,9 @@ div.option-tree-ui-media-wrap {
 .admin-color-light .option-tree-setting.is-section .option-tree-ui-button { 
   border-color: #3c3c3c !important; 
 }
+.admin-color-light .option-tree-setting.is-section .open:hover:before {
+  color: #3c3c3c;
+}
 .admin-color-light .option-tree-setting.is-section .open {
   background: #888;
   color: #fff;
@@ -1882,6 +1888,9 @@ div.option-tree-ui-media-wrap {
 .admin-color-blue .option-tree-setting.is-section .option-tree-setting-body,
 .admin-color-blue .option-tree-setting.is-section .option-tree-ui-button { 
   border-color: #002b39 !important; 
+}
+.admin-color-blue .option-tree-setting.is-section .open:hover:before {
+  color: #002b39;
 }
 .admin-color-blue .option-tree-setting.is-section .open {
   background: #52accc;
@@ -1897,6 +1906,9 @@ div.option-tree-ui-media-wrap {
 .admin-color-coffee .option-tree-setting.is-section .option-tree-ui-button { 
   border-color: #0f0e0d !important; 
 }
+.admin-color-coffee .option-tree-setting.is-section .open:hover:before {
+  color: #0f0e0d;
+}
 .admin-color-coffee .option-tree-setting.is-section .open {
   background: #59524c;
   color: #c7cbc9;
@@ -1910,6 +1922,9 @@ div.option-tree-ui-media-wrap {
 .admin-color-ectoplasm .option-tree-setting.is-section .option-tree-setting-body,
 .admin-color-ectoplasm .option-tree-setting.is-section .option-tree-ui-button { 
   border-color: #181220 !important; 
+}
+.admin-color-ectoplasm .option-tree-setting.is-section .open:hover:before {
+  color: #181220;
 }
 .admin-color-ectoplasm .option-tree-setting.is-section .open {
   background: #523f6d;
@@ -1925,6 +1940,9 @@ div.option-tree-ui-media-wrap {
 .admin-color-midnight .option-tree-setting.is-section .option-tree-ui-button { 
   border-color: #090a0b !important; 
 }
+.admin-color-midnight .option-tree-setting.is-section .open:hover:before {
+  color: #090a0b;
+}
 .admin-color-midnight .option-tree-setting.is-section .open {
   background: #363b3f;
   color: #f1f2f3;
@@ -1939,6 +1957,9 @@ div.option-tree-ui-media-wrap {
 .admin-color-ocean .option-tree-setting.is-section .option-tree-ui-button { 
   border-color: #39464a !important; 
 }
+.admin-color-ocean .option-tree-setting.is-section .open:hover:before {
+  color: #39464a;
+}
 .admin-color-ocean .option-tree-setting.is-section .open {
   background: #738e96;
   color: #f1fcff;
@@ -1952,6 +1973,9 @@ div.option-tree-ui-media-wrap {
 .admin-color-sunrise .option-tree-setting.is-section .option-tree-setting-body,
 .admin-color-sunrise .option-tree-setting.is-section .option-tree-ui-button { 
   border-color: #8a322a !important; 
+}
+.admin-color-sunrise .option-tree-setting.is-section .open:hover:before {
+  color: #8a322a;
 }
 .admin-color-sunrise .option-tree-setting.is-section .open {
   background: #da4f41;
