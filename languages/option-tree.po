@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OptionTree\n"
-"POT-Creation-Date: 2014-02-06 15:16-0800\n"
-"PO-Revision-Date: 2014-02-06 15:17-0800\n"
+"POT-Creation-Date: 2014-02-08 22:54-0800\n"
+"PO-Revision-Date: 2014-02-08 22:54-0800\n"
 "Last-Translator: Derek Herman <derek@valendesigns.com>\n"
 "Language-Team: Valen Designs\n"
 "Language: English\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../ot-loader.php:670 ../includes/ot-functions-admin.php:590
+#: ../ot-loader.php:670 ../includes/ot-functions-admin.php:623
 #: ../includes/ot-functions-docs-page.php:371
 #: ../includes/ot-functions-settings-page.php:170
 msgid "Send to OptionTree"
@@ -159,291 +159,291 @@ msgstr ""
 msgid "What's a layout anyhow?"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:476
+#: ../includes/ot-functions-admin.php:488
 msgid "The Colorpicker only allows valid hexadecimal values."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:591
+#: ../includes/ot-functions-admin.php:624
 #: ../includes/ot-functions-option-types.php:239
 #: ../includes/ot-functions-option-types.php:2227
 msgid "Remove Media"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:592
+#: ../includes/ot-functions-admin.php:625
 msgid "Are you sure you want to reset back to the defaults?"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:593
+#: ../includes/ot-functions-admin.php:626
 msgid "You can't remove this! But you can edit the values."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:594
+#: ../includes/ot-functions-admin.php:627
 msgid "Are you sure you want to remove this?"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:595
+#: ../includes/ot-functions-admin.php:628
 msgid "Are you sure you want to activate this layout?"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:596
+#: ../includes/ot-functions-admin.php:629
 msgid "Sorry, you can't have settings three levels deep."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:597
+#: ../includes/ot-functions-admin.php:630
 #: ../includes/ot-functions-option-types.php:775
 msgid "Delete Gallery"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:598
+#: ../includes/ot-functions-admin.php:631
 #: ../includes/ot-functions-option-types.php:776
 msgid "Edit Gallery"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:599
+#: ../includes/ot-functions-admin.php:632
 #: ../includes/ot-functions-option-types.php:783
 msgid "Create Gallery"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:600
+#: ../includes/ot-functions-admin.php:633
 msgid "Are you sure you want to delete this Gallery?"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:601
+#: ../includes/ot-functions-admin.php:634
 msgid "Today"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:602
+#: ../includes/ot-functions-admin.php:635
 msgid "Now"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:603
+#: ../includes/ot-functions-admin.php:636
 msgid "Close"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:652
+#: ../includes/ot-functions-admin.php:685
 msgid "Option Tree"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:788
+#: ../includes/ot-functions-admin.php:821
 msgid "General"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:794
+#: ../includes/ot-functions-admin.php:827
 msgid "Sample Text Field Label"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:795
+#: ../includes/ot-functions-admin.php:828
 msgid "Description for the sample text field."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:2012
+#: ../includes/ot-functions-admin.php:2045
 msgid "Settings updated."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:2016
+#: ../includes/ot-functions-admin.php:2049
 msgid "Settings could not be saved."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:2024
+#: ../includes/ot-functions-admin.php:2057
 msgid "Settings Imported."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:2028
+#: ../includes/ot-functions-admin.php:2061
 msgid "Settings could not be imported."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:2035
+#: ../includes/ot-functions-admin.php:2068
 msgid "Data Imported."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:2039
+#: ../includes/ot-functions-admin.php:2072
 msgid "Data could not be imported."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:2047
+#: ../includes/ot-functions-admin.php:2080
 msgid "Layouts Imported."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:2051
+#: ../includes/ot-functions-admin.php:2084
 msgid "Layouts could not be imported."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:2059
+#: ../includes/ot-functions-admin.php:2092
 msgid "Layouts Updated."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:2063
+#: ../includes/ot-functions-admin.php:2096
 msgid "Layouts could not be updated."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:2067
+#: ../includes/ot-functions-admin.php:2100
 msgid "Layouts have been deleted."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:2073
+#: ../includes/ot-functions-admin.php:2106
 msgid "Layout activated."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:2640
+#: ../includes/ot-functions-admin.php:2673
 msgid "Left Sidebar"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:2645
+#: ../includes/ot-functions-admin.php:2678
 msgid "Right Sidebar"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:2650
+#: ../includes/ot-functions-admin.php:2683
 msgid "Full Width (no sidebar)"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:2655
+#: ../includes/ot-functions-admin.php:2688
 msgid "Dual Sidebar"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:2660
+#: ../includes/ot-functions-admin.php:2693
 msgid "Left Dual Sidebar"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:2665
+#: ../includes/ot-functions-admin.php:2698
 msgid "Right Dual Sidebar"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:2695
-#: ../includes/ot-functions-admin.php:2756
+#: ../includes/ot-functions-admin.php:2728
+#: ../includes/ot-functions-admin.php:2789
 msgid "Image"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:2706
-#: ../includes/ot-functions-admin.php:2762
+#: ../includes/ot-functions-admin.php:2739
+#: ../includes/ot-functions-admin.php:2795
 msgid "Link"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:2717
-#: ../includes/ot-functions-admin.php:2768
+#: ../includes/ot-functions-admin.php:2750
+#: ../includes/ot-functions-admin.php:2801
 #: ../includes/ot-functions-docs-page.php:43
 #: ../includes/ot-functions-docs-page.php:401
 #: ../includes/ot-functions-docs-page.php:451
 msgid "Description"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3251
+#: ../includes/ot-functions-admin.php:3284
 msgid "edit"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3252
-#: ../includes/ot-functions-admin.php:3320
-#: ../includes/ot-functions-admin.php:3321
-#: ../includes/ot-functions-admin.php:3483
-#: ../includes/ot-functions-admin.php:3484
-#: ../includes/ot-functions-admin.php:3549
-#: ../includes/ot-functions-admin.php:3550
-#: ../includes/ot-functions-admin.php:3677
-#: ../includes/ot-functions-admin.php:3678
+#: ../includes/ot-functions-admin.php:3285
+#: ../includes/ot-functions-admin.php:3353
+#: ../includes/ot-functions-admin.php:3354
+#: ../includes/ot-functions-admin.php:3516
+#: ../includes/ot-functions-admin.php:3517
+#: ../includes/ot-functions-admin.php:3582
+#: ../includes/ot-functions-admin.php:3583
+#: ../includes/ot-functions-admin.php:3710
+#: ../includes/ot-functions-admin.php:3711
 msgid "Edit"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3254
-#: ../includes/ot-functions-admin.php:3255
-#: ../includes/ot-functions-admin.php:3323
-#: ../includes/ot-functions-admin.php:3324
-#: ../includes/ot-functions-admin.php:3486
-#: ../includes/ot-functions-admin.php:3487
-#: ../includes/ot-functions-admin.php:3552
-#: ../includes/ot-functions-admin.php:3553
-#: ../includes/ot-functions-admin.php:3611
-#: ../includes/ot-functions-admin.php:3612
-#: ../includes/ot-functions-admin.php:3680
-#: ../includes/ot-functions-admin.php:3681
+#: ../includes/ot-functions-admin.php:3287
+#: ../includes/ot-functions-admin.php:3288
+#: ../includes/ot-functions-admin.php:3356
+#: ../includes/ot-functions-admin.php:3357
+#: ../includes/ot-functions-admin.php:3519
+#: ../includes/ot-functions-admin.php:3520
+#: ../includes/ot-functions-admin.php:3585
+#: ../includes/ot-functions-admin.php:3586
+#: ../includes/ot-functions-admin.php:3644
+#: ../includes/ot-functions-admin.php:3645
+#: ../includes/ot-functions-admin.php:3713
+#: ../includes/ot-functions-admin.php:3714
 msgid "Delete"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3261
+#: ../includes/ot-functions-admin.php:3294
 msgid ""
 "<strong>Section Title</strong>: Displayed as a menu item on the Theme "
 "Options page."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3269
+#: ../includes/ot-functions-admin.php:3302
 msgid ""
 "<strong>Section ID</strong>: A unique lower case alphanumeric string, "
 "underscores allowed."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3330
+#: ../includes/ot-functions-admin.php:3363
 msgid ""
 "<strong>Label</strong>: Displayed as the label of a form element on the "
 "Theme Options page."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3338
-#: ../includes/ot-functions-admin.php:3567
+#: ../includes/ot-functions-admin.php:3371
+#: ../includes/ot-functions-admin.php:3600
 msgid ""
 "<strong>ID</strong>: A unique lower case alphanumeric string, underscores "
 "allowed."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3346
+#: ../includes/ot-functions-admin.php:3379
 msgid ""
 "<strong>Type</strong>: Choose one of the available option types from the "
 "dropdown."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3357
+#: ../includes/ot-functions-admin.php:3390
 msgid ""
 "<strong>Description</strong>: Enter a detailed description for the users to "
 "read on the Theme Options page, HTML is allowed. This is also where you "
 "enter content for both the Textblock & Textblock Titled option types."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3365
+#: ../includes/ot-functions-admin.php:3398
 msgid ""
 "<strong>Choices</strong>: This will only affect the following option types: "
 "Checkbox, Radio, Select & Select Image."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3370
+#: ../includes/ot-functions-admin.php:3403
 msgid "Add Choice"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3376
+#: ../includes/ot-functions-admin.php:3409
 msgid ""
 "<strong>Settings</strong>: This will only affect the List Item option type."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3381
+#: ../includes/ot-functions-admin.php:3414
 #: ../includes/ot-functions-settings-page.php:93
 msgid "Add Setting"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3387
+#: ../includes/ot-functions-admin.php:3420
 msgid ""
 "<strong>Standard</strong>: Setting the standard value for your option only "
 "works for some option types. Read the <code>OptionTree->Documentation</code> "
 "for more information on which ones."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3395
+#: ../includes/ot-functions-admin.php:3428
 msgid ""
 "<strong>Rows</strong>: Enter a numeric value for the number of rows in your "
 "textarea. This will only affect the following option types: CSS, Textarea, & "
 "Textarea Simple."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3403
+#: ../includes/ot-functions-admin.php:3436
 msgid ""
 "<strong>Post Type</strong>: Add a comma separated list of post type like "
 "'post,page'. This will only affect the following option types: Custom Post "
 "Type Checkbox, & Custom Post Type Select."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3411
+#: ../includes/ot-functions-admin.php:3444
 msgid ""
 "<strong>Taxonomy</strong>: Add a comma separated list of any registered "
 "taxonomy like 'category,post_tag'. This will only affect the following "
 "option types: Taxonomy Checkbox, & Taxonomy Select."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3419
+#: ../includes/ot-functions-admin.php:3452
 msgid ""
 "<strong>Min, Max, & Step</strong>: Add a comma separated list of options in "
 "the following format <code>0,100,1</code> (slide from <code>0-100</code> in "
@@ -452,11 +452,11 @@ msgid ""
 "type."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3427
+#: ../includes/ot-functions-admin.php:3460
 msgid "<strong>CSS Class</strong>: Add and optional class to this option type."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3435
+#: ../includes/ot-functions-admin.php:3468
 #, php-format
 msgid ""
 "<strong>Condition</strong>: Add a comma separated list (no spaces) of "
@@ -465,60 +465,62 @@ msgid ""
 "placeholder for your condition, which can be in the form of %s."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3443
+#: ../includes/ot-functions-admin.php:3476
 msgid ""
 "<strong>Operator</strong>: Choose the logical operator to compute the result "
 "of the conditions."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3446
+#: ../includes/ot-functions-admin.php:3479
+#: ../includes/ot-functions-docs-page.php:111
+#: ../includes/ot-functions-docs-page.php:351
 msgid "and"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3447
+#: ../includes/ot-functions-admin.php:3480
 msgid "or"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3493
+#: ../includes/ot-functions-admin.php:3526
 #: ../includes/ot-functions-docs-page.php:29
 msgid "Label"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3503
+#: ../includes/ot-functions-admin.php:3536
 msgid "Value"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3513
+#: ../includes/ot-functions-admin.php:3546
 msgid "Image Source (Radio Image only)"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3559
+#: ../includes/ot-functions-admin.php:3592
 msgid ""
 "<strong>Title</strong>: Displayed as a contextual help menu item on the "
 "Theme Options page."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3575
+#: ../includes/ot-functions-admin.php:3608
 msgid ""
 "<strong>Content</strong>: Enter the HTML content about this contextual help "
 "item displayed on the Theme Option page for end users to read."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3606
+#: ../includes/ot-functions-admin.php:3639
 msgid "Layout"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3608
-#: ../includes/ot-functions-admin.php:3609
+#: ../includes/ot-functions-admin.php:3641
+#: ../includes/ot-functions-admin.php:3642
 msgid "Activate"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3645 ../includes/ot-meta-box-api.php:202
+#: ../includes/ot-functions-admin.php:3678 ../includes/ot-meta-box-api.php:202
 #: ../includes/ot-settings-api.php:595
 msgid "Title"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3844
+#: ../includes/ot-functions-admin.php:3877
 msgid "New Layout"
 msgstr ""
 
@@ -671,37 +673,36 @@ msgid "Background"
 msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:111
+#, php-format
 msgid ""
 "The Background option type is for adding background styles to your theme "
-"either dynamically via the CSS option type below or manually with "
-"<code>ot_get_option()</code>. Background has filters that allow you to "
-"change the defaults. For example, you can filter on "
-"<code>ot_recognized_background_repeat</code>, "
-"<code>ot_recognized_background_attachment</code>, and "
-"<code>ot_recognized_background_position</code>. These filters allow you to "
-"fine tune the select lists for your specific CSS needs."
+"either dynamically via the CSS option type below or manually with %s. The "
+"Background option type has filters that allow you to remove fields or change "
+"the defaults. For example, you can filter %s to remove unwanted fields from "
+"all Background options or an individual one. You can also filter %s. These "
+"filters allow you to fine tune the select lists for your specific needs."
 msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:113
-msgid "Category Select"
+msgid "Category Checkbox"
 msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:114
 msgid ""
-"The Category Select option type displays a list of category IDs. It allows "
-"the user to select only one category ID and will return that value for use "
-"in a custom function or loop."
+"The Category Checkbox option type displays a list of category IDs. It allows "
+"the user to check multiple category IDs and will return that value as an "
+"array for use in a custom function or loop."
 msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:116
-msgid "Category Checkbox"
+msgid "Category Select"
 msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:117
 msgid ""
-"The Category Checkbox option type displays a list of category IDs. It allows "
-"the user to check multiple category IDs and will return that value as an "
-"array for use in a custom function or loop."
+"The Category Select option type displays a list of category IDs. It allows "
+"the user to select only one category ID and will return that value for use "
+"in a custom function or loop."
 msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:119
@@ -710,13 +711,9 @@ msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:120
 msgid ""
-"The Checkbox option type is fairly self explanatory. Typically used to ask "
-"questions. For example, \"Do you want to activate asynchronous Google "
-"analytics?\" would be a single checkbox with a value of yes. You could have "
-"more complex usages but the idea is that you can easily grab the value of "
-"the checkbox and use it in you theme. In this situation you would test if "
-"the checkbox has a value and execute a block of code if it does and do "
-"nothing if it doesn't."
+"The Checkbox option type displays a group of choices. It allows the user to "
+"check multiple choices and will return that value as an array for use in a "
+"custom function or loop."
 msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:122
@@ -734,23 +731,24 @@ msgid "CSS"
 msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:126
+#, php-format
 msgid ""
 "The CSS option type is a textarea that when used properly can add dynamic "
 "CSS to your theme from within OptionTree. Unfortunately, due server "
-"limitations you will need to create a file named <code>dynamic.css</code> at "
-"the root level of your theme and change permissions using chmod so the "
-"server can write to the file. I have had the most success setting this "
-"single file to 0777 but feel free to play around with permissions until "
-"everything is working. A good starting point is 0666. When the server can "
-"save to the file CSS will automatically be updated each time you save your "
-"theme options."
+"limitations you will need to create a file named %s at the root level of "
+"your theme and change permissions using %s so the server can write to the "
+"file. I have had the most success setting this single file to %s but feel "
+"free to play around with permissions until everything is working. A good "
+"starting point is %s. When the server can save to the file, CSS will "
+"automatically be updated when you save your Theme Options."
 msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:128
+#, php-format
 msgid ""
-"An example of the CSS option type: This assumes you have an option with the "
-"ID of <code>custom_background_css</code> which will display the saved values "
-"for that option."
+"This example assumes you have an option with the ID of %1$s. Which means "
+"this option will automatically insert the value of %1$s into the %2$s when "
+"the Theme Options are saved."
 msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:130
@@ -762,31 +760,29 @@ msgid "Output"
 msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:144
-msgid "Custom Post Type Select"
-msgstr ""
-
-#: ../includes/ot-functions-docs-page.php:145
-msgid ""
-"The Custom Post Type Select option type displays a list of IDs from any "
-"available WordPress post type or custom post type. It will return a single "
-"post ID for use in a custom function or loop. Requires at least one valid "
-"<code>post_type</code> when created in the settings. For some reason "
-"<code>any</code> does not work correctly and will be looked into in future a "
-"version."
-msgstr ""
-
-#: ../includes/ot-functions-docs-page.php:147
 msgid "Custom Post Type Checkbox"
 msgstr ""
 
-#: ../includes/ot-functions-docs-page.php:148
+#: ../includes/ot-functions-docs-page.php:145
+#, php-format
 msgid ""
 "The Custom Post Type Select option type displays a list of IDs from any "
 "available WordPress post type or custom post type. It allows the user to "
 "check multiple post IDs for use in a custom function or loop. Requires at "
-"least one valid <code>post_type</code> when created in the settings. For "
-"some reason <code>any</code> does not work correctly and will be looked into "
-"in future a version."
+"least one valid %1$s in the %1$s field."
+msgstr ""
+
+#: ../includes/ot-functions-docs-page.php:147
+msgid "Custom Post Type Select"
+msgstr ""
+
+#: ../includes/ot-functions-docs-page.php:148
+#, php-format
+msgid ""
+"The Custom Post Type Select option type displays a list of IDs from any "
+"available WordPress post type or custom post type. It will return a single "
+"post ID for use in a custom function or loop. Requires at least one valid "
+"%1$s in the %1$s field."
 msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:150
@@ -829,8 +825,8 @@ msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:160
 msgid ""
-"The list Item replaced the old Slider option type. It allows for a great "
-"deal of customization. You can add settings to the List Item and those "
+"The List Item option type replaced the Slider option type and allows for a "
+"great deal of customization. You can add settings to the List Item and those "
 "settings will be displayed to the user when they add a new List Item. "
 "Typical use is for creating sliding content or blocks of code for custom "
 "layouts."
@@ -841,18 +837,18 @@ msgid "Measurement"
 msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:163
+#, php-format
 msgid ""
 "The Measurement option type is a mix of input and select fields. The text "
 "input excepts a value and the select lets you choose the unit of measurement "
-"to add to that value. Currently the default units are <code>px</code>, <code>"
-"%</code>, <code>em</code>, <code>pt</code>. However, you can change them "
-"with the <code>ot_measurement_unit_types</code> filter."
+"to add to that value. Currently the default units are %s, %s, %s, and %s. "
+"However, you can change them with the %s filter."
 msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:165
+#, php-format
 msgid ""
-"Example filter to add new units to the Measurement option type. Added to "
-"<code>functions.php</code>."
+"Example filter to add new units to the Measurement option type. Added to %s."
 msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:178
@@ -876,49 +872,50 @@ msgid "On/Off"
 msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:197
+#, php-format
 msgid ""
 "The On/Off option type displays a simple switch that can be used to turn "
-"things on or off. The saved return value is either on or off."
+"things on or off. The saved return value is either %s or %s."
 msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:199
-msgid "Page Select"
+msgid "Page Checkbox"
 msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:200
+msgid ""
+"The Page Checkbox option type displays a list of page IDs. It allows the "
+"user to check multiple page IDs for use in a custom function or loop."
+msgstr ""
+
+#: ../includes/ot-functions-docs-page.php:202
+msgid "Page Select"
+msgstr ""
+
+#: ../includes/ot-functions-docs-page.php:203
 msgid ""
 "The Page Select option type displays a list of page IDs. It will return a "
 "single page ID for use in a custom function or loop."
 msgstr ""
 
-#: ../includes/ot-functions-docs-page.php:202
-msgid "Page Checkbox"
-msgstr ""
-
-#: ../includes/ot-functions-docs-page.php:203
-msgid ""
-"The Page Select option type displays a list of page IDs. It allows the user "
-"to check multiple page IDs for use in a custom function or loop."
-msgstr ""
-
 #: ../includes/ot-functions-docs-page.php:205
-msgid "Post Select"
+msgid "Post Checkbox"
 msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:206
 msgid ""
-"The Post Select option type displays a list of post IDs. It will return a "
-"single post ID for use in a custom function or loop."
+"The Post Checkbox option type displays a list of post IDs. It allows the "
+"user to check multiple post IDs for use in a custom function or loop."
 msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:208
-msgid "Post Checkbox"
+msgid "Post Select"
 msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:209
 msgid ""
-"The Post Select option type displays a list of post IDs. It allows the user "
-"to check multiple post IDs for use in a custom function or loop."
+"The Post Select option type displays a list of post IDs. It will return a "
+"single post ID for use in a custom function or loop."
 msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:211
@@ -927,11 +924,9 @@ msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:212
 msgid ""
-"The Radio option type could ask a question. For example, \"Do you want to "
-"activate the custom navigation?\" could require a yes or no answer with a "
-"radio option. In this situation you would test if the radio has a value of "
-"'yes' and execute a block of code, or if it's 'no' execute a different block "
-"of code."
+"The Radio option type displays a group of choices. It allows the user to "
+"choose one and will return that value as a string for use in a custom "
+"function or loop."
 msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:214
@@ -939,10 +934,11 @@ msgid "Radio Image"
 msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:215
+#, php-format
 msgid ""
 "the Radio Images option type is primarily used for layouts. However, you can "
-"filter the image list using <code>ot_radio_images</code>. As well, you can "
-"add your own custom images using the choices array."
+"filter the image list using %s. As well, you can add your own custom images "
+"using the choices array."
 msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:217
@@ -967,21 +963,21 @@ msgid "Sidebar Select"
 msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:245
+#, php-format
 msgid ""
 "This option type makes it possible for users to select a WordPress "
 "registered sidebar to use on a specific area. By using the two provided "
-"filters, <code>ot_recognized_sidebars</code>, and "
-"<code>ot_recognized_sidebars_{$field_id}</code> we can be selective about "
-"which sidebars are available on a specific content area."
+"filters, %s, and %s we can be selective about which sidebars are available "
+"on a specific content area."
 msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:246
+#, php-format
 msgid ""
 "For example, if we create a WordPress theme that provides the ability to "
 "change the Blog Sidebar and we don't want to have the footer sidebars "
 "available on this area, we can unset those sidebars either manually or by "
-"using a regular expression if we have a common name like <code>footer-"
-"sidebar-$i</code>."
+"using a regular expression if we have a common name like %s."
 msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:248
@@ -1049,15 +1045,13 @@ msgid ""
 msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:266
-msgid "Text (Input)"
+msgid "Text"
 msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:267
 msgid ""
-"The Text option type would be used to save a string value. For example, a "
-"link to feedburner, your Twitter username, or Google Analytics ID are all "
-"good candidates. Any optional or required text that is of reasonably short "
-"character length."
+"The Text option type is used to save string values. For example, any "
+"optional or required text that is of reasonably short character length."
 msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:269
@@ -1065,12 +1059,11 @@ msgid "Textarea"
 msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:270
+#, php-format
 msgid ""
 "The Textarea option type is a large string value used for custom code or "
-"text in the theme. The new Textarea has a WYSIWYG editor that can be "
-"filtered to change the buttons shown. For example, you can filter on "
-"<code>wpautop</code>, <code>media_buttons</code>, <code>tinymce</code>, and "
-"<code>quicktags</code>."
+"text in the theme and has a WYSIWYG editor that can be filtered to change "
+"the how it is displayed. For example, you can filter %s, %s, %s, and %s."
 msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:272
@@ -1115,16 +1108,15 @@ msgstr ""
 #: ../includes/ot-functions-docs-page.php:329
 msgid ""
 "The Textarea Simple option type is a large string value used for custom code "
-"or text in the theme. The new Textarea Simple does not have a WYSIWYG "
-"editor. But you can still filter on <code>wpautop</code>."
+"or text in the theme. The Textarea Simple does not have a WYSIWYG editor."
 msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:331
+#, php-format
 msgid ""
-"This example tells WordPress to execute the <code>wpautop</code> filter on "
-"the line breaks. The default is <code>false</code> which means it does not "
-"wraps line breaks with an HTML <code>p</code> tag. Added to <code>functions."
-"php</code>."
+"This example tells WordPress to execute the %s filter on the line breaks. "
+"The default is %s which means it does not wraps line breaks with an HTML %s "
+"tag. Added to %s."
 msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:344
@@ -1134,11 +1126,10 @@ msgstr ""
 #: ../includes/ot-functions-docs-page.php:345
 msgid ""
 "The Textblock option type is used only on the Theme Option page. It will "
-"allow you to create & display HTML on your Theme Options page but has no "
-"title above the text block. You can then use the Textblock to add a more "
-"detailed set of instruction on how the options are used in your theme. You "
-"would NEVER use this in your themes template files as it does not save a "
-"value."
+"allow you to create & display HTML, but has no title above the text block. "
+"You can then use the Textblock to add a more detailed set of instruction on "
+"how the options are used in your theme. You would never use this in your "
+"themes template files as it does not save a value."
 msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:347
@@ -1148,11 +1139,10 @@ msgstr ""
 #: ../includes/ot-functions-docs-page.php:348
 msgid ""
 "The Textblock Titled option type is used only on the Theme Option page. It "
-"will allow you to create & display HTML on your Theme Options page and has a "
-"title above the text block. You can then use the Textblock Titled to add a "
-"more detailed set of instruction on how the options are used in your theme. "
-"You would NEVER use this in your themes template files as it does not save a "
-"value."
+"will allow you to create & display HTML, and has a title above the text "
+"block. You can then use the Textblock Titled to add a more detailed set of "
+"instruction on how the options are used in your theme. You would never use "
+"this in your themes template files as it does not save a value."
 msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:350
@@ -1160,17 +1150,14 @@ msgid "Typography"
 msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:351
+#, php-format
 msgid ""
-"The Typography option type is for adding typographic styles to your theme "
-"either dynamically via the CSS option type below or manually with "
-"<code>ot_get_option()</code>. Typography has filters that allow you to "
-"change the defaults. For example, you can filter on "
-"<code>ot_recognized_font_styles</code>, <code>ot_recognized_font_weights</"
-"code>, <code>ot_recognized_font_variants</code>, and "
-"<code>ot_recognized_font_families</code>. These filters allow you to fine "
-"tune the select lists for your specific CSS needs. The most important one "
-"though is <code>ot_recognized_font_families</code> as you can add your "
-"Google Fonts to create custom font stacks."
+"The Typography option type is for adding typography styles to your theme "
+"either dynamically via the CSS option type above or manually with %s. The "
+"Typography option type has filters that allow you to remove fields or change "
+"the defaults. For example, you can filter %s to remove unwanted fields from "
+"all Background options or an individual one. You can also filter %s. These "
+"filters allow you to fine tune the select lists for your specific needs."
 msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:353
@@ -1190,8 +1177,8 @@ msgid ""
 "After uploading, users are required to press the \"%s\" button in order to "
 "populate the input with the URI of that media. There is one caveat of this "
 "feature. If you import the theme options and have uploaded media on one site "
-"the old URI will not reflect the URI of your new site. You'll have to re-"
-"upload or FTP any media to your new server and change the URIs if necessary."
+"the old URI will not reflect the URI of your new site. You will have to re-"
+"upload or %s any media to your new server and change the URIs if necessary."
 msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:403
