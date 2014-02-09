@@ -10,8 +10,10 @@
   :: OptionTree Wrappers
   ---------------------------------------------------*/
 #option-tree-settings-api > .ui-tabs {
-  background: #fff url(../images/ot-menu-bg-rtl.png) repeat-y right 0;
   margin: 0px 2px 0 5px;
+  -webkit-box-shadow: inset -146px 0 0 #f1f1f1, inset -147px 0 0 #ccc, 0 1px 3px rgba(0,0,0,0.05);
+     -moz-box-shadow: inset -146px 0 0 #f1f1f1, inset -147px 0 0 #ccc, 0 1px 3px rgba(0,0,0,0.05);
+          box-shadow: inset -146px 0 0 #f1f1f1, inset -147px 0 0 #ccc, 0 1px 3px rgba(0,0,0,0.05);
 }
 
 /* -------------------------------------------------- 
@@ -141,7 +143,6 @@
   :: Tabs
   ---------------------------------------------------*/
 .wrap.settings-wrap .ui-tabs-nav { 
-  background: url(../images/ot-menu-top-bg.png) no-repeat left top;
   float: right; 
   margin: 0 -4px 0 0;
 }
