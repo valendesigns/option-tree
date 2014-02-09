@@ -1416,7 +1416,7 @@ if ( ! function_exists( 'ot_type_radio_image' ) ) {
           $src = str_replace( 'OT_THEME_URL', OT_THEME_URL, $src );
           
           /* make radio image source filterable */
-          $src = apply_filters( 'ot_radio_image_src', $src, $field_id );
+          $src = apply_filters( 'ot_type_radio_image_src', $src, $field_id );
           
           echo '<div class="option-tree-ui-radio-images">';
             echo '<p style="display:none"><input type="radio" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '-' . esc_attr( $key ) . '" value="' . esc_attr( $choice['value'] ) . '"' . checked( $field_value, $choice['value'], false ) . ' class="option-tree-ui-radio option-tree-ui-images" /><label for="' . esc_attr( $field_id ) . '-' . esc_attr( $key ) . '">' . esc_attr( $choice['label'] ) . '</label></p>';
