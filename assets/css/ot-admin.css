@@ -3569,6 +3569,10 @@ a.ui-datepicker-next {
 #side-sortables .ot-metabox-tabs.ui-tabs .ot-metabox-panel {
   clear: both;
 }
+#side-sortables .ot-metabox-tabs.ui-tabs .format-setting .description,
+#side-sortables .ot-metabox-tabs.ui-tabs .format-setting .format-setting-inner {
+  width: 100%;
+}
 
 /* -------------------------------------------------- 
   :: Metabox Tabs for Small Screens & Mobile Devices
