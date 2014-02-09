@@ -131,6 +131,7 @@ There sure is, and I'm glad you asked. Download and activate the [OptionTree The
 * Fixed the return value of the Background, Measurement, and Typography option types. They now return `null` if no values are saved to the array.
 * Fixed a bug that resulted in a PHP warning if the choices array was set to an empty string.
 * Updated the documentation, including this `readme.txt` and a new demo [OptionTree Theme](https://github.com/valendesigns/option-tree-theme) to parallel OptionTree.
+* Added filter 'ot_type_radio_image_src' which allows the Radio Image option type source URI to be changed. Contributors via github @bitcommit.
 
 = 2.2.3 =
 * Hotfix - Allow empty condition values. For example, `field_id:is()` or `field_id:not()` would now be valid syntax.
