@@ -3226,7 +3226,7 @@ if ( ! function_exists( 'ot_loop_through_choices' ) ) {
     
     $content = '';
     
-    foreach( $choices as $key => $choice )
+    foreach( (array) $choices as $key => $choice )
       $content.= '<li class="ui-state-default list-choice">' . ot_choices_view( $name, $key, $choice ) . '</li>';
     
     return $content;
