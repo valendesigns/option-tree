@@ -43,7 +43,7 @@ if ( ! function_exists( 'ot_type_theme_options_ui' ) ) {
         echo '</div>';
         
         /* get the saved settings */
-        $settings = get_option( 'option_tree_settings' );
+        $settings = get_option( ot_settings_id() );
 
         /* wrap settings array */
         echo '<div class="format-setting-inner">';
@@ -52,14 +52,14 @@ if ( ! function_exists( 'ot_type_theme_options_ui' ) ) {
           $count = 0;
   
           /* loop through each section and its settings */
-          echo '<ul class="option-tree-setting-wrap option-tree-sortable" id="option_tree_settings_list" data-name="option_tree_settings[settings]">';
+          echo '<ul class="option-tree-setting-wrap option-tree-sortable" id="option_tree_settings_list" data-name="' . ot_settings_id() . '[settings]">';
           
           if ( isset( $settings['sections'] ) ) {
           
             foreach( $settings['sections'] as $section ) {
               
               /* section */
-              echo '<li class="' . ( $count == 0 ? 'ui-state-disabled' : 'ui-state-default' ) . ' list-section">' . ot_sections_view( 'option_tree_settings[sections]', $count, $section ) . '</li>';
+              echo '<li class="' . ( $count == 0 ? 'ui-state-disabled' : 'ui-state-default' ) . ' list-section">' . ot_sections_view( ot_settings_id() . '[sections]', $count, $section ) . '</li>';
               
               /* increment item count */
               $count++;
@@ -71,7 +71,7 @@ if ( ! function_exists( 'ot_type_theme_options_ui' ) ) {
                   
                   if ( isset( $setting['section'] ) && $setting['section'] == $section['id'] ) {
                     
-                    echo '<li class="ui-state-default list-setting">' . ot_settings_view( 'option_tree_settings[settings]', $count, $setting ) . '</li>';
+                    echo '<li class="ui-state-default list-setting">' . ot_settings_view( ot_settings_id() . '[settings]', $count, $setting ) . '</li>';
                     
                     /* increment item count */
                     $count++;
@@ -89,9 +89,9 @@ if ( ! function_exists( 'ot_type_theme_options_ui' ) ) {
           echo '</ul>';
           
           /* buttons */
-          echo '<a href="javascript:void(0);" class="option-tree-section-add option-tree-ui-button hug-left">' . __( 'Add Section', 'option-tree' ) . '</a>';
-          echo '<a href="javascript:void(0);" class="option-tree-setting-add option-tree-ui-button">' . __( 'Add Setting', 'option-tree' ) . '</a>';
-          echo '<button class="option-tree-ui-button blue right hug-right">' . __( 'Save Changes', 'option-tree' ) . '</button>';
+          echo '<a href="javascript:void(0);" class="option-tree-section-add option-tree-ui-button button hug-left">' . __( 'Add Section', 'option-tree' ) . '</a>';
+          echo '<a href="javascript:void(0);" class="option-tree-setting-add option-tree-ui-button button">' . __( 'Add Setting', 'option-tree' ) . '</a>';
+          echo '<button class="option-tree-ui-button button button-primary right hug-right">' . __( 'Save Changes', 'option-tree' ) . '</button>';
           
           /* sidebar textarea */
           echo '
@@ -102,7 +102,7 @@ if ( ! function_exists( 'ot_type_theme_options_ui' ) ) {
             <div class="format-setting type-textarea no-desc">
               <div class="description"><strong>' . __( 'Contextual Help Sidebar', 'option-tree' ) . '</strong>: ' . __( 'If you decide to add contextual help to the Theme Option page, enter the optional "Sidebar" HTML here. This would be an extremely useful place to add links to your themes documentation or support forum. Only after you\'ve added some content below will this display to the user.', 'option-tree' ) . '</div>
               <div class="format-setting-inner">
-                <textarea class="textarea" rows="10" cols="40" name="option_tree_settings[contextual_help][sidebar]">' . ( isset( $settings['contextual_help']['sidebar'] ) ? esc_html( $settings['contextual_help']['sidebar'] ) : '' ) . '</textarea>
+                <textarea class="textarea" rows="10" cols="40" name="' . ot_settings_id(). '[contextual_help][sidebar]">' . ( isset( $settings['contextual_help']['sidebar'] ) ? esc_html( $settings['contextual_help']['sidebar'] ) : '' ) . '</textarea>
               </div>
             </div>
           </div>';
@@ -111,14 +111,14 @@ if ( ! function_exists( 'ot_type_theme_options_ui' ) ) {
           $count = 0;
           
           /* loop through each contextual_help content section */
-          echo '<ul class="option-tree-setting-wrap option-tree-sortable" id="option_tree_settings_help" data-name="option_tree_settings[contextual_help][content]">';
+          echo '<ul class="option-tree-setting-wrap option-tree-sortable" id="option_tree_settings_help" data-name="' . ot_settings_id(). '[contextual_help][content]">';
           
           if ( isset( $settings['contextual_help']['content'] ) ) {
           
             foreach( $settings['contextual_help']['content'] as $content ) {
               
               /* content */
-              echo '<li class="ui-state-default list-contextual-help">' . ot_contextual_help_view( 'option_tree_settings[contextual_help][content]',  $count, $content ) . '</li>';
+              echo '<li class="ui-state-default list-contextual-help">' . ot_contextual_help_view( ot_settings_id() . '[contextual_help][content]',  $count, $content ) . '</li>';
               
               /* increment content count */
               $count++;
@@ -129,8 +129,8 @@ if ( ! function_exists( 'ot_type_theme_options_ui' ) ) {
           
           echo '</ul>';
 
-          echo '<a href="javascript:void(0);" class="option-tree-help-add option-tree-ui-button hug-left">' . __( 'Add Contextual Help Content', 'option-tree' ) . '</a>';
-          echo '<button class="option-tree-ui-button blue right hug-right">' . __( 'Save Changes', 'option-tree' ) . '</button>';
+          echo '<a href="javascript:void(0);" class="option-tree-help-add option-tree-ui-button button hug-left">' . __( 'Add Contextual Help Content', 'option-tree' ) . '</a>';
+          echo '<button class="option-tree-ui-button button button-primary right hug-right">' . __( 'Save Changes', 'option-tree' ) . '</button>';
 
         echo '</div>';
         
@@ -167,10 +167,10 @@ if ( ! function_exists( 'ot_type_import_xml' ) ) {
           
           echo '<p class="deprecated">' . __( 'This import method has been deprecated. That means it has been replaced by a new method and is no longer supported, and may be removed from future versions. All themes that use this import method should be converted to use its replacement below.', 'option-tree' ) . '</p>';
           
-          echo '<p>' . __( 'If you were given a Theme Options XML file with a premium or free theme, locate it on your hard drive and upload that file by clicking the blue upload button. A popup window will appear, upload the XML file and click "Send to OptionTree". The file URL should be in the upload input, if it is click "Import XML".', 'option-tree' ) . '</p>';
+          echo '<p>' . sprintf( __( 'If you were given a Theme Options XML file with a premium or free theme, locate it on your hard drive and upload that file by clicking the upload button. A popup window will appear, upload the XML file and click "%s". The file URL should be in the upload input, if it is click "Import XML".', 'option-tree' ), apply_filters( 'ot_upload_text', __( 'Send to OptionTree', 'option-tree' ) ) ) . '</p>';
           
           /* button */
-          echo '<button class="option-tree-ui-button blue right hug-right">' . __( 'Import XML', 'option-tree' ) . '</button>';
+          echo '<button class="option-tree-ui-button button button-primary right hug-right">' . __( 'Import XML', 'option-tree' ) . '</button>';
           
         echo '</div>';
         
@@ -186,7 +186,7 @@ if ( ! function_exists( 'ot_type_import_xml' ) ) {
             $post_id = ( $id = ot_get_media_post_ID() ) ? (int) $id : 0;
           
             /* add xml button */
-            echo '<a href="javascript:void(0);" class="ot_upload_media option-tree-ui-button blue light" rel="' . $post_id . '" title="' . __( 'Add XML', 'option-tree' ) . '"><span class="icon upload">' . __( 'Add XML', 'option-tree' ) . '</span></a>';
+            echo '<a href="javascript:void(0);" class="ot_upload_media option-tree-ui-button button button-primary light" rel="' . $post_id . '" title="' . __( 'Add XML', 'option-tree' ) . '"><span class="icon ot-icon-plus-sign"></span>' . __( 'Add XML', 'option-tree' ) . '</a>';
           
           echo '</div>';
           
@@ -226,7 +226,7 @@ if ( ! function_exists( 'ot_type_import_settings' ) ) {
           echo '<p>' . __( 'To import your Settings copy and paste what appears to be a random string of alpha numeric characters into this textarea and press the "Import Settings" button.', 'option-tree' ) . '</p>';
           
           /* button */
-          echo '<button class="option-tree-ui-button blue right hug-right">' . __( 'Import Settings', 'option-tree' ) . '</button>';
+          echo '<button class="option-tree-ui-button button button-primary right hug-right">' . __( 'Import Settings', 'option-tree' ) . '</button>';
           
         echo '</div>';
         
@@ -273,7 +273,7 @@ if ( ! function_exists( 'ot_type_import_data' ) ) {
           echo '<p>' . __( 'To import your Theme Options copy and paste what appears to be a random string of alpha numeric characters into this textarea and press the "Import Theme Options" button.', 'option-tree' ) . '</p>';
           
           /* button */
-          echo '<button class="option-tree-ui-button blue right hug-right">' . __( 'Import Theme Options', 'option-tree' ) . '</button>';
+          echo '<button class="option-tree-ui-button button button-primary right hug-right">' . __( 'Import Theme Options', 'option-tree' ) . '</button>';
           
         echo '</div>';
         
@@ -320,7 +320,7 @@ if ( ! function_exists( 'ot_type_import_layouts' ) ) {
           echo '<p>' . __( 'To import your Layouts copy and paste what appears to be a random string of alpha numeric characters into this textarea and press the "Import Layouts" button. Keep in mind that when you import your layouts, the active layout\'s saved data will write over the current data set for your Theme Options.', 'option-tree' ) . '</p>';
           
           /* button */
-          echo '<button class="option-tree-ui-button blue right hug-right">' . __( 'Import Layouts', 'option-tree' ) . '</button>';
+          echo '<button class="option-tree-ui-button button button-primary right hug-right">' . __( 'Import Layouts', 'option-tree' ) . '</button>';
           
         echo '</div>';
         
@@ -363,14 +363,16 @@ if ( ! function_exists( 'ot_type_export_settings_file' ) ) {
         /* description */
         echo '<div class="description">';
           
-          echo '<p>' . sprintf( __( 'Export your Settings into a fully functional <code>theme-options.php</code> file by clicking this button. For more information on how to use this file read the theme mode %s. Remember, you should always check the file for errors before including it in your theme.', 'option-tree' ), '<a href="' . get_admin_url( $blog_id, 'admin.php?page=ot-documentation#section_theme_mode' ) . '"><code>OptionTree->Documentation</code></a>' ) . '</p>';
+          echo '<p>' . sprintf( __( 'Export your Settings into a fully functional %s file. If you want to add your own custom %s text domain to the file, enter it into the text field before exporting. For more information on how to use this file read the documentation on %s. Remember, you should always check the file for errors before including it in your theme.', 'option-tree' ), '<code>theme-options.php</code>', '<a href="http://codex.wordpress.org/I18n_for_WordPress_Developers" target="_blank">I18n</a>', '<a href="' . get_admin_url( $blog_id, 'admin.php?page=ot-documentation#section_theme_mode' ) . '">' . __( 'Theme Mode', 'option-tree' ) . '</a>' ) . '</p>';
           
         echo '</div>';
           
         echo '<div class="format-setting-inner">';
-            
+          
+          echo '<input type="text" name="domain" value="" class="widefat option-tree-ui-input" placeholder="text-domain" autocomplete="off" />';
+          
           /* button */
-          echo '<button class="option-tree-ui-button blue hug-left">' . __( 'Export Settings File', 'option-tree' ) . '</button>';
+          echo '<button class="option-tree-ui-button button button-primary hug-left">' . __( 'Export Settings File', 'option-tree' ) . '</button>';
           
         echo '</div>';
         
@@ -405,7 +407,7 @@ if ( ! function_exists( 'ot_type_export_settings' ) ) {
       echo '</div>';
         
       /* get theme options data */
-      $settings = get_option( 'option_tree_settings' );
+      $settings = get_option( ot_settings_id() );
       $settings = ! empty( $settings ) ?  ot_encode( serialize( $settings ) ) : '';
         
       echo '<div class="format-setting-inner">';
@@ -441,7 +443,7 @@ if ( ! function_exists( 'ot_type_export_data' ) ) {
       echo '</div>';
       
       /* get theme options data */
-      $data = get_option( 'option_tree' );
+      $data = get_option( ot_options_id() );
       $data = ! empty( $data ) ? ot_encode( serialize( $data ) ) : '';
         
       echo '<div class="format-setting-inner">';
@@ -478,7 +480,7 @@ if ( ! function_exists( 'ot_type_export_layouts' ) ) {
       echo '</div>';
       
       /* get layout data */
-      $layouts = get_option( 'option_tree_layouts' );
+      $layouts = get_option( ot_layouts_id() );
       $layouts = ! empty( $layouts ) ? ot_encode( serialize( $layouts ) ) : '';
         
       echo '<div class="format-setting-inner">';
@@ -524,15 +526,15 @@ if ( ! function_exists( 'ot_type_modify_layouts' ) ) {
         echo '<div class="format-setting-inner">';
  
           /* get the saved layouts */
-          $layouts = get_option( 'option_tree_layouts' );
+          $layouts = get_option( ot_layouts_id() );
       
           /* set active layout */
           $active_layout = isset( $layouts['active_layout'] ) ? $layouts['active_layout'] : '';
           
-          echo '<input type="hidden" name="option_tree_layouts[active_layout]" value="' . esc_attr( $active_layout ) . '" class="active-layout-input" />';
+          echo '<input type="hidden" name="' . ot_layouts_id() . '[active_layout]" value="' . esc_attr( $active_layout ) . '" class="active-layout-input" />';
           
           /* add new layout */
-          echo '<input type="text" name="option_tree_layouts[_add_new_layout_]" value="" class="widefat option-tree-ui-input" autocomplete="off" />';
+          echo '<input type="text" name="' . ot_layouts_id() . '[_add_new_layout_]" value="" class="widefat option-tree-ui-input" autocomplete="off" />';
            
           /* loop through each layout */
           echo '<ul class="option-tree-setting-wrap option-tree-sortable" id="option_tree_layouts">';
@@ -554,7 +556,7 @@ if ( ! function_exists( 'ot_type_modify_layouts' ) ) {
           
           echo '</ul>';
             
-          echo '<button class="option-tree-ui-button blue right hug-right">' . __( 'Save Layouts', 'option-tree' ) . '</button>';
+          echo '<button class="option-tree-ui-button button button-primary right hug-right">' . __( 'Save Layouts', 'option-tree' ) . '</button>';
             
         echo '</div>';
         

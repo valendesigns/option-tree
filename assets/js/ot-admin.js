@@ -28,6 +28,7 @@
       this.fix_textarea();
       this.replicate_ajax();
       this.reset_settings();
+      this.css_editor_mode();      
     },
     init_hide_body: function(elm,type) {
       var css = '.option-tree-setting-body';
@@ -313,7 +314,7 @@
         $.each( conditions, function( index, condition ) {
 
           var target   = $( '#setting_' + condition.check );
-          var targetEl = !! target.length && target.find( 'select, input[type="radio"]:checked, input.ot-numeric-slider-hidden-input' ).first();
+          var targetEl = !! target.length && target.find( 'select, input[type="radio"]:checked, input[type="text"], input[type="hidden"], input.ot-numeric-slider-hidden-input' ).first();
 
           if ( ! target.length || ( ! targetEl.length && condition.value.toString() != '' ) ) {
             return;
@@ -374,10 +375,10 @@
       });
     },
     init_conditions: function() {
-      $( document ).on( 'change.conditionals', '.format-settings[id^="setting_"] select, .format-settings[id^="setting_"] input[type="radio"]:checked, .format-settings[id^="setting_"] input.ot-numeric-slider-hidden-input', function( e ) {
+      $( document ).on( 'change.conditionals', '.format-settings[id^="setting_"] select, .format-settings[id^="setting_"] input[type="radio"]:checked, .format-settings[id^="setting_"] input[type="text"], .format-settings[id^="setting_"] input[type="hidden"], .format-settings[id^="setting_"] input.ot-numeric-slider-hidden-input', function( e ) {
         OT_UI.parse_condition();
       });
-      $(OT_UI.parse_condition());
+      OT_UI.parse_condition();
     },
     init_upload: function() {
       $(document).on('click', '.ot_upload_media', function() {
@@ -400,7 +401,7 @@
             if ( mime.match(regex) ) {
               btnContent += '<div class="option-tree-ui-image-wrap"><img src="'+href+'" alt="" /></div>';
             }
-            btnContent += '<a href="javascript:(void);" class="option-tree-ui-remove-media option-tree-ui-button red light" title="'+option_tree.remove_media_text+'"><span class="icon trash-can">'+option_tree.remove_media_text+'</span></a>';
+            btnContent += '<a href="javascript:(void);" class="option-tree-ui-remove-media option-tree-ui-button button button-secondary light" title="'+option_tree.remove_media_text+'"><span class="icon ot-icon-minus-sign"></span>'+option_tree.remove_media_text+'</a>';
             $('#'+field_id).val(href);
             $('#'+field_id+'_media').remove();
             $('#'+field_id).parent().parent('div').append('<div class="option-tree-ui-media-wrap" id="'+field_id+'_media" />');
@@ -429,7 +430,7 @@
             if (href.match(image) && OT_UI.url_exists(href)) {
               btnContent += '<div class="option-tree-ui-image-wrap"><img src="'+href+'" alt="" /></div>';
             }
-            btnContent += '<a href="javascript:(void);" class="option-tree-ui-remove-media option-tree-ui-button red light" title="'+option_tree.remove_media_text+'"><span class="icon trash-can">'+option_tree.remove_media_text+'</span></a>';
+            btnContent += '<a href="javascript:(void);" class="option-tree-ui-remove-media option-tree-ui-button button button-secondary light" title="'+option_tree.remove_media_text+'"><span class="icon ot-icon-minus-sign"></span>'+option_tree.remove_media_text+'</a>';
             $('#'+field_id).val(href);
             $('#'+field_id+'_media').remove();
             $('#'+field_id).parent().parent('div').append('<div class="option-tree-ui-media-wrap" id="'+field_id+'_media" />');
@@ -471,7 +472,7 @@
         if (val.match(image)) {
           btnContent += '<div class="option-tree-ui-image-wrap"><img src="'+val+'" alt="" /></div>';
         }
-        btnContent += '<a href="javascript:(void);" class="option-tree-ui-remove-media option-tree-ui-button red light" title="'+option_tree.remove_media_text+'"><span class="icon trash-can">'+option_tree.remove_media_text+'</span></a>';
+        btnContent += '<a href="javascript:(void);" class="option-tree-ui-remove-media option-tree-ui-button button button-secondary light" title="'+option_tree.remove_media_text+'"><span class="icon ot-icon-minus-sign">'+option_tree.remove_media_text+'</span></a>';
         $('#'+id).val(val);
         $('#'+id+'_media').remove();
         $('#'+id).parent().parent('div').append('<div class="option-tree-ui-media-wrap" id="'+id+'_media" />');
@@ -498,7 +499,7 @@
             hidden.add(helper).val(ui.value);
           },
           change: function() {
-            $(OT_UI.init_conditions());
+            OT_UI.init_conditions();
           }
         });
       });
@@ -550,6 +551,20 @@
     bind_colorpicker: function(field_id) {
       $('#'+field_id).wpColorPicker();
     },
+    bind_date_picker: function(field_id) {
+      $('#'+field_id).datepicker({
+        showOtherMonths: true,
+        showButtonPanel: true,
+        currentText: option_tree.date_current,
+        closeText: option_tree.date_close
+      });
+    },
+    bind_date_time_picker: function(field_id) {
+      $('#'+field_id).datetimepicker({
+        showOtherMonths: true,
+        closeText: option_tree.date_close
+      });
+    },
     fix_upload_parent: function() {
       $('.option-tree-ui-upload-input').on('focus blur', function(){
         $(this).parent('.option-tree-ui-upload-parent').toggleClass('focus');
@@ -587,6 +602,23 @@
           return false;
         }
         event.preventDefault();
+      });
+    },
+    css_editor_mode: function() {
+      $('.ot-css-editor').each(function() {
+        var editor = ace.edit($(this).attr('id'));
+        var this_textarea = jQuery('#textarea_' + $(this).attr('id'));
+        editor.setTheme("ace/theme/chrome");
+        editor.getSession().setMode("ace/mode/css");
+        editor.setShowPrintMargin( false );
+    
+        editor.getSession().setValue(this_textarea.val());
+        editor.getSession().on('change', function(){
+          this_textarea.val(editor.getSession().getValue());
+        });
+        this_textarea.on('change', function(){
+          editor.getSession().setValue(this_textarea.val());
+        });
       });
     },
     url_exists: function(url) {
@@ -656,9 +688,10 @@
           success: function(res) {
             parent.children('.ot-gallery-list').html(res)
             if ( $(elm).parent().children('.ot-gallery-delete').length <= 0 ) {
-              $(elm).parent().append('<a href="#" class="option-tree-ui-button red hug-left ot-gallery-delete">' + option_tree.delete + '</a>')
+              $(elm).parent().append('<a href="#" class="option-tree-ui-button button button-secondary hug-left ot-gallery-delete">' + option_tree.delete + '</a>')
             }
             $(elm).text(option_tree.edit)
+            OT_UI.init_conditions()
           }
         })
       })
@@ -714,11 +747,12 @@
   , remove: function (elm) {
       
       if ( confirm( option_tree.confirm ) ) {
-
-        $(elm).parents('.format-setting-inner').children('.ot-gallery-value').attr('value', ' ')
+        
+        $(elm).parents('.format-setting-inner').children('.ot-gallery-value').attr('value', '')
         $(elm).parents('.format-setting-inner').children('.ot-gallery-list').remove()
         $(elm).next('.ot-gallery-edit').text( option_tree.create )
         $(elm).remove()
+        OT_UI.init_conditions()
         
       }
 
@@ -736,6 +770,120 @@
   $(document).on('click.ot_gallery.data-api', '.ot-gallery-edit', function (e) {
     e.preventDefault()
     ot_gallery.open($(this))
+  })
+  
+}(window.jQuery);
+
+/*!
+ * Adds metabox tabs
+ */
+!function ($) {
+
+  $(document).on('ready', function () {
+    
+    // Loop over the metaboxes
+    $('.ot-metabox-wrapper').each( function() {
+    
+      // Only if there is a tab option
+      if ( $(this).find('.type-tab').length ) {
+        
+        // Add .ot-metabox-panels
+        $(this).find('.type-tab').parents('.ot-metabox-wrapper').wrapInner('<div class="ot-metabox-panels" />')
+        
+        // Wrapp with .ot-metabox-tabs & add .ot-metabox-nav before .ot-metabox-panels
+        $(this).find('.ot-metabox-panels').wrap('<div class="ot-metabox-tabs" />').before('<ul class="ot-metabox-nav" />')
+        
+        // Loop over settings and build the tabs nav
+        $(this).find('.format-settings').each( function() {
+      
+          if ( $(this).find('.type-tab').length > 0 ) {
+            var title = $(this).find('.type-tab').prev().find('label').text()
+              , id = $(this).attr('id')
+  
+            // Add a class, hide & append nav item 
+            $(this).addClass('is-panel').hide()
+            $(this).parents('.ot-metabox-panels').prev('.ot-metabox-nav').append('<li><a href="#' + id + '">' + title + '</a></li>')
+            
+          }
+          
+        })
+        
+        // Loop over the panels and wrap and ID them.
+        $(this).find('.is-panel').each( function() {
+          var id = $(this).attr('id')
+          
+          $(this).add( $(this).nextUntil('.is-panel') ).wrapAll('<div id="' + id + '" class="tab-content" />')
+          
+        })
+        
+        // Create the tabs
+        $(this).find('.ot-metabox-tabs').tabs()
+        
+        // Move the orphaned settings to the top
+        $(this).find('.ot-metabox-panels > .format-settings').prependTo($(this))
+      
+      }
+    
+    })
+     
+  })
+  
+}(window.jQuery);
+
+/*!
+ * Adds theme option tabs
+ */
+!function ($) {
+
+  $(document).on('ready', function () {
+    
+    // Loop over the theme options
+    $('#option-tree-settings-api .inside').each( function() {
+    
+      // Only if there is a tab option
+      if ( $(this).find('.type-tab').length ) {
+        
+        // Add .ot-theme-option-panels
+        $(this).find('.type-tab').parents('.inside').wrapInner('<div class="ot-theme-option-panels" />')
+        
+        // Wrap with .ot-theme-option-tabs & add .ot-theme-option-nav before .ot-theme-option-panels
+        $(this).find('.ot-theme-option-panels').wrap('<div class="ot-theme-option-tabs" />').before('<ul class="ot-theme-option-nav" />')
+        
+        // Loop over settings and build the tabs nav
+        $(this).find('.format-settings').each( function() {
+      
+          if ( $(this).find('.type-tab').length > 0 ) {
+            var title = $(this).find('.type-tab').prev().find('.label').text()
+              , id = $(this).attr('id')
+  
+            // Add a class, hide & append nav item 
+            $(this).addClass('is-panel').hide()
+            $(this).parents('.ot-theme-option-panels').prev('.ot-theme-option-nav').append('<li><a href="#' + id + '">' + title + '</a></li>')
+            
+          } else {
+          
+          }
+          
+        })
+        
+        // Loop over the panels and wrap and ID them.
+        $(this).find('.is-panel').each( function() {
+          var id = $(this).attr('id')
+          
+          $(this).add( $(this).nextUntil('.is-panel') ).wrapAll('<div id="' + id + '" class="tab-content" />')
+          
+        })
+        
+        // Create the tabs
+        $(this).find('.ot-theme-option-tabs').tabs()
+        
+        // Move the orphaned settings to the top
+        $(this).find('.ot-theme-option-panels > .format-settings').prependTo($(this).find('.ot-theme-option-tabs'))
+      
+      }
+    
+    })
+     
   })
   
 }(window.jQuery);

@@ -195,11 +195,11 @@ if ( ! function_exists( 'ot_type_background' ) ) {
             if ( is_array( $choices ) && ! empty( $choices ) ) {
             
               /* build select */
-              echo '<select name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
+              echo '<select name="' . esc_attr( $field_name ) . '[background-size]" id="' . esc_attr( $field_id ) . '-size" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
               
                 foreach ( (array) $choices as $choice ) {
                   if ( isset( $choice['value'] ) && isset( $choice['label'] ) ) {
-                    echo '<option value="' . esc_attr( $choice['value'] ) . '"' . selected( $field_value, $choice['value'], false ) . '>' . esc_attr( $choice['label'] ) . '</option>';
+                    echo '<option value="' . esc_attr( $choice['value'] ) . '"' . selected( $field_value['background-size'], $choice['value'], false ) . '>' . esc_attr( $choice['label'] ) . '</option>';
                   }
                 }
         
@@ -224,7 +224,7 @@ if ( ! function_exists( 'ot_type_background' ) ) {
             echo '<input type="text" name="' . esc_attr( $field_name ) . '[background-image]" id="' . esc_attr( $field_id ) . '" value="' . ( isset( $field_value['background-image'] ) ? esc_attr( $field_value['background-image'] ) : '' ) . '" class="widefat option-tree-ui-upload-input ' . esc_attr( $field_class ) . '" />';
             
             /* add media button */
-            echo '<a href="javascript:void(0);" class="ot_upload_media option-tree-ui-button blue light" rel="' . $post_id . '" title="' . __( 'Add Media', 'option-tree' ) . '"><span class="icon upload">' . __( 'Add Media', 'option-tree' ) . '</span></a>';
+            echo '<a href="javascript:void(0);" class="ot_upload_media option-tree-ui-button button button-primary light" rel="' . $post_id . '" title="' . __( 'Add Media', 'option-tree' ) . '"><span class="icon ot-icon-plus-sign"></span>' . __( 'Add Media', 'option-tree' ) . '</a>';
           
           echo '</div>';
           
@@ -236,7 +236,7 @@ if ( ! function_exists( 'ot_type_background' ) ) {
               if ( preg_match( '/\.(?:jpe?g|png|gif|ico)$/i', $field_value['background-image'] ) )
                 echo '<div class="option-tree-ui-image-wrap"><img src="' . esc_url( $field_value['background-image'] ) . '" alt="" /></div>';
               
-              echo '<a href="javascript:(void);" class="option-tree-ui-remove-media option-tree-ui-button red light" title="' . __( 'Remove Media', 'option-tree' ) . '"><span class="icon trash-can">' . __( 'Remove Media', 'option-tree' ) . '</span></a>';
+              echo '<a href="javascript:(void);" class="option-tree-ui-remove-media option-tree-ui-button button button-secondary light" title="' . __( 'Remove Media', 'option-tree' ) . '"><span class="icon ot-icon-minus-sign"></span>' . __( 'Remove Media', 'option-tree' ) . '</a>';
               
             echo '</div>';
             
@@ -493,7 +493,10 @@ if ( ! function_exists( 'ot_type_css' ) ) {
       echo '<div class="format-setting-inner">';
         
         /* build textarea for CSS */
-        echo '<textarea class="textarea ' . esc_attr( $field_class ) . '" rows="' . esc_attr( $field_rows )  . '" cols="40" name="' . esc_attr( $field_name ) .'" id="' . esc_attr( $field_id ) . '">' . esc_textarea( $field_value ) . '</textarea>';
+        echo '<textarea class="hidden" id="textarea_' . esc_attr( $field_id ) . '" name="' . esc_attr( $field_name ) .'">' . esc_attr( $field_value ) . '</textarea>';
+    
+        /* build pre to convert it into ace editor later */
+        echo '<pre class="ot-css-editor ' . esc_attr( $field_class ) . '" id="' . esc_attr( $field_id ) . '">' . esc_textarea( $field_value ) . '</pre>';
         
       echo '</div>';
       
@@ -621,6 +624,94 @@ if ( ! function_exists( 'ot_type_custom_post_type_select' ) ) {
 }
 
 /**
+ * Date Picker option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.3
+ */
+if ( ! function_exists( 'ot_type_date_picker' ) ) {
+  
+  function ot_type_date_picker( $args = array() ) {
+    
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+    
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-date-picker ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+    
+    /* date picker JS */      
+    echo '<script>jQuery(document).ready(function($) { OT_UI.bind_date_picker("' . esc_attr( $field_id ) . '"); });</script>';      
+      
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+      
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+      
+        /* build date picker */
+        echo '<input type="text" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" value="' . esc_attr( $field_value ) . '" class="widefat option-tree-ui-input ' . esc_attr( $field_class ) . '" />';
+        
+      echo '</div>';
+    
+    echo '</div>';
+    
+  }
+  
+}
+
+/**
+ * Date Time Picker option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.3
+ */
+if ( ! function_exists( 'ot_type_date_time_picker' ) ) {
+  
+  function ot_type_date_time_picker( $args = array() ) {
+    
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+    
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-date-time-picker ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+    
+    /* date time picker JS */      
+    echo '<script>jQuery(document).ready(function($) { OT_UI.bind_date_time_picker("' . esc_attr( $field_id ) . '"); });</script>';      
+      
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+      
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+      
+        /* build date time picker */
+        echo '<input type="text" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" value="' . esc_attr( $field_value ) . '" class="widefat option-tree-ui-input ' . esc_attr( $field_class ) . '" />';
+        
+      echo '</div>';
+    
+    echo '</div>';
+    
+  }
+  
+}
+
+/**
  * Gallery option type.
  *
  * See @ot_display_by_type to see the full list of available arguments.
@@ -681,15 +772,15 @@ if ( ! function_exists( 'ot_type_gallery' ) ) {
           
           echo '
           <div class="ot-gallery-buttons">
-            <a href="#" class="option-tree-ui-button red hug-left ot-gallery-delete">' . __( 'Delete Gallery', 'option-tree' ) . '</a>
-            <a href="#" class="option-tree-ui-button blue right hug-right ot-gallery-edit">' . __( 'Edit Gallery', 'option-tree' ) . '</a>
+            <a href="#" class="option-tree-ui-button button button-secondary hug-left ot-gallery-delete">' . __( 'Delete Gallery', 'option-tree' ) . '</a>
+            <a href="#" class="option-tree-ui-button button button-primary right hug-right ot-gallery-edit">' . __( 'Edit Gallery', 'option-tree' ) . '</a>
           </div>';
         
         } else {
         
           echo '
           <div class="ot-gallery-buttons">
-            <a href="#" class="option-tree-ui-button blue right hug-right ot-gallery-edit">' . __( 'Create Gallery', 'option-tree' ) . '</a>
+            <a href="#" class="option-tree-ui-button button button-primary right hug-right ot-gallery-edit">' . __( 'Create Gallery', 'option-tree' ) . '</a>
           </div>';
         
         }
@@ -761,7 +852,7 @@ if ( ! function_exists( 'ot_type_list_item' ) ) {
         echo '</ul>';
         
         /* button */
-        echo '<a href="javascript:void(0);" class="option-tree-list-item-add option-tree-ui-button blue right hug-right" title="' . __( 'Add New', 'option-tree' ) . '">' . __( 'Add New', 'option-tree' ) . '</a>';
+        echo '<a href="javascript:void(0);" class="option-tree-list-item-add option-tree-ui-button button button-primary right hug-right" title="' . __( 'Add New', 'option-tree' ) . '">' . __( 'Add New', 'option-tree' ) . '</a>';
         
         /* description */
         echo '<div class="list-item-description">' . apply_filters( 'ot_list_item_description', __( 'You can re-order with drag & drop, the order will update after saving.', 'option-tree' ), $field_id ) . '</div>';
@@ -929,7 +1020,7 @@ if ( ! function_exists( 'ot_type_on_off' ) ) {
         foreach ( (array) $field_choices as $key => $choice ) {
           echo '
             <input type="radio" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '-' . esc_attr( $key ) . '" value="' . esc_attr( $choice['value'] ) . '"' . checked( $field_value, $choice['value'], false ) . ' class="radio option-tree-ui-radio ' . esc_attr( $field_class ) . '" />
-            <label for="' . esc_attr( $field_id ) . '-' . esc_attr( $key ) . '">' . esc_attr( $choice['label'] ) . '</label>';
+            <label for="' . esc_attr( $field_id ) . '-' . esc_attr( $key ) . '" onclick="">' . esc_attr( $choice['label'] ) . '</label>';
         }
           
           echo '<span class="slide-button"></span>';
@@ -1114,7 +1205,7 @@ if ( ! function_exists( 'ot_type_slider' ) ) {
         echo '</ul>';
         
         /* button */
-        echo '<a href="javascript:void(0);" class="option-tree-list-item-add option-tree-ui-button blue right hug-right" title="' . __( 'Add New', 'option-tree' ) . '">' . __( 'Add New', 'option-tree' ) . '</a>';
+        echo '<a href="javascript:void(0);" class="option-tree-list-item-add option-tree-ui-button button button-primary right hug-right" title="' . __( 'Add New', 'option-tree' ) . '">' . __( 'Add New', 'option-tree' ) . '</a>';
         
         /* description */
         echo '<div class="list-item-description">' . __( 'You can re-order with drag & drop, the order will update after saving.', 'option-tree' ) . '</div>';
@@ -1324,6 +1415,9 @@ if ( ! function_exists( 'ot_type_radio_image' ) ) {
           $src = str_replace( 'OT_URL', OT_URL, $choice['src'] );
           $src = str_replace( 'OT_THEME_URL', OT_THEME_URL, $src );
           
+          /* make radio image source filterable */
+          $src = apply_filters( 'ot_type_radio_image_src', $src, $field_id );
+          
           echo '<div class="option-tree-ui-radio-images">';
             echo '<p style="display:none"><input type="radio" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '-' . esc_attr( $key ) . '" value="' . esc_attr( $choice['value'] ) . '"' . checked( $field_value, $choice['value'], false ) . ' class="option-tree-ui-radio option-tree-ui-images" /><label for="' . esc_attr( $field_id ) . '-' . esc_attr( $key ) . '">' . esc_attr( $choice['label'] ) . '</label></p>';
             echo '<img src="' . esc_url( $src ) . '" alt="' . esc_attr( $choice['label'] ) .'" title="' . esc_attr( $choice['label'] ) .'" class="option-tree-ui-radio-image ' . esc_attr( $field_class ) . ( $field_value == $choice['value'] ? ' option-tree-ui-radio-image-selected' : '' ) . '" />';
@@ -1453,6 +1547,35 @@ if ( ! function_exists( 'ot_type_sidebar_select' ) ) {
         
       echo '</div>';
       
+    echo '</div>';
+    
+  }
+  
+}
+
+/**
+ * Tab option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.3.0
+ */
+if ( ! function_exists( 'ot_type_tab' ) ) {
+  
+  function ot_type_tab( $args = array() ) {
+    
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-tab">';
+
+      echo '<br />';
+    
     echo '</div>';
     
   }
@@ -2092,7 +2215,7 @@ if ( ! function_exists( 'ot_type_upload' ) ) {
           echo '<input type="text" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" value="' . esc_attr( $field_value ) . '" class="widefat option-tree-ui-upload-input ' . esc_attr( $field_class ) . '" />';
           
           /* add media button */
-          echo '<a href="javascript:void(0);" class="ot_upload_media option-tree-ui-button blue light" rel="' . $post_id . '" title="' . __( 'Add Media', 'option-tree' ) . '"><span class="icon upload">' . __( 'Add Media', 'option-tree' ) . '</span></a>';
+          echo '<a href="javascript:void(0);" class="ot_upload_media option-tree-ui-button button button-primary light" rel="' . $post_id . '" title="' . __( 'Add Media', 'option-tree' ) . '"><span class="icon ot-icon-plus-sign"></span>' . __( 'Add Media', 'option-tree' ) . '</a>';
         
         echo '</div>';
         
@@ -2104,7 +2227,7 @@ if ( ! function_exists( 'ot_type_upload' ) ) {
             if ( preg_match( '/\.(?:jpe?g|png|gif|ico)$/i', $field_value ) )
               echo '<div class="option-tree-ui-image-wrap"><img src="' . esc_url( $field_value ) . '" alt="" /></div>';
             
-            echo '<a href="javascript:(void);" class="option-tree-ui-remove-media option-tree-ui-button red light" title="' . __( 'Remove Media', 'option-tree' ) . '"><span class="icon trash-can">' . __( 'Remove Media', 'option-tree' ) . '</span></a>';
+            echo '<a href="javascript:(void);" class="option-tree-ui-remove-media option-tree-ui-button button button-secondary light" title="' . __( 'Remove Media', 'option-tree' ) . '"><span class="icon ot-icon-minus-sign"></span>' . __( 'Remove Media', 'option-tree' ) . '</a>';
             
           echo '</div>';
           

@@ -1,37 +1,102 @@
 === OptionTree ===
 Contributors: valendesigns
 Donate link: http://bit.ly/NuXI3T
-Tags: admin, theme options, meta boxes, options, admin interface, ajax
+Tags: options, theme options, meta boxes
 Requires at least: 3.5
 Tested up to: 3.8.1
-Stable tag: 2.2.3
+Stable tag: 2.3.0
 License: GPLv3
 
 Theme Options UI Builder for WordPress. A simple way to create & save Theme Options and Meta Boxes for free or premium themes.
 
 == Description ==
 
-Theme Options are what make a WordPress Theme truly custom. OptionTree attempts to bridge the gap between developers, designers and end-users by solving the admin User Interface issues that arise when creating a custom theme. Designers shouldn't have to be limited to what they can create visually because their programming skills aren't as developed as they would like. Also, programmers shouldn't have to recreate the wheel for every new project, so in walks OptionTree.
+OptionTree attempts to bridge the gap between WordPress developers, designers and end-users by creating fully responsive option panels and meta boxes with an ease unlike any other plugin. Packed full of advanced features with tons of hooks, and filters to adjust every aspect of the UX. Build your theme options with a drag & drop interface locally and export a fully functioning `theme-options.php` file for production use that's i18n translation ready with you own custom text domain. And, in just a few simple lines of code, all your themes can have separate settings arrays saved to the database with unique IDs. Not only that, but OptionTree takes full advantage of the new color schemes introduced in WordPress 3.8 and looks and feels built-in.
 
-With OptionTree you can create as many Theme Options as your project requires and use them how you see fit. When you add a option to the Settings page, it will be available on the Theme Options page for use in your theme. 
+#### Option Types
+This is a complete list of all the available option types that come shipped with OptionTree. If you don't see the one you need, just know that adding your own custom option type is a breeze.
 
-Included is the ability to Import/Export all the theme options and data for packaging with custom themes or local development. With the Import/Export feature you can get a theme set up on a live server in minutes. Theme authors can now create different version of their themes and include them with the download. It makes setting up different theme styles & options easier than ever because a theme user installs the plugin and theme and either adds their own settings or imports your defaults.
+* Background
+* Category Checkbox
+* Category Select
+* Checkbox
+* Color Picker
+* CSS
+* Custom Post Type Checkbox
+* Custom Post Type Select
+* Date Picker
+* Date Time Picker
+* Gallery
+* List Item
+* Measurement
+* Numeric Slider
+* On/Off
+* Page Checkbox
+* Page Select
+* Post Checkbox
+* Post Select
+* Radio
+* Radio Image
+* Select
+* Sidebar Select
+* Slider
+* Tab
+* Tag Checkbox
+* Tag Select
+* Taxonomy Checkbox
+* Taxonomy Select
+* Text
+* Textarea
+* Textarea Simple
+* Textblock
+* Textblock Titled
+* Typography
+* Upload
 
-A new feature in OptionTree 2.0 is the ability to include the plugin directly in your themes root directory. Not only does that mean your theme is guaranteed to have the plugin installed you also get the ability to interact directly with OptionTree through settings and meta box arrays. You can now tell OptionTree what settings you want and know that nobody will break your theme by changing settings through the UI Builder. It's just a better plugin now!
+#### Learn More
+If you're like me, you want to know how everything works. Download and activate the [OptionTree Theme](https://github.com/valendesigns/option-tree-theme) and see first hand how to integrate OptionTree into your own project. I'll walk you through installing OptionTree and you'll get a chance to see all the various options and filters first hand and in the wild.
 
-OptionTree is a project sponsored by <a href="http://themeforest.net/?ref=valendesigns">ThemeForest</a>, the largest WordPress theme marketplace on the web, and was originally conceived to help ThemeForest authors quickly power up their themes. But it's here for the benefit of one and all, so option up folks!
+#### Contributing
+To contribute or report bugs, please go to the [OptionTree Github](https://github.com/valendesigns/option-tree) repository.
+
+#### Sponsorship
+OptionTree is a project partly sponsored by <a href="http://themeforest.net/?ref=valendesigns">ThemeForest</a>, the largest WordPress theme marketplace on the web.
 
 == Installation ==
 
+**Plugin Mode**
+
 1. Upload `option-tree` to the `/wp-content/plugins/` directory
-1. Activate the plugin through the 'Plugins' menu in WordPress
+1. Activate the plugin through the `Plugins` menu in WordPress
 1. Click the `OptionTree->Documentation` link in the WordPress admin sidebar menu for further setup assistance.
+
+**Theme Mode**
+
+1. Download the latest version of OptionTree and unarchive the `.zip` directory.
+1. Put the `option-tree` directory in the root of your theme. For example, the server path would be `/wp-content/themes/theme-name/option-tree/`.
+1. Add the following code to the beginning of your `functions.php`.
+
+`/**
+ * Required: set 'ot_theme_mode' filter to true.
+ */
+add_filter( 'ot_theme_mode', '__return_true' );
+
+/**
+ * Required: include OptionTree.
+ */
+load_template( trailingslashit( get_template_directory() ) . 'option-tree/ot-loader.php' );`
+
+For a list of all the OptionTree UI display filters refer to the `demo-functions.php` file found in the `/assets/theme-mode/` directory of this plugin. This file is the starting point for developing themes with Theme Mode.
 
 == Frequently Asked Questions ==
 
-= Is this plugin PHP5 only? =
+= I get errors or a blank screen when I activate the plugin. What's the deal? =
 
-Yes. OptionTree & WordPress both require PHP5.
+The most likely scenario is your theme already has OptionTree installed in Theme Mode. And since the plugin and theme version can't both be active at the same time without the sky falling on your head, your site has decided to throw in the towel. If that's not your issue, open up a support request and we'll figure it out together.
+
+= Is there a demo theme I can install? =
+
+There sure is, and I'm glad you asked. Download and activate the [OptionTree Theme](https://github.com/valendesigns/option-tree-theme) and get some experience setting up OptionTree on your own with detailed directions and tips.
 
 == Screenshots ==
 
@@ -40,6 +105,33 @@ Yes. OptionTree & WordPress both require PHP5.
 3. Documentation
 
 == Changelog ==
+
+= 2.3.0 =
+* Added the Tab option type.
+* Added Ace Editor to the CSS option type. Contributors via github @imangm and @valendesigns.
+* Added support for WordPress 3.8 color schemes.
+* Added support for RTL languages. Contributors via github @omid-khd and @valendesigns.
+* Added actions before and after the enqueue styles and scripts.
+* Added Date Picker option type. Contributors via github @jetonr and @valendesigns.
+* Added Date Time Picker option type. Contributors via github @jetonr and @valendesigns.
+* Added filter 'ot_list_item_title_label' to change the label for a List Item's required title field.
+* Added filter 'ot_list_item_title_desc' to change the description for a List Item's required title field.
+* Added filter 'ot_options_id' to change the 'option_tree' option ID to a unique value.
+* Added filter 'ot_settings_id' to change the 'option_tree_settings' option ID to a unique value.
+* Added filter 'ot_layouts_id' to change the 'option_tree_layouts' option ID to a unique value.
+* Added filter 'ot_header_logo_link' to change the logo link inside the header of OptionTree.
+* Added filter 'ot_header_version_text' to change the version text inside the header of OptionTree.
+* Added action 'ot_header_list' to add additional theme specific list items to the header of OptionTree.
+* Added filter 'ot_upload_text' to change the "Send to OptionTree" text.
+* Added the CSS Class field value to the parent `.format-settings` div in addition to the class being added to the element. Each class is now appended with `-wrap`.
+* Added support for [Composer](https://github.com/composer/composer). Contributors via github @designst.
+* Added support for adding I18n text domains to the exported `theme-options.php` file.
+* Fixed a bug that kept the UI from displaying when using the `ot_type_background_size_choices` filter.
+* Fixed a bug that caused the Gallery option type to save a single space instead of `null`.
+* Fixed the return value of the Background, Measurement, and Typography option types. They now return `null` if no values are saved to the array.
+* Fixed a bug that resulted in a PHP warning if the choices array was set to an empty string.
+* Updated the documentation, including this `readme.txt` and a new demo [OptionTree Theme](https://github.com/valendesigns/option-tree-theme) to parallel OptionTree.
+* Added filter 'ot_type_radio_image_src' which allows the Radio Image option type source URI to be changed. Contributors via github @bitcommit.
 
 = 2.2.3 =
 * Hotfix - Allow empty condition values. For example, `field_id:is()` or `field_id:not()` would now be valid syntax.
@@ -326,6 +418,9 @@ Yes. OptionTree & WordPress both require PHP5.
 * Initial version
 
 == Upgrade Notice ==
+
+= 2.3.0 =
+As with each major release, please install OptionTree on a test server before upgrading your live site.
 
 = 2.1.4 =
 If you're not the developer of this theme, please ask them to test compatibility with version 2.1 before upgrading. If you are the developer, I urge you to do the same in a controlled environment.

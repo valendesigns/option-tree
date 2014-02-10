@@ -3,7 +3,7 @@
  * Plugin Name: OptionTree
  * Plugin URI:  http://wp.envato.com
  * Description: Theme Options UI Builder for WordPress. A simple way to create & save Theme Options and Meta Boxes for free or premium themes.
- * Version:     2.2.3
+ * Version:     2.3.0
  * Author:      Derek Herman
  * Author URI:  http://valendesigns.com
  * License:     GPLv3
@@ -142,19 +142,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       /**
        * Current Version number.
        */
-      define( 'OT_VERSION', '2.2.3' );
-      
-      /**
-       * For developers: Allow Unfiltered HTML in all the textareas.
-       *
-       * Run a filter and set to true if you want all the
-       * users to be able to post anything in the textareas.
-       * WARNING: This opens a security hole for low level users
-       * to be able to post malicious scripts, you've been warned.
-       *
-       * @since     2.0
-       */
-      define( 'OT_ALLOW_UNFILTERED_HTML', apply_filters( 'ot_allow_unfiltered_html', false ) );
+      define( 'OT_VERSION', '2.3.0' );
       
       /**
        * For developers: Theme mode.
@@ -201,7 +189,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       define( 'OT_SHOW_OPTIONS_UI', apply_filters( 'ot_show_options_ui', true ) );
       
       /**
-       * For developers: Hide Settings Import
+       * For developers: Show Settings Import
        *
        * Run a filter and set to false if you want to hide the
        * Settings Import options on the Import page.
@@ -211,7 +199,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       define( 'OT_SHOW_SETTINGS_IMPORT', apply_filters( 'ot_show_settings_import', true ) );
       
       /**
-       * For developers: Hide Settings Export
+       * For developers: Show Settings Export
        *
        * Run a filter and set to false if you want to hide the
        * Settings Import options on the Import page.
@@ -258,6 +246,18 @@ if ( ! class_exists( 'OT_Loader' ) ) {
        * @since     2.0
        */
       define( 'OT_META_BOXES', apply_filters( 'ot_meta_boxes', true ) );
+      
+      /**
+       * For developers: Allow Unfiltered HTML in all the textareas.
+       *
+       * Run a filter and set to true if you want all the
+       * users to be able to post anything in the textareas.
+       * WARNING: This opens a security hole for low level users
+       * to be able to post malicious scripts, you've been warned.
+       *
+       * @since     2.0
+       */
+      define( 'OT_ALLOW_UNFILTERED_HTML', apply_filters( 'ot_allow_unfiltered_html', false ) );
       
       /**
        * Check if in theme mode.
@@ -539,7 +539,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
      * AJAX utility function for adding a new section.
      */
     public function add_section() {
-      echo ot_sections_view( 'option_tree_settings[sections]', $_REQUEST['count'] );
+      echo ot_sections_view( ot_settings_id() . '[sections]', $_REQUEST['count'] );
       die();
     }
     
@@ -667,7 +667,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
         
         // Once is enough.
         remove_filter( 'gettext', array( $this, 'ot_change_image_button' ) );
-        return 'Send to OptionTree';
+        return apply_filters( 'ot_upload_text', __( 'Send to OptionTree', 'option-tree' ) );
         
       }
       

@@ -108,55 +108,61 @@ if ( ! function_exists( 'ot_type_option_types' ) ) {
       echo '<div class="description">';
         
         echo '<h4>'. __( 'Background', 'option-tree' ) . ':</h4>';    
-        echo '<p>' . __( 'The Background option type is for adding background styles to your theme either dynamically via the CSS option type below or manually with <code>ot_get_option()</code>. Background has filters that allow you to change the defaults. For example, you can filter on <code>ot_recognized_background_repeat</code>, <code>ot_recognized_background_attachment</code>, and <code>ot_recognized_background_position</code>. These filters allow you to fine tune the select lists for your specific CSS needs.', 'option-tree' ) . '</p>';
-        
-        echo '<h4>'. __( 'Category Select', 'option-tree' ) . ':</h4>';    
-        echo '<p>' . __( 'The Category Select option type displays a list of category IDs. It allows the user to select only one category ID and will return that value for use in a custom function or loop.', 'option-tree' ) . '</p>';
+        echo '<p>' . sprintf( __( 'The Background option type is for adding background styles to your theme either dynamically via the CSS option type below or manually with %s. The Background option type has filters that allow you to remove fields or change the defaults. For example, you can filter %s to remove unwanted fields from all Background options or an individual one. You can also filter %s. These filters allow you to fine tune the select lists for your specific needs.', 'option-tree' ), '<code>ot_get_option()</code>', '<code>ot_recognized_background_fields</code>', '<code>ot_recognized_background_repeat</code>, <code>ot_recognized_background_attachment</code>, <code>ot_recognized_background_position</code>, ' . __( 'and', 'option-tree' ) . ' <code>ot_type_background_size_choices</code>' ) . '</p>';
         
         echo '<h4>'. __( 'Category Checkbox', 'option-tree' ) . ':</h4>';      
         echo '<p>' . __( 'The Category Checkbox option type displays a list of category IDs. It allows the user to check multiple category IDs and will return that value as an array for use in a custom function or loop.', 'option-tree' ) . '</p>';
         
+        echo '<h4>'. __( 'Category Select', 'option-tree' ) . ':</h4>';    
+        echo '<p>' . __( 'The Category Select option type displays a list of category IDs. It allows the user to select only one category ID and will return that value for use in a custom function or loop.', 'option-tree' ) . '</p>';
+        
         echo '<h4>'. __( 'Checkbox', 'option-tree' ) . ':</h4>';       
-        echo '<p>' . __( 'The Checkbox option type is fairly self explanatory. Typically used to ask questions. For example, "Do you want to activate asynchronous Google analytics?" would be a single checkbox with a value of yes. You could have more complex usages but the idea is that you can easily grab the value of the checkbox and use it in you theme. In this situation you would test if the checkbox has a value and execute a block of code if it does and do nothing if it doesn\'t.', 'option-tree' ) . '</p>';
+        echo '<p>' . __( 'The Checkbox option type displays a group of choices. It allows the user to check multiple choices and will return that value as an array for use in a custom function or loop.', 'option-tree' ) . '</p>';
         
         echo '<h4>'. __( 'Colorpicker', 'option-tree' ) . ':</h4>'; 
         echo '<p>' . __( 'The Colorpicker option type saves a hexadecimal color code for use in CSS. Use it to modify the color of something in your theme.', 'option-tree' ) . '</p>';
         
         echo '<h4>'. __( 'CSS', 'option-tree' ) . ':</h4>'; 
-        echo '<p>' . __( 'The CSS option type is a textarea that when used properly can add dynamic CSS to your theme from within OptionTree. Unfortunately, due server limitations you will need to create a file named <code>dynamic.css</code> at the root level of your theme and change permissions using chmod so the server can write to the file. I have had the most success setting this single file to 0777 but feel free to play around with permissions until everything is working. A good starting point is 0666. When the server can save to the file CSS will automatically be updated each time you save your theme options.', 'option-tree' ) . '</p>';
+        echo '<p>' . sprintf( __( 'The CSS option type is a textarea that when used properly can add dynamic CSS to your theme from within OptionTree. Unfortunately, due server limitations you will need to create a file named %s at the root level of your theme and change permissions using %s so the server can write to the file. I have had the most success setting this single file to %s but feel free to play around with permissions until everything is working. A good starting point is %s. When the server can save to the file, CSS will automatically be updated when you save your Theme Options.', 'option-tree' ), '<code>dynamic.css</code>', '<code>chmod</code>', '<code>0777</code>', '<code>0666</code>' ) . '</p>';
         
-        echo '<p class="aside">' . __( 'An example of the CSS option type: This assumes you have an option with the ID of <code>custom_background_css</code> which will display the saved values for that option.', 'option-tree' ) . '</p>';
+        echo '<p class="aside">' . sprintf( __( 'This example assumes you have an option with the ID of %1$s. Which means this option will automatically insert the value of %1$s into the %2$s when the Theme Options are saved.', 'option-tree' ), '<code>demo_background</code>', '<code>dynamic.css</code>' ) . '</p>';
         
         echo '<p>'. __( 'Input', 'option-tree' ) . ':</p>'; 
         echo '<pre><code>body {
-  {{custom_background_css}}
-  background-color: {{custom_background_css|background-color}};
+  {{demo_background}}
+  background-color: {{demo_background|background-color}};
 }</code></pre>';
 
         echo '<p>'. __( 'Output', 'option-tree' ) . ':</p>'; 
-        echo '<pre><code>/* BEGIN custom_background_css */
+        echo '<pre><code>/* BEGIN demo_background */
 body {
   background: color image repeat attachment position;
   background-color: color;
 }
-/* END custom_background_css */</code></pre>';
-        
-        echo '<h4>'. __( 'Custom Post Type Select', 'option-tree' ) . ':</h4>'; 
-        echo '<p>' . __( 'The Custom Post Type Select option type displays a list of IDs from any available WordPress post type or custom post type. It will return a single post ID for use in a custom function or loop. Requires at least one valid <code>post_type</code> when created in the settings. For some reason <code>any</code> does not work correctly and will looked into in future version.', 'option-tree' ) . '</p>';
+/* END demo_background */</code></pre>';
         
         echo '<h4>'. __( 'Custom Post Type Checkbox', 'option-tree' ) . ':</h4>'; 
-        echo '<p>' . __( 'The Custom Post Type Select option type displays a list of IDs from any available WordPress post type or custom post type. It allows the user to check multiple post IDs for use in a custom function or loop. Requires at least one valid <code>post_type</code> when created in the settings. For some reason <code>any</code> does not work correctly and will looked into in future version.', 'option-tree' ) . '</p>';
+        echo '<p>' . sprintf( __( 'The Custom Post Type Select option type displays a list of IDs from any available WordPress post type or custom post type. It allows the user to check multiple post IDs for use in a custom function or loop. Requires at least one valid %1$s in the %1$s field.', 'option-tree' ), '<code>post_type</code>' ) . '</p>';
+        
+        echo '<h4>'. __( 'Custom Post Type Select', 'option-tree' ) . ':</h4>'; 
+        echo '<p>' . sprintf( __( 'The Custom Post Type Select option type displays a list of IDs from any available WordPress post type or custom post type. It will return a single post ID for use in a custom function or loop. Requires at least one valid %1$s in the %1$s field.', 'option-tree' ), '<code>post_type</code>' ) . '</p>';
+        
+        echo '<h4>'. __( 'Date Picker', 'option-tree' ) . ':</h4>'; 
+        echo '<p>' . __( 'The Date Picker option type is tied to a standard form input field which displays a calendar pop-up that allow the user to pick any date when focus is given to the input field. The returned value is a date formatted string.', 'option-tree' ) . '</p>';
+        
+        echo '<h4>'. __( 'Date Time Picker', 'option-tree' ) . ':</h4>'; 
+        echo '<p>' . __( 'The Date Time Picker option type is tied to a standard form input field which displays a calendar pop-up that allow the user to pick any date and time when focus is given to the input field. The returned value is a date and time formatted string.', 'option-tree' ) . '</p>';
         
         echo '<h4>'. __( 'Gallery', 'option-tree' ) . ':</h4>'; 
         echo '<p>' . __( 'The Gallery option type saves a comma separated list of image attachment IDs. You will need to create a front-end function to display the images in your theme.', 'option-tree' ) . '</p>';
         
         echo '<h4>'. __( 'List Item', 'option-tree' ) . ':</h4>'; 
-        echo '<p>' . __( 'The list Item replaced the old Slider option type. It allows for a great deal of customization. You can add settings to the List Item and those settings will be displayed to the user when they add a new List Item. Typical use is for creating sliding content or blocks of code for custom layouts.', 'option-tree' ) . '</p>';
+        echo '<p>' . __( 'The List Item option type replaced the Slider option type and allows for a great deal of customization. You can add settings to the List Item and those settings will be displayed to the user when they add a new List Item. Typical use is for creating sliding content or blocks of code for custom layouts.', 'option-tree' ) . '</p>';
         
         echo '<h4>'. __( 'Measurement', 'option-tree' ) . ':</h4>'; 
-        echo '<p>' . __( 'The Measurement option type is a mix of input and select fields. The text input excepts a value and the select lets you choose the unit of measurement to add to that value. Currently the default units are <code>px</code>, <code>%</code>, <code>em</code>, <code>pt</code>. However, you can change them with the <code>ot_measurement_unit_types</code> filter.', 'option-tree' ) . '</p>';
+        echo '<p>' . sprintf( __( 'The Measurement option type is a mix of input and select fields. The text input excepts a value and the select lets you choose the unit of measurement to add to that value. Currently the default units are %s, %s, %s, and %s. However, you can change them with the %s filter.', 'option-tree' ), '<code>px</code>', '<code>%</code>', '<code>em</code>', '<code>pt</code>', '<code>ot_measurement_unit_types</code>' ) . '</p>';
         
-        echo '<p>' . __( 'Example filter to add new units to the Measurement option type. Added to <code>functions.php</code>.', 'option-tree' ) . '</p>';
+        echo '<p>' . sprintf( __( 'Example filter to add new units to the Measurement option type. Added to %s.', 'option-tree' ), '<code>functions.php</code>' ) . '</p>';
         echo '<pre><code>function filter_measurement_unit_types( $array, $field_id ) {
   
   /* only run the filter on measurement with a field ID of my_measurement */
@@ -188,25 +194,25 @@ add_filter( \'ot_measurement_unit_types\', \'filter_measurement_unit_types\', 10
         echo '<p>' . __( 'The Numeric Slider option type displays a jQuery UI slider. It will return a single numerical value for use in a custom function or loop.', 'option-tree' ) . '</p>';
         
         echo '<h4>'. __( 'On/Off', 'option-tree' ) . ':</h4>'; 
-        echo '<p>' . __( 'The On/Off option type displays a simple switch that can be used to turn things on or off. The saved return value is either on or off.', 'option-tree' ) . '</p>';
+        echo '<p>' . sprintf( __( 'The On/Off option type displays a simple switch that can be used to turn things on or off. The saved return value is either %s or %s.', 'option-tree' ), '<code>on</code>', '<code>off</code>' ) . '</p>';
+        
+        echo '<h4>'. __( 'Page Checkbox', 'option-tree' ) . ':</h4>'; 
+        echo '<p>' . __( 'The Page Checkbox option type displays a list of page IDs. It allows the user to check multiple page IDs for use in a custom function or loop.', 'option-tree' ) . '</p>';
         
         echo '<h4>'. __( 'Page Select', 'option-tree' ) . ':</h4>'; 
         echo '<p>' . __( 'The Page Select option type displays a list of page IDs. It will return a single page ID for use in a custom function or loop.', 'option-tree' ) . '</p>';
         
-        echo '<h4>'. __( 'Page Checkbox', 'option-tree' ) . ':</h4>'; 
-        echo '<p>' . __( 'The Page Select option type displays a list of page IDs. It allows the user to check multiple page IDs for use in a custom function or loop.', 'option-tree' ) . '</p>';
+        echo '<h4>'. __( 'Post Checkbox', 'option-tree' ) . ':</h4>'; 
+        echo '<p>' . __( 'The Post Checkbox option type displays a list of post IDs. It allows the user to check multiple post IDs for use in a custom function or loop.', 'option-tree' ) . '</p>';
         
         echo '<h4>'. __( 'Post Select', 'option-tree' ) . ':</h4>'; 
         echo '<p>' . __( 'The Post Select option type displays a list of post IDs. It will return a single post ID for use in a custom function or loop.', 'option-tree' ) . '</p>';
         
-        echo '<h4>'. __( 'Post Checkbox', 'option-tree' ) . ':</h4>'; 
-        echo '<p>' . __( 'The Post Select option type displays a list of post IDs. It allows the user to check multiple post IDs for use in a custom function or loop.', 'option-tree' ) . '</p>';
-        
         echo '<h4>'. __( 'Radio', 'option-tree' ) . ':</h4>'; 
-        echo '<p>' . __( 'The Radio option type could ask a question. For example, "Do you want to activate the custom navigation?" could require a yes or no answer with a radio option. In this situation you would test if the radio has a value of \'yes\' and execute a block of code, or if it\'s \'no\' execute a different block of code.', 'option-tree' ) . '</p>';
+        echo '<p>' . __( 'The Radio option type displays a group of choices. It allows the user to choose one and will return that value as a string for use in a custom function or loop.', 'option-tree' ) . '</p>';
         
         echo '<h4>'. __( 'Radio Image', 'option-tree' ) . ':</h4>'; 
-        echo '<p>' . __( 'the Radio Images option type is primarily used for layouts. However, you can filter the image list using <code>ot_radio_images</code>. As well, you can add your own custom images using the choices array.', 'option-tree' ) . '</p>';
+        echo '<p>' . sprintf( __( 'the Radio Images option type is primarily used for layouts. However, you can filter the image list using %s. As well, you can add your own custom images using the choices array.', 'option-tree' ), '<code>ot_radio_images</code>' ) . '</p>';
         
         echo '<p>' . __( 'This example executes the <code>ot_radio_images</code> filter on layout images attached to the <code>my_radio_images</code> field. Added to <code>functions.php</code>.', 'option-tree' ) . '</p>';
         echo '<pre><code>function filter_radio_images( $array, $field_id ) {
@@ -236,11 +242,14 @@ add_filter( \'ot_radio_images\', \'filter_radio_images\', 10, 2 );</code></pre>'
         echo '<p>' . __( 'The Select option type is used to list anything you want that would be chosen from a select list.', 'option-tree' ) . '</p>';
         
         echo '<h4>'. __( 'Sidebar Select', 'option-tree' ) . ':</h4>';
-        echo '<p>' . __( 'This option type makes it possible for users to select a WordPress registered sidebar to use on a specific area. By using the two provided filters, <code>ot_recognized_sidebars</code>, and <code>ot_recognized_sidebars_{$field_id}</code> we can be selective about which sidebars are available on a specific content area.', 'option-tree' ) . '</p>';
-        echo '<p>' . __( 'For example, if we create a WordPress theme that provides the ability to change the Blog Sidebar and we don\'t want to have the footer sidebars available on this area, we can unset those sidebars either manually or by using a regular expression if we have a common name like <code>footer-sidebar-$i</code>.', 'option-tree' ) . '</p>';
+        echo '<p>' . sprintf(  __( 'This option type makes it possible for users to select a WordPress registered sidebar to use on a specific area. By using the two provided filters, %s, and %s we can be selective about which sidebars are available on a specific content area.', 'option-tree' ), '<code>ot_recognized_sidebars</code>', '<code>ot_recognized_sidebars_{$field_id}</code>' ) . '</p>';
+        echo '<p>' . sprintf( __( 'For example, if we create a WordPress theme that provides the ability to change the Blog Sidebar and we don\'t want to have the footer sidebars available on this area, we can unset those sidebars either manually or by using a regular expression if we have a common name like %s.', 'option-tree' ), '<code>footer-sidebar-$i</code>' ) . '</p>';
         
         echo '<h4>'. __( 'Slider', 'option-tree' ) . ':</h4>';
         echo '<p>' . __( 'The Slider option type is technically deprecated. Use the List Item option type instead, as it\'s infinitely more customizable. Typical use is for creating sliding image content.', 'option-tree' ) . '</p>';
+        
+        echo '<h4>'. __( 'Tab', 'option-tree' ) . ':</h4>';      
+        echo '<p>' . __( 'The Tab option type will break a section or metabox into tabbed content.', 'option-tree' ) . '</p>';
         
         echo '<h4>'. __( 'Tag Checkbox', 'option-tree' ) . ':</h4>';      
         echo '<p>' . __( 'The Tag Checkbox option type displays a list of tag IDs. It allows the user to check multiple tag IDs and will return that value as an array for use in a custom function or loop.', 'option-tree' ) . '</p>';
@@ -254,11 +263,11 @@ add_filter( \'ot_radio_images\', \'filter_radio_images\', 10, 2 );</code></pre>'
         echo '<h4>'. __( 'Taxonomy Select', 'option-tree' ) . ':</h4>';    
         echo '<p>' . __( 'The Taxonomy Select option type displays a list of taxonomy IDs. It allows the user to select only one taxonomy ID and will return that value for use in a custom function or loop.', 'option-tree' ) . '</p>';
         
-        echo '<h4>'. __( 'Text (Input)', 'option-tree' ) . ':</h4>'; 
-        echo '<p>' . __( 'The Text option type would be used to save a string value. For example, a link to feedburner, your Twitter username, or Google Analytics ID are all good candidates. Any optional or required text that is of reasonably short character length.', 'option-tree' ) . '</p>';
+        echo '<h4>'. __( 'Text', 'option-tree' ) . ':</h4>'; 
+        echo '<p>' . __( 'The Text option type is used to save string values. For example, any optional or required text that is of reasonably short character length.', 'option-tree' ) . '</p>';
         
         echo '<h4>'. __( 'Textarea', 'option-tree' ) . ':</h4>'; 
-        echo '<p>' . __( 'The Textarea option type is a large string value used for custom code or text in the theme. The new Textarea has a WYSIWYG editor that can be filtered to change the buttons shown. For example, you can filter on <code>wpautop</code>, <code>media_buttons</code>, <code>tinymce</code>, and <code>quicktags</code>.', 'option-tree' ) . '</p>';
+        echo '<p>' . sprintf( __( 'The Textarea option type is a large string value used for custom code or text in the theme and has a WYSIWYG editor that can be filtered to change the how it is displayed. For example, you can filter %s, %s, %s, and %s.', 'option-tree' ), '<code>wpautop</code>', '<code>media_buttons</code>', '<code>tinymce</code>', '<code>quicktags</code>' ) . '</p>';
         
         echo '<p class="aside">' . __( 'Example filters to alter the Textarea option type. Added to <code>functions.php</code>.', 'option-tree' ) . '</p>';
         
@@ -317,9 +326,9 @@ add_filter( \'ot_tinymce\', \'filter_textarea_tinymce\', 10, 2 );</code></pre>';
 add_filter( \'ot_quicktags\', \'filter_textarea_quicktags\', 10, 1 );</code></pre>';
 
         echo '<h4>'. __( 'Textarea Simple', 'option-tree' ) . ':</h4>'; 
-        echo '<p>' . __( 'The Textarea Simple option type is a large string value used for custom code or text in the theme. The new Textarea Simple does not have a WYSIWYG editor. But you can still filter on <code>wpautop</code>.', 'option-tree' ) . '</p>';
+        echo '<p>' . __( 'The Textarea Simple option type is a large string value used for custom code or text in the theme. The Textarea Simple does not have a WYSIWYG editor.', 'option-tree' ) . '</p>';
         
-        echo '<p class="aside">' . __( 'This example tells WordPress to execute the <code>wpautop</code> filter on the line breaks. The default is <code>false</code> which means it does not wraps line breaks with an HTML <code>p</code> tag. Added to <code>functions.php</code>.', 'option-tree' ) . '</p>';
+        echo '<p class="aside">' . sprintf( __( 'This example tells WordPress to execute the %s filter on the line breaks. The default is %s which means it does not wraps line breaks with an HTML %s tag. Added to %s.', 'option-tree' ), '<code>wpautop</code>', '<code>false</code>', '<code>p</code>', '<code>functions.php</code>' ) . '</p>';
         echo '<pre><code>function filter_textarea_simple_wpautop( $content, $field_id ) {
   
   /* only run the filter on the textarea with a field ID of my_textarea */
@@ -333,13 +342,13 @@ add_filter( \'ot_quicktags\', \'filter_textarea_quicktags\', 10, 1 );</code></pr
 add_filter( \'ot_wpautop\', \'filter_textarea_simple_wpautop\', 10, 2 );</code></pre>';
         
         echo '<h4>'. __( 'Textblock', 'option-tree' ) . ':</h4>'; 
-        echo '<p>' . __( 'The Textblock option type is used only on the Theme Option page. It will allow you to create & display HTML on your Theme Options page but has no title above the text block. You can then use the Textblock to add a more detailed set of instruction on how the options are used in your theme. You would NEVER use this in your themes template files as it does not save a value.', 'option-tree' ) . '</p>';
+        echo '<p>' . __( 'The Textblock option type is used only on the Theme Option page. It will allow you to create & display HTML, but has no title above the text block. You can then use the Textblock to add a more detailed set of instruction on how the options are used in your theme. You would never use this in your themes template files as it does not save a value.', 'option-tree' ) . '</p>';
         
         echo '<h4>'. __( 'Textblock Titled', 'option-tree' ) . ':</h4>'; 
-        echo '<p>' . __( 'The Textblock Titled option type is used only on the Theme Option page. It will allow you to create & display HTML on your Theme Options page and has a title above the text block. You can then use the Textblock Titled to add a more detailed set of instruction on how the options are used in your theme. You would NEVER use this in your themes template files as it does not save a value.', 'option-tree' ) . '</p>';
+        echo '<p>' . __( 'The Textblock Titled option type is used only on the Theme Option page. It will allow you to create & display HTML, and has a title above the text block. You can then use the Textblock Titled to add a more detailed set of instruction on how the options are used in your theme. You would never use this in your themes template files as it does not save a value.', 'option-tree' ) . '</p>';
         
         echo '<h4>'. __( 'Typography', 'option-tree' ) . ':</h4>';    
-        echo '<p>' . __( 'The Typography option type is for adding typographic styles to your theme either dynamically via the CSS option type below or manually with <code>ot_get_option()</code>. Typography has filters that allow you to change the defaults. For example, you can filter on <code>ot_recognized_font_styles</code>, <code>ot_recognized_font_weights</code>, <code>ot_recognized_font_variants</code>, and <code>ot_recognized_font_families</code>. These filters allow you to fine tune the select lists for your specific CSS needs. The most important one though is <code>ot_recognized_font_families</code> as you can add your Google Fonts to create custom font stacks.', 'option-tree' ) . '</p>';
+        echo '<p>' . sprintf( __( 'The Typography option type is for adding typography styles to your theme either dynamically via the CSS option type above or manually with %s. The Typography option type has filters that allow you to remove fields or change the defaults. For example, you can filter %s to remove unwanted fields from all Background options or an individual one. You can also filter %s. These filters allow you to fine tune the select lists for your specific needs.', 'option-tree' ), '<code>ot_get_option()</code>', '<code>ot_recognized_typography_fields</code>', '<code>ot_recognized_font_families</code>, <code>ot_recognized_font_sizes</code>, <code>ot_recognized_font_styles</code>, <code>ot_recognized_font_variants</code>, <code>ot_recognized_font_weights</code>, <code>ot_recognized_letter_spacing</code>, <code>ot_recognized_line_heights</code>, <code>ot_recognized_text_decorations</code> ' . __( 'and', 'option-tree' ) . ' <code>ot_recognized_text_transformations</code>' ) . '</p>';
         
         echo '<p class="aside">' . __( 'This example would filter <code>ot_recognized_font_families</code> to build your own font stack. Added to <code>functions.php</code>.', 'option-tree' ) . '</p>';
         echo '<pre><code>function filter_ot_recognized_font_families( $array, $field_id ) {
@@ -359,7 +368,7 @@ add_filter( \'ot_wpautop\', \'filter_textarea_simple_wpautop\', 10, 2 );</code><
 add_filter( \'ot_recognized_font_families\', \'filter_ot_recognized_font_families\', 10, 2 );</code></pre>';
 
         echo '<h4>'. __( 'Upload', 'option-tree' ) . ':</h4>'; 
-        echo '<p>' . __( 'The Upload option type is used to upload any WordPress supported media. After uploading, users are required to press the "Send to OptionTree" button in order to populate the input with the URI of that media. There is one caveat of this feature. If you import the theme options and have uploaded media on one site the old URI will not reflect the URI of your new site. You\'ll have to re-upload or FTP any media to your new server and change the URIs if necessary.', 'option-tree' ) . '</p>';
+        echo '<p>' . sprintf( __( 'The Upload option type is used to upload any WordPress supported media. After uploading, users are required to press the "%s" button in order to populate the input with the URI of that media. There is one caveat of this feature. If you import the theme options and have uploaded media on one site the old URI will not reflect the URI of your new site. You will have to re-upload or %s any media to your new server and change the URIs if necessary.', 'option-tree' ), apply_filters( 'ot_upload_text', __( 'Send to OptionTree', 'option-tree' ) ), 'FTP' ) . '</p>';
         
       echo '</div>';
       
@@ -613,7 +622,6 @@ if ( ! function_exists( 'ot_type_layouts_overview' ) ) {
         echo '<p class="aside">' . __( ' Adding a layout is ridiculously easy, follow these steps and you\'ll be on your way to having a WordPress super theme.', 'option-tree' ) . '</p>';
         
         echo '<h4>' . __( 'For Developers', 'option-tree' ) . ':</h4>';
-        echo '<p>' . __( '', 'option-tree' ) . '</p>';
         
         echo '<h5>' . __( 'Creating a Layout', 'option-tree' ) . ':</h5>';
         echo '<ul class="docs-ul">';
@@ -643,7 +651,6 @@ if ( ! function_exists( 'ot_type_layouts_overview' ) ) {
         echo '</ul>';
 
         echo '<h4>' . __( 'End-Users Mode', 'option-tree' ) . ':</h4>';
-        echo '<p>' . __( '', 'option-tree' ) . '</p>';
         
         echo '<h5>' . __( 'Creating a Layout', 'option-tree' ) . ':</h5>';
         echo '<ul class="docs-ul">';
@@ -784,25 +791,12 @@ if ( ! function_exists( 'ot_type_theme_mode' ) ) {
         
         echo '<h5>' . __( 'Step 1: Include the plugin & turn on theme mode.', 'option-tree' ) . '</h5>';
         echo '<ul class="docs-ul">';
-          echo '<li>'. __( 'Download the latest version of <a href="http://wordpress.org/extend/plugins/option-tree/" rel="nofollow" target="_blank">OptionTree</a>.', 'option-tree' ) . '</li>';
-          echo '<li>' . __( 'Unpack the ZIP archive.', 'option-tree' ) . '</li>';
-          echo '<li>' . __( 'Put the <code>option-tree</code> directory in the root of your theme. For example, the server path would be <code>/wp-content/themes/theme-name/option-tree/</code>.', 'option-tree' ) . '</li>';
-          echo '<li>' . __( 'Add the following code to the beginning of your <code>functions.php</code>.', 'option-tree' ) . '</li>';
+          echo '<li>' . sprintf( __( 'Download the latest version of %s and unarchive the %s directory.', 'option-tree' ), '<a href="http://wordpress.org/extend/plugins/option-tree/" rel="nofollow" target="_blank">' . __( 'OptionTree', 'option-tree' ) . '</a>', '<code>.zip</code>' ) . '</li>';
+          echo '<li>' . sprintf( __( 'Put the %s directory in the root of your theme. For example, the server path would be %s.', 'option-tree' ), '<code>option-tree</code>', '<code>/wp-content/themes/theme-name/option-tree/</code>' ) . '</li>';
+          echo '<li>' . sprintf( __( 'Add the following code to the beginning of your %s.', 'option-tree' ), '<code>functions.php</code>' ) . '</li>';
         echo '</ul>';
         
         echo '<pre><code>/**
- * Optional: set \'ot_show_pages\' filter to false.
- * This will hide the settings & documentation pages.
- */
-add_filter( \'ot_show_pages\', \'__return_false\' );
-
-/**
- * Optional: set \'ot_show_new_layout\' filter to false.
- * This will hide the "New Layout" section on the Theme Options page.
- */
-add_filter( \'ot_show_new_layout\', \'__return_false\' );
-
-/**
  * Required: set \'ot_theme_mode\' filter to true.
  */
 add_filter( \'ot_theme_mode\', \'__return_true\' );
@@ -813,7 +807,9 @@ add_filter( \'ot_theme_mode\', \'__return_true\' );
 load_template( trailingslashit( get_template_directory() ) . \'option-tree/ot-loader.php\' );
 </code></pre>';
         
-        echo '<p class="aside">' . __( 'It\'s that simple! You now have OptionTree built into your theme and anytime there\'s an update to the plugin you just replace the old version and you\'re good to go..', 'option-tree' ) . '</p>';
+        echo '<p>' . sprintf( __( 'For a list of all the OptionTree UI display filters refer to the %s file found in the %s directory of this plugin. This file is the starting point for developing themes with Theme Mode.', 'option-tree' ), '<code>demo-functions.php</code>', '<code>/assets/theme-mode/</code>' ) . '</p>';
+        
+        echo '<p class="aside">' . __( 'You now have OptionTree built into your theme and anytime an update is available replace the old version with the new one.', 'option-tree' ) . '</p>';
         
         echo '<h5>' . __( 'Step 2: Create Theme Options without using the UI Builder.', 'option-tree' ) . '</h5>';
         echo '<ul class="docs-ul">';
