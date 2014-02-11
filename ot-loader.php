@@ -265,7 +265,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
        * Run a filter and set to true if you want OptionTree 
        * to load meta boxes for post formats.
        *
-       * @since     2.3.0
+       * @since     2.4.0
        */
       define( 'OT_POST_FORMATS', apply_filters( 'ot_post_formats', false ) );
       
