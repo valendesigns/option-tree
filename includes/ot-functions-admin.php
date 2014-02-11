@@ -4327,7 +4327,8 @@ function ot_meta_box_post_format_gallery( $pages = 'post' ) {
         'label'       => '',
         'desc'        => '',
         'std'         => '',
-        'type'        => 'gallery'
+        'type'        => 'gallery',
+        'class'       => 'ot-gallery-shortcode'
       )
   	)
   ), $pages );

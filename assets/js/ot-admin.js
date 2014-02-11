@@ -671,6 +671,7 @@
           , ids = library.pluck('id')
           , parent = $(elm).parents('.format-setting-inner')
           , input = parent.children('.ot-gallery-value')
+          , shortcode = wp.media.gallery.shortcode( selection ).string()
         
         input.attr('value', ids)
                         
@@ -682,11 +683,13 @@
           url: ajaxurl,
           dataType: 'html',
           data: {
-            action: 'gallery_update',
-            ids: ids
+            action: 'gallery_update'
+          , ids: ids
           },
           success: function(res) {
             parent.children('.ot-gallery-list').html(res)
+            if ( input.hasClass('ot-gallery-shortcode') )
+              input.val(shortcode.replace(/\"/g,"'"))
             if ( $(elm).parent().children('.ot-gallery-delete').length <= 0 ) {
               $(elm).parent().append('<a href="#" class="option-tree-ui-button button button-secondary hug-left ot-gallery-delete">' + option_tree.delete + '</a>')
             }
