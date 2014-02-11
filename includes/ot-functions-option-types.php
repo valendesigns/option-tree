@@ -752,16 +752,19 @@ if ( ! function_exists( 'ot_type_gallery' ) ) {
         // Search the string for the IDs
         preg_match( '/ids=\'(.*?)\'/', $field_value, $matches );
         
-        // Found the IDs in the string
+        // Turn the field value into an array of IDs
+        
         if ( isset( $matches[1] ) ) {
-
+          
+          // Found the IDs in the shortcode
           $ids = explode( ',', $matches[1] );
           
-        }
-        
-        // Turn the field value into an array of IDs
-        if ( ! isset( $ids ) )
+        } else {
+          
+          // The string is only IDs
           $ids = ! empty( $field_value ) && $field_value != '' ? explode( ',', $field_value ) : array();
+          
+        }
 
         // Has attachment IDs
         if ( ! empty( $ids ) ) {
