@@ -685,7 +685,7 @@
           },
           success: function(res) {
             parent.children('.ot-gallery-list').html(res)
-            if ( input.hasClass('ot-gallery-shortcode') )
+            if ( input.hasClass('ot-gallery-shortcode') ) 
               input.val(shortcode)
             if ( $(elm).parent().children('.ot-gallery-delete').length <= 0 ) {
               $(elm).parent().append('<a href="#" class="option-tree-ui-button button button-secondary hug-left ot-gallery-delete">' + option_tree.delete + '</a>')
@@ -718,6 +718,12 @@
       
       if ( _.isUndefined( shortcode.get('id') ) && ! _.isUndefined( defaultPostId ) )
         shortcode.set( 'id', defaultPostId )
+      
+      if ( _.isUndefined( shortcode.get('ids') ) && ! input.hasClass('ot-gallery-shortcode') && ids )
+        shortcode.set( 'ids', ids )
+      
+      if ( _.isUndefined( shortcode.get('ids') ) )
+        shortcode.set( 'ids', '0' )
       
       attachments = wp.media.gallery.attachments( shortcode )
 
