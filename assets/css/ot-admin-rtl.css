@@ -10,8 +10,10 @@
   :: OptionTree Wrappers
   ---------------------------------------------------*/
 #option-tree-settings-api > .ui-tabs {
-  background: #fff url(../images/ot-menu-bg-rtl.png) repeat-y right 0;
   margin: 0px 2px 0 5px;
+  -webkit-box-shadow: inset -146px 0 0 #f1f1f1, inset -147px 0 0 #ccc, 0 1px 3px rgba(0,0,0,0.05);
+     -moz-box-shadow: inset -146px 0 0 #f1f1f1, inset -147px 0 0 #ccc, 0 1px 3px rgba(0,0,0,0.05);
+          box-shadow: inset -146px 0 0 #f1f1f1, inset -147px 0 0 #ccc, 0 1px 3px rgba(0,0,0,0.05);
 }
 
 /* -------------------------------------------------- 
@@ -30,14 +32,104 @@
   padding: 3px 13px 3px 12px;
 }
 #option-tree-header li#option-tree-logo:hover {
-  -webkit-border-top-right-radius: 5px;
-  -moz-border-radius-topright: 5px;
-  border-top-right-radius: 5px;
+  -webkit-border-top-right-radius: 2px;
+      -moz-border-radius-topright: 2px;
+          border-top-right-radius: 2px;
 }
-#option-tree-header #option-tree-version span {
+#option-tree-header #option-tree-version span,
+#option-tree-header #theme-version span {
   border-left: 0;
   border-right: 1px solid #555;
   float: left;
+}
+#option-tree-header #theme-version:before {
+  border-right: 0;
+  border-left: 1px solid #333;
+  float: right;
+}
+/* light */
+.admin-color-light #option-tree-header #option-tree-logo a,
+.admin-color-light #option-tree-header #theme-version:before {
+  border-left-color: #3c3c3c;
+}
+.admin-color-light #option-tree-header li#option-tree-logo:hover a {
+  border-left-color: #3c3c3c;
+}
+.admin-color-light #option-tree-header #option-tree-version span,
+.admin-color-light #option-tree-header #theme-version span {
+  border-right-color: #999;
+}
+/* blue */
+.admin-color-blue #option-tree-header #option-tree-logo a,
+.admin-color-blue #option-tree-header #theme-version:before {
+  border-left-color: #002b39;
+}
+.admin-color-blue #option-tree-header li#option-tree-logo:hover a {
+  border-left-color: #002b39;
+}
+.admin-color-blue #option-tree-header #option-tree-version span,
+.admin-color-blue #option-tree-header #theme-version span {
+  border-right-color: #5dc2e6;
+}
+/* coffee */
+.admin-color-coffee #option-tree-header #option-tree-logo a,
+.admin-color-coffee #option-tree-header #theme-version:before {
+  border-left-color: #0f0e0d;
+}
+.admin-color-coffee #option-tree-header li#option-tree-logo:hover a {
+  border-left-color: #0f0e0d;
+}
+.admin-color-coffee #option-tree-header #option-tree-version span,
+.admin-color-coffee #option-tree-header #theme-version span {
+  border-right-color: #675f58;
+}
+/* ectoplasm */
+.admin-color-ectoplasm #option-tree-header #option-tree-logo a,
+.admin-color-ectoplasm #option-tree-header #theme-version:before {
+  border-left-color: #181220;
+}
+.admin-color-ectoplasm #option-tree-header li#option-tree-logo:hover a {
+  border-left-color: #181220;
+}
+.admin-color-ectoplasm #option-tree-header #option-tree-version span,
+.admin-color-ectoplasm #option-tree-header #theme-version span {
+  border-right-color: #644d85;
+}
+/* midnight */
+.admin-color-midnight #option-tree-header #option-tree-logo a,
+.admin-color-midnight #option-tree-header #theme-version:before {
+  border-left-color: #090a0b;
+}
+.admin-color-midnight #option-tree-header li#option-tree-logo:hover a {
+  border-left-color: #090a0b;
+}
+.admin-color-midnight #option-tree-header #option-tree-version span,
+.admin-color-midnight #option-tree-header #theme-version span {
+  border-right-color: #4c5359;
+}
+/* ocean */
+.admin-color-ocean #option-tree-header #option-tree-logo a,
+.admin-color-ocean #option-tree-header #theme-version:before {
+  border-left-color: #39464a;
+}
+.admin-color-ocean #option-tree-header li#option-tree-logo:hover a {
+  border-left-color: #39464a;
+}
+.admin-color-ocean #option-tree-header #option-tree-version span,
+.admin-color-ocean #option-tree-header #theme-version span {
+  border-right-color: #87a6af;
+}
+/* sunrise */
+.admin-color-sunrise #option-tree-header #option-tree-logo a,
+.admin-color-sunrise #option-tree-header #theme-version:before {
+  border-left-color: #8a322a;
+}
+.admin-color-sunrise #option-tree-header li#option-tree-logo:hover a {
+  border-left-color: #8a322a;
+}
+.admin-color-sunrise #option-tree-header #option-tree-version span,
+.admin-color-sunrise #option-tree-header #theme-version span {
+  border-right-color: #e75546;
 }
 
 /* -------------------------------------------------- 
@@ -51,18 +143,15 @@
   :: Tabs
   ---------------------------------------------------*/
 .wrap.settings-wrap .ui-tabs-nav { 
-  background: url(../images/ot-menu-top-bg.png) no-repeat left top;
   float: right; 
   margin: 0 -4px 0 0;
 }
 .wrap.settings-wrap .ui-tabs-nav li { 
   border-left-width: 0;
   border-right-width: 1px;
-  -webkit-border-radius: 0 3px 3px 0;
-   -khtml-border-radius: 0 3px 3px 0;
-     -moz-border-radius: 0 3px 3px 0;
-       -o-border-radius: 0 3px 3px 0;
-          border-radius: 0 3px 3px 0; 
+  -webkit-border-radius: 0 2px 2px 0;
+     -moz-border-radius: 0 2px 2px 0;
+          border-radius: 0 2px 2px 0; 
 }
 .wrap.settings-wrap .ui-tabs-nav li a {
   padding: 5px 12px 5px 5px; 
@@ -145,19 +234,13 @@ div.option-tree-ui-media-wrap {
 .option-tree-setting .open {
   padding: 10px 10px 10px 100px;
 }
-.option-tree-setting .open:hover {
-   background-position: 98% 15px;
+.option-tree-setting .open:hover:before {
+  left: auto;
+  right: 4px;
 }
 .button-section {
   right: auto;
   left: 0px;
-}
-.format-setting .ui-sortable-helper .option-tree-setting .open {
-  background-position: 98% 15px;
-}
-.option-tree-setting.is-section .open:hover,
-.format-setting .ui-sortable-helper .option-tree-setting.is-section .open {
-  background-position: 98% 15px;
 }
 
 /* -------------------------------------------------- 
@@ -189,7 +272,7 @@ div.option-tree-ui-media-wrap {
   padding: 10px 0 10px 10px;
 }
 .button.save-layout {
-  margin: 0 5px 0 0 !important;
+  margin: 0 10px 0 0 !important;
 }
 
 /* -------------------------------------------------- 
@@ -309,9 +392,9 @@ div.option-tree-ui-media-wrap {
 .option-tree-ui-button.left-item {
   float: right !important;
   margin: 5px 5px 5px 0;
-  -webkit-border-radius: 0px 3px 3px 0px;
-  -moz-border-radius: 0px 3px 3px 0px;
-  border-radius: 0px 3px 3px 0px;
+  -webkit-border-radius: 0px 2px 2px 0px;
+     -moz-border-radius: 0px 2px 2px 0px;
+          border-radius: 0px 2px 2px 0px;
 }
 .option-tree-ui-button.center-item {
   margin: 5px -1px 5px 0;
@@ -319,9 +402,9 @@ div.option-tree-ui-media-wrap {
 .option-tree-ui-button.right-item {
   float: left !important;
   margin: 5px -1px 5px 5px;
-  -webkit-border-radius: 3px 0px 0px 3px;
-  -moz-border-radius: 3px 0px 0px 3px;
-  border-radius: 3px 0px 0px 3px;
+  -webkit-border-radius: 2px 0px 0px 2px;
+     -moz-border-radius: 2px 0px 0px 2px;
+          border-radius: 2px 0px 0px 2px;
 }
 .option-tree-ui-buttons {
   margin: 11px 2px 0 5px;
@@ -469,9 +552,9 @@ ul.ot-gallery-list li {
 }
 .ot-metabox-tabs.ui-tabs .ot-metabox-nav.ui-tabs-nav li {
   border-width: 1px 1px 1px 0px;
-  -webkit-border-radius: 0 0 3px 3px;
-  -moz-border-radius: 0 0 3px 3px;
-  border-radius: 0 0 3px 3px;
+  -webkit-border-radius: 0 0 2px 2px;
+     -moz-border-radius: 0 0 2px 2px;
+          border-radius: 0 0 2px 2px;
 }
 .ot-metabox-tabs.ui-tabs .ot-metabox-nav.ui-tabs-nav li a {
   padding: 5px 12px 5px 5px;

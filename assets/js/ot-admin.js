@@ -314,7 +314,7 @@
         $.each( conditions, function( index, condition ) {
 
           var target   = $( '#setting_' + condition.check );
-          var targetEl = !! target.length && target.find( 'select, input[type="radio"]:checked, input.ot-numeric-slider-hidden-input' ).first();
+          var targetEl = !! target.length && target.find( 'select, input[type="radio"]:checked, input[type="text"], input[type="hidden"], input.ot-numeric-slider-hidden-input' ).first();
 
           if ( ! target.length || ( ! targetEl.length && condition.value.toString() != '' ) ) {
             return;
@@ -375,10 +375,10 @@
       });
     },
     init_conditions: function() {
-      $( document ).on( 'change.conditionals', '.format-settings[id^="setting_"] select, .format-settings[id^="setting_"] input[type="radio"]:checked, .format-settings[id^="setting_"] input.ot-numeric-slider-hidden-input', function( e ) {
+      $( document ).on( 'change.conditionals', '.format-settings[id^="setting_"] select, .format-settings[id^="setting_"] input[type="radio"]:checked, .format-settings[id^="setting_"] input[type="text"], .format-settings[id^="setting_"] input[type="hidden"], .format-settings[id^="setting_"] input.ot-numeric-slider-hidden-input', function( e ) {
         OT_UI.parse_condition();
       });
-      $(OT_UI.parse_condition());
+      OT_UI.parse_condition();
     },
     init_upload: function() {
       $(document).on('click', '.ot_upload_media', function() {
@@ -499,7 +499,7 @@
             hidden.add(helper).val(ui.value);
           },
           change: function() {
-            $(OT_UI.init_conditions());
+            OT_UI.init_conditions();
           }
         });
       });
@@ -691,6 +691,7 @@
               $(elm).parent().append('<a href="#" class="option-tree-ui-button button button-secondary hug-left ot-gallery-delete">' + option_tree.delete + '</a>')
             }
             $(elm).text(option_tree.edit)
+            OT_UI.init_conditions()
           }
         })
       })
@@ -746,11 +747,12 @@
   , remove: function (elm) {
       
       if ( confirm( option_tree.confirm ) ) {
-
-        $(elm).parents('.format-setting-inner').children('.ot-gallery-value').attr('value', ' ')
+        
+        $(elm).parents('.format-setting-inner').children('.ot-gallery-value').attr('value', '')
         $(elm).parents('.format-setting-inner').children('.ot-gallery-list').remove()
         $(elm).next('.ot-gallery-edit').text( option_tree.create )
         $(elm).remove()
+        OT_UI.init_conditions()
         
       }
 

@@ -195,11 +195,11 @@ if ( ! function_exists( 'ot_type_background' ) ) {
             if ( is_array( $choices ) && ! empty( $choices ) ) {
             
               /* build select */
-              echo '<select name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
+              echo '<select name="' . esc_attr( $field_name ) . '[background-size]" id="' . esc_attr( $field_id ) . '-size" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
               
                 foreach ( (array) $choices as $choice ) {
                   if ( isset( $choice['value'] ) && isset( $choice['label'] ) ) {
-                    echo '<option value="' . esc_attr( $choice['value'] ) . '"' . selected( $field_value, $choice['value'], false ) . '>' . esc_attr( $choice['label'] ) . '</option>';
+                    echo '<option value="' . esc_attr( $choice['value'] ) . '"' . selected( $field_value['background-size'], $choice['value'], false ) . '>' . esc_attr( $choice['label'] ) . '</option>';
                   }
                 }
         
@@ -224,7 +224,7 @@ if ( ! function_exists( 'ot_type_background' ) ) {
             echo '<input type="text" name="' . esc_attr( $field_name ) . '[background-image]" id="' . esc_attr( $field_id ) . '" value="' . ( isset( $field_value['background-image'] ) ? esc_attr( $field_value['background-image'] ) : '' ) . '" class="widefat option-tree-ui-upload-input ' . esc_attr( $field_class ) . '" />';
             
             /* add media button */
-            echo '<a href="javascript:void(0);" class="ot_upload_media option-tree-ui-button button button-primary blue light" rel="' . $post_id . '" title="' . __( 'Add Media', 'option-tree' ) . '"><span class="icon ot-icon-plus-sign"></span>' . __( 'Add Media', 'option-tree' ) . '</a>';
+            echo '<a href="javascript:void(0);" class="ot_upload_media option-tree-ui-button button button-primary light" rel="' . $post_id . '" title="' . __( 'Add Media', 'option-tree' ) . '"><span class="icon ot-icon-plus-sign"></span>' . __( 'Add Media', 'option-tree' ) . '</a>';
           
           echo '</div>';
           
@@ -1414,6 +1414,9 @@ if ( ! function_exists( 'ot_type_radio_image' ) ) {
           
           $src = str_replace( 'OT_URL', OT_URL, $choice['src'] );
           $src = str_replace( 'OT_THEME_URL', OT_THEME_URL, $src );
+          
+          /* make radio image source filterable */
+          $src = apply_filters( 'ot_type_radio_image_src', $src, $field_id );
           
           echo '<div class="option-tree-ui-radio-images">';
             echo '<p style="display:none"><input type="radio" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '-' . esc_attr( $key ) . '" value="' . esc_attr( $choice['value'] ) . '"' . checked( $field_value, $choice['value'], false ) . ' class="option-tree-ui-radio option-tree-ui-images" /><label for="' . esc_attr( $field_id ) . '-' . esc_attr( $key ) . '">' . esc_attr( $choice['label'] ) . '</label></p>';
