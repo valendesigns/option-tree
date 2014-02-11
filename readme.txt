@@ -106,6 +106,10 @@ There sure is, and I'm glad you asked. Download and activate the [OptionTree The
 
 == Changelog ==
 
+= 2.3.1 =
+* Hotfix - Fixed a bug with the Gallery option type that would show attachments in the media window when none had been added yet.
+* Hotfix - Added the option to save the Gallery as a shortcode by adding `ot-gallery-shortcode` to the elements `class` attribute.
+
 = 2.3.0 =
 * Added the Tab option type.
 * Added Ace Editor to the CSS option type. Contributors via github @imangm and @valendesigns.
