@@ -749,8 +749,21 @@ if ( ! function_exists( 'ot_type_gallery' ) ) {
         // Saved values
         echo '<input type="hidden" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" value="' . esc_attr( $field_value ) . '" class="ot-gallery-value ' . esc_attr( $field_class ) . '" />';
         
+        // Search the string for the IDs
+        preg_match( '/ids=\'(.*?)\'/', $field_value, $matches );
+        
         // Turn the field value into an array of IDs
-        $ids = ! empty( $field_value ) && $field_value != '' ? explode( ',', $field_value ) : array();
+        if ( isset( $matches[1] ) ) {
+          
+          // The string is a shortcode
+          $ids = explode( ',', $matches[1] );
+          
+        } else {
+          
+          // The string is a comma separated list of IDs
+          $ids = ! empty( $field_value ) && $field_value != '' ? explode( ',', $field_value ) : array();
+          
+        }
 
         // Has attachment IDs
         if ( ! empty( $ids ) ) {
