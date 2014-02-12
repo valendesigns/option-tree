@@ -753,7 +753,6 @@ if ( ! function_exists( 'ot_type_gallery' ) ) {
         preg_match( '/ids=\'(.*?)\'/', $field_value, $matches );
         
         // Turn the field value into an array of IDs
-        
         if ( isset( $matches[1] ) ) {
           
           // Found the IDs in the shortcode
