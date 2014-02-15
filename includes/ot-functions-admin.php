@@ -2040,6 +2040,8 @@ if ( ! function_exists( 'ot_alert_message' ) ) {
     $message = isset( $_REQUEST['message'] ) ? $_REQUEST['message'] : '';
     $updated = isset( $_REQUEST['settings-updated'] ) ? $_REQUEST['settings-updated'] : '';
     
+    do_action( 'ot_before_page_messages' );
+    
     if ( $action == 'save-settings' ) {
     
       if ( $message == 'success' ) {
