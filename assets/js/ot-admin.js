@@ -244,6 +244,7 @@
               OT_UI.init_sortable();
               OT_UI.init_select_wrapper();
               OT_UI.init_numeric_slider();
+              OT_UI.parse_condition();
             }, 500);
             self.processing = false;
           }
