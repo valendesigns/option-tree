@@ -109,6 +109,7 @@ There sure is, and I'm glad you asked. Download and activate the [OptionTree The
 = 2.3.1 =
 * Hotfix - Fixed a bug with the Gallery option type that would show attachments in the media window when none had been added yet.
 * Hotfix - Added the option to save the Gallery as a shortcode by adding `ot-gallery-shortcode` to the elements `class` attribute.
+* Hotfix - Fixed conditions not being effective in List Items directly after clicking "Add New". Contributors via github @bitcommit.
 
 = 2.3.0 =
 * Added the Tab option type.
