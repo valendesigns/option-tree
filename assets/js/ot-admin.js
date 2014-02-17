@@ -244,6 +244,7 @@
               OT_UI.init_sortable();
               OT_UI.init_select_wrapper();
               OT_UI.init_numeric_slider();
+              OT_UI.parse_condition();
             }, 500);
             self.processing = false;
           }
@@ -643,15 +644,12 @@
   });
 })(jQuery);
 
-/* Gallery*/
+/* Gallery */
 !function ($) {
   
   ot_gallery = {
       
     frame: function (elm) {
-
-      if ( this._frame )
-        return this._frame
       
       var selection = this.select(elm)
       
@@ -671,6 +669,7 @@
           , ids = library.pluck('id')
           , parent = $(elm).parents('.format-setting-inner')
           , input = parent.children('.ot-gallery-value')
+          , shortcode = wp.media.gallery.shortcode( selection ).string().replace(/\"/g,"'")
         
         input.attr('value', ids)
                         
@@ -682,11 +681,13 @@
           url: ajaxurl,
           dataType: 'html',
           data: {
-            action: 'gallery_update',
-            ids: ids
+            action: 'gallery_update'
+          , ids: ids
           },
           success: function(res) {
             parent.children('.ot-gallery-list').html(res)
+            if ( input.hasClass('ot-gallery-shortcode') ) 
+              input.val(shortcode)
             if ( $(elm).parent().children('.ot-gallery-delete').length <= 0 ) {
               $(elm).parent().append('<a href="#" class="option-tree-ui-button button button-secondary hug-left ot-gallery-delete">' + option_tree.delete + '</a>')
             }
@@ -701,9 +702,10 @@
     }
       
   , select: function (elm) {
-      var ids = $(elm).parents('.format-setting-inner').children('.ot-gallery-value').attr('value')
-        , fakeShortcode = '[gallery ids="' + ids + '"]'
-        , shortcode = wp.shortcode.next('gallery', ( ids ? fakeShortcode : wp.media.view.settings.ot_gallery.shortcode ) )
+      var input = $(elm).parents('.format-setting-inner').children('.ot-gallery-value')
+        , ids = input.attr('value')
+        , _shortcode = input.hasClass('ot-gallery-shortcode') ? ids : '[gallery ids=\'' + ids + '\]'
+        , shortcode = wp.shortcode.next('gallery', ( ids ? _shortcode : wp.media.view.settings.ot_gallery.shortcode ) )
         , defaultPostId = wp.media.gallery.defaults.id
         , attachments
         , selection
@@ -717,6 +719,12 @@
       
       if ( _.isUndefined( shortcode.get('id') ) && ! _.isUndefined( defaultPostId ) )
         shortcode.set( 'id', defaultPostId )
+      
+      if ( _.isUndefined( shortcode.get('ids') ) && ! input.hasClass('ot-gallery-shortcode') && ids )
+        shortcode.set( 'ids', ids )
+      
+      if ( _.isUndefined( shortcode.get('ids') ) )
+        shortcode.set( 'ids', '0' )
       
       attachments = wp.media.gallery.attachments( shortcode )
 

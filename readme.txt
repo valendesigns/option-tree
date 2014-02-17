@@ -4,17 +4,26 @@ Donate link: http://bit.ly/NuXI3T
 Tags: options, theme options, meta boxes
 Requires at least: 3.5
 Tested up to: 3.8.1
-Stable tag: 2.3.0
+Stable tag: 2.3.1
 License: GPLv3
 
 Theme Options UI Builder for WordPress. A simple way to create & save Theme Options and Meta Boxes for free or premium themes.
 
 == Description ==
 
-OptionTree attempts to bridge the gap between WordPress developers, designers and end-users by creating fully responsive option panels and meta boxes with an ease unlike any other plugin. Packed full of advanced features with tons of hooks, and filters to adjust every aspect of the UX. Build your theme options with a drag & drop interface locally and export a fully functioning `theme-options.php` file for production use that's i18n translation ready with you own custom text domain. And, in just a few simple lines of code, all your themes can have separate settings arrays saved to the database with unique IDs. Not only that, but OptionTree takes full advantage of the new color schemes introduced in WordPress 3.8 and looks and feels built-in.
+OptionTree attempts to bridge the gap between WordPress developers, designers and end-users by creating fully responsive option panels and meta boxes with an ease unlike any other plugin. Packed full of advanced features with tons of hooks and filters to adjust every aspect of the user experience. You can build your theme options with a drag & drop interface locally and export a fully functioning `theme-options.php` file for production use that's i18n translation ready with you own custom text domain. And, in just a few simple lines of code, all your themes can have separate settings arrays saved to the database with unique IDs. Not only that, but OptionTree takes full advantage of the new color schemes introduced in WordPress 3.8, it looks and feels built-in.
+
+#### Theme Integration
+If you're like me, you want to know how everything works. Download and activate the [OptionTree Theme](https://github.com/valendesigns/option-tree-theme) and see first hand how to integrate OptionTree into your own project. I'll walk you through installing OptionTree and you'll get a chance to see all the various options and filters first hand and in the wild.
+
+#### Contributing
+To contribute or report bugs, please go to the [OptionTree Github](https://github.com/valendesigns/option-tree) repository.
+
+#### Sponsorship
+OptionTree is a project partly sponsored by <a href="http://themeforest.net/?ref=valendesigns">ThemeForest</a>, the largest WordPress theme marketplace on the web.
 
 #### Option Types
-This is a complete list of all the available option types that come shipped with OptionTree. If you don't see the one you need, just know that adding your own custom option type is a breeze.
+This is a complete list of all the available option types that come shipped with OptionTree.
 
 * Background
 * Category Checkbox
@@ -52,15 +61,6 @@ This is a complete list of all the available option types that come shipped with
 * Textblock Titled
 * Typography
 * Upload
-
-#### Learn More
-If you're like me, you want to know how everything works. Download and activate the [OptionTree Theme](https://github.com/valendesigns/option-tree-theme) and see first hand how to integrate OptionTree into your own project. I'll walk you through installing OptionTree and you'll get a chance to see all the various options and filters first hand and in the wild.
-
-#### Contributing
-To contribute or report bugs, please go to the [OptionTree Github](https://github.com/valendesigns/option-tree) repository.
-
-#### Sponsorship
-OptionTree is a project partly sponsored by <a href="http://themeforest.net/?ref=valendesigns">ThemeForest</a>, the largest WordPress theme marketplace on the web.
 
 == Installation ==
 
@@ -105,6 +105,11 @@ There sure is, and I'm glad you asked. Download and activate the [OptionTree The
 3. Documentation
 
 == Changelog ==
+
+= 2.3.1 =
+* Hotfix - Fixed a bug with the Gallery option type that would show attachments in the media window when none had been added yet.
+* Hotfix - Added the option to save the Gallery as a shortcode by adding `ot-gallery-shortcode` to the elements `class` attribute.
+* Hotfix - Fixed conditions not being effective in List Items directly after clicking "Add New". Contributors via github @bitcommit.
 
 = 2.3.0 =
 * Added the Tab option type.
