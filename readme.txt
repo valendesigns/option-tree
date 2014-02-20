@@ -4,7 +4,7 @@ Donate link: http://bit.ly/NuXI3T
 Tags: options, theme options, meta boxes
 Requires at least: 3.5
 Tested up to: 3.8.1
-Stable tag: 2.3.1
+Stable tag: 2.3.2
 License: GPLv3
 
 Theme Options UI Builder for WordPress. A simple way to create & save Theme Options and Meta Boxes for free or premium themes.
@@ -105,6 +105,9 @@ There sure is, and I'm glad you asked. Download and activate the [OptionTree The
 3. Documentation
 
 == Changelog ==
+
+= 2.3.2 =
+* Hotfix - Fixed an issue with the `ot_create_media_post` function creating multiple `option-tree` posts.
 
 = 2.3.1 =
 * Hotfix - Fixed a bug with the Gallery option type that would show attachments in the media window when none had been added yet.
