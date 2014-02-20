@@ -705,6 +705,7 @@ if ( ! function_exists( 'ot_create_media_post' ) ) {
       /* create post object */
       $_p = array();
       $_p['post_title']     = 'Media';
+      $_p['post_name']      = 'media';
       $_p['post_status']    = 'private';
       $_p['post_type']      = 'option-tree';
       $_p['comment_status'] = 'closed';
