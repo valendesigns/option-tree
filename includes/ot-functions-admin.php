@@ -2036,7 +2036,7 @@ if ( ! function_exists( 'ot_alert_message' ) ) {
     if ( empty( $page ) )
       return false;
     
-    $before = apply_filters( 'ot_before_page_messages', $page );
+    $before = apply_filters( 'ot_before_page_messages', '', $page );
     
     if ( $before ) {
       return $before;
