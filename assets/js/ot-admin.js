@@ -556,7 +556,7 @@
       $('#'+field_id).datepicker({
         showOtherMonths: true,
         showButtonPanel: true,
-	dateFormat: option_tree.date_format,
+        dateFormat: option_tree.date_format,
         currentText: option_tree.date_current,
         closeText: option_tree.date_close
       });
@@ -564,7 +564,7 @@
     bind_date_time_picker: function(field_id) {
       $('#'+field_id).datetimepicker({
         showOtherMonths: true,
-	dateFormat: option_tree.date_format,
+        dateFormat: option_tree.date_format,
         closeText: option_tree.date_close
       });
     },
