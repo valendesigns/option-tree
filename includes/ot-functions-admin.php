@@ -633,6 +633,7 @@ if ( ! function_exists( 'ot_admin_scripts' ) ) {
       'confirm'               => __( 'Are you sure you want to delete this Gallery?', 'option-tree' ),
       'date_current'          => __( 'Today', 'option-tree' ),
       'date_time_current'     => __( 'Now', 'option-tree' ),
+      'date_format'           => apply_filters( 'ot_date_format', 'mm/dd/yy' ),
       'date_close'            => __( 'Close', 'option-tree' )
     );
     
