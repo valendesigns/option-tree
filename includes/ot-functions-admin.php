@@ -467,7 +467,7 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
       $input['background-image'] = ot_validate_setting( $input['background-image'], 'upload', $field_id );
       
       // Loop over array and check for values
-      foreach( $input as $key => $value ) {
+      foreach( (array) $input as $key => $value ) {
         if ( ! empty( $value ) ) {
           $has_value = true;
         }
