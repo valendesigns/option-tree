@@ -467,7 +467,7 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
       $input['background-image'] = ot_validate_setting( $input['background-image'], 'upload', $field_id );
       
       // Loop over array and check for values
-      foreach( $input as $key => $value ) {
+      foreach( (array) $input as $key => $value ) {
         if ( ! empty( $value ) ) {
           $has_value = true;
         }
@@ -703,6 +703,7 @@ if ( ! function_exists( 'ot_create_media_post' ) ) {
       /* create post object */
       $_p = array();
       $_p['post_title']     = 'Media';
+      $_p['post_name']      = 'media';
       $_p['post_status']    = 'private';
       $_p['post_type']      = 'option-tree';
       $_p['comment_status'] = 'closed';
@@ -3630,16 +3631,16 @@ if ( ! function_exists( 'ot_contextual_help_view' ) ) {
  * @access    public
  * @since     2.0
  */
-if ( ! function_exists( 'ot_layouts_view' ) ) {
+if ( ! function_exists( 'ot_layout_view' ) ) {
 
   function ot_layout_view( $key, $data = '', $active_layout = '' ) {
-  
+
     return '
     <div class="option-tree-setting">
       <div class="open">' . ( isset( $key ) ? esc_attr( $key ) : __( 'Layout', 'option-tree' ) ) . '</div>
       <div class="button-section">
         <a href="javascript:void(0);" class="option-tree-layout-activate option-tree-ui-button button left-item' . ( $active_layout == $key ? ' active' : '' ) . '" title="' . __( 'Activate', 'option-tree' ) . '">
-          <span class="icon ot-icon-pencil"></span>' . __( 'Activate', 'option-tree' ) . '
+          <span class="icon ot-icon-check-empty"></span>' . __( 'Activate', 'option-tree' ) . '
         </a>
         <a href="javascript:void(0);" class="option-tree-setting-remove option-tree-ui-button button button-secondary light right-item" title="'. __( 'Delete', 'option-tree' ) . '">
           <span class="icon ot-icon-trash"></span>' . __( 'Delete', 'option-tree' ) . '
