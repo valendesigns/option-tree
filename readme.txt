@@ -110,6 +110,8 @@ There sure is, and I'm glad you asked. Download and activate the [OptionTree The
 * Hotfix - Fixed an issue with the `ot_create_media_post` function creating multiple `option-tree` posts.
 * Hotfix - Change the icon used by the layout management option type to differentiate it from the edit button.
 * Hotfix - Suppress PHP warning in the Background option type "Invalid argument supplied for foreach()". Contributors via github @tomkwok.
+* Hotfix - Added filter `ot_type_date_picker_date_format` to change the date format of the Date Picker option type.
+* Hotfix - Added filter `ot_type_date_time_picker_date_format` to change the date format of the Date Time Picker option type.
 
 = 2.3.1 =
 * Hotfix - Fixed a bug with the Gallery option type that would show attachments in the media window when none had been added yet.
