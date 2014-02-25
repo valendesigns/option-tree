@@ -15,7 +15,7 @@ function custom_theme_options() {
   /**
    * Get a copy of the saved settings array. 
    */
-  $saved_settings = get_option( 'option_tree_settings', array() );
+  $saved_settings = get_option( ot_settings_id(), array() );
   
   /**
    * Custom settings array that will eventually be 
@@ -215,6 +215,21 @@ function custom_theme_options() {
         'taxonomy'    => '',
         'min_max_step'=> '',
         'class'       => '',
+        'condition'   => '',
+        'operator'    => 'and'
+      ),
+      array(
+        'id'          => 'demo_gallery_shortcode',
+        'label'       => __( 'Gallery Shortcode', 'theme-text-domain' ),
+        'desc'        => sprintf( __( 'The Gallery option type can also be saved as a shortcode by adding %s to the class attribute. Using the Gallery option type in this manner will result in a better user experience as you\'re able to save the link, column, and order settings.', 'theme-text-domain' ), '<code>ot-gallery-shortcode</code>' ),
+        'std'         => '',
+        'type'        => 'gallery',
+        'section'     => 'option_types',
+        'rows'        => '',
+        'post_type'   => '',
+        'taxonomy'    => '',
+        'min_max_step'=> '',
+        'class'       => 'ot-gallery-shortcode',
         'condition'   => '',
         'operator'    => 'and'
       ),
@@ -622,11 +637,11 @@ function custom_theme_options() {
   );
   
   /* allow settings to be filtered before saving */
-  $custom_settings = apply_filters( 'option_tree_settings_args', $custom_settings );
+  $custom_settings = apply_filters( ot_settings_id() . '_args', $custom_settings );
   
   /* settings are not the same update the DB */
   if ( $saved_settings !== $custom_settings ) {
-    update_option( 'option_tree_settings', $custom_settings ); 
+    update_option( ot_settings_id(), $custom_settings ); 
   }
   
 }

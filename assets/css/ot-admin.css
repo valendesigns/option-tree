@@ -2049,6 +2049,15 @@ li ul .format-setting-label {
 .option-tree-layout-activate {
   text-indent: -9999px;
 }
+.option-tree-layout-activate .icon:before {
+  content: "\e686";
+  position: relative;
+  top: 1px;
+}
+.option-tree-layout-activate.active .icon:before {
+  content: "\e640";
+  padding-left: 1px;
+}
 
 /* -------------------------------------------------- 
   :: Select
