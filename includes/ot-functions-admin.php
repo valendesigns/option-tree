@@ -3634,13 +3634,13 @@ if ( ! function_exists( 'ot_contextual_help_view' ) ) {
 if ( ! function_exists( 'ot_layout_view' ) ) {
 
   function ot_layout_view( $key, $data = '', $active_layout = '' ) {
-  
+
     return '
     <div class="option-tree-setting">
       <div class="open">' . ( isset( $key ) ? esc_attr( $key ) : __( 'Layout', 'option-tree' ) ) . '</div>
       <div class="button-section">
         <a href="javascript:void(0);" class="option-tree-layout-activate option-tree-ui-button button left-item' . ( $active_layout == $key ? ' active' : '' ) . '" title="' . __( 'Activate', 'option-tree' ) . '">
-          <span class="icon ot-icon-pencil"></span>' . __( 'Activate', 'option-tree' ) . '
+          <span class="icon ot-icon-check-empty"></span>' . __( 'Activate', 'option-tree' ) . '
         </a>
         <a href="javascript:void(0);" class="option-tree-setting-remove option-tree-ui-button button button-secondary light right-item" title="'. __( 'Delete', 'option-tree' ) . '">
           <span class="icon ot-icon-trash"></span>' . __( 'Delete', 'option-tree' ) . '
