@@ -3631,7 +3631,7 @@ if ( ! function_exists( 'ot_contextual_help_view' ) ) {
  * @access    public
  * @since     2.0
  */
-if ( ! function_exists( 'ot_layouts_view' ) ) {
+if ( ! function_exists( 'ot_layout_view' ) ) {
 
   function ot_layout_view( $key, $data = '', $active_layout = '' ) {
   
