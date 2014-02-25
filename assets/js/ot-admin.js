@@ -552,18 +552,20 @@
     bind_colorpicker: function(field_id) {
       $('#'+field_id).wpColorPicker();
     },
-    bind_date_picker: function(field_id) {
+    bind_date_picker: function(field_id, date_format) {
       $('#'+field_id).datepicker({
         showOtherMonths: true,
         showButtonPanel: true,
         currentText: option_tree.date_current,
-        closeText: option_tree.date_close
+        closeText: option_tree.date_close,
+        dateFormat: date_format
       });
     },
-    bind_date_time_picker: function(field_id) {
+    bind_date_time_picker: function(field_id, date_format) {
       $('#'+field_id).datetimepicker({
         showOtherMonths: true,
-        closeText: option_tree.date_close
+        closeText: option_tree.date_close,
+        dateFormat: date_format
       });
     },
     fix_upload_parent: function() {

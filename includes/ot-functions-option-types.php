@@ -644,11 +644,14 @@ if ( ! function_exists( 'ot_type_date_picker' ) ) {
     /* verify a description */
     $has_desc = $field_desc ? true : false;
     
+    /* filter date format */
+    $date_format = apply_filters( 'ot_type_date_picker_date_format', 'yy-mm-dd', $field_id );
+    
     /* format setting outer wrapper */
     echo '<div class="format-setting type-date-picker ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
     
     /* date picker JS */      
-    echo '<script>jQuery(document).ready(function($) { OT_UI.bind_date_picker("' . esc_attr( $field_id ) . '"); });</script>';      
+    echo '<script>jQuery(document).ready(function($) { OT_UI.bind_date_picker("' . esc_attr( $field_id ) . '", "' . esc_attr( $date_format ) . '"); });</script>';      
       
       /* description */
       echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
@@ -688,11 +691,14 @@ if ( ! function_exists( 'ot_type_date_time_picker' ) ) {
     /* verify a description */
     $has_desc = $field_desc ? true : false;
     
+    /* filter date format */
+    $date_format = apply_filters( 'ot_type_date_time_picker_date_format', 'yy-mm-dd', $field_id );
+    
     /* format setting outer wrapper */
     echo '<div class="format-setting type-date-time-picker ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
     
     /* date time picker JS */      
-    echo '<script>jQuery(document).ready(function($) { OT_UI.bind_date_time_picker("' . esc_attr( $field_id ) . '"); });</script>';      
+    echo '<script>jQuery(document).ready(function($) { OT_UI.bind_date_time_picker("' . esc_attr( $field_id ) . '", "' . esc_attr( $date_format ) . '"); });</script>';      
       
       /* description */
       echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
