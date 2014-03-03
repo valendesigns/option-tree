@@ -106,6 +106,9 @@ There sure is, and I'm glad you asked. Download and activate the [OptionTree The
 
 == Changelog ==
 
+= 2.3.3 =
+* Hotfix - Fixed missing text domain in demo files. Contributors via github @jetonr.
+
 = 2.3.2 =
 * Hotfix - Fixed an issue with the `ot_create_media_post` function creating multiple `option-tree` posts.
 * Hotfix - Change the icon used by the layout management option type to differentiate it from the edit button.
