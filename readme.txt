@@ -107,6 +107,7 @@ There sure is, and I'm glad you asked. Download and activate the [OptionTree The
 == Changelog ==
 
 = 2.3.3 =
+* Hotfix - Fixed subfolder compatibility with versions of Windows that use backslashes instead of forward slashes. Contributors via github @primozcigler and @valendesigns.
 * Hotfix - Fixed missing text domain in demo files. Contributors via github @jetonr.
 * Hotfix - Added filter `ot_migrate_settings_id` to migrate themes that used `option_tree_settings` and now use a custom settings ID.
 * Hotfix - Added filter `ot_migrate_options_id` to migrate themes that used `option_tree` and now use a custom options ID.
