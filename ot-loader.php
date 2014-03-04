@@ -382,13 +382,16 @@ if ( ! class_exists( 'OT_Loader' ) ) {
     private function hooks() {
       
       // Attempt to migrate the settings
-      add_action( 'init', 'ot_maybe_migrate_settings', 1 );
+      if ( function_exists( 'ot_maybe_migrate_settings' ) )
+        add_action( 'init', 'ot_maybe_migrate_settings', 1 );
       
       // Attempt to migrate the Options
-      add_action( 'init', 'ot_maybe_migrate_options', 1 );
+      if ( function_exists( 'ot_maybe_migrate_options' ) )
+        add_action( 'init', 'ot_maybe_migrate_options', 1 );
       
       // Attempt to migrate the Layouts
-      add_action( 'init', 'ot_maybe_migrate_layouts', 1 );
+      if ( function_exists( 'ot_maybe_migrate_layouts' ) )
+        add_action( 'init', 'ot_maybe_migrate_layouts', 1 );
 
       /* load the Meta Box assets */
       if ( OT_META_BOXES == true ) {
