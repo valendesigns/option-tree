@@ -4294,5 +4294,99 @@ function ot_wpml_unregister_string( $id ) {
   
 }
 
+/**
+ * Maybe migrate Settings
+ *
+ * @return    void
+ *
+ * @access    public
+ * @since     2.3.3
+ */
+if ( ! function_exists( 'ot_maybe_migrate_settings' ) ) {
+
+  function ot_maybe_migrate_settings() {
+    
+    // Filter the ID to migrate from
+    $settings_id = apply_filters( 'ot_migrate_settings_id', '' );
+    
+    // Attempt to migrate Settings 
+    if ( ! empty( $settings_id ) && get_option( ot_settings_id() ) === false && ot_settings_id() !== $settings_id ) {
+      
+      // Old settings
+      $settings = get_option( $settings_id );
+      
+      // Check for array keys
+      if ( isset( $settings['sections'] ) && isset( $settings['settings'] ) ) {
+      
+        update_option( ot_settings_id(), $settings );
+        
+      }
+      
+    }
+
+  }
+  
+}
+
+/**
+ * Maybe migrate Option
+ *
+ * @return    void
+ *
+ * @access    public
+ * @since     2.3.3
+ */
+if ( ! function_exists( 'ot_maybe_migrate_options' ) ) {
+
+  function ot_maybe_migrate_options() {
+    
+    // Filter the ID to migrate from
+    $options_id = apply_filters( 'ot_migrate_options_id', '' );
+    
+    // Attempt to migrate Theme Options
+    if ( ! empty( $options_id ) && get_option( ot_options_id() ) === false && ot_options_id() !== $options_id ) {
+      
+      // Old options
+      $options = get_option( $options_id );
+      
+      // Migrate to new ID
+      update_option( ot_options_id(), $options );
+      
+    }
+
+  }
+  
+}
+
+/**
+ * Maybe migrate Layouts
+ *
+ * @return    void
+ *
+ * @access    public
+ * @since     2.3.3
+ */
+if ( ! function_exists( 'ot_maybe_migrate_layouts' ) ) {
+
+  function ot_maybe_migrate_layouts() {
+    
+    // Filter the ID to migrate from
+    $layouts_id = apply_filters( 'ot_migrate_layouts_id', '' );
+    
+    // Attempt to migrate Layouts
+    if ( ! empty( $layouts_id ) && get_option( ot_layouts_id() ) === false && ot_layouts_id() !== $layouts_id ) {
+      
+      // Old options
+      $layouts = get_option( $layouts_id );
+      
+      // Migrate to new ID
+      update_option( ot_layouts_id(), $layouts );
+      
+    }
+
+  }
+  
+}
+
 /* End of file ot-functions-admin.php */
 /* Location: ./includes/ot-functions-admin.php */

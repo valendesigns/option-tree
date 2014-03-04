@@ -380,6 +380,15 @@ if ( ! class_exists( 'OT_Loader' ) ) {
      * @since     2.0
      */
     private function hooks() {
+      
+      // Attempt to migrate the settings
+      add_action( 'init', 'ot_maybe_migrate_settings', 1 );
+      
+      // Attempt to migrate the Options
+      add_action( 'init', 'ot_maybe_migrate_options', 1 );
+      
+      // Attempt to migrate the Layouts
+      add_action( 'init', 'ot_maybe_migrate_layouts', 1 );
 
       /* load the Meta Box assets */
       if ( OT_META_BOXES == true ) {
