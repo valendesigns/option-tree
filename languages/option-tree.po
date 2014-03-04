@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OptionTree\n"
-"POT-Creation-Date: 2014-02-25 02:29-0800\n"
-"PO-Revision-Date: 2014-02-25 02:29-0800\n"
+"POT-Creation-Date: 2014-03-04 13:11-0800\n"
+"PO-Revision-Date: 2014-03-04 13:11-0800\n"
 "Last-Translator: Derek Herman <derek@valendesigns.com>\n"
 "Language-Team: Valen Designs\n"
 "Language: English\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../ot-loader.php:685 ../assets/theme-mode/demo-theme-options.php:624
+#: ../ot-loader.php:697 ../assets/theme-mode/demo-theme-options.php:624
 #: ../includes/ot-functions-admin.php:623
 #: ../includes/ot-functions-docs-page.php:371
 #: ../includes/ot-functions-settings-page.php:170
@@ -47,7 +47,7 @@ msgstr ""
 
 #: ../assets/theme-mode/demo-meta-boxes.php:50
 #: ../assets/theme-mode/demo-theme-options.php:208
-#: ../includes/ot-functions-admin.php:4326
+#: ../includes/ot-functions-admin.php:4420
 #: ../includes/ot-functions-docs-page.php:156
 msgid "Gallery"
 msgstr ""
@@ -904,7 +904,7 @@ msgstr ""
 
 #: ../includes/ot-functions-admin.php:2748
 #: ../includes/ot-functions-admin.php:2804
-#: ../includes/ot-functions-admin.php:4366
+#: ../includes/ot-functions-admin.php:4460
 msgid "Link"
 msgstr ""
 
@@ -1108,39 +1108,39 @@ msgstr ""
 msgid "New Layout"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:4375
+#: ../includes/ot-functions-admin.php:4469
 msgid "Link URL"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:4382
+#: ../includes/ot-functions-admin.php:4476
 msgid "Link Title"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:4412
+#: ../includes/ot-functions-admin.php:4506
 msgid "Quote"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:4421
+#: ../includes/ot-functions-admin.php:4515
 msgid "Source Name (ex. author, singer, actor)"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:4428
+#: ../includes/ot-functions-admin.php:4522
 msgid "Source URL"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:4435
+#: ../includes/ot-functions-admin.php:4529
 msgid "Source Title (ex. book, song, movie)"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:4442
+#: ../includes/ot-functions-admin.php:4536
 msgid "Source Date"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:4472
+#: ../includes/ot-functions-admin.php:4566
 msgid "Video"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:4481
+#: ../includes/ot-functions-admin.php:4575
 #, php-format
 msgid ""
 "Embed video from services like Youtube, Vimeo, or Hulu. You can find a list "
@@ -1148,16 +1148,16 @@ msgid ""
 "built-in %2$s shortcode."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:4481
-#: ../includes/ot-functions-admin.php:4520
+#: ../includes/ot-functions-admin.php:4575
+#: ../includes/ot-functions-admin.php:4614
 msgid "Wordpress Codex"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:4511
+#: ../includes/ot-functions-admin.php:4605
 msgid "Audio"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:4520
+#: ../includes/ot-functions-admin.php:4614
 #, php-format
 msgid ""
 "Embed audio from services like SoundCloud and Rdio. You can find a list of "

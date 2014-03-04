@@ -68,7 +68,7 @@ function custom_meta_boxes() {
         'label'       => __( 'Textarea', 'theme-text-domain' ),
         'id'          => 'demo_textarea',
         'type'        => 'textarea',
-        'desc'        => __( 'This is a demo Textarea field.' )
+        'desc'        => __( 'This is a demo Textarea field.', 'theme-text-domain' )
       )
     )
   );
