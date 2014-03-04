@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OptionTree\n"
-"POT-Creation-Date: 2014-02-25 02:23-0800\n"
-"PO-Revision-Date: 2014-02-25 02:23-0800\n"
+"POT-Creation-Date: 2014-03-03 18:29-0800\n"
+"PO-Revision-Date: 2014-03-03 18:29-0800\n"
 "Last-Translator: Derek Herman <derek@valendesigns.com>\n"
 "Language-Team: Valen Designs\n"
 "Language: English\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../ot-loader.php:670 ../assets/theme-mode/demo-theme-options.php:624
+#: ../ot-loader.php:682 ../assets/theme-mode/demo-theme-options.php:624
 #: ../includes/ot-functions-admin.php:623
 #: ../includes/ot-functions-docs-page.php:371
 #: ../includes/ot-functions-settings-page.php:170

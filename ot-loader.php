@@ -3,7 +3,7 @@
  * Plugin Name: OptionTree
  * Plugin URI:  http://wp.envato.com
  * Description: Theme Options UI Builder for WordPress. A simple way to create & save Theme Options and Meta Boxes for free or premium themes.
- * Version:     2.3.2
+ * Version:     2.3.3
  * Author:      Derek Herman
  * Author URI:  http://valendesigns.com
  * License:     GPLv3
@@ -142,7 +142,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       /**
        * Current Version number.
        */
-      define( 'OT_VERSION', '2.3.2' );
+      define( 'OT_VERSION', '2.3.3' );
       
       /**
        * For developers: Theme mode.
@@ -273,11 +273,11 @@ if ( ! class_exists( 'OT_Loader' ) ) {
         define( 'OT_URL', plugin_dir_url( __FILE__ ) );
       } else {
         if ( true == OT_CHILD_THEME_MODE ) {
-          $path = ltrim( end( @explode( end( @explode( '/', get_stylesheet_directory() ) ), dirname( __FILE__ ) ) ), '/' );
+          $path = ltrim( end( @explode( get_stylesheet(), str_replace( '\\', '/', dirname( __FILE__ ) ) ) ), '/' );
           define( 'OT_DIR', trailingslashit( trailingslashit( get_stylesheet_directory() ) . $path ) );
           define( 'OT_URL', trailingslashit( trailingslashit( get_stylesheet_directory_uri() ) . $path ) );
         } else {
-          $path = ltrim( end( @explode( end( @explode( '/', get_template_directory() ) ), dirname( __FILE__ ) ) ), '/' );
+          $path = ltrim( end( @explode( get_template(), str_replace( '\\', '/', dirname( __FILE__ ) ) ) ), '/' );
           define( 'OT_DIR', trailingslashit( trailingslashit( get_template_directory() ) . $path ) );
           define( 'OT_URL', trailingslashit( trailingslashit( get_template_directory_uri() ) . $path ) );
         }
@@ -380,6 +380,18 @@ if ( ! class_exists( 'OT_Loader' ) ) {
      * @since     2.0
      */
     private function hooks() {
+      
+      // Attempt to migrate the settings
+      if ( function_exists( 'ot_maybe_migrate_settings' ) )
+        add_action( 'init', 'ot_maybe_migrate_settings', 1 );
+      
+      // Attempt to migrate the Options
+      if ( function_exists( 'ot_maybe_migrate_options' ) )
+        add_action( 'init', 'ot_maybe_migrate_options', 1 );
+      
+      // Attempt to migrate the Layouts
+      if ( function_exists( 'ot_maybe_migrate_layouts' ) )
+        add_action( 'init', 'ot_maybe_migrate_layouts', 1 );
 
       /* load the Meta Box assets */
       if ( OT_META_BOXES == true ) {
