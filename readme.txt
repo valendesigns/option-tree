@@ -106,6 +106,9 @@ There sure is, and I'm glad you asked. Download and activate the [OptionTree The
 
 == Changelog ==
 
+= 2.3.4 =
+* Hotfix - Fixed an issue where condition number values were being treated like strings and not returning a correct boolean response.
+
 = 2.3.3 =
 * Hotfix - Fixed subfolder compatibility with versions of Windows that use backslashes instead of forward slashes. Contributors via github @primozcigler and @valendesigns.
 * Hotfix - Fixed missing text domain in demo files. Contributors via github @jetonr.
