@@ -950,7 +950,7 @@ if ( ! function_exists( 'ot_type_measurement' ) ) {
  * @access    public
  * @since     2.1
  */
-if( ! function_exists( 'ot_type_numeric_slider' ) ) {
+if ( ! function_exists( 'ot_type_numeric_slider' ) ) {
 
   function ot_type_numeric_slider( $args = array() ) {
     

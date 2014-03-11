@@ -327,16 +327,16 @@
 
           switch ( condition.rule ) {
             case 'less_than':
-              result = ( v1 < v2 );
+              result = ( parseInt( v1 ) < parseInt( v2 ) );
               break;
             case 'less_than_or_equal_to':
-              result = ( v1 <= v2 );
+              result = ( parseInt( v1 ) <= parseInt( v2 ) );
               break;
             case 'greater_than':
-              result = ( v1 > v2 );
+              result = ( parseInt( v1 ) > parseInt( v2 ) );
               break;
             case 'greater_than_or_equal_to':
-              result = ( v1 >= v2 );
+              result = ( parseInt( v1 ) >= parseInt( v2 ) );
               break;
             case 'contains':
               result = ( v2.indexOf(v1) !== -1 ? true : false );
