@@ -4,7 +4,7 @@ Donate link: http://bit.ly/NuXI3T
 Tags: options, theme options, meta boxes
 Requires at least: 3.5
 Tested up to: 3.8.1
-Stable tag: 2.3.3
+Stable tag: 2.3.4
 License: GPLv3
 
 Theme Options UI Builder for WordPress. A simple way to create & save Theme Options and Meta Boxes for free or premium themes.
@@ -105,6 +105,9 @@ There sure is, and I'm glad you asked. Download and activate the [OptionTree The
 3. Documentation
 
 == Changelog ==
+
+= 2.3.4 =
+* Hotfix - Fixed an issue where condition number values were being treated like strings and not returning a correct boolean response.
 
 = 2.3.3 =
 * Hotfix - Fixed subfolder compatibility with versions of Windows that use backslashes instead of forward slashes. Contributors via github @primozcigler and @valendesigns.
