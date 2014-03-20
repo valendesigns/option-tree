@@ -3784,6 +3784,8 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
           
         /* option label */
         echo '<div id="setting_' . $_args['field_id'] . '" class="format-settings"' . $conditions . '>';
+
+          echo '<div class="format-setting-wrap">';
           
         /* don't show title with textblocks */
         if ( $_args['type'] != 'textblock' && ! empty( $field['label'] ) ) {
@@ -3800,6 +3802,8 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
         if ( $_args['type'] !== 'list-item' && $_args['type'] !== 'slider' ) {
           echo ot_display_by_type( $_args );
         }
+
+          echo '</div>';
         
         echo '</div>';
       
