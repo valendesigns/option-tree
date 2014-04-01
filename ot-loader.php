@@ -91,11 +91,11 @@ if ( ! class_exists( 'OT_Loader' ) ) {
     
       if ( OT_PLUGIN_MODE ) {
       
-        load_plugin_textdomain( 'option-tree', false, OT_LANG_DIR );
+        load_plugin_textdomain( 'option-tree', false, realpath( OT_LANG_DIR ) );
         
       } else {
       
-        load_theme_textdomain( 'option-tree', DIRECTORY_SEPARATOR . OT_LANG_DIR . 'theme-mode' );
+        load_theme_textdomain( 'option-tree', realpath( OT_LANG_DIR . 'theme-mode' ) );
         
       }
       
