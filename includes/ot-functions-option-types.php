@@ -1473,7 +1473,7 @@ if ( ! function_exists( 'ot_type_select' ) ) {
     $has_desc = $field_desc ? true : false;
     
     /* filter for dynamic select options */
-    $field_choices = (array) apply_filters( 'ot_field_choices_' . $field_id, $field_choices );
+    $field_choices = (array) apply_filters( 'ot_select_choices_' . $field_id, $field_choices );
     
     /* format setting outer wrapper */
     echo '<div class="format-setting type-select ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
