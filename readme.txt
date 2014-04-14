@@ -76,15 +76,17 @@ This is a complete list of all the available option types that come shipped with
 1. Put the `option-tree` directory in the root of your theme. For example, the server path would be `/wp-content/themes/theme-name/option-tree/`.
 1. Add the following code to the beginning of your `functions.php`.
 
-`/**
- * Required: set 'ot_theme_mode' filter to true.
- */
-add_filter( 'ot_theme_mode', '__return_true' );
-
-/**
- * Required: include OptionTree.
- */
-load_template( trailingslashit( get_template_directory() ) . 'option-tree/ot-loader.php' );`
+`if (!class_exists('OT_Loader')) {
+  /**
+   * Required: set 'ot_theme_mode' filter to true.
+   */
+  add_filter( 'ot_theme_mode', '__return_true' );
+  
+  /**
+   * Required: include OptionTree.
+   */
+  load_template( trailingslashit( get_template_directory() ) . 'option-tree/ot-loader.php' );
+}`
 
 For a list of all the OptionTree UI display filters refer to the `demo-functions.php` file found in the `/assets/theme-mode/` directory of this plugin. This file is the starting point for developing themes with Theme Mode.
 
