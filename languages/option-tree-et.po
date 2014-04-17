@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OptionTree\n"
 "POT-Creation-Date: 2014-04-16 15:38+0200\n"
-"PO-Revision-Date: 2014-04-16 16:45+0200\n"
-"Last-Translator: Tanel Jüris <tanel.juris@marketingsharks.ee>\n"
+"PO-Revision-Date: 2014-04-17 09:24+0200\n"
+"Last-Translator: Risto Niinemets <risto@konekt.ee>\n"
 "Language-Team: Valen Designs\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
@@ -36,7 +36,7 @@ msgstr "Näitab galeriid kui määratud asendisse %s"
 
 #: ../assets/theme-mode/demo-meta-boxes.php:45
 msgid "Congratulations, you created a gallery!"
-msgstr "Õnnitlused, loosite just galerii!"
+msgstr "Õnnitlused, lõite just galerii!"
 
 #: ../assets/theme-mode/demo-meta-boxes.php:50
 #: ../assets/theme-mode/demo-theme-options.php:208
@@ -757,7 +757,7 @@ msgstr "Koodinäited"
 
 #: ../includes/ot-functions-admin.php:240
 msgid "Layouts Overview"
-msgstr ""
+msgstr "Paigutuste ülevaade"
 
 #: ../includes/ot-functions-admin.php:246
 msgid "Overview of available Theme Option fields."
@@ -910,9 +910,8 @@ msgid "Layout activated."
 msgstr "Paigutus on aktiveeritud."
 
 #: ../includes/ot-functions-admin.php:2150
-#, fuzzy
 msgid "Color Picker"
-msgstr "Värvivalik"
+msgstr "Värvi valija"
 
 #: ../includes/ot-functions-admin.php:2169
 #: ../includes/ot-functions-docs-page.php:248
@@ -1534,7 +1533,7 @@ msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:509
 msgid "String Examples"
-msgstr ""
+msgstr "<em>String-i</em> näited"
 
 #: ../includes/ot-functions-docs-page.php:511
 msgid "Returns the value of <code>test_input</code>."
@@ -1548,7 +1547,7 @@ msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:523
 msgid "Array Examples"
-msgstr ""
+msgstr "<em>Array</em> näited"
 
 #: ../includes/ot-functions-docs-page.php:525
 msgid ""
@@ -1643,7 +1642,7 @@ msgstr ""
 #: ../includes/ot-functions-docs-page.php:645
 #: ../includes/ot-functions-docs-page.php:673
 msgid "Edit Layout Data"
-msgstr ""
+msgstr "Muuda paigutuse andmeid"
 
 #: ../includes/ot-functions-docs-page.php:647
 #: ../includes/ot-functions-docs-page.php:657
@@ -1698,7 +1697,7 @@ msgstr "Mine <code>Välimus->Teema valikud</code> sakile."
 #: ../includes/ot-functions-docs-page.php:706
 #: ../includes/ot-functions-docs-page.php:788
 msgid "How-to-guide"
-msgstr ""
+msgstr "Õpetus"
 
 #: ../includes/ot-functions-docs-page.php:708
 msgid ""
@@ -2065,7 +2064,7 @@ msgstr ""
 
 #: ../includes/ot-functions-settings-page.php:323
 msgid "Import Layouts"
-msgstr ""
+msgstr "Impordi paigutused"
 
 #: ../includes/ot-functions-settings-page.php:366
 #, php-format
@@ -2079,7 +2078,7 @@ msgstr ""
 
 #: ../includes/ot-functions-settings-page.php:375
 msgid "Export Settings File"
-msgstr ""
+msgstr "Ekspordi seadete fail"
 
 #: ../includes/ot-functions-settings-page.php:405
 msgid ""
