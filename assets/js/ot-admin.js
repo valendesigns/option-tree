@@ -385,6 +385,7 @@
       $(document).on('click', '.ot_upload_media', function() {
         var field_id    = $(this).parent('.option-tree-ui-upload-parent').find('input').attr('id'),
             post_id     = $(this).attr('rel'),
+            save_attachment_id = $(this).data('saveAttachmentId'),
             btnContent  = '';
         if ( window.wp && wp.media ) {
           window.ot_media_frame = window.ot_media_frame || new wp.media.view.MediaFrame.Select({
@@ -397,13 +398,14 @@
           window.ot_media_frame.on('select', function() {
             var attachment = window.ot_media_frame.state().get('selection').first(), 
                 href = attachment.attributes.url, 
+                attachment_id = attachment.attributes.id,
                 mime = attachment.attributes.mime,
                 regex = /^image\/(?:jpe?g|png|gif|x-icon)$/i;
             if ( mime.match(regex) ) {
               btnContent += '<div class="option-tree-ui-image-wrap"><img src="'+href+'" alt="" /></div>';
             }
             btnContent += '<a href="javascript:(void);" class="option-tree-ui-remove-media option-tree-ui-button button button-secondary light" title="'+option_tree.remove_media_text+'"><span class="icon ot-icon-minus-sign"></span>'+option_tree.remove_media_text+'</a>';
-            $('#'+field_id).val(href);
+            $('#'+field_id).val(save_attachment_id ? attachment_id : href);
             $('#'+field_id+'_media').remove();
             $('#'+field_id).parent().parent('div').append('<div class="option-tree-ui-media-wrap" id="'+field_id+'_media" />');
             $('#'+field_id+'_media').append(btnContent).slideDown();

@@ -3671,7 +3671,6 @@ if ( ! function_exists( 'ot_layout_view' ) ) {
 if ( ! function_exists( 'ot_list_item_view' ) ) {
 
   function ot_list_item_view( $name, $key, $list_item = array(), $post_id = 0, $get_option = '', $settings = array(), $type = '' ) {
-    
     /* required title setting */
     $required_setting = array(
       array(
@@ -3758,6 +3757,7 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
           'field_operator'    => isset( $field['operator'] ) ? $field['operator'] : 'and',
           'field_choices'     => isset( $field['choices'] ) && ! empty( $field['choices'] ) ? $field['choices'] : array(),
           'field_settings'    => isset( $field['settings'] ) && ! empty( $field['settings'] ) ? $field['settings'] : array(),
+          'field_params'      => isset( $field['params'] ) && ! empty( $field['params'] ) ? $field['params'] : array(),
           'post_id'           => $post_id,
           'get_option'        => $get_option
         );
