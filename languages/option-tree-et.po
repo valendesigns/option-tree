@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OptionTree\n"
 "POT-Creation-Date: 2014-04-16 15:38+0200\n"
-"PO-Revision-Date: 2014-04-17 16:02+0200\n"
+"PO-Revision-Date: 2014-04-30 16:44+0200\n"
 "Last-Translator: Tanel Jüris <tanel.juris@marketingsharks.ee>\n"
 "Language-Team: Valen Designs\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.4\n"
+"X-Generator: Poedit 1.6.5\n"
 "X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
 "_n_noop:1,2;_c;_nc:4c,1,2;_x:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_ex:1,2c;"
 "esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
@@ -188,6 +188,8 @@ msgid ""
 "The Colorpicker option type saves a hexadecimal color code for use in CSS. "
 "Use it to modify the color of something in your theme."
 msgstr ""
+"Värvi valija valikutüüp salvestab värvikoodi kuueteistkümnendiksüsteemis, "
+"mida saab kasutada CSS-is. Kasuta seda millegi värvi muutmiseks enda teemas."
 
 #: ../assets/theme-mode/demo-theme-options.php:131
 #: ../includes/ot-functions-admin.php:2151
@@ -208,6 +210,14 @@ msgid ""
 "starting point is %s. When the server can save to the file, CSS will "
 "automatically be updated when you save your Theme Options."
 msgstr ""
+"CSS valikutüüp on tekstiväli, mille õigel kasutamisel saab teemale lisada "
+"dünaamiliselt genereeritud CSS-i OptionTree kaudu. Serveri piirangute tõttu "
+"peate selleks looma teema juurkausta faili nimega %s ning muutma õiguseid "
+"kasutades %s, et server saaks faili kirjutada. Mul on tulnud parimad "
+"tulemused siis, kui muutsin selle ainsa faili õiguste väärtuseks %s, kuid "
+"katsetage teisi variante, kuni kõik toimib nagu vaja. Hea alguspunkt on %s. "
+"Kui server saab edukalt faili salvestada. siis uuendatakse CSS automaatselt "
+"teema salvestamisel."
 
 #: ../assets/theme-mode/demo-theme-options.php:132
 #: ../includes/ot-functions-docs-page.php:128
@@ -471,7 +481,7 @@ msgstr ""
 #: ../includes/ot-functions-admin.php:2167
 #: ../includes/ot-functions-docs-page.php:241
 msgid "Select"
-msgstr "Valik"
+msgstr "Rippmenüü"
 
 #: ../assets/theme-mode/demo-theme-options.php:422
 #: ../includes/ot-functions-docs-page.php:242
@@ -479,6 +489,8 @@ msgid ""
 "The Select option type is used to list anything you want that would be "
 "chosen from a select list."
 msgstr ""
+"Rippmenüü valikutüüpi saab kasutada ükskõik mille loendamiseks, mida saab "
+"valida rippmenüüst."
 
 #: ../assets/theme-mode/demo-theme-options.php:436
 msgid "-- Choose One --"
@@ -599,6 +611,9 @@ msgid ""
 "The Textarea Simple option type is a large string value used for custom code "
 "or text in the theme. The Textarea Simple does not have a WYSIWYG editor."
 msgstr ""
+"Lihtsa tekstivälja valikutüüp on suur string-tüüpi väärtus teemas oleva "
+"kohandatud koodi või teksti jaoks. Lihtsal tekstiväljal ei ole WYSIWYG "
+"toimetajat."
 
 #: ../assets/theme-mode/demo-theme-options.php:578
 #: ../includes/ot-functions-admin.php:2178
@@ -675,6 +690,12 @@ msgid ""
 "the old URI will not reflect the URI of your new site. You will have to re-"
 "upload or %s any media to your new server and change the URIs if necessary."
 msgstr ""
+"Üleslaadimise valikutüüp kasutatakse suvalise Wordpressi toetatava meedia "
+"üles laadimiseks. Peale üleslaadimist peab kasutaja vajutama \"%s\" nuppu, "
+"et täita sisend selle meediaelemendi URI-ga. Selle omadusega kaasneb üks "
+"probleem - kui importida teema valikuid teistsuguse aadressiga veebilehelt, "
+"siis URI-d automaatselt ei uuene. Meediafailid tuleb kas uuesti üles laadida "
+"või %s, vajadusel muutes URI-sid."
 
 #: ../assets/theme-mode/demo-theme-options.php:624
 #: ../includes/ot-functions-admin.php:623
@@ -1422,17 +1443,23 @@ msgid ""
 "type instead, as it's infinitely more customizable. Typical use is for "
 "creating sliding image content."
 msgstr ""
+"Tehniliselt on slaidiesitaja valikutüübi kasutamine taunitud. Kasutage parem "
+"nimekirja elemendi valikutüüpi, kuna see on lõpmatult kohandatav. Tüüpiline "
+"kasutusjuht on libisevate piltidega sisu jaoks."
 
 #: ../includes/ot-functions-docs-page.php:252
 msgid ""
 "The Tab option type will break a section or metabox into tabbed content."
 msgstr ""
+"Saki valikutüüp muudab sektsiooni või meta-kasti sakkidega sisuelemendiks."
 
 #: ../includes/ot-functions-docs-page.php:272
 msgid ""
 "Example filters to alter the Textarea option type. Added to <code>functions."
 "php</code>."
 msgstr ""
+"Näidisfiltrid, millega muuta tekstivälja valikutüüpi. Lisatakse "
+"<code>functions.php</code> faili."
 
 #: ../includes/ot-functions-docs-page.php:274
 msgid ""
@@ -1440,6 +1467,9 @@ msgid ""
 "on the line breaks. The default is <code>true</code> which means it wraps "
 "line breaks with an HTML <code>p</code> tag."
 msgstr ""
+"See näide takistab Wordpressil kasutada <code>wpautop</code> filtrit "
+"reavahetustel. Vaikeväärtus on <code>true</code>, mis tähendab, et "
+"reavahtused mähitakse HTML <code>p</code> elemendiga."
 
 #: ../includes/ot-functions-docs-page.php:287
 msgid ""
@@ -1447,6 +1477,9 @@ msgid ""
 "filter on the textarea WYSIWYG. The default is <code>true</code> which means "
 "show the buttons."
 msgstr ""
+"See näide takistab Wordpressil kasutada <code>media_buttons</code> filtrit "
+"tekstivälja WYSIWYG toimetajas. Vaikeväärtus on <code>true</code>, mis "
+"tähendab, et nuppe näidatakse."
 
 #: ../includes/ot-functions-docs-page.php:300
 msgid ""
@@ -1454,6 +1487,9 @@ msgid ""
 "on the textarea WYSIWYG. The default is <code>true</code> which means show "
 "the tinymce."
 msgstr ""
+"See näide takistab Wordpressil kasutada <code>tinymce</code> filtrit "
+"tekstivälja WYSIWYG toimetajas. Vaikeväärtus on <code>true</code>, mis "
+"tähendab, et tinymce on nähtaval."
 
 #: ../includes/ot-functions-docs-page.php:313
 msgid ""
@@ -1462,6 +1498,10 @@ msgid ""
 "ins,img,ul,ol,li,code,spell,close' )</code> which means show those "
 "quicktags. It also means you can filter in your own custom quicktags."
 msgstr ""
+"See näide muudab <code>quicktags</code> filtrit tekstivälja WYSIWYG "
+"toimetajas. Vaikeväärtus on <code>array('buttons' => 'strong,em,link,block,"
+"del,ins,img,ul,ol,li,code,spell,close')</code>, mis tähendab, et neid "
+"elemente näidatakse. Siitkaudu saad kaasata endale sobivaid elemente."
 
 #: ../includes/ot-functions-docs-page.php:331
 #, php-format
@@ -1470,12 +1510,17 @@ msgid ""
 "The default is %s which means it does not wraps line breaks with an HTML %s "
 "tag. Added to %s."
 msgstr ""
+"See näide ütleb Wordpressile, et reavahetuste korral kasutada %s filtrit. "
+"Vaikeväärtus on %s, mis tähendab, et reavahetusi ei mähita HTML %s "
+"elemendiga. Lisatakse %s faili."
 
 #: ../includes/ot-functions-docs-page.php:353
 msgid ""
 "This example would filter <code>ot_recognized_font_families</code> to build "
 "your own font stack. Added to <code>functions.php</code>."
 msgstr ""
+"See näide filtreerib <code>ot_recognized_font_families</code> loomaks enda "
+"fondipinu. Lisatakse <code>functions.php</code> faili."
 
 #: ../includes/ot-functions-docs-page.php:403
 msgid ""
@@ -1786,7 +1831,7 @@ msgstr ""
 msgid ""
 "Choose a layout from the select list and click the \"Activate Layout\" "
 "button."
-msgstr ""
+msgstr "Vali rippmenüüst paigutus ja vajuta \"Aktiveeri paigutus\" nuppu."
 
 #: ../includes/ot-functions-docs-page.php:670
 msgid "End-Users mode does not allow deleting layouts."
@@ -1826,10 +1871,13 @@ msgid ""
 "What this means in practical terms, is that you cannot put it in meta-boxes "
 "that can be dragged and placed elsewhere on the page."
 msgstr ""
+"Korra loodud WYSIWYG toimetajat ei saa DOM-is ringi liigutada. Praktikas "
+"tähendab see, et teda ei saa panna meta-kastidesse, mida on võimalik "
+"leheküljel ringi liigutada."
 
 #: ../includes/ot-functions-docs-page.php:714
 msgid "Create and include your custom meta boxes file."
-msgstr ""
+msgstr "Loo ja kaasa oma kohandatud meta kastide fail."
 
 #: ../includes/ot-functions-docs-page.php:716
 msgid ""
@@ -1996,6 +2044,8 @@ msgstr "Lisa uus"
 #: ../includes/ot-functions-option-types.php:1230
 msgid "You can re-order with drag & drop, the order will update after saving."
 msgstr ""
+"Lohistades saab elemente ümber paigutada. Järjekord uueneb peale "
+"salvestamist."
 
 #: ../includes/ot-functions-option-types.php:1028
 msgid "On"
@@ -2138,7 +2188,7 @@ msgstr "Impordi seaded"
 msgid ""
 "Only after you've imported the Settings should you try and update your Theme "
 "Options."
-msgstr ""
+msgstr "Enne teema valikute uuendamist impordi sätted."
 
 #: ../includes/ot-functions-settings-page.php:273
 msgid ""
@@ -2155,7 +2205,7 @@ msgstr "Impordi teema valikud"
 msgid ""
 "Only after you've imported the Settings should you try and update your "
 "Layouts."
-msgstr ""
+msgstr "Enne paigutuste uuendamist impordi sätted."
 
 #: ../includes/ot-functions-settings-page.php:320
 msgid ""
@@ -2215,12 +2265,17 @@ msgid ""
 "To add a new layout enter a unique lower case alphanumeric string (dashes "
 "allowed) in the text field and click \"Save Layouts\"."
 msgstr ""
+"Uue paigutuse lisamiseks sisestage tekstivälja unikaalne väiketähtedega "
+"alfanumbriline string ( sidekriipsud lubatud ) ning vajutage \"Salvesta "
+"paigutused\" nupul."
 
 #: ../includes/ot-functions-settings-page.php:520
 msgid ""
 "As well, you can activate, remove, and drag & drop the order; all situations "
 "require you to click \"Save Layouts\" for the changes to be applied."
 msgstr ""
+"Saate ka aktiveerida, eemaldada ning lohistades järjekorda muuta. Muudatused "
+"ei mõju enne, kui vajutate \"Salvesta paigutused\" nuppu."
 
 #: ../includes/ot-functions-settings-page.php:521
 msgid ""
@@ -2229,6 +2284,10 @@ msgid ""
 "layout immediately after creating a new layout that new layout will have a "
 "snapshot of the current Theme Options data attached to it."
 msgstr ""
+"Uue paigutuse loomisel muudetakse see aktiivseks ning edasised muudatused "
+"teema valikutes mõjuvad talle. Kui peale uue paigutuse loomist kohe mõne muu "
+"paigutuse peale vahetada, siis uue paigutuse külge jääb teema valikute "
+"andmete hetkeseis paigutuse loomisel."
 
 #: ../includes/ot-functions-settings-page.php:522
 msgid ""
