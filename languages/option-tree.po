@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OptionTree\n"
-"POT-Creation-Date: 2014-03-04 13:11-0800\n"
-"PO-Revision-Date: 2014-03-04 13:11-0800\n"
+"POT-Creation-Date: 2014-05-05 02:01-0800\n"
+"PO-Revision-Date: 2014-05-05 02:01-0800\n"
 "Last-Translator: Derek Herman <derek@valendesigns.com>\n"
 "Language-Team: Valen Designs\n"
 "Language: English\n"
@@ -47,6 +47,7 @@ msgstr ""
 
 #: ../assets/theme-mode/demo-meta-boxes.php:50
 #: ../assets/theme-mode/demo-theme-options.php:208
+#: ../includes/ot-functions-admin.php:2164
 #: ../includes/ot-functions-admin.php:4420
 #: ../includes/ot-functions-docs-page.php:156
 msgid "Gallery"
@@ -63,6 +64,7 @@ msgstr ""
 
 #: ../assets/theme-mode/demo-meta-boxes.php:62
 #: ../assets/theme-mode/demo-theme-options.php:533
+#: ../includes/ot-functions-admin.php:2183
 #: ../includes/ot-functions-docs-page.php:266
 msgid "Text"
 msgstr ""
@@ -73,6 +75,7 @@ msgstr ""
 
 #: ../assets/theme-mode/demo-meta-boxes.php:68
 #: ../assets/theme-mode/demo-theme-options.php:548
+#: ../includes/ot-functions-admin.php:2184
 #: ../includes/ot-functions-docs-page.php:269
 msgid "Textarea"
 msgstr ""
@@ -96,6 +99,7 @@ msgid "Sidebar content goes here!"
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:44
+#: ../includes/ot-functions-admin.php:2154
 #: ../includes/ot-functions-docs-page.php:110
 msgid "Background"
 msgstr ""
@@ -121,6 +125,7 @@ msgid "and"
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:59
+#: ../includes/ot-functions-admin.php:2155
 #: ../includes/ot-functions-docs-page.php:113
 msgid "Category Checkbox"
 msgstr ""
@@ -134,6 +139,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:74
+#: ../includes/ot-functions-admin.php:2156
 #: ../includes/ot-functions-docs-page.php:116
 msgid "Category Select"
 msgstr ""
@@ -147,6 +153,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:89
+#: ../includes/ot-functions-admin.php:2157
 #: ../includes/ot-functions-docs-page.php:119
 msgid "Checkbox"
 msgstr ""
@@ -184,6 +191,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:131
+#: ../includes/ot-functions-admin.php:2159
 #: ../includes/ot-functions-docs-page.php:125
 msgid "CSS"
 msgstr ""
@@ -212,6 +220,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:148
+#: ../includes/ot-functions-admin.php:2160
 #: ../includes/ot-functions-docs-page.php:144
 msgid "Custom Post Type Checkbox"
 msgstr ""
@@ -227,6 +236,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:163
+#: ../includes/ot-functions-admin.php:2161
 #: ../includes/ot-functions-docs-page.php:147
 msgid "Custom Post Type Select"
 msgstr ""
@@ -242,6 +252,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:178
+#: ../includes/ot-functions-admin.php:2162
 #: ../includes/ot-functions-docs-page.php:150
 msgid "Date Picker"
 msgstr ""
@@ -255,6 +266,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:193
+#: ../includes/ot-functions-admin.php:2163
 #: ../includes/ot-functions-docs-page.php:153
 msgid "Date Time Picker"
 msgstr ""
@@ -290,6 +302,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:238
+#: ../includes/ot-functions-admin.php:2165
 #: ../includes/ot-functions-docs-page.php:159
 msgid "List Item"
 msgstr ""
@@ -307,6 +320,7 @@ msgid "Content"
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:269
+#: ../includes/ot-functions-admin.php:2166
 #: ../includes/ot-functions-docs-page.php:162
 msgid "Measurement"
 msgstr ""
@@ -322,6 +336,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:284
+#: ../includes/ot-functions-admin.php:2167
 #: ../includes/ot-functions-docs-page.php:193
 msgid "Numeric Slider"
 msgstr ""
@@ -334,6 +349,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:299
+#: ../includes/ot-functions-admin.php:2168
 #: ../includes/ot-functions-docs-page.php:196
 msgid "On/Off"
 msgstr ""
@@ -347,6 +363,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:314
+#: ../includes/ot-functions-admin.php:2169
 #: ../includes/ot-functions-docs-page.php:199
 msgid "Page Checkbox"
 msgstr ""
@@ -359,6 +376,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:329
+#: ../includes/ot-functions-admin.php:2170
 #: ../includes/ot-functions-docs-page.php:202
 msgid "Page Select"
 msgstr ""
@@ -371,6 +389,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:344
+#: ../includes/ot-functions-admin.php:2171
 #: ../includes/ot-functions-docs-page.php:205
 msgid "Post Checkbox"
 msgstr ""
@@ -383,6 +402,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:359
+#: ../includes/ot-functions-admin.php:2172
 #: ../includes/ot-functions-docs-page.php:208
 msgid "Post Select"
 msgstr ""
@@ -395,6 +415,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:374
+#: ../includes/ot-functions-admin.php:2173
 #: ../includes/ot-functions-docs-page.php:211
 msgid "Radio"
 msgstr ""
@@ -413,6 +434,7 @@ msgid "Maybe"
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:406
+#: ../includes/ot-functions-admin.php:2174
 #: ../includes/ot-functions-docs-page.php:214
 msgid "Radio Image"
 msgstr ""
@@ -427,6 +449,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:421
+#: ../includes/ot-functions-admin.php:2175
 #: ../includes/ot-functions-docs-page.php:241
 msgid "Select"
 msgstr ""
@@ -443,6 +466,7 @@ msgid "-- Choose One --"
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:458
+#: ../includes/ot-functions-admin.php:2176
 #: ../includes/ot-functions-docs-page.php:244
 msgid "Sidebar Select"
 msgstr ""
@@ -468,6 +492,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:473
+#: ../includes/ot-functions-admin.php:2179
 #: ../includes/ot-functions-docs-page.php:254
 msgid "Tag Checkbox"
 msgstr ""
@@ -481,6 +506,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:488
+#: ../includes/ot-functions-admin.php:2180
 #: ../includes/ot-functions-docs-page.php:257
 msgid "Tag Select"
 msgstr ""
@@ -494,6 +520,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:503
+#: ../includes/ot-functions-admin.php:2181
 #: ../includes/ot-functions-docs-page.php:260
 msgid "Taxonomy Checkbox"
 msgstr ""
@@ -507,6 +534,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:518
+#: ../includes/ot-functions-admin.php:2182
 #: ../includes/ot-functions-docs-page.php:263
 msgid "Taxonomy Select"
 msgstr ""
@@ -536,6 +564,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:563
+#: ../includes/ot-functions-admin.php:2185
 #: ../includes/ot-functions-docs-page.php:328
 msgid "Textarea Simple"
 msgstr ""
@@ -548,6 +577,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:578
+#: ../includes/ot-functions-admin.php:2186
 #: ../includes/ot-functions-docs-page.php:344
 msgid "Textblock"
 msgstr ""
@@ -563,6 +593,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:593
+#: ../includes/ot-functions-admin.php:2187
 #: ../includes/ot-functions-docs-page.php:347
 msgid "Textblock Titled"
 msgstr ""
@@ -578,6 +609,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:608
+#: ../includes/ot-functions-admin.php:2188
 #: ../includes/ot-functions-docs-page.php:350
 msgid "Typography"
 msgstr ""
@@ -595,6 +627,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:623
+#: ../includes/ot-functions-admin.php:2189
 #: ../includes/ot-functions-docs-page.php:370
 msgid "Upload"
 msgstr ""
@@ -876,6 +909,20 @@ msgstr ""
 
 #: ../includes/ot-functions-admin.php:2115
 msgid "Layout activated."
+msgstr ""
+
+#: ../includes/ot-functions-admin.php:2158
+msgid "Color Picker"
+msgstr ""
+
+#: ../includes/ot-functions-admin.php:2177
+#: ../includes/ot-functions-docs-page.php:248
+msgid "Slider"
+msgstr ""
+
+#: ../includes/ot-functions-admin.php:2178
+#: ../includes/ot-functions-docs-page.php:251
+msgid "Tab"
 msgstr ""
 
 #: ../includes/ot-functions-admin.php:2682
@@ -1345,19 +1392,11 @@ msgid ""
 "<code>functions.php</code>."
 msgstr ""
 
-#: ../includes/ot-functions-docs-page.php:248
-msgid "Slider"
-msgstr ""
-
 #: ../includes/ot-functions-docs-page.php:249
 msgid ""
 "The Slider option type is technically deprecated. Use the List Item option "
 "type instead, as it's infinitely more customizable. Typical use is for "
 "creating sliding image content."
-msgstr ""
-
-#: ../includes/ot-functions-docs-page.php:251
-msgid "Tab"
 msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:252
