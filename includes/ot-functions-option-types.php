@@ -1478,6 +1478,9 @@ if ( ! function_exists( 'ot_type_select' ) ) {
       /* description */
       echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
       
+      /* filter choices array */
+      $field_choices = apply_filters( 'ot_type_select_choices', $field_choices, $field_id );
+    
       /* format setting inner wrapper */
       echo '<div class="format-setting-inner">';
       
