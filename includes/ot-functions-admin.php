@@ -633,7 +633,9 @@ if ( ! function_exists( 'ot_admin_scripts' ) ) {
       'confirm'               => __( 'Are you sure you want to delete this Gallery?', 'option-tree' ),
       'date_current'          => __( 'Today', 'option-tree' ),
       'date_time_current'     => __( 'Now', 'option-tree' ),
-      'date_close'            => __( 'Close', 'option-tree' )
+      'date_close'            => __( 'Close', 'option-tree' ),
+      'replace'               => __( 'Featured Image', 'option-tree' ),
+      'with'                  => __( 'Image', 'option-tree' )
     );
     
     /* localized script attached to 'option_tree' */
@@ -2035,6 +2037,12 @@ if ( ! function_exists( 'ot_alert_message' ) ) {
     if ( empty( $page ) )
       return false;
     
+    $before = apply_filters( 'ot_before_page_messages', '', $page );
+    
+    if ( $before ) {
+      return $before;
+    }
+    
     $action = isset( $_REQUEST['action'] ) ? $_REQUEST['action'] : '';
     $message = isset( $_REQUEST['message'] ) ? $_REQUEST['message'] : '';
     $updated = isset( $_REQUEST['settings-updated'] ) ? $_REQUEST['settings-updated'] : '';
@@ -2112,7 +2120,7 @@ if ( ! function_exists( 'ot_alert_message' ) ) {
         
     }
     
-    do_action( 'ot_custom_page_messages' );
+    do_action( 'ot_custom_page_messages', $page );
     
     if ( $updated == 'true' ) {  
        
@@ -4385,7 +4393,231 @@ if ( ! function_exists( 'ot_maybe_migrate_layouts' ) ) {
     }
 
   }
+
+}
+
+/**
+ * Returns an array with the post format gallery meta box.
+ *
+ * @param     mixed     $pages Excepts a comma separated string or array of 
+ *                      post_types and is what tells the metabox where to 
+ *                      display. Default 'post'.
+ * @return    array
+ *
+ * @access    public
+ * @since     2.3.0
+ */
+function ot_meta_box_post_format_gallery( $pages = 'post' ) {
+
+  if ( ! current_theme_supports( 'post-formats' ) || ! in_array( 'gallery', current( get_theme_support( 'post-formats' ) ) ) )
+    return false;
+    
+  if ( is_string( $pages ) )
+    $pages = explode( ',', $pages );
   
+  return apply_filters( 'ot_meta_box_post_format_gallery', array(
+    'id'        => 'ot-post-format-gallery',
+    'title'     => __( 'Gallery', 'option-tree' ),
+    'desc'      => '',
+    'pages'     => $pages,
+    'context'   => 'side',
+    'priority'  => 'low',
+    'fields'    => array(
+      array(
+        'id'          => '_format_gallery',
+        'label'       => '',
+        'desc'        => '',
+        'std'         => '',
+        'type'        => 'gallery',
+        'class'       => 'ot-gallery-shortcode'
+      )
+  	)
+  ), $pages );
+
+}
+
+/**
+ * Returns an array with the post format link metabox.
+ *
+ * @param     mixed     $pages Excepts a comma separated string or array of 
+ *                      post_types and is what tells the metabox where to 
+ *                      display. Default 'post'.
+ * @return    array
+ *
+ * @access    public
+ * @since     2.3.0
+ */
+function ot_meta_box_post_format_link( $pages = 'post' ) {
+  
+  if ( ! current_theme_supports( 'post-formats' ) || ! in_array( 'link', current( get_theme_support( 'post-formats' ) ) ) )
+    return false;
+    
+  if ( is_string( $pages ) )
+    $pages = explode( ',', $pages );
+  
+  return apply_filters( 'ot_meta_box_post_format_link', array(
+    'id'        => 'ot-post-format-link',
+    'title'     => __( 'Link', 'option-tree' ),
+    'desc'      => '',
+    'pages'     => $pages,
+    'context'   => 'side',
+    'priority'  => 'low',
+    'fields'    => array(
+      array(
+        'id'      => '_format_link_url',
+        'label'   => '',
+        'desc'    => __( 'Link URL', 'option-tree' ),
+        'std'     => '',
+        'type'    => 'text'
+      ),
+      array(
+        'id'      => '_format_link_title',
+        'label'   => '',
+        'desc'    => __( 'Link Title', 'option-tree' ),
+        'std'     => '',
+        'type'    => 'text'
+      )
+  	)
+  ), $pages );
+
+}
+
+/**
+ * Returns an array with the post format quote metabox.
+ *
+ * @param     mixed     $pages Excepts a comma separated string or array of 
+ *                      post_types and is what tells the metabox where to 
+ *                      display. Default 'post'.
+ * @return    array
+ *
+ * @access    public
+ * @since     2.3.0
+ */
+function ot_meta_box_post_format_quote( $pages = 'post' ) {
+  
+  if ( ! current_theme_supports( 'post-formats' ) || ! in_array( 'quote', current( get_theme_support( 'post-formats' ) ) ) )
+    return false;
+    
+  if ( is_string( $pages ) )
+    $pages = explode( ',', $pages );
+
+  return apply_filters( 'ot_meta_box_post_format_quote', array(
+    'id'        => 'ot-post-format-quote',
+    'title'     => __( 'Quote', 'option-tree' ),
+    'desc'      => '',
+    'pages'     => $pages,
+    'context'   => 'side',
+    'priority'  => 'low',
+    'fields'    => array(
+      array(
+        'id'      => '_format_quote_source_name',
+        'label'   => '',
+        'desc'    => __( 'Source Name (ex. author, singer, actor)', 'option-tree' ),
+        'std'     => '',
+        'type'    => 'text'
+      ),
+      array(
+        'id'      => '_format_quote_source_url',
+        'label'   => '',
+        'desc'    => __( 'Source URL', 'option-tree' ),
+        'std'     => '',
+        'type'    => 'text'
+      ),
+      array(
+        'id'      => '_format_quote_source_title',
+        'label'   => '',
+        'desc'    => __( 'Source Title (ex. book, song, movie)', 'option-tree' ),
+        'std'     => '',
+        'type'    => 'text'
+      ),
+      array(
+        'id'      => '_format_quote_source_date',
+        'label'   => '',
+        'desc'    => __( 'Source Date', 'option-tree' ),
+        'std'     => '',
+        'type'    => 'text'
+      )
+  	)
+  ), $pages );
+
+}
+
+/**
+ * Returns an array with the post format video metabox.
+ *
+ * @param     mixed     $pages Excepts a comma separated string or array of 
+ *                      post_types and is what tells the metabox where to 
+ *                      display. Default 'post'.
+ * @return    array
+ *
+ * @access    public
+ * @since     2.3.0
+ */
+function ot_meta_box_post_format_video( $pages = 'post' ) {
+  
+  if ( ! current_theme_supports( 'post-formats' ) || ! in_array( 'video', current( get_theme_support( 'post-formats' ) ) ) )
+    return false;
+    
+  if ( is_string( $pages ) )
+    $pages = explode( ',', $pages );
+  
+  return apply_filters( 'ot_meta_box_post_format_video', array(
+    'id'        => 'ot-post-format-video',
+    'title'     => __( 'Video', 'option-tree' ),
+    'desc'      => '',
+    'pages'     => $pages,
+    'context'   => 'side',
+    'priority'  => 'low',
+    'fields'    => array(
+      array(
+        'id'      => '_format_video_embed',
+        'label'   => '',
+        'desc'    => sprintf( __( 'Embed video from services like Youtube, Vimeo, or Hulu. You can find a list of supported oEmbed sites in the %1$s. Alternatively, you could use the built-in %2$s shortcode.', 'option-tree' ), '<a href="http://codex.wordpress.org/Embeds" target="_blank">' . __( 'Wordpress Codex', 'option-tree' ) .'</a>', '<code>[video]</code>' ),
+        'std'     => '',
+        'type'    => 'textarea'
+      )
+  	)
+  ), $pages );
+
+}
+
+/**
+ * Returns an array with the post format audio metabox.
+ *
+ * @param     mixed     $pages Excepts a comma separated string or array of 
+ *                      post_types and is what tells the metabox where to 
+ *                      display. Default 'post'.
+ * @return    array
+ *
+ * @access    public
+ * @since     2.3.0
+ */
+function ot_meta_box_post_format_audio( $pages = 'post' ) {
+  
+  if ( ! current_theme_supports( 'post-formats' ) || ! in_array( 'audio', current( get_theme_support( 'post-formats' ) ) ) )
+    return false;
+    
+  if ( is_string( $pages ) )
+    $pages = explode( ',', $pages );
+  
+  return apply_filters( 'ot_meta_box_post_format_audio', array(
+    'id'        => 'ot-post-format-audio',
+    'title'     => __( 'Audio', 'option-tree' ),
+    'desc'      => '',
+    'pages'     => $pages,
+    'context'   => 'side',
+    'priority'  => 'low',
+    'fields'    => array(
+      array(
+        'id'      => '_format_audio_embed',
+        'label'   => '',
+        'desc'    => sprintf( __( 'Embed audio from services like SoundCloud and Rdio. You can find a list of supported oEmbed sites in the %1$s. Alternatively, you could use the built-in %2$s shortcode.', 'option-tree' ), '<a href="http://codex.wordpress.org/Embeds" target="_blank">' . __( 'Wordpress Codex', 'option-tree' ) .'</a>', '<code>[audio]</code>' ),
+        'std'     => '',
+        'type'    => 'textarea'
+      )
+  	)
+  ), $pages );
+
 }
 
 /* End of file ot-functions-admin.php */
