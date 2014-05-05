@@ -761,12 +761,12 @@ if ( ! function_exists( 'ot_type_gallery' ) ) {
         // Turn the field value into an array of IDs
         if ( isset( $matches[1] ) ) {
           
-          // The string is a shortcode
+          // Found the IDs in the shortcode
           $ids = explode( ',', $matches[1] );
           
         } else {
           
-          // The string is a comma separated list of IDs
+          // The string is only IDs
           $ids = ! empty( $field_value ) && $field_value != '' ? explode( ',', $field_value ) : array();
           
         }
