@@ -110,8 +110,8 @@ There sure is, and I'm glad you asked. Download and activate the [OptionTree The
 * Added filter 'ot_post_formats' which loads meta boxes specifically for post formats.
 * Fixed missing option type translation strings. Contributors via github @RistoNiinemets.
 * Replaced mysql functions with the wpdb equivalent. Contributors via github @joshlevinson.
-* Fixed search order of the "contains" condition string. Contributors via github @designst.
-* Added .format-setting-wrap to the List Item option type. Contributors via github @designst.
+* Fixed search order of the `contains` condition string. Contributors via github @designst.
+* Added `.format-setting-wrap` to the List Item option type. Contributors via github @designst.
 
 = 2.3.4 =
 * Hotfix - Fixed an issue where condition number values were being treated like strings and not returning a correct boolean response.
