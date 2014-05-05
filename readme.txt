@@ -108,6 +108,7 @@ There sure is, and I'm glad you asked. Download and activate the [OptionTree The
 
 = 2.4.0 =
 * Added filter 'ot_post_formats' which loads meta boxes specifically for post formats.
+* Fixed missing option type translation strings. Contributors via github @RistoNiinemets.
 
 = 2.3.4 =
 * Hotfix - Fixed an issue where condition number values were being treated like strings and not returning a correct boolean response.
