@@ -121,15 +121,21 @@ if ( ! class_exists( 'OT_Meta_Box' ) ) {
 
           // Build the setting CSS class
           if ( ! empty( $_args['field_class'] ) ) {
+            
             $classes = explode( ' ', $_args['field_class'] );
 
             foreach( $classes as $key => $value ) {
-                $classes[$key] = $value . '-wrap';
+            
+              $classes[$key] = $value . '-wrap';
+              
             }
 
             $class = 'format-settings ' . implode( ' ', $classes );
+            
           } else {
+          
             $class = 'format-settings';
+            
           }
           
           /* option label */
