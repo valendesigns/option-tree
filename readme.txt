@@ -114,6 +114,7 @@ There sure is, and I'm glad you asked. Download and activate the [OptionTree The
 * Added `.format-setting-wrap` to the List Item option type. Contributors via github @designst.
 * Added meta box field wrapper class if a custom field class is defined in the settings. Contributors via github @designst.
 * Added filter 'ot_type_select_choices' to dynamically change select choices. Contributors via github @maimairel and @valendesigns.
+* Fixed a bug that added an unnecessary directory separator to the `load_theme_textdomain()` `$path` variable. Contributors via github @PatrickDelancy and @valendesigns.
 
 = 2.3.4 =
 * Hotfix - Fixed an issue where condition number values were being treated like strings and not returning a correct boolean response.

@@ -95,7 +95,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
         
       } else {
       
-        load_theme_textdomain( 'option-tree', DIRECTORY_SEPARATOR . OT_LANG_DIR . 'theme-mode' );
+        load_theme_textdomain( 'option-tree', OT_LANG_DIR . 'theme-mode' );
         
       }
       
