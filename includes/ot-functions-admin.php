@@ -3786,7 +3786,6 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
 
           $conditions = ' data-condition="' . $field['condition'] . '"';
           $conditions.= isset( $field['operator'] ) && in_array( $field['operator'], array( 'and', 'AND', 'or', 'OR' ) ) ? ' data-operator="' . $field['operator'] . '"' : '';
-        
 
         }
           
@@ -3795,21 +3794,21 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
 
           echo '<div class="format-setting-wrap">';
           
-        /* don't show title with textblocks */
-        if ( $_args['type'] != 'textblock' && ! empty( $field['label'] ) ) {
-          echo '<div class="format-setting-label">';
-            echo '<h3 class="label">' . esc_attr( $field['label'] ) . '</h3>';
-          echo '</div>';
-        }
-        
-        /* only allow simple textarea inside a list-item due to known DOM issues with wp_editor() */
-        if ( $_args['type'] == 'textarea' )
-          $_args['type'] = 'textarea-simple';
+          /* don't show title with textblocks */
+          if ( $_args['type'] != 'textblock' && ! empty( $field['label'] ) ) {
+            echo '<div class="format-setting-label">';
+              echo '<h3 class="label">' . esc_attr( $field['label'] ) . '</h3>';
+            echo '</div>';
+          }
           
-        /* option body, list-item is not allowed inside another list-item */
-        if ( $_args['type'] !== 'list-item' && $_args['type'] !== 'slider' ) {
-          echo ot_display_by_type( $_args );
-        }
+          /* only allow simple textarea inside a list-item due to known DOM issues with wp_editor() */
+          if ( $_args['type'] == 'textarea' )
+            $_args['type'] = 'textarea-simple';
+            
+          /* option body, list-item is not allowed inside another list-item */
+          if ( $_args['type'] !== 'list-item' && $_args['type'] !== 'slider' ) {
+            echo ot_display_by_type( $_args );
+          }
 
           echo '</div>';
         
@@ -3817,9 +3816,9 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
       
       }
         
-    echo
-      '</div>
-    </div>';
+      echo '</div>';
+    
+    echo '</div>';
     
   }
   
