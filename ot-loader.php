@@ -3,7 +3,7 @@
  * Plugin Name: OptionTree
  * Plugin URI:  http://wp.envato.com
  * Description: Theme Options UI Builder for WordPress. A simple way to create & save Theme Options and Meta Boxes for free or premium themes.
- * Version:     2.3.4
+ * Version:     2.4.0
  * Author:      Derek Herman
  * Author URI:  http://valendesigns.com
  * License:     GPLv3
@@ -142,7 +142,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       /**
        * Current Version number.
        */
-      define( 'OT_VERSION', '2.3.4' );
+      define( 'OT_VERSION', '2.4.0' );
       
       /**
        * For developers: Theme mode.
@@ -258,6 +258,16 @@ if ( ! class_exists( 'OT_Loader' ) ) {
        * @since     2.0
        */
       define( 'OT_ALLOW_UNFILTERED_HTML', apply_filters( 'ot_allow_unfiltered_html', false ) );
+
+      /**
+       * For developers: Post Formats.
+       *
+       * Run a filter and set to true if you want OptionTree 
+       * to load meta boxes for post formats.
+       *
+       * @since     2.4.0
+       */
+      define( 'OT_POST_FORMATS', apply_filters( 'ot_post_formats', false ) );
       
       /**
        * Check if in theme mode.
@@ -323,6 +333,11 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       /* include the meta box api */
       if ( OT_META_BOXES == true ) {
         $files[] = 'ot-meta-box-api';
+      }
+      
+      /* include the post formats api */
+      if ( OT_META_BOXES == true && OT_POST_FORMATS == true ) {
+        $files[] = 'ot-post-formats-api';
       }
       
       /* include the settings & docs pages */
