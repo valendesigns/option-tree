@@ -118,9 +118,28 @@ if ( ! class_exists( 'OT_Meta_Box' ) ) {
           /* only allow simple textarea due to DOM issues with wp_editor() */
           if ( $_args['type'] == 'textarea' )
             $_args['type'] = 'textarea-simple';
+
+          // Build the setting CSS class
+          if ( ! empty( $_args['field_class'] ) ) {
+            
+            $classes = explode( ' ', $_args['field_class'] );
+
+            foreach( $classes as $key => $value ) {
+            
+              $classes[$key] = $value . '-wrap';
+              
+            }
+
+            $class = 'format-settings ' . implode( ' ', $classes );
+            
+          } else {
+          
+            $class = 'format-settings';
+            
+          }
           
           /* option label */
-          echo '<div id="setting_' . $field['id'] . '" class="format-settings"' . $conditions . '>';
+          echo '<div id="setting_' . $field['id'] . '" class="' . $class . '"' . $conditions . '>';
             
             echo '<div class="format-setting-wrap">';
             
@@ -139,6 +158,8 @@ if ( ! class_exists( 'OT_Meta_Box' ) ) {
           echo '</div>';
           
         }
+
+        echo '<div class="clear"></div>';
       
       echo '</div>';
 
