@@ -339,7 +339,7 @@
               result = ( parseInt( v1 ) >= parseInt( v2 ) );
               break;
             case 'contains':
-              result = ( v2.indexOf(v1) !== -1 ? true : false );
+              result = ( v1.indexOf(v2) !== -1 ? true : false );
               break; 
             case 'is':
               result = ( v1 == v2 );
