@@ -2172,6 +2172,12 @@ select.option-tree-ui-select option {
   margin: 0.5em 0 !important;
   width: 100%;
 }
+@media screen and ( max-width: 782px ) {
+  .format-setting.type-checkbox,
+  .format-setting.type-radio {
+    padding-top: 0.3em;
+  }
+}
      
 /* -------------------------------------------------- 
   :: Radio Images
