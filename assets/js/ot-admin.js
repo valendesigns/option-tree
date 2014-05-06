@@ -829,7 +829,7 @@
         // Create the tabs
         $(this).find('.ot-metabox-tabs').tabs({
           activate: function( event, ui ) {
-            var parent = $(this).parents('.ot-metabox-wrapper').outerHeight(),
+            var parent = $(this).outerHeight(),
                 child = $(this).find('.ot-metabox-panels').outerHeight() + 8,
                 minHeight = parent - 34
             if ( $(this).find('.ot-metabox-panels').css('padding') == '12px' && child < parent ) {
