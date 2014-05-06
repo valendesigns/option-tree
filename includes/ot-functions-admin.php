@@ -2630,6 +2630,47 @@ if ( ! function_exists( 'ot_recognized_background_position' ) ) {
 }
 
 /**
+ * Recognized Social Links
+ *
+ * Returns an array of all recognized social links.
+ *
+ * @uses      apply_filters()
+ *
+ * @param     string  $field_id ID that's passed to the filters.
+ * @return    array
+ *
+ * @access    public
+ * @since     2.4.0
+ */
+if ( ! function_exists( 'ot_recognized_social_links' ) ) {
+
+  function ot_recognized_social_links( $field_id = '' ) {
+
+    return apply_filters( 'ot_recognized_social_links', array(
+      'facebook'    => __( 'Facebook', 'option-tree' ),
+      'twitter'     => __( 'Twitter', 'option-tree' ),
+      'google-plus' => __( 'Google+', 'option-tree' ),
+      'linkedin'    => __( 'LinkedIn', 'option-tree' ),
+      'vk'          => __( 'VK.com', 'option-tree' ),
+      'pinterest'   => __( 'Pinterest', 'option-tree' ),
+      'flickr'      => __( 'Flickr', 'option-tree' ),
+      'dribbble'    => __( 'Dribbble', 'option-tree' ),
+      'youtube'     => __( 'Youtube', 'option-tree' ),
+      'vimeo'       => __( 'Vimeo', 'option-tree' ),
+      'soundcloud'  => __( 'SoundCloud', 'option-tree' ),
+      'skype'       => __( 'Skype', 'option-tree' ),
+      'tumblr'      => __( 'Tumblr', 'option-tree' ),
+      'github'      => __( 'Github', 'option-tree' ),
+      'digg'        => __( 'Digg', 'option-tree' ),
+      'delicious'   => __( 'Delicious', 'option-tree' ),
+      'forrst'      => __( 'Forrst', 'option-tree' )
+    ), $field_id );
+
+  }
+
+}
+
+/**
  * Measurement Units
  *
  * Returns an array of all available unit types.
@@ -3294,7 +3335,7 @@ if ( ! function_exists( 'ot_sections_view' ) ) {
           <span class="icon ot-icon-pencil"></span>' . __( 'Edit', 'option-tree' ) . '
         </a>
         <a href="javascript:void(0);" class="option-tree-setting-remove option-tree-ui-button button button-secondary light right-item" title="' . __( 'Delete', 'option-tree' ) . '">
-          <span class="icon ot-icon-trash"></span>' . __( 'Delete', 'option-tree' ) . '
+          <span class="icon ot-icon-trash-o"></span>' . __( 'Delete', 'option-tree' ) . '
         </a>
       </div>
       <div class="option-tree-setting-body">
@@ -3363,7 +3404,7 @@ if ( ! function_exists( 'ot_settings_view' ) ) {
           <span class="icon ot-icon-pencil"></span>' . __( 'Edit', 'option-tree' ) . '
         </a>
         <a href="javascript:void(0);" class="option-tree-setting-remove option-tree-ui-button button button-secondary light right-item" title="' . __( 'Delete', 'option-tree' ) . '">
-          <span class="icon ot-icon-trash"></span>' . __( 'Delete', 'option-tree' ) . '
+          <span class="icon ot-icon-trash-o"></span>' . __( 'Delete', 'option-tree' ) . '
         </a>
       </div>
       <div class="option-tree-setting-body">
@@ -3526,7 +3567,7 @@ if ( ! function_exists( 'ot_choices_view' ) ) {
           <span class="icon ot-icon-pencil"></span>' . __( 'Edit', 'option-tree' ) . '
         </a>
         <a href="javascript:void(0);" class="option-tree-setting-remove option-tree-ui-button button button-secondary light right-item" title="' . __( 'Delete', 'option-tree' ) . '">
-          <span class="icon ot-icon-trash"></span>' . __( 'Delete', 'option-tree' ) . '
+          <span class="icon ot-icon-trash-o"></span>' . __( 'Delete', 'option-tree' ) . '
         </a>
       </div>
       <div class="option-tree-setting-body">
@@ -3592,7 +3633,7 @@ if ( ! function_exists( 'ot_contextual_help_view' ) ) {
           <span class="icon ot-icon-pencil"></span>' . __( 'Edit', 'option-tree' ) . '
         </a>
         <a href="javascript:void(0);" class="option-tree-setting-remove option-tree-ui-button button button-secondary light right-item" title="' . __( 'Delete', 'option-tree' ) . '">
-          <span class="icon ot-icon-trash"></span>' . __( 'Delete', 'option-tree' ) . '
+          <span class="icon ot-icon-trash-o"></span>' . __( 'Delete', 'option-tree' ) . '
         </a>
       </div>
       <div class="option-tree-setting-body">
@@ -3648,10 +3689,10 @@ if ( ! function_exists( 'ot_layout_view' ) ) {
       <div class="open">' . ( isset( $key ) ? esc_attr( $key ) : __( 'Layout', 'option-tree' ) ) . '</div>
       <div class="button-section">
         <a href="javascript:void(0);" class="option-tree-layout-activate option-tree-ui-button button left-item' . ( $active_layout == $key ? ' active' : '' ) . '" title="' . __( 'Activate', 'option-tree' ) . '">
-          <span class="icon ot-icon-check-empty"></span>' . __( 'Activate', 'option-tree' ) . '
+          <span class="icon ot-icon-square-o"></span>' . __( 'Activate', 'option-tree' ) . '
         </a>
         <a href="javascript:void(0);" class="option-tree-setting-remove option-tree-ui-button button button-secondary light right-item" title="'. __( 'Delete', 'option-tree' ) . '">
-          <span class="icon ot-icon-trash"></span>' . __( 'Delete', 'option-tree' ) . '
+          <span class="icon ot-icon-trash-o"></span>' . __( 'Delete', 'option-tree' ) . '
         </a>
       </div>
       <input type="hidden" name="' . ot_layouts_id() . '[' . esc_attr( $key ) . ']" value="' . $data . '" />
@@ -3720,7 +3761,7 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
           <span class="icon ot-icon-pencil"></span>' . __( 'Edit', 'option-tree' ) . '
         </a>
         <a href="javascript:void(0);" class="option-tree-setting-remove option-tree-ui-button button button-secondary light right-item" title="' . __( 'Delete', 'option-tree' ) . '">
-          <span class="icon ot-icon-trash"></span>' . __( 'Delete', 'option-tree' ) . '
+          <span class="icon ot-icon-trash-o"></span>' . __( 'Delete', 'option-tree' ) . '
         </a>
       </div>
       <div class="option-tree-setting-body">';

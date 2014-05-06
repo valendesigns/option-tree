@@ -224,7 +224,7 @@ if ( ! function_exists( 'ot_type_background' ) ) {
             echo '<input type="text" name="' . esc_attr( $field_name ) . '[background-image]" id="' . esc_attr( $field_id ) . '" value="' . ( isset( $field_value['background-image'] ) ? esc_attr( $field_value['background-image'] ) : '' ) . '" class="widefat option-tree-ui-upload-input ' . esc_attr( $field_class ) . '" />';
             
             /* add media button */
-            echo '<a href="javascript:void(0);" class="ot_upload_media option-tree-ui-button button button-primary light" rel="' . $post_id . '" title="' . __( 'Add Media', 'option-tree' ) . '"><span class="icon ot-icon-plus-sign"></span>' . __( 'Add Media', 'option-tree' ) . '</a>';
+            echo '<a href="javascript:void(0);" class="ot_upload_media option-tree-ui-button button button-primary light" rel="' . $post_id . '" title="' . __( 'Add Media', 'option-tree' ) . '"><span class="icon ot-icon-plus-circle"></span>' . __( 'Add Media', 'option-tree' ) . '</a>';
           
           echo '</div>';
           
@@ -1166,78 +1166,6 @@ if ( ! function_exists( 'ot_type_page_select' ) ) {
 }
 
 /**
- * List Item option type.
- *
- * See @ot_display_by_type to see the full list of available arguments.
- *
- * @param     array     An array of arguments.
- * @return    string
- *
- * @access    public
- * @since     2.0
- */
-if ( ! function_exists( 'ot_type_slider' ) ) {
-  
-  function ot_type_slider( $args = array() ) {
-    
-    /* turns arguments array into variables */
-    extract( $args );
-    
-    /* verify a description */
-    $has_desc = $field_desc ? true : false;
-
-    /* format setting outer wrapper */
-    echo '<div class="format-setting type-slider ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
-      
-      /* description */
-      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
-      
-      /* format setting inner wrapper */
-      echo '<div class="format-setting-inner">';
-        
-        /* pass the settings array arround */
-        echo '<input type="hidden" name="' . esc_attr( $field_id ) . '_settings_array" id="' . esc_attr( $field_id ) . '_settings_array" value="' . ot_encode( serialize( $field_settings ) ) . '" />';
-        
-        /** 
-         * settings pages have array wrappers like 'option_tree'.
-         * So we need that value to create a proper array to save to.
-         * This is only for NON metaboxes settings.
-         */
-        if ( ! isset( $get_option ) )
-          $get_option = '';
-          
-        /* build list items */
-        echo '<ul class="option-tree-setting-wrap option-tree-sortable" data-name="' . esc_attr( $field_id ) . '" data-id="' . esc_attr( $post_id ) . '" data-get-option="' . esc_attr( $get_option ) . '" data-type="' . esc_attr( $type ) . '">';
-        
-        if ( is_array( $field_value ) && ! empty( $field_value ) ) {
-        
-          foreach( $field_value as $key => $list_item ) {
-            
-            echo '<li class="ui-state-default list-list-item">';
-              ot_list_item_view( $field_id, $key, $list_item, $post_id, $get_option, $field_settings, $type );
-            echo '</li>';
-            
-          }
-          
-        }
-        
-        echo '</ul>';
-        
-        /* button */
-        echo '<a href="javascript:void(0);" class="option-tree-list-item-add option-tree-ui-button button button-primary right hug-right" title="' . __( 'Add New', 'option-tree' ) . '">' . __( 'Add New', 'option-tree' ) . '</a>';
-        
-        /* description */
-        echo '<div class="list-item-description">' . __( 'You can re-order with drag & drop, the order will update after saving.', 'option-tree' ) . '</div>';
-      
-      echo '</div>';
-
-    echo '</div>';
-    
-  }
-  
-}
-
-/**
  * Post Checkbox option type.
  *
  * See @ot_display_by_type to see the full list of available arguments.
@@ -1573,6 +1501,145 @@ if ( ! function_exists( 'ot_type_sidebar_select' ) ) {
     
   }
   
+}
+
+/**
+ * List Item option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.0
+ */
+if ( ! function_exists( 'ot_type_slider' ) ) {
+  
+  function ot_type_slider( $args = array() ) {
+    
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-slider ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+      
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+      
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+        
+        /* pass the settings array arround */
+        echo '<input type="hidden" name="' . esc_attr( $field_id ) . '_settings_array" id="' . esc_attr( $field_id ) . '_settings_array" value="' . ot_encode( serialize( $field_settings ) ) . '" />';
+        
+        /** 
+         * settings pages have array wrappers like 'option_tree'.
+         * So we need that value to create a proper array to save to.
+         * This is only for NON metaboxes settings.
+         */
+        if ( ! isset( $get_option ) )
+          $get_option = '';
+          
+        /* build list items */
+        echo '<ul class="option-tree-setting-wrap option-tree-sortable" data-name="' . esc_attr( $field_id ) . '" data-id="' . esc_attr( $post_id ) . '" data-get-option="' . esc_attr( $get_option ) . '" data-type="' . esc_attr( $type ) . '">';
+        
+        if ( is_array( $field_value ) && ! empty( $field_value ) ) {
+        
+          foreach( $field_value as $key => $list_item ) {
+            
+            echo '<li class="ui-state-default list-list-item">';
+              ot_list_item_view( $field_id, $key, $list_item, $post_id, $get_option, $field_settings, $type );
+            echo '</li>';
+            
+          }
+          
+        }
+        
+        echo '</ul>';
+        
+        /* button */
+        echo '<a href="javascript:void(0);" class="option-tree-list-item-add option-tree-ui-button button button-primary right hug-right" title="' . __( 'Add New', 'option-tree' ) . '">' . __( 'Add New', 'option-tree' ) . '</a>';
+        
+        /* description */
+        echo '<div class="list-item-description">' . __( 'You can re-order with drag & drop, the order will update after saving.', 'option-tree' ) . '</div>';
+      
+      echo '</div>';
+
+    echo '</div>';
+    
+  }
+  
+}
+
+/**
+ * Social Links option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.4.0
+ */
+if ( ! function_exists( 'ot_type_social_links' ) ) {
+
+  function ot_type_social_links( $args = array() ) {
+
+    /* turns arguments array into variables */
+    extract( $args );
+
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-social-links ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+
+        /**
+         * load the default filterable social links if nothing 
+         * has been set in the choices array.
+         */
+        if ( empty( $field_choices ) ) {
+          $field_choices = array();
+          foreach( ot_recognized_social_links( $field_id ) as $value => $label ) {
+            $field_choices[] = array(
+              'value' => $value,
+              'label' => $label
+            );
+          }
+        }
+
+        /* Social links input */
+        foreach ( (array) $field_choices as $key => $choice ) {
+          $icon = $choice['value'];
+          if ( $icon == 'vimeo' ) {
+            $icon = 'vimeo-square';
+          }
+          if ( ! empty( $icon ) ) {
+            $icon = '<span class="icon ot-icon-' . $icon . '"></span> ';
+          }
+          echo '<p>';
+            echo '<label for="' . esc_attr( $field_id ) . '-' . esc_attr( $choice['value'] ) .'">' . $icon . $choice['label'] . '</label>';
+            echo '<input type="text" name="' . esc_attr( $field_name ) . '[' . esc_attr( $choice['value'] ) . ']" id="' . esc_attr( $field_id ) . '-' . esc_attr( $choice['value'] ) .'" value="' . ( isset( $field_value[$choice['value']] ) ? esc_attr( $field_value[$choice['value']] ) : '' ) . '" class="widefat option-tree-ui-input ' . esc_attr( $field_class ) . '" />';
+          echo '</p>';
+        }
+
+      echo '</div>';
+
+    echo '</div>';
+
+  }
+
 }
 
 /**
@@ -2237,7 +2304,7 @@ if ( ! function_exists( 'ot_type_upload' ) ) {
           echo '<input type="text" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" value="' . esc_attr( $field_value ) . '" class="widefat option-tree-ui-upload-input ' . esc_attr( $field_class ) . '" />';
           
           /* add media button */
-          echo '<a href="javascript:void(0);" class="ot_upload_media option-tree-ui-button button button-primary light" rel="' . $post_id . '" title="' . __( 'Add Media', 'option-tree' ) . '"><span class="icon ot-icon-plus-sign"></span>' . __( 'Add Media', 'option-tree' ) . '</a>';
+          echo '<a href="javascript:void(0);" class="ot_upload_media option-tree-ui-button button button-primary light" rel="' . $post_id . '" title="' . __( 'Add Media', 'option-tree' ) . '"><span class="icon ot-icon-plus-circle"></span>' . __( 'Add Media', 'option-tree' ) . '</a>';
         
         echo '</div>';
         

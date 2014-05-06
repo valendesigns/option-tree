@@ -186,7 +186,7 @@ if ( ! function_exists( 'ot_type_import_xml' ) ) {
             $post_id = ( $id = ot_get_media_post_ID() ) ? (int) $id : 0;
           
             /* add xml button */
-            echo '<a href="javascript:void(0);" class="ot_upload_media option-tree-ui-button button button-primary light" rel="' . $post_id . '" title="' . __( 'Add XML', 'option-tree' ) . '"><span class="icon ot-icon-plus-sign"></span>' . __( 'Add XML', 'option-tree' ) . '</a>';
+            echo '<a href="javascript:void(0);" class="ot_upload_media option-tree-ui-button button button-primary light" rel="' . $post_id . '" title="' . __( 'Add XML', 'option-tree' ) . '"><span class="icon ot-icon-plus-circle"></span>' . __( 'Add XML', 'option-tree' ) . '</a>';
           
           echo '</div>';
           
