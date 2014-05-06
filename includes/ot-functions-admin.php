@@ -2322,7 +2322,7 @@ if ( ! function_exists( 'ot_recognized_font_sizes' ) ) {
       $range[$k] = $v . $unit;
     }
     
-    return $range;
+    return apply_filters( 'ot_recognized_font_sizes', $range, $field_id );
   }
 
 }
@@ -2452,7 +2452,7 @@ if ( ! function_exists( 'ot_recognized_letter_spacing' ) ) {
       $range[$k] = $v . $unit;
     }
     
-    return $range;
+    return apply_filters( 'ot_recognized_letter_spacing', $range, $field_id );
   }
 
 }
@@ -2486,7 +2486,7 @@ if ( ! function_exists( 'ot_recognized_line_heights' ) ) {
       $range[$k] = $v . $unit;
     }
     
-    return $range;
+    return apply_filters( 'ot_recognized_line_heights', $range, $field_id );
   }
 
 }
