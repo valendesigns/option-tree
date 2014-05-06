@@ -530,6 +530,21 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
 
       $input = trim( $input );
            
+    } else if ( 'social-links' == $type ) {
+      
+      // Loop over array and check for values, plus sanitize the text field
+      foreach( (array) $input as $key => $value ) {
+        if ( ! empty( $value ) ) {
+          $has_value = true;
+          $input[$key] = sanitize_text_field( $value );
+        }
+      }
+      
+      // No value; set to empty
+      if ( ! isset( $has_value ) ) {
+        $input = '';
+      }
+    
     }
     
     $input = apply_filters( 'ot_after_validate_setting', $input, $type, $field_id );
