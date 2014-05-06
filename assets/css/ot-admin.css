@@ -1506,7 +1506,7 @@
 }
 #option-tree-settings-api .description h3,
 #option-tree-settings-api .format-setting-label .label,
-.metabox-holder .format-setting-label .label {
+#poststuff .format-setting-label .label {
   background: none;
   border: none;
   color: #222;

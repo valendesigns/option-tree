@@ -122,6 +122,7 @@ There sure is, and I'm glad you asked. Download and activate the [OptionTree The
 * Added filter `ot_recognized_font_sizes` to dynamically change the font sizes by field ID.
 * Added filter `ot_recognized_letter_spacing` to dynamically change the letter spacing by field ID.
 * Added filter `ot_recognized_line_heights` to dynamically change the line heights by field ID.
+* Fixed a style issue where list item labels in metaboxes were not displaying correctly.
 
 = 2.3.4 =
 * Hotfix - Fixed an issue where condition number values were being treated like strings and not returning a correct boolean response.
