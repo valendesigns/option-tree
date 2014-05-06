@@ -610,7 +610,7 @@
     css_editor_mode: function() {
       $('.ot-css-editor').each(function() {
         var editor = ace.edit($(this).attr('id'));
-        var this_textarea = jQuery('#textarea_' + $(this).attr('id'));
+        var this_textarea = $('#textarea_' + $(this).attr('id'));
         editor.setTheme("ace/theme/chrome");
         editor.getSession().setMode("ace/mode/css");
         editor.setShowPrintMargin( false );
@@ -835,12 +835,13 @@
             if ( $(this).find('.ot-metabox-panels').css('padding') == '12px' && child < parent ) {
               $(this).find('.ot-metabox-panels').css({ minHeight: minHeight })
             }
+            OT_UI.css_editor_mode();
           }
         })
         
         // Move the orphaned settings to the top
         $(this).find('.ot-metabox-panels > .format-settings').prependTo($(this))
-      
+        
       }
     
     })

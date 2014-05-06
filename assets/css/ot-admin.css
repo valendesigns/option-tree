@@ -2860,7 +2860,8 @@ ul.ot-gallery-list li img {
 /* -------------------------------------------------- 
   :: CSS Editor
   ---------------------------------------------------*/
-#option-tree-settings-api pre.ot-css-editor {
+#option-tree-settings-api pre.ot-css-editor,
+#poststuff .type-css pre.ot-css-editor {
   bottom: 0;
   height: 280px;
   left: 0;
@@ -2868,20 +2869,23 @@ ul.ot-gallery-list li img {
   right: 0;
   top: 0;
 }
-#option-tree-settings-api pre.ace-chrome {
+#option-tree-settings-api pre.ace-chrome,
+#poststuff .type-css pre.ace-chrome {
   background-color: #fff !important;
   border: 1px solid #ccc;
   -webkit-border-radius: 2px;
      -moz-border-radius: 2px;
           border-radius: 2px;
 }
-#option-tree-settings-api pre.ace-chrome:hover {
+#option-tree-settings-api pre.ace-chrome:hover,
+#poststuff .type-css pre.ace-chrome:hover {
   border-color: #bbb !important;
   -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.0980392);
      -moz-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.0980392);
           box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.0980392);
 }
-#option-tree-settings-api pre.ace-chrome.ace_focus {
+#option-tree-settings-api pre.ace-chrome.ace_focus,
+#poststuff .type-css pre.ace-chrome.ace_focus {
   border-color: #999 !important;
   -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.0980392);
      -moz-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.0980392);
