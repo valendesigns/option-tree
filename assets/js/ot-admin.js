@@ -899,6 +899,62 @@
 }(window.jQuery);
 
 /*!
+ * Fixes the state of metabox radio buttons after a Drag & Drop event.
+ */
+!function ($) {
+  
+  $(document).on('ready', function () {
+
+    // detect mousedown and store all checked radio buttons
+    $('.hndle').on('mousedown', function () {
+      
+      // set live event listener for mouse up on the content .wrap 
+      // then give the dragged div time to settle before firing the reclick function
+      $('.wrap').on('mouseup', function () {
+        
+        var ot_checked_radios = {}
+        
+        // loop over the radio buttons
+        $('input[type="radio"]').each(function () {
+          
+          // stores checked radio buttons
+          if ( $(this).is(':checked') ) {
+            
+            ot_checked_radios[$(this).attr('name')] = $(this).val()
+          
+          }
+          
+          // write to the object
+          $(document).data('ot_checked_radios', ot_checked_radios)
+          
+        })
+        
+        // restore all checked radio buttons 
+        setTimeout( function () {
+      
+          // get object of checked radio button names and values
+          var checked = $(document).data('ot_checked_radios')
+          
+          // step thru each object element and trigger a click on it's corresponding radio button
+          for ( key in checked ) {
+            
+            $('input[name="' + key + '"]').filter('[value="' + checked[key] + '"]').trigger('click')
+            
+          }
+          
+          $('.wrap').unbind('mouseup')
+          
+        }, 50 )
+      
+      })
+      
+    })
+  
+  })
+  
+}(window.jQuery);
+
+/*!
  * postformats.js v1.0
  */
 !function ($) {
