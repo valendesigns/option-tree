@@ -4408,7 +4408,7 @@ if ( ! function_exists( 'ot_maybe_migrate_layouts' ) ) {
  * @return    array
  *
  * @access    public
- * @since     2.3.0
+ * @since     2.4.0
  */
 function ot_meta_box_post_format_gallery( $pages = 'post' ) {
 
@@ -4448,7 +4448,7 @@ function ot_meta_box_post_format_gallery( $pages = 'post' ) {
  * @return    array
  *
  * @access    public
- * @since     2.3.0
+ * @since     2.4.0
  */
 function ot_meta_box_post_format_link( $pages = 'post' ) {
   
@@ -4494,7 +4494,7 @@ function ot_meta_box_post_format_link( $pages = 'post' ) {
  * @return    array
  *
  * @access    public
- * @since     2.3.0
+ * @since     2.4.0
  */
 function ot_meta_box_post_format_quote( $pages = 'post' ) {
   
@@ -4554,7 +4554,7 @@ function ot_meta_box_post_format_quote( $pages = 'post' ) {
  * @return    array
  *
  * @access    public
- * @since     2.3.0
+ * @since     2.4.0
  */
 function ot_meta_box_post_format_video( $pages = 'post' ) {
   
@@ -4593,7 +4593,7 @@ function ot_meta_box_post_format_video( $pages = 'post' ) {
  * @return    array
  *
  * @access    public
- * @since     2.3.0
+ * @since     2.4.0
  */
 function ot_meta_box_post_format_audio( $pages = 'post' ) {
   
