@@ -3432,6 +3432,7 @@ a.ui-datepicker-next {
   :: Meta Box Tabs
   ---------------------------------------------------*/
 .ot-metabox-tabs.ui-tabs {
+  overflow: hidden;
   position: relative;
 }
 .ot-metabox-tabs.ui-tabs .ot-metabox-wrapper {
@@ -3440,7 +3441,7 @@ a.ui-datepicker-next {
 .ot-metabox-tabs.ui-tabs .ot-metabox-panels {
   background: white;
   border: 1px solid #ccc;
-  margin: 12px 0 0 0;
+  margin: 7px 0 1px 0;
   min-height: 140px;
   overflow: hidden;
   padding: 12px;
@@ -3452,7 +3453,7 @@ a.ui-datepicker-next {
   float: left;
   list-style: none;
   margin: 0 -1px 0 0;
-  padding: 1em 0;
+  padding: 18px 0 12px 0;
   width: 151px;
 }
 .ot-metabox-tabs.ui-tabs .ot-metabox-nav.ui-tabs-nav li {

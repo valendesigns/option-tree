@@ -116,6 +116,7 @@ There sure is, and I'm glad you asked. Download and activate the [OptionTree The
 * Fixed a bug that added an unnecessary directory separator to the `load_theme_textdomain()` `$path` variable. Contributors via github @PatrickDelancy and @valendesigns.
 * Fixed the state of metabox radio buttons after a Drag & Drop event. Contributors via github @themovation and @valendesigns.
 * Fixed conditions not working correctly within list items.
+* Fixed the min-height issue when using tabs in metaboxes.
 
 = 2.3.4 =
 * Hotfix - Fixed an issue where condition number values were being treated like strings and not returning a correct boolean response.

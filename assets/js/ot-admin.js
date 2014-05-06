@@ -827,7 +827,16 @@
         })
         
         // Create the tabs
-        $(this).find('.ot-metabox-tabs').tabs()
+        $(this).find('.ot-metabox-tabs').tabs({
+          activate: function( event, ui ) {
+            var parent = $(this).parents('.ot-metabox-wrapper').outerHeight(),
+                child = $(this).find('.ot-metabox-panels').outerHeight() + 8,
+                minHeight = parent - 34
+            if ( $(this).find('.ot-metabox-panels').css('padding') == '12px' && child < parent ) {
+              $(this).find('.ot-metabox-panels').css({ minHeight: minHeight })
+            }
+          }
+        })
         
         // Move the orphaned settings to the top
         $(this).find('.ot-metabox-panels > .format-settings').prependTo($(this))
