@@ -3777,10 +3777,10 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
           
           /* doing magic on the conditions so they work in a list item */
           $conditionals = explode( ',', $field['condition'] );
-          foreach( $conditionals as $conditions ) {
-            $parts = explode( ':', $conditions );
+          foreach( $conditionals as $condition ) {
+            $parts = explode( ':', $condition );
             if ( isset( $parts[0] ) ) {
-              $field['condition'] = str_replace( $parts[0], $name . '_' . $parts[0] . '_' . $key, $field['condition'] );
+              $field['condition'] = str_replace( $condition, $name . '_' . $parts[0] . '_' . $key . ':' . $parts[1], $field['condition'] );
             }
           }
 
