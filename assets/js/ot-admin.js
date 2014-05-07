@@ -376,7 +376,7 @@
       });
     },
     init_conditions: function() {
-      $( document ).on( 'change.conditionals', '.format-settings[id^="setting_"] select, .format-settings[id^="setting_"] input[type="radio"]:checked, .format-settings[id^="setting_"] input[type="text"], .format-settings[id^="setting_"] input[type="hidden"], .format-settings[id^="setting_"] input.ot-numeric-slider-hidden-input', function( e ) {
+      $('.format-settings[id^="setting_"]').on( 'change.conditionals, keyup.conditionals', 'select, input[type="radio"]:checked, input[type="text"], input[type="hidden"], input.ot-numeric-slider-hidden-input', function( e ) {
         OT_UI.parse_condition();
       });
       OT_UI.parse_condition();
