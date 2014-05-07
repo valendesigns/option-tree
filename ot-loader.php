@@ -1,13 +1,30 @@
 <?php
 /**
  * Plugin Name: OptionTree
- * Plugin URI:  http://wp.envato.com
+ * Plugin URI:  https://github.com/valendesigns/option-tree/
  * Description: Theme Options UI Builder for WordPress. A simple way to create & save Theme Options and Meta Boxes for free or premium themes.
  * Version:     2.4.0
  * Author:      Derek Herman
  * Author URI:  http://valendesigns.com
  * License:     GPLv3
  */
+
+/**
+ * Forces Plugin Mode when OptionTree is already loaded and display admin nag.
+ */
+if ( class_exists( 'OT_Loader' ) && defined( 'OT_PLUGIN_MODE' ) && OT_PLUGIN_MODE == true ) {
+  
+  add_filter( 'ot_theme_mode', '__return_false', 999 );
+  
+  function ot_conflict_notice() {
+    
+    echo '<div class="error"><p>' . __( 'OptionTree is installed as a plugin and also embedded in your current theme. Please deactivate the plugin to load the theme dependent version of OptionTree, and remove this warning.', 'option-tree' ) . '</p></div>';
+    
+  }
+  
+  add_action( 'admin_notices', 'ot_conflict_notice' );
+  
+}
 
 /**
  * This is the OptionTree loader class.
