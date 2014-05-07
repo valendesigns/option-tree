@@ -74,6 +74,7 @@ This is a complete list of all the available option types that come shipped with
 
 1. Download the latest version of OptionTree and unarchive the `.zip` directory.
 1. Put the `option-tree` directory in the root of your theme. For example, the server path would be `/wp-content/themes/theme-name/option-tree/`.
+1. You must deactivate and/or delete the plugin version of OptionTree.
 1. Add the following code to the beginning of your `functions.php`.
 
 `/**
