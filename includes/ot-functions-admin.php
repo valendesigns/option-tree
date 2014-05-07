@@ -1584,6 +1584,11 @@ add_action( 'admin_init', 'custom_theme_options' );
  * Build the custom settings & update OptionTree.
  */
 function custom_theme_options() {
+  
+  /* OptionTree is not loaded yet */
+  if ( ! function_exists( 'ot_settings_id' ) )
+    return false;
+    
   /**
    * Get a copy of the saved settings array. 
    */
