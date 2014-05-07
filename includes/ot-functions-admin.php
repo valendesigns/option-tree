@@ -91,7 +91,7 @@ if ( ! function_exists( 'ot_register_settings_page' ) ) {
     global $ot_has_custom_theme_options;
     
     // Display UI Builder admin notice
-    if ( isset( $_REQUEST['page'] ) && $_REQUEST['page'] == 'ot-settings' && ( $ot_has_custom_theme_options == true || has_action( 'admin_init', 'custom_theme_options' ) ) ) {
+    if ( OT_SHOW_OPTIONS_UI == true && isset( $_REQUEST['page'] ) && $_REQUEST['page'] == 'ot-settings' && ( $ot_has_custom_theme_options == true || has_action( 'admin_init', 'custom_theme_options' ) ) ) {
       
       function ot_has_custom_theme_options() {
     
