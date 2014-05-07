@@ -110,6 +110,7 @@ There sure is, and I'm glad you asked. Download and activate the [OptionTree The
 * Added filter 'ot_post_formats' which loads meta boxes specifically for post formats.
 * Added Social Links option type. Filter sites using `ot_recognized_social_sites` or add them manually in the choices array.
 * Fixed OptionTree being conflicted due to having both the plugin and theme version activated. Contributors via github @valendesigns and @bitcommit.
+* Added an admin notice when the UI Builder is being overridden by custom theme options.
 * Fixed an issue with the CSS option type not showing the Ace editor in a metabox that is broken into tabbed content.
 * Fixed missing option type translation strings. Contributors via github @RistoNiinemets.
 * Replaced mysql functions with the wpdb equivalent. Contributors via github @joshlevinson.
