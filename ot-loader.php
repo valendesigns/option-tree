@@ -10,7 +10,7 @@
  */
 
 /**
- * Forces Plugin Mode when OptionTree is already loaded and display admin nag.
+ * Forces Plugin Mode when OptionTree is already loaded and displays an admin notice.
  */
 if ( class_exists( 'OT_Loader' ) && defined( 'OT_PLUGIN_MODE' ) && OT_PLUGIN_MODE == true ) {
   
