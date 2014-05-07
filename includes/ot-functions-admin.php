@@ -88,7 +88,21 @@ if ( ! function_exists( 'ot_register_theme_options_page' ) ) {
 if ( ! function_exists( 'ot_register_settings_page' ) ) {
 
   function ot_register_settings_page() {
+    global $ot_has_custom_theme_options;
+    
+    // Display UI Builder admin notice
+    if ( isset( $_REQUEST['page'] ) && $_REQUEST['page'] == 'ot-settings' && ( $ot_has_custom_theme_options == true || has_action( 'admin_init', 'custom_theme_options' ) ) ) {
+      
+      function ot_has_custom_theme_options() {
+    
+        echo '<div class="error"><p>' . __( 'The Theme Options UI Builder is being overridden by a custom file in your theme. Any changes you make via the UI Builder will not be saved.', 'option-tree' ) . '</p></div>';
+        
+      }
+      
+      add_action( 'admin_notices', 'ot_has_custom_theme_options' );
   
+    }
+    
     // Create the filterable pages array
     $ot_register_pages_array =  array( 
       array( 
@@ -1560,8 +1574,6 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
     )";
     }
     
-    $ot_settings_id = ot_settings_id();
-    
     $content.= "<?php
 /**
  * Initialize the custom theme options.
@@ -1575,7 +1587,7 @@ function custom_theme_options() {
   /**
    * Get a copy of the saved settings array. 
    */
-  \$saved_settings = get_option( '$ot_settings_id', array() );
+  \$saved_settings = get_option( ot_settings_id(), array() );
   
   /**
    * Custom settings array that will eventually be 
@@ -1585,12 +1597,16 @@ function custom_theme_options() {
   );
   
   /* allow settings to be filtered before saving */
-  \$custom_settings = apply_filters( '{$ot_settings_id}_args', \$custom_settings );
+  \$custom_settings = apply_filters( ot_settings_id() . '_args', \$custom_settings );
   
   /* settings are not the same update the DB */
   if ( \$saved_settings !== \$custom_settings ) {
-    update_option( '$ot_settings_id', \$custom_settings ); 
+    update_option( ot_settings_id(), \$custom_settings ); 
   }
+  
+  /* Lets OptionTree know the UI Builder is being overridden */
+  global \$ot_has_custom_theme_options;
+  \$ot_has_custom_theme_options = true;
   
 }";
 
