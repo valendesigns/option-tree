@@ -2288,8 +2288,22 @@ if ( ! function_exists( 'ot_type_upload' ) ) {
     /* verify a description */
     $has_desc = $field_desc ? true : false;
     
+    /* If an attachment ID is stored here fetch its URL and replace the value */
+    if ( $field_value && wp_attachment_is_image( $field_value ) ) {
+    
+      $attachment_data = wp_get_attachment_image_src( $field_value, 'original' );
+      
+      /* check for attachment data */
+      if ( $attachment_data ) {
+      
+        $field_src = $attachment_data[0];
+        
+      }
+      
+    }
+    
     /* format setting outer wrapper */
-    echo '<div class="format-setting type-upload ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+    echo '<div class="format-setting type-upload ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . ( isset( $field_src ) ? ' ot-upload-attachment-id-wrap' : '' ) . '">';
       
       /* description */
       echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
@@ -2301,7 +2315,7 @@ if ( ! function_exists( 'ot_type_upload' ) ) {
         echo '<div class="option-tree-ui-upload-parent">';
           
           /* input */
-          echo '<input type="text" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" value="' . esc_attr( $field_value ) . '" class="widefat option-tree-ui-upload-input ' . esc_attr( $field_class ) . '" />';
+          echo '<input type="text" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" value="' . esc_attr( $field_value ) . '" class="widefat option-tree-ui-upload-input ' . esc_attr( $field_class ) . '"' . ( isset( $field_src ) ? ' disabled' : '' ) . ' />';
           
           /* add media button */
           echo '<a href="javascript:void(0);" class="ot_upload_media option-tree-ui-button button button-primary light" rel="' . $post_id . '" title="' . __( 'Add Media', 'option-tree' ) . '"><span class="icon ot-icon-plus-circle"></span>' . __( 'Add Media', 'option-tree' ) . '</a>';
@@ -2310,9 +2324,13 @@ if ( ! function_exists( 'ot_type_upload' ) ) {
         
         /* media */
         if ( $field_value ) {
-        
+            
           echo '<div class="option-tree-ui-media-wrap" id="' . esc_attr( $field_id ) . '_media">';
-          
+            
+            /* replace image src */
+            if ( isset( $field_src ) )
+              $field_value = $field_src;
+              
             if ( preg_match( '/\.(?:jpe?g|png|gif|ico)$/i', $field_value ) )
               echo '<div class="option-tree-ui-image-wrap"><img src="' . esc_url( $field_value ) . '" alt="" /></div>';
             

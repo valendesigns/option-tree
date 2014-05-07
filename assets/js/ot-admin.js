@@ -386,9 +386,10 @@
     },
     init_upload: function() {
       $(document).on('click', '.ot_upload_media', function() {
-        var field_id    = $(this).parent('.option-tree-ui-upload-parent').find('input').attr('id'),
-            post_id     = $(this).attr('rel'),
-            btnContent  = '';
+        var field_id            = $(this).parent('.option-tree-ui-upload-parent').find('input').attr('id'),
+            post_id             = $(this).attr('rel'),
+            save_attachment_id  = $('#'+field_id).hasClass('ot-upload-attachment-id'),
+            btnContent          = '';
         if ( window.wp && wp.media ) {
           window.ot_media_frame = window.ot_media_frame || new wp.media.view.MediaFrame.Select({
             title: $(this).attr('title'),
@@ -399,14 +400,20 @@
           });
           window.ot_media_frame.on('select', function() {
             var attachment = window.ot_media_frame.state().get('selection').first(), 
-                href = attachment.attributes.url, 
+                href = attachment.attributes.url,
+                attachment_id = attachment.attributes.id,
                 mime = attachment.attributes.mime,
                 regex = /^image\/(?:jpe?g|png|gif|x-icon)$/i;
             if ( mime.match(regex) ) {
               btnContent += '<div class="option-tree-ui-image-wrap"><img src="'+href+'" alt="" /></div>';
             }
             btnContent += '<a href="javascript:(void);" class="option-tree-ui-remove-media option-tree-ui-button button button-secondary light" title="'+option_tree.remove_media_text+'"><span class="icon ot-icon-minus-sign"></span>'+option_tree.remove_media_text+'</a>';
-            $('#'+field_id).val(href);
+            if ( save_attachment_id ) {
+              $('#'+field_id).val(attachment_id).attr('disabled','disabled');
+              $('#'+field_id).parents('.type-upload').addClass('ot-upload-attachment-id-wrap')
+            } else {
+              $('#'+field_id).val(href);
+            }
             $('#'+field_id+'_media').remove();
             $('#'+field_id).parent().parent('div').append('<div class="option-tree-ui-media-wrap" id="'+field_id+'_media" />');
             $('#'+field_id+'_media').append(btnContent).slideDown();
@@ -572,7 +579,7 @@
       });
     },
     fix_upload_parent: function() {
-      $('.option-tree-ui-upload-input').on('focus blur', function(){
+      $('.option-tree-ui-upload-input').not('.ot-upload-attachment-id').on('focus blur', function(){
         $(this).parent('.option-tree-ui-upload-parent').toggleClass('focus');
         OT_UI.init_upload_fix(this);
       });
