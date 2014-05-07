@@ -290,6 +290,9 @@
         last_section = section;
       });
     },
+    condition_objects: function() {
+      return 'select, input[type="radio"]:checked, input[type="text"], input[type="hidden"], input.ot-numeric-slider-hidden-input';
+    },
     match_conditions: function(condition) {
       var match;
       var regex = /(.+?):(is|not|contains|less_than|less_than_or_equal_to|greater_than|greater_than_or_equal_to)\((.*?)\),?/g;
@@ -315,7 +318,7 @@
         $.each( conditions, function( index, condition ) {
 
           var target   = $( '#setting_' + condition.check );
-          var targetEl = !! target.length && target.find( 'select, input[type="radio"]:checked, input[type="text"], input[type="hidden"], input.ot-numeric-slider-hidden-input' ).first();
+          var targetEl = !! target.length && target.find( OT_UI.condition_objects() ).first();
 
           if ( ! target.length || ( ! targetEl.length && condition.value.toString() != '' ) ) {
             return;
@@ -376,7 +379,7 @@
       });
     },
     init_conditions: function() {
-      $('.format-settings[id^="setting_"]').on( 'change.conditionals, keyup.conditionals', 'select, input[type="radio"]:checked, input[type="text"], input[type="hidden"], input.ot-numeric-slider-hidden-input', function( e ) {
+      $('.format-settings[id^="setting_"]').on( 'change.conditionals, keyup.conditionals', OT_UI.condition_objects(), function() {
         OT_UI.parse_condition();
       });
       OT_UI.parse_condition();
