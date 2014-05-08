@@ -3498,12 +3498,16 @@ a.ui-datepicker-next {
   padding: 18px 0 12px 0;
   width: 151px;
 }
-.ot-metabox-tabs.ui-tabs .ot-metabox-nav.ui-tabs-nav li {
+.ot-metabox-tabs.ui-tabs .ot-metabox-nav.ui-tabs-nav li,
+.ot-metabox-tabs.ui-tabs .ot-metabox-nav.ui-tabs-nav li.ui-state-focus {
+  background: none;
   border: 1px solid transparent;
   border-right-width: 0px;
   display: block;
   margin: 0;
   outline: 0;
+  padding: 1px 0;
+  width: 150px;
   -webkit-border-radius: 2px 0 0 2px;
      -moz-border-radius: 2px 0 0 2px;
           border-radius: 2px 0 0 2px;

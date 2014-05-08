@@ -852,6 +852,12 @@
         // Move the orphaned settings to the top
         $(this).find('.ot-metabox-panels > .format-settings').prependTo($(this))
         
+        // Remove a bunch of classes to stop style conflicts.
+        $(this).find('.ot-metabox-tabs').removeClass('ui-widget ui-widget-content ui-corner-all')
+        $(this).find('.ot-metabox-nav').removeClass('ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all')
+        $(this).find('.ot-metabox-nav li').removeClass('ui-state-default ui-corner-top ui-tabs-active ui-tabs-active')
+        $(this).find('.ot-metabox-nav li').on('hover', function() { $(this).removeClass('ui-state-hover') })
+
       }
     
     })
