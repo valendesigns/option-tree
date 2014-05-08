@@ -928,14 +928,18 @@
     // detect mousedown and store all checked radio buttons
     $('.hndle').on('mousedown', function () {
       
+      // get parent element of .hndle selected. 
+      // We only need to monitor radios insde the object that is being moved.
+      var parent_id = $(this).closest('div').attr('id')
+      
       // set live event listener for mouse up on the content .wrap 
       // then give the dragged div time to settle before firing the reclick function
       $('.wrap').on('mouseup', function () {
         
         var ot_checked_radios = {}
         
-        // loop over the radio buttons
-        $('input[type="radio"]').each(function () {
+        // loop over all checked radio buttons inside of parent element
+        $('#' + parent_id + ' input[type="radio"]').each( function () {
           
           // stores checked radio buttons
           if ( $(this).is(':checked') ) {
