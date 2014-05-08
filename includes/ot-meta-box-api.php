@@ -261,6 +261,34 @@ if ( ! class_exists( 'OT_Meta_Box' ) ) {
             
             /* set up new data with validated data */
             $new = $_POST[$field['id']];
+          
+          } else if ( $field['type'] == 'social-links' ) {
+            
+            /* get the settings array */
+            $settings = isset( $_POST[$field['id'] . '_settings_array'] ) ? unserialize( ot_decode( $_POST[$field['id'] . '_settings_array'] ) ) : array();
+            
+            /* settings are empty get the defaults */
+            if ( empty( $settings ) ) {
+              $settings = ot_social_links_settings( $field['id'] );
+            }
+            
+            foreach( $_POST[$field['id']] as $k => $setting_array ) {
+  
+              foreach( $settings as $sub_setting ) {
+                
+                /* verify sub setting has a type & value */
+                if ( isset( $sub_setting['type'] ) && isset( $_POST[$field['id']][$k][$sub_setting['id']] ) ) {
+                  
+                  $_POST[$field['id']][$k][$sub_setting['id']] = ot_validate_setting( $_POST[$field['id']][$k][$sub_setting['id']], $sub_setting['type'], $sub_setting['id'] );
+                  
+                }
+                
+              }
+            
+            }
+            
+            /* set up new data with validated data */
+            $new = $_POST[$field['id']];
 
           } else {
             

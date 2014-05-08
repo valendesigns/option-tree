@@ -495,6 +495,9 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       /* AJAX call to create a new list item */
       add_action( 'wp_ajax_add_list_item', array( $this, 'add_list_item' ) );
       
+      /* AJAX call to create a new social link */
+      add_action( 'wp_ajax_add_social_links', array( $this, 'add_social_links' ) );
+      
       // Adds the temporary hacktastic shortcode
       add_filter( 'media_view_settings', array( $this, 'shortcode' ), 10, 2 );
     
@@ -632,6 +635,14 @@ if ( ! class_exists( 'OT_Loader' ) ) {
      */
     public function add_list_item() {
       ot_list_item_view( $_REQUEST['name'], $_REQUEST['count'], array(), $_REQUEST['post_id'], $_REQUEST['get_option'], unserialize( ot_decode( $_REQUEST['settings'] ) ), $_REQUEST['type'] );
+      die();
+    }
+    
+    /**
+     * AJAX utility function for adding a new social link.
+     */
+    public function add_social_links() {
+      ot_social_links_view( $_REQUEST['name'], $_REQUEST['count'], array(), $_REQUEST['post_id'], $_REQUEST['get_option'], unserialize( ot_decode( $_REQUEST['settings'] ) ), $_REQUEST['type'] );
       die();
     }
     

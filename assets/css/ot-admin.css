@@ -1534,9 +1534,8 @@
   position: relative;
   width: 63%;
 }
-.format-setting.no-desc .format-setting-inner,
-.format-setting.wide-desc .format-setting-inner,
-.option-tree-list-item .format-setting-inner {
+.format-setting.no-desc > .format-setting-inner,
+.format-setting.wide-desc .format-setting-inner {
   width: 100%;
 }
 .format-setting .description {
@@ -1544,9 +1543,8 @@
   padding: 5px 0;
   width: 35%;
 }
-.format-setting.no-desc .description,
-.format-setting.wide-desc .description,
-.option-tree-list-item .description {
+.format-setting.no-desc > .description,
+.format-setting.wide-desc .description {
   float: none;
   width: 100%;
 }

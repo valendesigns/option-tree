@@ -1796,6 +1796,18 @@ if ( ! function_exists( 'ot_save_settings' ) ) {
                     }
                   
                   }
+                
+                } else if ( ! empty( $options[$current_setting['id']] ) && $current_setting['type'] == 'social-icons' ) {
+                  
+                  foreach( $options[$current_setting['id']] as $key => $value ) {
+          
+                    foreach( $value as $ckey => $cvalue ) {
+                      
+                      ot_wpml_unregister_string( $current_setting['id'] . '_' . $ckey . '_' . $key );
+                      
+                    }
+                  
+                  }
                   
                 } else {
                 
@@ -2211,6 +2223,7 @@ if ( ! function_exists( 'ot_option_types_array' ) ) {
       'select'                    => __('Select', 'option-tree'),
       'sidebar-select'            => __('Sidebar Select',  'option-tree'),
       'slider'                    => __('Slider', 'option-tree'),
+      'social-links'              => __('Social Links', 'option-tree'),
       'tab'                       => __('Tab', 'option-tree'),
       'tag-checkbox'              => __('Tag Checkbox', 'option-tree'),
       'tag-select'                => __('Tag Select', 'option-tree'),
@@ -2666,47 +2679,6 @@ if ( ! function_exists( 'ot_recognized_background_position' ) ) {
 }
 
 /**
- * Recognized Social Links
- *
- * Returns an array of all recognized social links.
- *
- * @uses      apply_filters()
- *
- * @param     string  $field_id ID that's passed to the filters.
- * @return    array
- *
- * @access    public
- * @since     2.4.0
- */
-if ( ! function_exists( 'ot_recognized_social_links' ) ) {
-
-  function ot_recognized_social_links( $field_id = '' ) {
-
-    return apply_filters( 'ot_recognized_social_links', array(
-      'facebook'    => __( 'Facebook', 'option-tree' ),
-      'twitter'     => __( 'Twitter', 'option-tree' ),
-      'google-plus' => __( 'Google+', 'option-tree' ),
-      'linkedin'    => __( 'LinkedIn', 'option-tree' ),
-      'vk'          => __( 'VK.com', 'option-tree' ),
-      'pinterest'   => __( 'Pinterest', 'option-tree' ),
-      'flickr'      => __( 'Flickr', 'option-tree' ),
-      'dribbble'    => __( 'Dribbble', 'option-tree' ),
-      'youtube'     => __( 'Youtube', 'option-tree' ),
-      'vimeo'       => __( 'Vimeo', 'option-tree' ),
-      'soundcloud'  => __( 'SoundCloud', 'option-tree' ),
-      'skype'       => __( 'Skype', 'option-tree' ),
-      'tumblr'      => __( 'Tumblr', 'option-tree' ),
-      'github'      => __( 'Github', 'option-tree' ),
-      'digg'        => __( 'Digg', 'option-tree' ),
-      'delicious'   => __( 'Delicious', 'option-tree' ),
-      'forrst'      => __( 'Forrst', 'option-tree' )
-    ), $field_id );
-
-  }
-
-}
-
-/**
  * Measurement Units
  *
  * Returns an array of all available unit types.
@@ -2923,6 +2895,53 @@ if ( ! function_exists( 'ot_slider_settings' ) ) {
     
     return $settings;
     
+  }
+
+}
+
+/**
+ * Default Social Links Settings array.
+ *
+ * Returns an array of the default social links settings.
+ * You can filter this function to change the settings
+ * on a per option basis.
+ *
+ * @uses      apply_filters()
+ *
+ * @return    array
+ *
+ * @access    public
+ * @since     2.4.0
+ */
+if ( ! function_exists( 'ot_social_links_settings' ) ) {
+
+  function ot_social_links_settings( $id ) {
+    
+    $settings = apply_filters( 'ot_social_links_settings', array(
+      array(
+        'id'        => 'name',
+        'label'     => __( 'Name', 'option-tree' ),
+        'desc'      => __( 'Enter the name of the social website.', 'option-tree' ),
+        'std'       => '',
+        'type'      => 'text',
+        'class'     => 'option-tree-setting-title'
+      ),
+      array(
+        'id'        => 'title',
+        'label'     => 'Title',
+        'desc'      => __( 'Enter the text shown in the title attribute of the link.', 'option-tree' ),
+        'type'      => 'text'
+      ),
+      array(
+        'id'        => 'href',
+        'label'     => 'Link',
+        'desc'      => sprintf( __( 'Enter a link to the profile or page on the social website. Remember to add the %s part to the front of the link.', 'option-tree' ), '<code>http://</code>' ),
+        'type'      => 'text',
+      )
+    ), $id );
+    
+    return $settings;
+  
   }
 
 }
@@ -3882,6 +3901,129 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
             
           /* option body, list-item is not allowed inside another list-item */
           if ( $_args['type'] !== 'list-item' && $_args['type'] !== 'slider' ) {
+            echo ot_display_by_type( $_args );
+          }
+        
+        echo '</div>';
+      
+      }
+        
+      echo '</div>';
+    
+    echo '</div>';
+    
+  }
+  
+}
+
+/**
+ * Helper function to display social links.
+ *
+ * This function is used in AJAX to add a new list items
+ * and when they have already been added and saved.
+ *
+ * @param     string    $name The form field name.
+ * @param     int       $key The array key for the current element.
+ * @param     array     An array of values for the current list item.
+ *
+ * @return   void
+ *
+ * @access   public
+ * @since    2.4.0
+ */
+if ( ! function_exists( 'ot_social_links_view' ) ) {
+
+  function ot_social_links_view( $name, $key, $list_item = array(), $post_id = 0, $get_option = '', $settings = array(), $type = '' ) {
+    
+    /* if no settings array load the filterable social links settings */
+    if ( empty( $settings ) ) {
+      
+      $settings = ot_social_links_settings( $name );
+      
+    }
+    
+    echo '
+    <div class="option-tree-setting">
+      <div class="open">' . ( isset( $list_item['name'] ) ? esc_attr( $list_item['name'] ) : '' ) . '</div>
+      <div class="button-section">
+        <a href="javascript:void(0);" class="option-tree-setting-edit option-tree-ui-button button left-item" title="' . __( 'Edit', 'option-tree' ) . '">
+          <span class="icon ot-icon-pencil"></span>' . __( 'Edit', 'option-tree' ) . '
+        </a>
+        <a href="javascript:void(0);" class="option-tree-setting-remove option-tree-ui-button button button-secondary light right-item" title="' . __( 'Delete', 'option-tree' ) . '">
+          <span class="icon ot-icon-trash-o"></span>' . __( 'Delete', 'option-tree' ) . '
+        </a>
+      </div>
+      <div class="option-tree-setting-body">';
+        
+      foreach( $settings as $field ) {
+        
+        // Set field value
+        $field_value = isset( $list_item[$field['id']] ) ? $list_item[$field['id']] : '';
+        
+        /* set default to standard value */
+        if ( isset( $field['std'] ) ) {  
+          $field_value = ot_filter_std_value( $field_value, $field['std'] );
+        }
+          
+        /* make life easier */
+        $_field_name = $get_option ? $get_option . '[' . $name . ']' : $name;
+             
+        /* build the arguments array */
+        $_args = array(
+          'type'              => $field['type'],
+          'field_id'          => $name . '_' . $field['id'] . '_' . $key,
+          'field_name'        => $_field_name . '[' . $key . '][' . $field['id'] . ']',
+          'field_value'       => $field_value,
+          'field_desc'        => isset( $field['desc'] ) ? $field['desc'] : '',
+          'field_std'         => isset( $field['std'] ) ? $field['std'] : '',
+          'field_rows'        => isset( $field['rows'] ) ? $field['rows'] : 10,
+          'field_post_type'   => isset( $field['post_type'] ) && ! empty( $field['post_type'] ) ? $field['post_type'] : 'post',
+          'field_taxonomy'    => isset( $field['taxonomy'] ) && ! empty( $field['taxonomy'] ) ? $field['taxonomy'] : 'category',
+          'field_min_max_step'=> isset( $field['min_max_step'] ) && ! empty( $field['min_max_step'] ) ? $field['min_max_step'] : '0,100,1',
+          'field_class'       => isset( $field['class'] ) ? $field['class'] : '',
+          'field_condition'   => isset( $field['condition'] ) ? $field['condition'] : '',
+          'field_operator'    => isset( $field['operator'] ) ? $field['operator'] : 'and',
+          'field_choices'     => isset( $field['choices'] ) && ! empty( $field['choices'] ) ? $field['choices'] : array(),
+          'field_settings'    => isset( $field['settings'] ) && ! empty( $field['settings'] ) ? $field['settings'] : array(),
+          'post_id'           => $post_id,
+          'get_option'        => $get_option
+        );
+        
+        $conditions = '';
+        
+        /* setup the conditions */
+        if ( isset( $field['condition'] ) && ! empty( $field['condition'] ) ) {
+          
+          /* doing magic on the conditions so they work in a list item */
+          $conditionals = explode( ',', $field['condition'] );
+          foreach( $conditionals as $condition ) {
+            $parts = explode( ':', $condition );
+            if ( isset( $parts[0] ) ) {
+              $field['condition'] = str_replace( $condition, $name . '_' . $parts[0] . '_' . $key . ':' . $parts[1], $field['condition'] );
+            }
+          }
+
+          $conditions = ' data-condition="' . $field['condition'] . '"';
+          $conditions.= isset( $field['operator'] ) && in_array( $field['operator'], array( 'and', 'AND', 'or', 'OR' ) ) ? ' data-operator="' . $field['operator'] . '"' : '';
+
+        }
+          
+        /* option label */
+        echo '<div id="setting_' . $_args['field_id'] . '" class="format-settings"' . $conditions . '>';
+          
+          /* don't show title with textblocks */
+          if ( $_args['type'] != 'textblock' && ! empty( $field['label'] ) ) {
+            echo '<div class="format-setting-label">';
+              echo '<h3 class="label">' . esc_attr( $field['label'] ) . '</h3>';
+            echo '</div>';
+          }
+          
+          /* only allow simple textarea inside a list-item due to known DOM issues with wp_editor() */
+          if ( $_args['type'] == 'textarea' )
+            $_args['type'] = 'textarea-simple';
+          
+          /* option body, list-item is not allowed inside another list-item */
+          if ( $_args['type'] !== 'list-item' && $_args['type'] !== 'slider' && $_args['type'] !== 'social-links' ) {
             echo ot_display_by_type( $_args );
           }
         

@@ -109,7 +109,7 @@ There sure is, and I'm glad you asked. Download and activate the [OptionTree The
 
 = 2.4.0 =
 * Added filter 'ot_post_formats' which loads meta boxes specifically for post formats.
-* Added Social Links option type. Filter sites using `ot_recognized_social_sites` or add them manually in the choices array.
+* Added the Social Links option type.
 * Fixed OptionTree being conflicted due to having both the plugin and theme version activated. Contributors via github @valendesigns and @bitcommit.
 * Added an admin notice when the UI Builder is being overridden by custom theme options.
 * Allow the Upload option type to be stored as an attachment ID by adding `ot-upload-attachment-id` to the elements `class` attribute. Contributors via github @valendesigns and @krisarsov.

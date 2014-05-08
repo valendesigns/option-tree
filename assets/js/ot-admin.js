@@ -101,6 +101,10 @@
         e.preventDefault();
         OT_UI.add(this,'list_item');
       });
+      $(document).on('click', '.option-tree-social-links-add', function(e) {
+        e.preventDefault();
+        OT_UI.add(this,'social_links');
+      });
       $(document).on('click', '.option-tree-list-item-setting-add', function(e) {
         e.preventDefault();
         if ( $(this).parents('ul').parents('ul').hasClass('ui-sortable') ) {
@@ -190,6 +194,9 @@
       } else if ( type == 'list_item_setting' ) {
         list = $(elm).parent().children('ul');
         list_class = 'list-sub-setting';
+      } else if ( type == 'social_links' ) {
+        list = $(elm).parent().children('ul');
+        list_class = 'list-sub-setting';
       } else {
         list = $(elm).parent().find('ul:first');
         list_class = ( type == 'section' ) ? 'list-section' : 'list-setting';
@@ -201,7 +208,7 @@
       if ( this.processing === false ) {
         this.processing = true;
         var count = parseInt(list.children('li').length);
-        if ( type == 'list_item' ) {
+        if ( type == 'list_item' || type == 'social_links' ) {
           list.find('li input.option-tree-setting-title', self).each(function(){
             var setting = $(this).attr('name'),
                 regex = /\[([0-9]+)\]/,

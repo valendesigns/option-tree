@@ -848,7 +848,7 @@ if ( ! function_exists( 'ot_type_list_item' ) ) {
         /** 
          * settings pages have array wrappers like 'option_tree'.
          * So we need that value to create a proper array to save to.
-         * This is only for NON metaboxes settings.
+         * This is only for NON metabox settings.
          */
         if ( ! isset( $get_option ) )
           $get_option = '';
@@ -1539,7 +1539,7 @@ if ( ! function_exists( 'ot_type_slider' ) ) {
         /** 
          * settings pages have array wrappers like 'option_tree'.
          * So we need that value to create a proper array to save to.
-         * This is only for NON metaboxes settings.
+         * This is only for NON metabox settings.
          */
         if ( ! isset( $get_option ) )
           $get_option = '';
@@ -1587,59 +1587,157 @@ if ( ! function_exists( 'ot_type_slider' ) ) {
  * @since     2.4.0
  */
 if ( ! function_exists( 'ot_type_social_links' ) ) {
-
+  
   function ot_type_social_links( $args = array() ) {
-
+    
     /* turns arguments array into variables */
     extract( $args );
-
+    
+    /* Load the default social links */
+    if ( empty( $field_value ) && apply_filters( 'ot_type_social_links_load_defaults', true, $field_id ) ) {
+      
+      $field_value = apply_filters( 'ot_type_social_links_defaults', array(
+        array(
+          'name'    => __( 'Facebook', 'option-tree' ),
+          'title'   => '',
+          'href'    => ''
+        ),
+        array(
+          'name'    => __( 'Twitter', 'option-tree' ),
+          'title'   => '',
+          'href'    => ''
+        ),
+        array(
+          'name'    => __( 'Google+', 'option-tree' ),
+          'title'   => '',
+          'href'    => ''
+        ),
+        array(
+          'name'    => __( 'LinkedIn', 'option-tree' ),
+          'title'   => '',
+          'href'    => ''
+        ),
+        array(
+          'name'    => __( 'Pinterest', 'option-tree' ),
+          'title'   => '',
+          'href'    => ''
+        ),
+        array(
+          'name'    => __( 'Youtube', 'option-tree' ),
+          'title'   => '',
+          'href'    => ''
+        ),
+        array(
+          'name'    => __( 'Dribbble', 'option-tree' ),
+          'title'   => '',
+          'href'    => ''
+        ),
+        array(
+          'name'    => __( 'Github', 'option-tree' ),
+          'title'   => '',
+          'href'    => ''
+        ),
+        array(
+          'name'    => __( 'Forrst', 'option-tree' ),
+          'title'   => '',
+          'href'    => ''
+        ),
+        array(
+          'name'    => __( 'Digg', 'option-tree' ),
+          'title'   => '',
+          'href'    => ''
+        ),
+        array(
+          'name'    => __( 'Delicious', 'option-tree' ),
+          'title'   => '',
+          'href'    => ''
+        ),
+        array(
+          'name'    => __( 'Tumblr', 'option-tree' ),
+          'title'   => '',
+          'href'    => ''
+        ),
+        array(
+          'name'    => __( 'Skype', 'option-tree' ),
+          'title'   => '',
+          'href'    => ''
+        ),
+        array(
+          'name'    => __( 'SoundCloud', 'option-tree' ),
+          'title'   => '',
+          'href'    => ''
+        ),
+        array(
+          'name'    => __( 'Vimeo', 'option-tree' ),
+          'title'   => '',
+          'href'    => ''
+        ),
+        array(
+          'name'    => __( 'Flickr', 'option-tree' ),
+          'title'   => '',
+          'href'    => ''
+        ),
+        array(
+          'name'    => __( 'VK.com', 'option-tree' ),
+          'title'   => '',
+          'href'    => ''
+        )
+      ), $field_id );
+      
+    }
+    
     /* verify a description */
     $has_desc = $field_desc ? true : false;
 
     /* format setting outer wrapper */
-    echo '<div class="format-setting type-social-links ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
-
+    echo '<div class="format-setting type-social-list-item ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+      
       /* description */
       echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
-
+      
       /* format setting inner wrapper */
       echo '<div class="format-setting-inner">';
-
-        /**
-         * load the default filterable social links if nothing 
-         * has been set in the choices array.
+        
+        /* pass the settings array arround */
+        echo '<input type="hidden" name="' . esc_attr( $field_id ) . '_settings_array" id="' . esc_attr( $field_id ) . '_settings_array" value="' . ot_encode( serialize( $field_settings ) ) . '" />';
+        
+        /** 
+         * settings pages have array wrappers like 'option_tree'.
+         * So we need that value to create a proper array to save to.
+         * This is only for NON metabox settings.
          */
-        if ( empty( $field_choices ) ) {
-          $field_choices = array();
-          foreach( ot_recognized_social_links( $field_id ) as $value => $label ) {
-            $field_choices[] = array(
-              'value' => $value,
-              'label' => $label
-            );
+        if ( ! isset( $get_option ) )
+          $get_option = '';
+          
+        /* build list items */
+        echo '<ul class="option-tree-setting-wrap option-tree-sortable" data-name="' . esc_attr( $field_id ) . '" data-id="' . esc_attr( $post_id ) . '" data-get-option="' . esc_attr( $get_option ) . '" data-type="' . esc_attr( $type ) . '">';
+        
+        if ( is_array( $field_value ) && ! empty( $field_value ) ) {
+        
+          foreach( $field_value as $key => $link ) {
+            
+            echo '<li class="ui-state-default list-list-item">';
+              ot_social_links_view( $field_id, $key, $link, $post_id, $get_option, $field_settings, $type );
+            echo '</li>';
+            
           }
+          
         }
-
-        /* Social links input */
-        foreach ( (array) $field_choices as $key => $choice ) {
-          $icon = $choice['value'];
-          if ( $icon == 'vimeo' ) {
-            $icon = 'vimeo-square';
-          }
-          if ( ! empty( $icon ) ) {
-            $icon = '<span class="icon ot-icon-' . $icon . '"></span> ';
-          }
-          echo '<p>';
-            echo '<label for="' . esc_attr( $field_id ) . '-' . esc_attr( $choice['value'] ) .'">' . $icon . $choice['label'] . '</label>';
-            echo '<input type="text" name="' . esc_attr( $field_name ) . '[' . esc_attr( $choice['value'] ) . ']" id="' . esc_attr( $field_id ) . '-' . esc_attr( $choice['value'] ) .'" value="' . ( isset( $field_value[$choice['value']] ) ? esc_attr( $field_value[$choice['value']] ) : '' ) . '" class="widefat option-tree-ui-input ' . esc_attr( $field_class ) . '" />';
-          echo '</p>';
-        }
-
+        
+        echo '</ul>';
+        
+        /* button */
+        echo '<a href="javascript:void(0);" class="option-tree-social-links-add option-tree-ui-button button button-primary right hug-right" title="' . __( 'Add New', 'option-tree' ) . '">' . __( 'Add New', 'option-tree' ) . '</a>';
+        
+        /* description */
+        echo '<div class="list-item-description">' . apply_filters( 'ot_social_links_description', __( 'You can re-order with drag & drop, the order will update after saving.', 'option-tree' ), $field_id ) . '</div>';
+      
       echo '</div>';
 
     echo '</div>';
-
+    
   }
-
+  
 }
 
 /**
