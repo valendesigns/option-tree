@@ -49,6 +49,7 @@ This is a complete list of all the available option types that come shipped with
 * Select
 * Sidebar Select
 * Slider
+* Social Links
 * Tab
 * Tag Checkbox
 * Tag Select
