@@ -632,6 +632,21 @@ function custom_theme_options() {
         'class'       => '',
         'condition'   => '',
         'operator'    => 'and'
+      ),
+      array(
+        'id'          => 'demo_upload_attachment_id',
+        'label'       => __( 'Upload Attachment ID', 'theme-text-domain' ),
+        'desc'        => sprintf( __( 'The Upload option type can also be saved as an attachment ID by adding %s to the class attribute.', 'theme-text-domain' ), '<code>ot-upload-attachment-id</code>' ),
+        'std'         => '',
+        'type'        => 'upload',
+        'section'     => 'option_types',
+        'rows'        => '',
+        'post_type'   => '',
+        'taxonomy'    => '',
+        'min_max_step'=> '',
+        'class'       => 'ot-upload-attachment-id',
+        'condition'   => '',
+        'operator'    => 'and'
       )
     )
   );

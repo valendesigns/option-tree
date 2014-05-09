@@ -1,13 +1,30 @@
 <?php
 /**
  * Plugin Name: OptionTree
- * Plugin URI:  http://wp.envato.com
+ * Plugin URI:  https://github.com/valendesigns/option-tree/
  * Description: Theme Options UI Builder for WordPress. A simple way to create & save Theme Options and Meta Boxes for free or premium themes.
- * Version:     2.3.4
+ * Version:     2.4.0
  * Author:      Derek Herman
  * Author URI:  http://valendesigns.com
  * License:     GPLv3
  */
+
+/**
+ * Forces Plugin Mode when OptionTree is already loaded and displays an admin notice.
+ */
+if ( class_exists( 'OT_Loader' ) && defined( 'OT_PLUGIN_MODE' ) && OT_PLUGIN_MODE == true ) {
+  
+  add_filter( 'ot_theme_mode', '__return_false', 999 );
+  
+  function ot_conflict_notice() {
+    
+    echo '<div class="error"><p>' . __( 'OptionTree is installed as a plugin and also embedded in your current theme. Please deactivate the plugin to load the theme dependent version of OptionTree, and remove this warning.', 'option-tree' ) . '</p></div>';
+    
+  }
+  
+  add_action( 'admin_notices', 'ot_conflict_notice' );
+  
+}
 
 /**
  * This is the OptionTree loader class.
@@ -95,7 +112,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
         
       } else {
       
-        load_theme_textdomain( 'option-tree', DIRECTORY_SEPARATOR . OT_LANG_DIR . 'theme-mode' );
+        load_theme_textdomain( 'option-tree', OT_LANG_DIR . 'theme-mode' );
         
       }
       
@@ -142,7 +159,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       /**
        * Current Version number.
        */
-      define( 'OT_VERSION', '2.3.4' );
+      define( 'OT_VERSION', '2.4.0' );
       
       /**
        * For developers: Theme mode.
@@ -258,6 +275,16 @@ if ( ! class_exists( 'OT_Loader' ) ) {
        * @since     2.0
        */
       define( 'OT_ALLOW_UNFILTERED_HTML', apply_filters( 'ot_allow_unfiltered_html', false ) );
+
+      /**
+       * For developers: Post Formats.
+       *
+       * Run a filter and set to true if you want OptionTree 
+       * to load meta boxes for post formats.
+       *
+       * @since     2.4.0
+       */
+      define( 'OT_POST_FORMATS', apply_filters( 'ot_post_formats', false ) );
       
       /**
        * Check if in theme mode.
@@ -323,6 +350,11 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       /* include the meta box api */
       if ( OT_META_BOXES == true ) {
         $files[] = 'ot-meta-box-api';
+      }
+      
+      /* include the post formats api */
+      if ( OT_META_BOXES == true && OT_POST_FORMATS == true ) {
+        $files[] = 'ot-post-formats-api';
       }
       
       /* include the settings & docs pages */
@@ -463,6 +495,9 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       /* AJAX call to create a new list item */
       add_action( 'wp_ajax_add_list_item', array( $this, 'add_list_item' ) );
       
+      /* AJAX call to create a new social link */
+      add_action( 'wp_ajax_add_social_links', array( $this, 'add_social_links' ) );
+      
       // Adds the temporary hacktastic shortcode
       add_filter( 'media_view_settings', array( $this, 'shortcode' ), 10, 2 );
     
@@ -600,6 +635,14 @@ if ( ! class_exists( 'OT_Loader' ) ) {
      */
     public function add_list_item() {
       ot_list_item_view( $_REQUEST['name'], $_REQUEST['count'], array(), $_REQUEST['post_id'], $_REQUEST['get_option'], unserialize( ot_decode( $_REQUEST['settings'] ) ), $_REQUEST['type'] );
+      die();
+    }
+    
+    /**
+     * AJAX utility function for adding a new social link.
+     */
+    public function add_social_links() {
+      ot_social_links_view( $_REQUEST['name'], $_REQUEST['count'], array(), $_REQUEST['post_id'], $_REQUEST['get_option'], unserialize( ot_decode( $_REQUEST['settings'] ) ), $_REQUEST['type'] );
       die();
     }
     

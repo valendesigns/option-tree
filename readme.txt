@@ -3,8 +3,8 @@ Contributors: valendesigns
 Donate link: http://bit.ly/NuXI3T
 Tags: options, theme options, meta boxes
 Requires at least: 3.5
-Tested up to: 3.8.1
-Stable tag: 2.3.4
+Tested up to: 3.9.1
+Stable tag: 2.4.0
 License: GPLv3
 
 Theme Options UI Builder for WordPress. A simple way to create & save Theme Options and Meta Boxes for free or premium themes.
@@ -49,6 +49,7 @@ This is a complete list of all the available option types that come shipped with
 * Select
 * Sidebar Select
 * Slider
+* Social Links
 * Tab
 * Tag Checkbox
 * Tag Select
@@ -74,6 +75,7 @@ This is a complete list of all the available option types that come shipped with
 
 1. Download the latest version of OptionTree and unarchive the `.zip` directory.
 1. Put the `option-tree` directory in the root of your theme. For example, the server path would be `/wp-content/themes/theme-name/option-tree/`.
+1. You must deactivate and/or delete the plugin version of OptionTree.
 1. Add the following code to the beginning of your `functions.php`.
 
 `/**
@@ -105,6 +107,28 @@ There sure is, and I'm glad you asked. Download and activate the [OptionTree The
 3. Documentation
 
 == Changelog ==
+
+= 2.4.0 =
+* Added filter 'ot_post_formats' which loads meta boxes specifically for post formats.
+* Added the Social Links option type.
+* Fixed OptionTree being conflicted due to having both the plugin and theme version activated. Contributors via github @valendesigns and @bitcommit.
+* Added an admin notice when the UI Builder is being overridden by custom theme options.
+* Allow the Upload option type to be stored as an attachment ID by adding `ot-upload-attachment-id` to the elements `class` attribute. Contributors via github @valendesigns and @krisarsov.
+* Fixed an issue with the CSS option type not showing the Ace editor in a metabox that is broken into tabbed content.
+* Fixed missing option type translation strings. Contributors via github @RistoNiinemets.
+* Replaced mysql functions with the wpdb equivalent. Contributors via github @joshlevinson.
+* Fixed search order of the `contains` condition string. Contributors via github @designst.
+* Added meta box field wrapper class if a custom field class is defined in the settings. Contributors via github @designst.
+* Added filter 'ot_type_select_choices' to dynamically change select choices. Contributors via github @maimairel and @valendesigns.
+* Fixed a bug that added an unnecessary directory separator to the `load_theme_textdomain()` `$path` variable. Contributors via github @PatrickDelancy and @valendesigns.
+* Fixed the state of metabox radio buttons after a Drag & Drop event. Contributors via github @themovation and @valendesigns.
+* Fixed conditions not working correctly within list items.
+* Fixed the min-height issue when using tabs in metaboxes.
+* Added filter `ot_recognized_font_sizes` to dynamically change the font sizes by field ID.
+* Added filter `ot_recognized_letter_spacing` to dynamically change the letter spacing by field ID.
+* Added filter `ot_recognized_line_heights` to dynamically change the line heights by field ID.
+* Fixed a style issue where list item labels in metaboxes were not displaying correctly.
+* Fixed an issue where the WooCommerce plugin would alter the style of metabox tabs on product pages.
 
 = 2.3.4 =
 * Hotfix - Fixed an issue where condition number values were being treated like strings and not returning a correct boolean response.
