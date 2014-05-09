@@ -161,6 +161,26 @@ if ( ! function_exists( 'ot_wpml_filter' ) ) {
             
             }
           
+          // List Item & Slider
+          } else if ( $option_id == $setting['id'] && $setting['type'] == 'social-links' ) {
+          
+            foreach( $options[$option_id] as $key => $value ) {
+          
+              foreach( $value as $ckey => $cvalue ) {
+                
+                $id = $option_id . '_' . $ckey . '_' . $key;
+                $_string = icl_t( 'Theme Options', $id, $cvalue );
+                
+                if ( ! empty( $_string ) ) {
+                
+                  $options[$option_id][$key][$ckey] = $_string;
+                  
+                }
+                
+              }
+            
+            }
+          
           // All other acceptable option types
           } else if ( $option_id == $setting['id'] && in_array( $setting['type'], apply_filters( 'ot_wpml_option_types', array( 'text', 'textarea', 'textarea-simple' ) ) ) ) {
           
