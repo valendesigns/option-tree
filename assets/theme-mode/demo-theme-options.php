@@ -503,7 +503,7 @@ function custom_theme_options() {
         'label'       => __( 'Social Links', 'theme-text-domain' ),
         'desc'        => '<p>' . sprintf( __( 'The Social Links option type utilizes a drag & drop interface to create a list of social links. There are a few filters that make extending this option type easy. You can set the %s filter to %s and turn off loading default values. Use the %s filter to change the default values that are loaded. To filter the settings array use the %s filter.', 'theme-text-domain' ), '<code>ot_type_social_links_load_defaults</code>', '<code>false</code>', '<code>ot_type_social_links_defaults</code>', '<code>ot_social_links_settings</code>' ) . '</p>',
         'std'         => '',
-        'type'        => 'sidebar-select',
+        'type'        => 'social-links',
         'section'     => 'option_types',
         'rows'        => '',
         'post_type'   => '',

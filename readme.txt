@@ -108,6 +108,9 @@ There sure is, and I'm glad you asked. Download and activate the [OptionTree The
 
 == Changelog ==
 
+= 2.4.1 =
+* Hotfix - Fixed a typo in the demo Theme Options related to the `social-links`.
+
 = 2.4.0 =
 * Added filter 'ot_post_formats' which loads meta boxes specifically for post formats.
 * Added the Social Links option type.
