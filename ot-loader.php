@@ -3,7 +3,7 @@
  * Plugin Name: OptionTree
  * Plugin URI:  https://github.com/valendesigns/option-tree/
  * Description: Theme Options UI Builder for WordPress. A simple way to create & save Theme Options and Meta Boxes for free or premium themes.
- * Version:     2.4.0
+ * Version:     2.4.1
  * Author:      Derek Herman
  * Author URI:  http://valendesigns.com
  * License:     GPLv3
@@ -159,7 +159,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       /**
        * Current Version number.
        */
-      define( 'OT_VERSION', '2.4.0' );
+      define( 'OT_VERSION', '2.4.1' );
       
       /**
        * For developers: Theme mode.
