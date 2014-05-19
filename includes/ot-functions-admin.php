@@ -3926,10 +3926,10 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
  * @param     int       $key The array key for the current element.
  * @param     array     An array of values for the current list item.
  *
- * @return   void
+ * @return    void
  *
- * @access   public
- * @since    2.4.0
+ * @access    public
+ * @since     2.4.0
  */
 if ( ! function_exists( 'ot_social_links_view' ) ) {
 
