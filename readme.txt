@@ -104,7 +104,7 @@ There sure is, and I'm glad you asked. Download and activate the [OptionTree The
 
 = Why are my translation files not loading? =
 
-It is important to note that when you use OptionTree as a plugin, put must your language files in the `option-tree/languages` directory and use file names like `option-tree-es_ES.mo` & `option-tree-es_ES.po`. However, when using OptionTree in Theme Mode you must create a `theme-mode` directory inside the `option-tree/languages` directory and use file names like `es_ES.mo` & `es_ES.po`. This is due to the different naming conventions of the `load_plugin_textdomain()` and `load_theme_textdomain()` functions.
+It is important to note that when you use OptionTree as a plugin, you must store your language files in the `option-tree/languages` directory and use file names like `option-tree-es_ES.mo` & `option-tree-es_ES.po`. However, when using OptionTree in Theme Mode you must also create a `theme-mode` directory inside the `option-tree/languages` directory and store your files there with names like `es_ES.mo` & `es_ES.po`. This is due to the different naming conventions of the `load_plugin_textdomain()` and `load_theme_textdomain()` functions.
 
 = I get errors or a blank screen when I activate the plugin. What's the deal? =
 
