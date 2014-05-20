@@ -80,8 +80,27 @@ if ( ! class_exists( 'OT_Loader' ) ) {
        * This path will be relative in plugin mode and absolute in theme mode.
        *
        * @since     2.0.10
+       * @updated   2.4.1
        */
-      define( 'OT_LANG_DIR', dirname( plugin_basename( __FILE__ ) ) . DIRECTORY_SEPARATOR . 'languages' . DIRECTORY_SEPARATOR );
+      if ( OT_PLUGIN_MODE ) {
+        
+        define( 'OT_LANG_DIR', trailingslashit( dirname( plugin_basename( __FILE__ ) ) ) . trailingslashit( 'languages' ) );
+        
+      } else {
+      
+        if ( apply_filters( 'ot_child_theme_mode', false ) == true ) {
+        
+          $path = ltrim( end( @explode( get_stylesheet(), str_replace( '\\', '/', dirname( __FILE__ ) ) ) ), '/' );
+          define( 'OT_LANG_DIR', trailingslashit( trailingslashit( get_stylesheet_directory() ) . $path ) . trailingslashit( 'languages' ) . 'theme-mode' );
+          
+        } else {
+        
+          $path = ltrim( end( @explode( get_template(), str_replace( '\\', '/', dirname( __FILE__ ) ) ) ), '/' );
+          define( 'OT_LANG_DIR', trailingslashit( trailingslashit( get_template_directory() ) . $path ) . trailingslashit( 'languages' ) . 'theme-mode' );
+          
+        }
+      
+      }
 
       /* load the text domain  */
       if ( OT_PLUGIN_MODE ) {
@@ -112,7 +131,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
         
       } else {
       
-        load_theme_textdomain( 'option-tree', OT_LANG_DIR . 'theme-mode' );
+        load_theme_textdomain( 'option-tree', OT_LANG_DIR );
         
       }
       
