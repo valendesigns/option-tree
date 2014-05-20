@@ -290,7 +290,7 @@ div.option-tree-ui-media-wrap {
   background-image: url(../images/ot-select-hover-rtl.png);
 }
 .select-wrapper span {
-  padding-left: 0;
+  padding-left: 27px;
   padding-right: 7px;
 }
 .type-measurement .select-wrapper {
