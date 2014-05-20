@@ -112,6 +112,7 @@ There sure is, and I'm glad you asked. Download and activate the [OptionTree The
 * Hotfix - Fixed a typo in the demo Theme Options related to the `social-links`.
 * Hotfix - Fixed the language directory path conflict between IIS and Linux while in Theme Mode.
 * Hotfix - Fixed a style issue where select fields would overflow their parent elements.
+* Hotfix - Fixed a PHP notice that was created when the Measurement option type did not have a saved value.
 
 = 2.4.0 =
 * Added filter 'ot_post_formats' which loads meta boxes specifically for post formats.

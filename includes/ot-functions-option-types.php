@@ -926,7 +926,7 @@ if ( ! function_exists( 'ot_type_measurement' ) ) {
           echo '<option value="">&nbsp;--&nbsp;</option>';
           
           foreach ( ot_measurement_unit_types( $field_id ) as $unit ) {
-            echo '<option value="' . esc_attr( $unit ) . '"' . selected( $field_value[1], $unit, false ) . '>' . esc_attr( $unit ) . '</option>';
+            echo '<option value="' . esc_attr( $unit ) . '"' . ( isset( $field_value[1] ) ? selected( $field_value[1], $unit, false ) : '' ) . '>' . esc_attr( $unit ) . '</option>';
           }
           
         echo '</select>';
