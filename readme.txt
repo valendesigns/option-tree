@@ -108,7 +108,7 @@ It is important to note that when you use OptionTree as a plugin, you must store
 
 = I get errors or a blank screen when I activate the plugin. What's the deal? =
 
-The most likely scenario is your theme already has OptionTree installed in Theme Mode. And since the plugin and theme version can't both be active at the same time without the sky falling on your head, your site has decided to throw in the towel. If that's not your issue, open up a support request and we'll figure it out together. UPDATE: As of OptionTree 2.4.0 the plugin version will not conflict with the Theme Mode version if they are both post 2.4.0 installations.
+The most likely scenario is your theme already has OptionTree installed in Theme Mode. And since the plugin and theme version can't both be active at the same time without the sky falling on your head, your site has decided to throw in the towel. If that's not your issue, open up a support request and we'll figure it out together. UPDATE: As of OptionTree 2.4.0 the plugin version will not conflict with the Theme Mode version if they are both 2.4.0 or higher.
 
 == Screenshots ==
 
