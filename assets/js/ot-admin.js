@@ -924,6 +924,17 @@
         $(this).find('.ot-theme-option-panels > .format-settings').prependTo($(this).find('.ot-theme-option-tabs'))
       
       }
+      
+      // Automatically fill option IDs with clean versions of their respective option labels
+      var optionIds = $(this).find('[type="text"][name$="id]"]');
+      var optionLabels = $(this).find('[type="text"][name$="label]"]');
+      if (optionIds.length) {
+        optionLabels.on('blur', function(e) {
+          var optionId = $(this).parents('.option-tree-setting-body').find('[type="text"][name$="id]"]')
+          var cleanOptionId = $(this).val().replace(/ /g, '_').toLowerCase();
+          if (optionId.val() === '') optionId.val(cleanOptionId);
+        })
+      }
     
     })
      
