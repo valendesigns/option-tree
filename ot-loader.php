@@ -3,7 +3,7 @@
  * Plugin Name: OptionTree
  * Plugin URI:  https://github.com/valendesigns/option-tree/
  * Description: Theme Options UI Builder for WordPress. A simple way to create & save Theme Options and Meta Boxes for free or premium themes.
- * Version:     2.4.0
+ * Version:     2.4.1
  * Author:      Derek Herman
  * Author URI:  http://valendesigns.com
  * License:     GPLv3
@@ -80,8 +80,27 @@ if ( ! class_exists( 'OT_Loader' ) ) {
        * This path will be relative in plugin mode and absolute in theme mode.
        *
        * @since     2.0.10
+       * @updated   2.4.1
        */
-      define( 'OT_LANG_DIR', dirname( plugin_basename( __FILE__ ) ) . DIRECTORY_SEPARATOR . 'languages' . DIRECTORY_SEPARATOR );
+      if ( OT_PLUGIN_MODE ) {
+        
+        define( 'OT_LANG_DIR', trailingslashit( dirname( plugin_basename( __FILE__ ) ) ) . trailingslashit( 'languages' ) );
+        
+      } else {
+      
+        if ( apply_filters( 'ot_child_theme_mode', false ) == true ) {
+        
+          $path = ltrim( end( @explode( get_stylesheet(), str_replace( '\\', '/', dirname( __FILE__ ) ) ) ), '/' );
+          define( 'OT_LANG_DIR', trailingslashit( trailingslashit( get_stylesheet_directory() ) . $path ) . trailingslashit( 'languages' ) . 'theme-mode' );
+          
+        } else {
+        
+          $path = ltrim( end( @explode( get_template(), str_replace( '\\', '/', dirname( __FILE__ ) ) ) ), '/' );
+          define( 'OT_LANG_DIR', trailingslashit( trailingslashit( get_template_directory() ) . $path ) . trailingslashit( 'languages' ) . 'theme-mode' );
+          
+        }
+      
+      }
 
       /* load the text domain  */
       if ( OT_PLUGIN_MODE ) {
@@ -112,7 +131,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
         
       } else {
       
-        load_theme_textdomain( 'option-tree', OT_LANG_DIR . 'theme-mode' );
+        load_theme_textdomain( 'option-tree', OT_LANG_DIR );
         
       }
       
@@ -159,7 +178,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       /**
        * Current Version number.
        */
-      define( 'OT_VERSION', '2.4.0' );
+      define( 'OT_VERSION', '2.4.1' );
       
       /**
        * For developers: Theme mode.

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OptionTree\n"
-"POT-Creation-Date: 2014-05-08 12:42-0800\n"
-"PO-Revision-Date: 2014-05-08 12:43-0800\n"
+"POT-Creation-Date: 2014-05-19 23:29-0800\n"
+"PO-Revision-Date: 2014-05-19 23:30-0800\n"
 "Last-Translator: Derek Herman <derek@valendesigns.com>\n"
 "Language-Team: Valen Designs\n"
 "Language: English\n"
@@ -24,7 +24,7 @@ msgid ""
 "OptionTree, and remove this warning."
 msgstr ""
 
-#: ../ot-loader.php:725 ../assets/theme-mode/demo-theme-options.php:624
+#: ../ot-loader.php:744 ../assets/theme-mode/demo-theme-options.php:639
 #: ../includes/ot-functions-admin.php:652
 #: ../includes/ot-functions-docs-page.php:374
 #: ../includes/ot-functions-settings-page.php:170
@@ -70,7 +70,7 @@ msgid "More Options"
 msgstr ""
 
 #: ../assets/theme-mode/demo-meta-boxes.php:62
-#: ../assets/theme-mode/demo-theme-options.php:533
+#: ../assets/theme-mode/demo-theme-options.php:548
 #: ../includes/ot-functions-admin.php:2232
 #: ../includes/ot-functions-docs-page.php:269
 msgid "Text"
@@ -81,7 +81,7 @@ msgid "This is a demo Text field."
 msgstr ""
 
 #: ../assets/theme-mode/demo-meta-boxes.php:68
-#: ../assets/theme-mode/demo-theme-options.php:548
+#: ../assets/theme-mode/demo-theme-options.php:563
 #: ../includes/ot-functions-admin.php:2233
 #: ../includes/ot-functions-docs-page.php:272
 msgid "Textarea"
@@ -124,7 +124,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:45
-#: ../assets/theme-mode/demo-theme-options.php:609
+#: ../assets/theme-mode/demo-theme-options.php:624
 #: ../includes/ot-functions-admin.php:3584
 #: ../includes/ot-functions-docs-page.php:111
 #: ../includes/ot-functions-docs-page.php:354
@@ -527,12 +527,29 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:503
+#: ../includes/ot-functions-admin.php:2226
+#: ../includes/ot-functions-docs-page.php:251
+msgid "Social Links"
+msgstr ""
+
+#: ../assets/theme-mode/demo-theme-options.php:504
+#: ../includes/ot-functions-docs-page.php:252
+#, php-format
+msgid ""
+"The Social Links option type utilizes a drag & drop interface to create a "
+"list of social links. There are a few filters that make extending this "
+"option type easy. You can set the %s filter to %s and turn off loading "
+"default values. Use the %s filter to change the default values that are "
+"loaded. To filter the settings array use the %s filter."
+msgstr ""
+
+#: ../assets/theme-mode/demo-theme-options.php:518
 #: ../includes/ot-functions-admin.php:2230
 #: ../includes/ot-functions-docs-page.php:263
 msgid "Taxonomy Checkbox"
 msgstr ""
 
-#: ../assets/theme-mode/demo-theme-options.php:504
+#: ../assets/theme-mode/demo-theme-options.php:519
 #: ../includes/ot-functions-docs-page.php:264
 msgid ""
 "The Taxonomy Checkbox option type displays a list of taxonomy IDs. It allows "
@@ -540,13 +557,13 @@ msgid ""
 "array for use in a custom function or loop."
 msgstr ""
 
-#: ../assets/theme-mode/demo-theme-options.php:518
+#: ../assets/theme-mode/demo-theme-options.php:533
 #: ../includes/ot-functions-admin.php:2231
 #: ../includes/ot-functions-docs-page.php:266
 msgid "Taxonomy Select"
 msgstr ""
 
-#: ../assets/theme-mode/demo-theme-options.php:519
+#: ../assets/theme-mode/demo-theme-options.php:534
 #: ../includes/ot-functions-docs-page.php:267
 msgid ""
 "The Taxonomy Select option type displays a list of taxonomy IDs. It allows "
@@ -554,14 +571,14 @@ msgid ""
 "in a custom function or loop."
 msgstr ""
 
-#: ../assets/theme-mode/demo-theme-options.php:534
+#: ../assets/theme-mode/demo-theme-options.php:549
 #: ../includes/ot-functions-docs-page.php:270
 msgid ""
 "The Text option type is used to save string values. For example, any "
 "optional or required text that is of reasonably short character length."
 msgstr ""
 
-#: ../assets/theme-mode/demo-theme-options.php:549
+#: ../assets/theme-mode/demo-theme-options.php:564
 #: ../includes/ot-functions-docs-page.php:273
 #, php-format
 msgid ""
@@ -570,26 +587,26 @@ msgid ""
 "the how it is displayed. For example, you can filter %s, %s, %s, and %s."
 msgstr ""
 
-#: ../assets/theme-mode/demo-theme-options.php:563
+#: ../assets/theme-mode/demo-theme-options.php:578
 #: ../includes/ot-functions-admin.php:2234
 #: ../includes/ot-functions-docs-page.php:331
 msgid "Textarea Simple"
 msgstr ""
 
-#: ../assets/theme-mode/demo-theme-options.php:564
+#: ../assets/theme-mode/demo-theme-options.php:579
 #: ../includes/ot-functions-docs-page.php:332
 msgid ""
 "The Textarea Simple option type is a large string value used for custom code "
 "or text in the theme. The Textarea Simple does not have a WYSIWYG editor."
 msgstr ""
 
-#: ../assets/theme-mode/demo-theme-options.php:578
+#: ../assets/theme-mode/demo-theme-options.php:593
 #: ../includes/ot-functions-admin.php:2235
 #: ../includes/ot-functions-docs-page.php:347
 msgid "Textblock"
 msgstr ""
 
-#: ../assets/theme-mode/demo-theme-options.php:579
+#: ../assets/theme-mode/demo-theme-options.php:594
 #: ../includes/ot-functions-docs-page.php:348
 msgid ""
 "The Textblock option type is used only on the Theme Option page. It will "
@@ -599,13 +616,13 @@ msgid ""
 "themes template files as it does not save a value."
 msgstr ""
 
-#: ../assets/theme-mode/demo-theme-options.php:593
+#: ../assets/theme-mode/demo-theme-options.php:608
 #: ../includes/ot-functions-admin.php:2236
 #: ../includes/ot-functions-docs-page.php:350
 msgid "Textblock Titled"
 msgstr ""
 
-#: ../assets/theme-mode/demo-theme-options.php:594
+#: ../assets/theme-mode/demo-theme-options.php:609
 #: ../includes/ot-functions-docs-page.php:351
 msgid ""
 "The Textblock Titled option type is used only on the Theme Option page. It "
@@ -615,13 +632,13 @@ msgid ""
 "this in your themes template files as it does not save a value."
 msgstr ""
 
-#: ../assets/theme-mode/demo-theme-options.php:608
+#: ../assets/theme-mode/demo-theme-options.php:623
 #: ../includes/ot-functions-admin.php:2237
 #: ../includes/ot-functions-docs-page.php:353
 msgid "Typography"
 msgstr ""
 
-#: ../assets/theme-mode/demo-theme-options.php:609
+#: ../assets/theme-mode/demo-theme-options.php:624
 #: ../includes/ot-functions-docs-page.php:354
 #, php-format
 msgid ""
@@ -633,13 +650,13 @@ msgid ""
 "filters allow you to fine tune the select lists for your specific needs."
 msgstr ""
 
-#: ../assets/theme-mode/demo-theme-options.php:623
+#: ../assets/theme-mode/demo-theme-options.php:638
 #: ../includes/ot-functions-admin.php:2238
 #: ../includes/ot-functions-docs-page.php:373
 msgid "Upload"
 msgstr ""
 
-#: ../assets/theme-mode/demo-theme-options.php:624
+#: ../assets/theme-mode/demo-theme-options.php:639
 #: ../includes/ot-functions-docs-page.php:374
 #, php-format
 msgid ""
@@ -651,11 +668,11 @@ msgid ""
 "upload or %s any media to your new server and change the URIs if necessary."
 msgstr ""
 
-#: ../assets/theme-mode/demo-theme-options.php:638
+#: ../assets/theme-mode/demo-theme-options.php:653
 msgid "Upload Attachment ID"
 msgstr ""
 
-#: ../assets/theme-mode/demo-theme-options.php:639
+#: ../assets/theme-mode/demo-theme-options.php:654
 #, php-format
 msgid ""
 "The Upload option type can also be saved as an attachment ID by adding %s to "
@@ -943,11 +960,6 @@ msgstr ""
 #: ../includes/ot-functions-admin.php:2225
 #: ../includes/ot-functions-docs-page.php:248
 msgid "Slider"
-msgstr ""
-
-#: ../includes/ot-functions-admin.php:2226
-#: ../includes/ot-functions-docs-page.php:251
-msgid "Social Links"
 msgstr ""
 
 #: ../includes/ot-functions-admin.php:2227
@@ -1450,16 +1462,6 @@ msgid ""
 "The Slider option type is technically deprecated. Use the List Item option "
 "type instead, as it's infinitely more customizable. Typical use is for "
 "creating sliding image content."
-msgstr ""
-
-#: ../includes/ot-functions-docs-page.php:252
-#, php-format
-msgid ""
-"The Social Links option type utilizes a drag & drop interface to create a "
-"list of social links. There are a few filters that make extending this "
-"option type easy. You can set the %s filter to %s and turn off loading "
-"default values. Use the %s filter to change the default values that are "
-"loaded. To filter the settings array use the %s filter."
 msgstr ""
 
 #: ../includes/ot-functions-docs-page.php:255
