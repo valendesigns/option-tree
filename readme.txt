@@ -4,14 +4,20 @@ Donate link: http://bit.ly/NuXI3T
 Tags: options, theme options, meta boxes
 Requires at least: 3.5
 Tested up to: 3.9.1
-Stable tag: 2.4.0
+Stable tag: 2.4.1
 License: GPLv3
 
 Theme Options UI Builder for WordPress. A simple way to create & save Theme Options and Meta Boxes for free or premium themes.
 
 == Description ==
 
-OptionTree attempts to bridge the gap between WordPress developers, designers and end-users by creating fully responsive option panels and meta boxes with an ease unlike any other plugin. Packed full of advanced features with tons of hooks and filters to adjust every aspect of the user experience. You can build your theme options with a drag & drop interface locally and export a fully functioning `theme-options.php` file for production use that's i18n translation ready with you own custom text domain. And, in just a few simple lines of code, all your themes can have separate settings arrays saved to the database with unique IDs. Not only that, but OptionTree takes full advantage of the new color schemes introduced in WordPress 3.8, it looks and feels built-in.
+OptionTree attempts to bridge the gap between WordPress developers, designers and end-users by creating fully responsive option panels and meta boxes with an ease unlike any other plugin. OptionTree has many advanced features with well placed hooks and filters to adjust every aspect of the user experience. 
+
+Build your Theme Options panel locally with an easy to use drag & drop interface and then export a functioning `theme-options.php` file for production use that is i18n translation ready, with your custom text domain automatically inserted. 
+
+And, in just a few simple lines of code, save settings to the database with a unique array ID so none of your Theme Options conflict with other themes that use OptionTree. 
+
+Also, OptionTree now takes full advantage of the new color schemes introduced in WordPress 3.8, it looks and feels built-in.
 
 #### Theme Integration
 If you're like me, you want to know how everything works. Download and activate the [OptionTree Theme](https://github.com/valendesigns/option-tree-theme) and see first hand how to integrate OptionTree into your own project. I'll walk you through installing OptionTree and you'll get a chance to see all the various options and filters first hand and in the wild.
@@ -92,13 +98,17 @@ For a list of all the OptionTree UI display filters refer to the `demo-functions
 
 == Frequently Asked Questions ==
 
-= I get errors or a blank screen when I activate the plugin. What's the deal? =
-
-The most likely scenario is your theme already has OptionTree installed in Theme Mode. And since the plugin and theme version can't both be active at the same time without the sky falling on your head, your site has decided to throw in the towel. If that's not your issue, open up a support request and we'll figure it out together.
-
 = Is there a demo theme I can install? =
 
 There sure is, and I'm glad you asked. Download and activate the [OptionTree Theme](https://github.com/valendesigns/option-tree-theme) and get some experience setting up OptionTree on your own with detailed directions and tips.
+
+= Why are my translation files not loading? =
+
+It is important to note that when you use OptionTree as a plugin, you must store your language files in the `option-tree/languages` directory and use file names like `option-tree-es_ES.mo` & `option-tree-es_ES.po`. However, when using OptionTree in Theme Mode you must also create a `theme-mode` directory inside the `option-tree/languages` directory and store your files there with names like `es_ES.mo` & `es_ES.po`. This is due to the different naming conventions of the `load_plugin_textdomain()` and `load_theme_textdomain()` functions.
+
+= I get errors or a blank screen when I activate the plugin. What's the deal? =
+
+The most likely scenario is your theme already has OptionTree installed in Theme Mode. And since the plugin and theme version can't both be active at the same time without the sky falling on your head, your site has decided to throw in the towel. If that's not your issue, open up a support request and we'll figure it out together. UPDATE: As of OptionTree 2.4.0 the plugin version will not conflict with the Theme Mode version if they are both 2.4.0 or higher.
 
 == Screenshots ==
 
@@ -107,6 +117,12 @@ There sure is, and I'm glad you asked. Download and activate the [OptionTree The
 3. Documentation
 
 == Changelog ==
+
+= 2.4.1 =
+* Hotfix - Fixed a typo in the demo Theme Options related to the `social-links`.
+* Hotfix - Fixed the language directory path conflict between IIS and Linux while in Theme Mode.
+* Hotfix - Fixed a style issue where select fields would overflow their parent elements.
+* Hotfix - Fixed a PHP notice that was created when the Measurement option type did not have a saved value.
 
 = 2.4.0 =
 * Added filter 'ot_post_formats' which loads meta boxes specifically for post formats.

@@ -2091,8 +2091,9 @@ li ul .format-setting-label {
   display: block;
   float: left;
   font-size: 12px;
-  height: 27px;
+  height: 29px;
   margin: 0 5px 5px 0;
+  max-width: 100%;
   width: auto;
   -webkit-border-radius: 2px;
      -moz-border-radius: 2px;
@@ -2100,6 +2101,9 @@ li ul .format-setting-label {
   -webkit-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05);
      -moz-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05);
           box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.05);
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
 }
 .select-wrapper:hover {
   background-image: url(../images/ot-select-hover.png);
@@ -2111,6 +2115,7 @@ select.option-tree-ui-select {
   font-size: 14px;
   height: 29px;
   margin: 0;
+  max-width: 100%;
   -moz-opacity: 0;
   opacity: 0;
   padding: 0 !important;
@@ -2126,7 +2131,9 @@ select.option-tree-ui-select option {
 .select-wrapper span {
   height: 27px;
   line-height: 27px;
+  overflow: hidden;
   padding-left: 7px;
+  padding-right: 27px;
   position: absolute;
   z-index: 2;
 }
@@ -2150,21 +2157,6 @@ select.option-tree-ui-select option {
 @-moz-document url-prefix() {
   #option-tree-options-layouts-form .select-wrapper {
     left: 250px;
-  }
-}
-
-/* Webkit */
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-  .select-wrapper span {
-    height: 26px;
-    line-height: 26px;
-  }
-}
-
-/* Opera 11 */
-@media not screen and (1) {
-  .select-wrapper {
-    height: 26px;
   }
 }
 
