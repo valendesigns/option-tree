@@ -150,6 +150,13 @@
       $(document).on('keyup', '.option-tree-setting-title', function() {
         OT_UI.edit_title(this);
       });
+      // Automatically fill option IDs with clean versions of their respective option labels
+      $(document).on('blur', '.option-tree-setting-title', function() {
+        var optionId = $(this).parents('.option-tree-setting-body').find('[type="text"][name$="id]"]')
+        if ( optionId.val() === '' ) {
+          optionId.val($(this).val().replace(/[^a-z0-9]/gi,'_').toLowerCase());
+        }
+      });
     },
     init_edit_id: function() {
       $(document).on('keyup', '.section-id', function(){
