@@ -92,7 +92,7 @@ add_filter( 'ot_theme_mode', '__return_true' );
 /**
  * Required: include OptionTree.
  */
-load_template( trailingslashit( get_template_directory() ) . 'option-tree/ot-loader.php' );`
+require( trailingslashit( get_template_directory() ) . 'option-tree/ot-loader.php' );`
 
 For a list of all the OptionTree UI display filters refer to the `demo-functions.php` file found in the `/assets/theme-mode/` directory of this plugin. This file is the starting point for developing themes with Theme Mode.
 
@@ -121,6 +121,7 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 = 2.4.2 =
 * Hotfix - Fixed a PHP notice that was created when `background-size` in the Background option type is undefined.
 * Hotfix - Fixed an issue with the Upload option type, in attachment ID mode, not storing its value.
+* Hotfix - Replaced `load_template` with `require` throught the documentation.
 
 = 2.4.1 =
 * Hotfix - Fixed a typo in the demo Theme Options related to the `social-links`.

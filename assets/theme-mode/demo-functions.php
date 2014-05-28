@@ -57,9 +57,9 @@
 /**
  * OptionTree in Theme Mode
  */
-# load_template( trailingslashit( get_template_directory() ) . 'option-tree/ot-loader.php' );
+# require( trailingslashit( get_template_directory() ) . 'option-tree/ot-loader.php' );
 
 /**
  * Theme Options
  */
-# load_template( trailingslashit( get_template_directory() ) . 'admin/theme-options.php' );
+# require( trailingslashit( get_template_directory() ) . 'admin/theme-options.php' );

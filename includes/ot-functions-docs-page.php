@@ -724,7 +724,7 @@ if ( ! function_exists( 'ot_type_meta_boxes' ) ) {
         echo '<pre><code>/**
  * Meta Boxes
  */
-load_template( trailingslashit( get_template_directory() ) . \'includes/meta-boxes.php\' );
+require( trailingslashit( get_template_directory() ) . \'includes/meta-boxes.php\' );
 </code></pre>';
         
         echo '<ul class="docs-ul">';
@@ -807,7 +807,7 @@ add_filter( \'ot_theme_mode\', \'__return_true\' );
 /**
  * Required: include OptionTree.
  */
-load_template( trailingslashit( get_template_directory() ) . \'option-tree/ot-loader.php\' );
+require( trailingslashit( get_template_directory() ) . \'option-tree/ot-loader.php\' );
 </code></pre>';
         
         echo '<p>' . sprintf( __( 'For a list of all the OptionTree UI display filters refer to the %s file found in the %s directory of this plugin. This file is the starting point for developing themes with Theme Mode.', 'option-tree' ), '<code>demo-functions.php</code>', '<code>/assets/theme-mode/</code>' ) . '</p>';
@@ -824,7 +824,7 @@ load_template( trailingslashit( get_template_directory() ) . \'option-tree/ot-lo
         echo '<pre><code>/**
  * Theme Options
  */
-load_template( trailingslashit( get_template_directory() ) . \'includes/theme-options.php\' );
+require( trailingslashit( get_template_directory() ) . \'includes/theme-options.php\' );
 </code></pre>';
         
         echo '<ul class="docs-ul">';
