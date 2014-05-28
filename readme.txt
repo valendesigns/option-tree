@@ -120,6 +120,7 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 
 = 2.4.2 =
 * Hotfix - Fixed a PHP notice that was created when `background-size` in the Background option type is undefined.
+* Hotfix - Fixed an issue with the Upload option type, in attachment ID mode, not storing its value.
 
 = 2.4.1 =
 * Hotfix - Fixed a typo in the demo Theme Options related to the `social-links`.

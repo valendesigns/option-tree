@@ -416,8 +416,8 @@
             }
             btnContent += '<a href="javascript:(void);" class="option-tree-ui-remove-media option-tree-ui-button button button-secondary light" title="'+option_tree.remove_media_text+'"><span class="icon ot-icon-minus-circle"></span>'+option_tree.remove_media_text+'</a>';
             if ( save_attachment_id ) {
-              $('#'+field_id).val(attachment_id).attr('disabled','disabled');
-              $('#'+field_id).parents('.type-upload').addClass('ot-upload-attachment-id-wrap')
+              $('#'+field_id).val(attachment_id);
+              $('#'+field_id).parents('.type-upload').addClass('ot-upload-attachment-id-wrap');
             } else {
               $('#'+field_id).val(href);
             }
