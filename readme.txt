@@ -118,6 +118,9 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 
 == Changelog ==
 
+= 2.4.2 =
+* Hotfix - Fixed a PHP notice that was created when `background-size` in the Background option type is undefined.
+
 = 2.4.1 =
 * Hotfix - Fixed a typo in the demo Theme Options related to the `social-links`.
 * Hotfix - Fixed the language directory path conflict between IIS and Linux while in Theme Mode.

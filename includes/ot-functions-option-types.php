@@ -199,7 +199,7 @@ if ( ! function_exists( 'ot_type_background' ) ) {
               
                 foreach ( (array) $choices as $choice ) {
                   if ( isset( $choice['value'] ) && isset( $choice['label'] ) ) {
-                    echo '<option value="' . esc_attr( $choice['value'] ) . '"' . selected( $field_value['background-size'], $choice['value'], false ) . '>' . esc_attr( $choice['label'] ) . '</option>';
+                    echo '<option value="' . esc_attr( $choice['value'] ) . '"' . selected( ( isset( $field_value['background-size'] ) ? $field_value['background-size'] : '' ), $choice['value'], false ) . '>' . esc_attr( $choice['label'] ) . '</option>';
                   }
                 }
         
