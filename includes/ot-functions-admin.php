@@ -3896,7 +3896,7 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
           }
           
           /* only allow simple textarea inside a list-item due to known DOM issues with wp_editor() */
-          if ( $_args['type'] == 'textarea' )
+          if ( apply_filters( 'ot_override_forced_textarea_simple', false, $field['id'] ) == false && $_args['type'] == 'textarea' )
             $_args['type'] = 'textarea-simple';
             
           /* option body, list-item is not allowed inside another list-item */
