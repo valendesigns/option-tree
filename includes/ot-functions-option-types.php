@@ -71,6 +71,20 @@ if ( ! function_exists( 'ot_type_background' ) ) {
     /* verify a description */
     $has_desc = $field_desc ? true : false;
     
+    /* If an attachment ID is stored here fetch its URL and replace the value */
+    if ( isset( $field_value['background-image'] ) && wp_attachment_is_image( $field_value['background-image'] ) ) {
+    
+      $attachment_data = wp_get_attachment_image_src( $field_value['background-image'], 'original' );
+      
+      /* check for attachment data */
+      if ( $attachment_data ) {
+      
+        $field_src = $attachment_data[0];
+        
+      }
+      
+    }
+    
     /* format setting outer wrapper */
     echo '<div class="format-setting type-background ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
       
@@ -230,6 +244,10 @@ if ( ! function_exists( 'ot_type_background' ) ) {
           
           /* media */
           if ( isset( $field_value['background-image'] ) && $field_value['background-image'] !== '' ) {
+            
+            /* replace image src */
+            if ( isset( $field_src ) )
+              $field_value['background-image'] = $field_src;
           
             echo '<div class="option-tree-ui-media-wrap" id="' . esc_attr( $field_id ) . '_media">';
             
@@ -2401,7 +2419,7 @@ if ( ! function_exists( 'ot_type_upload' ) ) {
     }
     
     /* format setting outer wrapper */
-    echo '<div class="format-setting type-upload ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . ( isset( $field_src ) ? ' ot-upload-attachment-id-wrap' : '' ) . '">';
+    echo '<div class="format-setting type-upload ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
       
       /* description */
       echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
