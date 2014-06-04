@@ -4,7 +4,7 @@ Donate link: http://bit.ly/NuXI3T
 Tags: options, theme options, meta boxes
 Requires at least: 3.5
 Tested up to: 3.9.1
-Stable tag: 2.4.1
+Stable tag: 2.4.2
 License: GPLv3
 
 Theme Options UI Builder for WordPress. A simple way to create & save Theme Options and Meta Boxes for free or premium themes.
@@ -92,7 +92,7 @@ add_filter( 'ot_theme_mode', '__return_true' );
 /**
  * Required: include OptionTree.
  */
-load_template( trailingslashit( get_template_directory() ) . 'option-tree/ot-loader.php' );`
+require( trailingslashit( get_template_directory() ) . 'option-tree/ot-loader.php' );`
 
 For a list of all the OptionTree UI display filters refer to the `demo-functions.php` file found in the `/assets/theme-mode/` directory of this plugin. This file is the starting point for developing themes with Theme Mode.
 
@@ -117,6 +117,13 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 3. Documentation
 
 == Changelog ==
+
+= 2.4.2 =
+* Hotfix - Fixed a PHP notice that was created when `background-size` in the Background option type is undefined.
+* Hotfix - Fixed an issue with the Upload option type, in attachment ID mode, not storing its value.
+* Hotfix - Replaced `load_template` with `require` throught the documentation.
+* Hotfix - Added a settings ID auto-fill that is based on the text of the settings label in the Theme Options UI Builder. Contributors via github @valendesigns and @Ore4444.
+* Hotfix - Added filter `ot_override_forced_textarea_simple` to allow the Textarea option type to be moved in the DOM and not replaced with the Textarea Simple option type in meta boxes and list items.
 
 = 2.4.1 =
 * Hotfix - Fixed a typo in the demo Theme Options related to the `social-links`.

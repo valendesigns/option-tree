@@ -71,6 +71,20 @@ if ( ! function_exists( 'ot_type_background' ) ) {
     /* verify a description */
     $has_desc = $field_desc ? true : false;
     
+    /* If an attachment ID is stored here fetch its URL and replace the value */
+    if ( isset( $field_value['background-image'] ) && wp_attachment_is_image( $field_value['background-image'] ) ) {
+    
+      $attachment_data = wp_get_attachment_image_src( $field_value['background-image'], 'original' );
+      
+      /* check for attachment data */
+      if ( $attachment_data ) {
+      
+        $field_src = $attachment_data[0];
+        
+      }
+      
+    }
+    
     /* format setting outer wrapper */
     echo '<div class="format-setting type-background ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
       
@@ -199,7 +213,7 @@ if ( ! function_exists( 'ot_type_background' ) ) {
               
                 foreach ( (array) $choices as $choice ) {
                   if ( isset( $choice['value'] ) && isset( $choice['label'] ) ) {
-                    echo '<option value="' . esc_attr( $choice['value'] ) . '"' . selected( $field_value['background-size'], $choice['value'], false ) . '>' . esc_attr( $choice['label'] ) . '</option>';
+                    echo '<option value="' . esc_attr( $choice['value'] ) . '"' . selected( ( isset( $field_value['background-size'] ) ? $field_value['background-size'] : '' ), $choice['value'], false ) . '>' . esc_attr( $choice['label'] ) . '</option>';
                   }
                 }
         
@@ -230,6 +244,10 @@ if ( ! function_exists( 'ot_type_background' ) ) {
           
           /* media */
           if ( isset( $field_value['background-image'] ) && $field_value['background-image'] !== '' ) {
+            
+            /* replace image src */
+            if ( isset( $field_src ) )
+              $field_value['background-image'] = $field_src;
           
             echo '<div class="option-tree-ui-media-wrap" id="' . esc_attr( $field_id ) . '_media">';
             
@@ -2401,7 +2419,7 @@ if ( ! function_exists( 'ot_type_upload' ) ) {
     }
     
     /* format setting outer wrapper */
-    echo '<div class="format-setting type-upload ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . ( isset( $field_src ) ? ' ot-upload-attachment-id-wrap' : '' ) . '">';
+    echo '<div class="format-setting type-upload ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
       
       /* description */
       echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
@@ -2413,7 +2431,7 @@ if ( ! function_exists( 'ot_type_upload' ) ) {
         echo '<div class="option-tree-ui-upload-parent">';
           
           /* input */
-          echo '<input type="text" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" value="' . esc_attr( $field_value ) . '" class="widefat option-tree-ui-upload-input ' . esc_attr( $field_class ) . '"' . ( isset( $field_src ) ? ' disabled' : '' ) . ' />';
+          echo '<input type="text" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" value="' . esc_attr( $field_value ) . '" class="widefat option-tree-ui-upload-input ' . esc_attr( $field_class ) . '" />';
           
           /* add media button */
           echo '<a href="javascript:void(0);" class="ot_upload_media option-tree-ui-button button button-primary light" rel="' . $post_id . '" title="' . __( 'Add Media', 'option-tree' ) . '"><span class="icon ot-icon-plus-circle"></span>' . __( 'Add Media', 'option-tree' ) . '</a>';
