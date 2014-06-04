@@ -3000,6 +3000,7 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
         $value        = '';
         $option_id    = str_replace( array( '{{', '}}' ), '', $option );
         $option_array = explode( '|', $option_id );
+        $option_type  = ot_get_option_type_by_id( $option_id );
         
         /* get the array value */
         if ( $meta ) {
@@ -3078,8 +3079,25 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
               if ( ! empty( $value['background-color'] ) )
                 $bg[] = $value['background-color'];
                 
-              if ( ! empty( $value['background-image'] ) )
+              if ( ! empty( $value['background-image'] ) ) {
+                
+                /* If an attachment ID is stored here fetch its URL and replace the value */
+                if ( wp_attachment_is_image( $value['background-image'] ) ) {
+                
+                  $attachment_data = wp_get_attachment_image_src( $value['background-image'], 'original' );
+                  
+                  /* check for attachment data */
+                  if ( $attachment_data ) {
+                  
+                    $value['background-image'] = $attachment_data[0];
+                    
+                  }
+                  
+                }
+    
                 $bg[] = 'url("' . $value['background-image'] . '")';
+                
+              }
                 
               if ( ! empty( $value['background-repeat'] ) )
                 $bg[] = $value['background-repeat'];
@@ -3106,18 +3124,32 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
             }
           
           } else {
-          
+               
             $value = $value[$option_array[1]];
             
           }
          
         }
         
+        /* If an attachment ID is stored here fetch its URL and replace the value */
+        if ( $option_type == 'upload' && wp_attachment_is_image( $value ) ) {
+        
+          $attachment_data = wp_get_attachment_image_src( $value, 'original' );
+          
+          /* check for attachment data */
+          if ( $attachment_data ) {
+          
+            $value = $attachment_data[0];
+            
+          }
+          
+        }
+            
         // Filter the CSS
-         $value = apply_filters( 'ot_insert_css_with_markers_value', $value, $option_id );
+        $value = apply_filters( 'ot_insert_css_with_markers_value', $value, $option_id );
          
         /* insert CSS, even if the value is empty */
-         $insertion = stripslashes( str_replace( $option, $value, $insertion ) );
+        $insertion = stripslashes( str_replace( $option, $value, $insertion ) );
          
       }
     
@@ -3896,7 +3928,7 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
           }
           
           /* only allow simple textarea inside a list-item due to known DOM issues with wp_editor() */
-          if ( $_args['type'] == 'textarea' )
+          if ( apply_filters( 'ot_override_forced_textarea_simple', false, $field['id'] ) == false && $_args['type'] == 'textarea' )
             $_args['type'] = 'textarea-simple';
             
           /* option body, list-item is not allowed inside another list-item */
@@ -4836,6 +4868,48 @@ function ot_meta_box_post_format_audio( $pages = 'post' ) {
   	)
   ), $pages );
 
+}
+
+/**
+ * Returns the option type by ID.
+ *
+ * @param     string    $option_id The option ID
+ * @return    string    $settings_id The settings array ID
+ * @return    string    The option type.
+ *
+ * @access    public
+ * @since     2.4.2
+ */
+if ( ! function_exists( 'ot_get_option_type_by_id' ) ) {
+
+  function ot_get_option_type_by_id( $option_id, $settings_id = '' ) {
+    
+    if ( empty( $settings_id ) ) {
+    
+      $settings_id = ot_settings_id();
+    
+    }
+      
+    $settings = get_option( $settings_id, array() );
+    
+    if ( isset( $settings['settings'] ) ) {
+    
+      foreach( $settings['settings'] as $value ) {
+      
+        if ( $option_id == $value['id'] && isset( $value['type'] ) ) {
+        
+          return $value['type'];
+          
+        }
+        
+      }
+      
+    }
+    
+    return false;
+  
+  }
+  
 }
 
 /* End of file ot-functions-admin.php */
