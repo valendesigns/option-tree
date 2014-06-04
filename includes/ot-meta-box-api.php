@@ -116,7 +116,7 @@ if ( ! class_exists( 'OT_Meta_Box' ) ) {
           }
           
           /* only allow simple textarea due to DOM issues with wp_editor() */
-          if ( $_args['type'] == 'textarea' )
+          if ( apply_filters( 'ot_override_forced_textarea_simple', false, $field['id'] ) == false && $_args['type'] == 'textarea' )
             $_args['type'] = 'textarea-simple';
 
           // Build the setting CSS class

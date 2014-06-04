@@ -150,6 +150,13 @@
       $(document).on('keyup', '.option-tree-setting-title', function() {
         OT_UI.edit_title(this);
       });
+      // Automatically fill option IDs with clean versions of their respective option labels
+      $(document).on('blur', '.option-tree-setting-title', function() {
+        var optionId = $(this).parents('.option-tree-setting-body').find('[type="text"][name$="id]"]')
+        if ( optionId.val() === '' ) {
+          optionId.val($(this).val().replace(/[^a-z0-9]/gi,'_').toLowerCase());
+        }
+      });
     },
     init_edit_id: function() {
       $(document).on('keyup', '.section-id', function(){
@@ -415,12 +422,7 @@
               btnContent += '<div class="option-tree-ui-image-wrap"><img src="'+href+'" alt="" /></div>';
             }
             btnContent += '<a href="javascript:(void);" class="option-tree-ui-remove-media option-tree-ui-button button button-secondary light" title="'+option_tree.remove_media_text+'"><span class="icon ot-icon-minus-circle"></span>'+option_tree.remove_media_text+'</a>';
-            if ( save_attachment_id ) {
-              $('#'+field_id).val(attachment_id).attr('disabled','disabled');
-              $('#'+field_id).parents('.type-upload').addClass('ot-upload-attachment-id-wrap')
-            } else {
-              $('#'+field_id).val(href);
-            }
+            $('#'+field_id).val( ( save_attachment_id ? attachment_id : href ) );
             $('#'+field_id+'_media').remove();
             $('#'+field_id).parent().parent('div').append('<div class="option-tree-ui-media-wrap" id="'+field_id+'_media" />');
             $('#'+field_id+'_media').append(btnContent).slideDown();
