@@ -642,6 +642,115 @@ if ( ! function_exists( 'ot_type_custom_post_type_select' ) ) {
 }
 
 /**
+ * Post Type Checkbox option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.0
+ */
+if ( ! function_exists( 'ot_type_post_type_checkbox' ) ) {
+  
+  function ot_type_post_type_checkbox( $args = array() ) {
+    
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+    
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-post-type-checkbox type-checkbox ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+      
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+      
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+
+        /* query post types array */
+		$post_types = get_post_types( array('public' => true) );
+		
+        /* has posts */
+        if ( is_array( $post_types ) && ! empty( $post_types ) ) {
+          foreach( $post_types as $post_type ) {
+            echo '<p>';
+            echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[' . esc_attr( $post_type ) . ']" id="' . esc_attr( $field_id ) . '-' . esc_attr( $post_type ) . '" value="' . esc_attr( $post_type ) . '" ' . ( isset( $field_value[$post_type] ) ? checked( $field_value[$post_type], $post_type, false ) : '' ) . ' class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
+            echo '<label for="' . esc_attr( $field_id ) . '-' . esc_attr( $post_type ) . '">' . $post_type . '</label>';
+            echo '</p>';
+          }
+        } else {
+          echo '<p>' . __( 'No Post Types Found', 'option-tree' ) . '</p>';
+        }
+        
+      echo '</div>';
+
+    echo '</div>';
+    
+  }
+  
+}
+
+/**
+ * Post Type Select option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.0
+ */
+if ( ! function_exists( 'ot_type_post_type_select' ) ) {
+  
+  function ot_type_post_type_select( $args = array() ) {
+
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+    
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-custom-post-type-select ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+      
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+      
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+        
+        /* build category */
+        echo '<select name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" class="option-tree-ui-select ' . $field_class . '">';
+        
+        /* query post types array */
+		$post_types = get_post_types( array('public' => true) );
+        
+        /* has posts */
+        if ( is_array( $post_types ) && ! empty( $post_types ) ) {
+          echo '<option value="">-- ' . __( 'Choose One', 'option-tree' ) . ' --</option>';
+          foreach( $post_types as $post_type ) {
+            echo '<option value="' . esc_attr( $post_type ) . '"' . selected( $field_value, $post_type, false ) . '>' . $post_type . '</option>';
+          }
+        } else {
+          echo '<option value="">' . __( 'No Post Types Found', 'option-tree' ) . '</option>';
+        }
+        
+        echo '</select>';
+        
+      echo '</div>';
+
+    echo '</div>';
+    
+  }
+  
+}
+
+/**
  * Date Picker option type.
  *
  * See @ot_display_by_type to see the full list of available arguments.
