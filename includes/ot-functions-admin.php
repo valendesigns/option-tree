@@ -2207,6 +2207,8 @@ if ( ! function_exists( 'ot_option_types_array' ) ) {
       'css'                       => __('CSS', 'option-tree'),
       'custom-post-type-checkbox' => __('Custom Post Type Checkbox', 'option-tree'),
       'custom-post-type-select'   => __('Custom Post Type Select', 'option-tree'),
+      'post-type-checkbox'        => __('Post Type Checkbox', 'option-tree'),
+      'post-type-select'          => __('Post Type Select', 'option-tree'),
       'date-picker'               => __('Date Picker', 'option-tree'),
       'date-time-picker'          => __('Date Time Picker', 'option-tree'),
       'gallery'                   => __('Gallery', 'option-tree'),

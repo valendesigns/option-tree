@@ -51,7 +51,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
     public function hooks() {
       
       /* add pages & menu items */
-      add_action( 'admin_menu', array( $this, 'add_page' ) );
+      add_action( 'admin_menu', array( $this, 'add_page' ), apply_filters( 'ot_theme_options_page_priority', 10 ) );
       
       /* register sections */
       add_action( 'admin_init', array( $this, 'add_sections' ) );
