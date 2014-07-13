@@ -861,33 +861,27 @@ if ( ! function_exists( 'ot_type_google_font' ) ) {
       echo '<div class="format-setting-inner">'; 
         
         /* allow fields to be filtered */
-        $ot_recognized_google_fonts_fields = apply_filters( 'ot_recognized_google_fonts_fields', array( 
-          'font-family', 
+        $ot_recognized_google_fonts_fields = apply_filters( 'ot_recognized_google_fonts_fields', array(
           'font-variant', 
           'font-subsets'
         ), $field_id );
-
-        /* fetch google fonts */
-        $ot_google_fonts = ot_fetch_google_fonts();
         
         /* build font family */
         $font_family = isset( $field_value['font-family'] ) ? $field_value['font-family'] : '';
         echo '<select name="' . esc_attr( $field_name ) . '[font-family]" id="' . esc_attr( $field_id ) . '-google-font-family" class="option-tree-ui-select option-tree-google-font-family ' . esc_attr( $field_class ) . '">';
           echo '<option value="">' . __( 'select a font family', 'option-tree' ) . '</option>';
-          // foreach ( ot_recognized_google_font_families( $ot_fetched_google_fonts, $field_id ) as $key => $value ) {
-          foreach ( $ot_google_fonts as $key => $value ) {
-            if( isset( $value['family'] ) ) {
-              echo '<option value="' . esc_attr( $key ) . '" ' . selected( $font_family, $key, false ) . '>' . esc_html( $value['family'] ) . '</option>';
-            }
+          foreach ( ot_recognized_google_font_families( $field_id ) as $key => $value ) {
+            echo '<option value="' . esc_attr( $key ) . '" ' . selected( $font_family, $key, false ) . '>' . esc_html( $value ) . '</option>';
           }
         echo '</select>';
 
         /* build font variant */
         if ( in_array( 'font-variant', $ot_recognized_google_fonts_fields ) ) {
           $font_variant = isset( $field_value['font-variant'] ) ? esc_attr( $field_value['font-variant'] ) : '';
+          $variants = apply_filters( 'ot_recognized_google_font_variants', ot_available_google_font_variants( $font_family ), $field_id );
           echo '<select name="' . esc_attr( $field_name ) . '[font-variant]" id="' . esc_attr( $field_id ) . '-google-font-variant" class="option-tree-ui-select option-tree-google-font-variants ' . esc_attr( $field_class ) . '">';
             echo '<option value="">' . __( 'select a font variant', 'option-tree' ) . '</option>';
-            foreach ( ot_available_google_font_variants( $font_family ) as $variant ) {
+            foreach ( $variants as $variant ) {
               echo '<option value="' . esc_attr( $variant ) . '" ' . selected( $font_variant, $variant, false ) . '>' . esc_html( $variant ) . '</option>';
             }
           echo '</select>';
@@ -896,8 +890,9 @@ if ( ! function_exists( 'ot_type_google_font' ) ) {
         /* build font subsets */
         if ( in_array( 'font-subsets', $ot_recognized_google_fonts_fields ) ) {
           $font_subsets = isset( $field_value['font-subsets'] ) ? $field_value['font-subsets'] : array();
+          $subsets = apply_filters( 'ot_recognized_google_font_subsets', ot_available_google_font_subsets( $font_family ), $field_id );
           echo '<div class="option-tree-google-font-subsets-wrapper" data-field-id-prefix="' . esc_attr( $field_id ) . '-google-font-subsets-" data-field-name="' . esc_attr( $field_name ) . '[font-subsets][]" data-field-class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '">';
-          foreach ( ot_available_google_font_subsets( $font_family ) as $subset ) {
+          foreach ( $subsets as $subset ) {
             echo '<p>';
               echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[font-subsets][]" id="' . esc_attr( $field_id ) . '-google-font-subsets-' . $subset . '" value="' . esc_attr( $subset ) . '" ' . checked( in_array( $subset, $font_subsets ), true, false )  . ' class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
               echo '<label for="' . esc_attr( $field_id ) . '-google-font-subsets-' . $subset . '">' . esc_html( $subset ) . '</label>';
