@@ -2660,6 +2660,19 @@ ul.ot-gallery-list li img {
 }
 
 /* -------------------------------------------------- 
+  :: Google Fonts
+  ---------------------------------------------------*/
+#option-tree-settings-api .option-tree-google-font-subsets-wrapper {
+  display: block;
+  clear: both;
+}
+#option-tree-settings-api .option-tree-google-font-subsets-wrapper p {
+  margin: 0.3em 0 !important;
+  float: left;
+  width: 100%;
+}
+
+/* -------------------------------------------------- 
   :: On/Off Switch
   ---------------------------------------------------*/
 .on-off-switch .slide-button {
