@@ -648,8 +648,10 @@ if ( ! function_exists( 'ot_admin_scripts' ) ) {
 
     /* prepare google font settings */
     $google_font = array(
-      'method' => apply_filters('ot_google_font_method','js')
+      'method' => apply_filters('ot_google_font_method','ajax')
     );
+
+    /* The js method does not filter font variants and subsets */
     if ( 'js' == $google_font['method'] ) {
       $google_font['fonts'] = ot_fetch_google_fonts();
     }
@@ -4624,13 +4626,13 @@ function ot_normalize_google_fonts( $google_fonts ) {
 
 }
 
-function ot_available_google_font_variants( $id ) {
+function ot_available_google_font_variants( $family, $field_id ) {
 
   $ot_google_fonts = ot_fetch_google_fonts();
 
-  if( isset( $ot_google_fonts[ $id ], $ot_google_fonts[ $id ]['variants'] ) ) {
+  if( isset( $ot_google_fonts[ $family ], $ot_google_fonts[ $family ]['variants'] ) ) {
 
-    return $ot_google_fonts[ $id ]['variants'];
+    return apply_filters( 'ot_recognized_google_font_variants', $ot_google_fonts[ $family ]['variants'] );
 
   }
 
@@ -4638,13 +4640,13 @@ function ot_available_google_font_variants( $id ) {
 
 }
 
-function ot_available_google_font_subsets( $id ) {
+function ot_available_google_font_subsets( $family, $field_id ) {
 
   $ot_google_fonts = ot_fetch_google_fonts();
 
-  if( isset( $ot_google_fonts[ $id ], $ot_google_fonts[ $id ]['subsets'] ) ) {
+  if( isset( $ot_google_fonts[ $family ], $ot_google_fonts[ $family ]['subsets'] ) ) {
 
-    return $ot_google_fonts[ $id ]['subsets'];
+    return apply_filters( 'ot_recognized_google_font_subsets', $ot_google_fonts[ $family ]['subsets'], $field_id );
 
   }
 
