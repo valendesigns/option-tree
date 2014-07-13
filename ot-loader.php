@@ -731,10 +731,10 @@ if ( ! class_exists( 'OT_Loader' ) ) {
 
     public function retrieve_google_font() {
 
-      if ( isset( $_POST['family'] ) ) {
+      if ( isset( $_POST['family'], $_POST['field_id'] ) ) {
 
-        $ot_google_font_variants = ot_available_google_font_variants( $_POST['family'] );
-        $ot_google_font_subsets  = ot_available_google_font_subsets( $_POST['family'] );
+        $ot_google_font_variants = ot_available_google_font_variants( $_POST['family'], $_POST['field_id'] );
+        $ot_google_font_subsets  = ot_available_google_font_subsets( $_POST['family'], $_POST['field_id'] );
 
         echo json_encode( array(
           'variants' => $ot_google_font_variants,
