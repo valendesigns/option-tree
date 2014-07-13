@@ -582,7 +582,7 @@
             var option = document.createElement('option');
             option.innerHTML = option.value = variant;
             return option;
-          }));
+          })).trigger('change');
         }
       }, update_subsets = function(input, subsets) {
         var subsetsUI = input.closest('.format-settings').find('.option-tree-google-font-subsets-wrapper');
