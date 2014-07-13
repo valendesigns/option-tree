@@ -622,7 +622,8 @@
             dataType: 'json',
             data: {
               action: 'ot_google_font',
-              family: input.val()
+              family: input.val(), 
+              field_id: input.attr('id').replace( /-google-font-family$/, '' )
             }
           }).done(function(response) {
             if( response.hasOwnProperty('variants') ) {
