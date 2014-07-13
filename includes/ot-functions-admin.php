@@ -4544,7 +4544,7 @@ function ot_fetch_google_fonts( $normalize = true ) {
 
     /* API url and key */
     $ot_google_fonts_api_url = apply_filters( 'ot_google_fonts_api_url', 'https://www.googleapis.com/webfonts/v1/webfonts' );
-    $ot_google_fonts_api_key = apply_filters( 'ot_google_fonts_api_key', '' );
+    $ot_google_fonts_api_key = apply_filters( 'ot_google_fonts_api_key', 'AIzaSyC-0ipgZdTRp2jeOct8w9GuPqjBX5LDDHE' );
 
     /* API arguments */
     $ot_google_fonts_fields = apply_filters( 'ot_google_fonts_fields', array( 'family', 'variants', 'subsets' ) );
@@ -4649,6 +4649,24 @@ function ot_available_google_font_subsets( $id ) {
   }
 
   return array();
+
+}
+
+function ot_recognized_google_font_families( $field_id ) {
+
+  $google_fonts = array();
+  
+  foreach( ot_fetch_google_fonts() as $id => $google_font ) {
+
+    if ( isset( $google_font['family'] ) ) {
+
+      $google_fonts[ $id ] = $google_font['family'];
+
+    }
+
+  }
+
+  return apply_filters( 'ot_recognized_google_font_families', $google_fonts, $field_id );
 
 }
 
