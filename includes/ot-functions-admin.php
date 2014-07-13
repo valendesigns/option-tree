@@ -4632,7 +4632,7 @@ function ot_available_google_font_variants( $family, $field_id ) {
 
   if( isset( $ot_google_fonts[ $family ], $ot_google_fonts[ $family ]['variants'] ) ) {
 
-    return apply_filters( 'ot_recognized_google_font_variants', $ot_google_fonts[ $family ]['variants'] );
+    return apply_filters( 'ot_recognized_google_font_variants', $ot_google_fonts[ $family ]['variants'], $field_id );
 
   }
 
