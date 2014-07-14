@@ -861,7 +861,7 @@ if ( ! function_exists( 'ot_type_google_font' ) ) {
       echo '<div class="format-setting-inner">'; 
         
         /* allow fields to be filtered */
-        $ot_recognized_google_fonts_fields = apply_filters( 'ot_recognized_google_fonts_fields', array(
+        $ot_recognized_google_fonts_fields = apply_filters( 'ot_recognized_google_font_fields', array(
           'font-variant', 
           'font-subsets'
         ), $field_id );
