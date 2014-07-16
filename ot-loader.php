@@ -516,6 +516,9 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       
       /* AJAX call to create a new social link */
       add_action( 'wp_ajax_add_social_links', array( $this, 'add_social_links' ) );
+
+      /* AJAX call to retrieve Google Font data */
+      add_action( 'wp_ajax_ot_google_font', array( $this, 'retrieve_google_font' ) );
       
       // Adds the temporary hacktastic shortcode
       add_filter( 'media_view_settings', array( $this, 'shortcode' ), 10, 2 );
@@ -724,6 +727,23 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       
       }
       
+    }
+
+    public function retrieve_google_font() {
+
+      if ( isset( $_POST['family'], $_POST['field_id'] ) ) {
+
+        $ot_google_font_variants = ot_available_google_font_variants( $_POST['family'], $_POST['field_id'] );
+        $ot_google_font_subsets  = ot_available_google_font_subsets( $_POST['family'], $_POST['field_id'] );
+
+        echo json_encode( array(
+          'variants' => $ot_google_font_variants,
+          'subsets'  => $ot_google_font_subsets
+        ) );
+        exit();
+
+      }
+
     }
     
     /**

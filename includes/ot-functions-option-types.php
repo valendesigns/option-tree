@@ -831,6 +831,83 @@ if ( ! function_exists( 'ot_type_gallery' ) ) {
 }
 
 /**
+ * Google Font option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     @version
+ */
+if ( ! function_exists( 'ot_type_google_font' ) ) {
+  
+  function ot_type_google_font( $args = array() ) {
+
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+    
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-google-fonts ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+      
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+      
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">'; 
+        
+        /* allow fields to be filtered */
+        $ot_recognized_google_fonts_fields = apply_filters( 'ot_recognized_google_font_fields', array(
+          'font-variant', 
+          'font-subsets'
+        ), $field_id );
+        
+        /* build font family */
+        $font_family = isset( $field_value['font-family'] ) ? $field_value['font-family'] : '';
+        echo '<select name="' . esc_attr( $field_name ) . '[font-family]" id="' . esc_attr( $field_id ) . '-google-font-family" class="option-tree-ui-select option-tree-google-font-family ' . esc_attr( $field_class ) . '">';
+          echo '<option value="">' . __( 'select a font family', 'option-tree' ) . '</option>';
+          foreach ( ot_recognized_google_font_families( $field_id ) as $key => $value ) {
+            echo '<option value="' . esc_attr( $key ) . '" ' . selected( $font_family, $key, false ) . '>' . esc_html( $value ) . '</option>';
+          }
+        echo '</select>';
+
+        /* build font variant */
+        if ( in_array( 'font-variant', $ot_recognized_google_fonts_fields ) ) {
+          $font_variant = isset( $field_value['font-variant'] ) ? esc_attr( $field_value['font-variant'] ) : '';
+          echo '<select name="' . esc_attr( $field_name ) . '[font-variant]" id="' . esc_attr( $field_id ) . '-google-font-variant" class="option-tree-ui-select option-tree-google-font-variants ' . esc_attr( $field_class ) . '">';
+            echo '<option value="">' . __( 'select a font variant', 'option-tree' ) . '</option>';
+            foreach ( ot_available_google_font_variants( $font_family, $field_id ) as $variant ) {
+              echo '<option value="' . esc_attr( $variant ) . '" ' . selected( $font_variant, $variant, false ) . '>' . esc_html( $variant ) . '</option>';
+            }
+          echo '</select>';
+        }
+        
+        /* build font subsets */
+        if ( in_array( 'font-subsets', $ot_recognized_google_fonts_fields ) ) {
+          $font_subsets = isset( $field_value['font-subsets'] ) ? $field_value['font-subsets'] : array();
+          echo '<div class="option-tree-google-font-subsets-wrapper" data-field-id-prefix="' . esc_attr( $field_id ) . '-google-font-subsets-" data-field-name="' . esc_attr( $field_name ) . '[font-subsets][]" data-field-class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '">';
+          foreach ( ot_available_google_font_subsets( $font_family, $field_id ) as $subset ) {
+            echo '<p>';
+              echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[font-subsets][]" id="' . esc_attr( $field_id ) . '-google-font-subsets-' . $subset . '" value="' . esc_attr( $subset ) . '" ' . checked( in_array( $subset, $font_subsets ), true, false )  . ' class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
+              echo '<label for="' . esc_attr( $field_id ) . '-google-font-subsets-' . $subset . '">' . esc_html( $subset ) . '</label>';
+            echo '</p>';
+          }
+          echo '</div>';
+        }
+        
+      echo '</div>';
+      
+    echo '</div>';
+    
+  }
+  
+}
+
+/**
  * List Item option type.
  *
  * See @ot_display_by_type to see the full list of available arguments.

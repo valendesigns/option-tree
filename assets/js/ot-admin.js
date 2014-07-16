@@ -24,6 +24,7 @@
       this.init_tabs();
       this.init_radio_image_select();
       this.init_select_wrapper();
+      this.init_google_fonts();
       this.fix_upload_parent();
       this.fix_textarea();
       this.replicate_ajax();
@@ -555,18 +556,85 @@
       });
     },
     init_select_wrapper: function() {
-      $('.option-tree-ui-select').each(function () {
+      $('.option-tree-ui-select').each(function() {
         if ( ! $(this).parent().hasClass('select-wrapper') ) {
           $(this).wrap('<div class="select-wrapper" />');
           $(this).parent('.select-wrapper').prepend('<span>' + $(this).find('option:selected').text() + '</span>');
         }
       });
-      $(document).on('change', '.option-tree-ui-select', function () {
+      $(document).on('change', '.option-tree-ui-select', function() {
         $(this).prev('span').replaceWith('<span>' + $(this).find('option:selected').text() + '</span>');
-      })
+      });
       $(document).on($.browser.msie ? 'click' : 'change', '.option-tree-ui-select', function(event) {
         $(this).prev('span').replaceWith('<span>' + $(this).find('option:selected').text() + '</span>');
       });
+    },
+    init_google_fonts: function() {
+      if( ! option_tree.google_fonts ) {
+        return;
+      }
+
+      var update_variants = function(input, variants) {
+        var variantsUI = input.closest('.format-settings').find('.option-tree-google-font-variants');
+        if(variantsUI.length) {
+          variantsUI.children('option').not(':first').remove();
+          variantsUI.append($.map(variants, function(variant){
+            var option = document.createElement('option');
+            option.innerHTML = option.value = variant;
+            return option;
+          })).trigger('change');
+        }
+      }, update_subsets = function(input, subsets) {
+        var subsetsUI = input.closest('.format-settings').find('.option-tree-google-font-subsets-wrapper');
+        if( subsetsUI.length ) {
+          subsetsUI.empty();
+          subsetsUI.append($.map(subsets, function(subset) {
+            var input = document.createElement('input'),label = document.createElement('label');
+            input.type = 'checkbox';
+            input.id = ( subsetsUI.data('field-id-prefix') || '' ) + subset;
+            input.name =  ( subsetsUI.data('field-name') || '' );
+            label.innerHTML = subset;
+            $( label ).attr( 'for', input.id );
+            return $( document.createElement('p') ).append([input, label]);
+          }));
+        }
+      };
+
+      if( 'js' == option_tree.google_fonts.method && option_tree.google_fonts.fonts ) {
+        var fonts = option_tree.google_fonts.fonts || {};
+        $(document).on('change', '.option-tree-google-font-family', function() {
+          var input = $(this), family = input.val();
+          if( fonts.hasOwnProperty( family ) ) {
+            if( fonts[family].hasOwnProperty('variants') ) {
+              update_variants(input,fonts[family].variants);
+            }
+            if( fonts[family].hasOwnProperty('subsets') ) {
+              update_subsets(input,fonts[family].subsets);
+            }
+          }
+        });
+      } else {
+        $(document).on('change', '.option-tree-google-font-family', function() {
+          var input = $(this);
+          $.ajax({
+            url: option_tree.ajax,
+            type: 'POST',
+            dataType: 'json',
+            data: {
+              action: 'ot_google_font',
+              family: input.val(), 
+              field_id: input.attr('id').replace( /-google-font-family$/, '' )
+            }
+          }).done(function(response) {
+            if( response.hasOwnProperty('variants') ) {
+              update_variants(input,response.variants);
+            }
+            if( response.hasOwnProperty('subsets') ) {
+              update_subsets(input,response.subsets);
+            }
+          });
+        });
+      }
     },
     bind_colorpicker: function(field_id) {
       $('#'+field_id).wpColorPicker();
