@@ -4538,7 +4538,7 @@ function ot_fetch_google_fonts( $normalize = true ) {
   $ot_google_fonts_cache_key = apply_filters( 'ot_google_fonts_cache_key', 'ot_google_fonts_cache' );
 
   /* get the fonts from cache */
-  $ot_google_fonts = get_transient( $ot_google_fonts_cache_key );
+  $ot_google_fonts = apply_filters( 'ot_google_fonts_cache', get_transient( $ot_google_fonts_cache_key ) );
 
   if ( ! is_array( $ot_google_fonts ) || empty( $ot_google_fonts ) ) {
 
