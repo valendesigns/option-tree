@@ -3916,9 +3916,28 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
           $conditions.= isset( $field['operator'] ) && in_array( $field['operator'], array( 'and', 'AND', 'or', 'OR' ) ) ? ' data-operator="' . $field['operator'] . '"' : '';
 
         }
+
+        // Build the setting CSS class
+        if ( ! empty( $_args['field_class'] ) ) {
+
+          $classes = explode( ' ', $_args['field_class'] );
+
+          foreach( $classes as $_key => $value ) {
+
+            $classes[$_key] = $value . '-wrap';
+
+          }
+
+          $class = 'format-settings ' . implode( ' ', $classes );
+
+        } else {
+
+          $class = 'format-settings';
+
+        }
           
         /* option label */
-        echo '<div id="setting_' . $_args['field_id'] . '" class="format-settings"' . $conditions . '>';
+        echo '<div id="setting_' . $_args['field_id'] . '" class="' . $class . '"' . $conditions . '>';
           
           /* don't show title with textblocks */
           if ( $_args['type'] != 'textblock' && ! empty( $field['label'] ) ) {
