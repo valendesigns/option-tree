@@ -404,7 +404,7 @@
 
       $('.format-settings[id^="setting_"]').on( 'change.conditionals, keyup.conditionals', OT_UI.condition_objects(), function(e) {
         if (e.type === 'keyup') {
-          // fire keyup event only once every 500ms
+          // handle keyup event only once every 500ms
           delay(function() {
             OT_UI.parse_condition();
           }, 500);
