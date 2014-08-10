@@ -682,8 +682,10 @@ if ( ! class_exists( 'OT_Loader' ) ) {
     public function shortcode( $settings, $post ) {
   
       // Set the OptionTree post ID
-      if ( ! is_object( $post ) )
-        $settings['post']['id'] = ot_get_media_post_ID();
+      if ( ! is_object( $post ) ) {
+        $post_id = isset( $_GET['post'] ) ? $_GET['post'] : null;
+        $settings['post']['id'] = ! is_null( $post_id ) ? $post_id : ot_get_media_post_ID();
+      }
       
       // No ID return settings
       if ( $settings['post']['id'] == 0 )

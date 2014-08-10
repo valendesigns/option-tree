@@ -118,6 +118,9 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 
 == Changelog ==
 
+= 2.4.3 =
+* Hotfix - Fixed an issue where all media was being attached to the default OptionTree media post.
+
 = 2.4.2 =
 * Hotfix - Fixed a PHP notice that was created when `background-size` in the Background option type is undefined.
 * Hotfix - Fixed an issue with the Upload option type, in attachment ID mode, not storing its value.
