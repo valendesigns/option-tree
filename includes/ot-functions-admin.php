@@ -2508,7 +2508,7 @@ if ( ! function_exists( 'ot_recognized_line_heights' ) ) {
     $range = ot_range( 
       apply_filters( 'ot_line_height_low_range', 0, $field_id ), 
       apply_filters( 'ot_line_height_high_range', 150, $field_id ), 
-      apply_filters( 'ot_line_height_unit_type', 1, $field_id )
+      apply_filters( 'ot_line_height_range_interval', 1, $field_id )
     );
     
     $unit = apply_filters( 'ot_line_height_unit_type', 'px', $field_id );
