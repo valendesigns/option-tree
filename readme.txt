@@ -120,6 +120,7 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 
 = 2.4.3 =
 * Hotfix - Fixed an issue where all media was being attached to the default OptionTree media post.
+* Hotfix - Removed the deprecated `screen_icon()` function.
 
 = 2.4.2 =
 * Hotfix - Fixed a PHP notice that was created when `background-size` in the Background option type is undefined.
