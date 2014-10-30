@@ -683,8 +683,8 @@ if ( ! class_exists( 'OT_Loader' ) ) {
   
       // Set the OptionTree post ID
       if ( ! is_object( $post ) ) {
-        $post_id = isset( $_GET['post'] ) ? $_GET['post'] : null;
-        $settings['post']['id'] = ! is_null( $post_id ) ? $post_id : ot_get_media_post_ID();
+        $post_id = isset( $_GET['post'] ) ? $_GET['post'] : ( isset( $_GET['post_ID'] ) ? $_GET['post_ID'] : ot_get_media_post_ID() );
+        $settings['post']['id'] = $post_id;
       }
       
       // No ID return settings
