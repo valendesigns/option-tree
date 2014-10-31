@@ -3,7 +3,7 @@ Contributors: valendesigns
 Donate link: http://bit.ly/NuXI3T
 Tags: options, theme options, meta boxes
 Requires at least: 3.5
-Tested up to: 3.9.1
+Tested up to: 4.0
 Stable tag: 2.4.3
 License: GPLv3
 
@@ -119,6 +119,7 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 == Changelog ==
 
 = 2.4.3 =
+* Hotfix - WordPress 4.0 compatible.
 * Hotfix - Fixed an issue where all media was being attached to the default OptionTree media post.
 * Hotfix - Removed the deprecated `screen_icon()` function.
 * Hotfix - Fixed the `ot_line_height_range_interval` filter being misnamed as `ot_line_height_unit_type`. Contributors via github @youri--.
