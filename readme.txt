@@ -126,6 +126,7 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 * Hotfix - Increase condition performance. Contributors via github @designst.
 * Hotfix - Add custom style classes to list-item settings. Contributors via github @designst.
 * Hotfix - Check for `post_title` instead of `post_name` in `ot_get_media_post_ID()`. Contributors via github @clifgriffin.
+* Hotfix - Store the return value of `ot_get_media_post_ID()` in the options table as `ot_media_post_ID`.
 
 = 2.4.2 =
 * Hotfix - Fixed a PHP notice that was created when `background-size` in the Background option type is undefined.
