@@ -124,6 +124,7 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 * Hotfix - Fixed the `ot_line_height_range_interval` filter being misnamed as `ot_line_height_unit_type`. Contributors via github @youri--.
 * Hotfix - Fixed a conflict with "Frontend Publishing Pro" when using the media uploader on the front-end.
 * Hotfix - Increase condition performance. Contributors via github @designst.
+* Hotfix - Add custom style classes to list-item settings. Contributors via github @designst.
 
 = 2.4.2 =
 * Hotfix - Fixed a PHP notice that was created when `background-size` in the Background option type is undefined.
