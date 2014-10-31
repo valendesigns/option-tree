@@ -545,9 +545,13 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
       
       // Loop over array and check for values, plus sanitize the text field
       foreach( (array) $input as $key => $value ) {
-        if ( ! empty( $value ) ) {
-          $has_value = true;
-          $input[$key] = sanitize_text_field( $value );
+        if ( ! empty( $value ) && is_array( $value ) ) {
+          foreach( (array) $value as $item_key => $item_value ) {
+            if ( ! empty( $item_value ) ) {
+              $has_value = true;
+              $input[$key][$item_key] = sanitize_text_field( $item_value );
+            }
+          }
         }
       }
       
