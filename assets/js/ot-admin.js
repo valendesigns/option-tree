@@ -14,7 +14,7 @@
       this.init_add();
       this.init_edit();
       this.init_remove();
-      this.init_edit_title()
+      this.init_edit_title();
       this.init_edit_id();
       this.init_activate_layout();
       this.init_conditions();
@@ -24,6 +24,7 @@
       this.init_tabs();
       this.init_radio_image_select();
       this.init_select_wrapper();
+      this.bind_select_wrapper();
       this.fix_upload_parent();
       this.fix_textarea();
       this.replicate_ajax();
@@ -56,8 +57,9 @@
         $(css).removeClass('active');
       }
     },
-    init_sortable: function() {
-      $('.option-tree-sortable').each( function() {
+    init_sortable: function(scope) {
+      scope = scope || document;
+      $('.option-tree-sortable', scope).each( function() {
         if ( $(this).children('li').length ) {
           var elm = $(this);
           elm.show();
@@ -247,19 +249,18 @@
               OT_UI.init_remove_active();
               OT_UI.init_hide_body();
             }
-            list.append('<li class="ui-state-default ' + list_class + '">' + data.responseText + '</li>');
+            var listItem = $('<li class="ui-state-default ' + list_class + '">' + data.responseText + '</li>');
+            list.append(listItem);
             list.children().last().find('.option-tree-setting-edit').toggleClass('active');
             list.children().last().find('.option-tree-setting-body').toggle();
             list.children().last().find('.option-tree-setting-title').focus();
             if ( type != 'the_contextual_help' ) {
               OT_UI.update_ids(list);
             }
-            setTimeout( function() {
-              OT_UI.init_sortable();
-              OT_UI.init_select_wrapper();
-              OT_UI.init_numeric_slider();
-              OT_UI.parse_condition();
-            }, 500);
+            OT_UI.init_sortable(listItem);
+            OT_UI.init_select_wrapper(listItem);
+            OT_UI.init_numeric_slider(listItem);
+            OT_UI.parse_condition();
             self.processing = false;
           }
         });
@@ -393,8 +394,23 @@
       });
     },
     init_conditions: function() {
-      $('.format-settings[id^="setting_"]').on( 'change.conditionals, keyup.conditionals', OT_UI.condition_objects(), function() {
-        OT_UI.parse_condition();
+      var delay = (function() {
+        var timer = 0;
+        return function(callback, ms) {
+          clearTimeout(timer);
+          timer = setTimeout(callback, ms);
+        };
+      })();
+
+      $('.format-settings[id^="setting_"]').on( 'change.conditionals, keyup.conditionals', OT_UI.condition_objects(), function(e) {
+        if (e.type === 'keyup') {
+          // handle keyup event only once every 500ms
+          delay(function() {
+            OT_UI.parse_condition();
+          }, 500);
+        } else {
+          OT_UI.parse_condition();
+        }
       });
       OT_UI.parse_condition();
     },
@@ -501,8 +517,9 @@
         $(elm).parent().next('.option-tree-ui-media-wrap').remove();
       }
     },
-    init_numeric_slider: function() {
-      $(".ot-numeric-slider-wrap").each(function() {
+    init_numeric_slider: function(scope) {
+      scope = scope || document;
+      $(".ot-numeric-slider-wrap", scope).each(function() {
         var hidden = $(".ot-numeric-slider-hidden-input", this),
             value  = hidden.val(),
             helper = $(".ot-numeric-slider-helper-input", this);
@@ -518,8 +535,11 @@
           slide: function(event, ui) {
             hidden.add(helper).val(ui.value);
           },
+          create: function() {
+            hidden.val($(this).slider('value'));
+          },
           change: function() {
-            OT_UI.init_conditions();
+            OT_UI.parse_condition();
           }
         });
       });
@@ -554,16 +574,19 @@
         $(this).parent().find('.option-tree-ui-radio').prop('checked', true).trigger('change');
       });
     },
-    init_select_wrapper: function() {
-      $('.option-tree-ui-select').each(function () {
+    init_select_wrapper: function(scope) {
+      scope = scope || document;
+      $('.option-tree-ui-select', scope).each(function () {
         if ( ! $(this).parent().hasClass('select-wrapper') ) {
           $(this).wrap('<div class="select-wrapper" />');
           $(this).parent('.select-wrapper').prepend('<span>' + $(this).find('option:selected').text() + '</span>');
         }
       });
+    },
+    bind_select_wrapper: function() {
       $(document).on('change', '.option-tree-ui-select', function () {
         $(this).prev('span').replaceWith('<span>' + $(this).find('option:selected').text() + '</span>');
-      })
+      });
       $(document).on($.browser.msie ? 'click' : 'change', '.option-tree-ui-select', function(event) {
         $(this).prev('span').replaceWith('<span>' + $(this).find('option:selected').text() + '</span>');
       });
@@ -706,14 +729,15 @@
           , ids: ids
           },
           success: function(res) {
-            parent.children('.ot-gallery-list').html(res)
-            if ( input.hasClass('ot-gallery-shortcode') ) 
-              input.val(shortcode)
-            if ( $(elm).parent().children('.ot-gallery-delete').length <= 0 ) {
-              $(elm).parent().append('<a href="#" class="option-tree-ui-button button button-secondary hug-left ot-gallery-delete">' + option_tree.delete + '</a>')
+            parent.children('.ot-gallery-list').html(res);
+            if ( input.hasClass('ot-gallery-shortcode') ) {
+              input.val(shortcode);
             }
-            $(elm).text(option_tree.edit)
-            OT_UI.init_conditions()
+            if ( $(elm).parent().children('.ot-gallery-delete').length <= 0 ) {
+              $(elm).parent().append('<a href="#" class="option-tree-ui-button button button-secondary hug-left ot-gallery-delete">' + option_tree.delete + '</a>');
+            }
+            $(elm).text(option_tree.edit);
+            OT_UI.parse_condition();
           }
         })
       })
@@ -777,11 +801,11 @@
       
       if ( confirm( option_tree.confirm ) ) {
         
-        $(elm).parents('.format-setting-inner').children('.ot-gallery-value').attr('value', '')
-        $(elm).parents('.format-setting-inner').children('.ot-gallery-list').remove()
-        $(elm).next('.ot-gallery-edit').text( option_tree.create )
-        $(elm).remove()
-        OT_UI.init_conditions()
+        $(elm).parents('.format-setting-inner').children('.ot-gallery-value').attr('value', '');
+        $(elm).parents('.format-setting-inner').children('.ot-gallery-list').remove();
+        $(elm).next('.ot-gallery-edit').text( option_tree.create );
+        $(elm).remove();
+        OT_UI.parse_condition();
         
       }
 
