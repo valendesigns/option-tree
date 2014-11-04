@@ -3,8 +3,8 @@ Contributors: valendesigns
 Donate link: http://bit.ly/NuXI3T
 Tags: options, theme options, meta boxes
 Requires at least: 3.5
-Tested up to: 3.9.1
-Stable tag: 2.4.2
+Tested up to: 4.0
+Stable tag: 2.4.3
 License: GPLv3
 
 Theme Options UI Builder for WordPress. A simple way to create & save Theme Options and Meta Boxes for free or premium themes.
@@ -117,6 +117,19 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 3. Documentation
 
 == Changelog ==
+
+= 2.4.3 =
+* Hotfix - WordPress 4.0 compatible.
+* Hotfix - Fixed an issue where all media was being attached to the default OptionTree media post.
+* Hotfix - Removed the deprecated `screen_icon()` function.
+* Hotfix - Fixed the `ot_line_height_range_interval` filter being misnamed as `ot_line_height_unit_type`. Contributors via github @youri--.
+* Hotfix - Fixed a conflict with "Frontend Publishing Pro" when using the media uploader on the front-end.
+* Hotfix - Increase condition performance. Contributors via github @designst.
+* Hotfix - Add custom style classes to list-item settings. Contributors via github @designst.
+* Hotfix - Check for `post_title` instead of `post_name` in `ot_get_media_post_ID()`. Contributors via github @clifgriffin.
+* Hotfix - Store the return value of `ot_get_media_post_ID()` in the options table as `ot_media_post_ID`.
+* Hotfix - Added padding to List Items options to reflect the same UI as individual options. Contributors via github @valendesigns and @designst.
+* Hotfix - Fixed a bug that caused the Social Links option type to not properly import.
 
 = 2.4.2 =
 * Hotfix - Fixed a PHP notice that was created when `background-size` in the Background option type is undefined.
