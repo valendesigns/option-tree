@@ -56,7 +56,6 @@ if ( ! function_exists( 'ot_register_theme_options_page' ) ) {
                 'updated_message' => apply_filters( 'ot_theme_options_updated_message', __( 'Theme Options updated.', 'option-tree' ) ),
                 'reset_message'   => apply_filters( 'ot_theme_options_reset_message', __( 'Theme Options reset.', 'option-tree' ) ),
                 'button_text'     => apply_filters( 'ot_theme_options_button_text', __( 'Save Changes', 'option-tree' ) ),
-                'screen_icon'     => 'themes',
                 'contextual_help' => apply_filters( 'ot_theme_options_contextual_help', $contextual_help ),
                 'sections'        => apply_filters( 'ot_theme_options_sections', $sections ),
                 'settings'        => apply_filters( 'ot_theme_options_settings', $settings )
@@ -128,7 +127,6 @@ if ( ! function_exists( 'ot_register_settings_page' ) ) {
         'reset_message'   => __( 'Theme Options reset.', 'option-tree' ),
         'button_text'     => __( 'Save Settings', 'option-tree' ),
         'show_buttons'    => false,
-        'screen_icon'     => 'themes',
         'sections'        => array(
           array(
             'id'          => 'create_setting',
@@ -223,7 +221,6 @@ if ( ! function_exists( 'ot_register_settings_page' ) ) {
         'reset_message'   => __( 'Theme Options reset.', 'option-tree' ),
         'button_text'     => __( 'Save Settings', 'option-tree' ),
         'show_buttons'    => false,
-        'screen_icon'     => 'themes',
         'sections'        => array(
           array(
             'id'          => 'creating_options',
@@ -548,9 +545,13 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
       
       // Loop over array and check for values, plus sanitize the text field
       foreach( (array) $input as $key => $value ) {
-        if ( ! empty( $value ) ) {
-          $has_value = true;
-          $input[$key] = sanitize_text_field( $value );
+        if ( ! empty( $value ) && is_array( $value ) ) {
+          foreach( (array) $value as $item_key => $item_value ) {
+            if ( ! empty( $item_value ) ) {
+              $has_value = true;
+              $input[$key][$item_key] = sanitize_text_field( $item_value );
+            }
+          }
         }
       }
       
@@ -678,7 +679,7 @@ if ( ! function_exists( 'ot_admin_scripts' ) ) {
 }
 
 /**
- * Returns the ID of a custom post type by post_name.
+ * Returns the ID of a custom post type by post_title.
  *
  * @uses        get_results()
  *
@@ -690,9 +691,26 @@ if ( ! function_exists( 'ot_admin_scripts' ) ) {
 if ( ! function_exists( 'ot_get_media_post_ID' ) ) {
 
   function ot_get_media_post_ID() {
-    global $wpdb;
     
-    return $wpdb->get_var( "SELECT ID FROM $wpdb->posts WHERE `post_name` = 'media' AND `post_type` = 'option-tree' AND `post_status` = 'private'" );
+    // Option ID
+    $option_id = 'ot_media_post_ID';
+    
+    // Get the media post ID
+    $post_ID = get_option( $option_id, false );
+    
+    // Add $post_ID to the DB
+    if ( $post_ID === false ) {
+      global $wpdb;
+      
+      // Get the media post ID
+      $post_ID = $wpdb->get_var( "SELECT ID FROM $wpdb->posts WHERE `post_title` = 'Media' AND `post_type` = 'option-tree' AND `post_status` = 'private'" );
+      
+      // Add to the DB
+      add_option( $option_id, $post_ID );
+
+    }
+    
+    return $post_ID;
     
   }
 
@@ -2511,7 +2529,7 @@ if ( ! function_exists( 'ot_recognized_line_heights' ) ) {
     $range = ot_range( 
       apply_filters( 'ot_line_height_low_range', 0, $field_id ), 
       apply_filters( 'ot_line_height_high_range', 150, $field_id ), 
-      apply_filters( 'ot_line_height_unit_type', 1, $field_id )
+      apply_filters( 'ot_line_height_range_interval', 1, $field_id )
     );
     
     $unit = apply_filters( 'ot_line_height_unit_type', 'px', $field_id );
@@ -3916,9 +3934,28 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
           $conditions.= isset( $field['operator'] ) && in_array( $field['operator'], array( 'and', 'AND', 'or', 'OR' ) ) ? ' data-operator="' . $field['operator'] . '"' : '';
 
         }
+
+        // Build the setting CSS class
+        if ( ! empty( $_args['field_class'] ) ) {
+
+          $classes = explode( ' ', $_args['field_class'] );
+
+          foreach( $classes as $_key => $value ) {
+
+            $classes[$_key] = $value . '-wrap';
+
+          }
+
+          $class = 'format-settings ' . implode( ' ', $classes );
+
+        } else {
+
+          $class = 'format-settings';
+
+        }
           
         /* option label */
-        echo '<div id="setting_' . $_args['field_id'] . '" class="format-settings"' . $conditions . '>';
+        echo '<div id="setting_' . $_args['field_id'] . '" class="' . $class . '"' . $conditions . '>';
           
           /* don't show title with textblocks */
           if ( $_args['type'] != 'textblock' && ! empty( $field['label'] ) ) {
