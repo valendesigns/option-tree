@@ -1491,7 +1491,8 @@
   position: relative; 
   width: 100%; 
 }
-.format-setting-wrap {
+.format-setting-wrap,
+.option-tree-sortable .format-settings {
   padding: 10px 0 20px 0; 
 }
 
