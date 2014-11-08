@@ -581,7 +581,7 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
 if ( ! function_exists( 'ot_admin_styles' ) ) {
 
   function ot_admin_styles() {
-    global $wp_styles;
+    global $wp_styles, $post;
     
     /* execute styles before actions */
     do_action( 'ot_admin_styles_before' );
@@ -594,6 +594,10 @@ if ( ! function_exists( 'ot_admin_styles' ) ) {
     
     /* load the RTL stylesheet */
     $wp_styles->add_data( 'ot-admin-css','rtl', true );
+    
+    /* Remove styles added by the Easy Digital Downloads plugin */
+    if ( isset( $post->post_type ) && $post->post_type == 'post' )
+      wp_dequeue_style( 'jquery-ui-css' );
     
     /* execute styles after actions */
     do_action( 'ot_admin_styles_after' );
