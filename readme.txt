@@ -118,6 +118,9 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 
 == Changelog ==
 
+= 2.4.4 =
+* Hotfix - Fixed undefined index caused by shorthand conditional.
+
 = 2.4.3 =
 * Hotfix - WordPress 4.0 compatible.
 * Hotfix - Fixed an issue where all media was being attached to the default OptionTree media post.
