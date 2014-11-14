@@ -2229,6 +2229,38 @@ select.option-tree-ui-select option {
 }
 
 /* -------------------------------------------------- 
+  :: Spacing
+  ---------------------------------------------------*/
+.ot-spacing-group {
+  float: left;
+  padding-right: 5px;
+  position: relative;
+  width: 20%;
+  box-sizing: border-box;
+}
+.ot-spacing-group--is-last {
+  padding-right: 0;
+}
+.ot-spacing-group--icon {
+  background: #fafafa;
+  border-right: 1px solid #ccc;
+  display: inline-block;
+  line-height: 1;
+  padding: 7px;
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  z-index: 10;
+}
+.ot-spacing-group--icon + input.option-tree-ui-input {
+  padding-left: 34px !important;
+  margin-right: 5px;
+}
+.ot-spacing-group .select-wrapper {
+  width: 100%;
+}
+
+/* -------------------------------------------------- 
   :: Numeric Slider
   ---------------------------------------------------*/
 .type-numeric-slider .format-setting-inner {

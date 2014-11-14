@@ -251,6 +251,9 @@ add_filter( \'ot_radio_images\', \'filter_radio_images\', 10, 2 );</code></pre>'
         echo '<h4>'. __( 'Social Links', 'option-tree' ) . ':</h4>';
         echo '<p>' . sprintf( __( 'The Social Links option type utilizes a drag & drop interface to create a list of social links. There are a few filters that make extending this option type easy. You can set the %s filter to %s and turn off loading default values. Use the %s filter to change the default values that are loaded. To filter the settings array use the %s filter.', 'option-tree' ), '<code>ot_type_social_links_load_defaults</code>', '<code>false</code>', '<code>ot_type_social_links_defaults</code>', '<code>ot_social_links_settings</code>' ) . '</p>';
         
+        echo '<h4>'. __( 'Spacing', 'option-tree' ) . ':</h4>';
+        echo '<p>' . sprintf( __( 'The Spacing option type is used to set spacing values such as padding or margin in the form of top, right, bottom, and left. The text inputs except numerical values and the select lets you choose the unit of measurement to add to that value. Currently the default units are %s, %s, %s, and %s. However, you can change them with the %s filter.', 'option-tree' ), '<code>px</code>', '<code>%</code>', '<code>em</code>', '<code>pt</code>', '<code>ot_recognized_spacing_unit_types</code>' ) . '</p>';
+        
         echo '<h4>'. __( 'Tab', 'option-tree' ) . ':</h4>';      
         echo '<p>' . __( 'The Tab option type will break a section or metabox into tabbed content.', 'option-tree' ) . '</p>';
         

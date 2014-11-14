@@ -517,6 +517,28 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
         $input = '';
       }
       
+    } else if ( 'spacing' == $type ) {
+      
+      // Loop over array and set error keys
+      foreach( $input as $key => $value ) {
+        if ( ! empty( $value ) && ! is_numeric( $value ) && $key !== 'unit' ) {
+          $errors[] = $key;
+        }
+      }
+      
+      /* return 0 & set error */
+      if ( isset( $errors ) ) {
+        
+        foreach( $errors as $error ) {
+          
+          $input[$error] = '0';
+          
+          add_settings_error( 'option-tree', 'invalid_spacing_' . $error, sprintf( __( 'The %s input field for %s only allows numeric values.', 'option-tree' ), '<code>' . $error . '</code>', '<code>' . $field_id . '</code>' ), 'error' );
+          
+        }
+        
+      }
+      
     } else if ( 'typography' == $type && isset( $input['font-color'] ) ) {
       
       $input['font-color'] = ot_validate_setting( $input['font-color'], 'colorpicker', $field_id );
@@ -2246,6 +2268,7 @@ if ( ! function_exists( 'ot_option_types_array' ) ) {
       'sidebar-select'            => __('Sidebar Select',  'option-tree'),
       'slider'                    => __('Slider', 'option-tree'),
       'social-links'              => __('Social Links', 'option-tree'),
+      'spacing'                   => __('Spacing', 'option-tree'),
       'tab'                       => __('Tab', 'option-tree'),
       'tag-checkbox'              => __('Tag Checkbox', 'option-tree'),
       'tag-select'                => __('Tag Select', 'option-tree'),
@@ -2701,6 +2724,33 @@ if ( ! function_exists( 'ot_recognized_background_position' ) ) {
 }
 
 /**
+ * Spacing Units
+ *
+ * Returns an array of all available unit types.
+ *
+ * @uses      apply_filters()
+ *
+ * @return    array
+ *
+ * @access    public
+ * @since     2.5.0
+ */
+if ( ! function_exists( 'ot_recognized_spacing_unit_types' ) ) {
+
+  function ot_recognized_spacing_unit_types( $field_id = '' ) {
+
+    return apply_filters( 'ot_recognized_spacing_unit_types', array(
+      'px' => 'px',
+      '%'  => '%',
+      'em' => 'em',
+      'pt' => 'pt'
+    ), $field_id );
+
+  }
+
+}
+
+/**
  * Measurement Units
  *
  * Returns an array of all available unit types.
@@ -3051,6 +3101,27 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
               
               /* set $value with measurement properties */
               $value = $value[0].$value[1];
+            
+            /* Spacing */
+            } else if ( ot_array_keys_exists( $value, array( 'top', 'right', 'bottom', 'left', 'unit' ) ) ) {
+              $spacing = array();
+              
+              $unit = ! empty( $value['unit'] ) ? $value['unit'] : 'px';
+              
+              if ( ! empty( $value['top'] ) )
+                $spacing[] = $value['top'].$unit;
+                
+              if ( ! empty( $value['right'] ) )
+                $spacing[] = $value['right'].$unit;
+                
+              if ( ! empty( $value['bottom'] ) )
+                $spacing[] = $value['bottom'].$unit;
+                
+              if ( ! empty( $value['left'] ) )
+                $spacing[] = $value['left'].$unit;
+                
+              /* set $value with spacing properties or empty string */
+              $value = ! empty( $spacing ) ? implode( ' ', $spacing ) : '';
               
             /* typography */
             } else if ( ot_array_keys_exists( $value, array( 'font-color', 'font-family', 'font-size', 'font-style', 'font-variant', 'font-weight', 'letter-spacing', 'line-height', 'text-decoration', 'text-transform' ) ) ) {

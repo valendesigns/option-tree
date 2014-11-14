@@ -118,6 +118,9 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 
 == Changelog ==
 
+= 2.5.0 =
+* Added the Spacing option type. Contributors via github @doitmax, and @valendesigns.
+
 = 2.4.4 =
 * Hotfix - Fixed undefined index caused by shorthand conditional.
 * Hotfix - Fixed jQuery UI style conflicts created by the Easy Digital Downloads plugin.
