@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OptionTree\n"
-"POT-Creation-Date: 2014-11-10 13:38-0800\n"
-"PO-Revision-Date: 2014-11-10 13:38-0800\n"
+"POT-Creation-Date: 2014-11-17 03:10-0800\n"
+"PO-Revision-Date: 2014-11-17 03:10-0800\n"
 "Last-Translator: Derek Herman <derek@valendesigns.com>\n"
 "Language-Team: Valen Designs\n"
 "Language: English\n"
@@ -54,8 +54,8 @@ msgstr ""
 
 #: ../assets/theme-mode/demo-meta-boxes.php:50
 #: ../assets/theme-mode/demo-theme-options.php:208
-#: ../includes/ot-functions-admin.php:2234
-#: ../includes/ot-functions-admin.php:4711
+#: ../includes/ot-functions-admin.php:2235
+#: ../includes/ot-functions-admin.php:4712
 #: ../includes/ot-functions-docs-page.php:156
 msgid "Gallery"
 msgstr ""
@@ -71,7 +71,7 @@ msgstr ""
 
 #: ../assets/theme-mode/demo-meta-boxes.php:62
 #: ../assets/theme-mode/demo-theme-options.php:548
-#: ../includes/ot-functions-admin.php:2254
+#: ../includes/ot-functions-admin.php:2255
 #: ../includes/ot-functions-docs-page.php:269
 msgid "Text"
 msgstr ""
@@ -82,7 +82,7 @@ msgstr ""
 
 #: ../assets/theme-mode/demo-meta-boxes.php:68
 #: ../assets/theme-mode/demo-theme-options.php:563
-#: ../includes/ot-functions-admin.php:2255
+#: ../includes/ot-functions-admin.php:2256
 #: ../includes/ot-functions-docs-page.php:272
 msgid "Textarea"
 msgstr ""
@@ -106,7 +106,7 @@ msgid "Sidebar content goes here!"
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:44
-#: ../includes/ot-functions-admin.php:2224
+#: ../includes/ot-functions-admin.php:2225
 #: ../includes/ot-functions-docs-page.php:110
 msgid "Background"
 msgstr ""
@@ -125,14 +125,14 @@ msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:45
 #: ../assets/theme-mode/demo-theme-options.php:624
-#: ../includes/ot-functions-admin.php:3638
+#: ../includes/ot-functions-admin.php:3639
 #: ../includes/ot-functions-docs-page.php:111
 #: ../includes/ot-functions-docs-page.php:354
 msgid "and"
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:59
-#: ../includes/ot-functions-admin.php:2225
+#: ../includes/ot-functions-admin.php:2226
 #: ../includes/ot-functions-docs-page.php:113
 msgid "Category Checkbox"
 msgstr ""
@@ -146,7 +146,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:74
-#: ../includes/ot-functions-admin.php:2226
+#: ../includes/ot-functions-admin.php:2227
 #: ../includes/ot-functions-docs-page.php:116
 msgid "Category Select"
 msgstr ""
@@ -160,7 +160,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:89
-#: ../includes/ot-functions-admin.php:2227
+#: ../includes/ot-functions-admin.php:2228
 #: ../includes/ot-functions-docs-page.php:119
 msgid "Checkbox"
 msgstr ""
@@ -198,7 +198,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:131
-#: ../includes/ot-functions-admin.php:2229
+#: ../includes/ot-functions-admin.php:2230
 #: ../includes/ot-functions-docs-page.php:125
 msgid "CSS"
 msgstr ""
@@ -227,7 +227,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:148
-#: ../includes/ot-functions-admin.php:2230
+#: ../includes/ot-functions-admin.php:2231
 #: ../includes/ot-functions-docs-page.php:144
 msgid "Custom Post Type Checkbox"
 msgstr ""
@@ -243,7 +243,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:163
-#: ../includes/ot-functions-admin.php:2231
+#: ../includes/ot-functions-admin.php:2232
 #: ../includes/ot-functions-docs-page.php:147
 msgid "Custom Post Type Select"
 msgstr ""
@@ -259,7 +259,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:178
-#: ../includes/ot-functions-admin.php:2232
+#: ../includes/ot-functions-admin.php:2233
 #: ../includes/ot-functions-docs-page.php:150
 msgid "Date Picker"
 msgstr ""
@@ -273,7 +273,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:193
-#: ../includes/ot-functions-admin.php:2233
+#: ../includes/ot-functions-admin.php:2234
 #: ../includes/ot-functions-docs-page.php:153
 msgid "Date Time Picker"
 msgstr ""
@@ -309,7 +309,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:238
-#: ../includes/ot-functions-admin.php:2235
+#: ../includes/ot-functions-admin.php:2236
 #: ../includes/ot-functions-docs-page.php:159
 msgid "List Item"
 msgstr ""
@@ -327,7 +327,7 @@ msgid "Content"
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:269
-#: ../includes/ot-functions-admin.php:2236
+#: ../includes/ot-functions-admin.php:2237
 #: ../includes/ot-functions-docs-page.php:162
 msgid "Measurement"
 msgstr ""
@@ -343,7 +343,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:284
-#: ../includes/ot-functions-admin.php:2237
+#: ../includes/ot-functions-admin.php:2238
 #: ../includes/ot-functions-docs-page.php:193
 msgid "Numeric Slider"
 msgstr ""
@@ -356,7 +356,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:299
-#: ../includes/ot-functions-admin.php:2238
+#: ../includes/ot-functions-admin.php:2239
 #: ../includes/ot-functions-docs-page.php:196
 msgid "On/Off"
 msgstr ""
@@ -370,7 +370,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:314
-#: ../includes/ot-functions-admin.php:2239
+#: ../includes/ot-functions-admin.php:2240
 #: ../includes/ot-functions-docs-page.php:199
 msgid "Page Checkbox"
 msgstr ""
@@ -383,7 +383,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:329
-#: ../includes/ot-functions-admin.php:2240
+#: ../includes/ot-functions-admin.php:2241
 #: ../includes/ot-functions-docs-page.php:202
 msgid "Page Select"
 msgstr ""
@@ -396,7 +396,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:344
-#: ../includes/ot-functions-admin.php:2241
+#: ../includes/ot-functions-admin.php:2242
 #: ../includes/ot-functions-docs-page.php:205
 msgid "Post Checkbox"
 msgstr ""
@@ -409,7 +409,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:359
-#: ../includes/ot-functions-admin.php:2242
+#: ../includes/ot-functions-admin.php:2243
 #: ../includes/ot-functions-docs-page.php:208
 msgid "Post Select"
 msgstr ""
@@ -422,7 +422,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:374
-#: ../includes/ot-functions-admin.php:2243
+#: ../includes/ot-functions-admin.php:2244
 #: ../includes/ot-functions-docs-page.php:211
 msgid "Radio"
 msgstr ""
@@ -441,7 +441,7 @@ msgid "Maybe"
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:406
-#: ../includes/ot-functions-admin.php:2244
+#: ../includes/ot-functions-admin.php:2245
 #: ../includes/ot-functions-docs-page.php:214
 msgid "Radio Image"
 msgstr ""
@@ -456,7 +456,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:421
-#: ../includes/ot-functions-admin.php:2245
+#: ../includes/ot-functions-admin.php:2246
 #: ../includes/ot-functions-docs-page.php:241
 msgid "Select"
 msgstr ""
@@ -473,7 +473,7 @@ msgid "-- Choose One --"
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:458
-#: ../includes/ot-functions-admin.php:2246
+#: ../includes/ot-functions-admin.php:2247
 #: ../includes/ot-functions-docs-page.php:244
 msgid "Sidebar Select"
 msgstr ""
@@ -499,7 +499,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:473
-#: ../includes/ot-functions-admin.php:2250
+#: ../includes/ot-functions-admin.php:2251
 #: ../includes/ot-functions-docs-page.php:257
 msgid "Tag Checkbox"
 msgstr ""
@@ -513,7 +513,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:488
-#: ../includes/ot-functions-admin.php:2251
+#: ../includes/ot-functions-admin.php:2252
 #: ../includes/ot-functions-docs-page.php:260
 msgid "Tag Select"
 msgstr ""
@@ -527,7 +527,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:503
-#: ../includes/ot-functions-admin.php:2248
+#: ../includes/ot-functions-admin.php:2249
 #: ../includes/ot-functions-docs-page.php:251
 msgid "Social Links"
 msgstr ""
@@ -544,7 +544,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:518
-#: ../includes/ot-functions-admin.php:2252
+#: ../includes/ot-functions-admin.php:2253
 #: ../includes/ot-functions-docs-page.php:263
 msgid "Taxonomy Checkbox"
 msgstr ""
@@ -558,7 +558,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:533
-#: ../includes/ot-functions-admin.php:2253
+#: ../includes/ot-functions-admin.php:2254
 #: ../includes/ot-functions-docs-page.php:266
 msgid "Taxonomy Select"
 msgstr ""
@@ -588,7 +588,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:578
-#: ../includes/ot-functions-admin.php:2256
+#: ../includes/ot-functions-admin.php:2257
 #: ../includes/ot-functions-docs-page.php:331
 msgid "Textarea Simple"
 msgstr ""
@@ -601,7 +601,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:593
-#: ../includes/ot-functions-admin.php:2257
+#: ../includes/ot-functions-admin.php:2258
 #: ../includes/ot-functions-docs-page.php:347
 msgid "Textblock"
 msgstr ""
@@ -617,7 +617,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:608
-#: ../includes/ot-functions-admin.php:2258
+#: ../includes/ot-functions-admin.php:2259
 #: ../includes/ot-functions-docs-page.php:350
 msgid "Textblock Titled"
 msgstr ""
@@ -633,7 +633,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:623
-#: ../includes/ot-functions-admin.php:2259
+#: ../includes/ot-functions-admin.php:2260
 #: ../includes/ot-functions-docs-page.php:353
 msgid "Typography"
 msgstr ""
@@ -651,7 +651,7 @@ msgid ""
 msgstr ""
 
 #: ../assets/theme-mode/demo-theme-options.php:638
-#: ../includes/ot-functions-admin.php:2260
+#: ../includes/ot-functions-admin.php:2261
 #: ../includes/ot-functions-docs-page.php:373
 msgid "Upload"
 msgstr ""
@@ -884,268 +884,268 @@ msgid "Featured Image"
 msgstr ""
 
 #: ../includes/ot-functions-admin.php:672
-#: ../includes/ot-functions-admin.php:2808
-#: ../includes/ot-functions-admin.php:2869
+#: ../includes/ot-functions-admin.php:2809
+#: ../includes/ot-functions-admin.php:2870
 msgid "Image"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:738
+#: ../includes/ot-functions-admin.php:739
 msgid "Option Tree"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:875
+#: ../includes/ot-functions-admin.php:876
 msgid "General"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:881
+#: ../includes/ot-functions-admin.php:882
 msgid "Sample Text Field Label"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:882
+#: ../includes/ot-functions-admin.php:883
 msgid "Description for the sample text field."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:2124
+#: ../includes/ot-functions-admin.php:2125
 msgid "Settings updated."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:2128
+#: ../includes/ot-functions-admin.php:2129
 msgid "Settings could not be saved."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:2136
+#: ../includes/ot-functions-admin.php:2137
 msgid "Settings Imported."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:2140
+#: ../includes/ot-functions-admin.php:2141
 msgid "Settings could not be imported."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:2147
+#: ../includes/ot-functions-admin.php:2148
 msgid "Data Imported."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:2151
+#: ../includes/ot-functions-admin.php:2152
 msgid "Data could not be imported."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:2159
+#: ../includes/ot-functions-admin.php:2160
 msgid "Layouts Imported."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:2163
+#: ../includes/ot-functions-admin.php:2164
 msgid "Layouts could not be imported."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:2171
+#: ../includes/ot-functions-admin.php:2172
 msgid "Layouts Updated."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:2175
+#: ../includes/ot-functions-admin.php:2176
 msgid "Layouts could not be updated."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:2179
+#: ../includes/ot-functions-admin.php:2180
 msgid "Layouts have been deleted."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:2185
+#: ../includes/ot-functions-admin.php:2186
 msgid "Layout activated."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:2228
+#: ../includes/ot-functions-admin.php:2229
 msgid "Color Picker"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:2247
+#: ../includes/ot-functions-admin.php:2248
 #: ../includes/ot-functions-docs-page.php:248
 msgid "Slider"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:2249
+#: ../includes/ot-functions-admin.php:2250
 #: ../includes/ot-functions-docs-page.php:254
 msgid "Tab"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:2753
+#: ../includes/ot-functions-admin.php:2754
 msgid "Left Sidebar"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:2758
+#: ../includes/ot-functions-admin.php:2759
 msgid "Right Sidebar"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:2763
+#: ../includes/ot-functions-admin.php:2764
 msgid "Full Width (no sidebar)"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:2768
+#: ../includes/ot-functions-admin.php:2769
 msgid "Dual Sidebar"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:2773
+#: ../includes/ot-functions-admin.php:2774
 msgid "Left Dual Sidebar"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:2778
+#: ../includes/ot-functions-admin.php:2779
 msgid "Right Dual Sidebar"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:2819
-#: ../includes/ot-functions-admin.php:2875
-#: ../includes/ot-functions-admin.php:4751
+#: ../includes/ot-functions-admin.php:2820
+#: ../includes/ot-functions-admin.php:2876
+#: ../includes/ot-functions-admin.php:4752
 msgid "Link"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:2830
-#: ../includes/ot-functions-admin.php:2881
+#: ../includes/ot-functions-admin.php:2831
+#: ../includes/ot-functions-admin.php:2882
 #: ../includes/ot-functions-docs-page.php:43
 #: ../includes/ot-functions-docs-page.php:404
 #: ../includes/ot-functions-docs-page.php:454
 msgid "Description"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:2945
+#: ../includes/ot-functions-admin.php:2946
 msgid "Name"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:2946
+#: ../includes/ot-functions-admin.php:2947
 msgid "Enter the name of the social website."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:2954
+#: ../includes/ot-functions-admin.php:2955
 msgid "Enter the text shown in the title attribute of the link."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:2960
+#: ../includes/ot-functions-admin.php:2961
 #, php-format
 msgid ""
 "Enter a link to the profile or page on the social website. Remember to add "
 "the %s part to the front of the link."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3443
+#: ../includes/ot-functions-admin.php:3444
 msgid "edit"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3444
-#: ../includes/ot-functions-admin.php:3512
+#: ../includes/ot-functions-admin.php:3445
 #: ../includes/ot-functions-admin.php:3513
-#: ../includes/ot-functions-admin.php:3675
+#: ../includes/ot-functions-admin.php:3514
 #: ../includes/ot-functions-admin.php:3676
-#: ../includes/ot-functions-admin.php:3741
+#: ../includes/ot-functions-admin.php:3677
 #: ../includes/ot-functions-admin.php:3742
-#: ../includes/ot-functions-admin.php:3869
+#: ../includes/ot-functions-admin.php:3743
 #: ../includes/ot-functions-admin.php:3870
-#: ../includes/ot-functions-admin.php:4022
+#: ../includes/ot-functions-admin.php:3871
 #: ../includes/ot-functions-admin.php:4023
+#: ../includes/ot-functions-admin.php:4024
 msgid "Edit"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3446
 #: ../includes/ot-functions-admin.php:3447
-#: ../includes/ot-functions-admin.php:3515
+#: ../includes/ot-functions-admin.php:3448
 #: ../includes/ot-functions-admin.php:3516
-#: ../includes/ot-functions-admin.php:3678
+#: ../includes/ot-functions-admin.php:3517
 #: ../includes/ot-functions-admin.php:3679
-#: ../includes/ot-functions-admin.php:3744
+#: ../includes/ot-functions-admin.php:3680
 #: ../includes/ot-functions-admin.php:3745
-#: ../includes/ot-functions-admin.php:3803
+#: ../includes/ot-functions-admin.php:3746
 #: ../includes/ot-functions-admin.php:3804
-#: ../includes/ot-functions-admin.php:3872
+#: ../includes/ot-functions-admin.php:3805
 #: ../includes/ot-functions-admin.php:3873
-#: ../includes/ot-functions-admin.php:4025
+#: ../includes/ot-functions-admin.php:3874
 #: ../includes/ot-functions-admin.php:4026
+#: ../includes/ot-functions-admin.php:4027
 msgid "Delete"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3453
+#: ../includes/ot-functions-admin.php:3454
 msgid ""
 "<strong>Section Title</strong>: Displayed as a menu item on the Theme "
 "Options page."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3461
+#: ../includes/ot-functions-admin.php:3462
 msgid ""
 "<strong>Section ID</strong>: A unique lower case alphanumeric string, "
 "underscores allowed."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3522
+#: ../includes/ot-functions-admin.php:3523
 msgid ""
 "<strong>Label</strong>: Displayed as the label of a form element on the "
 "Theme Options page."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3530
-#: ../includes/ot-functions-admin.php:3759
+#: ../includes/ot-functions-admin.php:3531
+#: ../includes/ot-functions-admin.php:3760
 msgid ""
 "<strong>ID</strong>: A unique lower case alphanumeric string, underscores "
 "allowed."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3538
+#: ../includes/ot-functions-admin.php:3539
 msgid ""
 "<strong>Type</strong>: Choose one of the available option types from the "
 "dropdown."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3549
+#: ../includes/ot-functions-admin.php:3550
 msgid ""
 "<strong>Description</strong>: Enter a detailed description for the users to "
 "read on the Theme Options page, HTML is allowed. This is also where you "
 "enter content for both the Textblock & Textblock Titled option types."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3557
+#: ../includes/ot-functions-admin.php:3558
 msgid ""
 "<strong>Choices</strong>: This will only affect the following option types: "
 "Checkbox, Radio, Select & Select Image."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3562
+#: ../includes/ot-functions-admin.php:3563
 msgid "Add Choice"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3568
+#: ../includes/ot-functions-admin.php:3569
 msgid ""
 "<strong>Settings</strong>: This will only affect the List Item option type."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3573
+#: ../includes/ot-functions-admin.php:3574
 #: ../includes/ot-functions-settings-page.php:93
 msgid "Add Setting"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3579
+#: ../includes/ot-functions-admin.php:3580
 msgid ""
 "<strong>Standard</strong>: Setting the standard value for your option only "
 "works for some option types. Read the <code>OptionTree->Documentation</code> "
 "for more information on which ones."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3587
+#: ../includes/ot-functions-admin.php:3588
 msgid ""
 "<strong>Rows</strong>: Enter a numeric value for the number of rows in your "
 "textarea. This will only affect the following option types: CSS, Textarea, & "
 "Textarea Simple."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3595
+#: ../includes/ot-functions-admin.php:3596
 msgid ""
 "<strong>Post Type</strong>: Add a comma separated list of post type like "
 "'post,page'. This will only affect the following option types: Custom Post "
 "Type Checkbox, & Custom Post Type Select."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3603
+#: ../includes/ot-functions-admin.php:3604
 msgid ""
 "<strong>Taxonomy</strong>: Add a comma separated list of any registered "
 "taxonomy like 'category,post_tag'. This will only affect the following "
 "option types: Taxonomy Checkbox, & Taxonomy Select."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3611
+#: ../includes/ot-functions-admin.php:3612
 msgid ""
 "<strong>Min, Max, & Step</strong>: Add a comma separated list of options in "
 "the following format <code>0,100,1</code> (slide from <code>0-100</code> in "
@@ -1154,11 +1154,11 @@ msgid ""
 "type."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3619
+#: ../includes/ot-functions-admin.php:3620
 msgid "<strong>CSS Class</strong>: Add and optional class to this option type."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3627
+#: ../includes/ot-functions-admin.php:3628
 #, php-format
 msgid ""
 "<strong>Condition</strong>: Add a comma separated list (no spaces) of "
@@ -1167,92 +1167,92 @@ msgid ""
 "placeholder for your condition, which can be in the form of %s."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3635
+#: ../includes/ot-functions-admin.php:3636
 msgid ""
 "<strong>Operator</strong>: Choose the logical operator to compute the result "
 "of the conditions."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3639
+#: ../includes/ot-functions-admin.php:3640
 msgid "or"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3685
+#: ../includes/ot-functions-admin.php:3686
 #: ../includes/ot-functions-docs-page.php:29
 msgid "Label"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3695
+#: ../includes/ot-functions-admin.php:3696
 msgid "Value"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3705
+#: ../includes/ot-functions-admin.php:3706
 msgid "Image Source (Radio Image only)"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3751
+#: ../includes/ot-functions-admin.php:3752
 msgid ""
 "<strong>Title</strong>: Displayed as a contextual help menu item on the "
 "Theme Options page."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3767
+#: ../includes/ot-functions-admin.php:3768
 msgid ""
 "<strong>Content</strong>: Enter the HTML content about this contextual help "
 "item displayed on the Theme Option page for end users to read."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3798
+#: ../includes/ot-functions-admin.php:3799
 msgid "Layout"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3800
 #: ../includes/ot-functions-admin.php:3801
+#: ../includes/ot-functions-admin.php:3802
 msgid "Activate"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3837 ../includes/ot-meta-box-api.php:223
+#: ../includes/ot-functions-admin.php:3838 ../includes/ot-meta-box-api.php:223
 #: ../includes/ot-settings-api.php:594
 msgid "Title"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:4177
+#: ../includes/ot-functions-admin.php:4178
 msgid "New Layout"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:4760
+#: ../includes/ot-functions-admin.php:4761
 msgid "Link URL"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:4767
+#: ../includes/ot-functions-admin.php:4768
 msgid "Link Title"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:4797
+#: ../includes/ot-functions-admin.php:4798
 msgid "Quote"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:4806
+#: ../includes/ot-functions-admin.php:4807
 msgid "Source Name (ex. author, singer, actor)"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:4813
+#: ../includes/ot-functions-admin.php:4814
 msgid "Source URL"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:4820
+#: ../includes/ot-functions-admin.php:4821
 msgid "Source Title (ex. book, song, movie)"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:4827
+#: ../includes/ot-functions-admin.php:4828
 msgid "Source Date"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:4857
+#: ../includes/ot-functions-admin.php:4858
 msgid "Video"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:4866
+#: ../includes/ot-functions-admin.php:4867
 #, php-format
 msgid ""
 "Embed video from services like Youtube, Vimeo, or Hulu. You can find a list "
@@ -1260,16 +1260,16 @@ msgid ""
 "built-in %2$s shortcode."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:4866
-#: ../includes/ot-functions-admin.php:4905
+#: ../includes/ot-functions-admin.php:4867
+#: ../includes/ot-functions-admin.php:4906
 msgid "Wordpress Codex"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:4896
+#: ../includes/ot-functions-admin.php:4897
 msgid "Audio"
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:4905
+#: ../includes/ot-functions-admin.php:4906
 #, php-format
 msgid ""
 "Embed audio from services like SoundCloud and Rdio. You can find a list of "
