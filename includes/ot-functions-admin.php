@@ -710,7 +710,8 @@ if ( ! function_exists( 'ot_get_media_post_ID' ) ) {
       $post_ID = $wpdb->get_var( "SELECT ID FROM $wpdb->posts WHERE `post_title` = 'Media' AND `post_type` = 'option-tree' AND `post_status` = 'private'" );
       
       // Add to the DB
-      add_option( $option_id, $post_ID );
+      if ( $post_ID !== null )
+        update_option( $option_id, $post_ID );
 
     }
     
