@@ -118,6 +118,9 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 
 == Changelog ==
 
+= 2.4.5 =
+* Hotfix - Fixed an issue where `ot_get_media_post_ID()` was setting the value of the `ot_media_post_ID` option to `null`. Causing the `ot_create_media_post()` function to create multiple media posts. A clean up script will be added to `2.5.0`.
+
 = 2.4.4 =
 * Hotfix - Fixed undefined index caused by shorthand conditional.
 * Hotfix - Fixed jQuery UI style conflicts created by the Easy Digital Downloads plugin.
