@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OptionTree\n"
-"POT-Creation-Date: 2014-11-20 09:55-0800\n"
-"PO-Revision-Date: 2014-11-20 09:55-0800\n"
+"POT-Creation-Date: 2014-11-20 10:28-0800\n"
+"PO-Revision-Date: 2014-11-20 10:28-0800\n"
 "Last-Translator: Derek Herman <derek@valendesigns.com>\n"
 "Language-Team: Valen Designs\n"
 "Language: English\n"
@@ -679,22 +679,22 @@ msgid ""
 "the class attribute."
 msgstr ""
 
-#: ../includes/ot-cleanup-api.php:76
+#: ../includes/ot-cleanup-api.php:84
 #, php-format
 msgid ""
-"OptionTree has outdated data that should be removed. Please go to %s, and "
-"clean it up."
+"OptionTree has outdated data that should be removed. Please go to %s for "
+"more information."
 msgstr ""
 
-#: ../includes/ot-cleanup-api.php:76
-msgid "Tools->OptionTree"
+#: ../includes/ot-cleanup-api.php:84 ../includes/ot-cleanup-api.php:116
+msgid "OptionTree Cleanup"
 msgstr ""
 
-#: ../includes/ot-cleanup-api.php:113
+#: ../includes/ot-cleanup-api.php:124
 msgid "Multiple Media Posts"
 msgstr ""
 
-#: ../includes/ot-cleanup-api.php:115
+#: ../includes/ot-cleanup-api.php:126
 #, php-format
 msgid ""
 "There are currently %s OptionTree media posts in your database. At some "
@@ -705,7 +705,7 @@ msgid ""
 "posts and get your database cleaned up."
 msgstr ""
 
-#: ../includes/ot-cleanup-api.php:117
+#: ../includes/ot-cleanup-api.php:128
 #, php-format
 msgid ""
 "By clicking the button below, OptionTree will delete %s records and "
@@ -714,14 +714,14 @@ msgid ""
 "updated to the correct media post."
 msgstr ""
 
-#: ../includes/ot-cleanup-api.php:119
+#: ../includes/ot-cleanup-api.php:130
 msgid ""
 "This could take a while to fully process depending on how many records you "
 "have in your database, so please be patient and wait for the script to "
 "finish."
 msgstr ""
 
-#: ../includes/ot-cleanup-api.php:121
+#: ../includes/ot-cleanup-api.php:132
 #, php-format
 msgid ""
 "%s Your server is running in safe mode. Which means this page will "
@@ -729,23 +729,23 @@ msgid ""
 "using %s if your server is having trouble processing that many at one time."
 msgstr ""
 
-#: ../includes/ot-cleanup-api.php:123
+#: ../includes/ot-cleanup-api.php:134
 msgid "Consolidate Posts"
 msgstr ""
 
-#: ../includes/ot-cleanup-api.php:151
+#: ../includes/ot-cleanup-api.php:162
 msgid "Reloading..."
 msgstr ""
 
-#: ../includes/ot-cleanup-api.php:187
+#: ../includes/ot-cleanup-api.php:198
 msgid "Clean up script has completed, the page will now reload..."
 msgstr ""
 
-#: ../includes/ot-cleanup-api.php:207
+#: ../includes/ot-cleanup-api.php:218
 msgid "Outdated Table"
 msgstr ""
 
-#: ../includes/ot-cleanup-api.php:209
+#: ../includes/ot-cleanup-api.php:220
 #, php-format
 msgid ""
 "If you have upgraded from an old 1.x version of OptionTree at some point, "
@@ -754,33 +754,37 @@ msgid ""
 "Click the button below."
 msgstr ""
 
-#: ../includes/ot-cleanup-api.php:211
+#: ../includes/ot-cleanup-api.php:222
 msgid "Drop Table"
 msgstr ""
 
-#: ../includes/ot-cleanup-api.php:215
+#: ../includes/ot-cleanup-api.php:226
 #, php-format
 msgid "Deleting the outdated and unused %s table..."
 msgstr ""
 
-#: ../includes/ot-cleanup-api.php:221
+#: ../includes/ot-cleanup-api.php:232
 #, php-format
 msgid "The %s table has been successfully deleted. The page will now reload..."
 msgstr ""
 
-#: ../includes/ot-cleanup-api.php:233
+#: ../includes/ot-cleanup-api.php:244
 #, php-format
 msgid "Something went wrong. The %s table was not deleted."
 msgstr ""
 
-#: ../includes/ot-cleanup-api.php:243
+#: ../includes/ot-cleanup-api.php:254
 msgid "Congratulations! You have a clean install."
 msgstr ""
 
-#: ../includes/ot-cleanup-api.php:245
+#: ../includes/ot-cleanup-api.php:256
 msgid ""
 "Your version of OptionTree does not have any outdated data. If there was "
 "outdated data, you would be presented with options to clean it up."
+msgstr ""
+
+#: ../includes/ot-cleanup-api.php:258
+msgid "Hide This Page"
 msgstr ""
 
 #: ../includes/ot-functions-admin.php:50 ../includes/ot-functions-admin.php:51
