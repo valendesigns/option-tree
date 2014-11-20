@@ -382,6 +382,9 @@ if ( ! class_exists( 'OT_Loader' ) ) {
         $files[] = 'ot-functions-docs-page';
       }
       
+      /* include the tools api */
+      $files[] = 'ot-tools-api';
+      
       /* require the files */
       foreach ( $files as $file ) {
         $this->load_file( OT_DIR . "includes" . DIRECTORY_SEPARATOR . "{$file}.php" );
