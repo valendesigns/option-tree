@@ -100,9 +100,9 @@ if ( ! class_exists( 'OT_Tools' ) ) {
           
           echo '<p>' . sprintf( __( 'By clicking the button below, OptionTree will delete %s records and consolidate them into one single OptionTree media post for uploading attachments to. Additionally, the attachments will have their parent ID updated to the correct media post.', 'option-tree' ), '<code>' . number_format( count( $posts ) - 1 ) . '</code>' ) . '</p>';
           
-          echo '<p>' . __( '<strong>This could take a while to fully process depending on how many records you have in your database, so please be patient and wait for the script to finish.</strong>', 'option-tree' ) . '</p>';
+          echo '<p><strong>' . __( 'This could take a while to fully process depending on how many records you have in your database, so please be patient and wait for the script to finish.', 'option-tree' ) . '</strong></p>';
           
-          echo $safe_mode ?  __( '<p><strong>Note</strong>: Your server is running in safe mode. Which means this page will automatically reload after deleting 500 posts, you can filter this number using <tt>ot_consolidate_posts_reload</tt> if your server is having trouble processing that many at one time.', 'option-tree' ) . '</p>' : '';
+          echo $safe_mode ?  '<p>' . sprintf( __( '%s Your server is running in safe mode. Which means this page will automatically reload after deleting %s posts, you can filter this number using %s if your server is having trouble processing that many at one time.', 'option-tree' ), '<strong>Note</strong>:', apply_filters( 'ot_consolidate_posts_reload', 500 ), '<tt>ot_consolidate_posts_reload</tt>' ) . '</p>' : '';
           
           echo '<p><a class="button button-primary" href="' . wp_nonce_url( admin_url( 'tools.php?page=ot-tools' ), 'consolidate-posts' ) . '">' . __( 'Consolidate Posts', 'option-tree' ) . '</a></p>';
           
