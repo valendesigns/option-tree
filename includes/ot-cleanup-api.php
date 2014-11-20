@@ -59,7 +59,14 @@ if ( ! class_exists( 'OT_Cleanup' ) ) {
 
       }
       
-      add_management_page( 'OptionTree', 'OptionTree', 'edit_theme_options', 'ot-tools', array( $this, 'options_page' ) );
+      if ( isset( $_GET['_wpnonce'] ) && wp_verify_nonce( $_GET['_wpnonce'], 'hide-page' ) ) {
+        update_option( 'ot_hide_cleanup', true );
+        wp_redirect( 'themes.php?page=' . apply_filters( 'ot_theme_options_menu_slug', 'ot-theme-options' ) );
+        exit;
+      }
+      
+      if ( $ot_maybe_cleanup_posts || $ot_maybe_cleanup_table || get_option( 'ot_hide_cleanup', false ) == false )
+        add_theme_page( 'OptionTree Cleanup', 'OptionTree Cleanup', 'edit_theme_options', 'ot-cleanup', array( $this, 'options_page' ) );
       
     }
     
@@ -72,8 +79,9 @@ if ( ! class_exists( 'OT_Cleanup' ) ) {
      * @since     2.4.6
      */
     public function cleanup_notice() {
-    
-      echo '<div class="error"><p>' . sprintf( __( 'OptionTree has outdated data that should be removed. Please go to %s, and clean it up.', 'option-tree' ), sprintf( '<a href="%s">%s</a>', admin_url( 'tools.php?page=ot-tools' ), __( 'Tools->OptionTree', 'option-tree' ) ) ) . '</p></div>';
+
+      if ( get_current_screen()->id != 'appearance_page_ot-cleanup' )
+        echo '<div class="update-nag"><p>' . sprintf( __( 'OptionTree has outdated data that should be removed. Please go to %s for more information.', 'option-tree' ), sprintf( '<a href="%s">%s</a>', admin_url( 'themes.php?page=ot-cleanup' ), __( 'OptionTree Cleanup', 'option-tree' ) ) ) . '</p></div>';
     
     }
     
@@ -87,6 +95,9 @@ if ( ! class_exists( 'OT_Cleanup' ) ) {
      */
     public function options_page() {
       global $wpdb, $table_prefix, $ot_maybe_cleanup_posts, $ot_maybe_cleanup_table;
+      
+      // If we are here this option should not be true.
+      update_option( 'ot_hide_cleanup', false );
       
       // Option ID
       $option_id = 'ot_media_post_ID';
@@ -102,7 +113,7 @@ if ( ! class_exists( 'OT_Cleanup' ) ) {
     
       echo '<div class="wrap">';
   
-        echo '<h2>OptionTree</h2>';
+        echo '<h2>' . __( 'OptionTree Cleanup', 'option-tree' ) . '</h2>';
         
       if ( $ot_maybe_cleanup_posts || $ot_maybe_cleanup_table ) { 
         
@@ -120,7 +131,7 @@ if ( ! class_exists( 'OT_Cleanup' ) ) {
           
           echo $safe_mode ?  '<p>' . sprintf( __( '%s Your server is running in safe mode. Which means this page will automatically reload after deleting %s posts, you can filter this number using %s if your server is having trouble processing that many at one time.', 'option-tree' ), '<strong>Note</strong>:', apply_filters( 'ot_consolidate_posts_reload', 500 ), '<tt>ot_consolidate_posts_reload</tt>' ) . '</p>' : '';
           
-          echo '<p><a class="button button-primary" href="' . wp_nonce_url( admin_url( 'tools.php?page=ot-tools' ), 'consolidate-posts' ) . '">' . __( 'Consolidate Posts', 'option-tree' ) . '</a></p>';
+          echo '<p><a class="button button-primary" href="' . wp_nonce_url( admin_url( 'themes.php?page=ot-cleanup' ), 'consolidate-posts' ) . '">' . __( 'Consolidate Posts', 'option-tree' ) . '</a></p>';
           
           if ( isset( $_GET['_wpnonce'] ) && wp_verify_nonce( $_GET['_wpnonce'], 'consolidate-posts' ) ) {
             
@@ -153,7 +164,7 @@ if ( ! class_exists( 'OT_Cleanup' ) ) {
                 <script>
                   setTimeout( ot_script_reload, 3000 )
                   function ot_script_reload() {
-                    window.location = "' . self_admin_url( 'tools.php?page=ot-tools&_wpnonce=' . wp_create_nonce( 'consolidate-posts' ) ) . '"
+                    window.location = "' . self_admin_url( 'themes.php?page=ot-cleanup&_wpnonce=' . wp_create_nonce( 'consolidate-posts' ) ) . '"
                   }
                 </script>';
                 break;
@@ -190,7 +201,7 @@ if ( ! class_exists( 'OT_Cleanup' ) ) {
             <script>
               setTimeout( ot_script_reload, 3000 )
               function ot_script_reload() {
-                window.location = "' . self_admin_url( 'tools.php?page=ot-tools' ) . '"
+                window.location = "' . self_admin_url( 'themes.php?page=ot-cleanup' ) . '"
               }
             </script>';
           
@@ -208,7 +219,7 @@ if ( ! class_exists( 'OT_Cleanup' ) ) {
           
           echo '<p>' . sprintf( __( 'If you have upgraded from an old 1.x version of OptionTree at some point, you have an extra %s table in your database that can be removed. It\'s not hurting anything, but does not need to be there. If you want to remove it. Click the button below.', 'option-tree' ), '<tt>' . $table_name . '</tt>' ) . '</p>';
           
-          echo '<p><a class="button button-primary" href="' . wp_nonce_url( admin_url( 'tools.php?page=ot-tools' ), 'drop-table' ) . '">' . __( 'Drop Table', 'option-tree' ) . '</a></p>';
+          echo '<p><a class="button button-primary" href="' . wp_nonce_url( admin_url( 'themes.php?page=ot-cleanup' ), 'drop-table' ) . '">' . __( 'Drop Table', 'option-tree' ) . '</a></p>';
           
           if ( isset( $_GET['_wpnonce'] ) && wp_verify_nonce( $_GET['_wpnonce'], 'drop-table' ) ) {
 
@@ -224,7 +235,7 @@ if ( ! class_exists( 'OT_Cleanup' ) ) {
               <script>
                 setTimeout( ot_script_reload, 3000 )
                 function ot_script_reload() {
-                  window.location = "' . self_admin_url( 'tools.php?page=ot-tools' ) . '"
+                  window.location = "' . self_admin_url( 'themes.php?page=ot-cleanup' ) . '"
                 }
               </script>';
             
@@ -243,6 +254,8 @@ if ( ! class_exists( 'OT_Cleanup' ) ) {
         echo '<h3>' . __( 'Congratulations! You have a clean install.', 'option-tree' ) . '</h3>';
         
         echo '<p>' . __( 'Your version of OptionTree does not have any outdated data. If there was outdated data, you would be presented with options to clean it up.', 'option-tree' ) . '</p>';
+        
+        echo '<p><a class="button button-primary" href="' . wp_nonce_url( admin_url( 'themes.php?page=ot-cleanup' ), 'hide-page' ) . '">' . __( 'Hide This Page', 'option-tree' ) . '</a></p>';
         
       }
           
