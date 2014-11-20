@@ -39,7 +39,7 @@ if ( ! class_exists( 'OT_Tools' ) ) {
     /**
      * Check if OptionTree needs to be cleaned up from a previous install.
      *
-     * @return    bool
+     * @return    void
      *
      * @access    public
      * @since     2.4.6
@@ -63,12 +63,28 @@ if ( ! class_exists( 'OT_Tools' ) ) {
       
     }
     
+    /**
+     * Adds an admin nag.
+     *
+     * @return    string
+     *
+     * @access    public
+     * @since     2.4.6
+     */
     public function cleanup_notice() {
     
       echo '<div class="error"><p>' . sprintf( __( 'OptionTree has outdated data that should be removed. Please go to %s, and clean it up.', 'option-tree' ), sprintf( '<a href="%s">%s</a>', admin_url( 'tools.php?page=ot-tools' ), __( 'Tools->OptionTree', 'option-tree' ) ) ) . '</p></div>';
     
     }
     
+    /**
+     * Adds a Tools sub page to clean up the database with.
+     *
+     * @return    string
+     *
+     * @access    public
+     * @since     2.4.6
+     */
     public function options_page() {
       global $wpdb, $table_prefix, $ot_maybe_cleanup_posts, $ot_maybe_cleanup_table;
       
@@ -239,7 +255,10 @@ if ( ! class_exists( 'OT_Tools' ) ) {
      *
      * This is to prevent bulk operations from timing out
      *
-     * @since 2.4.6
+     * @return    void
+     *
+     * @access    public
+     * @since     2.4.6
      */
     public function increase_timeout() {
       
