@@ -147,7 +147,7 @@ if ( ! class_exists( 'OT_Tools' ) ) {
               $count++;
               
               // Reload script in safe mode
-              if ( ! $safe_mode && $count > apply_filters( 'ot_consolidate_posts_reload', 500 ) ) {
+              if ( $safe_mode && $count > apply_filters( 'ot_consolidate_posts_reload', 500 ) ) {
                 echo '<br />' . __( 'Reloading...', 'option-tree' );
                 echo '
                 <script>
