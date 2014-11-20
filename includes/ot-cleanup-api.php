@@ -1,16 +1,16 @@
 <?php if ( ! defined( 'OT_VERSION' ) ) exit( 'No direct script access allowed' );
 /**
- * OptionTree Tools API
+ * OptionTree Cleanup API
  *
- * This class loads all the OptionTree Tools methods and helpers.
+ * This class loads all the OptionTree Cleanup methods and helpers.
  *
  * @package   OptionTree
  * @author    Derek Herman <derek@valendesigns.com>
  * @copyright Copyright (c) 2014, Derek Herman
  */
-if ( ! class_exists( 'OT_Tools' ) ) {
+if ( ! class_exists( 'OT_Cleanup' ) ) {
 
-  class OT_Tools {
+  class OT_Cleanup {
   
     /**
      * PHP5 constructor method.
@@ -274,7 +274,7 @@ if ( ! class_exists( 'OT_Tools' ) ) {
 
 }
 
-new OT_Tools();
+new OT_Cleanup();
 
-/* End of file ot-tools-api.php */
-/* Location: ./includes/ot-cleanup.php */
+/* End of file ot-cleanup-api.php */
+/* Location: ./includes/ot-cleanup-api.php */

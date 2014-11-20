@@ -382,8 +382,8 @@ if ( ! class_exists( 'OT_Loader' ) ) {
         $files[] = 'ot-functions-docs-page';
       }
       
-      /* include the tools api */
-      $files[] = 'ot-tools-api';
+      /* include the cleanup api */
+      $files[] = 'ot-cleanup-api';
       
       /* require the files */
       foreach ( $files as $file ) {
