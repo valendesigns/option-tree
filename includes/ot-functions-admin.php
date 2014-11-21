@@ -703,7 +703,7 @@ if ( ! function_exists( 'ot_get_media_post_ID' ) ) {
     $post_ID = get_option( $option_id, false );
     
     // Add $post_ID to the DB
-    if ( $post_ID === false ) {
+    if ( $post_ID === false || empty( $post_ID ) ) {
       global $wpdb;
       
       // Get the media post ID
