@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OptionTree\n"
-"POT-Creation-Date: 2014-11-20 10:28-0800\n"
-"PO-Revision-Date: 2014-11-20 10:28-0800\n"
+"POT-Creation-Date: 2014-11-20 23:06-0800\n"
+"PO-Revision-Date: 2014-11-20 23:06-0800\n"
 "Last-Translator: Derek Herman <derek@valendesigns.com>\n"
 "Language-Team: Valen Designs\n"
 "Language: English\n"
@@ -679,15 +679,16 @@ msgid ""
 "the class attribute."
 msgstr ""
 
+#: ../includes/ot-cleanup-api.php:69 ../includes/ot-cleanup-api.php:84
+#: ../includes/ot-cleanup-api.php:116
+msgid "OptionTree Cleanup"
+msgstr ""
+
 #: ../includes/ot-cleanup-api.php:84
 #, php-format
 msgid ""
 "OptionTree has outdated data that should be removed. Please go to %s for "
 "more information."
-msgstr ""
-
-#: ../includes/ot-cleanup-api.php:84 ../includes/ot-cleanup-api.php:116
-msgid "OptionTree Cleanup"
 msgstr ""
 
 #: ../includes/ot-cleanup-api.php:124
