@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OptionTree\n"
-"POT-Creation-Date: 2014-11-17 03:10-0800\n"
-"PO-Revision-Date: 2014-11-17 03:10-0800\n"
+"POT-Creation-Date: 2014-11-20 23:06-0800\n"
+"PO-Revision-Date: 2014-11-20 23:06-0800\n"
 "Last-Translator: Derek Herman <derek@valendesigns.com>\n"
 "Language-Team: Valen Designs\n"
 "Language: English\n"
@@ -24,7 +24,7 @@ msgid ""
 "OptionTree, and remove this warning."
 msgstr ""
 
-#: ../ot-loader.php:749 ../assets/theme-mode/demo-theme-options.php:639
+#: ../ot-loader.php:752 ../assets/theme-mode/demo-theme-options.php:639
 #: ../includes/ot-functions-admin.php:657
 #: ../includes/ot-functions-docs-page.php:374
 #: ../includes/ot-functions-settings-page.php:170
@@ -677,6 +677,115 @@ msgstr ""
 msgid ""
 "The Upload option type can also be saved as an attachment ID by adding %s to "
 "the class attribute."
+msgstr ""
+
+#: ../includes/ot-cleanup-api.php:69 ../includes/ot-cleanup-api.php:84
+#: ../includes/ot-cleanup-api.php:116
+msgid "OptionTree Cleanup"
+msgstr ""
+
+#: ../includes/ot-cleanup-api.php:84
+#, php-format
+msgid ""
+"OptionTree has outdated data that should be removed. Please go to %s for "
+"more information."
+msgstr ""
+
+#: ../includes/ot-cleanup-api.php:124
+msgid "Multiple Media Posts"
+msgstr ""
+
+#: ../includes/ot-cleanup-api.php:126
+#, php-format
+msgid ""
+"There are currently %s OptionTree media posts in your database. At some "
+"point in the past, a version of OptionTree added multiple %s media post "
+"objects cluttering up your %s table. There is no associated risk or harm "
+"that these posts have caused other than to add size to your overall "
+"database. Thankfully, there is a way to remove all these orphaned media "
+"posts and get your database cleaned up."
+msgstr ""
+
+#: ../includes/ot-cleanup-api.php:128
+#, php-format
+msgid ""
+"By clicking the button below, OptionTree will delete %s records and "
+"consolidate them into one single OptionTree media post for uploading "
+"attachments to. Additionally, the attachments will have their parent ID "
+"updated to the correct media post."
+msgstr ""
+
+#: ../includes/ot-cleanup-api.php:130
+msgid ""
+"This could take a while to fully process depending on how many records you "
+"have in your database, so please be patient and wait for the script to "
+"finish."
+msgstr ""
+
+#: ../includes/ot-cleanup-api.php:132
+#, php-format
+msgid ""
+"%s Your server is running in safe mode. Which means this page will "
+"automatically reload after deleting %s posts, you can filter this number "
+"using %s if your server is having trouble processing that many at one time."
+msgstr ""
+
+#: ../includes/ot-cleanup-api.php:134
+msgid "Consolidate Posts"
+msgstr ""
+
+#: ../includes/ot-cleanup-api.php:162
+msgid "Reloading..."
+msgstr ""
+
+#: ../includes/ot-cleanup-api.php:198
+msgid "Clean up script has completed, the page will now reload..."
+msgstr ""
+
+#: ../includes/ot-cleanup-api.php:218
+msgid "Outdated Table"
+msgstr ""
+
+#: ../includes/ot-cleanup-api.php:220
+#, php-format
+msgid ""
+"If you have upgraded from an old 1.x version of OptionTree at some point, "
+"you have an extra %s table in your database that can be removed. It's not "
+"hurting anything, but does not need to be there. If you want to remove it. "
+"Click the button below."
+msgstr ""
+
+#: ../includes/ot-cleanup-api.php:222
+msgid "Drop Table"
+msgstr ""
+
+#: ../includes/ot-cleanup-api.php:226
+#, php-format
+msgid "Deleting the outdated and unused %s table..."
+msgstr ""
+
+#: ../includes/ot-cleanup-api.php:232
+#, php-format
+msgid "The %s table has been successfully deleted. The page will now reload..."
+msgstr ""
+
+#: ../includes/ot-cleanup-api.php:244
+#, php-format
+msgid "Something went wrong. The %s table was not deleted."
+msgstr ""
+
+#: ../includes/ot-cleanup-api.php:254
+msgid "Congratulations! You have a clean install."
+msgstr ""
+
+#: ../includes/ot-cleanup-api.php:256
+msgid ""
+"Your version of OptionTree does not have any outdated data. If there was "
+"outdated data, you would be presented with options to clean it up."
+msgstr ""
+
+#: ../includes/ot-cleanup-api.php:258
+msgid "Hide This Page"
 msgstr ""
 
 #: ../includes/ot-functions-admin.php:50 ../includes/ot-functions-admin.php:51
