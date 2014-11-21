@@ -81,7 +81,7 @@ if ( ! class_exists( 'OT_Cleanup' ) ) {
     public function cleanup_notice() {
 
       if ( get_current_screen()->id != 'appearance_page_ot-cleanup' )
-        echo '<div class="update-nag"><p>' . sprintf( __( 'OptionTree has outdated data that should be removed. Please go to %s for more information.', 'option-tree' ), sprintf( '<a href="%s">%s</a>', admin_url( 'themes.php?page=ot-cleanup' ), apply_filters( 'ot_cleanup_menu_title', __( 'OptionTree Cleanup', 'option-tree' ) ) ) ) . '</p></div>';
+        echo '<div class="update-nag">' . sprintf( __( 'OptionTree has outdated data that should be removed. Please go to %s for more information.', 'option-tree' ), sprintf( '<a href="%s">%s</a>', admin_url( 'themes.php?page=ot-cleanup' ), apply_filters( 'ot_cleanup_menu_title', __( 'OptionTree Cleanup', 'option-tree' ) ) ) ) . '</div>';
     
     }
     
