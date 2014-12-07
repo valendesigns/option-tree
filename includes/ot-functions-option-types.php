@@ -736,6 +736,88 @@ if ( ! function_exists( 'ot_type_date_time_picker' ) ) {
 }
 
 /**
+ * Dimension Option Type
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     The options arguments
+ * @return    string    The markup.
+ *
+ * @access    public
+ * @since     2.5.0
+ */
+if ( ! function_exists( 'ot_type_dimension' ) ) {
+
+  function ot_type_dimension( $args = array() ) {
+
+    /* turns arguments array into variables */
+    extract( $args );
+
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-dimension ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+
+        /* allow fields to be filtered */
+        $ot_recognized_dimension_fields = apply_filters( 'ot_recognized_dimension_fields', array(
+          'width',
+          'height',
+          'unit',
+        ), $field_id );
+
+        /* build width dimension */
+        if ( in_array( 'width', $ot_recognized_dimension_fields ) ) {
+
+          $width = isset( $field_value['width'] ) ? esc_attr( $field_value['width'] ) : '';
+
+          echo '<div class="ot-option-group ot-option-group--one-third"><span class="ot-icon-arrows-h ot-option-group--icon"></span><input type="text" name="' . esc_attr( $field_name ) . '[width]" id="' . esc_attr( $field_id ) . '-width" value="' . esc_attr( $width ) . '" class="widefat option-tree-ui-input ' . esc_attr( $field_class ) . '" placeholder="' . __( 'width', 'option-tree' ) . '" /></div>';
+
+        }
+
+        /* build height dimension */
+        if ( in_array( 'height', $ot_recognized_dimension_fields ) ) {
+
+          $height = isset( $field_value['height'] ) ? esc_attr( $field_value['height'] ) : '';
+
+          echo '<div class="ot-option-group ot-option-group--one-third"><span class="ot-icon-arrows-v ot-option-group--icon"></span><input type="text" name="' . esc_attr( $field_name ) . '[height]" id="' . esc_attr( $field_id ) . '-height" value="' . esc_attr( $height ) . '" class="widefat option-tree-ui-input ' . esc_attr( $field_class ) . '" placeholder="' . __( 'height', 'option-tree' ) . '" /></div>';
+
+        }
+        
+        /* build unit dropdown */
+        if ( in_array( 'unit', $ot_recognized_dimension_fields ) ) {
+          
+          echo '<div class="ot-option-group ot-option-group--one-third ot-option-group--is-last">';
+          
+            echo '<select name="' . esc_attr( $field_name ) . '[unit]" id="' . esc_attr( $field_id ) . '-unit" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
+    
+              echo '<option value="">&nbsp;--&nbsp;</option>';
+    
+              foreach ( ot_recognized_dimension_unit_types( $field_id ) as $unit ) {
+                echo '<option value="' . esc_attr( $unit ) . '"' . ( isset( $field_value['unit'] ) ? selected( $field_value['unit'], $unit, false ) : '' ) . '>' . esc_attr( $unit ) . '</option>';
+              }
+    
+            echo '</select>';
+          
+          echo '</div>';
+  
+        }
+      
+      echo '</div>';
+
+    echo '</div>';
+
+  }
+
+}
+
+/**
  * Gallery option type.
  *
  * See @ot_display_by_type to see the full list of available arguments.
@@ -1802,7 +1884,7 @@ if ( ! function_exists( 'ot_type_spacing' ) ) {
 
           $top = isset( $field_value['top'] ) ? esc_attr( $field_value['top'] ) : '';
 
-          echo '<div class="ot-spacing-group"><span class="ot-icon-arrow-up ot-spacing-group--icon"></span><input type="text" name="' . esc_attr( $field_name ) . '[top]" id="' . esc_attr( $field_id ) . '-top" value="' . $top . '" class="widefat option-tree-ui-input ' . esc_attr( $field_class ) . '" placeholder="' . __( 'top', 'option-tree' ) . '" /></div>';
+          echo '<div class="ot-option-group"><span class="ot-icon-arrow-up ot-option-group--icon"></span><input type="text" name="' . esc_attr( $field_name ) . '[top]" id="' . esc_attr( $field_id ) . '-top" value="' . $top . '" class="widefat option-tree-ui-input ' . esc_attr( $field_class ) . '" placeholder="' . __( 'top', 'option-tree' ) . '" /></div>';
 
         }
 
@@ -1811,7 +1893,7 @@ if ( ! function_exists( 'ot_type_spacing' ) ) {
 
           $right = isset( $field_value['right'] ) ? esc_attr( $field_value['right'] ) : '';
 
-          echo '<div class="ot-spacing-group"><span class="ot-icon-arrow-right ot-spacing-group--icon"></span></span><input type="text" name="' . esc_attr( $field_name ) . '[right]" id="' . esc_attr( $field_id ) . '-right" value="' . $right . '" class="widefat option-tree-ui-input ' . esc_attr( $field_class ) . '" placeholder="' . __( 'right', 'option-tree' ) . '" /></div>';
+          echo '<div class="ot-option-group"><span class="ot-icon-arrow-right ot-option-group--icon"></span></span><input type="text" name="' . esc_attr( $field_name ) . '[right]" id="' . esc_attr( $field_id ) . '-right" value="' . $right . '" class="widefat option-tree-ui-input ' . esc_attr( $field_class ) . '" placeholder="' . __( 'right', 'option-tree' ) . '" /></div>';
 
         }
 
@@ -1820,7 +1902,7 @@ if ( ! function_exists( 'ot_type_spacing' ) ) {
 
           $bottom = isset( $field_value['bottom'] ) ? esc_attr( $field_value['bottom'] ) : '';
 
-          echo '<div class="ot-spacing-group"><span class="ot-icon-arrow-down ot-spacing-group--icon"></span><input type="text" name="' . esc_attr( $field_name ) . '[bottom]" id="' . esc_attr( $field_id ) . '-bottom" value="' . $bottom . '" class="widefat option-tree-ui-input ' . esc_attr( $field_class ) . '" placeholder="' . __( 'bottom', 'option-tree' ) . '" /></div>';
+          echo '<div class="ot-option-group"><span class="ot-icon-arrow-down ot-option-group--icon"></span><input type="text" name="' . esc_attr( $field_name ) . '[bottom]" id="' . esc_attr( $field_id ) . '-bottom" value="' . $bottom . '" class="widefat option-tree-ui-input ' . esc_attr( $field_class ) . '" placeholder="' . __( 'bottom', 'option-tree' ) . '" /></div>';
 
         }
 
@@ -1829,14 +1911,14 @@ if ( ! function_exists( 'ot_type_spacing' ) ) {
 
           $left = isset( $field_value['left'] ) ? esc_attr( $field_value['left'] ) : '';
 
-          echo '<div class="ot-spacing-group"><span class="ot-icon-arrow-left ot-spacing-group--icon"></span><input type="text" name="' . esc_attr( $field_name ) . '[left]" id="' . esc_attr( $field_id ) . '-left" value="' . $left . '" class="widefat option-tree-ui-input ' . esc_attr( $field_class ) . '" placeholder="' . __( 'left', 'option-tree' ) . '" /></div>';
+          echo '<div class="ot-option-group"><span class="ot-icon-arrow-left ot-option-group--icon"></span><input type="text" name="' . esc_attr( $field_name ) . '[left]" id="' . esc_attr( $field_id ) . '-left" value="' . $left . '" class="widefat option-tree-ui-input ' . esc_attr( $field_class ) . '" placeholder="' . __( 'left', 'option-tree' ) . '" /></div>';
 
         }
 
       /* build unit dropdown */
       if ( in_array( 'unit', $ot_recognized_spacing_fields ) ) {
         
-        echo '<div class="ot-spacing-group ot-spacing-group--is-last">';
+        echo '<div class="ot-option-group ot-option-group--is-last">';
         
           echo '<select name="' . esc_attr( $field_name ) . '[unit]" id="' . esc_attr( $field_id ) . '-unit" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
   

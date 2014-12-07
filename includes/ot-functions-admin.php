@@ -507,7 +507,36 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
         $input = wp_kses_post( $input );
         
       }
-            
+    
+    } else if ( 'dimension' == $type ) {
+      
+      // Loop over array and set error keys or unset key from array.
+      foreach( $input as $key => $value ) {
+        if ( ! empty( $value ) && ! is_numeric( $value ) && $key !== 'unit' ) {
+          $errors[] = $key;
+        }
+        if ( empty( $value ) ) {
+          unset( $input[$key] );
+        }
+      }
+
+      /* return 0 & set error */
+      if ( isset( $errors ) ) {
+        
+        foreach( $errors as $error ) {
+          
+          $input[$error] = '0';
+          
+          add_settings_error( 'option-tree', 'invalid_dimension_' . $error, sprintf( __( 'The %s input field for %s only allows numeric values.', 'option-tree' ), '<code>' . $error . '</code>', '<code>' . $field_id . '</code>' ), 'error' );
+          
+        }
+        
+      }
+      
+      if ( empty( $input ) ) {
+        $input = '';
+      }
+             
     } else if ( 'measurement' == $type ) {
     
       $input[0] = sanitize_text_field( $input[0] );
@@ -519,13 +548,16 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
       
     } else if ( 'spacing' == $type ) {
       
-      // Loop over array and set error keys
+      // Loop over array and set error keys or unset key from array.
       foreach( $input as $key => $value ) {
         if ( ! empty( $value ) && ! is_numeric( $value ) && $key !== 'unit' ) {
           $errors[] = $key;
         }
+        if ( empty( $value ) ) {
+          unset( $input[$key] );
+        }
       }
-      
+
       /* return 0 & set error */
       if ( isset( $errors ) ) {
         
@@ -537,6 +569,10 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
           
         }
         
+      }
+      
+      if ( empty( $input ) ) {
+        $input = '';
       }
       
     } else if ( 'typography' == $type && isset( $input['font-color'] ) ) {
@@ -2254,6 +2290,7 @@ if ( ! function_exists( 'ot_option_types_array' ) ) {
       'custom-post-type-select'   => __('Custom Post Type Select', 'option-tree'),
       'date-picker'               => __('Date Picker', 'option-tree'),
       'date-time-picker'          => __('Date Time Picker', 'option-tree'),
+      'dimension'                 => __('Dimension', 'option-tree'),
       'gallery'                   => __('Gallery', 'option-tree'),
       'list-item'                 => __('List Item', 'option-tree'),
       'measurement'               => __('Measurement', 'option-tree'),
@@ -2725,6 +2762,33 @@ if ( ! function_exists( 'ot_recognized_background_position' ) ) {
 }
 
 /**
+ * Dimension Units
+ *
+ * Returns an array of all available unit types.
+ *
+ * @uses      apply_filters()
+ *
+ * @return    array
+ *
+ * @access    public
+ * @since     2.5.0
+ */
+if ( ! function_exists( 'ot_recognized_dimension_unit_types' ) ) {
+
+  function ot_recognized_dimension_unit_types( $field_id = '' ) {
+
+    return apply_filters( 'ot_recognized_dimension_unit_types', array(
+      'px' => 'px',
+      '%'  => '%',
+      'em' => 'em',
+      'pt' => 'pt'
+    ), $field_id );
+
+  }
+
+}
+
+/**
  * Spacing Units
  *
  * Returns an array of all available unit types.
@@ -3103,6 +3167,21 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
               /* set $value with measurement properties */
               $value = $value[0].$value[1];
             
+            /* Dimension */
+            } else if ( ot_array_keys_exists( $value, array( 'width', 'height', 'unit' ) ) ) {
+              $dimension = array();
+              
+              $unit = ! empty( $value['unit'] ) ? $value['unit'] : 'px';
+              
+              if ( ! empty( $value['width'] ) )
+                $dimension[] = $value['width'].$unit;
+                
+              if ( ! empty( $value['height'] ) )
+                $dimension[] = $value['height'].$unit;
+                
+              /* set $value with dimension properties or empty string */
+              $value = ! empty( $dimension ) ? implode( ' ', $dimension ) : '';
+              
             /* Spacing */
             } else if ( ot_array_keys_exists( $value, array( 'top', 'right', 'bottom', 'left', 'unit' ) ) ) {
               $spacing = array();

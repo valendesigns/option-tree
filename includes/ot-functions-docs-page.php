@@ -153,6 +153,9 @@ body {
         echo '<h4>'. __( 'Date Time Picker', 'option-tree' ) . ':</h4>'; 
         echo '<p>' . __( 'The Date Time Picker option type is tied to a standard form input field which displays a calendar pop-up that allow the user to pick any date and time when focus is given to the input field. The returned value is a date and time formatted string.', 'option-tree' ) . '</p>';
         
+        echo '<h4>'. __( 'Dimension', 'option-tree' ) . ':</h4>';
+        echo '<p>' . sprintf( __( 'The Dimension option type is used to set width and height values. The text inputs except numerical values and the select lets you choose the unit of measurement to add to that value. Currently the default units are %s, %s, %s, and %s. However, you can change them with the %s filter.', 'option-tree' ), '<code>px</code>', '<code>%</code>', '<code>em</code>', '<code>pt</code>', '<code>ot_recognized_dimension_unit_types</code>' ) . '</p>';
+        
         echo '<h4>'. __( 'Gallery', 'option-tree' ) . ':</h4>'; 
         echo '<p>' . __( 'The Gallery option type saves a comma separated list of image attachment IDs. You will need to create a front-end function to display the images in your theme.', 'option-tree' ) . '</p>';
         

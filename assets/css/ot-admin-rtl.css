@@ -276,6 +276,30 @@ div.option-tree-ui-media-wrap {
 }
 
 /* -------------------------------------------------- 
+  :: Option Group
+  ---------------------------------------------------*/
+.ot-option-group {
+  float: right;
+  padding-right: 0px;
+  padding-left: 5px;
+}
+.ot-option-group--is-last {
+  padding-left: 0;
+}
+.ot-option-group--icon {
+  border-left: 1px solid #ccc;
+  border-right: 0px;
+  left: auto;
+  right: 1px;
+}
+.ot-option-group--icon + input.option-tree-ui-input {
+  padding-left: 5px !important;
+  padding-right: 34px !important;
+  margin-left: 5px;
+  margin-right: 0px;
+}
+
+/* -------------------------------------------------- 
   :: Select
   ---------------------------------------------------*/
 .select-wrapper {
@@ -337,30 +361,6 @@ div.option-tree-ui-media-wrap {
 .type-radio-image .option-tree-ui-radio-images {
   float: right;
   margin: 0 0px 10px 10px;
-}
-
-/* -------------------------------------------------- 
-  :: Spacing
-  ---------------------------------------------------*/
-.ot-spacing-group {
-  float: right;
-  padding-right: 0px;
-  padding-left: 5px;
-}
-.ot-spacing-group--is-last {
-  padding-left: 0;
-}
-.ot-spacing-group--icon {
-  border-left: 1px solid #ccc;
-  border-right: 0px;
-  left: auto;
-  right: 1px;
-}
-.ot-spacing-group--icon + input.option-tree-ui-input {
-  padding-left: 5px !important;
-  padding-right: 34px !important;
-  margin-left: 5px;
-  margin-right: 0px;
 }
 
 /* -------------------------------------------------- 
