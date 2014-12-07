@@ -271,6 +271,117 @@ if ( ! function_exists( 'ot_type_background' ) ) {
 }
 
 /**
+ * Border Option Type
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     The options arguments
+ * @return    string    The markup.
+ *
+ * @access    public
+ * @since     2.5.0
+ */
+if ( ! function_exists( 'ot_type_border' ) ) {
+
+  function ot_type_border( $args = array() ) {
+
+    /* turns arguments array into variables */
+    extract( $args );
+
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-border ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+
+        /* allow fields to be filtered */
+        $ot_recognized_border_fields = apply_filters( 'ot_recognized_border_fields', array(
+          'width',
+          'unit',
+          'style',
+          'color'
+        ), $field_id );
+
+        /* build border width */
+        if ( in_array( 'width', $ot_recognized_border_fields ) ) {
+
+          $width = isset( $field_value['width'] ) ? esc_attr( $field_value['width'] ) : '';
+
+          echo '<div class="ot-option-group ot-option-group--one-sixth"><input type="text" name="' . esc_attr( $field_name ) . '[width]" id="' . esc_attr( $field_id ) . '-width" value="' . esc_attr( $width ) . '" class="widefat option-tree-ui-input ' . esc_attr( $field_class ) . '" placeholder="' . __( 'width', 'option-tree' ) . '" /></div>';
+
+        }
+
+        /* build unit dropdown */
+        if ( in_array( 'unit', $ot_recognized_border_fields ) ) {
+          
+          echo '<div class="ot-option-group ot-option-group--one-fourth">';
+          
+            echo '<select name="' . esc_attr( $field_name ) . '[unit]" id="' . esc_attr( $field_id ) . '-unit" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
+    
+              echo '<option value="">&nbsp;--&nbsp;</option>';
+    
+              foreach ( ot_recognized_border_unit_types( $field_id ) as $unit ) {
+                echo '<option value="' . esc_attr( $unit ) . '"' . ( isset( $field_value['unit'] ) ? selected( $field_value['unit'], $unit, false ) : '' ) . '>' . esc_attr( $unit ) . '</option>';
+              }
+    
+            echo '</select>';
+          
+          echo '</div>';
+  
+        }
+        
+        /* build style dropdown */
+        if ( in_array( 'style', $ot_recognized_border_fields ) ) {
+          
+          echo '<div class="ot-option-group ot-option-group--one-fourth">';
+          
+            echo '<select name="' . esc_attr( $field_name ) . '[style]" id="' . esc_attr( $field_id ) . '-style" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
+    
+              echo '<option value="">&nbsp;--&nbsp;</option>';
+    
+              foreach ( ot_recognized_border_style_types( $field_id ) as $key => $style ) {
+                echo '<option value="' . esc_attr( $key ) . '"' . ( isset( $field_value['style'] ) ? selected( $field_value['style'], $key, false ) : '' ) . '>' . esc_attr( $style ) . '</option>';
+              }
+    
+            echo '</select>';
+          
+          echo '</div>';
+  
+        }
+        
+        /* build background color */
+        if ( in_array( 'color', $ot_recognized_border_fields ) ) {
+          
+          echo '<div class="option-tree-ui-colorpicker-input-wrap">';
+            
+            /* colorpicker JS */      
+            echo '<script>jQuery(document).ready(function($) { OT_UI.bind_colorpicker("' . esc_attr( $field_id ) . '-picker"); });</script>';
+            
+            /* set color */
+            $color = isset( $field_value['color'] ) ? esc_attr( $field_value['color'] ) : '';
+            
+            /* input */
+            echo '<input type="text" name="' . esc_attr( $field_name ) . '[color]" id="' . $field_id . '-picker" value="' . $color . '" class="hide-color-picker ' . esc_attr( $field_class ) . '" />';
+          
+          echo '</div>';
+        
+        }
+      
+      echo '</div>';
+
+    echo '</div>';
+
+  }
+
+}
+
+/**
  * Category Checkbox option type.
  *
  * See @ot_display_by_type to see the full list of available arguments.
@@ -769,7 +880,7 @@ if ( ! function_exists( 'ot_type_dimension' ) ) {
         $ot_recognized_dimension_fields = apply_filters( 'ot_recognized_dimension_fields', array(
           'width',
           'height',
-          'unit',
+          'unit'
         ), $field_id );
 
         /* build width dimension */
@@ -1876,7 +1987,7 @@ if ( ! function_exists( 'ot_type_spacing' ) ) {
           'right',
           'bottom',
           'left',
-          'unit',
+          'unit'
         ), $field_id );
 
         /* build top spacing */

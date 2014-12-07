@@ -2105,11 +2105,14 @@ li ul .format-setting-label {
 .ot-option-group--one-third {
   width: 33.3%;
 }
-.ot-option-group--one-quarter {
+.ot-option-group--one-fourth {
   width: 25%;
 }
 .ot-option-group--one-fifth {
   width: 20%;
+}
+.ot-option-group--one-sixth {
+  width: 16.6%;
 }
 .ot-option-group--is-last {
   padding-right: 0;

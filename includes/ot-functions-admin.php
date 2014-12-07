@@ -488,6 +488,42 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
       if ( ! isset( $has_value ) ) {
         $input = '';
       }
+    
+    } else if ( 'border' == $type ) {
+      
+      // Loop over array and set errors or unset key from array.
+      foreach( $input as $key => $value ) {
+        
+        // Validate width
+        if ( $key == 'width' && ! empty( $value ) && ! is_numeric( $value ) ) {
+          
+          $input[$key] = '0';
+          
+          add_settings_error( 'option-tree', 'invalid_border_width', sprintf( __( 'The %s input field for %s only allows numeric values.', 'option-tree' ), '<code>width</code>', '<code>' . $field_id . '</code>' ), 'error' );
+          
+        }
+        
+        // Validate color
+        if ( $key == 'color' && ! empty( $value ) && 0 === preg_match( '/^#([a-f0-9]{6}|[a-f0-9]{3})$/i', $value ) ) {
+          
+          $input[$key] = '';
+          $value = '';
+          
+          add_settings_error( 'option-tree', 'invalid_hex', __( 'The Colorpicker only allows valid hexadecimal values.', 'option-tree' ), 'error' );
+          
+        }
+        
+        // Unset keys with empty values.
+        if ( empty( $value ) ) {
+          unset( $input[$key] );
+        }
+        
+      }
+      
+      if ( empty( $input ) ) {
+        $input = '';
+      }
+      
       
     } else if ( 'colorpicker' == $type ) {
 
@@ -2281,6 +2317,7 @@ if ( ! function_exists( 'ot_option_types_array' ) ) {
   
     return apply_filters( 'ot_option_types_array', array( 
       'background'                => __('Background', 'option-tree'),
+      'border'                    => __('Border', 'option-tree'),
       'category-checkbox'         => __('Category Checkbox', 'option-tree'),
       'category-select'           => __('Category Select', 'option-tree'),
       'checkbox'                  => __('Checkbox', 'option-tree'),
@@ -2762,6 +2799,64 @@ if ( ! function_exists( 'ot_recognized_background_position' ) ) {
 }
 
 /**
+ * Border Styles
+ *
+ * Returns an array of all available style types.
+ *
+ * @uses      apply_filters()
+ *
+ * @return    array
+ *
+ * @access    public
+ * @since     2.5.0
+ */
+if ( ! function_exists( 'ot_recognized_border_style_types' ) ) {
+
+  function ot_recognized_border_style_types( $field_id = '' ) {
+
+    return apply_filters( 'ot_recognized_border_style_types', array(
+      'hidden' => 'Hidden',
+      'dashed' => 'Dashed',
+      'solid'  => 'Solid',
+      'double' => 'Double',
+      'groove' => 'Groove',
+      'ridge'  => 'Ridge',
+      'inset'  => 'Inset',
+      'outset' => 'Outset',
+    ), $field_id );
+
+  }
+
+}
+
+/**
+ * Border Units
+ *
+ * Returns an array of all available unit types.
+ *
+ * @uses      apply_filters()
+ *
+ * @return    array
+ *
+ * @access    public
+ * @since     2.5.0
+ */
+if ( ! function_exists( 'ot_recognized_border_unit_types' ) ) {
+
+  function ot_recognized_border_unit_types( $field_id = '' ) {
+
+    return apply_filters( 'ot_recognized_border_unit_types', array(
+      'px' => 'px',
+      '%'  => '%',
+      'em' => 'em',
+      'pt' => 'pt'
+    ), $field_id );
+
+  }
+
+}
+
+/**
  * Dimension Units
  *
  * Returns an array of all available unit types.
@@ -3167,8 +3262,26 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
               /* set $value with measurement properties */
               $value = $value[0].$value[1];
             
+            /* Border */
+            } else if ( ot_array_keys_exists( $value, array( 'width', 'unit', 'style', 'color' ) ) && ! ot_array_keys_exists( $value, array( 'top', 'right', 'bottom', 'left', 'height' ) ) ) {
+              $border = array();
+              
+              $unit = ! empty( $value['unit'] ) ? $value['unit'] : 'px';
+              
+              if ( ! empty( $value['width'] ) )
+                $border[] = $value['width'].$unit;
+                
+              if ( ! empty( $value['style'] ) )
+                $border[] = $value['style'];
+                
+              if ( ! empty( $value['color'] ) )
+                $border[] = $value['color'];
+                
+              /* set $value with dimension properties or empty string */
+              $value = ! empty( $border ) ? implode( ' ', $border ) : '';
+              
             /* Dimension */
-            } else if ( ot_array_keys_exists( $value, array( 'width', 'height', 'unit' ) ) ) {
+            } else if ( ot_array_keys_exists( $value, array( 'width', 'height', 'unit' ) ) && ! ot_array_keys_exists( $value, array( 'style', 'color', 'top', 'right', 'bottom', 'left' ) ) ) {
               $dimension = array();
               
               $unit = ! empty( $value['unit'] ) ? $value['unit'] : 'px';
@@ -3183,7 +3296,7 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
               $value = ! empty( $dimension ) ? implode( ' ', $dimension ) : '';
               
             /* Spacing */
-            } else if ( ot_array_keys_exists( $value, array( 'top', 'right', 'bottom', 'left', 'unit' ) ) ) {
+            } else if ( ot_array_keys_exists( $value, array( 'top', 'right', 'bottom', 'left', 'unit' ) ) && ! ot_array_keys_exists( $value, array( 'width', 'height', 'style', 'color' ) ) ) {
               $spacing = array();
               
               $unit = ! empty( $value['unit'] ) ? $value['unit'] : 'px';

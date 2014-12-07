@@ -119,6 +119,7 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 == Changelog ==
 
 = 2.5.0 =
+* Added the Border option type. Contributors via github @doitmax, and @valendesigns.
 * Added the Dimension option type. Contributors via github @doitmax, and @valendesigns.
 * Added the Spacing option type. Contributors via github @doitmax, and @valendesigns.
 
