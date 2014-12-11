@@ -118,6 +118,9 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 
 == Changelog ==
 
+= 2.5.0 =
+* Fix mobile Colorpicker styles.
+
 = 2.4.6 =
 * Hotfix - Added a clean up script to consolidate orphaned media posts and remove the old and unused `wp_option_tree` table.
 * Hotfix - Fixed an issue where `ot_get_media_post_ID()` was never able to set the value of the `ot_media_post_ID` option because it was already set to empty. Causing the `ot_create_media_post()` function to create multiple media posts.
