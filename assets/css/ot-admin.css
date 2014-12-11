@@ -2487,6 +2487,7 @@ select.option-tree-ui-select option {
 .option-tree-ui-colorpicker-input-wrap .wp-picker-default,
 .option-tree-ui-colorpicker-input-wrap .wp-picker-clear {
   border-color: #ccc;
+  font-size: 12px !important;
   height: 29px !important;
   line-height: 27px !important;
   margin-top: 0px;
@@ -2496,6 +2497,9 @@ select.option-tree-ui-select option {
   -webkit-box-shadow: none;
      -moz-box-shadow: none;
           box-shadow: none;
+}
+.option-tree-ui-colorpicker-input-wrap .wp-color-picker {
+  margin: 0 0 5px 0 !important;
 }
 .option-tree-ui-colorpicker-input-wrap .wp-color-result {
   height: 27px;
@@ -2515,6 +2519,15 @@ select.option-tree-ui-select option {
   -webkit-border-radius: 2px;
      -moz-border-radius: 2px;
           border-radius: 2px;
+}
+@media screen and ( max-width: 782px ) {
+  .option-tree-ui-colorpicker-input-wrap .wp-color-picker {
+    padding: 3px 5px !important;
+  }
+  .option-tree-ui-colorpicker-input-wrap .wp-picker-clear {
+    margin-top: 4px;
+    padding: 0 8px 1px !important;
+  }
 }
 
 /* -------------------------------------------------- 

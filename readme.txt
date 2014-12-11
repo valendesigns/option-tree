@@ -123,6 +123,9 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 * Added the Box Shadow option type. Contributors via github @doitmax, and @valendesigns.
 * Added the Dimension option type. Contributors via github @doitmax, and @valendesigns.
 * Added the Spacing option type. Contributors via github @doitmax, and @valendesigns.
+* Fixed an issue where the Colorpicker was not parsing conditions on `change` or `clear`.
+* Fixed the Colorpicker styles on mobile devices.
+* Show the Colorpicker setting ID inside the error message string when the value is invalid.
 
 = 2.4.6 =
 * Hotfix - Added a clean up script to consolidate orphaned media posts and remove the old and unused `wp_option_tree` table.

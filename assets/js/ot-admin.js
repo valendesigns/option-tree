@@ -592,7 +592,14 @@
       });
     },
     bind_colorpicker: function(field_id) {
-      $('#'+field_id).wpColorPicker();
+      $('#'+field_id).wpColorPicker({
+        change: function() {
+          OT_UI.parse_condition();
+        }, 
+        clear: function() {
+          OT_UI.parse_condition();
+        }
+      });
     },
     bind_date_picker: function(field_id, date_format) {
       $('#'+field_id).datepicker({
