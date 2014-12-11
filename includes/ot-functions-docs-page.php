@@ -113,6 +113,9 @@ if ( ! function_exists( 'ot_type_option_types' ) ) {
         echo '<h4>'. __( 'Border', 'option-tree' ) . ':</h4>';      
         echo '<p>' . sprintf( __( 'The Border option type is used to set width, unit, style, and color values. The text input excepts a numerical value and the unit select lets you choose the unit of measurement to add to that value. Currently the default units are %s, %s, %s, and %s. However, you can change them with the %s filter. The style select lets you choose the border style. The default styles are %s, %s, %s, %s, %s, %s, %s, and %s. However, you can change them with the %s filter. The colorpicker saves a hexadecimal color code.', 'option-tree' ), '<code>px</code>', '<code>%</code>', '<code>em</code>', '<code>pt</code>', '<code>ot_recognized_border_unit_types</code>', '<code>hidden</code>', '<code>dashed</code>', '<code>solid</code>', '<code>double</code>', '<code>groove</code>', '<code>ridge</code>', '<code>inset</code>', '<code>outset</code>', '<code>ot_recognized_border_style_types</code>' ) . '</p>';
         
+        echo '<h4>'. __( 'Box Shadow', 'option-tree' ) . ':</h4>';      
+        echo '<p>' . sprintf( __( 'The Box Shadow option type is used to set %s, %s, %s, %s, %s, and %s values.', 'option-tree' ), '<code>inset</code>', '<code>offset-x</code>', '<code>offset-y</code>', '<code>blur-radius</code>', '<code>spread-radius</code>', '<code>color</code>' ) . '</p>';
+        
         echo '<h4>'. __( 'Category Checkbox', 'option-tree' ) . ':</h4>';      
         echo '<p>' . __( 'The Category Checkbox option type displays a list of category IDs. It allows the user to check multiple category IDs and will return that value as an array for use in a custom function or loop.', 'option-tree' ) . '</p>';
         

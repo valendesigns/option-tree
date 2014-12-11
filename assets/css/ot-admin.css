@@ -2114,6 +2114,9 @@ li ul .format-setting-label {
 .ot-option-group--one-sixth {
   width: 16.6%;
 }
+.ot-option-group--one-eighth {
+  width: 12.5%;
+}
 .ot-option-group--is-last {
   padding-right: 0;
 }
@@ -2131,9 +2134,58 @@ li ul .format-setting-label {
   width: 14px;
   z-index: 10;
 }
+.ot-icon-circle.ot-option-group--icon:before {
+  left: 1px;
+  position: relative;
+  -webkit-filter: blur(1px);
+  -moz-filter: blur(1px);
+  -ms-filter: blur(1px);
+  -o-filter: blur(1px);
+  filter: blur(1px);
+}
 .ot-option-group--icon + input.option-tree-ui-input {
   padding-left: 34px !important;
   margin-right: 5px;
+}
+.ot-option-group--checkbox {
+  float: left;
+  padding-top: 2px;
+  padding-right: 10px;
+  width: auto;
+}
+#post-body .ot-option-group--checkbox p {
+  color: #a9a9a9;
+  float: left;
+  margin: 1px 0 0.3em 0 !important;
+}
+@media screen and ( min-width: 783px ) {
+  #post-body .ot-option-group--checkbox p input {
+    margin-top: 0px !important;
+  }
+}
+@media screen and ( max-width: 1020px ) {
+  .ot-option-group--one-fourth,
+  .ot-option-group--one-fifth,
+  .ot-option-group--one-sixth,
+  .ot-option-group--one-eighth {
+    width: 33.3%;
+  }
+  .ot-option-group--checkbox {
+    width: 100%;
+  }
+}
+@media screen and ( max-width: 782px ) {
+  .ot-option-group {
+    width: 50%;
+  }
+  .ot-option-group--three-fourths,
+  .ot-option-group--two-thirds,
+  .ot-option-group--one-half {
+    width: 100%;
+  }
+  .ot-option-group--checkbox {
+    padding-top: 0.3em;
+  }
 }
 .ot-option-group .select-wrapper {
   width: 100%;

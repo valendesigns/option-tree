@@ -298,6 +298,14 @@ div.option-tree-ui-media-wrap {
   margin-left: 5px;
   margin-right: 0px;
 }
+.ot-option-group--checkbox {
+  float: right;
+  padding-right: 0px;
+  padding-left: 10px;
+}
+#post-body .ot-option-group--checkbox p {
+  float: right;
+}
 
 /* -------------------------------------------------- 
   :: Select

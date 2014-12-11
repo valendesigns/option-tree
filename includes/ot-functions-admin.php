@@ -524,6 +524,37 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
         $input = '';
       }
       
+    } else if ( 'box-shadow' == $type ) {
+      
+      // Validate inset
+      $input['inset'] = isset( $input['inset'] ) ? 'inset' : '';
+      
+      // Validate offset-x
+      $input['offset-x'] = ot_validate_setting( $input['offset-x'], 'text', $field_id );
+      
+      // Validate offset-y
+      $input['offset-y'] = ot_validate_setting( $input['offset-y'], 'text', $field_id );
+      
+      // Validate blur-radius
+      $input['blur-radius'] = ot_validate_setting( $input['blur-radius'], 'text', $field_id );
+      
+      // Validate spread-radius
+      $input['spread-radius'] = ot_validate_setting( $input['spread-radius'], 'text', $field_id );
+      
+      // Validate color
+      $input['color'] = ot_validate_setting( $input['color'], 'colorpicker', $field_id );
+      
+      // Unset keys with empty values.
+      foreach( $input as $key => $value ) {
+        if ( empty( $value ) ) {
+          unset( $input[$key] );
+        }
+      }
+      
+      // Set empty array to empty string.
+      if ( empty( $input ) ) {
+        $input = '';
+      }
       
     } else if ( 'colorpicker' == $type ) {
 
@@ -2318,6 +2349,7 @@ if ( ! function_exists( 'ot_option_types_array' ) ) {
     return apply_filters( 'ot_option_types_array', array( 
       'background'                => __('Background', 'option-tree'),
       'border'                    => __('Border', 'option-tree'),
+      'box-shadow'                => __('Box Shadow', 'option-tree'),
       'category-checkbox'         => __('Category Checkbox', 'option-tree'),
       'category-select'           => __('Category Select', 'option-tree'),
       'checkbox'                  => __('Checkbox', 'option-tree'),
@@ -3263,7 +3295,7 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
               $value = $value[0].$value[1];
             
             /* Border */
-            } else if ( ot_array_keys_exists( $value, array( 'width', 'unit', 'style', 'color' ) ) && ! ot_array_keys_exists( $value, array( 'top', 'right', 'bottom', 'left', 'height' ) ) ) {
+            } else if ( ot_array_keys_exists( $value, array( 'width', 'unit', 'style', 'color' ) ) && ! ot_array_keys_exists( $value, array( 'top', 'right', 'bottom', 'left', 'height', 'inset', 'offset-x', 'offset-y', 'blur-radius', 'spread-radius' ) ) ) {
               $border = array();
               
               $unit = ! empty( $value['unit'] ) ? $value['unit'] : 'px';
@@ -3277,9 +3309,15 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
               if ( ! empty( $value['color'] ) )
                 $border[] = $value['color'];
                 
-              /* set $value with dimension properties or empty string */
+              /* set $value with border properties or empty string */
               $value = ! empty( $border ) ? implode( ' ', $border ) : '';
-              
+            
+            /* Box Shadow */
+            } else if ( ot_array_keys_exists( $value, array( 'inset', 'offset-x', 'offset-y', 'blur-radius', 'spread-radius', 'color' ) ) && ! ot_array_keys_exists( $value, array( 'width', 'height', 'unit', 'style', 'top', 'right', 'bottom', 'left' ) ) ) {
+
+              /* set $value with box-shadow properties or empty string */
+              $value = ! empty( $value ) ? implode( ' ', $value ) : '';
+             
             /* Dimension */
             } else if ( ot_array_keys_exists( $value, array( 'width', 'height', 'unit' ) ) && ! ot_array_keys_exists( $value, array( 'style', 'color', 'top', 'right', 'bottom', 'left' ) ) ) {
               $dimension = array();

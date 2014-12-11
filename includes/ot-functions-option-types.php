@@ -355,7 +355,7 @@ if ( ! function_exists( 'ot_type_border' ) ) {
   
         }
         
-        /* build background color */
+        /* build color */
         if ( in_array( 'color', $ot_recognized_border_fields ) ) {
           
           echo '<div class="option-tree-ui-colorpicker-input-wrap">';
@@ -373,6 +373,118 @@ if ( ! function_exists( 'ot_type_border' ) ) {
         
         }
       
+      echo '</div>';
+
+    echo '</div>';
+
+  }
+
+}
+
+/**
+ * Box Shadow Option Type
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     The options arguments
+ * @return    string    The markup.
+ *
+ * @access    public
+ * @since     2.5.0
+ */
+if ( ! function_exists( 'ot_type_box_shadow' ) ) {
+
+  function ot_type_box_shadow( $args = array() ) {
+
+    /* turns arguments array into variables */
+    extract( $args );
+
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-box-shadow ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+
+        /* allow fields to be filtered */
+        $ot_recognized_box_shadow_fields = apply_filters( 'ot_recognized_box_shadow_fields', array(
+          'inset',
+          'offset-x',
+          'offset-y',
+          'blur-radius',
+          'spread-radius',
+          'color'
+        ), $field_id );
+        
+        /* build inset */
+        if ( in_array( 'inset', $ot_recognized_box_shadow_fields ) ) {
+        
+          echo '<div class="ot-option-group ot-option-group--checkbox"><p>';
+            echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[inset]" id="' . esc_attr( $field_id ) . '-inset" value="inset" ' . ( isset( $field_value['inset'] ) ? checked( $field_value['inset'], 'inset', false ) : '' ) . ' class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
+            echo '<label for="' . esc_attr( $field_id ) . '-inset">inset</label>';
+          echo '</p></div>';
+          
+        }
+          
+        /* build horizontal offset */
+        if ( in_array( 'offset-x', $ot_recognized_box_shadow_fields ) ) {
+
+          $offset_x = isset( $field_value['offset-x'] ) ? esc_attr( $field_value['offset-x'] ) : '';
+
+          echo '<div class="ot-option-group ot-option-group--one-fifth"><span class="ot-icon-arrows-h ot-option-group--icon"></span><input type="text" name="' . esc_attr( $field_name ) . '[offset-x]" id="' . esc_attr( $field_id ) . '-offset-x" value="' . $offset_x . '" class="widefat option-tree-ui-input ' . esc_attr( $field_class ) . '" placeholder="' . __( 'offset-x', 'option-tree' ) . '" /></div>';
+
+        }
+        
+        /* build vertical offset */
+        if ( in_array( 'offset-y', $ot_recognized_box_shadow_fields ) ) {
+
+          $offset_y = isset( $field_value['offset-y'] ) ? esc_attr( $field_value['offset-y'] ) : '';
+
+          echo '<div class="ot-option-group ot-option-group--one-fifth"><span class="ot-icon-arrows-v ot-option-group--icon"></span><input type="text" name="' . esc_attr( $field_name ) . '[offset-y]" id="' . esc_attr( $field_id ) . '-offset-y" value="' . $offset_y . '" class="widefat option-tree-ui-input ' . esc_attr( $field_class ) . '" placeholder="' . __( 'offset-y', 'option-tree' ) . '" /></div>';
+
+        }
+        
+        /* build blur-radius radius */
+        if ( in_array( 'blur-radius', $ot_recognized_box_shadow_fields ) ) {
+
+          $blur_radius = isset( $field_value['blur-radius'] ) ? esc_attr( $field_value['blur-radius'] ) : '';
+
+          echo '<div class="ot-option-group ot-option-group--one-fifth"><span class="ot-icon-circle ot-option-group--icon"></span><input type="text" name="' . esc_attr( $field_name ) . '[blur-radius]" id="' . esc_attr( $field_id ) . '-blur-radius" value="' . $blur_radius . '" class="widefat option-tree-ui-input ' . esc_attr( $field_class ) . '" placeholder="' . __( 'blur-radius', 'option-tree' ) . '" /></div>';
+
+        }
+        
+        /* build spread-radius radius */
+        if ( in_array( 'spread-radius', $ot_recognized_box_shadow_fields ) ) {
+
+          $spread_radius = isset( $field_value['spread-radius'] ) ? esc_attr( $field_value['spread-radius'] ) : '';
+
+          echo '<div class="ot-option-group ot-option-group--one-fifth"><span class="ot-icon-arrows-alt ot-option-group--icon"></span><input type="text" name="' . esc_attr( $field_name ) . '[spread-radius]" id="' . esc_attr( $field_id ) . '-spread-radius" value="' . $spread_radius . '" class="widefat option-tree-ui-input ' . esc_attr( $field_class ) . '" placeholder="' . __( 'spread-radius', 'option-tree' ) . '" /></div>';
+
+        }
+        
+        /* build color */
+        if ( in_array( 'color', $ot_recognized_box_shadow_fields ) ) {
+          
+          echo '<div class="option-tree-ui-colorpicker-input-wrap">';
+            
+            /* colorpicker JS */      
+            echo '<script>jQuery(document).ready(function($) { OT_UI.bind_colorpicker("' . esc_attr( $field_id ) . '-picker"); });</script>';
+            
+            /* set color */
+            $color = isset( $field_value['color'] ) ? esc_attr( $field_value['color'] ) : '';
+            
+            /* input */
+            echo '<input type="text" name="' . esc_attr( $field_name ) . '[color]" id="' . esc_attr( $field_id ) . '-picker" value="' . $color . '" class="hide-color-picker ' . esc_attr( $field_class ) . '" />';
+          
+          echo '</div>';
+        
+        }
+        
       echo '</div>';
 
     echo '</div>';
