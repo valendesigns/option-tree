@@ -488,6 +488,73 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
       if ( ! isset( $has_value ) ) {
         $input = '';
       }
+    
+    } else if ( 'border' == $type ) {
+      
+      // Loop over array and set errors or unset key from array.
+      foreach( $input as $key => $value ) {
+        
+        // Validate width
+        if ( $key == 'width' && ! empty( $value ) && ! is_numeric( $value ) ) {
+          
+          $input[$key] = '0';
+          
+          add_settings_error( 'option-tree', 'invalid_border_width', sprintf( __( 'The %s input field for %s only allows numeric values.', 'option-tree' ), '<code>width</code>', '<code>' . $field_id . '</code>' ), 'error' );
+          
+        }
+        
+        // Validate color
+        if ( $key == 'color' && ! empty( $value ) && 0 === preg_match( '/^#([a-f0-9]{6}|[a-f0-9]{3})$/i', $value ) ) {
+          
+          $input[$key] = '';
+          $value = '';
+          
+          add_settings_error( 'option-tree', 'invalid_hex', __( 'The Colorpicker only allows valid hexadecimal values.', 'option-tree' ), 'error' );
+          
+        }
+        
+        // Unset keys with empty values.
+        if ( empty( $value ) ) {
+          unset( $input[$key] );
+        }
+        
+      }
+      
+      if ( empty( $input ) ) {
+        $input = '';
+      }
+      
+    } else if ( 'box-shadow' == $type ) {
+      
+      // Validate inset
+      $input['inset'] = isset( $input['inset'] ) ? 'inset' : '';
+      
+      // Validate offset-x
+      $input['offset-x'] = ot_validate_setting( $input['offset-x'], 'text', $field_id );
+      
+      // Validate offset-y
+      $input['offset-y'] = ot_validate_setting( $input['offset-y'], 'text', $field_id );
+      
+      // Validate blur-radius
+      $input['blur-radius'] = ot_validate_setting( $input['blur-radius'], 'text', $field_id );
+      
+      // Validate spread-radius
+      $input['spread-radius'] = ot_validate_setting( $input['spread-radius'], 'text', $field_id );
+      
+      // Validate color
+      $input['color'] = ot_validate_setting( $input['color'], 'colorpicker', $field_id );
+      
+      // Unset keys with empty values.
+      foreach( $input as $key => $value ) {
+        if ( empty( $value ) ) {
+          unset( $input[$key] );
+        }
+      }
+      
+      // Set empty array to empty string.
+      if ( empty( $input ) ) {
+        $input = '';
+      }
       
     } else if ( 'colorpicker' == $type ) {
 
@@ -496,8 +563,25 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
         
         $input = '';
         
-        add_settings_error( 'option-tree', 'invalid_hex', sprintf( __( 'The %s Colorpicker only allows valid hexadecimal values.', 'option-tree' ), '<code>' . $field_id . '</code>' ), 'error' );;
+        add_settings_error( 'option-tree', 'invalid_hex', sprintf( __( 'The %s Colorpicker only allows valid hexadecimal values.', 'option-tree' ), '<code>' . $field_id . '</code>' ), 'error' );
       
+      }
+      
+    } else if ( 'colorpicker-opacity' == $type ) {
+      
+      // Validate color
+      $input['color'] = ot_validate_setting( $input['color'], 'colorpicker', $field_id );
+      
+      // Unset keys with empty values.
+      foreach( $input as $key => $value ) {
+        if ( empty( $value ) ) {
+          unset( $input[$key] );
+        }
+      }
+      
+      // Set empty array to empty string.
+      if ( empty( $input ) ) {
+        $input = '';
       }
     
     } else if ( in_array( $type, array( 'css', 'text', 'textarea', 'textarea-simple' ) ) ) {
@@ -507,13 +591,88 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
         $input = wp_kses_post( $input );
         
       }
-            
+    
+    } else if ( 'dimension' == $type ) {
+      
+      // Loop over array and set error keys or unset key from array.
+      foreach( $input as $key => $value ) {
+        if ( ! empty( $value ) && ! is_numeric( $value ) && $key !== 'unit' ) {
+          $errors[] = $key;
+        }
+        if ( empty( $value ) ) {
+          unset( $input[$key] );
+        }
+      }
+
+      /* return 0 & set error */
+      if ( isset( $errors ) ) {
+        
+        foreach( $errors as $error ) {
+          
+          $input[$error] = '0';
+          
+          add_settings_error( 'option-tree', 'invalid_dimension_' . $error, sprintf( __( 'The %s input field for %s only allows numeric values.', 'option-tree' ), '<code>' . $error . '</code>', '<code>' . $field_id . '</code>' ), 'error' );
+          
+        }
+        
+      }
+      
+      if ( empty( $input ) ) {
+        $input = '';
+      }
+    
+    } else if ( 'link-color' == $type ) {
+      
+      // Loop over array and check for values
+      if ( is_array( $input ) && ! empty( $input ) ) {
+        foreach( $input as $key => $value ) {
+          if ( ! empty( $value ) ) {
+            $input[$key] = ot_validate_setting( $input[$key], 'colorpicker', $field_id . '-' . $key );
+            $has_value = true;
+          }
+        }
+      }
+      
+      // No value; set to empty
+      if ( ! isset( $has_value ) ) {
+        $input = '';
+      }
+               
     } else if ( 'measurement' == $type ) {
     
       $input[0] = sanitize_text_field( $input[0] );
       
       // No value; set to empty
       if ( empty( $input[0] ) && empty( $input[1] ) ) {
+        $input = '';
+      }
+      
+    } else if ( 'spacing' == $type ) {
+      
+      // Loop over array and set error keys or unset key from array.
+      foreach( $input as $key => $value ) {
+        if ( ! empty( $value ) && ! is_numeric( $value ) && $key !== 'unit' ) {
+          $errors[] = $key;
+        }
+        if ( empty( $value ) ) {
+          unset( $input[$key] );
+        }
+      }
+
+      /* return 0 & set error */
+      if ( isset( $errors ) ) {
+        
+        foreach( $errors as $error ) {
+          
+          $input[$error] = '0';
+          
+          add_settings_error( 'option-tree', 'invalid_spacing_' . $error, sprintf( __( 'The %s input field for %s only allows numeric values.', 'option-tree' ), '<code>' . $error . '</code>', '<code>' . $field_id . '</code>' ), 'error' );
+          
+        }
+        
+      }
+      
+      if ( empty( $input ) ) {
         $input = '';
       }
       
@@ -2223,16 +2382,21 @@ if ( ! function_exists( 'ot_option_types_array' ) ) {
   
     return apply_filters( 'ot_option_types_array', array( 
       'background'                => __('Background', 'option-tree'),
+      'border'                    => __('Border', 'option-tree'),
+      'box-shadow'                => __('Box Shadow', 'option-tree'),
       'category-checkbox'         => __('Category Checkbox', 'option-tree'),
       'category-select'           => __('Category Select', 'option-tree'),
       'checkbox'                  => __('Checkbox', 'option-tree'),
-      'colorpicker'               => __('Color Picker', 'option-tree'),
+      'colorpicker'               => __('Colorpicker', 'option-tree'),
+      'colorpicker-opacity'       => __('Colorpicker Opacity', 'option-tree'),
       'css'                       => __('CSS', 'option-tree'),
       'custom-post-type-checkbox' => __('Custom Post Type Checkbox', 'option-tree'),
       'custom-post-type-select'   => __('Custom Post Type Select', 'option-tree'),
       'date-picker'               => __('Date Picker', 'option-tree'),
       'date-time-picker'          => __('Date Time Picker', 'option-tree'),
+      'dimension'                 => __('Dimension', 'option-tree'),
       'gallery'                   => __('Gallery', 'option-tree'),
+      'link-color'                => __('Link Color', 'option-tree'),
       'list-item'                 => __('List Item', 'option-tree'),
       'measurement'               => __('Measurement', 'option-tree'),
       'numeric-slider'            => __('Numeric Slider', 'option-tree'),
@@ -2247,6 +2411,7 @@ if ( ! function_exists( 'ot_option_types_array' ) ) {
       'sidebar-select'            => __('Sidebar Select',  'option-tree'),
       'slider'                    => __('Slider', 'option-tree'),
       'social-links'              => __('Social Links', 'option-tree'),
+      'spacing'                   => __('Spacing', 'option-tree'),
       'tab'                       => __('Tab', 'option-tree'),
       'tag-checkbox'              => __('Tag Checkbox', 'option-tree'),
       'tag-select'                => __('Tag Select', 'option-tree'),
@@ -2702,6 +2867,118 @@ if ( ! function_exists( 'ot_recognized_background_position' ) ) {
 }
 
 /**
+ * Border Styles
+ *
+ * Returns an array of all available style types.
+ *
+ * @uses      apply_filters()
+ *
+ * @return    array
+ *
+ * @access    public
+ * @since     2.5.0
+ */
+if ( ! function_exists( 'ot_recognized_border_style_types' ) ) {
+
+  function ot_recognized_border_style_types( $field_id = '' ) {
+
+    return apply_filters( 'ot_recognized_border_style_types', array(
+      'hidden' => 'Hidden',
+      'dashed' => 'Dashed',
+      'solid'  => 'Solid',
+      'double' => 'Double',
+      'groove' => 'Groove',
+      'ridge'  => 'Ridge',
+      'inset'  => 'Inset',
+      'outset' => 'Outset',
+    ), $field_id );
+
+  }
+
+}
+
+/**
+ * Border Units
+ *
+ * Returns an array of all available unit types.
+ *
+ * @uses      apply_filters()
+ *
+ * @return    array
+ *
+ * @access    public
+ * @since     2.5.0
+ */
+if ( ! function_exists( 'ot_recognized_border_unit_types' ) ) {
+
+  function ot_recognized_border_unit_types( $field_id = '' ) {
+
+    return apply_filters( 'ot_recognized_border_unit_types', array(
+      'px' => 'px',
+      '%'  => '%',
+      'em' => 'em',
+      'pt' => 'pt'
+    ), $field_id );
+
+  }
+
+}
+
+/**
+ * Dimension Units
+ *
+ * Returns an array of all available unit types.
+ *
+ * @uses      apply_filters()
+ *
+ * @return    array
+ *
+ * @access    public
+ * @since     2.5.0
+ */
+if ( ! function_exists( 'ot_recognized_dimension_unit_types' ) ) {
+
+  function ot_recognized_dimension_unit_types( $field_id = '' ) {
+
+    return apply_filters( 'ot_recognized_dimension_unit_types', array(
+      'px' => 'px',
+      '%'  => '%',
+      'em' => 'em',
+      'pt' => 'pt'
+    ), $field_id );
+
+  }
+
+}
+
+/**
+ * Spacing Units
+ *
+ * Returns an array of all available unit types.
+ *
+ * @uses      apply_filters()
+ *
+ * @return    array
+ *
+ * @access    public
+ * @since     2.5.0
+ */
+if ( ! function_exists( 'ot_recognized_spacing_unit_types' ) ) {
+
+  function ot_recognized_spacing_unit_types( $field_id = '' ) {
+
+    return apply_filters( 'ot_recognized_spacing_unit_types', array(
+      'px' => 'px',
+      '%'  => '%',
+      'em' => 'em',
+      'pt' => 'pt'
+    ), $field_id );
+
+  }
+
+}
+
+/**
  * Measurement Units
  *
  * Returns an array of all available unit types.
@@ -3052,6 +3329,78 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
               
               /* set $value with measurement properties */
               $value = $value[0].$value[1];
+            
+            /* Colorpicker Opacity */
+            } else if ( isset( $value['color'] ) && isset( $value['opacity'] ) ) {
+              
+              /* get the RGB color value */
+              $color = ot_hex2RGB( $value['color'] );
+              
+              if ( is_array( $color ) ) {
+                $value = 'rgba(' . $color['r'] . ', ' . $color['g'] . ', ' . $color['b'] . ', ' . $value['opacity'] . ')';
+              } else if ( $color == $value['color'] ) {
+                $value = $value['color'];
+              }
+              
+            /* Border */
+            } else if ( ot_array_keys_exists( $value, array( 'width', 'unit', 'style', 'color' ) ) && ! ot_array_keys_exists( $value, array( 'top', 'right', 'bottom', 'left', 'height', 'inset', 'offset-x', 'offset-y', 'blur-radius', 'spread-radius' ) ) ) {
+              $border = array();
+              
+              $unit = ! empty( $value['unit'] ) ? $value['unit'] : 'px';
+              
+              if ( ! empty( $value['width'] ) )
+                $border[] = $value['width'].$unit;
+                
+              if ( ! empty( $value['style'] ) )
+                $border[] = $value['style'];
+                
+              if ( ! empty( $value['color'] ) )
+                $border[] = $value['color'];
+                
+              /* set $value with border properties or empty string */
+              $value = ! empty( $border ) ? implode( ' ', $border ) : '';
+            
+            /* Box Shadow */
+            } else if ( ot_array_keys_exists( $value, array( 'inset', 'offset-x', 'offset-y', 'blur-radius', 'spread-radius', 'color' ) ) && ! ot_array_keys_exists( $value, array( 'width', 'height', 'unit', 'style', 'top', 'right', 'bottom', 'left' ) ) ) {
+
+              /* set $value with box-shadow properties or empty string */
+              $value = ! empty( $value ) ? implode( ' ', $value ) : '';
+             
+            /* Dimension */
+            } else if ( ot_array_keys_exists( $value, array( 'width', 'height', 'unit' ) ) && ! ot_array_keys_exists( $value, array( 'style', 'color', 'top', 'right', 'bottom', 'left' ) ) ) {
+              $dimension = array();
+              
+              $unit = ! empty( $value['unit'] ) ? $value['unit'] : 'px';
+              
+              if ( ! empty( $value['width'] ) )
+                $dimension[] = $value['width'].$unit;
+                
+              if ( ! empty( $value['height'] ) )
+                $dimension[] = $value['height'].$unit;
+                
+              /* set $value with dimension properties or empty string */
+              $value = ! empty( $dimension ) ? implode( ' ', $dimension ) : '';
+              
+            /* Spacing */
+            } else if ( ot_array_keys_exists( $value, array( 'top', 'right', 'bottom', 'left', 'unit' ) ) && ! ot_array_keys_exists( $value, array( 'width', 'height', 'style', 'color' ) ) ) {
+              $spacing = array();
+              
+              $unit = ! empty( $value['unit'] ) ? $value['unit'] : 'px';
+              
+              if ( ! empty( $value['top'] ) )
+                $spacing[] = $value['top'].$unit;
+                
+              if ( ! empty( $value['right'] ) )
+                $spacing[] = $value['right'].$unit;
+                
+              if ( ! empty( $value['bottom'] ) )
+                $spacing[] = $value['bottom'].$unit;
+                
+              if ( ! empty( $value['left'] ) )
+                $spacing[] = $value['left'].$unit;
+                
+              /* set $value with spacing properties or empty string */
+              $value = ! empty( $spacing ) ? implode( ' ', $spacing ) : '';
               
             /* typography */
             } else if ( ot_array_keys_exists( $value, array( 'font-color', 'font-family', 'font-size', 'font-style', 'font-variant', 'font-weight', 'letter-spacing', 'line-height', 'text-decoration', 'text-transform' ) ) ) {
@@ -4952,6 +5301,46 @@ if ( ! function_exists( 'ot_get_option_type_by_id' ) ) {
   
   }
   
+}
+
+/**
+ * Converts Hexidecimal values to RGB.
+ *
+ * @param     string    $hex The hexidecimal color value.
+ * @return    mixed     Returns an array with RGB values or the original hex color on failure.
+ *
+ * @access    public
+ * @since     2.5.0
+ */
+if ( ! function_exists( 'ot_hex2RGB' ) ) {
+
+  function ot_hex2RGB( $hex ) {
+    preg_match( "/^#{0,1}([0-9a-f]{1,6})$/i", $hex, $match );
+    
+    if ( ! isset( $match[1] ) ) {
+      return $hex;
+    }
+  
+    if ( strlen( $match[1] ) == 6 ) {
+      list($r, $g, $b) = array( $hex[0].$hex[1], $hex[2].$hex[3], $hex[4].$hex[5] );
+    } else if( strlen( $match[1] ) == 3 ) {
+      list($r, $g, $b) = array( $hex[0].$hex[0], $hex[1].$hex[1], $hex[2].$hex[2] );
+    } else if ( strlen($match[1]) == 2 ) {
+      list($r, $g, $b) = array( $hex[0].$hex[1], $hex[0].$hex[1], $hex[0].$hex[1] );
+    } else if ( strlen($match[1]) == 1 ) {
+      list($r, $g, $b) = array( $hex.$hex, $hex.$hex, $hex.$hex );
+    } else {
+      return $hex;
+    }
+  
+    $color = array();
+    $color['r'] = hexdec( $r );
+    $color['g'] = hexdec( $g );
+    $color['b'] = hexdec( $b );
+  
+    return $color;
+  }
+
 }
 
 /* End of file ot-functions-admin.php */

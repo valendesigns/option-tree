@@ -276,6 +276,38 @@ div.option-tree-ui-media-wrap {
 }
 
 /* -------------------------------------------------- 
+  :: Option Group
+  ---------------------------------------------------*/
+.ot-option-group {
+  float: right;
+  padding-right: 0px;
+  padding-left: 5px;
+}
+.ot-option-group--is-last {
+  padding-left: 0;
+}
+.ot-option-group--icon {
+  border-left: 1px solid #ccc;
+  border-right: 0px;
+  left: auto;
+  right: 1px;
+}
+.ot-option-group--icon + input.option-tree-ui-input {
+  padding-left: 5px !important;
+  padding-right: 34px !important;
+  margin-left: 5px;
+  margin-right: 0px;
+}
+.ot-option-group--checkbox {
+  float: right;
+  padding-right: 0px;
+  padding-left: 10px;
+}
+#post-body .ot-option-group--checkbox p {
+  float: right;
+}
+
+/* -------------------------------------------------- 
   :: Select
   ---------------------------------------------------*/
 .select-wrapper {
@@ -354,18 +386,20 @@ div.option-tree-ui-media-wrap {
      -moz-box-shadow: inset -1px 1px 1px rgba(0, 0, 0, 0.05); 
           box-shadow: inset -1px 1px 1px rgba(0, 0, 0, 0.05);
 }
-.ot-numeric-slider.ui-slider .ui-slider-handle {
-  background-image: -webkit-gradient(linear,rightt top,right bottom,from(#2a95c5),to(#21759b));
-}
-.ot-numeric-slider.ui-slider .ui-slider-handle:hover {
-  background-image: -webkit-gradient(linear,right top,right bottom,from(#2e9fd2),to(#21759b));
-}
 
 /* -------------------------------------------------- 
   :: Colorpicker
   ---------------------------------------------------*/
 .option-tree-ui-colorpicker-input-wrap {
   float: right;
+}
+.option-tree-ui-colorpicker-input-wrap .option-tree-ui-colorpicker-label {
+  margin-left: 10px;
+  margin-right: 0px;
+}
+.type-link-color .option-tree-ui-colorpicker-input-wrap {
+  margin-left: 20px;
+  margin-right: 0px;
 }
 .option-tree-ui-colorpicker-input-wrap .wp-color-result {
   margin: 0px 0px 5px 5px;

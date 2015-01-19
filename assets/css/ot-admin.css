@@ -2084,6 +2084,114 @@ li ul .format-setting-label {
 }
 
 /* -------------------------------------------------- 
+  :: Option Group
+  ---------------------------------------------------*/
+.ot-option-group {
+  float: left;
+  padding-right: 5px;
+  position: relative;
+  width: 20%;
+  box-sizing: border-box;
+}
+.ot-option-group--three-fourths {
+  width: 75%;
+}
+.ot-option-group--two-thirds {
+  width: 66.6%;
+}
+.ot-option-group--one-half {
+  width: 50%;
+}
+.ot-option-group--one-third {
+  width: 33.3%;
+}
+.ot-option-group--one-fourth {
+  width: 25%;
+}
+.ot-option-group--one-fifth {
+  width: 20%;
+}
+.ot-option-group--one-sixth {
+  width: 16.6%;
+}
+.ot-option-group--one-eighth {
+  width: 12.5%;
+}
+.ot-option-group--is-last {
+  padding-right: 0;
+}
+.ot-option-group--icon {
+  background: #fafafa;
+  border-right: 1px solid #ccc;
+  display: inline-block;
+  font-size: 14px;
+  line-height: 14px;
+  padding: 6px 6px 7px;
+  position: absolute;
+  text-align: center;
+  top: 1px;
+  left: 1px;
+  width: 14px;
+  z-index: 10;
+}
+.ot-icon-circle.ot-option-group--icon:before {
+  left: 1px;
+  position: relative;
+  -webkit-filter: blur(1px);
+  -moz-filter: blur(1px);
+  -ms-filter: blur(1px);
+  -o-filter: blur(1px);
+  filter: blur(1px);
+}
+.ot-option-group--icon + input.option-tree-ui-input {
+  padding-left: 34px !important;
+  margin-right: 5px;
+}
+.ot-option-group--checkbox {
+  float: left;
+  padding-top: 2px;
+  padding-right: 10px;
+  width: auto;
+}
+#post-body .ot-option-group--checkbox p {
+  color: #a9a9a9;
+  float: left;
+  margin: 1px 0 0.3em 0 !important;
+}
+@media screen and ( min-width: 783px ) {
+  #post-body .ot-option-group--checkbox p input {
+    margin-top: 0px !important;
+  }
+}
+@media screen and ( max-width: 1020px ) {
+  .ot-option-group--one-fourth,
+  .ot-option-group--one-fifth,
+  .ot-option-group--one-sixth,
+  .ot-option-group--one-eighth {
+    width: 33.3%;
+  }
+  .ot-option-group--checkbox {
+    width: 100%;
+  }
+}
+@media screen and ( max-width: 782px ) {
+  .ot-option-group {
+    width: 50%;
+  }
+  .ot-option-group--three-fourths,
+  .ot-option-group--two-thirds,
+  .ot-option-group--one-half {
+    width: 100%;
+  }
+  .ot-option-group--checkbox {
+    padding-top: 0.3em;
+  }
+}
+.ot-option-group .select-wrapper {
+  width: 100%;
+}
+
+/* -------------------------------------------------- 
   :: Select
   ---------------------------------------------------*/
 .select-wrapper {
@@ -2231,7 +2339,8 @@ select.option-tree-ui-select option {
 /* -------------------------------------------------- 
   :: Numeric Slider
   ---------------------------------------------------*/
-.type-numeric-slider .format-setting-inner {
+.type-numeric-slider .format-setting-inner,
+.type-colorpicker-opacity .format-setting-inner {
   background: #fcfcfc;
   border: 1px solid #ccc;
   min-height: 41px;
@@ -2252,6 +2361,12 @@ select.option-tree-ui-select option {
   text-align: center;
   top: 5px;
   width: 90px !important;
+}
+.type-colorpicker-opacity .format-setting-inner {
+  padding-bottom: 0;
+}
+.type-colorpicker-opacity .wp-picker-container {
+  margin-top: 35px;
 }
 .ot-numeric-slider.ui-slider { 
   background: #fff;
@@ -2375,6 +2490,15 @@ select.option-tree-ui-select option {
 .hide-color-picker {
   display: none;
 }
+.option-tree-ui-colorpicker-input-wrap .option-tree-ui-colorpicker-label {
+  height: 30px;
+  line-height: 30px;
+  margin-right: 10px;
+  display: block;
+}
+.type-link-color .option-tree-ui-colorpicker-input-wrap {
+  margin-right: 20px;
+}
 .option-tree-ui-colorpicker-input-wrap .wp-color-picker,
 .option-tree-ui-colorpicker-input-wrap .wp-picker-default,
 .option-tree-ui-colorpicker-input-wrap .wp-picker-clear {
@@ -2416,9 +2540,19 @@ select.option-tree-ui-select option {
   .option-tree-ui-colorpicker-input-wrap .wp-color-picker {
     padding: 3px 5px !important;
   }
-  .option-tree-ui-colorpicker-input-wrap .wp-picker-clear {
+  .option-tree-ui-colorpicker-input-wrap .wp-picker-clear,
+  .option-tree-ui-colorpicker-input-wrap .wp-picker-default {
     margin-top: 4px;
     padding: 0 8px 1px !important;
+  }
+  .type-colorpicker-opacity .wp-color-result,
+  .type-colorpicker-opacity .wp-picker-input-wrap input {
+    margin-top: 0px !important;
+  }
+  .type-colorpicker-opacity .wp-picker-open,
+  .type-colorpicker-opacity .wp-picker-input-wrap input[type="text"] {
+    position: relative;
+    top: -2px !important;
   }
 }
 
