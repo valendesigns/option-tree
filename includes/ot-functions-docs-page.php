@@ -128,6 +128,9 @@ if ( ! function_exists( 'ot_type_option_types' ) ) {
         echo '<h4>'. __( 'Colorpicker', 'option-tree' ) . ':</h4>'; 
         echo '<p>' . __( 'The Colorpicker option type saves a hexadecimal color code for use in CSS. Use it to modify the color of something in your theme.', 'option-tree' ) . '</p>';
         
+        echo '<h4>'. __( 'Colorpicker Opacity', 'option-tree' ) . ':</h4>'; 
+        echo '<p>' . sprintf( __( 'The Colorpicker Opacity option type saves a hexadecimal color code with an opacity value from %s to %s in increments of %s. Though the value is saved as hexadecimal, if used within the CSS option type the color and opacity values will be converted into a valid RGBA CSS value.', 'option-tree' ), '<code>0</code>', '<code>1</code>', '<code>0.01</code>' ) . '</p>';
+        
         echo '<h4>'. __( 'CSS', 'option-tree' ) . ':</h4>'; 
         echo '<p>' . sprintf( __( 'The CSS option type is a textarea that when used properly can add dynamic CSS to your theme from within OptionTree. Unfortunately, due server limitations you will need to create a file named %s at the root level of your theme and change permissions using %s so the server can write to the file. I have had the most success setting this single file to %s but feel free to play around with permissions until everything is working. A good starting point is %s. When the server can save to the file, CSS will automatically be updated when you save your Theme Options.', 'option-tree' ), '<code>dynamic.css</code>', '<code>chmod</code>', '<code>0777</code>', '<code>0666</code>' ) . '</p>';
         

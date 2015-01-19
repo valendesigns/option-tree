@@ -2339,7 +2339,8 @@ select.option-tree-ui-select option {
 /* -------------------------------------------------- 
   :: Numeric Slider
   ---------------------------------------------------*/
-.type-numeric-slider .format-setting-inner {
+.type-numeric-slider .format-setting-inner,
+.type-colorpicker-opacity .format-setting-inner {
   background: #fcfcfc;
   border: 1px solid #ccc;
   min-height: 41px;
@@ -2360,6 +2361,12 @@ select.option-tree-ui-select option {
   text-align: center;
   top: 5px;
   width: 90px !important;
+}
+.type-colorpicker-opacity .format-setting-inner {
+  padding-bottom: 0;
+}
+.type-colorpicker-opacity .wp-picker-container {
+  margin-top: 35px;
 }
 .ot-numeric-slider.ui-slider { 
   background: #fff;
@@ -2537,6 +2544,15 @@ select.option-tree-ui-select option {
   .option-tree-ui-colorpicker-input-wrap .wp-picker-default {
     margin-top: 4px;
     padding: 0 8px 1px !important;
+  }
+  .type-colorpicker-opacity .wp-color-result,
+  .type-colorpicker-opacity .wp-picker-input-wrap input {
+    margin-top: 0px !important;
+  }
+  .type-colorpicker-opacity .wp-picker-open,
+  .type-colorpicker-opacity .wp-picker-input-wrap input[type="text"] {
+    position: relative;
+    top: -2px !important;
   }
 }
 

@@ -566,6 +566,23 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
         add_settings_error( 'option-tree', 'invalid_hex', sprintf( __( 'The %s Colorpicker only allows valid hexadecimal values.', 'option-tree' ), '<code>' . $field_id . '</code>' ), 'error' );
       
       }
+      
+    } else if ( 'colorpicker-opacity' == $type ) {
+      
+      // Validate color
+      $input['color'] = ot_validate_setting( $input['color'], 'colorpicker', $field_id );
+      
+      // Unset keys with empty values.
+      foreach( $input as $key => $value ) {
+        if ( empty( $value ) ) {
+          unset( $input[$key] );
+        }
+      }
+      
+      // Set empty array to empty string.
+      if ( empty( $input ) ) {
+        $input = '';
+      }
     
     } else if ( in_array( $type, array( 'css', 'text', 'textarea', 'textarea-simple' ) ) ) {
       
@@ -2370,7 +2387,8 @@ if ( ! function_exists( 'ot_option_types_array' ) ) {
       'category-checkbox'         => __('Category Checkbox', 'option-tree'),
       'category-select'           => __('Category Select', 'option-tree'),
       'checkbox'                  => __('Checkbox', 'option-tree'),
-      'colorpicker'               => __('Color Picker', 'option-tree'),
+      'colorpicker'               => __('Colorpicker', 'option-tree'),
+      'colorpicker-opacity'       => __('Colorpicker Opacity', 'option-tree'),
       'css'                       => __('CSS', 'option-tree'),
       'custom-post-type-checkbox' => __('Custom Post Type Checkbox', 'option-tree'),
       'custom-post-type-select'   => __('Custom Post Type Select', 'option-tree'),
@@ -3312,6 +3330,18 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
               /* set $value with measurement properties */
               $value = $value[0].$value[1];
             
+            /* Colorpicker Opacity */
+            } else if ( isset( $value['color'] ) && isset( $value['opacity'] ) ) {
+              
+              /* get the RGB color value */
+              $color = ot_hex2RGB( $value['color'] );
+              
+              if ( is_array( $color ) ) {
+                $value = 'rgba(' . $color['r'] . ', ' . $color['g'] . ', ' . $color['b'] . ', ' . $value['opacity'] . ')';
+              } else if ( $color == $value['color'] ) {
+                $value = $value['color'];
+              }
+              
             /* Border */
             } else if ( ot_array_keys_exists( $value, array( 'width', 'unit', 'style', 'color' ) ) && ! ot_array_keys_exists( $value, array( 'top', 'right', 'bottom', 'left', 'height', 'inset', 'offset-x', 'offset-y', 'blur-radius', 'spread-radius' ) ) ) {
               $border = array();
@@ -5271,6 +5301,46 @@ if ( ! function_exists( 'ot_get_option_type_by_id' ) ) {
   
   }
   
+}
+
+/**
+ * Converts Hexidecimal values to RGB.
+ *
+ * @param     string    $hex The hexidecimal color value.
+ * @return    mixed     Returns an array with RGB values or the original hex color on failure.
+ *
+ * @access    public
+ * @since     2.5.0
+ */
+if ( ! function_exists( 'ot_hex2RGB' ) ) {
+
+  function ot_hex2RGB( $hex ) {
+    preg_match( "/^#{0,1}([0-9a-f]{1,6})$/i", $hex, $match );
+    
+    if ( ! isset( $match[1] ) ) {
+      return $hex;
+    }
+  
+    if ( strlen( $match[1] ) == 6 ) {
+      list($r, $g, $b) = array( $hex[0].$hex[1], $hex[2].$hex[3], $hex[4].$hex[5] );
+    } else if( strlen( $match[1] ) == 3 ) {
+      list($r, $g, $b) = array( $hex[0].$hex[0], $hex[1].$hex[1], $hex[2].$hex[2] );
+    } else if ( strlen($match[1]) == 2 ) {
+      list($r, $g, $b) = array( $hex[0].$hex[1], $hex[0].$hex[1], $hex[0].$hex[1] );
+    } else if ( strlen($match[1]) == 1 ) {
+      list($r, $g, $b) = array( $hex.$hex, $hex.$hex, $hex.$hex );
+    } else {
+      return $hex;
+    }
+  
+    $color = array();
+    $color['r'] = hexdec( $r );
+    $color['g'] = hexdec( $g );
+    $color['b'] = hexdec( $b );
+  
+    return $color;
+  }
+
 }
 
 /* End of file ot-functions-admin.php */
