@@ -165,6 +165,9 @@ body {
         echo '<h4>'. __( 'Gallery', 'option-tree' ) . ':</h4>'; 
         echo '<p>' . __( 'The Gallery option type saves a comma separated list of image attachment IDs. You will need to create a front-end function to display the images in your theme.', 'option-tree' ) . '</p>';
         
+        echo '<h4>'. __( 'Link Color', 'option-tree' ) . ':</h4>';
+        echo '<p>' . __( 'The Link Color option type is used to set all link color states.', 'option-tree' ) . '</p>';
+        
         echo '<h4>'. __( 'List Item', 'option-tree' ) . ':</h4>'; 
         echo '<p>' . __( 'The List Item option type replaced the Slider option type and allows for a great deal of customization. You can add settings to the List Item and those settings will be displayed to the user when they add a new List Item. Typical use is for creating sliding content or blocks of code for custom layouts.', 'option-tree' ) . '</p>';
         

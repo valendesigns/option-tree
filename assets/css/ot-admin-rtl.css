@@ -386,18 +386,20 @@ div.option-tree-ui-media-wrap {
      -moz-box-shadow: inset -1px 1px 1px rgba(0, 0, 0, 0.05); 
           box-shadow: inset -1px 1px 1px rgba(0, 0, 0, 0.05);
 }
-.ot-numeric-slider.ui-slider .ui-slider-handle {
-  background-image: -webkit-gradient(linear,rightt top,right bottom,from(#2a95c5),to(#21759b));
-}
-.ot-numeric-slider.ui-slider .ui-slider-handle:hover {
-  background-image: -webkit-gradient(linear,right top,right bottom,from(#2e9fd2),to(#21759b));
-}
 
 /* -------------------------------------------------- 
   :: Colorpicker
   ---------------------------------------------------*/
 .option-tree-ui-colorpicker-input-wrap {
   float: right;
+}
+.option-tree-ui-colorpicker-input-wrap .option-tree-ui-colorpicker-label {
+  margin-left: 10px;
+  margin-right: 0px;
+}
+.type-link-color .option-tree-ui-colorpicker-input-wrap {
+  margin-left: 20px;
+  margin-right: 0px;
 }
 .option-tree-ui-colorpicker-input-wrap .wp-color-result {
   margin: 0px 0px 5px 5px;

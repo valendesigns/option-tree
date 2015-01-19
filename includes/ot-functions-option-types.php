@@ -1136,6 +1136,80 @@ if ( ! function_exists( 'ot_type_gallery' ) ) {
 }
 
 /**
+ * Link Color option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     The options arguments
+ * @return    string    The markup.
+ *
+ * @access    public
+ * @since     2.5.0
+ */
+if ( ! function_exists( 'ot_type_link_color' ) ) {
+
+  function ot_type_link_color( $args = array() ) {
+
+    /* turns arguments array into variables */
+    extract( $args );
+
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-link-color ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+
+        /* allow fields to be filtered */
+        $ot_recognized_link_color_fields = apply_filters( 'ot_recognized_link_color_fields', array(
+          'link'    => _x( 'Standard', 'color picker', 'option-tree' ),
+          'hover'   => _x( 'Hover', 'color picker', 'option-tree' ),
+          'active'  => _x( 'Active', 'color picker', 'option-tree' ),
+          'visited' => _x( 'Visited', 'color picker', 'option-tree' ),
+          'focus'   => _x( 'Focus', 'color picker', 'option-tree' )
+        ), $field_id );
+
+        /* build link color fields */
+        foreach( $ot_recognized_link_color_fields as $type => $label ) {
+
+          if ( array_key_exists( $type, $ot_recognized_link_color_fields ) ) {
+            
+            echo '<div class="option-tree-ui-colorpicker-input-wrap">';
+
+              echo '<label for="' . esc_attr( $field_id ) . '-picker-' . $type . '" class="option-tree-ui-colorpicker-label">' . esc_attr( $label ) . '</label>';
+
+              /* colorpicker JS */
+              echo '<script>jQuery(document).ready(function($) { OT_UI.bind_colorpicker("' . esc_attr( $field_id ) . '-picker-' . $type . '"); });</script>';
+
+              /* set color */
+              $color = isset( $field_value[ $type ] ) ? esc_attr( $field_value[ $type ] ) : '';
+              
+              /* set default color */
+              $std = isset( $field_std[ $type ] ) ? 'data-default-color="' . $field_std[ $type ] . '"' : '';
+
+              /* input */
+              echo '<input type="text" name="' . esc_attr( $field_name ) . '[' . $type . ']" id="' . esc_attr( $field_id ) . '-picker-' . $type . '" value="' . $color . '" class="hide-color-picker ' . esc_attr( $field_class ) . '" ' . $std . ' />';
+
+            echo '</div>';
+
+          }
+
+        }
+
+      echo '</div>';
+
+    echo '</div>';
+
+  }
+
+}
+
+/**
  * List Item option type.
  *
  * See @ot_display_by_type to see the full list of available arguments.

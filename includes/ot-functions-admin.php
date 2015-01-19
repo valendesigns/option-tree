@@ -563,7 +563,7 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
         
         $input = '';
         
-        add_settings_error( 'option-tree', 'invalid_hex', sprintf( __( 'The %s Colorpicker only allows valid hexadecimal values.', 'option-tree' ), '<code>' . $field_id . '</code>' ), 'error' );;
+        add_settings_error( 'option-tree', 'invalid_hex', sprintf( __( 'The %s Colorpicker only allows valid hexadecimal values.', 'option-tree' ), '<code>' . $field_id . '</code>' ), 'error' );
       
       }
     
@@ -603,7 +603,24 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
       if ( empty( $input ) ) {
         $input = '';
       }
-             
+    
+    } else if ( 'link-color' == $type ) {
+      
+      // Loop over array and check for values
+      if ( is_array( $input ) && ! empty( $input ) ) {
+        foreach( $input as $key => $value ) {
+          if ( ! empty( $value ) ) {
+            $input[$key] = ot_validate_setting( $input[$key], 'colorpicker', $field_id . '-' . $key );
+            $has_value = true;
+          }
+        }
+      }
+      
+      // No value; set to empty
+      if ( ! isset( $has_value ) ) {
+        $input = '';
+      }
+               
     } else if ( 'measurement' == $type ) {
     
       $input[0] = sanitize_text_field( $input[0] );
@@ -2361,6 +2378,7 @@ if ( ! function_exists( 'ot_option_types_array' ) ) {
       'date-time-picker'          => __('Date Time Picker', 'option-tree'),
       'dimension'                 => __('Dimension', 'option-tree'),
       'gallery'                   => __('Gallery', 'option-tree'),
+      'link-color'                => __('Link Color', 'option-tree'),
       'list-item'                 => __('List Item', 'option-tree'),
       'measurement'               => __('Measurement', 'option-tree'),
       'numeric-slider'            => __('Numeric Slider', 'option-tree'),
