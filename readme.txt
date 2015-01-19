@@ -32,16 +32,21 @@ OptionTree is a project partly sponsored by <a href="http://themeforest.net/?ref
 This is a complete list of all the available option types that come shipped with OptionTree.
 
 * Background
+* Border
+* Box Shadow
 * Category Checkbox
 * Category Select
 * Checkbox
-* Color Picker
+* Colorpicker
+* Colorpicker Opacity
 * CSS
 * Custom Post Type Checkbox
 * Custom Post Type Select
 * Date Picker
 * Date Time Picker
+* Dimension
 * Gallery
+* Link Color
 * List Item
 * Measurement
 * Numeric Slider
@@ -56,6 +61,7 @@ This is a complete list of all the available option types that come shipped with
 * Sidebar Select
 * Slider
 * Social Links
+* Spacing
 * Tab
 * Tag Checkbox
 * Tag Select
