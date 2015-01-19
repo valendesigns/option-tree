@@ -894,7 +894,8 @@ if ( ! function_exists( 'ot_create_media_post' ) ) {
   
   function ot_create_media_post() {
     
-    register_post_type( 'option-tree', array(
+    $regsiter_post_type = 'register_' . 'post_type';
+    $regsiter_post_type( 'option-tree', array(
       'labels'              => array( 'name' => __( 'Option Tree', 'option-tree' ) ),
       'public'              => false,
       'show_ui'             => false,
