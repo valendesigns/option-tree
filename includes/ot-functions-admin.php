@@ -757,6 +757,25 @@ if ( ! function_exists( 'ot_admin_styles' ) ) {
     /* Remove styles added by the Easy Digital Downloads plugin */
     if ( isset( $post->post_type ) && $post->post_type == 'post' )
       wp_dequeue_style( 'jquery-ui-css' );
+
+    /**
+     * Filter the screen IDs used to dequeue `jquery-ui-css`.
+     *
+     * @since 2.5.0
+     *
+     * @param array $screen_ids An array of screen IDs.
+     */
+    $screen_ids = apply_filters( 'ot_dequeue_jquery_ui_css_screen_ids', array( 
+      'toplevel_page_ot-settings', 
+      'optiontree_page_ot-documentation', 
+      'appearance_page_ot-theme-options' 
+    ) );
+    
+    /* Remove styles added by the WP Review plugin and any custom pages added through filtering */
+    if ( in_array( get_current_screen()->id, $screen_ids ) ) {
+      wp_dequeue_style( 'plugin_name-admin-ui-css' );
+      wp_dequeue_style( 'jquery-ui-css' );
+    }
     
     /* execute styles after actions */
     do_action( 'ot_admin_styles_after' );
