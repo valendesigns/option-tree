@@ -25,6 +25,7 @@
       this.init_radio_image_select();
       this.init_select_wrapper();
       this.bind_select_wrapper();
+      this.init_google_fonts();
       this.fix_upload_parent();
       this.fix_textarea();
       this.replicate_ajax();
@@ -589,6 +590,44 @@
       });
       $(document).on($.browser.msie ? 'click' : 'change', '.option-tree-ui-select', function(event) {
         $(this).prev('span').replaceWith('<span>' + $(this).find('option:selected').text() + '</span>');
+      });
+    },
+    init_google_fonts: function() {
+      var update_items = function(input, items, element) {
+        var itemsUI = input.closest('.format-settings').find(element);
+        if ( itemsUI.length ) {
+          itemsUI.empty();
+          itemsUI.append($.map(items, function(item) {
+            var input = document.createElement('input'),
+                label = document.createElement('label');
+            input.type = 'checkbox';
+            input.id = ( itemsUI.data('field-id-prefix') || '' ) + item;
+            input.name =  ( itemsUI.data('field-name') || '' );
+            label.innerHTML = item;
+            $( label ).attr( 'for', input.id );
+            return $( document.createElement('p') ).addClass('checkbox-wrap').append([input, label]);
+          }));
+        }
+      };
+      $(document).on('change', '.option-tree-google-font-family select', function() {
+        var input = $(this);
+        $.ajax({
+          url: option_tree.ajax,
+          type: 'POST',
+          dataType: 'json',
+          data: {
+            action: 'ot_google_font',
+            family: input.val(), 
+            field_id: input.attr('id')
+          }
+        }).done(function(response) {
+          if ( response.hasOwnProperty('variants') ) {
+            update_items( input, response.variants, '.option-tree-google-font-variants' );
+          }
+          if ( response.hasOwnProperty('subsets') ) {
+            update_items( input, response.subsets, '.option-tree-google-font-subsets' );
+          }
+        });
       });
     },
     bind_colorpicker: function(field_id) {

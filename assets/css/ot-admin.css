@@ -2815,6 +2815,38 @@ ul.ot-gallery-list li img {
 }
 
 /* -------------------------------------------------- 
+  :: Google Fonts
+  ---------------------------------------------------*/
+.option-tree-google-font-family,
+.option-tree-google-font-variants,
+.option-tree-google-font-subsets {
+  float: left;
+  width: 20%;
+}
+.option-tree-google-font-family {
+  width: 100%;
+}
+#option-tree-settings-api p.checkbox-wrap,
+#post-body .ot-metabox-panels p.checkbox-wrap {
+  display: block;
+  float: left;
+  margin: 0.3em 0 !important;
+  width: 100%;
+}
+@media screen and ( max-width: 1020px ) {
+  .option-tree-google-font-variants,
+  .option-tree-google-font-subsets {
+    width: 33%;
+  }
+}
+@media screen and ( max-width: 782px ) {
+  .option-tree-google-font-variants,
+  .option-tree-google-font-subsets {
+    width: 50%;
+  }
+}
+
+/* -------------------------------------------------- 
   :: On/Off Switch
   ---------------------------------------------------*/
 .on-off-switch .slide-button {

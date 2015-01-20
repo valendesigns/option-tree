@@ -486,6 +486,17 @@ ul.ot-gallery-list li {
 }
 
 /* -------------------------------------------------- 
+  :: Google Fonts
+  ---------------------------------------------------*/
+.option-tree-google-font-family,
+.option-tree-google-font-variants,
+.option-tree-google-font-subsets,
+#option-tree-settings-api p.checkbox-wrap,
+#post-body .ot-metabox-panels p.checkbox-wrap {
+  float: right;
+}
+
+/* -------------------------------------------------- 
   :: On/Off Switch
   ---------------------------------------------------*/
 @media only screen {

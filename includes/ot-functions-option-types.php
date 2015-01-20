@@ -1207,6 +1207,87 @@ if ( ! function_exists( 'ot_type_gallery' ) ) {
 }
 
 /**
+ * Google Font option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.5.0
+ */
+if ( ! function_exists( 'ot_type_google_font' ) ) {
+  
+  function ot_type_google_font( $args = array() ) {
+
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+    
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-google-fonts ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+      
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+      
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">'; 
+        
+        /* allow fields to be filtered */
+        $ot_recognized_google_fonts_fields = apply_filters( 'ot_recognized_google_font_fields', array(
+          'variants', 
+          'subsets'
+        ), $field_id );
+        
+        /* build font family */
+        $font_family = isset( $field_value['font-family'] ) ? $field_value['font-family'] : '';
+        echo '<div class="option-tree-google-font-family">';
+          echo '<select name="' . esc_attr( $field_name ) . '[font-family]" id="' . esc_attr( $field_id ) . '" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
+            echo '<option value="">' . __( 'select a font family', 'option-tree' ) . '</option>';
+            foreach ( ot_recognized_google_font_families( $field_id ) as $key => $value ) {
+              echo '<option value="' . esc_attr( $key ) . '" ' . selected( $font_family, $key, false ) . '>' . esc_html( $value ) . '</option>';
+            }
+          echo '</select>';
+        echo '</div>';
+
+        /* build font variants */
+        if ( in_array( 'variants', $ot_recognized_google_fonts_fields ) ) {
+          $variants = isset( $field_value['variants'] ) ? $field_value['variants'] : array();
+          echo '<div class="option-tree-google-font-variants" data-field-id-prefix="' . esc_attr( $field_id ) . '-" data-field-name="' . esc_attr( $field_name ) . '[variants]" data-field-class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '">';
+          foreach ( ot_recognized_google_font_variants( $field_id, $font_family ) as $variant ) {
+            echo '<p class="checkbox-wrap">';
+              echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[variants][' . $variant . ']" id="' . esc_attr( $field_id ) . '-' . $variant . '" value="' . esc_attr( $variant ) . '" ' . checked( in_array( $variant, $variants ), true, false )  . ' class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
+              echo '<label for="' . esc_attr( $field_id ) . '-' . $variant . '">' . esc_html( $variant ) . '</label>';
+            echo '</p>';
+          }
+          echo '</div>';
+        }
+        
+        /* build font subsets */
+        if ( in_array( 'subsets', $ot_recognized_google_fonts_fields ) ) {
+          $subsets = isset( $field_value['subsets'] ) ? $field_value['subsets'] : array();
+          echo '<div class="option-tree-google-font-subsets" data-field-id-prefix="' . esc_attr( $field_id ) . '-" data-field-name="' . esc_attr( $field_name ) . '[subsets]" data-field-class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '">';
+          foreach ( ot_recognized_google_font_subsets( $field_id, $font_family ) as $subset ) {
+            echo '<p class="checkbox-wrap">';
+              echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[subsets][' . $subset . ']" id="' . esc_attr( $field_id ) . '-' . $subset . '" value="' . esc_attr( $subset ) . '" ' . checked( in_array( $subset, $subsets ), true, false )  . ' class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
+              echo '<label for="' . esc_attr( $field_id ) . '-' . $subset . '">' . esc_html( $subset ) . '</label>';
+            echo '</p>';
+          }
+          echo '</div>';
+        }
+        
+      echo '</div>';
+      
+    echo '</div>';
+    
+  }
+
+}
+
+/**
  * Link Color option type.
  *
  * See @ot_display_by_type to see the full list of available arguments.
