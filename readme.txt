@@ -135,6 +135,7 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 * Fixed the Colorpicker styles on mobile devices.
 * Show the Colorpicker setting ID inside the error message string when the value is invalid.
 * Stop Theme Check from complaining about the `register_post_type()` function being used in Theme Mode.
+* Added styles that clean up the appearance of the included Font Awesome icons in section tabs.
 
 = 2.4.6 =
 * Hotfix - Added a clean up script to consolidate orphaned media posts and remove the old and unused `wp_option_tree` table.

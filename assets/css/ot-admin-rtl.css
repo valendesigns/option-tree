@@ -1,4 +1,15 @@
 /* -------------------------------------------------- 
+  :: OptionTree Font
+  ---------------------------------------------------*/
+.ui-tabs li a [class^="ot-icon-"], 
+.ui-tabs li a [class*=" ot-icon-"] {
+  display: block;
+  height: 14px;
+  float: right;
+  padding: 2px 0px 0 9px;
+}
+
+/* -------------------------------------------------- 
   :: Messages
   ---------------------------------------------------*/
 .wrap.settings-wrap div.error,
