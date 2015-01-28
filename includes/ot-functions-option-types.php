@@ -1039,8 +1039,8 @@ if ( ! function_exists( 'ot_type_on_off' ) ) {
       /* format setting inner wrapper */
       echo '<div class="format-setting-inner">';
       
-        // Force choices
-        $field_choices = array(
+	  /* allow choices to be filtered */
+        $ot_recognized_on_off_fields = apply_filters( 'ot_recognized_on_off_fields', array(
           array(
             'value'   => 'on',
             'label'   => __( 'On', 'option-tree' ),
@@ -1049,12 +1049,12 @@ if ( ! function_exists( 'ot_type_on_off' ) ) {
             'value'   => 'off',
             'label'   => __( 'Off', 'option-tree' ),
           )
-        );
-        
+        ), $field_id );
+	  
         echo '<div class="on-off-switch">';
                     
         /* build radio */
-        foreach ( (array) $field_choices as $key => $choice ) {
+        foreach ( (array) $ot_recognized_on_off_fields as $key => $choice ) {
           echo '
             <input type="radio" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '-' . esc_attr( $key ) . '" value="' . esc_attr( $choice['value'] ) . '"' . checked( $field_value, $choice['value'], false ) . ' class="radio option-tree-ui-radio ' . esc_attr( $field_class ) . '" />
             <label for="' . esc_attr( $field_id ) . '-' . esc_attr( $key ) . '" onclick="">' . esc_attr( $choice['label'] ) . '</label>';
