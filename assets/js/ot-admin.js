@@ -533,7 +533,7 @@
           step: hidden.data("step"),
           value: value, 
           slide: function(event, ui) {
-            hidden.add(helper).val(ui.value);
+            hidden.add(helper).val(ui.value).trigger('change');
           },
           create: function() {
             hidden.val($(this).slider('value'));
