@@ -594,7 +594,7 @@
     },
     init_google_fonts: function() {
       var update_items = function(input, items, element) {
-        var itemsUI = input.closest('.format-settings').find(element);
+        var itemsUI = input.closest('.type-google-font-group').find(element);
         if ( itemsUI.length ) {
           itemsUI.empty();
           itemsUI.append($.map(items, function(item) {
@@ -602,7 +602,8 @@
                 label = document.createElement('label');
             input.type = 'checkbox';
             input.id = ( itemsUI.data('field-id-prefix') || '' ) + item;
-            input.name =  ( itemsUI.data('field-name') || '' );
+            input.name =  ( itemsUI.data('field-name') || '' ) + '[]';
+            input.value =  item;
             label.innerHTML = item;
             $( label ).attr( 'for', input.id );
             return $( document.createElement('p') ).addClass('checkbox-wrap').append([input, label]);
@@ -628,6 +629,30 @@
             update_items( input, response.subsets, '.option-tree-google-font-subsets' );
           }
         });
+      });
+      $('.js-add-google-font').on('click', function (event) {
+        var $group = $(this).parent('.format-setting-inner').find('.type-google-font-group'),
+            $clone = $('.type-google-font-group-clone').clone(true),
+            $count = $group.length ? $group.length : 0;
+        $clone.attr('class', 'type-google-font-group');
+        var replacer = function(index, elm) { 
+          return elm.replace('%key%', $count);
+        }
+        $('select', $clone).each( function() {
+          $(this).attr('id', replacer ).attr('name', replacer );
+        });
+        $('.option-tree-google-font-variants', $clone).each( function() {
+          $(this).attr('data-field-id-prefix', replacer ).attr('data-field-name', replacer );
+        });
+        $('.option-tree-google-font-subsets', $clone).each( function() {
+          $(this).attr('data-field-id-prefix', replacer ).attr('data-field-name', replacer );
+        });
+        $('.type-google-font-group-clone').before($clone)
+        event.preventDefault()
+      });
+      $('.js-remove-google-font').on('click', function (event) {
+        $(this).parents('.type-google-font-group').remove();
+        event.preventDefault();
       });
     },
     bind_colorpicker: function(field_id) {

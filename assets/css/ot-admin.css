@@ -2564,6 +2564,25 @@ select.option-tree-ui-select option {
 }
 
 /* -------------------------------------------------- 
+  :: Google Font
+  ---------------------------------------------------*/
+.type-google-font {
+
+}
+.type-google-font-group-clone {
+  display: none;
+}
+.type-google-font-group {
+  float: left;
+  margin-bottom: 20px;
+  width: 100%;
+}
+.js-remove-google-font.option-tree-ui-button.button {
+  margin-left: 0;
+  margin-top: 0;
+}
+
+/* -------------------------------------------------- 
   :: OptionTree UI Buttons 
   ---------------------------------------------------*/
 .option-tree-ui-button.button {

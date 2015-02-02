@@ -620,6 +620,20 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
       if ( empty( $input ) ) {
         $input = '';
       }
+      
+    } else if ( 'google-font' == $type ) {
+      
+      unset($input['%key%']);
+      
+      // Loop over array and check for values
+      if ( is_array( $input ) && ! empty( $input ) ) {
+        $input = array_values( $input );
+      }
+
+      // No value; set to empty
+      if ( empty( $input ) ) {
+        $input = '';
+      }
     
     } else if ( 'link-color' == $type ) {
       
@@ -5075,6 +5089,17 @@ function ot_fetch_google_fonts( $normalize = true ) {
         if ( is_array( $ot_google_fonts_data ) && isset( $ot_google_fonts_data['items'] ) ) {
 
           $ot_google_fonts = $ot_google_fonts_data['items'];
+          
+          // Normalize the array key
+          $ot_google_fonts_tmp = array();
+          foreach( $ot_google_fonts as $key => $value ) {
+            $id = remove_accents( $value['family'] );
+            $id = strtolower( $id );
+            $id = preg_replace( '/[^a-z0-9_\-]/', '', $id );
+            $ot_google_fonts_tmp[$id] = $value;
+          }
+          
+          $ot_google_fonts = $ot_google_fonts_tmp;
           set_transient( $ot_google_fonts_cache_key, $ot_google_fonts, WEEK_IN_SECONDS );
 
         }
