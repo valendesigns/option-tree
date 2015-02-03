@@ -1207,7 +1207,7 @@ if ( ! function_exists( 'ot_type_gallery' ) ) {
 }
 
 /**
- * Google Font option type.
+ * Google Fonts option type.
  *
  * See @ot_display_by_type to see the full list of available arguments.
  *
@@ -1217,9 +1217,9 @@ if ( ! function_exists( 'ot_type_gallery' ) ) {
  * @access    public
  * @since     2.5.0
  */
-if ( ! function_exists( 'ot_type_google_font' ) ) {
+if ( ! function_exists( 'ot_type_google_fonts' ) ) {
   
-  function ot_type_google_font( $args = array() ) {
+  function ot_type_google_fonts( $args = array() ) {
 
     /* turns arguments array into variables */
     extract( $args );
@@ -1301,13 +1301,13 @@ if ( ! function_exists( 'ot_type_google_font' ) ) {
         
           /* build font family */
           echo '<div class="option-tree-google-font-family">';
+            echo '<a href="javascript:void(0);" class="js-remove-google-font option-tree-ui-button button button-secondary light" title="' . __( 'Remove Google Font', 'option-tree' ) . '"><span class="icon ot-icon-minus-circle"/>' . __( 'Remove Google Font', 'option-tree' ) . '</a>';
             echo '<select name="' . esc_attr( $field_name ) . '[%key%][family]" id="' . esc_attr( $field_id ) . '-%key%" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
               echo '<option value="">' . __( 'select a font family', 'option-tree' ) . '</option>';
               foreach ( ot_recognized_google_font_families( $field_id ) as $family_key => $family_value ) {
                 echo '<option value="' . esc_attr( $family_key ) . '">' . esc_html( $family_value ) . '</option>';
               }
             echo '</select>';
-            echo '<a href="javascript:void(0);" class="js-remove-google-font option-tree-ui-button button button-secondary light" title="' . __( 'Remove Google Font', 'option-tree' ) . '"><span class="icon ot-icon-minus-circle"/>' . __( 'Remove Google Font', 'option-tree' ) . '</a>';
           echo '</div>';
           
           /* build font variants */

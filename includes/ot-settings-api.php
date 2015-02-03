@@ -474,8 +474,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
      * @since     2.0
      */
     public function display_setting( $args = array() ) {
-      global $ot_google_fonts;
-      
+
       extract( $args );
       
       /* get current saved data */
@@ -491,11 +490,6 @@ if ( ! class_exists( 'OT_Settings' ) ) {
       
       // Allow the descriptions to be filtered before being displayed
       $desc = apply_filters( 'ot_filter_description', ( isset( $desc ) ? $desc : '' ), $id );
-      
-      // Limit DB queries for Google Fonts.
-      if ( $type == 'google-font' && ( ! is_array( $ot_google_fonts ) || empty( $ot_google_fonts ) ) ) {
-        ot_fetch_google_fonts();
-      }
 
       /* build the arguments array */
       $_args = array(
@@ -517,6 +511,12 @@ if ( ! class_exists( 'OT_Settings' ) ) {
         'post_id'           => ot_get_media_post_ID(),
         'get_option'        => $get_option,
       );
+      
+      // Limit DB queries for Google Fonts.
+      if ( $type == 'google-fonts' ) {
+        ot_fetch_google_fonts();
+        ot_set_google_fonts( $id, $field_value );
+      }
       
       /* get the option HTML */
       echo ot_display_by_type( $_args );
