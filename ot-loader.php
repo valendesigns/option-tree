@@ -284,6 +284,16 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       define( 'OT_META_BOXES', apply_filters( 'ot_meta_boxes', true ) );
       
       /**
+       * For developers: Widgets.
+       *
+       * Run a filter and set to false to keep OptionTree from
+       * loading the widgets resources.
+       *
+       * @since     2.4
+       */
+      define( 'OT_WIDGETS', apply_filters( 'ot_widgets', true ) );
+      
+      /**
        * For developers: Allow Unfiltered HTML in all the textareas.
        *
        * Run a filter and set to true if you want all the
@@ -369,6 +379,11 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       /* include the meta box api */
       if ( OT_META_BOXES == true ) {
         $files[] = 'ot-meta-box-api';
+      }
+
+      /* include the meta box api */
+      if ( OT_WIDGETS == true ) {
+        $files[] = 'ot-widgets-api';
       }
       
       /* include the post formats api */
@@ -457,6 +472,16 @@ if ( ! class_exists( 'OT_Loader' ) ) {
         /* add styles for metaboxes to post-new.php & post.php */
         add_action( 'admin_print_styles-post-new.php', 'ot_admin_styles', 11 );
         add_action( 'admin_print_styles-post.php', 'ot_admin_styles', 11 );
+      
+      }
+
+      if ( OT_WIDGETS == true ) {
+      
+        /* add scripts for metaboxes to widgets.php */
+        add_action( 'admin_print_scripts-widgets.php', 'ot_admin_scripts', 11 );
+              
+        /* add styles for metaboxes to widgets.php */
+        add_action( 'admin_print_styles-widgets.php', 'ot_admin_styles', 11 );
       
       }
       

@@ -3622,6 +3622,24 @@ a.ui-datepicker-next {
 }
 
 /* -------------------------------------------------- 
+  :: Widgets
+  ---------------------------------------------------*/
+.widget .format-setting-label .label {
+  color: #222;
+  cursor: text;
+  display: block;
+  font-size: 1.1em;
+  font-weight: 500;
+  line-height: 1.6em;
+  padding: 0 0 7px;
+}
+.widget .format-setting-inner p {
+  float: left;
+  margin: 0 0 1.05em 0 !important;
+  width:100%;
+}
+
+/* -------------------------------------------------- 
   :: Metabox Tabs for Small Screens & Mobile Devices
   ---------------------------------------------------*/
 @media screen and ( max-width: 1020px ) {

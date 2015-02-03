@@ -24,6 +24,7 @@
       this.init_tabs();
       this.init_radio_image_select();
       this.init_select_wrapper();
+      this.init_widgets();
       this.bind_select_wrapper();
       this.fix_upload_parent();
       this.fix_textarea();
@@ -581,6 +582,11 @@
           $(this).wrap('<div class="select-wrapper" />');
           $(this).parent('.select-wrapper').prepend('<span>' + $(this).find('option:selected').text() + '</span>');
         }
+      });
+    },
+    init_widgets: function() {
+      $(document).on('widget-updated', function(event, widget) {
+        this.init();
       });
     },
     bind_select_wrapper: function() {
