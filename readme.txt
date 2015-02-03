@@ -46,6 +46,7 @@ This is a complete list of all the available option types that come shipped with
 * Date Time Picker
 * Dimension
 * Gallery
+* Google Fonts
 * Link Color
 * List Item
 * Measurement
@@ -125,6 +126,7 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 == Changelog ==
 
 = 2.5.0 =
+* Added the Google Fonts option type. Contributors via github @maimairel, and @valendesigns.
 * Added the Border option type. Contributors via github @doitmax, and @valendesigns.
 * Added the Box Shadow option type. Contributors via github @doitmax, and @valendesigns.
 * Added the Colorpicker Opacity option type. Contributors via github @doitmax, and @valendesigns.
