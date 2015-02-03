@@ -262,6 +262,75 @@ if ( ! function_exists( 'ot_load_dynamic_css' ) ) {
 }
 
 /**
+ * Enqueue the Google Fonts CSS.
+ *
+ * @return    void
+ *
+ * @access    public
+ * @since     2.5.0
+ */
+if ( ! function_exists( 'ot_load_google_fonts_css' ) ) {
+
+  function ot_load_google_fonts_css() {
+
+    /* don't load in the admin */
+    if ( is_admin() )
+      return;
+
+    $ot_google_fonts      = get_theme_mod( 'ot_google_fonts', array() );
+    $ot_set_google_fonts  = get_theme_mod( 'ot_set_google_fonts', array() );
+    $paths = array();
+
+    if ( ! empty( $ot_set_google_fonts ) ) {
+
+      foreach( $ot_set_google_fonts as $id => $fonts ) {
+
+        foreach( $fonts as $font ) {
+
+          $path = '';
+
+          if ( ! isset( $ot_google_fonts[$font['family']]['family'] ) ) {
+            continue;
+          }
+
+          // Add variants
+          if ( ! empty( $font['variants'] ) && is_array( $font['variants'] ) ) {
+            $path.= implode( ',', $font['variants'] );
+          }
+
+          // Add subsets
+          if ( ! empty( $font['subsets'] ) && is_array( $font['subsets'] ) ) {
+            $add_subsets = false;
+            foreach( $font['subsets'] as $subset ) {
+              if ( $subset !== 'latin' ) {
+                $add_subsets = true;
+              }
+            }
+            if ( $add_subsets === true ) {
+              $path.= '&subset=' . implode( ',', $font['subsets'] );
+            }
+          }
+
+          // Build actual path
+          if ( $path ) {
+            $paths[] = str_replace( ' ', '+', $ot_google_fonts[$font['family']]['family'] ) . ':' . $path;
+          }
+
+        }
+
+      }
+
+    }
+
+    if ( ! empty( $paths ) ) {
+      wp_enqueue_style( 'ot-google-fonts', esc_url( '//fonts.googleapis.com/css?family=' . implode( '|', $paths ) ), false, null );
+    }
+
+  }
+
+}
+
+/**
  * Registers the Theme Option page link for the admin bar.
  *
  * @uses      ot_register_settings()
