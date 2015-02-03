@@ -116,11 +116,30 @@ if ( ! class_exists( 'OT_Meta_Box' ) ) {
           }
           
           /* only allow simple textarea due to DOM issues with wp_editor() */
-          if ( $_args['type'] == 'textarea' )
+          if ( apply_filters( 'ot_override_forced_textarea_simple', false, $field['id'] ) == false && $_args['type'] == 'textarea' )
             $_args['type'] = 'textarea-simple';
+
+          // Build the setting CSS class
+          if ( ! empty( $_args['field_class'] ) ) {
+            
+            $classes = explode( ' ', $_args['field_class'] );
+
+            foreach( $classes as $key => $value ) {
+            
+              $classes[$key] = $value . '-wrap';
+              
+            }
+
+            $class = 'format-settings ' . implode( ' ', $classes );
+            
+          } else {
+          
+            $class = 'format-settings';
+            
+          }
           
           /* option label */
-          echo '<div id="setting_' . $field['id'] . '" class="format-settings"' . $conditions . '>';
+          echo '<div id="setting_' . $field['id'] . '" class="' . $class . '"' . $conditions . '>';
             
             echo '<div class="format-setting-wrap">';
             
@@ -139,6 +158,8 @@ if ( ! class_exists( 'OT_Meta_Box' ) ) {
           echo '</div>';
           
         }
+
+        echo '<div class="clear"></div>';
       
       echo '</div>';
 
@@ -222,6 +243,34 @@ if ( ! class_exists( 'OT_Meta_Box' ) ) {
             
             /* merge the two settings array */
             $settings = array_merge( $required_setting, $settings );
+            
+            foreach( $_POST[$field['id']] as $k => $setting_array ) {
+  
+              foreach( $settings as $sub_setting ) {
+                
+                /* verify sub setting has a type & value */
+                if ( isset( $sub_setting['type'] ) && isset( $_POST[$field['id']][$k][$sub_setting['id']] ) ) {
+                  
+                  $_POST[$field['id']][$k][$sub_setting['id']] = ot_validate_setting( $_POST[$field['id']][$k][$sub_setting['id']], $sub_setting['type'], $sub_setting['id'] );
+                  
+                }
+                
+              }
+            
+            }
+            
+            /* set up new data with validated data */
+            $new = $_POST[$field['id']];
+          
+          } else if ( $field['type'] == 'social-links' ) {
+            
+            /* get the settings array */
+            $settings = isset( $_POST[$field['id'] . '_settings_array'] ) ? unserialize( ot_decode( $_POST[$field['id'] . '_settings_array'] ) ) : array();
+            
+            /* settings are empty get the defaults */
+            if ( empty( $settings ) ) {
+              $settings = ot_social_links_settings( $field['id'] );
+            }
             
             foreach( $_POST[$field['id']] as $k => $setting_array ) {
   

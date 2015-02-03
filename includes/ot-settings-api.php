@@ -246,7 +246,6 @@ if ( ! class_exists( 'OT_Settings' ) ) {
             
             echo '<div class="wrap settings-wrap" id ="page-' . $page['id'] . '">';
   
-              screen_icon( ( isset( $page['screen_icon'] ) ? $page['screen_icon'] : 'options-general' ) );
               echo '<h2>' . $page['page_title'] . '</h2>';
               
               echo ot_alert_message( $page );
@@ -475,6 +474,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
      * @since     2.0
      */
     public function display_setting( $args = array() ) {
+
       extract( $args );
       
       /* get current saved data */
@@ -511,6 +511,12 @@ if ( ! class_exists( 'OT_Settings' ) ) {
         'post_id'           => ot_get_media_post_ID(),
         'get_option'        => $get_option,
       );
+      
+      // Limit DB queries for Google Fonts.
+      if ( $type == 'google-fonts' ) {
+        ot_fetch_google_fonts();
+        ot_set_google_fonts( $id, $field_value );
+      }
       
       /* get the option HTML */
       echo ot_display_by_type( $_args );
@@ -640,6 +646,41 @@ if ( ! class_exists( 'OT_Settings' ) ) {
                   }
                 
                 }
+              
+              } else if ( is_array( $input[$setting['id']] ) && $setting['type'] == 'social-links' ) {
+                
+                /* get the settings array */
+                $settings = isset( $_POST[$setting['id'] . '_settings_array'] ) ? unserialize( ot_decode( $_POST[$setting['id'] . '_settings_array'] ) ) : array();
+                
+                /* settings are empty get the defaults */
+                if ( empty( $settings ) ) {
+                  $settings = ot_social_links_settings( $setting['id'] );
+                }
+                
+                /* create an empty WPML id array */
+                $wpml_ids = array();
+                
+                foreach( $input[$setting['id']] as $k => $setting_array ) {
+
+                  foreach( $settings as $sub_setting ) {
+                    
+                    /* setup the WPML ID */
+                    $wpml_id = $setting['id'] . '_' . $sub_setting['id'] . '_' . $k;
+                    
+                    /* add id to array */
+                    $wpml_ids[] = $wpml_id;
+                      
+                    /* verify sub setting has a type & value */
+                    if ( isset( $sub_setting['type'] ) && isset( $input[$setting['id']][$k][$sub_setting['id']] ) ) {
+
+                      /* validate setting */
+                      $input[$setting['id']][$k][$sub_setting['id']] = ot_validate_setting( $input[$setting['id']][$k][$sub_setting['id']], $sub_setting['type'], $sub_setting['id'], $wpml_id );
+                      
+                    }
+                    
+                  }
+                
+                }
 
               } else {
                 
@@ -651,6 +692,38 @@ if ( ! class_exists( 'OT_Settings' ) ) {
             
             /* unregister WPML strings that were deleted from lists and sliders */
             if ( isset( $current_settings['settings'] ) && isset( $setting['type'] ) && in_array( $setting['type'], array( 'list-item', 'slider' ) ) ) {
+              
+              if ( ! isset( $wpml_ids ) )
+                $wpml_ids = array();
+                
+              foreach( $current_settings['settings'] as $check_setting ) {
+              
+                if ( $setting['id'] == $check_setting['id'] && ! empty( $current_options[$setting['id']] ) ) {
+                
+                  foreach( $current_options[$setting['id']] as $key => $value ) {
+                
+                    foreach( $value as $ckey => $cvalue ) {
+                      
+                      $id = $setting['id'] . '_' . $ckey . '_' . $key;
+                      
+                      if ( ! in_array( $id, $wpml_ids ) ) {
+                      
+                        ot_wpml_unregister_string( $id );
+                        
+                      }
+                      
+                    }
+                  
+                  }
+                
+                }
+                
+              }
+              
+            }
+            
+            /* unregister WPML strings that were deleted from social links */
+            if ( isset( $current_settings['settings'] ) && isset( $setting['type'] ) && $setting['type'] == 'social-links' ) {
               
               if ( ! isset( $wpml_ids ) )
                 $wpml_ids = array();

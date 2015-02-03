@@ -14,7 +14,7 @@
       this.init_add();
       this.init_edit();
       this.init_remove();
-      this.init_edit_title()
+      this.init_edit_title();
       this.init_edit_id();
       this.init_activate_layout();
       this.init_conditions();
@@ -24,6 +24,8 @@
       this.init_tabs();
       this.init_radio_image_select();
       this.init_select_wrapper();
+      this.bind_select_wrapper();
+      this.init_google_fonts();
       this.fix_upload_parent();
       this.fix_textarea();
       this.replicate_ajax();
@@ -56,8 +58,9 @@
         $(css).removeClass('active');
       }
     },
-    init_sortable: function() {
-      $('.option-tree-sortable').each( function() {
+    init_sortable: function(scope) {
+      scope = scope || document;
+      $('.option-tree-sortable', scope).each( function() {
         if ( $(this).children('li').length ) {
           var elm = $(this);
           elm.show();
@@ -100,6 +103,10 @@
       $(document).on('click', '.option-tree-list-item-add', function(e) {
         e.preventDefault();
         OT_UI.add(this,'list_item');
+      });
+      $(document).on('click', '.option-tree-social-links-add', function(e) {
+        e.preventDefault();
+        OT_UI.add(this,'social_links');
       });
       $(document).on('click', '.option-tree-list-item-setting-add', function(e) {
         e.preventDefault();
@@ -146,6 +153,13 @@
       $(document).on('keyup', '.option-tree-setting-title', function() {
         OT_UI.edit_title(this);
       });
+      // Automatically fill option IDs with clean versions of their respective option labels
+      $(document).on('blur', '.option-tree-setting-title', function() {
+        var optionId = $(this).parents('.option-tree-setting-body').find('[type="text"][name$="id]"]')
+        if ( optionId.val() === '' ) {
+          optionId.val($(this).val().replace(/[^a-z0-9]/gi,'_').toLowerCase());
+        }
+      });
     },
     init_edit_id: function() {
       $(document).on('keyup', '.section-id', function(){
@@ -190,6 +204,9 @@
       } else if ( type == 'list_item_setting' ) {
         list = $(elm).parent().children('ul');
         list_class = 'list-sub-setting';
+      } else if ( type == 'social_links' ) {
+        list = $(elm).parent().children('ul');
+        list_class = 'list-sub-setting';
       } else {
         list = $(elm).parent().find('ul:first');
         list_class = ( type == 'section' ) ? 'list-section' : 'list-setting';
@@ -201,7 +218,7 @@
       if ( this.processing === false ) {
         this.processing = true;
         var count = parseInt(list.children('li').length);
-        if ( type == 'list_item' ) {
+        if ( type == 'list_item' || type == 'social_links' ) {
           list.find('li input.option-tree-setting-title', self).each(function(){
             var setting = $(this).attr('name'),
                 regex = /\[([0-9]+)\]/,
@@ -233,19 +250,18 @@
               OT_UI.init_remove_active();
               OT_UI.init_hide_body();
             }
-            list.append('<li class="ui-state-default ' + list_class + '">' + data.responseText + '</li>');
+            var listItem = $('<li class="ui-state-default ' + list_class + '">' + data.responseText + '</li>');
+            list.append(listItem);
             list.children().last().find('.option-tree-setting-edit').toggleClass('active');
             list.children().last().find('.option-tree-setting-body').toggle();
             list.children().last().find('.option-tree-setting-title').focus();
             if ( type != 'the_contextual_help' ) {
               OT_UI.update_ids(list);
             }
-            setTimeout( function() {
-              OT_UI.init_sortable();
-              OT_UI.init_select_wrapper();
-              OT_UI.init_numeric_slider();
-              OT_UI.parse_condition();
-            }, 500);
+            OT_UI.init_sortable(listItem);
+            OT_UI.init_select_wrapper(listItem);
+            OT_UI.init_numeric_slider(listItem);
+            OT_UI.parse_condition();
             self.processing = false;
           }
         });
@@ -290,6 +306,9 @@
         last_section = section;
       });
     },
+    condition_objects: function() {
+      return 'select, input[type="radio"]:checked, input[type="text"], input[type="hidden"], input.ot-numeric-slider-hidden-input';
+    },
     match_conditions: function(condition) {
       var match;
       var regex = /(.+?):(is|not|contains|less_than|less_than_or_equal_to|greater_than|greater_than_or_equal_to)\((.*?)\),?/g;
@@ -315,7 +334,7 @@
         $.each( conditions, function( index, condition ) {
 
           var target   = $( '#setting_' + condition.check );
-          var targetEl = !! target.length && target.find( 'select, input[type="radio"]:checked, input[type="text"], input[type="hidden"], input.ot-numeric-slider-hidden-input' ).first();
+          var targetEl = !! target.length && target.find( OT_UI.condition_objects() ).first();
 
           if ( ! target.length || ( ! targetEl.length && condition.value.toString() != '' ) ) {
             return;
@@ -339,7 +358,7 @@
               result = ( parseInt( v1 ) >= parseInt( v2 ) );
               break;
             case 'contains':
-              result = ( v2.indexOf(v1) !== -1 ? true : false );
+              result = ( v1.indexOf(v2) !== -1 ? true : false );
               break; 
             case 'is':
               result = ( v1 == v2 );
@@ -376,16 +395,32 @@
       });
     },
     init_conditions: function() {
-      $( document ).on( 'change.conditionals', '.format-settings[id^="setting_"] select, .format-settings[id^="setting_"] input[type="radio"]:checked, .format-settings[id^="setting_"] input[type="text"], .format-settings[id^="setting_"] input[type="hidden"], .format-settings[id^="setting_"] input.ot-numeric-slider-hidden-input', function( e ) {
-        OT_UI.parse_condition();
+      var delay = (function() {
+        var timer = 0;
+        return function(callback, ms) {
+          clearTimeout(timer);
+          timer = setTimeout(callback, ms);
+        };
+      })();
+
+      $('.format-settings[id^="setting_"]').on( 'change.conditionals, keyup.conditionals', OT_UI.condition_objects(), function(e) {
+        if (e.type === 'keyup') {
+          // handle keyup event only once every 500ms
+          delay(function() {
+            OT_UI.parse_condition();
+          }, 500);
+        } else {
+          OT_UI.parse_condition();
+        }
       });
       OT_UI.parse_condition();
     },
     init_upload: function() {
       $(document).on('click', '.ot_upload_media', function() {
-        var field_id    = $(this).parent('.option-tree-ui-upload-parent').find('input').attr('id'),
-            post_id     = $(this).attr('rel'),
-            btnContent  = '';
+        var field_id            = $(this).parent('.option-tree-ui-upload-parent').find('input').attr('id'),
+            post_id             = $(this).attr('rel'),
+            save_attachment_id  = $('#'+field_id).hasClass('ot-upload-attachment-id'),
+            btnContent          = '';
         if ( window.wp && wp.media ) {
           window.ot_media_frame = window.ot_media_frame || new wp.media.view.MediaFrame.Select({
             title: $(this).attr('title'),
@@ -396,14 +431,15 @@
           });
           window.ot_media_frame.on('select', function() {
             var attachment = window.ot_media_frame.state().get('selection').first(), 
-                href = attachment.attributes.url, 
+                href = attachment.attributes.url,
+                attachment_id = attachment.attributes.id,
                 mime = attachment.attributes.mime,
                 regex = /^image\/(?:jpe?g|png|gif|x-icon)$/i;
             if ( mime.match(regex) ) {
               btnContent += '<div class="option-tree-ui-image-wrap"><img src="'+href+'" alt="" /></div>';
             }
-            btnContent += '<a href="javascript:(void);" class="option-tree-ui-remove-media option-tree-ui-button button button-secondary light" title="'+option_tree.remove_media_text+'"><span class="icon ot-icon-minus-sign"></span>'+option_tree.remove_media_text+'</a>';
-            $('#'+field_id).val(href);
+            btnContent += '<a href="javascript:(void);" class="option-tree-ui-remove-media option-tree-ui-button button button-secondary light" title="'+option_tree.remove_media_text+'"><span class="icon ot-icon-minus-circle"></span>'+option_tree.remove_media_text+'</a>';
+            $('#'+field_id).val( ( save_attachment_id ? attachment_id : href ) );
             $('#'+field_id+'_media').remove();
             $('#'+field_id).parent().parent('div').append('<div class="option-tree-ui-media-wrap" id="'+field_id+'_media" />');
             $('#'+field_id+'_media').append(btnContent).slideDown();
@@ -431,7 +467,7 @@
             if (href.match(image) && OT_UI.url_exists(href)) {
               btnContent += '<div class="option-tree-ui-image-wrap"><img src="'+href+'" alt="" /></div>';
             }
-            btnContent += '<a href="javascript:(void);" class="option-tree-ui-remove-media option-tree-ui-button button button-secondary light" title="'+option_tree.remove_media_text+'"><span class="icon ot-icon-minus-sign"></span>'+option_tree.remove_media_text+'</a>';
+            btnContent += '<a href="javascript:(void);" class="option-tree-ui-remove-media option-tree-ui-button button button-secondary light" title="'+option_tree.remove_media_text+'"><span class="icon ot-icon-minus-circle"></span>'+option_tree.remove_media_text+'</a>';
             $('#'+field_id).val(href);
             $('#'+field_id+'_media').remove();
             $('#'+field_id).parent().parent('div').append('<div class="option-tree-ui-media-wrap" id="'+field_id+'_media" />');
@@ -473,7 +509,7 @@
         if (val.match(image)) {
           btnContent += '<div class="option-tree-ui-image-wrap"><img src="'+val+'" alt="" /></div>';
         }
-        btnContent += '<a href="javascript:(void);" class="option-tree-ui-remove-media option-tree-ui-button button button-secondary light" title="'+option_tree.remove_media_text+'"><span class="icon ot-icon-minus-sign">'+option_tree.remove_media_text+'</span></a>';
+        btnContent += '<a href="javascript:(void);" class="option-tree-ui-remove-media option-tree-ui-button button button-secondary light" title="'+option_tree.remove_media_text+'"><span class="icon ot-icon-minus-circle">'+option_tree.remove_media_text+'</span></a>';
         $('#'+id).val(val);
         $('#'+id+'_media').remove();
         $('#'+id).parent().parent('div').append('<div class="option-tree-ui-media-wrap" id="'+id+'_media" />');
@@ -482,8 +518,9 @@
         $(elm).parent().next('.option-tree-ui-media-wrap').remove();
       }
     },
-    init_numeric_slider: function() {
-      $(".ot-numeric-slider-wrap").each(function() {
+    init_numeric_slider: function(scope) {
+      scope = scope || document;
+      $(".ot-numeric-slider-wrap", scope).each(function() {
         var hidden = $(".ot-numeric-slider-hidden-input", this),
             value  = hidden.val(),
             helper = $(".ot-numeric-slider-helper-input", this);
@@ -499,8 +536,11 @@
           slide: function(event, ui) {
             hidden.add(helper).val(ui.value);
           },
+          create: function() {
+            hidden.val($(this).slider('value'));
+          },
           change: function() {
-            OT_UI.init_conditions();
+            OT_UI.parse_condition();
           }
         });
       });
@@ -535,22 +575,95 @@
         $(this).parent().find('.option-tree-ui-radio').prop('checked', true).trigger('change');
       });
     },
-    init_select_wrapper: function() {
-      $('.option-tree-ui-select').each(function () {
+    init_select_wrapper: function(scope) {
+      scope = scope || document;
+      $('.option-tree-ui-select', scope).each(function () {
         if ( ! $(this).parent().hasClass('select-wrapper') ) {
           $(this).wrap('<div class="select-wrapper" />');
           $(this).parent('.select-wrapper').prepend('<span>' + $(this).find('option:selected').text() + '</span>');
         }
       });
+    },
+    bind_select_wrapper: function() {
       $(document).on('change', '.option-tree-ui-select', function () {
         $(this).prev('span').replaceWith('<span>' + $(this).find('option:selected').text() + '</span>');
-      })
+      });
       $(document).on($.browser.msie ? 'click' : 'change', '.option-tree-ui-select', function(event) {
         $(this).prev('span').replaceWith('<span>' + $(this).find('option:selected').text() + '</span>');
       });
     },
+    init_google_fonts: function() {
+      var update_items = function(input, items, element) {
+        var itemsUI = input.closest('.type-google-font-group').find(element);
+        if ( itemsUI.length ) {
+          itemsUI.empty();
+          itemsUI.append($.map(items, function(item) {
+            var input = document.createElement('input'),
+                label = document.createElement('label');
+            input.type = 'checkbox';
+            input.id = ( itemsUI.data('field-id-prefix') || '' ) + item;
+            input.name =  ( itemsUI.data('field-name') || '' ) + '[]';
+            input.value =  item;
+            label.innerHTML = item;
+            $( label ).attr( 'for', input.id );
+            return $( document.createElement('p') ).addClass('checkbox-wrap').append([input, label]);
+          }));
+        }
+      };
+      $(document).on('change', '.option-tree-google-font-family select', function() {
+        var input = $(this);
+        $.ajax({
+          url: option_tree.ajax,
+          type: 'POST',
+          dataType: 'json',
+          data: {
+            action: 'ot_google_font',
+            family: input.val(), 
+            field_id: input.attr('id')
+          }
+        }).done(function(response) {
+          if ( response.hasOwnProperty('variants') ) {
+            update_items( input, response.variants, '.option-tree-google-font-variants' );
+          }
+          if ( response.hasOwnProperty('subsets') ) {
+            update_items( input, response.subsets, '.option-tree-google-font-subsets' );
+          }
+        });
+      });
+      $('.js-add-google-font').on('click', function (event) {
+        var $group = $(this).parent('.format-setting-inner').find('.type-google-font-group'),
+            $clone = $('.type-google-font-group-clone').clone(true),
+            $count = $group.length ? $group.length : 0;
+        $clone.attr('class', 'type-google-font-group');
+        var replacer = function(index, elm) { 
+          return elm.replace('%key%', $count);
+        }
+        $('select', $clone).each( function() {
+          $(this).attr('id', replacer ).attr('name', replacer );
+        });
+        $('.option-tree-google-font-variants', $clone).each( function() {
+          $(this).attr('data-field-id-prefix', replacer ).attr('data-field-name', replacer );
+        });
+        $('.option-tree-google-font-subsets', $clone).each( function() {
+          $(this).attr('data-field-id-prefix', replacer ).attr('data-field-name', replacer );
+        });
+        $('.type-google-font-group-clone').before($clone)
+        event.preventDefault()
+      });
+      $('.js-remove-google-font').on('click', function (event) {
+        $(this).parents('.type-google-font-group').remove();
+        event.preventDefault();
+      });
+    },
     bind_colorpicker: function(field_id) {
-      $('#'+field_id).wpColorPicker();
+      $('#'+field_id).wpColorPicker({
+        change: function() {
+          OT_UI.parse_condition();
+        }, 
+        clear: function() {
+          OT_UI.parse_condition();
+        }
+      });
     },
     bind_date_picker: function(field_id, date_format) {
       $('#'+field_id).datepicker({
@@ -569,7 +682,7 @@
       });
     },
     fix_upload_parent: function() {
-      $('.option-tree-ui-upload-input').on('focus blur', function(){
+      $('.option-tree-ui-upload-input').not('.ot-upload-attachment-id').on('focus blur', function(){
         $(this).parent('.option-tree-ui-upload-parent').toggleClass('focus');
         OT_UI.init_upload_fix(this);
       });
@@ -610,7 +723,7 @@
     css_editor_mode: function() {
       $('.ot-css-editor').each(function() {
         var editor = ace.edit($(this).attr('id'));
-        var this_textarea = jQuery('#textarea_' + $(this).attr('id'));
+        var this_textarea = $('#textarea_' + $(this).attr('id'));
         editor.setTheme("ace/theme/chrome");
         editor.getSession().setMode("ace/mode/css");
         editor.setShowPrintMargin( false );
@@ -687,14 +800,15 @@
           , ids: ids
           },
           success: function(res) {
-            parent.children('.ot-gallery-list').html(res)
-            if ( input.hasClass('ot-gallery-shortcode') ) 
-              input.val(shortcode)
-            if ( $(elm).parent().children('.ot-gallery-delete').length <= 0 ) {
-              $(elm).parent().append('<a href="#" class="option-tree-ui-button button button-secondary hug-left ot-gallery-delete">' + option_tree.delete + '</a>')
+            parent.children('.ot-gallery-list').html(res);
+            if ( input.hasClass('ot-gallery-shortcode') ) {
+              input.val(shortcode);
             }
-            $(elm).text(option_tree.edit)
-            OT_UI.init_conditions()
+            if ( $(elm).parent().children('.ot-gallery-delete').length <= 0 ) {
+              $(elm).parent().append('<a href="#" class="option-tree-ui-button button button-secondary hug-left ot-gallery-delete">' + option_tree.delete + '</a>');
+            }
+            $(elm).text(option_tree.edit);
+            OT_UI.parse_condition();
           }
         })
       })
@@ -758,11 +872,11 @@
       
       if ( confirm( option_tree.confirm ) ) {
         
-        $(elm).parents('.format-setting-inner').children('.ot-gallery-value').attr('value', '')
-        $(elm).parents('.format-setting-inner').children('.ot-gallery-list').remove()
-        $(elm).next('.ot-gallery-edit').text( option_tree.create )
-        $(elm).remove()
-        OT_UI.init_conditions()
+        $(elm).parents('.format-setting-inner').children('.ot-gallery-value').attr('value', '');
+        $(elm).parents('.format-setting-inner').children('.ot-gallery-list').remove();
+        $(elm).next('.ot-gallery-edit').text( option_tree.create );
+        $(elm).remove();
+        OT_UI.parse_condition();
         
       }
 
@@ -827,11 +941,27 @@
         })
         
         // Create the tabs
-        $(this).find('.ot-metabox-tabs').tabs()
+        $(this).find('.ot-metabox-tabs').tabs({
+          activate: function( event, ui ) {
+            var parent = $(this).outerHeight(),
+                child = $(this).find('.ot-metabox-panels').outerHeight() + 8,
+                minHeight = parent - 34
+            if ( $(this).find('.ot-metabox-panels').css('padding') == '12px' && child < parent ) {
+              $(this).find('.ot-metabox-panels').css({ minHeight: minHeight })
+            }
+            OT_UI.css_editor_mode();
+          }
+        })
         
         // Move the orphaned settings to the top
         $(this).find('.ot-metabox-panels > .format-settings').prependTo($(this))
-      
+        
+        // Remove a bunch of classes to stop style conflicts.
+        $(this).find('.ot-metabox-tabs').removeClass('ui-widget ui-widget-content ui-corner-all')
+        $(this).find('.ot-metabox-nav').removeClass('ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all')
+        $(this).find('.ot-metabox-nav li').removeClass('ui-state-default ui-corner-top ui-tabs-active ui-tabs-active')
+        $(this).find('.ot-metabox-nav li').on('hover', function() { $(this).removeClass('ui-state-hover') })
+
       }
     
     })
@@ -896,4 +1026,181 @@
      
   })
   
+}(window.jQuery);
+
+/*!
+ * Fixes the state of metabox radio buttons after a Drag & Drop event.
+ */
+!function ($) {
+  
+  $(document).on('ready', function () {
+
+    // detect mousedown and store all checked radio buttons
+    $('.hndle').on('mousedown', function () {
+      
+      // get parent element of .hndle selected. 
+      // We only need to monitor radios insde the object that is being moved.
+      var parent_id = $(this).closest('div').attr('id')
+      
+      // set live event listener for mouse up on the content .wrap 
+      // then give the dragged div time to settle before firing the reclick function
+      $('.wrap').on('mouseup', function () {
+        
+        var ot_checked_radios = {}
+        
+        // loop over all checked radio buttons inside of parent element
+        $('#' + parent_id + ' input[type="radio"]').each( function () {
+          
+          // stores checked radio buttons
+          if ( $(this).is(':checked') ) {
+            
+            ot_checked_radios[$(this).attr('name')] = $(this).val()
+          
+          }
+          
+          // write to the object
+          $(document).data('ot_checked_radios', ot_checked_radios)
+          
+        })
+        
+        // restore all checked radio buttons 
+        setTimeout( function () {
+      
+          // get object of checked radio button names and values
+          var checked = $(document).data('ot_checked_radios')
+          
+          // step thru each object element and trigger a click on it's corresponding radio button
+          for ( key in checked ) {
+            
+            $('input[name="' + key + '"]').filter('[value="' + checked[key] + '"]').trigger('click')
+            
+          }
+          
+          $('.wrap').unbind('mouseup')
+          
+        }, 50 )
+      
+      })
+      
+    })
+  
+  })
+  
+}(window.jQuery);
+
+/*!
+ * postformats.js v1.0
+ */
+!function ($) {
+
+  "use strict"; // jshint ;_;
+
+  /* POSTFORMATS CLASS DEFINITION
+   * ====================== */
+  var formats = "input.post-format"
+    , metaboxes = [
+          '#ot-post-format-gallery'
+        , '#ot-post-format-link'
+        , '#ot-post-format-image'
+        , '#ot-post-format-quote'
+        , '#ot-post-format-video'
+        , '#ot-post-format-audio'
+      ]
+    , ids = metaboxes.join(',')
+    , insertAfter = '#titlediv'
+    , imageBox = '#postimagediv'
+    , placeholder = 'postimagediv-placeholder'
+    , Postformats = function (element, options) {
+        this.$element = $(element)
+          .on('click.postformats.data-api', $.proxy(this.toggle, this))
+        this.$id = this.$element.attr('id')
+        this.init()
+      }
+
+  Postformats.prototype = {
+
+    constructor: Postformats
+  
+  , init: function () {
+
+      // Moves the metaboxes into place
+      $( '#ot-' + this.$id ).insertAfter( $( insertAfter ) ).hide()
+      
+      // Show the checked metabox
+      if ( this.$element.is(':checked') ) {
+      
+        this.show()
+        
+      }
+      
+    }
+    
+  , toggle: function () {
+
+      // Hides all the post format metaboxes
+      $(ids).each(function() {
+      
+        $(this).hide()
+        
+      })
+      
+      // Shows the clicked post format metabox
+      this.show()
+      
+    }
+  
+  , show: function () {
+      
+      // Featured image is never really hidden so it requires different code 
+      if ( this.$id == 'post-format-image' ) {
+        
+        if ( $( '#' + placeholder ).length == 0 )
+          $( imageBox ).after( '<div id="' + placeholder + '"></div>' ).insertAfter( insertAfter ).find('h3 span').text(option_tree.with)
+        
+      // Revert image
+      } else {
+
+        $( '#' + placeholder ).replaceWith( $( imageBox ) )
+        $( imageBox ).find('h3 span').text(option_tree.replace)
+        
+      }
+      
+      // Show the metabox
+      $( '#ot-' + this.$id ).show()
+      
+    }
+  
+  }
+    
+  /* POSTFORMATS PLUGIN DEFINITION
+   * ======================= */
+  var old = $.fn.postformats
+
+  $.fn.postformats = function (option) {
+    return this.each(function () {
+      var $this = $(this)
+        , data = $this.data('postformats')
+        , options = typeof option == 'object' && option
+      if (!data) $this.data('postformats', (data = new Postformats(this, options)))
+      if (typeof option == 'string') data[option]()
+    })
+  }
+
+  $.fn.postformats.Constructor = Postformats
+  
+  /* POSTFORMATS NO CONFLICT
+   * ================= */
+  $.fn.postformats.noConflict = function () {
+    $.fn.postformats = old
+    return this
+  }
+
+  /* POSTFORMATS DATA-API
+   * ============== */
+  $(document).on('ready.postformats.data-api', function () {
+    $(formats).each(function () {
+      $(this).postformats()
+    })
+  })
+
 }(window.jQuery);

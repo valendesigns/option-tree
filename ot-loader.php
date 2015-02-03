@@ -1,13 +1,30 @@
 <?php
 /**
  * Plugin Name: OptionTree
- * Plugin URI:  http://wp.envato.com
+ * Plugin URI:  https://github.com/valendesigns/option-tree/
  * Description: Theme Options UI Builder for WordPress. A simple way to create & save Theme Options and Meta Boxes for free or premium themes.
- * Version:     2.3.4
+ * Version:     2.5.0
  * Author:      Derek Herman
  * Author URI:  http://valendesigns.com
  * License:     GPLv3
  */
+
+/**
+ * Forces Plugin Mode when OptionTree is already loaded and displays an admin notice.
+ */
+if ( class_exists( 'OT_Loader' ) && defined( 'OT_PLUGIN_MODE' ) && OT_PLUGIN_MODE == true ) {
+  
+  add_filter( 'ot_theme_mode', '__return_false', 999 );
+  
+  function ot_conflict_notice() {
+    
+    echo '<div class="error"><p>' . __( 'OptionTree is installed as a plugin and also embedded in your current theme. Please deactivate the plugin to load the theme dependent version of OptionTree, and remove this warning.', 'option-tree' ) . '</p></div>';
+    
+  }
+  
+  add_action( 'admin_notices', 'ot_conflict_notice' );
+  
+}
 
 /**
  * This is the OptionTree loader class.
@@ -63,8 +80,27 @@ if ( ! class_exists( 'OT_Loader' ) ) {
        * This path will be relative in plugin mode and absolute in theme mode.
        *
        * @since     2.0.10
+       * @updated   2.4.1
        */
-      define( 'OT_LANG_DIR', dirname( plugin_basename( __FILE__ ) ) . DIRECTORY_SEPARATOR . 'languages' . DIRECTORY_SEPARATOR );
+      if ( OT_PLUGIN_MODE ) {
+        
+        define( 'OT_LANG_DIR', trailingslashit( dirname( plugin_basename( __FILE__ ) ) ) . trailingslashit( 'languages' ) );
+        
+      } else {
+      
+        if ( apply_filters( 'ot_child_theme_mode', false ) == true ) {
+        
+          $path = ltrim( end( @explode( get_stylesheet(), str_replace( '\\', '/', dirname( __FILE__ ) ) ) ), '/' );
+          define( 'OT_LANG_DIR', trailingslashit( trailingslashit( get_stylesheet_directory() ) . $path ) . trailingslashit( 'languages' ) . 'theme-mode' );
+          
+        } else {
+        
+          $path = ltrim( end( @explode( get_template(), str_replace( '\\', '/', dirname( __FILE__ ) ) ) ), '/' );
+          define( 'OT_LANG_DIR', trailingslashit( trailingslashit( get_template_directory() ) . $path ) . trailingslashit( 'languages' ) . 'theme-mode' );
+          
+        }
+      
+      }
 
       /* load the text domain  */
       if ( OT_PLUGIN_MODE ) {
@@ -95,7 +131,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
         
       } else {
       
-        load_theme_textdomain( 'option-tree', DIRECTORY_SEPARATOR . OT_LANG_DIR . 'theme-mode' );
+        load_theme_textdomain( 'option-tree', OT_LANG_DIR );
         
       }
       
@@ -142,7 +178,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       /**
        * Current Version number.
        */
-      define( 'OT_VERSION', '2.3.4' );
+      define( 'OT_VERSION', '2.5.0' );
       
       /**
        * For developers: Theme mode.
@@ -258,6 +294,16 @@ if ( ! class_exists( 'OT_Loader' ) ) {
        * @since     2.0
        */
       define( 'OT_ALLOW_UNFILTERED_HTML', apply_filters( 'ot_allow_unfiltered_html', false ) );
+
+      /**
+       * For developers: Post Formats.
+       *
+       * Run a filter and set to true if you want OptionTree 
+       * to load meta boxes for post formats.
+       *
+       * @since     2.4.0
+       */
+      define( 'OT_POST_FORMATS', apply_filters( 'ot_post_formats', false ) );
       
       /**
        * Check if in theme mode.
@@ -325,11 +371,19 @@ if ( ! class_exists( 'OT_Loader' ) ) {
         $files[] = 'ot-meta-box-api';
       }
       
+      /* include the post formats api */
+      if ( OT_META_BOXES == true && OT_POST_FORMATS == true ) {
+        $files[] = 'ot-post-formats-api';
+      }
+      
       /* include the settings & docs pages */
       if ( OT_SHOW_PAGES == true ) {
         $files[] = 'ot-functions-settings-page';
         $files[] = 'ot-functions-docs-page';
       }
+      
+      /* include the cleanup api */
+      $files[] = 'ot-cleanup-api';
       
       /* require the files */
       foreach ( $files as $file ) {
@@ -435,7 +489,10 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       
       /* global CSS */
       add_action( 'admin_head', array( $this, 'global_admin_css' ) );
-      
+
+      /* Google Fonts front-end CSS */
+      add_action( 'wp_enqueue_scripts', 'ot_load_google_fonts_css', 1 );
+ 
       /* dynamic front-end CSS */
       add_action( 'wp_enqueue_scripts', 'ot_load_dynamic_css', 999 );
 
@@ -462,6 +519,12 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       
       /* AJAX call to create a new list item */
       add_action( 'wp_ajax_add_list_item', array( $this, 'add_list_item' ) );
+      
+      /* AJAX call to create a new social link */
+      add_action( 'wp_ajax_add_social_links', array( $this, 'add_social_links' ) );
+
+      /* AJAX call to retrieve Google Font data */
+      add_action( 'wp_ajax_ot_google_font', array( $this, 'retrieve_google_font' ) );
       
       // Adds the temporary hacktastic shortcode
       add_filter( 'media_view_settings', array( $this, 'shortcode' ), 10, 2 );
@@ -604,6 +667,14 @@ if ( ! class_exists( 'OT_Loader' ) ) {
     }
     
     /**
+     * AJAX utility function for adding a new social link.
+     */
+    public function add_social_links() {
+      ot_social_links_view( $_REQUEST['name'], $_REQUEST['count'], array(), $_REQUEST['post_id'], $_REQUEST['get_option'], unserialize( ot_decode( $_REQUEST['settings'] ) ), $_REQUEST['type'] );
+      die();
+    }
+    
+    /**
      * Fake the gallery shortcode
      *
      * The JS takes over and creates the actual shortcode with 
@@ -620,8 +691,13 @@ if ( ! class_exists( 'OT_Loader' ) ) {
     public function shortcode( $settings, $post ) {
   
       // Set the OptionTree post ID
-      if ( ! is_object( $post ) )
-        $settings['post']['id'] = ot_get_media_post_ID();
+      if ( ! is_object( $post ) ) {
+        $post_id = isset( $_GET['post'] ) ? $_GET['post'] : ( isset( $_GET['post_ID'] ) ? $_GET['post_ID'] : 0 );
+        if ( $post_id == 0 && function_exists( 'ot_get_media_post_ID' ) ) {
+          $post_id = ot_get_media_post_ID();
+        }
+        $settings['post']['id'] = $post_id;
+      }
       
       // No ID return settings
       if ( $settings['post']['id'] == 0 )
@@ -662,6 +738,30 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       
       }
       
+    }
+
+    /**
+     * Returns a JSON encoded Google fonts array.
+     *
+     * @return    array
+     *
+     * @access    public
+     * @since     2.5.0
+     */
+    public function retrieve_google_font() {
+
+      if ( isset( $_POST['field_id'], $_POST['family'] ) ) {
+        
+        ot_fetch_google_fonts();
+        
+        echo json_encode( array(
+          'variants' => ot_recognized_google_font_variants( $_POST['field_id'], $_POST['family'] ),
+          'subsets'  => ot_recognized_google_font_subsets( $_POST['field_id'], $_POST['family'] )
+        ) );
+        exit();
+
+      }
+
     }
     
     /**

@@ -71,6 +71,20 @@ if ( ! function_exists( 'ot_type_background' ) ) {
     /* verify a description */
     $has_desc = $field_desc ? true : false;
     
+    /* If an attachment ID is stored here fetch its URL and replace the value */
+    if ( isset( $field_value['background-image'] ) && wp_attachment_is_image( $field_value['background-image'] ) ) {
+    
+      $attachment_data = wp_get_attachment_image_src( $field_value['background-image'], 'original' );
+      
+      /* check for attachment data */
+      if ( $attachment_data ) {
+      
+        $field_src = $attachment_data[0];
+        
+      }
+      
+    }
+    
     /* format setting outer wrapper */
     echo '<div class="format-setting type-background ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
       
@@ -199,7 +213,7 @@ if ( ! function_exists( 'ot_type_background' ) ) {
               
                 foreach ( (array) $choices as $choice ) {
                   if ( isset( $choice['value'] ) && isset( $choice['label'] ) ) {
-                    echo '<option value="' . esc_attr( $choice['value'] ) . '"' . selected( $field_value['background-size'], $choice['value'], false ) . '>' . esc_attr( $choice['label'] ) . '</option>';
+                    echo '<option value="' . esc_attr( $choice['value'] ) . '"' . selected( ( isset( $field_value['background-size'] ) ? $field_value['background-size'] : '' ), $choice['value'], false ) . '>' . esc_attr( $choice['label'] ) . '</option>';
                   }
                 }
         
@@ -221,22 +235,26 @@ if ( ! function_exists( 'ot_type_background' ) ) {
           echo '<div class="option-tree-ui-upload-parent">';
             
             /* input */
-            echo '<input type="text" name="' . esc_attr( $field_name ) . '[background-image]" id="' . esc_attr( $field_id ) . '" value="' . ( isset( $field_value['background-image'] ) ? esc_attr( $field_value['background-image'] ) : '' ) . '" class="widefat option-tree-ui-upload-input ' . esc_attr( $field_class ) . '" />';
+            echo '<input type="text" name="' . esc_attr( $field_name ) . '[background-image]" id="' . esc_attr( $field_id ) . '" value="' . ( isset( $field_value['background-image'] ) ? esc_attr( $field_value['background-image'] ) : '' ) . '" class="widefat option-tree-ui-upload-input ' . esc_attr( $field_class ) . '" placeholder="' . __( 'background-image', 'option-tree' ) . '" />';
             
             /* add media button */
-            echo '<a href="javascript:void(0);" class="ot_upload_media option-tree-ui-button button button-primary light" rel="' . $post_id . '" title="' . __( 'Add Media', 'option-tree' ) . '"><span class="icon ot-icon-plus-sign"></span>' . __( 'Add Media', 'option-tree' ) . '</a>';
+            echo '<a href="javascript:void(0);" class="ot_upload_media option-tree-ui-button button button-primary light" rel="' . $post_id . '" title="' . __( 'Add Media', 'option-tree' ) . '"><span class="icon ot-icon-plus-circle"></span>' . __( 'Add Media', 'option-tree' ) . '</a>';
           
           echo '</div>';
           
           /* media */
           if ( isset( $field_value['background-image'] ) && $field_value['background-image'] !== '' ) {
+            
+            /* replace image src */
+            if ( isset( $field_src ) )
+              $field_value['background-image'] = $field_src;
           
             echo '<div class="option-tree-ui-media-wrap" id="' . esc_attr( $field_id ) . '_media">';
             
               if ( preg_match( '/\.(?:jpe?g|png|gif|ico)$/i', $field_value['background-image'] ) )
                 echo '<div class="option-tree-ui-image-wrap"><img src="' . esc_url( $field_value['background-image'] ) . '" alt="" /></div>';
               
-              echo '<a href="javascript:(void);" class="option-tree-ui-remove-media option-tree-ui-button button button-secondary light" title="' . __( 'Remove Media', 'option-tree' ) . '"><span class="icon ot-icon-minus-sign"></span>' . __( 'Remove Media', 'option-tree' ) . '</a>';
+              echo '<a href="javascript:(void);" class="option-tree-ui-remove-media option-tree-ui-button button button-secondary light" title="' . __( 'Remove Media', 'option-tree' ) . '"><span class="icon ot-icon-minus-circle"></span>' . __( 'Remove Media', 'option-tree' ) . '</a>';
               
             echo '</div>';
             
@@ -250,6 +268,229 @@ if ( ! function_exists( 'ot_type_background' ) ) {
     
   }
   
+}
+
+/**
+ * Border Option Type
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     The options arguments
+ * @return    string    The markup.
+ *
+ * @access    public
+ * @since     2.5.0
+ */
+if ( ! function_exists( 'ot_type_border' ) ) {
+
+  function ot_type_border( $args = array() ) {
+
+    /* turns arguments array into variables */
+    extract( $args );
+
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-border ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+
+        /* allow fields to be filtered */
+        $ot_recognized_border_fields = apply_filters( 'ot_recognized_border_fields', array(
+          'width',
+          'unit',
+          'style',
+          'color'
+        ), $field_id );
+
+        /* build border width */
+        if ( in_array( 'width', $ot_recognized_border_fields ) ) {
+
+          $width = isset( $field_value['width'] ) ? esc_attr( $field_value['width'] ) : '';
+
+          echo '<div class="ot-option-group ot-option-group--one-sixth"><input type="text" name="' . esc_attr( $field_name ) . '[width]" id="' . esc_attr( $field_id ) . '-width" value="' . esc_attr( $width ) . '" class="widefat option-tree-ui-input ' . esc_attr( $field_class ) . '" placeholder="' . __( 'width', 'option-tree' ) . '" /></div>';
+
+        }
+
+        /* build unit dropdown */
+        if ( in_array( 'unit', $ot_recognized_border_fields ) ) {
+          
+          echo '<div class="ot-option-group ot-option-group--one-fourth">';
+          
+            echo '<select name="' . esc_attr( $field_name ) . '[unit]" id="' . esc_attr( $field_id ) . '-unit" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
+    
+              echo '<option value="">&nbsp;--&nbsp;</option>';
+    
+              foreach ( ot_recognized_border_unit_types( $field_id ) as $unit ) {
+                echo '<option value="' . esc_attr( $unit ) . '"' . ( isset( $field_value['unit'] ) ? selected( $field_value['unit'], $unit, false ) : '' ) . '>' . esc_attr( $unit ) . '</option>';
+              }
+    
+            echo '</select>';
+          
+          echo '</div>';
+  
+        }
+        
+        /* build style dropdown */
+        if ( in_array( 'style', $ot_recognized_border_fields ) ) {
+          
+          echo '<div class="ot-option-group ot-option-group--one-fourth">';
+          
+            echo '<select name="' . esc_attr( $field_name ) . '[style]" id="' . esc_attr( $field_id ) . '-style" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
+    
+              echo '<option value="">&nbsp;--&nbsp;</option>';
+    
+              foreach ( ot_recognized_border_style_types( $field_id ) as $key => $style ) {
+                echo '<option value="' . esc_attr( $key ) . '"' . ( isset( $field_value['style'] ) ? selected( $field_value['style'], $key, false ) : '' ) . '>' . esc_attr( $style ) . '</option>';
+              }
+    
+            echo '</select>';
+          
+          echo '</div>';
+  
+        }
+        
+        /* build color */
+        if ( in_array( 'color', $ot_recognized_border_fields ) ) {
+          
+          echo '<div class="option-tree-ui-colorpicker-input-wrap">';
+            
+            /* colorpicker JS */      
+            echo '<script>jQuery(document).ready(function($) { OT_UI.bind_colorpicker("' . esc_attr( $field_id ) . '-picker"); });</script>';
+            
+            /* set color */
+            $color = isset( $field_value['color'] ) ? esc_attr( $field_value['color'] ) : '';
+            
+            /* input */
+            echo '<input type="text" name="' . esc_attr( $field_name ) . '[color]" id="' . $field_id . '-picker" value="' . $color . '" class="hide-color-picker ' . esc_attr( $field_class ) . '" />';
+          
+          echo '</div>';
+        
+        }
+      
+      echo '</div>';
+
+    echo '</div>';
+
+  }
+
+}
+
+/**
+ * Box Shadow Option Type
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     The options arguments
+ * @return    string    The markup.
+ *
+ * @access    public
+ * @since     2.5.0
+ */
+if ( ! function_exists( 'ot_type_box_shadow' ) ) {
+
+  function ot_type_box_shadow( $args = array() ) {
+
+    /* turns arguments array into variables */
+    extract( $args );
+
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-box-shadow ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+
+        /* allow fields to be filtered */
+        $ot_recognized_box_shadow_fields = apply_filters( 'ot_recognized_box_shadow_fields', array(
+          'inset',
+          'offset-x',
+          'offset-y',
+          'blur-radius',
+          'spread-radius',
+          'color'
+        ), $field_id );
+        
+        /* build inset */
+        if ( in_array( 'inset', $ot_recognized_box_shadow_fields ) ) {
+        
+          echo '<div class="ot-option-group ot-option-group--checkbox"><p>';
+            echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[inset]" id="' . esc_attr( $field_id ) . '-inset" value="inset" ' . ( isset( $field_value['inset'] ) ? checked( $field_value['inset'], 'inset', false ) : '' ) . ' class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
+            echo '<label for="' . esc_attr( $field_id ) . '-inset">inset</label>';
+          echo '</p></div>';
+          
+        }
+          
+        /* build horizontal offset */
+        if ( in_array( 'offset-x', $ot_recognized_box_shadow_fields ) ) {
+
+          $offset_x = isset( $field_value['offset-x'] ) ? esc_attr( $field_value['offset-x'] ) : '';
+
+          echo '<div class="ot-option-group ot-option-group--one-fifth"><span class="ot-icon-arrows-h ot-option-group--icon"></span><input type="text" name="' . esc_attr( $field_name ) . '[offset-x]" id="' . esc_attr( $field_id ) . '-offset-x" value="' . $offset_x . '" class="widefat option-tree-ui-input ' . esc_attr( $field_class ) . '" placeholder="' . __( 'offset-x', 'option-tree' ) . '" /></div>';
+
+        }
+        
+        /* build vertical offset */
+        if ( in_array( 'offset-y', $ot_recognized_box_shadow_fields ) ) {
+
+          $offset_y = isset( $field_value['offset-y'] ) ? esc_attr( $field_value['offset-y'] ) : '';
+
+          echo '<div class="ot-option-group ot-option-group--one-fifth"><span class="ot-icon-arrows-v ot-option-group--icon"></span><input type="text" name="' . esc_attr( $field_name ) . '[offset-y]" id="' . esc_attr( $field_id ) . '-offset-y" value="' . $offset_y . '" class="widefat option-tree-ui-input ' . esc_attr( $field_class ) . '" placeholder="' . __( 'offset-y', 'option-tree' ) . '" /></div>';
+
+        }
+        
+        /* build blur-radius radius */
+        if ( in_array( 'blur-radius', $ot_recognized_box_shadow_fields ) ) {
+
+          $blur_radius = isset( $field_value['blur-radius'] ) ? esc_attr( $field_value['blur-radius'] ) : '';
+
+          echo '<div class="ot-option-group ot-option-group--one-fifth"><span class="ot-icon-circle ot-option-group--icon"></span><input type="text" name="' . esc_attr( $field_name ) . '[blur-radius]" id="' . esc_attr( $field_id ) . '-blur-radius" value="' . $blur_radius . '" class="widefat option-tree-ui-input ' . esc_attr( $field_class ) . '" placeholder="' . __( 'blur-radius', 'option-tree' ) . '" /></div>';
+
+        }
+        
+        /* build spread-radius radius */
+        if ( in_array( 'spread-radius', $ot_recognized_box_shadow_fields ) ) {
+
+          $spread_radius = isset( $field_value['spread-radius'] ) ? esc_attr( $field_value['spread-radius'] ) : '';
+
+          echo '<div class="ot-option-group ot-option-group--one-fifth"><span class="ot-icon-arrows-alt ot-option-group--icon"></span><input type="text" name="' . esc_attr( $field_name ) . '[spread-radius]" id="' . esc_attr( $field_id ) . '-spread-radius" value="' . $spread_radius . '" class="widefat option-tree-ui-input ' . esc_attr( $field_class ) . '" placeholder="' . __( 'spread-radius', 'option-tree' ) . '" /></div>';
+
+        }
+        
+        /* build color */
+        if ( in_array( 'color', $ot_recognized_box_shadow_fields ) ) {
+          
+          echo '<div class="option-tree-ui-colorpicker-input-wrap">';
+            
+            /* colorpicker JS */      
+            echo '<script>jQuery(document).ready(function($) { OT_UI.bind_colorpicker("' . esc_attr( $field_id ) . '-picker"); });</script>';
+            
+            /* set color */
+            $color = isset( $field_value['color'] ) ? esc_attr( $field_value['color'] ) : '';
+            
+            /* input */
+            echo '<input type="text" name="' . esc_attr( $field_name ) . '[color]" id="' . esc_attr( $field_id ) . '-picker" value="' . $color . '" class="hide-color-picker ' . esc_attr( $field_class ) . '" />';
+          
+          echo '</div>';
+        
+        }
+        
+      echo '</div>';
+
+    echo '</div>';
+
+  }
+
 }
 
 /**
@@ -460,6 +701,77 @@ if ( ! function_exists( 'ot_type_colorpicker' ) ) {
     
   }
   
+}
+
+/**
+ * Colorpicker Opacity option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.5.0
+ */
+if ( ! function_exists( 'ot_type_colorpicker_opacity' ) ) {
+
+  function ot_type_colorpicker_opacity( $args = array() ) {
+    
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-colorpicker-opacity ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+      
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+      
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+        
+        /* build colorpicker */  
+        echo '<div class="option-tree-ui-colorpicker-input-wrap">';
+          
+          /* colorpicker JS */      
+          echo '<script>jQuery(document).ready(function($) { OT_UI.bind_colorpicker("' . esc_attr( $field_id ) . '-color"); });</script>';
+          
+          /* set color */
+          $color = isset( $field_value['color'] ) ? esc_attr( $field_value['color'] ) : '';
+          
+          /* set default color */
+          $std = isset( $field_std['color'] ) ? 'data-default-color="' . $field_std['color'] . '"' : '';
+          
+          /* input */
+          echo '<input type="text" name="' . esc_attr( $field_name ) . '[color]" id="' . esc_attr( $field_id ) . '-color" value="' . esc_attr( $color ) . '" class="hide-color-picker ' . esc_attr( $field_class ) . '" ' . $std . ' />';
+        
+        echo '</div>';
+
+        echo '<div class="ot-numeric-slider-wrap">';
+          
+          $min = 0;
+          $max = 1.01;
+          $step = 0.01;
+    
+          /* set background color */
+          $opacity = isset( $field_value['opacity'] ) ? esc_attr( $field_value['opacity'] ) : '';
+								
+          echo '<input type="hidden" name="' . esc_attr( $field_name ) . '[opacity]" id="' . esc_attr( $field_id ) . '-opacity" class="ot-numeric-slider-hidden-input" value="' . $opacity . '" data-min="' . esc_attr( $min ) . '" data-max="' . esc_attr( $max ) . '" data-step="' . esc_attr( $step ) . '">';
+
+          echo '<input type="text" class="ot-numeric-slider-helper-input widefat option-tree-ui-input ' . esc_attr( $field_class ) . '" value="' . esc_attr( $opacity ) . '" readonly>';
+
+          echo '<div id="ot_numeric_slider_' . esc_attr( $field_id ) . '" class="ot-numeric-slider"></div>';
+
+        echo '</div>';
+      
+      echo '</div>';
+      
+    echo '</div>';
+  }
+
 }
 
 /**
@@ -718,6 +1030,88 @@ if ( ! function_exists( 'ot_type_date_time_picker' ) ) {
 }
 
 /**
+ * Dimension Option Type
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     The options arguments
+ * @return    string    The markup.
+ *
+ * @access    public
+ * @since     2.5.0
+ */
+if ( ! function_exists( 'ot_type_dimension' ) ) {
+
+  function ot_type_dimension( $args = array() ) {
+
+    /* turns arguments array into variables */
+    extract( $args );
+
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-dimension ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+
+        /* allow fields to be filtered */
+        $ot_recognized_dimension_fields = apply_filters( 'ot_recognized_dimension_fields', array(
+          'width',
+          'height',
+          'unit'
+        ), $field_id );
+
+        /* build width dimension */
+        if ( in_array( 'width', $ot_recognized_dimension_fields ) ) {
+
+          $width = isset( $field_value['width'] ) ? esc_attr( $field_value['width'] ) : '';
+
+          echo '<div class="ot-option-group ot-option-group--one-third"><span class="ot-icon-arrows-h ot-option-group--icon"></span><input type="text" name="' . esc_attr( $field_name ) . '[width]" id="' . esc_attr( $field_id ) . '-width" value="' . esc_attr( $width ) . '" class="widefat option-tree-ui-input ' . esc_attr( $field_class ) . '" placeholder="' . __( 'width', 'option-tree' ) . '" /></div>';
+
+        }
+
+        /* build height dimension */
+        if ( in_array( 'height', $ot_recognized_dimension_fields ) ) {
+
+          $height = isset( $field_value['height'] ) ? esc_attr( $field_value['height'] ) : '';
+
+          echo '<div class="ot-option-group ot-option-group--one-third"><span class="ot-icon-arrows-v ot-option-group--icon"></span><input type="text" name="' . esc_attr( $field_name ) . '[height]" id="' . esc_attr( $field_id ) . '-height" value="' . esc_attr( $height ) . '" class="widefat option-tree-ui-input ' . esc_attr( $field_class ) . '" placeholder="' . __( 'height', 'option-tree' ) . '" /></div>';
+
+        }
+        
+        /* build unit dropdown */
+        if ( in_array( 'unit', $ot_recognized_dimension_fields ) ) {
+          
+          echo '<div class="ot-option-group ot-option-group--one-third ot-option-group--is-last">';
+          
+            echo '<select name="' . esc_attr( $field_name ) . '[unit]" id="' . esc_attr( $field_id ) . '-unit" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
+    
+              echo '<option value="">&nbsp;--&nbsp;</option>';
+    
+              foreach ( ot_recognized_dimension_unit_types( $field_id ) as $unit ) {
+                echo '<option value="' . esc_attr( $unit ) . '"' . ( isset( $field_value['unit'] ) ? selected( $field_value['unit'], $unit, false ) : '' ) . '>' . esc_attr( $unit ) . '</option>';
+              }
+    
+            echo '</select>';
+          
+          echo '</div>';
+  
+        }
+      
+      echo '</div>';
+
+    echo '</div>';
+
+  }
+
+}
+
+/**
  * Gallery option type.
  *
  * See @ot_display_by_type to see the full list of available arguments.
@@ -761,12 +1155,12 @@ if ( ! function_exists( 'ot_type_gallery' ) ) {
         // Turn the field value into an array of IDs
         if ( isset( $matches[1] ) ) {
           
-          // The string is a shortcode
+          // Found the IDs in the shortcode
           $ids = explode( ',', $matches[1] );
           
         } else {
           
-          // The string is a comma separated list of IDs
+          // The string is only IDs
           $ids = ! empty( $field_value ) && $field_value != '' ? explode( ',', $field_value ) : array();
           
         }
@@ -813,6 +1207,208 @@ if ( ! function_exists( 'ot_type_gallery' ) ) {
 }
 
 /**
+ * Google Fonts option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.5.0
+ */
+if ( ! function_exists( 'ot_type_google_fonts' ) ) {
+  
+  function ot_type_google_fonts( $args = array() ) {
+
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+    
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-google-font ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+      
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+      
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">'; 
+        
+        /* allow fields to be filtered */
+        $ot_recognized_google_fonts_fields = apply_filters( 'ot_recognized_google_font_fields', array(
+          'variants', 
+          'subsets'
+        ), $field_id );
+        
+        // Set a default to show at least one item.
+        if ( ! is_array( $field_value ) || empty( $field_value ) ) {
+          $field_value = array( array(
+            'family'    => '',
+            'variants'  => array(),
+            'subsets'   => array()
+          ) );
+        }
+        
+        foreach( $field_value as $key => $value ) {
+        
+          echo '<div class="type-google-font-group">';
+          
+            /* build font family */
+            $family = isset( $value['family'] ) ? $value['family'] : '';
+            echo '<div class="option-tree-google-font-family">';
+              echo '<a href="javascript:void(0);" class="js-remove-google-font option-tree-ui-button button button-secondary light" title="' . __( 'Remove Google Font', 'option-tree' ) . '"><span class="icon ot-icon-minus-circle"/>' . __( 'Remove Google Font', 'option-tree' ) . '</a>';
+              echo '<select name="' . esc_attr( $field_name ) . '[' . $key . '][family]" id="' . esc_attr( $field_id ) . '-' . $key . '" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
+                echo '<option value="">' . __( '-- Choose One --', 'option-tree' ) . '</option>';
+                foreach ( ot_recognized_google_font_families( $field_id ) as $family_key => $family_value ) {
+                  echo '<option value="' . esc_attr( $family_key ) . '" ' . selected( $family, $family_key, false ) . '>' . esc_html( $family_value ) . '</option>';
+                }
+              echo '</select>';
+            echo '</div>';
+    
+            /* build font variants */
+            if ( in_array( 'variants', $ot_recognized_google_fonts_fields ) ) {
+              $variants = isset( $value['variants'] ) ? $value['variants'] : array();
+              echo '<div class="option-tree-google-font-variants" data-field-id-prefix="' . esc_attr( $field_id ) . '-' . $key . '-" data-field-name="' . esc_attr( $field_name ) . '[' . $key . '][variants]" data-field-class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '">';
+              foreach ( ot_recognized_google_font_variants( $field_id, $family ) as $variant_key => $variant ) {
+                echo '<p class="checkbox-wrap">';
+                  echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[' . $key . '][variants][]" id="' . esc_attr( $field_id ) . '-' . $key . '-' . $variant . '" value="' . esc_attr( $variant ) . '" ' . checked( in_array( $variant, $variants ), true, false )  . ' class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
+                  echo '<label for="' . esc_attr( $field_id ) . '-' . $key . '-' . $variant . '">' . esc_html( $variant ) . '</label>';
+                echo '</p>';
+              }
+              echo '</div>';
+            }
+            
+            /* build font subsets */
+            if ( in_array( 'subsets', $ot_recognized_google_fonts_fields ) ) {
+              $subsets = isset( $value['subsets'] ) ? $value['subsets'] : array();
+              echo '<div class="option-tree-google-font-subsets" data-field-id-prefix="' . esc_attr( $field_id ) . '-' . $key . '-" data-field-name="' . esc_attr( $field_name ) . '[' . $key . '][subsets]" data-field-class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '">';
+              foreach ( ot_recognized_google_font_subsets( $field_id, $family ) as $subset_key => $subset ) {
+                echo '<p class="checkbox-wrap">';
+                  echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[' . $key . '][subsets][]" id="' . esc_attr( $field_id ) . '-' . $key . '-' . $subset . '" value="' . esc_attr( $subset ) . '" ' . checked( in_array( $subset, $subsets ), true, false )  . ' class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
+                  echo '<label for="' . esc_attr( $field_id ) . '-' . $key . '-' . $subset . '">' . esc_html( $subset ) . '</label>';
+                echo '</p>';
+              }
+              echo '</div>';
+            }
+          
+          echo '</div>';
+        
+        }
+
+        echo '<div class="type-google-font-group-clone">';
+        
+          /* build font family */
+          echo '<div class="option-tree-google-font-family">';
+            echo '<a href="javascript:void(0);" class="js-remove-google-font option-tree-ui-button button button-secondary light" title="' . __( 'Remove Google Font', 'option-tree' ) . '"><span class="icon ot-icon-minus-circle"/>' . __( 'Remove Google Font', 'option-tree' ) . '</a>';
+            echo '<select name="' . esc_attr( $field_name ) . '[%key%][family]" id="' . esc_attr( $field_id ) . '-%key%" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
+              echo '<option value="">' . __( '-- Choose One --', 'option-tree' ) . '</option>';
+              foreach ( ot_recognized_google_font_families( $field_id ) as $family_key => $family_value ) {
+                echo '<option value="' . esc_attr( $family_key ) . '">' . esc_html( $family_value ) . '</option>';
+              }
+            echo '</select>';
+          echo '</div>';
+          
+          /* build font variants */
+          if ( in_array( 'variants', $ot_recognized_google_fonts_fields ) ) {
+            echo '<div class="option-tree-google-font-variants" data-field-id-prefix="' . esc_attr( $field_id ) . '-%key%-" data-field-name="' . esc_attr( $field_name ) . '[%key%][variants]" data-field-class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '">';
+            echo '</div>';
+          }
+          
+          /* build font subsets */
+          if ( in_array( 'subsets', $ot_recognized_google_fonts_fields ) ) {
+            echo '<div class="option-tree-google-font-subsets" data-field-id-prefix="' . esc_attr( $field_id ) . '-%key%-" data-field-name="' . esc_attr( $field_name ) . '[%key%][subsets]" data-field-class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '">';
+            echo '</div>';
+          }
+        
+        echo '</div>';
+        
+        echo '<a href="javascript:void(0);" class="js-add-google-font option-tree-ui-button button button-primary right hug-right" title="' . __( 'Add Google Font', 'option-tree' ) . '">' . __( 'Add Google Font', 'option-tree' ) . '</a>';
+        
+      echo '</div>';
+      
+    echo '</div>';
+    
+  }
+
+}
+
+/**
+ * Link Color option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     The options arguments
+ * @return    string    The markup.
+ *
+ * @access    public
+ * @since     2.5.0
+ */
+if ( ! function_exists( 'ot_type_link_color' ) ) {
+
+  function ot_type_link_color( $args = array() ) {
+
+    /* turns arguments array into variables */
+    extract( $args );
+
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-link-color ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+
+        /* allow fields to be filtered */
+        $ot_recognized_link_color_fields = apply_filters( 'ot_recognized_link_color_fields', array(
+          'link'    => _x( 'Standard', 'color picker', 'option-tree' ),
+          'hover'   => _x( 'Hover', 'color picker', 'option-tree' ),
+          'active'  => _x( 'Active', 'color picker', 'option-tree' ),
+          'visited' => _x( 'Visited', 'color picker', 'option-tree' ),
+          'focus'   => _x( 'Focus', 'color picker', 'option-tree' )
+        ), $field_id );
+
+        /* build link color fields */
+        foreach( $ot_recognized_link_color_fields as $type => $label ) {
+
+          if ( array_key_exists( $type, $ot_recognized_link_color_fields ) ) {
+            
+            echo '<div class="option-tree-ui-colorpicker-input-wrap">';
+
+              echo '<label for="' . esc_attr( $field_id ) . '-picker-' . $type . '" class="option-tree-ui-colorpicker-label">' . esc_attr( $label ) . '</label>';
+
+              /* colorpicker JS */
+              echo '<script>jQuery(document).ready(function($) { OT_UI.bind_colorpicker("' . esc_attr( $field_id ) . '-picker-' . $type . '"); });</script>';
+
+              /* set color */
+              $color = isset( $field_value[ $type ] ) ? esc_attr( $field_value[ $type ] ) : '';
+              
+              /* set default color */
+              $std = isset( $field_std[ $type ] ) ? 'data-default-color="' . $field_std[ $type ] . '"' : '';
+
+              /* input */
+              echo '<input type="text" name="' . esc_attr( $field_name ) . '[' . $type . ']" id="' . esc_attr( $field_id ) . '-picker-' . $type . '" value="' . $color . '" class="hide-color-picker ' . esc_attr( $field_class ) . '" ' . $std . ' />';
+
+            echo '</div>';
+
+          }
+
+        }
+
+      echo '</div>';
+
+    echo '</div>';
+
+  }
+
+}
+
+/**
  * List Item option type.
  *
  * See @ot_display_by_type to see the full list of available arguments.
@@ -848,7 +1444,7 @@ if ( ! function_exists( 'ot_type_list_item' ) ) {
         /** 
          * settings pages have array wrappers like 'option_tree'.
          * So we need that value to create a proper array to save to.
-         * This is only for NON metaboxes settings.
+         * This is only for NON metabox settings.
          */
         if ( ! isset( $get_option ) )
           $get_option = '';
@@ -926,7 +1522,7 @@ if ( ! function_exists( 'ot_type_measurement' ) ) {
           echo '<option value="">&nbsp;--&nbsp;</option>';
           
           foreach ( ot_measurement_unit_types( $field_id ) as $unit ) {
-            echo '<option value="' . esc_attr( $unit ) . '"' . selected( $field_value[1], $unit, false ) . '>' . esc_attr( $unit ) . '</option>';
+            echo '<option value="' . esc_attr( $unit ) . '"' . ( isset( $field_value[1] ) ? selected( $field_value[1], $unit, false ) : '' ) . '>' . esc_attr( $unit ) . '</option>';
           }
           
         echo '</select>';
@@ -1157,78 +1753,6 @@ if ( ! function_exists( 'ot_type_page_select' ) ) {
         
         echo '</select>';
         
-      echo '</div>';
-
-    echo '</div>';
-    
-  }
-  
-}
-
-/**
- * List Item option type.
- *
- * See @ot_display_by_type to see the full list of available arguments.
- *
- * @param     array     An array of arguments.
- * @return    string
- *
- * @access    public
- * @since     2.0
- */
-if ( ! function_exists( 'ot_type_slider' ) ) {
-  
-  function ot_type_slider( $args = array() ) {
-    
-    /* turns arguments array into variables */
-    extract( $args );
-    
-    /* verify a description */
-    $has_desc = $field_desc ? true : false;
-
-    /* format setting outer wrapper */
-    echo '<div class="format-setting type-slider ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
-      
-      /* description */
-      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
-      
-      /* format setting inner wrapper */
-      echo '<div class="format-setting-inner">';
-        
-        /* pass the settings array arround */
-        echo '<input type="hidden" name="' . esc_attr( $field_id ) . '_settings_array" id="' . esc_attr( $field_id ) . '_settings_array" value="' . ot_encode( serialize( $field_settings ) ) . '" />';
-        
-        /** 
-         * settings pages have array wrappers like 'option_tree'.
-         * So we need that value to create a proper array to save to.
-         * This is only for NON metaboxes settings.
-         */
-        if ( ! isset( $get_option ) )
-          $get_option = '';
-          
-        /* build list items */
-        echo '<ul class="option-tree-setting-wrap option-tree-sortable" data-name="' . esc_attr( $field_id ) . '" data-id="' . esc_attr( $post_id ) . '" data-get-option="' . esc_attr( $get_option ) . '" data-type="' . esc_attr( $type ) . '">';
-        
-        if ( is_array( $field_value ) && ! empty( $field_value ) ) {
-        
-          foreach( $field_value as $key => $list_item ) {
-            
-            echo '<li class="ui-state-default list-list-item">';
-              ot_list_item_view( $field_id, $key, $list_item, $post_id, $get_option, $field_settings, $type );
-            echo '</li>';
-            
-          }
-          
-        }
-        
-        echo '</ul>';
-        
-        /* button */
-        echo '<a href="javascript:void(0);" class="option-tree-list-item-add option-tree-ui-button button button-primary right hug-right" title="' . __( 'Add New', 'option-tree' ) . '">' . __( 'Add New', 'option-tree' ) . '</a>';
-        
-        /* description */
-        echo '<div class="list-item-description">' . __( 'You can re-order with drag & drop, the order will update after saving.', 'option-tree' ) . '</div>';
-      
       echo '</div>';
 
     echo '</div>';
@@ -1478,6 +2002,9 @@ if ( ! function_exists( 'ot_type_select' ) ) {
       /* description */
       echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
       
+      /* filter choices array */
+      $field_choices = apply_filters( 'ot_type_select_choices', $field_choices, $field_id );
+    
       /* format setting inner wrapper */
       echo '<div class="format-setting-inner">';
       
@@ -1570,6 +2097,345 @@ if ( ! function_exists( 'ot_type_sidebar_select' ) ) {
     
   }
   
+}
+
+/**
+ * List Item option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.0
+ */
+if ( ! function_exists( 'ot_type_slider' ) ) {
+  
+  function ot_type_slider( $args = array() ) {
+    
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-slider ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+      
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+      
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+        
+        /* pass the settings array arround */
+        echo '<input type="hidden" name="' . esc_attr( $field_id ) . '_settings_array" id="' . esc_attr( $field_id ) . '_settings_array" value="' . ot_encode( serialize( $field_settings ) ) . '" />';
+        
+        /** 
+         * settings pages have array wrappers like 'option_tree'.
+         * So we need that value to create a proper array to save to.
+         * This is only for NON metabox settings.
+         */
+        if ( ! isset( $get_option ) )
+          $get_option = '';
+          
+        /* build list items */
+        echo '<ul class="option-tree-setting-wrap option-tree-sortable" data-name="' . esc_attr( $field_id ) . '" data-id="' . esc_attr( $post_id ) . '" data-get-option="' . esc_attr( $get_option ) . '" data-type="' . esc_attr( $type ) . '">';
+        
+        if ( is_array( $field_value ) && ! empty( $field_value ) ) {
+        
+          foreach( $field_value as $key => $list_item ) {
+            
+            echo '<li class="ui-state-default list-list-item">';
+              ot_list_item_view( $field_id, $key, $list_item, $post_id, $get_option, $field_settings, $type );
+            echo '</li>';
+            
+          }
+          
+        }
+        
+        echo '</ul>';
+        
+        /* button */
+        echo '<a href="javascript:void(0);" class="option-tree-list-item-add option-tree-ui-button button button-primary right hug-right" title="' . __( 'Add New', 'option-tree' ) . '">' . __( 'Add New', 'option-tree' ) . '</a>';
+        
+        /* description */
+        echo '<div class="list-item-description">' . __( 'You can re-order with drag & drop, the order will update after saving.', 'option-tree' ) . '</div>';
+      
+      echo '</div>';
+
+    echo '</div>';
+    
+  }
+  
+}
+
+/**
+ * Social Links option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.4.0
+ */
+if ( ! function_exists( 'ot_type_social_links' ) ) {
+  
+  function ot_type_social_links( $args = array() ) {
+    
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* Load the default social links */
+    if ( empty( $field_value ) && apply_filters( 'ot_type_social_links_load_defaults', true, $field_id ) ) {
+      
+      $field_value = apply_filters( 'ot_type_social_links_defaults', array(
+        array(
+          'name'    => __( 'Facebook', 'option-tree' ),
+          'title'   => '',
+          'href'    => ''
+        ),
+        array(
+          'name'    => __( 'Twitter', 'option-tree' ),
+          'title'   => '',
+          'href'    => ''
+        ),
+        array(
+          'name'    => __( 'Google+', 'option-tree' ),
+          'title'   => '',
+          'href'    => ''
+        ),
+        array(
+          'name'    => __( 'LinkedIn', 'option-tree' ),
+          'title'   => '',
+          'href'    => ''
+        ),
+        array(
+          'name'    => __( 'Pinterest', 'option-tree' ),
+          'title'   => '',
+          'href'    => ''
+        ),
+        array(
+          'name'    => __( 'Youtube', 'option-tree' ),
+          'title'   => '',
+          'href'    => ''
+        ),
+        array(
+          'name'    => __( 'Dribbble', 'option-tree' ),
+          'title'   => '',
+          'href'    => ''
+        ),
+        array(
+          'name'    => __( 'Github', 'option-tree' ),
+          'title'   => '',
+          'href'    => ''
+        ),
+        array(
+          'name'    => __( 'Forrst', 'option-tree' ),
+          'title'   => '',
+          'href'    => ''
+        ),
+        array(
+          'name'    => __( 'Digg', 'option-tree' ),
+          'title'   => '',
+          'href'    => ''
+        ),
+        array(
+          'name'    => __( 'Delicious', 'option-tree' ),
+          'title'   => '',
+          'href'    => ''
+        ),
+        array(
+          'name'    => __( 'Tumblr', 'option-tree' ),
+          'title'   => '',
+          'href'    => ''
+        ),
+        array(
+          'name'    => __( 'Skype', 'option-tree' ),
+          'title'   => '',
+          'href'    => ''
+        ),
+        array(
+          'name'    => __( 'SoundCloud', 'option-tree' ),
+          'title'   => '',
+          'href'    => ''
+        ),
+        array(
+          'name'    => __( 'Vimeo', 'option-tree' ),
+          'title'   => '',
+          'href'    => ''
+        ),
+        array(
+          'name'    => __( 'Flickr', 'option-tree' ),
+          'title'   => '',
+          'href'    => ''
+        ),
+        array(
+          'name'    => __( 'VK.com', 'option-tree' ),
+          'title'   => '',
+          'href'    => ''
+        )
+      ), $field_id );
+      
+    }
+    
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-social-list-item ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+      
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+      
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+        
+        /* pass the settings array arround */
+        echo '<input type="hidden" name="' . esc_attr( $field_id ) . '_settings_array" id="' . esc_attr( $field_id ) . '_settings_array" value="' . ot_encode( serialize( $field_settings ) ) . '" />';
+        
+        /** 
+         * settings pages have array wrappers like 'option_tree'.
+         * So we need that value to create a proper array to save to.
+         * This is only for NON metabox settings.
+         */
+        if ( ! isset( $get_option ) )
+          $get_option = '';
+          
+        /* build list items */
+        echo '<ul class="option-tree-setting-wrap option-tree-sortable" data-name="' . esc_attr( $field_id ) . '" data-id="' . esc_attr( $post_id ) . '" data-get-option="' . esc_attr( $get_option ) . '" data-type="' . esc_attr( $type ) . '">';
+        
+        if ( is_array( $field_value ) && ! empty( $field_value ) ) {
+        
+          foreach( $field_value as $key => $link ) {
+            
+            echo '<li class="ui-state-default list-list-item">';
+              ot_social_links_view( $field_id, $key, $link, $post_id, $get_option, $field_settings, $type );
+            echo '</li>';
+            
+          }
+          
+        }
+        
+        echo '</ul>';
+        
+        /* button */
+        echo '<a href="javascript:void(0);" class="option-tree-social-links-add option-tree-ui-button button button-primary right hug-right" title="' . __( 'Add New', 'option-tree' ) . '">' . __( 'Add New', 'option-tree' ) . '</a>';
+        
+        /* description */
+        echo '<div class="list-item-description">' . apply_filters( 'ot_social_links_description', __( 'You can re-order with drag & drop, the order will update after saving.', 'option-tree' ), $field_id ) . '</div>';
+      
+      echo '</div>';
+
+    echo '</div>';
+    
+  }
+  
+}
+
+/**
+ * Spacing Option Type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.5.0
+ */
+if ( ! function_exists( 'ot_type_spacing' ) ) {
+
+  function ot_type_spacing( $args = array() ) {
+
+    /* turns arguments array into variables */
+    extract( $args );
+
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-spacing ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+
+        /* allow fields to be filtered */
+        $ot_recognized_spacing_fields = apply_filters( 'ot_recognized_spacing_fields', array(
+          'top',
+          'right',
+          'bottom',
+          'left',
+          'unit'
+        ), $field_id );
+
+        /* build top spacing */
+        if ( in_array( 'top', $ot_recognized_spacing_fields ) ) {
+
+          $top = isset( $field_value['top'] ) ? esc_attr( $field_value['top'] ) : '';
+
+          echo '<div class="ot-option-group"><span class="ot-icon-arrow-up ot-option-group--icon"></span><input type="text" name="' . esc_attr( $field_name ) . '[top]" id="' . esc_attr( $field_id ) . '-top" value="' . $top . '" class="widefat option-tree-ui-input ' . esc_attr( $field_class ) . '" placeholder="' . __( 'top', 'option-tree' ) . '" /></div>';
+
+        }
+
+        /* build right spacing */
+        if ( in_array( 'right', $ot_recognized_spacing_fields ) ) {
+
+          $right = isset( $field_value['right'] ) ? esc_attr( $field_value['right'] ) : '';
+
+          echo '<div class="ot-option-group"><span class="ot-icon-arrow-right ot-option-group--icon"></span></span><input type="text" name="' . esc_attr( $field_name ) . '[right]" id="' . esc_attr( $field_id ) . '-right" value="' . $right . '" class="widefat option-tree-ui-input ' . esc_attr( $field_class ) . '" placeholder="' . __( 'right', 'option-tree' ) . '" /></div>';
+
+        }
+
+        /* build bottom spacing */
+        if ( in_array( 'bottom', $ot_recognized_spacing_fields ) ) {
+
+          $bottom = isset( $field_value['bottom'] ) ? esc_attr( $field_value['bottom'] ) : '';
+
+          echo '<div class="ot-option-group"><span class="ot-icon-arrow-down ot-option-group--icon"></span><input type="text" name="' . esc_attr( $field_name ) . '[bottom]" id="' . esc_attr( $field_id ) . '-bottom" value="' . $bottom . '" class="widefat option-tree-ui-input ' . esc_attr( $field_class ) . '" placeholder="' . __( 'bottom', 'option-tree' ) . '" /></div>';
+
+        }
+
+        /* build left spacing */
+        if ( in_array( 'left', $ot_recognized_spacing_fields ) ) {
+
+          $left = isset( $field_value['left'] ) ? esc_attr( $field_value['left'] ) : '';
+
+          echo '<div class="ot-option-group"><span class="ot-icon-arrow-left ot-option-group--icon"></span><input type="text" name="' . esc_attr( $field_name ) . '[left]" id="' . esc_attr( $field_id ) . '-left" value="' . $left . '" class="widefat option-tree-ui-input ' . esc_attr( $field_class ) . '" placeholder="' . __( 'left', 'option-tree' ) . '" /></div>';
+
+        }
+
+      /* build unit dropdown */
+      if ( in_array( 'unit', $ot_recognized_spacing_fields ) ) {
+        
+        echo '<div class="ot-option-group ot-option-group--is-last">';
+        
+          echo '<select name="' . esc_attr( $field_name ) . '[unit]" id="' . esc_attr( $field_id ) . '-unit" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
+  
+            echo '<option value="">&nbsp;--&nbsp;</option>';
+  
+            foreach ( ot_recognized_spacing_unit_types( $field_id ) as $unit ) {
+              echo '<option value="' . esc_attr( $unit ) . '"' . ( isset( $field_value['unit'] ) ? selected( $field_value['unit'], $unit, false ) : '' ) . '>' . esc_attr( $unit ) . '</option>';
+            }
+  
+          echo '</select>';
+        
+        echo '</div>';
+
+      }
+      
+      echo '</div>';
+
+    echo '</div>';
+
+  }
+
 }
 
 /**
@@ -2218,6 +3084,20 @@ if ( ! function_exists( 'ot_type_upload' ) ) {
     /* verify a description */
     $has_desc = $field_desc ? true : false;
     
+    /* If an attachment ID is stored here fetch its URL and replace the value */
+    if ( $field_value && wp_attachment_is_image( $field_value ) ) {
+    
+      $attachment_data = wp_get_attachment_image_src( $field_value, 'original' );
+      
+      /* check for attachment data */
+      if ( $attachment_data ) {
+      
+        $field_src = $attachment_data[0];
+        
+      }
+      
+    }
+    
     /* format setting outer wrapper */
     echo '<div class="format-setting type-upload ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
       
@@ -2234,19 +3114,23 @@ if ( ! function_exists( 'ot_type_upload' ) ) {
           echo '<input type="text" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" value="' . esc_attr( $field_value ) . '" class="widefat option-tree-ui-upload-input ' . esc_attr( $field_class ) . '" />';
           
           /* add media button */
-          echo '<a href="javascript:void(0);" class="ot_upload_media option-tree-ui-button button button-primary light" rel="' . $post_id . '" title="' . __( 'Add Media', 'option-tree' ) . '"><span class="icon ot-icon-plus-sign"></span>' . __( 'Add Media', 'option-tree' ) . '</a>';
+          echo '<a href="javascript:void(0);" class="ot_upload_media option-tree-ui-button button button-primary light" rel="' . $post_id . '" title="' . __( 'Add Media', 'option-tree' ) . '"><span class="icon ot-icon-plus-circle"></span>' . __( 'Add Media', 'option-tree' ) . '</a>';
         
         echo '</div>';
         
         /* media */
         if ( $field_value ) {
-        
+            
           echo '<div class="option-tree-ui-media-wrap" id="' . esc_attr( $field_id ) . '_media">';
-          
+            
+            /* replace image src */
+            if ( isset( $field_src ) )
+              $field_value = $field_src;
+              
             if ( preg_match( '/\.(?:jpe?g|png|gif|ico)$/i', $field_value ) )
               echo '<div class="option-tree-ui-image-wrap"><img src="' . esc_url( $field_value ) . '" alt="" /></div>';
             
-            echo '<a href="javascript:(void);" class="option-tree-ui-remove-media option-tree-ui-button button button-secondary light" title="' . __( 'Remove Media', 'option-tree' ) . '"><span class="icon ot-icon-minus-sign"></span>' . __( 'Remove Media', 'option-tree' ) . '</a>';
+            echo '<a href="javascript:(void);" class="option-tree-ui-remove-media option-tree-ui-button button button-secondary light" title="' . __( 'Remove Media', 'option-tree' ) . '"><span class="icon ot-icon-minus-circle"></span>' . __( 'Remove Media', 'option-tree' ) . '</a>';
             
           echo '</div>';
           
