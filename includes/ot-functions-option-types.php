@@ -1260,7 +1260,7 @@ if ( ! function_exists( 'ot_type_google_fonts' ) ) {
             echo '<div class="option-tree-google-font-family">';
               echo '<a href="javascript:void(0);" class="js-remove-google-font option-tree-ui-button button button-secondary light" title="' . __( 'Remove Google Font', 'option-tree' ) . '"><span class="icon ot-icon-minus-circle"/>' . __( 'Remove Google Font', 'option-tree' ) . '</a>';
               echo '<select name="' . esc_attr( $field_name ) . '[' . $key . '][family]" id="' . esc_attr( $field_id ) . '-' . $key . '" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
-                echo '<option value="">' . __( 'select a font family', 'option-tree' ) . '</option>';
+                echo '<option value="">' . __( '-- Choose One --', 'option-tree' ) . '</option>';
                 foreach ( ot_recognized_google_font_families( $field_id ) as $family_key => $family_value ) {
                   echo '<option value="' . esc_attr( $family_key ) . '" ' . selected( $family, $family_key, false ) . '>' . esc_html( $family_value ) . '</option>';
                 }
@@ -1303,7 +1303,7 @@ if ( ! function_exists( 'ot_type_google_fonts' ) ) {
           echo '<div class="option-tree-google-font-family">';
             echo '<a href="javascript:void(0);" class="js-remove-google-font option-tree-ui-button button button-secondary light" title="' . __( 'Remove Google Font', 'option-tree' ) . '"><span class="icon ot-icon-minus-circle"/>' . __( 'Remove Google Font', 'option-tree' ) . '</a>';
             echo '<select name="' . esc_attr( $field_name ) . '[%key%][family]" id="' . esc_attr( $field_id ) . '-%key%" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
-              echo '<option value="">' . __( 'select a font family', 'option-tree' ) . '</option>';
+              echo '<option value="">' . __( '-- Choose One --', 'option-tree' ) . '</option>';
               foreach ( ot_recognized_google_font_families( $field_id ) as $family_key => $family_value ) {
                 echo '<option value="' . esc_attr( $family_key ) . '">' . esc_html( $family_value ) . '</option>';
               }
