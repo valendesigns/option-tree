@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OptionTree\n"
 "POT-Creation-Date: 2015-02-03 11:33+0200\n"
-"PO-Revision-Date: 2015-02-03 11:33+0200\n"
+"PO-Revision-Date: 2015-02-03 11:42+0200\n"
 "Last-Translator: Risto Niinemets <risto@konekt.ee>\n"
 "Language-Team: Valen Designs\n"
 "Language: et_EE\n"
@@ -613,7 +613,7 @@ msgstr ""
 #: ../includes/ot-functions-admin.php:2448
 #: ../includes/ot-functions-docs-page.php:269
 msgid "Social Links"
-msgstr ""
+msgstr "Sotsiaalmeedia"
 
 #: ../assets/theme-mode/demo-theme-options.php:504
 #: ../includes/ot-functions-docs-page.php:270
@@ -806,7 +806,7 @@ msgstr ""
 #: ../includes/ot-cleanup-api.php:69 ../includes/ot-cleanup-api.php:84
 #: ../includes/ot-cleanup-api.php:116
 msgid "OptionTree Cleanup"
-msgstr ""
+msgstr "OptionTree puhastus"
 
 #: ../includes/ot-cleanup-api.php:84
 #, php-format
@@ -860,7 +860,7 @@ msgstr ""
 
 #: ../includes/ot-cleanup-api.php:162
 msgid "Reloading..."
-msgstr ""
+msgstr "Värskendame..."
 
 #: ../includes/ot-cleanup-api.php:198
 msgid "Clean up script has completed, the page will now reload..."
@@ -868,7 +868,7 @@ msgstr ""
 
 #: ../includes/ot-cleanup-api.php:218
 msgid "Outdated Table"
-msgstr ""
+msgstr "Aegunud tabel"
 
 #: ../includes/ot-cleanup-api.php:220
 #, php-format
@@ -881,7 +881,7 @@ msgstr ""
 
 #: ../includes/ot-cleanup-api.php:222
 msgid "Drop Table"
-msgstr ""
+msgstr "Eemalda tabel"
 
 #: ../includes/ot-cleanup-api.php:226
 #, php-format
@@ -910,7 +910,7 @@ msgstr ""
 
 #: ../includes/ot-cleanup-api.php:258
 msgid "Hide This Page"
-msgstr ""
+msgstr "Peida lehekülg"
 
 #: ../includes/ot-functions-admin.php:50 ../includes/ot-functions-admin.php:51
 #: ../includes/ot-functions-admin.php:169
@@ -1128,7 +1128,7 @@ msgstr "Sulge"
 
 #: ../includes/ot-functions-admin.php:863
 msgid "Featured Image"
-msgstr ""
+msgstr "Tunuuspilt"
 
 #: ../includes/ot-functions-admin.php:864
 #: ../includes/ot-functions-admin.php:3246
@@ -1203,7 +1203,7 @@ msgstr "Paigutus on aktiveeritud."
 #: ../includes/ot-functions-admin.php:2419
 #: ../includes/ot-functions-docs-page.php:113
 msgid "Border"
-msgstr ""
+msgstr "Ääris"
 
 #: ../includes/ot-functions-admin.php:2420
 #: ../includes/ot-functions-docs-page.php:116
@@ -1218,7 +1218,7 @@ msgstr ""
 #: ../includes/ot-functions-admin.php:2431
 #: ../includes/ot-functions-docs-page.php:165
 msgid "Dimension"
-msgstr ""
+msgstr "Mõõtmed"
 
 #: ../includes/ot-functions-admin.php:2433
 #: ../includes/ot-functions-docs-page.php:171
@@ -1285,7 +1285,7 @@ msgstr "Kirjeldus"
 
 #: ../includes/ot-functions-admin.php:3383
 msgid "Name"
-msgstr ""
+msgstr "Nimetus"
 
 #: ../includes/ot-functions-admin.php:3384
 msgid "Enter the name of the social website."
@@ -1542,7 +1542,7 @@ msgstr "Uus paigutus"
 
 #: ../includes/ot-functions-admin.php:5441
 msgid "Link URL"
-msgstr ""
+msgstr "Viide"
 
 #: ../includes/ot-functions-admin.php:5448
 msgid "Link Title"
@@ -1550,7 +1550,7 @@ msgstr ""
 
 #: ../includes/ot-functions-admin.php:5478
 msgid "Quote"
-msgstr ""
+msgstr "Tsitaat"
 
 #: ../includes/ot-functions-admin.php:5487
 msgid "Source Name (ex. author, singer, actor)"
@@ -1570,7 +1570,7 @@ msgstr ""
 
 #: ../includes/ot-functions-admin.php:5538
 msgid "Video"
-msgstr ""
+msgstr "Video"
 
 #: ../includes/ot-functions-admin.php:5547
 #, php-format
@@ -2527,7 +2527,7 @@ msgstr "background-size"
 
 #: ../includes/ot-functions-option-types.php:238
 msgid "background-image"
-msgstr ""
+msgstr "background-image"
 
 #: ../includes/ot-functions-option-types.php:241
 #: ../includes/ot-functions-option-types.php:3117
@@ -2537,23 +2537,23 @@ msgstr "Lisa meediat"
 #: ../includes/ot-functions-option-types.php:316
 #: ../includes/ot-functions-option-types.php:1074
 msgid "width"
-msgstr ""
+msgstr "width"
 
 #: ../includes/ot-functions-option-types.php:439
 msgid "offset-x"
-msgstr ""
+msgstr "offset-x"
 
 #: ../includes/ot-functions-option-types.php:448
 msgid "offset-y"
-msgstr ""
+msgstr "offset-y"
 
 #: ../includes/ot-functions-option-types.php:457
 msgid "blur-radius"
-msgstr ""
+msgstr "blur-radius"
 
 #: ../includes/ot-functions-option-types.php:466
 msgid "spread-radius"
-msgstr ""
+msgstr "spread-radius"
 
 #: ../includes/ot-functions-option-types.php:538
 #: ../includes/ot-functions-option-types.php:592
@@ -2578,16 +2578,16 @@ msgstr "Postitusi ei leitud"
 
 #: ../includes/ot-functions-option-types.php:1083
 msgid "height"
-msgstr ""
+msgstr "height"
 
 #: ../includes/ot-functions-option-types.php:1261
 #: ../includes/ot-functions-option-types.php:1304
 msgid "Remove Google Font"
-msgstr ""
+msgstr "Eemalda Google Font"
 
 #: ../includes/ot-functions-option-types.php:1327
 msgid "Add Google Font"
-msgstr ""
+msgstr "Lisa Google Font"
 
 #: ../includes/ot-functions-option-types.php:1369
 msgctxt "color picker"
@@ -2602,7 +2602,7 @@ msgstr ""
 #: ../includes/ot-functions-option-types.php:1371
 msgctxt "color picker"
 msgid "Active"
-msgstr ""
+msgstr "Aktiivne"
 
 #: ../includes/ot-functions-option-types.php:1372
 msgctxt "color picker"
@@ -2612,7 +2612,7 @@ msgstr ""
 #: ../includes/ot-functions-option-types.php:1373
 msgctxt "color picker"
 msgid "Focus"
-msgstr ""
+msgstr "Fookus"
 
 #: ../includes/ot-functions-option-types.php:1470
 #: ../includes/ot-functions-option-types.php:2161
@@ -2651,87 +2651,87 @@ msgstr "Küljendusmenüüd puuduvad"
 
 #: ../includes/ot-functions-option-types.php:2197
 msgid "Facebook"
-msgstr ""
+msgstr "Facebook"
 
 #: ../includes/ot-functions-option-types.php:2202
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: ../includes/ot-functions-option-types.php:2207
 msgid "Google+"
-msgstr ""
+msgstr "Google+"
 
 #: ../includes/ot-functions-option-types.php:2212
 msgid "LinkedIn"
-msgstr ""
+msgstr "LinkedIn"
 
 #: ../includes/ot-functions-option-types.php:2217
 msgid "Pinterest"
-msgstr ""
+msgstr "Pinterest"
 
 #: ../includes/ot-functions-option-types.php:2222
 msgid "Youtube"
-msgstr ""
+msgstr "Youtube"
 
 #: ../includes/ot-functions-option-types.php:2227
 msgid "Dribbble"
-msgstr ""
+msgstr "Dribbble"
 
 #: ../includes/ot-functions-option-types.php:2232
 msgid "Github"
-msgstr ""
+msgstr "Github"
 
 #: ../includes/ot-functions-option-types.php:2237
 msgid "Forrst"
-msgstr ""
+msgstr "Forrst"
 
 #: ../includes/ot-functions-option-types.php:2242
 msgid "Digg"
-msgstr ""
+msgstr "Digg"
 
 #: ../includes/ot-functions-option-types.php:2247
 msgid "Delicious"
-msgstr ""
+msgstr "Delicious"
 
 #: ../includes/ot-functions-option-types.php:2252
 msgid "Tumblr"
-msgstr ""
+msgstr "Tumblr"
 
 #: ../includes/ot-functions-option-types.php:2257
 msgid "Skype"
-msgstr ""
+msgstr "Skype"
 
 #: ../includes/ot-functions-option-types.php:2262
 msgid "SoundCloud"
-msgstr ""
+msgstr "SoundCloud"
 
 #: ../includes/ot-functions-option-types.php:2267
 msgid "Vimeo"
-msgstr ""
+msgstr "Vimeo"
 
 #: ../includes/ot-functions-option-types.php:2272
 msgid "Flickr"
-msgstr ""
+msgstr "Flickr"
 
 #: ../includes/ot-functions-option-types.php:2277
 msgid "VK.com"
-msgstr ""
+msgstr "VK.com"
 
 #: ../includes/ot-functions-option-types.php:2383
 msgid "top"
-msgstr ""
+msgstr "top"
 
 #: ../includes/ot-functions-option-types.php:2392
 msgid "right"
-msgstr ""
+msgstr "right"
 
 #: ../includes/ot-functions-option-types.php:2401
 msgid "bottom"
-msgstr ""
+msgstr "bottom"
 
 #: ../includes/ot-functions-option-types.php:2410
 msgid "left"
-msgstr ""
+msgstr "left"
 
 #: ../includes/ot-functions-option-types.php:2512
 #: ../includes/ot-functions-option-types.php:2566
