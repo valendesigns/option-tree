@@ -167,7 +167,10 @@ body {
         
         echo '<h4>'. __( 'Gallery', 'option-tree' ) . ':</h4>'; 
         echo '<p>' . __( 'The Gallery option type saves a comma separated list of image attachment IDs. You will need to create a front-end function to display the images in your theme.', 'option-tree' ) . '</p>';
-        
+
+        echo '<h4>'. __( 'Google Fonts', 'option-tree' ) . ':</h4>';
+        echo '<p>' . sprintf( __( 'The Google Fonts option type will dynamically enqueue any number of Google Web Fonts into the document %1$s. As well, once the option has been saved each font family will automatically be inserted into the %2$s array for the Typography option type. You can further modify the font stack by using the %3$s filter, which is passed the %4$s, %5$s, and %6$s parameters. The %6$s parameter is being passed from %7$s, so it will be the ID of a Typography option type. This will allow you to add additional web safe fonts to individual font families on an as-need basis.', 'option-tree' ), '<code>HEAD</code>', '<code>font-family</code>', '<code>ot_google_font_stack</code>', '<code>$font_stack</code>', '<code>$family</code>', '<code>$field_id</code>', '<code>ot_recognized_font_families</code>' ) . '</p>';
+
         echo '<h4>'. __( 'Link Color', 'option-tree' ) . ':</h4>';
         echo '<p>' . __( 'The Link Color option type is used to set all link color states.', 'option-tree' ) . '</p>';
         
