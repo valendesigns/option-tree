@@ -380,11 +380,6 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       if ( OT_META_BOXES == true ) {
         $files[] = 'ot-meta-box-api';
       }
-
-      /* include the meta box api */
-      if ( OT_WIDGETS == true ) {
-        $files[] = 'ot-widgets-api';
-      }
       
       /* include the post formats api */
       if ( OT_META_BOXES == true && OT_POST_FORMATS == true ) {
@@ -432,6 +427,11 @@ if ( ! class_exists( 'OT_Loader' ) ) {
         'ot-functions',
         'ot-functions-deprecated'
       );
+
+      /* include the meta box api */
+      if ( OT_WIDGETS == true ) {
+        $files[] = 'ot-widgets-api';
+      }
 
       /* require the files */
       foreach ( $files as $file ) {
