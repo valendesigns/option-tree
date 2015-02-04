@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OptionTree\n"
 "POT-Creation-Date: 2015-02-03 11:33+0200\n"
-"PO-Revision-Date: 2015-02-03 11:42+0200\n"
-"Last-Translator: Risto Niinemets <risto@konekt.ee>\n"
+"PO-Revision-Date: 2015-02-04 10:45+0200\n"
+"Last-Translator: Tanel Jüris <tanel.juris@marketingsharks.ee>\n"
 "Language-Team: Valen Designs\n"
 "Language: et_EE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.1\n"
+"X-Generator: Poedit 1.7.4\n"
 "X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
 "_n_noop:1,2;_c;_nc:4c,1,2;_x:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_ex:1,2c;"
 "esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
@@ -625,6 +625,11 @@ msgid ""
 "default values. Use the %s filter to change the default values that are "
 "loaded. To filter the settings array use the %s filter."
 msgstr ""
+"Sotsiaalmeedia linkide valikutüübis kasutatakse nimekirja loomiseks tiri-ja-"
+"pilla liidest. On loodud mõned filtrid, mis teevad selle valikutüübi "
+"täiendamise kergeks. Filter %s väärtuseks saab määrata %s, et lülitada välja "
+"vaikimisi väärtuste laadimine. %s filtriga saab muuta vaikeväärtuseid. "
+"Sätete massiivi filtreerimiseks on %s."
 
 #: ../assets/theme-mode/demo-theme-options.php:518
 #: ../includes/ot-functions-admin.php:2453
@@ -794,7 +799,7 @@ msgstr "Saada OptionTree-le"
 
 #: ../assets/theme-mode/demo-theme-options.php:653
 msgid "Upload Attachment ID"
-msgstr ""
+msgstr "Üles laetud manuse ID"
 
 #: ../assets/theme-mode/demo-theme-options.php:654
 #, php-format
@@ -802,6 +807,8 @@ msgid ""
 "The Upload option type can also be saved as an attachment ID by adding %s to "
 "the class attribute."
 msgstr ""
+"Üleslaadimise valikutüüpi saab salvestada ka manuse ID-na, lisades %s klassi "
+"atribuudile."
 
 #: ../includes/ot-cleanup-api.php:69 ../includes/ot-cleanup-api.php:84
 #: ../includes/ot-cleanup-api.php:116
@@ -814,10 +821,12 @@ msgid ""
 "OptionTree has outdated data that should be removed. Please go to %s for "
 "more information."
 msgstr ""
+"OptionTreel on aegunud andmeid, mis tuleks eemaldada. Lisainformatsiooni "
+"saamiseks mine palun %s."
 
 #: ../includes/ot-cleanup-api.php:124
 msgid "Multiple Media Posts"
-msgstr ""
+msgstr "Mitme meediaga postitused"
 
 #: ../includes/ot-cleanup-api.php:126
 #, php-format
@@ -829,6 +838,11 @@ msgid ""
 "database. Thankfully, there is a way to remove all these orphaned media "
 "posts and get your database cleaned up."
 msgstr ""
+"Sul on hetkel %s OptionTree meedia postitust andmebaasis. Millalgi varem "
+"lisas OptionTree mitu %s meedia postitust, risustades %s tabelit. Nende "
+"postitustega ei kaasne mingeid riske või kahju peale selle, et andmebaasi "
+"maht on suurem. Õnneks on nende orbudeks jäänud postituste eemaldamiseks "
+"moodus olemas, nii et saab andmebaasi jälle puhtaks."
 
 #: ../includes/ot-cleanup-api.php:128
 #, php-format
@@ -838,6 +852,9 @@ msgid ""
 "attachments to. Additionally, the attachments will have their parent ID "
 "updated to the correct media post."
 msgstr ""
+"Vajutades allolevat nuppu, kustutab OptionTree %s kirjet ning ühendab nad "
+"ainsasse OptionTree meedia postitusse, kuhu manuseid üles laaditakse. Lisaks "
+"määratakse nende manuste vanema ID-le õige väärtus."
 
 #: ../includes/ot-cleanup-api.php:130
 msgid ""
@@ -845,6 +862,8 @@ msgid ""
 "have in your database, so please be patient and wait for the script to "
 "finish."
 msgstr ""
+"See protsess võtab aega sõltuvalt andmebaasis olevate kirjete arvust, seega "
+"palun olge kannatlikud ja laske skriptil oma töö lõpetada."
 
 #: ../includes/ot-cleanup-api.php:132
 #, php-format
@@ -853,10 +872,14 @@ msgid ""
 "automatically reload after deleting %s posts, you can filter this number "
 "using %s if your server is having trouble processing that many at one time."
 msgstr ""
+"%s Sinu server töötab turvarežiimis, mistõttu see lehekülg laetakse peale %s "
+"postituse kustutamist uuesti. Kui serveril on nii korraga nii mitme "
+"postituse töötlemisega probleeme, siis on seda numbrit võimalik %s filtriga "
+"muuta."
 
 #: ../includes/ot-cleanup-api.php:134
 msgid "Consolidate Posts"
-msgstr ""
+msgstr "Konsolideeri postitused"
 
 #: ../includes/ot-cleanup-api.php:162
 msgid "Reloading..."
@@ -864,7 +887,7 @@ msgstr "Värskendame..."
 
 #: ../includes/ot-cleanup-api.php:198
 msgid "Clean up script has completed, the page will now reload..."
-msgstr ""
+msgstr "Puhastusskript on töö lõpetanud, leht laeb end kohe uuesti..."
 
 #: ../includes/ot-cleanup-api.php:218
 msgid "Outdated Table"
@@ -878,6 +901,9 @@ msgid ""
 "hurting anything, but does not need to be there. If you want to remove it. "
 "Click the button below."
 msgstr ""
+"Kui oled millalgi OptionTreed uuendanud vanalt 1.x versioonilt, on sul "
+"andmebaasis üleliigne tabel %s, mille saaks eemaldada. See ei tee midagi "
+"halba ning ei pea seal olema. Eemaldamiseks vajuta allolevat nuppu."
 
 #: ../includes/ot-cleanup-api.php:222
 msgid "Drop Table"
@@ -886,27 +912,29 @@ msgstr "Eemalda tabel"
 #: ../includes/ot-cleanup-api.php:226
 #, php-format
 msgid "Deleting the outdated and unused %s table..."
-msgstr ""
+msgstr "Kustutan aegunud ja kasutamata tabeli %s..."
 
 #: ../includes/ot-cleanup-api.php:232
 #, php-format
 msgid "The %s table has been successfully deleted. The page will now reload..."
-msgstr ""
+msgstr "Tabel %s kustutatu edukalt. Leht laetakse kohe uuesti..."
 
 #: ../includes/ot-cleanup-api.php:244
 #, php-format
 msgid "Something went wrong. The %s table was not deleted."
-msgstr ""
+msgstr "Midagi läks valesti. Tabelit %s ei kustutatud."
 
 #: ../includes/ot-cleanup-api.php:254
 msgid "Congratulations! You have a clean install."
-msgstr ""
+msgstr "Õnnitlused! Sul on puhas paigaldus."
 
 #: ../includes/ot-cleanup-api.php:256
 msgid ""
 "Your version of OptionTree does not have any outdated data. If there was "
 "outdated data, you would be presented with options to clean it up."
 msgstr ""
+"Sinu OptionTree versioonis ei ole aegunud andmeid. Kui neid oleks, siis "
+"pakutaks võimalust puhastamiseks."
 
 #: ../includes/ot-cleanup-api.php:258
 msgid "Hide This Page"
@@ -941,6 +969,8 @@ msgid ""
 "The Theme Options UI Builder is being overridden by a custom file in your "
 "theme. Any changes you make via the UI Builder will not be saved."
 msgstr ""
+"Teema kaustas on kohandatud fail, mistõttu Teema Valikute ehitaja "
+"kasutajaliideses tehtud muudatused ei salvestu."
 
 #: ../includes/ot-functions-admin.php:109
 #: ../includes/ot-functions-admin.php:110
@@ -1057,7 +1087,7 @@ msgstr "Mis siis ikkagi on paigutus?"
 #: ../includes/ot-functions-admin.php:683
 #, php-format
 msgid "The %s input field for %s only allows numeric values."
-msgstr ""
+msgstr "%s sisendväli %s jaoks lubab vaid numbrilisi väärtusi."
 
 #: ../includes/ot-functions-admin.php:512
 msgid "The Colorpicker only allows valid hexadecimal values."
@@ -1067,7 +1097,7 @@ msgstr ""
 #: ../includes/ot-functions-admin.php:566
 #, php-format
 msgid "The %s Colorpicker only allows valid hexadecimal values."
-msgstr ""
+msgstr "%s värvi valija lubab väärtuseid vaid kuueteistkümnendiksüsteemis."
 
 #: ../includes/ot-functions-admin.php:850
 #: ../includes/ot-functions-option-types.php:257
@@ -1208,12 +1238,12 @@ msgstr "Ääris"
 #: ../includes/ot-functions-admin.php:2420
 #: ../includes/ot-functions-docs-page.php:116
 msgid "Box Shadow"
-msgstr ""
+msgstr "Kasti vari"
 
 #: ../includes/ot-functions-admin.php:2425
 #: ../includes/ot-functions-docs-page.php:131
 msgid "Colorpicker Opacity"
-msgstr ""
+msgstr "Värvivalija läbipaistmatus"
 
 #: ../includes/ot-functions-admin.php:2431
 #: ../includes/ot-functions-docs-page.php:165
@@ -1223,12 +1253,12 @@ msgstr "Mõõtmed"
 #: ../includes/ot-functions-admin.php:2433
 #: ../includes/ot-functions-docs-page.php:171
 msgid "Google Fonts"
-msgstr ""
+msgstr "Google Fondid"
 
 #: ../includes/ot-functions-admin.php:2434
 #: ../includes/ot-functions-docs-page.php:174
 msgid "Link Color"
-msgstr ""
+msgstr "Lingi värv"
 
 #: ../includes/ot-functions-admin.php:2447
 #: ../includes/ot-functions-docs-page.php:266
@@ -1238,7 +1268,7 @@ msgstr "Slaidiesitaja"
 #: ../includes/ot-functions-admin.php:2449
 #: ../includes/ot-functions-docs-page.php:272
 msgid "Spacing"
-msgstr ""
+msgstr "Vahed"
 
 #: ../includes/ot-functions-admin.php:2450
 #: ../includes/ot-functions-docs-page.php:275
@@ -1289,11 +1319,11 @@ msgstr "Nimetus"
 
 #: ../includes/ot-functions-admin.php:3384
 msgid "Enter the name of the social website."
-msgstr ""
+msgstr "Sisesta sotsiaalmeedia veebilehe nimi."
 
 #: ../includes/ot-functions-admin.php:3392
 msgid "Enter the text shown in the title attribute of the link."
-msgstr ""
+msgstr "Sisesta tekst, mida näidatakse lingi pealkirja atribuudis."
 
 #: ../includes/ot-functions-admin.php:3398
 #, php-format
@@ -1301,6 +1331,8 @@ msgid ""
 "Enter a link to the profile or page on the social website. Remember to add "
 "the %s part to the front of the link."
 msgstr ""
+"Sisesta link profiilile või lehele sellel sotsiaalmeedia veebilehel. Ära "
+"unusta lisada lingi ette %s osa."
 
 #: ../includes/ot-functions-admin.php:3953
 msgid "edit"
@@ -1546,7 +1578,7 @@ msgstr "Viide"
 
 #: ../includes/ot-functions-admin.php:5448
 msgid "Link Title"
-msgstr ""
+msgstr "Lingi pealkiri"
 
 #: ../includes/ot-functions-admin.php:5478
 msgid "Quote"
@@ -1554,19 +1586,19 @@ msgstr "Tsitaat"
 
 #: ../includes/ot-functions-admin.php:5487
 msgid "Source Name (ex. author, singer, actor)"
-msgstr ""
+msgstr "Allika nimi (nt autor, laulja, näitleja)"
 
 #: ../includes/ot-functions-admin.php:5494
 msgid "Source URL"
-msgstr ""
+msgstr "Allika URL"
 
 #: ../includes/ot-functions-admin.php:5501
 msgid "Source Title (ex. book, song, movie)"
-msgstr ""
+msgstr "Allika pealkiri (nt raamat, laul, film)"
 
 #: ../includes/ot-functions-admin.php:5508
 msgid "Source Date"
-msgstr ""
+msgstr "Allika kuupäev"
 
 #: ../includes/ot-functions-admin.php:5538
 msgid "Video"
@@ -1579,15 +1611,18 @@ msgid ""
 "of supported oEmbed sites in the %1$s. Alternatively, you could use the "
 "built-in %2$s shortcode."
 msgstr ""
+"Lisa video välisest allikast, nagu näiteks Youtube, Vimeo või Hulu. "
+"Nimekirja toetatud oEmbed veebilehtedest leiad %1$s. Teine variant oleks "
+"kasutada sisse ehitatud lühikoodi %2$s."
 
 #: ../includes/ot-functions-admin.php:5547
 #: ../includes/ot-functions-admin.php:5586
 msgid "Wordpress Codex"
-msgstr ""
+msgstr "Wordpress Codex"
 
 #: ../includes/ot-functions-admin.php:5577
 msgid "Audio"
-msgstr ""
+msgstr "Audio"
 
 #: ../includes/ot-functions-admin.php:5586
 #, php-format
@@ -1596,6 +1631,9 @@ msgid ""
 "supported oEmbed sites in the %1$s. Alternatively, you could use the built-"
 "in %2$s shortcode."
 msgstr ""
+"Lisa heli teenustest SoundCloud, Rdio või teistest sarnastest. Nimekirja "
+"toetatud oEmbed veebilehtedest leiad %1$s. Teine variant oleks kasutada "
+"sisse ehitatud lühikoodi %2$s."
 
 #: ../includes/ot-functions-docs-page.php:30
 msgid ""
@@ -1791,12 +1829,20 @@ msgid ""
 "%s, %s, %s, %s, %s, %s, and %s. However, you can change them with the %s "
 "filter. The colorpicker saves a hexadecimal color code."
 msgstr ""
+"Äärise valikutüüp kasutatakse laiuse, ühiku, stiili ja värvi määramiseks. "
+"Tekstisisendisse saab kirjutada numbrilise väärtuse ning rippmenüü laseb "
+"valida talle mõõtühiku. Hetkel on vaikimisi ühikuteks %s, %s, %s ja %s. Neid "
+"saab muuta %s filtriga. Stiili rippmenüü laseb valida äärise stiili. "
+"Vaikimisi stiilid on %s, %s, %s, %s, %s, %s, %s ja %s. Neid saab muuta %s "
+"filtriga. Värvivalija salvestab värvikoodi kuueteistkümnendiksüsteemis."
 
 #: ../includes/ot-functions-docs-page.php:117
 #, php-format
 msgid ""
 "The Box Shadow option type is used to set %s, %s, %s, %s, %s, and %s values."
 msgstr ""
+"Kasti varju valikutüüpi kasutatakse %s, %s, %s, %s, %s ja %s väärtuse "
+"määramiseks."
 
 #: ../includes/ot-functions-docs-page.php:132
 #, php-format
@@ -1806,6 +1852,10 @@ msgid ""
 "as hexadecimal, if used within the CSS option type the color and opacity "
 "values will be converted into a valid RGBA CSS value."
 msgstr ""
+"Värvivalija läbipaistmatuse valikutüüp salvestab värvikoodi "
+"kuueteistkümnendiksüsteemis läbipaistmatuse väärtusega %s kuni %s sammuga "
+"%s. Kuigi väärtus salvestatakse kuueteistkümnendiksüsteemis, kasutades teda "
+"koos CSS valikutüübiga teisendatakse ja korrektseks RGBA CSS väärtuseks."
 
 #: ../includes/ot-functions-docs-page.php:139
 msgid "Input"
@@ -1823,6 +1873,10 @@ msgid ""
 "measurement to add to that value. Currently the default units are %s, %s, "
 "%s, and %s. However, you can change them with the %s filter."
 msgstr ""
+"Mõõtme valikutüüpi kasutatakse laiuse ja kõrguse väärtuste jaoks. "
+"Tekstisisendisse saab kirjutada numbrilise väärtuse ning rippmenüü laseb "
+"valida talle mõõtühiku. Hetkel on vaikimisi ühikuteks %s, %s, %s ja %s. Neid "
+"saab muuta %s filtriga."
 
 #: ../includes/ot-functions-docs-page.php:172
 #, php-format
@@ -1836,10 +1890,18 @@ msgid ""
 "option type. This will allow you to add additional web safe fonts to "
 "individual font families on an as-need basis."
 msgstr ""
+"Google Fontide valikutüüp kaasab dokumendi %1$s dünaamiliselt soovitud hulga "
+"Google veebifonte. Lisaks salvestub iga valitud fondi perekond automaatselt "
+"%2$s massiivi tüpograafia valikutüübis. Fondi salve saab veel rohkem "
+"modifitseerida %3$s filtriga, mis saab kaasa %4$s, %5$s ja %6$s parameetrid. "
+"%6$s parameeter antakse %7$s, nii et ta on tüpograafia valikutüübi ID. See "
+"võimaldab lisada veebis kasutamiseks sobilikke fonte erinevatele fondi "
+"perekondadele vastavalt vajadusele."
 
 #: ../includes/ot-functions-docs-page.php:175
 msgid "The Link Color option type is used to set all link color states."
 msgstr ""
+"Lingi värvi valikutüüpi kasutatakse kõikide linkide värviolekute määramiseks."
 
 #: ../includes/ot-functions-docs-page.php:178
 msgid ""
@@ -1897,6 +1959,10 @@ msgid ""
 "add to that value. Currently the default units are %s, %s, %s, and %s. "
 "However, you can change them with the %s filter."
 msgstr ""
+"Vahede valikutüüpi kasutatakse \"padding\" ja \"margin\" väärtuste jaoks "
+"kujul \"top\", \"right\", \"bottom\", \"left\". Tekstisisendisse saab "
+"kirjutada numbrilise väärtuse ning rippmenüü laseb valida talle mõõtühiku. "
+"Hetkel on vaikimisi ühikuteks %s, %s, %s ja %s. Neid saab muuta %s filtriga."
 
 #: ../includes/ot-functions-docs-page.php:276
 msgid ""
@@ -2592,12 +2658,12 @@ msgstr "Lisa Google Font"
 #: ../includes/ot-functions-option-types.php:1369
 msgctxt "color picker"
 msgid "Standard"
-msgstr ""
+msgstr "Standard"
 
 #: ../includes/ot-functions-option-types.php:1370
 msgctxt "color picker"
 msgid "Hover"
-msgstr ""
+msgstr "Hõljudes"
 
 #: ../includes/ot-functions-option-types.php:1371
 msgctxt "color picker"
@@ -2607,7 +2673,7 @@ msgstr "Aktiivne"
 #: ../includes/ot-functions-option-types.php:1372
 msgctxt "color picker"
 msgid "Visited"
-msgstr ""
+msgstr "Külastatud"
 
 #: ../includes/ot-functions-option-types.php:1373
 msgctxt "color picker"
@@ -3028,6 +3094,9 @@ msgid ""
 "Please deactivate the plugin to load the theme dependent version of "
 "OptionTree, and remove this warning."
 msgstr ""
+"OptionTree on paigaldatud nii moodulina kui ka kaasatud aktiivses teemas. "
+"Palun lülita moodul välja, et laetaks teemast sõltuv versioon OptionTreest "
+"ja see hoiatus kaoks."
 
 #~ msgid "Color Picker"
 #~ msgstr "Värvi valija"
