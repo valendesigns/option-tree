@@ -474,6 +474,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
      * @since     2.0
      */
     public function display_setting( $args = array() ) {
+
       extract( $args );
       
       /* get current saved data */
@@ -510,6 +511,12 @@ if ( ! class_exists( 'OT_Settings' ) ) {
         'post_id'           => ot_get_media_post_ID(),
         'get_option'        => $get_option,
       );
+      
+      // Limit DB queries for Google Fonts.
+      if ( $type == 'google-fonts' ) {
+        ot_fetch_google_fonts();
+        ot_set_google_fonts( $id, $field_value );
+      }
       
       /* get the option HTML */
       echo ot_display_by_type( $_args );

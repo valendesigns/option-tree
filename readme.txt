@@ -32,16 +32,22 @@ OptionTree is a project partly sponsored by <a href="http://themeforest.net/?ref
 This is a complete list of all the available option types that come shipped with OptionTree.
 
 * Background
+* Border
+* Box Shadow
 * Category Checkbox
 * Category Select
 * Checkbox
-* Color Picker
+* Colorpicker
+* Colorpicker Opacity
 * CSS
 * Custom Post Type Checkbox
 * Custom Post Type Select
 * Date Picker
 * Date Time Picker
+* Dimension
 * Gallery
+* Google Fonts
+* Link Color
 * List Item
 * Measurement
 * Numeric Slider
@@ -56,6 +62,7 @@ This is a complete list of all the available option types that come shipped with
 * Sidebar Select
 * Slider
 * Social Links
+* Spacing
 * Tab
 * Tag Checkbox
 * Tag Select
@@ -117,6 +124,22 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 3. Documentation
 
 == Changelog ==
+
+= 2.5.0 =
+* Added the Google Fonts option type. Contributors via github @maimairel, and @valendesigns.
+* Added the Border option type. Contributors via github @doitmax, and @valendesigns.
+* Added the Box Shadow option type. Contributors via github @doitmax, and @valendesigns.
+* Added the Colorpicker Opacity option type. Contributors via github @doitmax, and @valendesigns.
+* Added the Dimension option type. Contributors via github @doitmax, and @valendesigns.
+* Added the Link Color option type. Contributors via github @doitmax, and @valendesigns.
+* Added the Spacing option type. Contributors via github @doitmax, and @valendesigns.
+* Fixed an issue where the Colorpicker was not parsing conditions on `change` or `clear`.
+* Fixed the Colorpicker styles on mobile devices.
+* Show the Colorpicker setting ID inside the error message string when the value is invalid.
+* Stop Theme Check from complaining about the `register_post_type()` function being used in Theme Mode.
+* Added styles that clean up the appearance of the included Font Awesome icons in section tabs.
+* Fixed jQuery UI style conflicts created by the WP Review plugin.
+* Added filter `ot_dequeue_jquery_ui_css_screen_ids` to dequeue `jquery-ui-css` by screen ID.
 
 = 2.4.6 =
 * Hotfix - Added a clean up script to consolidate orphaned media posts and remove the old and unused `wp_option_tree` table.
