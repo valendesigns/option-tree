@@ -1,15 +1,21 @@
-=== OptionTree ===
+# OptionTree
 Contributors: valendesigns
+
 Donate link: http://bit.ly/NuXI3T
+
 Tags: options, theme options, meta boxes
+
 Requires at least: 3.5
+
 Tested up to: 4.0
+
 Stable tag: 2.4.6
+
 License: GPLv3
 
 Theme Options UI Builder for WordPress. A simple way to create & save Theme Options and Meta Boxes for free or premium themes.
 
-== Description ==
+## Description
 
 OptionTree attempts to bridge the gap between WordPress developers, designers and end-users by creating fully responsive option panels and meta boxes with an ease unlike any other plugin. OptionTree has many advanced features with well placed hooks and filters to adjust every aspect of the user experience. 
 
@@ -69,7 +75,7 @@ This is a complete list of all the available option types that come shipped with
 * Typography
 * Upload
 
-== Installation ==
+## Installation
 
 **Plugin Mode**
 
@@ -96,27 +102,27 @@ require( trailingslashit( get_template_directory() ) . 'option-tree/ot-loader.ph
 
 For a list of all the OptionTree UI display filters refer to the `demo-functions.php` file found in the `/assets/theme-mode/` directory of this plugin. This file is the starting point for developing themes with Theme Mode.
 
-== Frequently Asked Questions ==
+## Frequently Asked Questions
 
-= Is there a demo theme I can install? =
+### Is there a demo theme I can install?
 
 There sure is, and I'm glad you asked. Download and activate the [OptionTree Theme](https://github.com/valendesigns/option-tree-theme) and get some experience setting up OptionTree on your own with detailed directions and tips.
 
-= Why are my translation files not loading? =
+### Why are my translation files not loading?
 
 It is important to note that when you use OptionTree as a plugin, you must store your language files in the `option-tree/languages` directory and use file names like `option-tree-es_ES.mo` & `option-tree-es_ES.po`. However, when using OptionTree in Theme Mode you must also create a `theme-mode` directory inside the `option-tree/languages` directory and store your files there with names like `es_ES.mo` & `es_ES.po`. This is due to the different naming conventions of the `load_plugin_textdomain()` and `load_theme_textdomain()` functions.
 
-= I get errors or a blank screen when I activate the plugin. What's the deal? =
+### I get errors or a blank screen when I activate the plugin. What's the deal?
 
 The most likely scenario is your theme already has OptionTree installed in Theme Mode. And since the plugin and theme version can't both be active at the same time without the sky falling on your head, your site has decided to throw in the towel. If that's not your issue, open up a support request and we'll figure it out together. UPDATE: As of OptionTree 2.4.0 the plugin version will not conflict with the Theme Mode version if they are both 2.4.0 or higher.
 
-== Screenshots ==
+## Screenshots
 
 1. Theme Options
 2. Settings
 3. Documentation
 
-== Changelog ==
+## Changelog
 
 = 2.4.6 =
 * Hotfix - Added a clean up script to consolidate orphaned media posts and remove the old and unused `wp_option_tree` table.
