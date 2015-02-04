@@ -1,10 +1,16 @@
 # OptionTree
 Contributors: valendesigns
+
 Donate link: http://bit.ly/NuXI3T
+
 Tags: options, theme options, meta boxes
+
 Requires at least: 3.5
+
 Tested up to: 4.0
+
 Stable tag: 2.4.6
+
 License: GPLv3
 
 Theme Options UI Builder for WordPress. A simple way to create & save Theme Options and Meta Boxes for free or premium themes.
