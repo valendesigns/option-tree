@@ -279,7 +279,9 @@ if ( ! function_exists( 'ot_load_google_fonts_css' ) ) {
 
     $ot_google_fonts      = get_theme_mod( 'ot_google_fonts', array() );
     $ot_set_google_fonts  = get_theme_mod( 'ot_set_google_fonts', array() );
-    $paths = array();
+    $families             = array();
+    $subsets              = array();
+    $append               = '';
 
     if ( ! empty( $ot_set_google_fonts ) ) {
 
@@ -287,33 +289,29 @@ if ( ! function_exists( 'ot_load_google_fonts_css' ) ) {
 
         foreach( $fonts as $font ) {
 
-          $path = '';
-
+          // Can't find the font, bail!
           if ( ! isset( $ot_google_fonts[$font['family']]['family'] ) ) {
             continue;
           }
 
-          // Add variants
+          // Set variants & subsets
           if ( ! empty( $font['variants'] ) && is_array( $font['variants'] ) ) {
-            $path.= implode( ',', $font['variants'] );
-          }
 
-          // Add subsets
-          if ( ! empty( $font['subsets'] ) && is_array( $font['subsets'] ) ) {
-            $add_subsets = false;
-            foreach( $font['subsets'] as $subset ) {
-              if ( $subset !== 'latin' ) {
-                $add_subsets = true;
+            // Variants string
+            $variants = ':' . implode( ',', $font['variants'] );
+
+            // Add subsets to array
+            if ( ! empty( $font['subsets'] ) && is_array( $font['subsets'] ) ) {
+              foreach( $font['subsets'] as $subset ) {
+                $subsets[] = $subset;
               }
             }
-            if ( $add_subsets === true ) {
-              $path.= '&subset=' . implode( ',', $font['subsets'] );
-            }
+
           }
 
-          // Build actual path
-          if ( $path ) {
-            $paths[] = str_replace( ' ', '+', $ot_google_fonts[$font['family']]['family'] ) . ':' . $path;
+          // Add family & variants to array
+          if ( isset( $variants ) ) {
+            $families[] = str_replace( ' ', '+', $ot_google_fonts[$font['family']]['family'] ) . $variants;
           }
 
         }
@@ -322,8 +320,17 @@ if ( ! function_exists( 'ot_load_google_fonts_css' ) ) {
 
     }
 
-    if ( ! empty( $paths ) ) {
-      wp_enqueue_style( 'ot-google-fonts', esc_url( '//fonts.googleapis.com/css?family=' . implode( '|', $paths ) ), false, null );
+    if ( ! empty( $families ) ) {
+
+      // Append all subsets to the path, unless the only subset is latin.
+      if ( ! empty( $subsets ) ) {
+        $subsets = implode( ',', array_unique( $subsets ) );
+        if ( $subsets != 'latin' ) {
+          $append = '&subset=' . $subsets;
+        }
+      }
+
+      wp_enqueue_style( 'ot-google-fonts', esc_url( '//fonts.googleapis.com/css?family=' . implode( '|', $families ) ) . $append, false, null );
     }
 
   }
