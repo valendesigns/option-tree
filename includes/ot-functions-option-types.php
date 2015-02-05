@@ -1537,7 +1537,17 @@ if ( ! function_exists( 'ot_type_on_off' ) ) {
           )
         );
 
-        echo '<div class="on-off-switch">';
+        /**
+         * Filter the width of the On/Off switch.
+         *
+         * @since 2.5.0
+         *
+         * @param string The switch width. Default '100px'.
+         * @param string $field_id The field ID.
+         */
+        $switch_width = apply_filters( 'ot_on_off_switch_width', '100px', $field_id );
+
+        echo '<div class="on-off-switch"' . ( $switch_width != '100px' ? sprintf( ' style="width:%s"', $switch_width ) : '' ) . '>';
 
         /* build radio */
         foreach ( (array) $field_choices as $key => $choice ) {

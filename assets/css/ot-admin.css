@@ -2860,7 +2860,7 @@ ul.ot-gallery-list li img {
     position: relative;
     text-align: center;
     vertical-align: middle;
-    width: 50px;
+    width: 50%;
     z-index: 2;
   }
   .on-off-switch input:last-of-type + label {
@@ -2885,7 +2885,7 @@ ul.ot-gallery-list li img {
     position: absolute;
     text-decoration: none;
     top: -1px;
-    width: 51px;
+    width: 51%;
     z-index: 1;
     -webkit-border-radius: 2px;
        -moz-border-radius: 2px;
@@ -2901,7 +2901,7 @@ ul.ot-gallery-list li img {
     background: #b73b27;
     border-color: #7f291b;
     color: #fff;
-    left: 50px;
+    left: 50%;
     -webkit-box-shadow: inset 0 1px 0 rgba(229,134,119,0.6), 0 1px 0 rgba(0,0,0,.15);
        -moz-box-shadow: inset 0 1px 0 rgba(229,134,119,0.6), 0 1px 0 rgba(0,0,0,.15);
              box-shadow: inset 0 1px 0 rgba(229,134,119,0.6), 0 1px 0 rgba(0,0,0,.15);
