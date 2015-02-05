@@ -134,6 +134,7 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 * Fixed an issue where the Colorpicker was not parsing conditions on `change` or `clear`.
 * Fixed the Colorpicker styles on mobile devices.
 * Show the Colorpicker setting ID inside the error message string when the value is invalid.
+* Added an 'on change' trigger to the Numeric Slider's hidden input. Contributors via github @cubell.
 * Stop Theme Check from complaining about the `register_post_type()` function being used in Theme Mode.
 * Added styles that clean up the appearance of the included Font Awesome icons in section tabs.
 * Fixed jQuery UI style conflicts created by the WP Review plugin.
