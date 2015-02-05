@@ -1501,7 +1501,7 @@ if ( ! function_exists( 'ot_type_on_off' ) ) {
              * @param string $field_id The field ID.
              * @param string $filter_id For filtering both on/off value with one function.
              */
-            'value'   => apply_filters( 'ot_on_choice_value', 'on', $field_id, 'on' ),
+            'value'   => apply_filters( 'ot_on_off_switch_on_value', 'on', $field_id, 'on' ),
             /**
              * Filter the label of the On button.
              *
@@ -1511,7 +1511,7 @@ if ( ! function_exists( 'ot_type_on_off' ) ) {
              * @param string $field_id The field ID.
              * @param string $filter_id For filtering both on/off label with one function.
              */
-            'label'   => apply_filters( 'ot_on_choice_label', __( 'On', 'option-tree' ), $field_id, 'on' )
+            'label'   => apply_filters( 'ot_on_off_switch_on_label', __( 'On', 'option-tree' ), $field_id, 'on' )
           ),
           array(
             /**
@@ -1523,7 +1523,7 @@ if ( ! function_exists( 'ot_type_on_off' ) ) {
              * @param string $field_id The field ID.
              * @param string $filter_id For filtering both on/off value with one function.
              */
-            'value'   => apply_filters( 'ot_off_choice_value', 'off', $field_id, 'off' ),
+            'value'   => apply_filters( 'ot_on_off_switch_off_value', 'off', $field_id, 'off' ),
             /**
              * Filter the label of the Off button.
              *
@@ -1533,7 +1533,7 @@ if ( ! function_exists( 'ot_type_on_off' ) ) {
              * @param string $field_id The field ID.
              * @param string $filter_id For filtering both on/off label with one function.
              */
-            'label'   => apply_filters( 'ot_off_choice_label', __( 'Off', 'option-tree' ), $field_id, 'off' )
+            'label'   => apply_filters( 'ot_on_off_switch_off_label', __( 'Off', 'option-tree' ), $field_id, 'off' )
           )
         );
 
