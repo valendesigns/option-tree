@@ -25,8 +25,8 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.ui-tabs li a [class^="ot-icon-"], 
-.ui-tabs li a [class*=" ot-icon-"] {
+.ui-tabs li > a [class^="ot-icon-"], 
+.ui-tabs li > a [class*=" ot-icon-"] {
   padding-right: 5px;
   line-height: 18px;
   vertical-align: middle;

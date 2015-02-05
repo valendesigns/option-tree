@@ -1,8 +1,8 @@
 /* -------------------------------------------------- 
   :: OptionTree Font
   ---------------------------------------------------*/
-.ui-tabs li a [class^="ot-icon-"], 
-.ui-tabs li a [class*=" ot-icon-"] {
+.ui-tabs li > a [class^="ot-icon-"], 
+.ui-tabs li > a [class*=" ot-icon-"] {
   display: block;
   height: 14px;
   float: right;
