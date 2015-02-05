@@ -1,56 +1,45 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OptionTree\n"
-"POT-Creation-Date: 2015-02-03 00:19-0800\n"
-"PO-Revision-Date: 2015-02-03 00:19-0800\n"
-"Last-Translator: Derek Herman <derek@valendesigns.com>\n"
+"POT-Creation-Date: 2015-02-03 11:33+0200\n"
+"PO-Revision-Date: 2015-02-04 10:45+0200\n"
+"Last-Translator: Tanel Jüris <tanel.juris@marketingsharks.ee>\n"
 "Language-Team: Valen Designs\n"
-"Language: English\n"
+"Language: et_EE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.7.4\n"
 "X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
 "_n_noop:1,2;_c;_nc:4c,1,2;_x:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_ex:1,2c;"
 "esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Poedit-SearchPath-0: ..\n"
-
-#: ../ot-loader.php:21
-msgid ""
-"OptionTree is installed as a plugin and also embedded in your current theme. "
-"Please deactivate the plugin to load the theme dependent version of "
-"OptionTree, and remove this warning."
-msgstr ""
-
-#: ../ot-loader.php:782 ../assets/theme-mode/demo-theme-options.php:639
-#: ../includes/ot-functions-admin.php:849
-#: ../includes/ot-functions-docs-page.php:395
-#: ../includes/ot-functions-settings-page.php:170
-msgid "Send to OptionTree"
-msgstr ""
+"X-Poedit-SearchPathExcluded-0: ../.git\n"
+"X-Poedit-SearchPathExcluded-1: ../composer.json\n"
+"X-Poedit-SearchPathExcluded-2: ../assets/js\n"
 
 #: ../assets/theme-mode/demo-meta-boxes.php:23
 msgid "Demo Meta Box"
-msgstr ""
+msgstr "Näidis meta kast"
 
 #: ../assets/theme-mode/demo-meta-boxes.php:30
 msgid "Conditions"
-msgstr ""
+msgstr "Tingimused"
 
 #: ../assets/theme-mode/demo-meta-boxes.php:35
 msgid "Show Gallery"
-msgstr ""
+msgstr "Näita galeriid"
 
 #: ../assets/theme-mode/demo-meta-boxes.php:38
 #, php-format
 msgid "Shows the Gallery when set to %s."
-msgstr ""
+msgstr "Näitab galeriid, kui on määratud asendisse %s"
 
 #: ../assets/theme-mode/demo-meta-boxes.php:45
 msgid "Congratulations, you created a gallery!"
-msgstr ""
+msgstr "Õnnitlused, lõite just galerii!"
 
 #: ../assets/theme-mode/demo-meta-boxes.php:50
 #: ../assets/theme-mode/demo-theme-options.php:208
@@ -58,58 +47,58 @@ msgstr ""
 #: ../includes/ot-functions-admin.php:5392
 #: ../includes/ot-functions-docs-page.php:168
 msgid "Gallery"
-msgstr ""
+msgstr "Galerii"
 
 #: ../assets/theme-mode/demo-meta-boxes.php:53
 #, php-format
 msgid "This is a Gallery option type. It displays when %s."
-msgstr ""
+msgstr "See on galerii valikutüüp. Nähtaval, kui ta on %s"
 
 #: ../assets/theme-mode/demo-meta-boxes.php:57
 msgid "More Options"
-msgstr ""
+msgstr "Rohkem seadeid"
 
 #: ../assets/theme-mode/demo-meta-boxes.php:62
 #: ../assets/theme-mode/demo-theme-options.php:548
 #: ../includes/ot-functions-admin.php:2455
 #: ../includes/ot-functions-docs-page.php:290
 msgid "Text"
-msgstr ""
+msgstr "Tekstisisend"
 
 #: ../assets/theme-mode/demo-meta-boxes.php:65
 msgid "This is a demo Text field."
-msgstr ""
+msgstr "See on näidis tekstisisend."
 
 #: ../assets/theme-mode/demo-meta-boxes.php:68
 #: ../assets/theme-mode/demo-theme-options.php:563
 #: ../includes/ot-functions-admin.php:2456
 #: ../includes/ot-functions-docs-page.php:293
 msgid "Textarea"
-msgstr ""
+msgstr "Tekstiväli"
 
 #: ../assets/theme-mode/demo-meta-boxes.php:71
 msgid "This is a demo Textarea field."
-msgstr ""
+msgstr "See on näidis tekstiväli."
 
 #: ../assets/theme-mode/demo-theme-options.php:29
 #: ../assets/theme-mode/demo-theme-options.php:38
 #: ../includes/ot-functions-admin.php:231
 msgid "Option Types"
-msgstr ""
+msgstr "Valikute tüübid"
 
 #: ../assets/theme-mode/demo-theme-options.php:30
 msgid "Help content goes here!"
-msgstr ""
+msgstr "Siia lähevad abitekstid!"
 
 #: ../assets/theme-mode/demo-theme-options.php:33
 msgid "Sidebar content goes here!"
-msgstr ""
+msgstr "Siia läheb küljeriba sisu!"
 
 #: ../assets/theme-mode/demo-theme-options.php:44
 #: ../includes/ot-functions-admin.php:2418
 #: ../includes/ot-functions-docs-page.php:110
 msgid "Background"
-msgstr ""
+msgstr "Taust"
 
 #: ../assets/theme-mode/demo-theme-options.php:45
 #: ../includes/ot-functions-docs-page.php:111
@@ -122,6 +111,13 @@ msgid ""
 "all Background options or an individual one. You can also filter %s. These "
 "filters allow you to fine tune the select lists for your specific needs."
 msgstr ""
+"Tausta valikutüüpi kasutatakse teemasse tausta stiilide lisamiseks "
+"dünaamiliselt alloleva CSS valikutüübiga või käsitsi kasutades %s. Tausta "
+"valikutüübil on filtrid, mis võimaldavad eemaldada välju või muuta "
+"vaikeväärtusi. Näiteks saab filtreerida %s eemaldamaks soovimatuid välju "
+"kõikidelt tausta valikutelt või ainult ühelt neist. Saab filtreerida ka %s. "
+"Need filtrid võimaldavad sul sättida valikute nimekirja täpselt oma "
+"vajadustele vastavaks."
 
 #: ../assets/theme-mode/demo-theme-options.php:45
 #: ../assets/theme-mode/demo-theme-options.php:624
@@ -129,13 +125,13 @@ msgstr ""
 #: ../includes/ot-functions-docs-page.php:111
 #: ../includes/ot-functions-docs-page.php:375
 msgid "and"
-msgstr ""
+msgstr "ja"
 
 #: ../assets/theme-mode/demo-theme-options.php:59
 #: ../includes/ot-functions-admin.php:2421
 #: ../includes/ot-functions-docs-page.php:119
 msgid "Category Checkbox"
-msgstr ""
+msgstr "Kategooriate valikkastid"
 
 #: ../assets/theme-mode/demo-theme-options.php:60
 #: ../includes/ot-functions-docs-page.php:120
@@ -144,12 +140,15 @@ msgid ""
 "the user to check multiple category IDs and will return that value as an "
 "array for use in a custom function or loop."
 msgstr ""
+"Kategooria valikkastide valikutüüp näitab loendit kategooriate ID-dest. See "
+"laseb kasutajal märkida mitu kategooria ID-d ja tagastab selle väärtuse "
+"massiivina, enda funktsioonis või tsüklis kasutamiseks."
 
 #: ../assets/theme-mode/demo-theme-options.php:74
 #: ../includes/ot-functions-admin.php:2422
 #: ../includes/ot-functions-docs-page.php:122
 msgid "Category Select"
-msgstr ""
+msgstr "Kategooria rippvalik"
 
 #: ../assets/theme-mode/demo-theme-options.php:75
 #: ../includes/ot-functions-docs-page.php:123
@@ -158,12 +157,15 @@ msgid ""
 "the user to select only one category ID and will return that value for use "
 "in a custom function or loop."
 msgstr ""
+"Kategooria rippvaliku valikutüüp näitab loendit kategooriate ID-dest. See "
+"laseb kasutajal märkida üks kategooria ID ja tagastab selle väärtuse enda "
+"funktsioonis või tsüklis kasutamiseks."
 
 #: ../assets/theme-mode/demo-theme-options.php:89
 #: ../includes/ot-functions-admin.php:2423
 #: ../includes/ot-functions-docs-page.php:125
 msgid "Checkbox"
-msgstr ""
+msgstr "Valikkastid"
 
 #: ../assets/theme-mode/demo-theme-options.php:90
 #: ../includes/ot-functions-docs-page.php:126
@@ -172,24 +174,27 @@ msgid ""
 "check multiple choices and will return that value as an array for use in a "
 "custom function or loop."
 msgstr ""
+"Valikkastide valikutüüp kuvab valikute grupi. See laseb kasutajal märkida "
+"mitu valikut ning tagastab selle väärtuse massiivina enda funktsioonis või "
+"tsüklis kasutamiseks."
 
 #: ../assets/theme-mode/demo-theme-options.php:104
 #: ../assets/theme-mode/demo-theme-options.php:394
 #: ../assets/theme-mode/demo-theme-options.php:446
 msgid "No"
-msgstr ""
+msgstr "Ei"
 
 #: ../assets/theme-mode/demo-theme-options.php:109
 #: ../assets/theme-mode/demo-theme-options.php:389
 #: ../assets/theme-mode/demo-theme-options.php:441
 msgid "Yes"
-msgstr ""
+msgstr "Jah"
 
 #: ../assets/theme-mode/demo-theme-options.php:116
 #: ../includes/ot-functions-admin.php:2424
 #: ../includes/ot-functions-docs-page.php:128
 msgid "Colorpicker"
-msgstr ""
+msgstr "Värvivalik"
 
 #: ../assets/theme-mode/demo-theme-options.php:117
 #: ../includes/ot-functions-docs-page.php:129
@@ -197,12 +202,14 @@ msgid ""
 "The Colorpicker option type saves a hexadecimal color code for use in CSS. "
 "Use it to modify the color of something in your theme."
 msgstr ""
+"Värvi valija valikutüüp salvestab värvikoodi kuueteistkümnendiksüsteemis, "
+"mida saab kasutada CSS-is. Kasuta seda millegi värvi muutmiseks enda teemas."
 
 #: ../assets/theme-mode/demo-theme-options.php:131
 #: ../includes/ot-functions-admin.php:2426
 #: ../includes/ot-functions-docs-page.php:134
 msgid "CSS"
-msgstr ""
+msgstr "CSS"
 
 #: ../assets/theme-mode/demo-theme-options.php:132
 #: ../includes/ot-functions-docs-page.php:135
@@ -217,6 +224,14 @@ msgid ""
 "starting point is %s. When the server can save to the file, CSS will "
 "automatically be updated when you save your Theme Options."
 msgstr ""
+"CSS valikutüüp on tekstiväli, mille õigel kasutamisel saab teemale lisada "
+"dünaamiliselt genereeritud CSS-i OptionTree kaudu. Serveri piirangute tõttu "
+"peate selleks looma teema juurkausta faili nimega %s ning muutma õiguseid "
+"kasutades %s, et server saaks faili kirjutada. Mul on tulnud parimad "
+"tulemused siis, kui muutsin selle ainsa faili õiguste väärtuseks %s, kuid "
+"katsetage teisi variante, kuni kõik toimib nagu vaja. Hea alguspunkt on %s. "
+"Kui server saab edukalt faili salvestada. siis uuendatakse CSS automaatselt "
+"teema salvestamisel."
 
 #: ../assets/theme-mode/demo-theme-options.php:132
 #: ../includes/ot-functions-docs-page.php:137
@@ -226,12 +241,14 @@ msgid ""
 "this option will automatically insert the value of %1$s into the %2$s when "
 "the Theme Options are saved."
 msgstr ""
+"See näide eeldab, et sul on valik ID-ga %1$s. See tähendab, et teema "
+"valikute salvestamisel sisestatakse %1$s väärtus automaatselt %2$s külge."
 
 #: ../assets/theme-mode/demo-theme-options.php:148
 #: ../includes/ot-functions-admin.php:2427
 #: ../includes/ot-functions-docs-page.php:153
 msgid "Custom Post Type Checkbox"
-msgstr ""
+msgstr "Enda loodud postitüübi valikkastid"
 
 #: ../assets/theme-mode/demo-theme-options.php:149
 #: ../includes/ot-functions-docs-page.php:154
@@ -242,12 +259,16 @@ msgid ""
 "check multiple post IDs for use in a custom function or loop. Requires at "
 "least one valid %1$s in the %1$s field."
 msgstr ""
+"Enda loodud postitüübi rippvaliku valikutüüp kuvab nimekirja kõikidest "
+"WordPressi postitüüpide või enda loodud postitüüpide ID-dest. See võimaldab "
+"kasutajal märgistada mitu postituse ID-d, mida kasutada enda funktsioonis "
+"või tsüklis. Vajab vähemalt ühte sobivat %1$s väljal %1$s."
 
 #: ../assets/theme-mode/demo-theme-options.php:163
 #: ../includes/ot-functions-admin.php:2428
 #: ../includes/ot-functions-docs-page.php:156
 msgid "Custom Post Type Select"
-msgstr ""
+msgstr "Enda loodud postitüübi rippvalik"
 
 #: ../assets/theme-mode/demo-theme-options.php:164
 #: ../includes/ot-functions-docs-page.php:157
@@ -258,12 +279,16 @@ msgid ""
 "post ID for use in a custom function or loop. Requires at least one valid "
 "%1$s in the %1$s field."
 msgstr ""
+"Enda loodud postitüübi rippvaliku valikutüüp kuvab nimekirja kõikidest "
+"WordPressi postitüüpide või enda loodud postitüüpide ID-dest. See tagastab "
+"ühe postituse ID, mida kasutada enda funktsioonis või tsüklis. Vajab "
+"vähemalt ühte sobivat %1$s väljal %1$s."
 
 #: ../assets/theme-mode/demo-theme-options.php:178
 #: ../includes/ot-functions-admin.php:2429
 #: ../includes/ot-functions-docs-page.php:159
 msgid "Date Picker"
-msgstr ""
+msgstr "Kuupäev valija"
 
 #: ../assets/theme-mode/demo-theme-options.php:179
 #: ../includes/ot-functions-docs-page.php:160
@@ -272,12 +297,15 @@ msgid ""
 "displays a calendar pop-up that allow the user to pick any date when focus "
 "is given to the input field. The returned value is a date formatted string."
 msgstr ""
+"Kuupäeva valiku valikutüüp on seotud standartse vormi sisendväljaga. Kui "
+"sellele antakse fookus, siis kuvatakse kalendri aken, mis laseb kasutajal "
+"valida suvalise kuupäeva. Tagastatav väärtus on kuupäeva formaadis string."
 
 #: ../assets/theme-mode/demo-theme-options.php:193
 #: ../includes/ot-functions-admin.php:2430
 #: ../includes/ot-functions-docs-page.php:162
 msgid "Date Time Picker"
-msgstr ""
+msgstr "Kuupäeva ja kellaaja valija"
 
 #: ../assets/theme-mode/demo-theme-options.php:194
 #: ../includes/ot-functions-docs-page.php:163
@@ -287,6 +315,10 @@ msgid ""
 "time when focus is given to the input field. The returned value is a date "
 "and time formatted string."
 msgstr ""
+"Kuupäeva ja aja valiku valikutüüp on seotud standartse vormi sisendväljaga. "
+"Kui sellele antakse fookus, siis kuvatakse kalendri aken, mis laseb "
+"kasutajal valida suvalise kuupäeva ja kellaaja. Tagastatav väärtus on "
+"kuupäeva ja kellaaja formaadis string."
 
 #: ../assets/theme-mode/demo-theme-options.php:209
 #: ../includes/ot-functions-docs-page.php:169
@@ -295,10 +327,13 @@ msgid ""
 "IDs. You will need to create a front-end function to display the images in "
 "your theme."
 msgstr ""
+"Galerii valikutüüp salvestab komaga eraldatud loendi pildi tüüpi manuste ID-"
+"dest. Nende piltide teemas näitamiseks tuleb luua kuvatava lehe jaoks "
+"funktsioon."
 
 #: ../assets/theme-mode/demo-theme-options.php:223
 msgid "Gallery Shortcode"
-msgstr ""
+msgstr "Galerii lühikood"
 
 #: ../assets/theme-mode/demo-theme-options.php:224
 #, php-format
@@ -308,12 +343,15 @@ msgid ""
 "a better user experience as you're able to save the link, column, and order "
 "settings."
 msgstr ""
+"Lisades %s klassiatribuudiks saab galerii valikutüübi salvestada ka "
+"lühikoodina. Sellisel moel galerii valikutüüpi kasutades on tulemuseks parem "
+"kasutajakogemus, kuna saad salvestada lingi, tulba ja järjekorra sätteid."
 
 #: ../assets/theme-mode/demo-theme-options.php:238
 #: ../includes/ot-functions-admin.php:2435
 #: ../includes/ot-functions-docs-page.php:177
 msgid "List Item"
-msgstr ""
+msgstr "Nimekirja element"
 
 #: ../assets/theme-mode/demo-theme-options.php:239
 msgid ""
@@ -322,16 +360,20 @@ msgid ""
 "user when they add a new List Item. Typical use is for creating sliding "
 "content or blocks of code for custom layouts."
 msgstr ""
+"Nimekirja elemendi valikutüüpi on väga hästi kohandatav. Nimekirja "
+"elementidele saab lisada sätteid ning neid näidatakse kasutajale uue "
+"elemendi lisamisel. Tüüpiline kasutus on liugleva sisu jaoks või kohandatud "
+"paigutuse koodiblokkide tarvis."
 
 #: ../assets/theme-mode/demo-theme-options.php:253
 msgid "Content"
-msgstr ""
+msgstr "Sisu"
 
 #: ../assets/theme-mode/demo-theme-options.php:269
 #: ../includes/ot-functions-admin.php:2436
 #: ../includes/ot-functions-docs-page.php:180
 msgid "Measurement"
-msgstr ""
+msgstr "Mõõt"
 
 #: ../assets/theme-mode/demo-theme-options.php:270
 #: ../includes/ot-functions-docs-page.php:181
@@ -342,12 +384,15 @@ msgid ""
 "to add to that value. Currently the default units are %s, %s, %s, and %s. "
 "However, you can change them with the %s filter."
 msgstr ""
+"Mõõdu valikutüüp on segu sisendväljast ja valikuväljast. Tekstisisend eeldab "
+"väärtust ning rippvalik laseb valida mõõduühiku sellele väärtusele. Hetkel "
+"on vaikimisi ühikuteks %s, %s, %s ja %s. Neid saab muuta %s filtriga."
 
 #: ../assets/theme-mode/demo-theme-options.php:284
 #: ../includes/ot-functions-admin.php:2437
 #: ../includes/ot-functions-docs-page.php:211
 msgid "Numeric Slider"
-msgstr ""
+msgstr "Numbriskaala"
 
 #: ../assets/theme-mode/demo-theme-options.php:285
 #: ../includes/ot-functions-docs-page.php:212
@@ -355,12 +400,14 @@ msgid ""
 "The Numeric Slider option type displays a jQuery UI slider. It will return a "
 "single numerical value for use in a custom function or loop."
 msgstr ""
+"Numbriliuguri valikutüüp kuvab jQuery UI liuguri. See tagastab ühe "
+"numbrilise väärtuse enda funktsioonis või tsüklis kasutamiseks."
 
 #: ../assets/theme-mode/demo-theme-options.php:299
 #: ../includes/ot-functions-admin.php:2438
 #: ../includes/ot-functions-docs-page.php:214
 msgid "On/Off"
-msgstr ""
+msgstr "Sees/väljas"
 
 #: ../assets/theme-mode/demo-theme-options.php:300
 #: ../includes/ot-functions-docs-page.php:215
@@ -369,12 +416,14 @@ msgid ""
 "The On/Off option type displays a simple switch that can be used to turn "
 "things on or off. The saved return value is either %s or %s."
 msgstr ""
+"Sees/väljas valikutüüp kuvab lihtsa lüliti, millega saab asju sisse või "
+"välja lülitada. Salvestatud väärtus on kas %s või %s."
 
 #: ../assets/theme-mode/demo-theme-options.php:314
 #: ../includes/ot-functions-admin.php:2439
 #: ../includes/ot-functions-docs-page.php:217
 msgid "Page Checkbox"
-msgstr ""
+msgstr "Lehekülgede valikkastid"
 
 #: ../assets/theme-mode/demo-theme-options.php:315
 #: ../includes/ot-functions-docs-page.php:218
@@ -382,12 +431,15 @@ msgid ""
 "The Page Checkbox option type displays a list of page IDs. It allows the "
 "user to check multiple page IDs for use in a custom function or loop."
 msgstr ""
+"Lehe valikkastide valikutüüp kuvab nimekirja kõikidest lehtede ID-dest. See "
+"võimaldab kasutajal märgistada mitu lehe ID-d, mida kasutada enda "
+"funktsioonis või tsüklis."
 
 #: ../assets/theme-mode/demo-theme-options.php:329
 #: ../includes/ot-functions-admin.php:2440
 #: ../includes/ot-functions-docs-page.php:220
 msgid "Page Select"
-msgstr ""
+msgstr "Lehekülje rippvalik"
 
 #: ../assets/theme-mode/demo-theme-options.php:330
 #: ../includes/ot-functions-docs-page.php:221
@@ -395,12 +447,14 @@ msgid ""
 "The Page Select option type displays a list of page IDs. It will return a "
 "single page ID for use in a custom function or loop."
 msgstr ""
+"Lehe rippvaliku valikutüüp kuvab nimekirja kõikidest lehtede ID-dest. See "
+"tagastab ühe lehe ID, mida kasutada enda funktsioonis või tsüklis."
 
 #: ../assets/theme-mode/demo-theme-options.php:344
 #: ../includes/ot-functions-admin.php:2441
 #: ../includes/ot-functions-docs-page.php:223
 msgid "Post Checkbox"
-msgstr ""
+msgstr "Postituste valikkastid"
 
 #: ../assets/theme-mode/demo-theme-options.php:345
 #: ../includes/ot-functions-docs-page.php:224
@@ -408,12 +462,15 @@ msgid ""
 "The Post Checkbox option type displays a list of post IDs. It allows the "
 "user to check multiple post IDs for use in a custom function or loop."
 msgstr ""
+"Postituse valikkastid valikutüüp kuvab nimekirja kõikidest postituste ID-"
+"dest. See võimaldab kasutajal märgistada mitu postituse ID-d, mida kasutada "
+"enda funktsioonis või tsüklis."
 
 #: ../assets/theme-mode/demo-theme-options.php:359
 #: ../includes/ot-functions-admin.php:2442
 #: ../includes/ot-functions-docs-page.php:226
 msgid "Post Select"
-msgstr ""
+msgstr "Postituse rippvalik"
 
 #: ../assets/theme-mode/demo-theme-options.php:360
 #: ../includes/ot-functions-docs-page.php:227
@@ -421,12 +478,15 @@ msgid ""
 "The Post Select option type displays a list of post IDs. It will return a "
 "single post ID for use in a custom function or loop."
 msgstr ""
+"Postituse rippvaliku valikutüüp kuvab nimekirja kõikidest postituste ID-"
+"dest. See tagastab ühe postituse ID, mida kasutada enda funktsioonis või "
+"tsüklis."
 
 #: ../assets/theme-mode/demo-theme-options.php:374
 #: ../includes/ot-functions-admin.php:2443
 #: ../includes/ot-functions-docs-page.php:229
 msgid "Radio"
-msgstr ""
+msgstr "Raadiokastid"
 
 #: ../assets/theme-mode/demo-theme-options.php:375
 #: ../includes/ot-functions-docs-page.php:230
@@ -435,17 +495,20 @@ msgid ""
 "choose one and will return that value as a string for use in a custom "
 "function or loop."
 msgstr ""
+"Raadiovaliku valikutüüp näitab valikute gruppi. See laseb kasutajal valida "
+"neist ühe ning tagastab selle väärtuse string-ina enda funktsioonis või "
+"tsüklis kasutamiseks."
 
 #: ../assets/theme-mode/demo-theme-options.php:399
 #: ../assets/theme-mode/demo-theme-options.php:451
 msgid "Maybe"
-msgstr ""
+msgstr "Võib-olla"
 
 #: ../assets/theme-mode/demo-theme-options.php:406
 #: ../includes/ot-functions-admin.php:2444
 #: ../includes/ot-functions-docs-page.php:232
 msgid "Radio Image"
-msgstr ""
+msgstr "Pildiga raadiokastid"
 
 #: ../assets/theme-mode/demo-theme-options.php:407
 #: ../includes/ot-functions-docs-page.php:233
@@ -455,12 +518,15 @@ msgid ""
 "filter the image list using %s. As well, you can add your own custom images "
 "using the choices array."
 msgstr ""
+"Piltidega raadiovaliku valikutüüpi kasutatakse peamiselt paigutuste jaoks. "
+"Piltide loendit saab filtreerida %s abil. Valikute massiivi saab lisada enda "
+"pilte."
 
 #: ../assets/theme-mode/demo-theme-options.php:421
 #: ../includes/ot-functions-admin.php:2445
 #: ../includes/ot-functions-docs-page.php:259
 msgid "Select"
-msgstr ""
+msgstr "Rippvalik"
 
 #: ../assets/theme-mode/demo-theme-options.php:422
 #: ../includes/ot-functions-docs-page.php:260
@@ -468,18 +534,20 @@ msgid ""
 "The Select option type is used to list anything you want that would be "
 "chosen from a select list."
 msgstr ""
+"Rippvaliku valikutüüpi saab kasutada ükskõik mille loendamiseks, mida saab "
+"valida rippmenüüst."
 
 #: ../assets/theme-mode/demo-theme-options.php:436
 #: ../includes/ot-functions-option-types.php:1263
 #: ../includes/ot-functions-option-types.php:1306
 msgid "-- Choose One --"
-msgstr ""
+msgstr "-- Vali üks --"
 
 #: ../assets/theme-mode/demo-theme-options.php:458
 #: ../includes/ot-functions-admin.php:2446
 #: ../includes/ot-functions-docs-page.php:262
 msgid "Sidebar Select"
-msgstr ""
+msgstr "Küljeriba rippvalik"
 
 #: ../assets/theme-mode/demo-theme-options.php:459
 #: ../includes/ot-functions-docs-page.php:263
@@ -490,6 +558,9 @@ msgid ""
 "filters, %s, and %s we can be selective about which sidebars are available "
 "on a specific content area."
 msgstr ""
+"See valikutüüp võimaldab kasutajatel valida WordPressis registreeritud "
+"küljeriba, kasutamaks seda kindlas kohas. Kahe kaasa antud filtri, %s ja %s "
+"abil saab määrata, millist küljeriba millises sisuosas näidata."
 
 #: ../assets/theme-mode/demo-theme-options.php:459
 #: ../includes/ot-functions-docs-page.php:264
@@ -500,12 +571,15 @@ msgid ""
 "available on this area, we can unset those sidebars either manually or by "
 "using a regular expression if we have a common name like %s."
 msgstr ""
+"Näiteks kui luua WordPressi teema, mis võimaldab muuta blogi küljeriba ning "
+"me ei soovi siin alas näha jaluse küljeribasid, siis saame need küljeribad "
+"ära võtta kas käsitsi või kasutades regulaaravaldist, nagu näiteks %s."
 
 #: ../assets/theme-mode/demo-theme-options.php:473
 #: ../includes/ot-functions-admin.php:2451
 #: ../includes/ot-functions-docs-page.php:278
 msgid "Tag Checkbox"
-msgstr ""
+msgstr "Sildi valikkastid"
 
 #: ../assets/theme-mode/demo-theme-options.php:474
 #: ../includes/ot-functions-docs-page.php:279
@@ -514,12 +588,15 @@ msgid ""
 "to check multiple tag IDs and will return that value as an array for use in "
 "a custom function or loop."
 msgstr ""
+"Sildi valikukasti valikutüüp kuvab loendi siltide ID-dega. See laseb "
+"kasutajal märkida mitu sildi ID-d ning tagastab selle väärtuse massiivina "
+"enda funktsioonis või tsüklis kasutamiseks."
 
 #: ../assets/theme-mode/demo-theme-options.php:488
 #: ../includes/ot-functions-admin.php:2452
 #: ../includes/ot-functions-docs-page.php:281
 msgid "Tag Select"
-msgstr ""
+msgstr "Sildi rippvalik"
 
 #: ../assets/theme-mode/demo-theme-options.php:489
 #: ../includes/ot-functions-docs-page.php:282
@@ -528,12 +605,15 @@ msgid ""
 "select only one tag ID and will return that value for use in a custom "
 "function or loop."
 msgstr ""
+"Sildi rippvaliku valikutüüp kuvab loendi siltide ID-dega. See laseb "
+"kasutajal märkida ainult ühe sildi ID ning tagastab selle väärtuse enda "
+"funktsioonis või tsüklis kasutamiseks."
 
 #: ../assets/theme-mode/demo-theme-options.php:503
 #: ../includes/ot-functions-admin.php:2448
 #: ../includes/ot-functions-docs-page.php:269
 msgid "Social Links"
-msgstr ""
+msgstr "Sotsiaalmeedia"
 
 #: ../assets/theme-mode/demo-theme-options.php:504
 #: ../includes/ot-functions-docs-page.php:270
@@ -545,12 +625,17 @@ msgid ""
 "default values. Use the %s filter to change the default values that are "
 "loaded. To filter the settings array use the %s filter."
 msgstr ""
+"Sotsiaalmeedia linkide valikutüübis kasutatakse nimekirja loomiseks tiri-ja-"
+"pilla liidest. On loodud mõned filtrid, mis teevad selle valikutüübi "
+"täiendamise kergeks. Filter %s väärtuseks saab määrata %s, et lülitada välja "
+"vaikimisi väärtuste laadimine. %s filtriga saab muuta vaikeväärtuseid. "
+"Sätete massiivi filtreerimiseks on %s."
 
 #: ../assets/theme-mode/demo-theme-options.php:518
 #: ../includes/ot-functions-admin.php:2453
 #: ../includes/ot-functions-docs-page.php:284
 msgid "Taxonomy Checkbox"
-msgstr ""
+msgstr "Taksonoomia valikkastid"
 
 #: ../assets/theme-mode/demo-theme-options.php:519
 #: ../includes/ot-functions-docs-page.php:285
@@ -559,12 +644,15 @@ msgid ""
 "the user to check multiple taxonomy IDs and will return that value as an "
 "array for use in a custom function or loop."
 msgstr ""
+"Taksonoomia valikukasti valikutüüp kuvab loendi taksonoomiate ID-dega. See "
+"laseb kasutajal märkida mitu taksonoomia ID-d ning tagastab selle väärtuse "
+"massiivina enda funktsioonis või tsüklis kasutamiseks."
 
 #: ../assets/theme-mode/demo-theme-options.php:533
 #: ../includes/ot-functions-admin.php:2454
 #: ../includes/ot-functions-docs-page.php:287
 msgid "Taxonomy Select"
-msgstr ""
+msgstr "Taksonoomia rippvalik"
 
 #: ../assets/theme-mode/demo-theme-options.php:534
 #: ../includes/ot-functions-docs-page.php:288
@@ -573,6 +661,9 @@ msgid ""
 "the user to select only one taxonomy ID and will return that value for use "
 "in a custom function or loop."
 msgstr ""
+"Taksonoomia rippvaliku valikutüüp kuvab loendi taksonoomiate ID-dega. See "
+"laseb kasutajal märkida ainult ühe taksonoomia ID ning tagastab selle "
+"väärtuse enda funktsioonis või tsüklis kasutamiseks."
 
 #: ../assets/theme-mode/demo-theme-options.php:549
 #: ../includes/ot-functions-docs-page.php:291
@@ -580,6 +671,8 @@ msgid ""
 "The Text option type is used to save string values. For example, any "
 "optional or required text that is of reasonably short character length."
 msgstr ""
+"Teksti valikutüüpi kasutatakse väärtuste salvestamiseks stringi kujul. "
+"Näiteks mõni valikuline või nõutud tekst, mis on piisavalt lühike."
 
 #: ../assets/theme-mode/demo-theme-options.php:564
 #: ../includes/ot-functions-docs-page.php:294
@@ -589,12 +682,15 @@ msgid ""
 "text in the theme and has a WYSIWYG editor that can be filtered to change "
 "the how it is displayed. For example, you can filter %s, %s, %s, and %s."
 msgstr ""
+"Tekstivälja valikutüüp on suur  väärtus stringi kujul salvestamiseks, millel "
+"on WYSIWYG toimetaja, mida saab filtreerida muutmaks tema kuvamist. Näiteks "
+"saab filtreerida %s, %s, %s ja %s."
 
 #: ../assets/theme-mode/demo-theme-options.php:578
 #: ../includes/ot-functions-admin.php:2457
 #: ../includes/ot-functions-docs-page.php:352
 msgid "Textarea Simple"
-msgstr ""
+msgstr "Lihtne tekstiväli"
 
 #: ../assets/theme-mode/demo-theme-options.php:579
 #: ../includes/ot-functions-docs-page.php:353
@@ -602,12 +698,15 @@ msgid ""
 "The Textarea Simple option type is a large string value used for custom code "
 "or text in the theme. The Textarea Simple does not have a WYSIWYG editor."
 msgstr ""
+"Lihtsa tekstivälja valikutüüp on suur string-tüüpi väärtus teemas oleva "
+"kohandatud koodi või teksti jaoks. Lihtsal tekstiväljal ei ole WYSIWYG "
+"toimetajat."
 
 #: ../assets/theme-mode/demo-theme-options.php:593
 #: ../includes/ot-functions-admin.php:2458
 #: ../includes/ot-functions-docs-page.php:368
 msgid "Textblock"
-msgstr ""
+msgstr "Tekstiblokk"
 
 #: ../assets/theme-mode/demo-theme-options.php:594
 #: ../includes/ot-functions-docs-page.php:369
@@ -618,12 +717,16 @@ msgid ""
 "how the options are used in your theme. You would never use this in your "
 "themes template files as it does not save a value."
 msgstr ""
+"Tekstibloki valikutüüpi kasutatakse teema valikute lehel. See võimaldab luua "
+"ja kuvada HTML-i, kuid tal puudub pealkiri. Sellega saab lisada detailsemaid "
+"kirjeldusi teemas kasutatavate valikute jaoks. Seda ei kasutata teema "
+"mallifailides, kuna ta ei salvesta mingit väärtust."
 
 #: ../assets/theme-mode/demo-theme-options.php:608
 #: ../includes/ot-functions-admin.php:2459
 #: ../includes/ot-functions-docs-page.php:371
 msgid "Textblock Titled"
-msgstr ""
+msgstr "Pealkirjaga tekstiblokk"
 
 #: ../assets/theme-mode/demo-theme-options.php:609
 #: ../includes/ot-functions-docs-page.php:372
@@ -634,12 +737,16 @@ msgid ""
 "instruction on how the options are used in your theme. You would never use "
 "this in your themes template files as it does not save a value."
 msgstr ""
+"Pealkirjaga tekstibloki valikutüüpi kasutatakse teema valikute lehel. See "
+"võimaldab luua ja kuvada HTML-i ning tema kohal on pealkiri. Sellega saab "
+"lisada detailsemaid kirjeldusi teemas kasutatavate valikute jaoks. Seda ei "
+"kasutata teema mallifailides, kuna ta ei salvesta mingit väärtust."
 
 #: ../assets/theme-mode/demo-theme-options.php:623
 #: ../includes/ot-functions-admin.php:2460
 #: ../includes/ot-functions-docs-page.php:374
 msgid "Typography"
-msgstr ""
+msgstr "Tüpograafia"
 
 #: ../assets/theme-mode/demo-theme-options.php:624
 #: ../includes/ot-functions-docs-page.php:375
@@ -652,12 +759,18 @@ msgid ""
 "all Background options or an individual one. You can also filter %s. These "
 "filters allow you to fine tune the select lists for your specific needs."
 msgstr ""
+"Tüpograafia valikutüübiga saab teemale lisada stiile, kas dünaamiliselt ülal "
+"oleva CSS valikutüübiga või käsitsi %s abil. Tüpograafia valikutüübil on "
+"filtrid, mis lasevad välju eemaldada või vaikimisi välju muuta. Näiteks saab "
+"filtreerida %s, eemaldamaks soovimatuid välju kõikidelt tausta valikutelt "
+"või mõnelt neist. Saab filtreerida ka %s. Need filtrid aitavad valikute "
+"nimekirja täpselt oma vajaduste järgi häälestada."
 
 #: ../assets/theme-mode/demo-theme-options.php:638
 #: ../includes/ot-functions-admin.php:2461
 #: ../includes/ot-functions-docs-page.php:394
 msgid "Upload"
-msgstr ""
+msgstr "Lae üles"
 
 #: ../assets/theme-mode/demo-theme-options.php:639
 #: ../includes/ot-functions-docs-page.php:395
@@ -670,10 +783,23 @@ msgid ""
 "the old URI will not reflect the URI of your new site. You will have to re-"
 "upload or %s any media to your new server and change the URIs if necessary."
 msgstr ""
+"Üleslaadimise valikutüüp kasutatakse suvalise Wordpressi toetatava meedia "
+"üles laadimiseks. Peale üleslaadimist peab kasutaja vajutama \"%s\" nuppu, "
+"et täita sisend selle meediaelemendi URI-ga. Selle omadusega kaasneb üks "
+"probleem - kui importida teema valikuid teistsuguse aadressiga veebilehelt, "
+"siis URI-d automaatselt ei uuene. Meediafailid tuleb kas uuesti üles laadida "
+"või %s, vajadusel muutes URI-sid."
+
+#: ../assets/theme-mode/demo-theme-options.php:639
+#: ../includes/ot-functions-admin.php:849
+#: ../includes/ot-functions-docs-page.php:395
+#: ../includes/ot-functions-settings-page.php:170 ../ot-loader.php:782
+msgid "Send to OptionTree"
+msgstr "Saada OptionTree-le"
 
 #: ../assets/theme-mode/demo-theme-options.php:653
 msgid "Upload Attachment ID"
-msgstr ""
+msgstr "Üles laetud manuse ID"
 
 #: ../assets/theme-mode/demo-theme-options.php:654
 #, php-format
@@ -681,11 +807,13 @@ msgid ""
 "The Upload option type can also be saved as an attachment ID by adding %s to "
 "the class attribute."
 msgstr ""
+"Üleslaadimise valikutüüpi saab salvestada ka manuse ID-na, lisades %s klassi "
+"atribuudile."
 
 #: ../includes/ot-cleanup-api.php:69 ../includes/ot-cleanup-api.php:84
 #: ../includes/ot-cleanup-api.php:116
 msgid "OptionTree Cleanup"
-msgstr ""
+msgstr "OptionTree puhastus"
 
 #: ../includes/ot-cleanup-api.php:84
 #, php-format
@@ -693,10 +821,12 @@ msgid ""
 "OptionTree has outdated data that should be removed. Please go to %s for "
 "more information."
 msgstr ""
+"OptionTreel on aegunud andmeid, mis tuleks eemaldada. Lisainformatsiooni "
+"saamiseks mine palun %s."
 
 #: ../includes/ot-cleanup-api.php:124
 msgid "Multiple Media Posts"
-msgstr ""
+msgstr "Mitme meediaga postitused"
 
 #: ../includes/ot-cleanup-api.php:126
 #, php-format
@@ -708,6 +838,11 @@ msgid ""
 "database. Thankfully, there is a way to remove all these orphaned media "
 "posts and get your database cleaned up."
 msgstr ""
+"Sul on hetkel %s OptionTree meedia postitust andmebaasis. Millalgi varem "
+"lisas OptionTree mitu %s meedia postitust, risustades %s tabelit. Nende "
+"postitustega ei kaasne mingeid riske või kahju peale selle, et andmebaasi "
+"maht on suurem. Õnneks on nende orbudeks jäänud postituste eemaldamiseks "
+"moodus olemas, nii et saab andmebaasi jälle puhtaks."
 
 #: ../includes/ot-cleanup-api.php:128
 #, php-format
@@ -717,6 +852,9 @@ msgid ""
 "attachments to. Additionally, the attachments will have their parent ID "
 "updated to the correct media post."
 msgstr ""
+"Vajutades allolevat nuppu, kustutab OptionTree %s kirjet ning ühendab nad "
+"ainsasse OptionTree meedia postitusse, kuhu manuseid üles laaditakse. Lisaks "
+"määratakse nende manuste vanema ID-le õige väärtus."
 
 #: ../includes/ot-cleanup-api.php:130
 msgid ""
@@ -724,6 +862,8 @@ msgid ""
 "have in your database, so please be patient and wait for the script to "
 "finish."
 msgstr ""
+"See protsess võtab aega sõltuvalt andmebaasis olevate kirjete arvust, seega "
+"palun olge kannatlikud ja laske skriptil oma töö lõpetada."
 
 #: ../includes/ot-cleanup-api.php:132
 #, php-format
@@ -732,22 +872,26 @@ msgid ""
 "automatically reload after deleting %s posts, you can filter this number "
 "using %s if your server is having trouble processing that many at one time."
 msgstr ""
+"%s Sinu server töötab turvarežiimis, mistõttu see lehekülg laetakse peale %s "
+"postituse kustutamist uuesti. Kui serveril on nii korraga nii mitme "
+"postituse töötlemisega probleeme, siis on seda numbrit võimalik %s filtriga "
+"muuta."
 
 #: ../includes/ot-cleanup-api.php:134
 msgid "Consolidate Posts"
-msgstr ""
+msgstr "Konsolideeri postitused"
 
 #: ../includes/ot-cleanup-api.php:162
 msgid "Reloading..."
-msgstr ""
+msgstr "Värskendame..."
 
 #: ../includes/ot-cleanup-api.php:198
 msgid "Clean up script has completed, the page will now reload..."
-msgstr ""
+msgstr "Puhastusskript on töö lõpetanud, leht laeb end kohe uuesti..."
 
 #: ../includes/ot-cleanup-api.php:218
 msgid "Outdated Table"
-msgstr ""
+msgstr "Aegunud tabel"
 
 #: ../includes/ot-cleanup-api.php:220
 #, php-format
@@ -757,75 +901,82 @@ msgid ""
 "hurting anything, but does not need to be there. If you want to remove it. "
 "Click the button below."
 msgstr ""
+"Kui oled millalgi OptionTreed uuendanud vanalt 1.x versioonilt, on sul "
+"andmebaasis üleliigne tabel %s, mille saaks eemaldada. See ei tee midagi "
+"halba ning ei pea seal olema. Eemaldamiseks vajuta allolevat nuppu."
 
 #: ../includes/ot-cleanup-api.php:222
 msgid "Drop Table"
-msgstr ""
+msgstr "Eemalda tabel"
 
 #: ../includes/ot-cleanup-api.php:226
 #, php-format
 msgid "Deleting the outdated and unused %s table..."
-msgstr ""
+msgstr "Kustutan aegunud ja kasutamata tabeli %s..."
 
 #: ../includes/ot-cleanup-api.php:232
 #, php-format
 msgid "The %s table has been successfully deleted. The page will now reload..."
-msgstr ""
+msgstr "Tabel %s kustutatu edukalt. Leht laetakse kohe uuesti..."
 
 #: ../includes/ot-cleanup-api.php:244
 #, php-format
 msgid "Something went wrong. The %s table was not deleted."
-msgstr ""
+msgstr "Midagi läks valesti. Tabelit %s ei kustutatud."
 
 #: ../includes/ot-cleanup-api.php:254
 msgid "Congratulations! You have a clean install."
-msgstr ""
+msgstr "Õnnitlused! Sul on puhas paigaldus."
 
 #: ../includes/ot-cleanup-api.php:256
 msgid ""
 "Your version of OptionTree does not have any outdated data. If there was "
 "outdated data, you would be presented with options to clean it up."
 msgstr ""
+"Sinu OptionTree versioonis ei ole aegunud andmeid. Kui neid oleks, siis "
+"pakutaks võimalust puhastamiseks."
 
 #: ../includes/ot-cleanup-api.php:258
 msgid "Hide This Page"
-msgstr ""
+msgstr "Peida lehekülg"
 
 #: ../includes/ot-functions-admin.php:50 ../includes/ot-functions-admin.php:51
 #: ../includes/ot-functions-admin.php:169
 #: ../includes/ot-functions-admin.php:193 ../includes/ot-functions.php:353
 msgid "Theme Options"
-msgstr ""
+msgstr "Teema seaded"
 
 #: ../includes/ot-functions-admin.php:56
 #: ../includes/ot-functions-admin.php:126
 #: ../includes/ot-functions-admin.php:220
 msgid "Theme Options updated."
-msgstr ""
+msgstr "Teema seaded on uuendatud."
 
 #: ../includes/ot-functions-admin.php:57
 #: ../includes/ot-functions-admin.php:127
 #: ../includes/ot-functions-admin.php:221
 msgid "Theme Options reset."
-msgstr ""
+msgstr "Teema valikute algseadistamine."
 
 #: ../includes/ot-functions-admin.php:58
 #: ../includes/ot-functions-settings-page.php:94
 #: ../includes/ot-functions-settings-page.php:133
 msgid "Save Changes"
-msgstr ""
+msgstr "Salvesta muudatused"
 
 #: ../includes/ot-functions-admin.php:97
 msgid ""
 "The Theme Options UI Builder is being overridden by a custom file in your "
 "theme. Any changes you make via the UI Builder will not be saved."
 msgstr ""
+"Teema kaustas on kohandatud fail, mistõttu Teema Valikute ehitaja "
+"kasutajaliideses tehtud muudatused ei salvestu."
 
 #: ../includes/ot-functions-admin.php:109
 #: ../includes/ot-functions-admin.php:110
 #: ../includes/ot-functions-docs-page.php:818
 msgid "OptionTree"
-msgstr ""
+msgstr "OptionTree"
 
 #: ../includes/ot-functions-admin.php:120
 #: ../includes/ot-functions-admin.php:121
@@ -833,324 +984,326 @@ msgstr ""
 #: ../includes/ot-functions-admin.php:187
 #: ../includes/ot-functions-docs-page.php:49
 msgid "Settings"
-msgstr ""
+msgstr "Seaded"
 
 #: ../includes/ot-functions-admin.php:128
 #: ../includes/ot-functions-admin.php:222
 msgid "Save Settings"
-msgstr ""
+msgstr "Salvesta seaded"
 
 #: ../includes/ot-functions-admin.php:133
 msgid "Theme Options UI"
-msgstr ""
+msgstr "Teema valikute kasutajaliides"
 
 #: ../includes/ot-functions-admin.php:137
 msgid "Import"
-msgstr ""
+msgstr "Impordi"
 
 #: ../includes/ot-functions-admin.php:141
 msgid "Export"
-msgstr ""
+msgstr "Ekspordi"
 
 #: ../includes/ot-functions-admin.php:145
 #: ../includes/ot-functions-admin.php:175
 #: ../includes/ot-functions-admin.php:199
 msgid "Layouts"
-msgstr ""
+msgstr "Paigutused"
 
 #: ../includes/ot-functions-admin.php:151
 msgid "Theme Options UI Builder"
-msgstr ""
+msgstr "Teema valikute kasutajaliidese ehitaja"
 
 #: ../includes/ot-functions-admin.php:157
 msgid "Settings XML"
-msgstr ""
+msgstr "Seadete XML"
 
 #: ../includes/ot-functions-admin.php:181
 msgid "Settings PHP File"
-msgstr ""
+msgstr "Seadete PHP fail"
 
 #: ../includes/ot-functions-admin.php:205
 msgid "Layout Management"
-msgstr ""
+msgstr "Paigutuste haldus"
 
 #: ../includes/ot-functions-admin.php:214
 #: ../includes/ot-functions-admin.php:215
 msgid "Documentation"
-msgstr ""
+msgstr "Dokumentatsioon"
 
 #: ../includes/ot-functions-admin.php:227
 msgid "Creating Options"
-msgstr ""
+msgstr "Seadete loomine"
 
 #: ../includes/ot-functions-admin.php:235
 msgid "Function References"
-msgstr ""
+msgstr "Funktsioonide ülevaade"
 
 #: ../includes/ot-functions-admin.php:239
 #: ../includes/ot-functions-admin.php:281
 #: ../includes/ot-functions-settings-page.php:366
 msgid "Theme Mode"
-msgstr ""
+msgstr "Teema režiim"
 
 #: ../includes/ot-functions-admin.php:243
 #: ../includes/ot-functions-admin.php:287
 msgid "Meta Boxes"
-msgstr ""
+msgstr "Meta kastid"
 
 #: ../includes/ot-functions-admin.php:247
 msgid "Code Examples"
-msgstr ""
+msgstr "Koodinäited"
 
 #: ../includes/ot-functions-admin.php:251
 msgid "Layouts Overview"
-msgstr ""
+msgstr "Paigutuste ülevaade"
 
 #: ../includes/ot-functions-admin.php:257
 msgid "Overview of available Theme Option fields."
-msgstr ""
+msgstr "Võimalike teema valikute väljade ülevaade."
 
 #: ../includes/ot-functions-admin.php:263
 msgid "Option types in alphabetical order & hooks to filter them."
 msgstr ""
+"Valikutüübid tähestikulises järjekorras ja konksud nende filtreerimiseks."
 
 #: ../includes/ot-functions-admin.php:269
 msgid "Function Reference:ot_get_option()"
-msgstr ""
+msgstr "Funktsiooni ülevaade:ot_get_option()"
 
 #: ../includes/ot-functions-admin.php:275
 msgid "Function Reference:get_option_tree()"
-msgstr ""
+msgstr "Funktsiooni ülevaade:get_option_tree()"
 
 #: ../includes/ot-functions-admin.php:293
 msgid "Code examples for front-end development."
-msgstr ""
+msgstr "Koodinäited veebilehe välise poole arenduseks."
 
 #: ../includes/ot-functions-admin.php:299
 msgid "What's a layout anyhow?"
-msgstr ""
+msgstr "Mis siis ikkagi on paigutus?"
 
 #: ../includes/ot-functions-admin.php:502
 #: ../includes/ot-functions-admin.php:614
 #: ../includes/ot-functions-admin.php:683
 #, php-format
 msgid "The %s input field for %s only allows numeric values."
-msgstr ""
+msgstr "%s sisendväli %s jaoks lubab vaid numbrilisi väärtusi."
 
 #: ../includes/ot-functions-admin.php:512
 msgid "The Colorpicker only allows valid hexadecimal values."
 msgstr ""
+"Värvi valija lubab vaid sobivaid kuueteistkümnendiksüsteemis väärtuseid."
 
 #: ../includes/ot-functions-admin.php:566
 #, php-format
 msgid "The %s Colorpicker only allows valid hexadecimal values."
-msgstr ""
+msgstr "%s värvi valija lubab väärtuseid vaid kuueteistkümnendiksüsteemis."
 
 #: ../includes/ot-functions-admin.php:850
 #: ../includes/ot-functions-option-types.php:257
 #: ../includes/ot-functions-option-types.php:3133
 msgid "Remove Media"
-msgstr ""
+msgstr "Eemalda meedia"
 
 #: ../includes/ot-functions-admin.php:851
 msgid "Are you sure you want to reset back to the defaults?"
-msgstr ""
+msgstr "Kas olete kindel, et soovite taastada algseaded?"
 
 #: ../includes/ot-functions-admin.php:852
 msgid "You can't remove this! But you can edit the values."
-msgstr ""
+msgstr "Te ei saa seda eemaldada! Väärtuste muutmine on lubatud."
 
 #: ../includes/ot-functions-admin.php:853
 msgid "Are you sure you want to remove this?"
-msgstr ""
+msgstr "Kas olete kindel, et soovite seda eemaldada?"
 
 #: ../includes/ot-functions-admin.php:854
 msgid "Are you sure you want to activate this layout?"
-msgstr ""
+msgstr "Kas olete kindel, et soovite seda paigutust aktiveerida?"
 
 #: ../includes/ot-functions-admin.php:855
 msgid "Sorry, you can't have settings three levels deep."
-msgstr ""
+msgstr "Kahjuks ei saa sätteid määrata kolmanda taseme sügavusega."
 
 #: ../includes/ot-functions-admin.php:856
 #: ../includes/ot-functions-option-types.php:1188
 msgid "Delete Gallery"
-msgstr ""
+msgstr "Kustuta galerii"
 
 #: ../includes/ot-functions-admin.php:857
 #: ../includes/ot-functions-option-types.php:1189
 msgid "Edit Gallery"
-msgstr ""
+msgstr "Muuda galeriid"
 
 #: ../includes/ot-functions-admin.php:858
 #: ../includes/ot-functions-option-types.php:1196
 msgid "Create Gallery"
-msgstr ""
+msgstr "Loo galerii"
 
 #: ../includes/ot-functions-admin.php:859
 msgid "Are you sure you want to delete this Gallery?"
-msgstr ""
+msgstr "Kas olete kindel, et soovite seda galeriid kustutada?"
 
 #: ../includes/ot-functions-admin.php:860
 msgid "Today"
-msgstr ""
+msgstr "Täna"
 
 #: ../includes/ot-functions-admin.php:861
 msgid "Now"
-msgstr ""
+msgstr "Praegu"
 
 #: ../includes/ot-functions-admin.php:862
 msgid "Close"
-msgstr ""
+msgstr "Sulge"
 
 #: ../includes/ot-functions-admin.php:863
 msgid "Featured Image"
-msgstr ""
+msgstr "Tunuuspilt"
 
 #: ../includes/ot-functions-admin.php:864
 #: ../includes/ot-functions-admin.php:3246
 #: ../includes/ot-functions-admin.php:3307
 msgid "Image"
-msgstr ""
+msgstr "Pilt"
 
 #: ../includes/ot-functions-admin.php:932
 msgid "Option Tree"
-msgstr ""
+msgstr "Option Tree"
 
 #: ../includes/ot-functions-admin.php:1069
 msgid "General"
-msgstr ""
+msgstr "Üldseaded"
 
 #: ../includes/ot-functions-admin.php:1075
 msgid "Sample Text Field Label"
-msgstr ""
+msgstr "Tekstisisendi nimetuse näide"
 
 #: ../includes/ot-functions-admin.php:1076
 msgid "Description for the sample text field."
-msgstr ""
+msgstr "Tekstisisendi kirjelduse näide"
 
 #: ../includes/ot-functions-admin.php:2318
 msgid "Settings updated."
-msgstr ""
+msgstr "Seaded on uuendatud."
 
 #: ../includes/ot-functions-admin.php:2322
 msgid "Settings could not be saved."
-msgstr ""
+msgstr "Seadeid ei suudetud uuendada."
 
 #: ../includes/ot-functions-admin.php:2330
 msgid "Settings Imported."
-msgstr ""
+msgstr "Seaded on imporditud."
 
 #: ../includes/ot-functions-admin.php:2334
 msgid "Settings could not be imported."
-msgstr ""
+msgstr "Seadeid ei suudetud importida."
 
 #: ../includes/ot-functions-admin.php:2341
 msgid "Data Imported."
-msgstr ""
+msgstr "Andmed on imporditud."
 
 #: ../includes/ot-functions-admin.php:2345
 msgid "Data could not be imported."
-msgstr ""
+msgstr "Andmeid ei suudetud importida."
 
 #: ../includes/ot-functions-admin.php:2353
 msgid "Layouts Imported."
-msgstr ""
+msgstr "Paigutused on imporditud."
 
 #: ../includes/ot-functions-admin.php:2357
 msgid "Layouts could not be imported."
-msgstr ""
+msgstr "Paigutusi ei suudetud importida."
 
 #: ../includes/ot-functions-admin.php:2365
 msgid "Layouts Updated."
-msgstr ""
+msgstr "Paigutused on uuendatud."
 
 #: ../includes/ot-functions-admin.php:2369
 msgid "Layouts could not be updated."
-msgstr ""
+msgstr "Paigutusi ei suudetud uuendada."
 
 #: ../includes/ot-functions-admin.php:2373
 msgid "Layouts have been deleted."
-msgstr ""
+msgstr "Paigutused on kustutatud."
 
 #: ../includes/ot-functions-admin.php:2379
 msgid "Layout activated."
-msgstr ""
+msgstr "Paigutus on aktiveeritud."
 
 #: ../includes/ot-functions-admin.php:2419
 #: ../includes/ot-functions-docs-page.php:113
 msgid "Border"
-msgstr ""
+msgstr "Ääris"
 
 #: ../includes/ot-functions-admin.php:2420
 #: ../includes/ot-functions-docs-page.php:116
 msgid "Box Shadow"
-msgstr ""
+msgstr "Kasti vari"
 
 #: ../includes/ot-functions-admin.php:2425
 #: ../includes/ot-functions-docs-page.php:131
 msgid "Colorpicker Opacity"
-msgstr ""
+msgstr "Värvivalija läbipaistmatus"
 
 #: ../includes/ot-functions-admin.php:2431
 #: ../includes/ot-functions-docs-page.php:165
 msgid "Dimension"
-msgstr ""
+msgstr "Mõõtmed"
 
 #: ../includes/ot-functions-admin.php:2433
 #: ../includes/ot-functions-docs-page.php:171
 msgid "Google Fonts"
-msgstr ""
+msgstr "Google Fondid"
 
 #: ../includes/ot-functions-admin.php:2434
 #: ../includes/ot-functions-docs-page.php:174
 msgid "Link Color"
-msgstr ""
+msgstr "Lingi värv"
 
 #: ../includes/ot-functions-admin.php:2447
 #: ../includes/ot-functions-docs-page.php:266
 msgid "Slider"
-msgstr ""
+msgstr "Slaidiesitaja"
 
 #: ../includes/ot-functions-admin.php:2449
 #: ../includes/ot-functions-docs-page.php:272
 msgid "Spacing"
-msgstr ""
+msgstr "Vahed"
 
 #: ../includes/ot-functions-admin.php:2450
 #: ../includes/ot-functions-docs-page.php:275
 msgid "Tab"
-msgstr ""
+msgstr "Sakk"
 
 #: ../includes/ot-functions-admin.php:3191
 msgid "Left Sidebar"
-msgstr ""
+msgstr "Vasak küljendusmenüü"
 
 #: ../includes/ot-functions-admin.php:3196
 msgid "Right Sidebar"
-msgstr ""
+msgstr "Parem küljendusmenüü"
 
 #: ../includes/ot-functions-admin.php:3201
 msgid "Full Width (no sidebar)"
-msgstr ""
+msgstr "Täies pikkuses (ilma küljendusmenüüta)"
 
 #: ../includes/ot-functions-admin.php:3206
 msgid "Dual Sidebar"
-msgstr ""
+msgstr "Topelt küljendusmenüü"
 
 #: ../includes/ot-functions-admin.php:3211
 msgid "Left Dual Sidebar"
-msgstr ""
+msgstr "Kaks küljendusmenüüd vasakul"
 
 #: ../includes/ot-functions-admin.php:3216
 msgid "Right Dual Sidebar"
-msgstr ""
+msgstr "Kaks küljendusmenüüd paremal"
 
 #: ../includes/ot-functions-admin.php:3257
 #: ../includes/ot-functions-admin.php:3313
 #: ../includes/ot-functions-admin.php:5432
 msgid "Link"
-msgstr ""
+msgstr "Viide"
 
 #: ../includes/ot-functions-admin.php:3268
 #: ../includes/ot-functions-admin.php:3319
@@ -1158,19 +1311,19 @@ msgstr ""
 #: ../includes/ot-functions-docs-page.php:425
 #: ../includes/ot-functions-docs-page.php:475
 msgid "Description"
-msgstr ""
+msgstr "Kirjeldus"
 
 #: ../includes/ot-functions-admin.php:3383
 msgid "Name"
-msgstr ""
+msgstr "Nimetus"
 
 #: ../includes/ot-functions-admin.php:3384
 msgid "Enter the name of the social website."
-msgstr ""
+msgstr "Sisesta sotsiaalmeedia veebilehe nimi."
 
 #: ../includes/ot-functions-admin.php:3392
 msgid "Enter the text shown in the title attribute of the link."
-msgstr ""
+msgstr "Sisesta tekst, mida näidatakse lingi pealkirja atribuudis."
 
 #: ../includes/ot-functions-admin.php:3398
 #, php-format
@@ -1178,10 +1331,12 @@ msgid ""
 "Enter a link to the profile or page on the social website. Remember to add "
 "the %s part to the front of the link."
 msgstr ""
+"Sisesta link profiilile või lehele sellel sotsiaalmeedia veebilehel. Ära "
+"unusta lisada lingi ette %s osa."
 
 #: ../includes/ot-functions-admin.php:3953
 msgid "edit"
-msgstr ""
+msgstr "muuda"
 
 #: ../includes/ot-functions-admin.php:3954
 #: ../includes/ot-functions-admin.php:4022
@@ -1195,7 +1350,7 @@ msgstr ""
 #: ../includes/ot-functions-admin.php:4532
 #: ../includes/ot-functions-admin.php:4533
 msgid "Edit"
-msgstr ""
+msgstr "Muuda"
 
 #: ../includes/ot-functions-admin.php:3956
 #: ../includes/ot-functions-admin.php:3957
@@ -1212,25 +1367,31 @@ msgstr ""
 #: ../includes/ot-functions-admin.php:4535
 #: ../includes/ot-functions-admin.php:4536
 msgid "Delete"
-msgstr ""
+msgstr "Kustuta"
 
 #: ../includes/ot-functions-admin.php:3963
 msgid ""
 "<strong>Section Title</strong>: Displayed as a menu item on the Theme "
 "Options page."
 msgstr ""
+"<strong>Sektsiooni pealkiri</strong>: Näidatakse menüü elemendina teema "
+"valikute lehel."
 
 #: ../includes/ot-functions-admin.php:3971
 msgid ""
 "<strong>Section ID</strong>: A unique lower case alphanumeric string, "
 "underscores allowed."
 msgstr ""
+"<strong>Sektsiooni ID</strong>: unikaalne väiketähtedega tähtnumbriline "
+"string, alakriipsud lubatud."
 
 #: ../includes/ot-functions-admin.php:4032
 msgid ""
 "<strong>Label</strong>: Displayed as the label of a form element on the "
 "Theme Options page."
 msgstr ""
+"<strong>Nimetus</strong>: Näidatakse kui vormi elemendi nimetust teema "
+"valikute lehel."
 
 #: ../includes/ot-functions-admin.php:4040
 #: ../includes/ot-functions-admin.php:4269
@@ -1238,12 +1399,15 @@ msgid ""
 "<strong>ID</strong>: A unique lower case alphanumeric string, underscores "
 "allowed."
 msgstr ""
+"<strong>ID</strong>: unikaalne väiketähtedega tähtnumbriline string, "
+"alakriipsud lubatud."
 
 #: ../includes/ot-functions-admin.php:4048
 msgid ""
 "<strong>Type</strong>: Choose one of the available option types from the "
 "dropdown."
 msgstr ""
+"<strong>Tüüp</strong>: vali rippmenüüst üks pakutavatest valiku tüüpidest."
 
 #: ../includes/ot-functions-admin.php:4059
 msgid ""
@@ -1251,26 +1415,31 @@ msgid ""
 "read on the Theme Options page, HTML is allowed. This is also where you "
 "enter content for both the Textblock & Textblock Titled option types."
 msgstr ""
+"<strong>Kirjeldus</strong>: sisesta detailne kirjeldus, mida kasutajad "
+"saavad lugeda teema valikute lehel. HTML on lubatud. See on ühtlasi ka koht, "
+"kuhu sisestada tekstibloki ja pealkirjaga tekstibloki valikutüüpide sisu."
 
 #: ../includes/ot-functions-admin.php:4067
 msgid ""
 "<strong>Choices</strong>: This will only affect the following option types: "
 "Checkbox, Radio, Select & Select Image."
 msgstr ""
+"<strong>Valikud</strong>: mõjutab vaid järgnevaid valikutüüpe: valikkastid, "
+"raadiokastid, rippvalik ja pildi valik."
 
 #: ../includes/ot-functions-admin.php:4072
 msgid "Add Choice"
-msgstr ""
+msgstr "Lisa valik"
 
 #: ../includes/ot-functions-admin.php:4078
 msgid ""
 "<strong>Settings</strong>: This will only affect the List Item option type."
-msgstr ""
+msgstr "<strong>Sätted</strong>: mõjutab vaid nimekirja elemendi valikutüüpi."
 
 #: ../includes/ot-functions-admin.php:4083
 #: ../includes/ot-functions-settings-page.php:93
 msgid "Add Setting"
-msgstr ""
+msgstr "Lisa säte"
 
 #: ../includes/ot-functions-admin.php:4089
 msgid ""
@@ -1278,6 +1447,9 @@ msgid ""
 "works for some option types. Read the <code>OptionTree->Documentation</code> "
 "for more information on which ones."
 msgstr ""
+"<strong>Standard</strong>. standardväärtuse määramine mõjub vaid mõnele "
+"valikutüübile. Lisainfot leiad <code>OptionTree->Dokumentatsioon</code> "
+"lehelt."
 
 #: ../includes/ot-functions-admin.php:4097
 msgid ""
@@ -1285,6 +1457,9 @@ msgid ""
 "textarea. This will only affect the following option types: CSS, Textarea, & "
 "Textarea Simple."
 msgstr ""
+"<strong>Ridu</strong>: sisesta numbriline väärtus, mis määrab ridade arvu "
+"tekstiväljal. Mõjutab vaid järgnevaid valikutüüpe: CSS, tekstiväli ja lihtne "
+"tekstiväli."
 
 #: ../includes/ot-functions-admin.php:4105
 msgid ""
@@ -1292,6 +1467,10 @@ msgid ""
 "'post,page'. This will only affect the following option types: Custom Post "
 "Type Checkbox, & Custom Post Type Select."
 msgstr ""
+"<strong>Postituse tüüp</strong>: lisa siia komaga eraldatud loend "
+"postitüüpidest - näiteks 'post,page'. See mõjutab vaid järgnevaid "
+"valikutüüpe: enda loodud postitüübi valikkastid ja enda loodud postitüübi "
+"rippvalik."
 
 #: ../includes/ot-functions-admin.php:4113
 msgid ""
@@ -1299,6 +1478,9 @@ msgid ""
 "taxonomy like 'category,post_tag'. This will only affect the following "
 "option types: Taxonomy Checkbox, & Taxonomy Select."
 msgstr ""
+"<strong>Taksonoomia</strong>: lisa komaga eraldatud loend registreeritud "
+"taksonoomiatest nagu 'category,post_tag'. See mõjutab vaid järgnevaid "
+"valikutüüpe: taksonoomia valikukastid & taksonoomia rippvalik."
 
 #: ../includes/ot-functions-admin.php:4121
 msgid ""
@@ -1308,10 +1490,15 @@ msgid ""
 "maximum, and step options and will only affect the Numeric Slider option "
 "type."
 msgstr ""
+"<strong>min, max & aste</strong>: lisa komaga eraldatud loend valikutest "
+"järgnevas formaadis: <code>0,100,1</code> ( liugle vahemikus <code>0-100</"
+"code> intervalliga <code>1</code> ). Need kolm väärtust näitavad miinimumi, "
+"maksimumi ja astme valikuid ning mõjutavad vaid numbriliuguri valikutüüpi."
 
 #: ../includes/ot-functions-admin.php:4129
 msgid "<strong>CSS Class</strong>: Add and optional class to this option type."
 msgstr ""
+"<strong>CSS klass</strong>: Soovi korral lisa sellele valikutüübile klass."
 
 #: ../includes/ot-functions-admin.php:4137
 #, php-format
@@ -1321,91 +1508,101 @@ msgid ""
 "always show the field. In these examples, <code>value</code> is a "
 "placeholder for your condition, which can be in the form of %s."
 msgstr ""
+"<strong>Tingimus</strong>: lisa komaga eraldatud loend ( ilma tühikuteta ) "
+"tingimustest, mille korral see väli on nähtav. Välja alati näitamiseks jäta "
+"tühjaks. Nendes näidetes on <code>value</code> kohahoidja teie tingimustele, "
+"mis võivad olla kujul %s."
 
 #: ../includes/ot-functions-admin.php:4145
 msgid ""
 "<strong>Operator</strong>: Choose the logical operator to compute the result "
 "of the conditions."
 msgstr ""
+"<strong>Operaator</strong>: vali loogiline operaator, millega arvutada välja "
+"tingimuste tulemus."
 
 #: ../includes/ot-functions-admin.php:4149
 msgid "or"
-msgstr ""
+msgstr "või"
 
 #: ../includes/ot-functions-admin.php:4195
 #: ../includes/ot-functions-docs-page.php:29
 msgid "Label"
-msgstr ""
+msgstr "Nimetus"
 
 #: ../includes/ot-functions-admin.php:4205
 msgid "Value"
-msgstr ""
+msgstr "Väärtus"
 
 #: ../includes/ot-functions-admin.php:4215
 msgid "Image Source (Radio Image only)"
-msgstr ""
+msgstr "Pildi allikas ( ainult pildiga raadiovaliku jaoks )"
 
 #: ../includes/ot-functions-admin.php:4261
 msgid ""
 "<strong>Title</strong>: Displayed as a contextual help menu item on the "
 "Theme Options page."
 msgstr ""
+"<strong>Pealkiri</strong>: kuvatakse kui kontekstipõhine abimenüü element "
+"teema valikute lehel."
 
 #: ../includes/ot-functions-admin.php:4277
 msgid ""
 "<strong>Content</strong>: Enter the HTML content about this contextual help "
 "item displayed on the Theme Option page for end users to read."
 msgstr ""
+"<strong>Sisu</strong>: sisesta HTML sisu selle kontekstipõhise elemendi "
+"kohta. Näidatakse teema valikute lehel lõppkasutajatele."
 
 #: ../includes/ot-functions-admin.php:4308
 msgid "Layout"
-msgstr ""
+msgstr "Paigutus"
 
 #: ../includes/ot-functions-admin.php:4310
 #: ../includes/ot-functions-admin.php:4311
 msgid "Activate"
-msgstr ""
+msgstr "Aktiveeri"
 
 #: ../includes/ot-functions-admin.php:4347 ../includes/ot-meta-box-api.php:223
 #: ../includes/ot-settings-api.php:601
 msgid "Title"
-msgstr ""
+msgstr "Pealkiri"
 
 #: ../includes/ot-functions-admin.php:4687
 msgid "New Layout"
-msgstr ""
+msgstr "Uus paigutus"
 
 #: ../includes/ot-functions-admin.php:5441
 msgid "Link URL"
-msgstr ""
+msgstr "Viide"
 
 #: ../includes/ot-functions-admin.php:5448
 msgid "Link Title"
-msgstr ""
+msgstr "Lingi pealkiri"
 
 #: ../includes/ot-functions-admin.php:5478
 msgid "Quote"
-msgstr ""
+msgstr "Tsitaat"
 
 #: ../includes/ot-functions-admin.php:5487
 msgid "Source Name (ex. author, singer, actor)"
-msgstr ""
+msgstr "Allika nimi (nt autor, laulja, näitleja)"
 
 #: ../includes/ot-functions-admin.php:5494
 msgid "Source URL"
-msgstr ""
+msgstr "Allika URL"
 
 #: ../includes/ot-functions-admin.php:5501
 msgid "Source Title (ex. book, song, movie)"
-msgstr ""
+msgstr "Allika pealkiri (nt raamat, laul, film)"
 
 #: ../includes/ot-functions-admin.php:5508
 msgid "Source Date"
-msgstr ""
+msgstr "Allika kuupäev"
 
 #: ../includes/ot-functions-admin.php:5538
 msgid "Video"
-msgstr ""
+msgstr "Video"
 
 #: ../includes/ot-functions-admin.php:5547
 #, php-format
@@ -1414,15 +1611,18 @@ msgid ""
 "of supported oEmbed sites in the %1$s. Alternatively, you could use the "
 "built-in %2$s shortcode."
 msgstr ""
+"Lisa video välisest allikast, nagu näiteks Youtube, Vimeo või Hulu. "
+"Nimekirja toetatud oEmbed veebilehtedest leiad %1$s. Teine variant oleks "
+"kasutada sisse ehitatud lühikoodi %2$s."
 
 #: ../includes/ot-functions-admin.php:5547
 #: ../includes/ot-functions-admin.php:5586
 msgid "Wordpress Codex"
-msgstr ""
+msgstr "Wordpress Codex"
 
 #: ../includes/ot-functions-admin.php:5577
 msgid "Audio"
-msgstr ""
+msgstr "Audio"
 
 #: ../includes/ot-functions-admin.php:5586
 #, php-format
@@ -1431,16 +1631,21 @@ msgid ""
 "supported oEmbed sites in the %1$s. Alternatively, you could use the built-"
 "in %2$s shortcode."
 msgstr ""
+"Lisa heli teenustest SoundCloud, Rdio või teistest sarnastest. Nimekirja "
+"toetatud oEmbed veebilehtedest leiad %1$s. Teine variant oleks kasutada "
+"sisse ehitatud lühikoodi %2$s."
 
 #: ../includes/ot-functions-docs-page.php:30
 msgid ""
 "The Label field should be a short but descriptive block of text 100 "
 "characters or less with no HTML."
 msgstr ""
+"Nimetuse väli peaks olema lühike kuid kirjeldav tekstiblokk, mis on kuni 100 "
+"tähemärki pikk ja ei sisalda HTML-i."
 
 #: ../includes/ot-functions-docs-page.php:32
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: ../includes/ot-functions-docs-page.php:33
 msgid ""
@@ -1449,10 +1654,13 @@ msgid ""
 "you write in this field to lowercase and replace spaces and special "
 "characters with an underscore automatically."
 msgstr ""
+"ID väli on unikaalne tähtnumbriline võti eristamaks teema valikuid "
+"( alakriipsud on lubatud ). Lisaks muudetakse kõik siia välja kirjutatav "
+"tekst väiketähtedeks ning erimärgid asendatakse automaatselt alakriipsudega."
 
 #: ../includes/ot-functions-docs-page.php:35
 msgid "Type"
-msgstr ""
+msgstr "Tüüp"
 
 #: ../includes/ot-functions-docs-page.php:36
 msgid ""
@@ -1461,6 +1669,9 @@ msgid ""
 "information about each type click the <code>Option Types</code> tab to the "
 "left."
 msgstr ""
+"Uue valiku loomisel peate valima mõne toetatud valikutüüpidest. Siin on "
+"nimekiri saadaolevatest valikutüüpidest. Lisainfo igaühe kohta neist on "
+"saadaval vajutades vasakul olevat <code>Valiku tüüp</code> sakki."
 
 #: ../includes/ot-functions-docs-page.php:44
 msgid ""
@@ -1468,10 +1679,13 @@ msgid ""
 "page, HTML is allowed. This is also where you enter content for both the "
 "Textblock & Textblock Titled option types."
 msgstr ""
+"Sisesta detailne kirjeldus, mida kasutajad saavad lugeda teema valikute "
+"lehel. HTML on lubatud. See on ka koht sisu sisestamiseks tekstibloki ja "
+"pealkirjaga tekstibloki valikutüüpide jaoks."
 
 #: ../includes/ot-functions-docs-page.php:46
 msgid "Choices"
-msgstr ""
+msgstr "Valikud"
 
 #: ../includes/ot-functions-docs-page.php:47
 msgid ""
@@ -1479,16 +1693,21 @@ msgid ""
 "will only affect the following option types: Checkbox, Radio, Select & "
 "Select Image."
 msgstr ""
+"Elemendi lisamiseks valikute massiivi vajuta \"Lisa valik\" nuppu. See "
+"mõjutab järgnevaid valikutüüpe: valikkastid, raadiokastid, rippvalik ja "
+"pildivalik."
 
 #: ../includes/ot-functions-docs-page.php:50
 msgid ""
 "Click the \"Add Setting\" button found inside a newly created setting to add "
 "an item to the settings array. This will only affect the List Item type."
 msgstr ""
+"Elemendi lisamiseks sätete massiivi vajuta vastloodud sättes asuvat \"Lisa "
+"säte\" nuppu. See mõjutab vaid nimekirja elemendi tüüpi."
 
 #: ../includes/ot-functions-docs-page.php:52
 msgid "Standard"
-msgstr ""
+msgstr "Standartne"
 
 #: ../includes/ot-functions-docs-page.php:53
 msgid ""
@@ -1496,20 +1715,25 @@ msgid ""
 "Those types are one that have a single string value saved to them and not an "
 "array of values."
 msgstr ""
+"Standard väärtuse määramine oma valikule töötab vaid mõnede valikutüüpidega. "
+"Need tüübid on sellised, kus hoitakse vaid ühte väärtust stringi kujul, "
+"mitte väärtuste massiivi."
 
 #: ../includes/ot-functions-docs-page.php:55
 msgid "Rows"
-msgstr ""
+msgstr "Ridasid"
 
 #: ../includes/ot-functions-docs-page.php:56
 msgid ""
 "Enter a numeric value for the number of rows in your textarea. This will "
 "only affect the following option types: CSS, Textarea, & Textarea Simple."
 msgstr ""
+"Sisesta numbriline väärtus, mis määrab ridade arvu tekstialas. See mõjutab "
+"vaid järgnevaid valikutüüpe: CSS, tekstiala & lihtne tekstiala."
 
 #: ../includes/ot-functions-docs-page.php:58
 msgid "Post Type"
-msgstr ""
+msgstr "Postitüüp"
 
 #: ../includes/ot-functions-docs-page.php:59
 msgid ""
@@ -1520,10 +1744,16 @@ msgid ""
 "your own custom <code>post_type</code>. At this time <code>any</code> does "
 "not seem to return results properly and is something I plan on looking into."
 msgstr ""
+"Lisa komaga eraldatud loetelu postitüüpidest, näiteks <code>post,page</"
+"code>. See mõjutab vaid järgnevaid valikutüüpe: kohandatud postitüübi "
+"valikkastid ja kohandatud postitüübi rippmenüü. All on vaikimisi Wordpressis "
+"saadaval postitüübid, mis on OptionTreega kokkusobivad. Saad kasutada ka "
+"enda loodud <code>post_type</code>. Hetkel <code>any</code> ei tagasta "
+"õigeid väärtusi."
 
 #: ../includes/ot-functions-docs-page.php:67
 msgid "Taxonomy"
-msgstr ""
+msgstr "Taksonoomia"
 
 #: ../includes/ot-functions-docs-page.php:68
 msgid ""
@@ -1531,10 +1761,13 @@ msgid ""
 "post_tag</code>. This will only affect the following option types: Taxonomy "
 "Checkbox, & Taxonomy Select."
 msgstr ""
+"Lisa komaga eraldatud loend registreeritud taksonoomiatest nagu 'category,"
+"post_tag'. See mõjutab vaid järgnevaid valikutüüpe: taksonoomia valikukastid "
+"& taksonoomia rippvalik."
 
 #: ../includes/ot-functions-docs-page.php:70
 msgid "Min, Max, & Step"
-msgstr ""
+msgstr "Miinimum, maksimum ning aste"
 
 #: ../includes/ot-functions-docs-page.php:71
 msgid ""
@@ -1543,18 +1776,22 @@ msgid ""
 "three values represent the minimum, maximum, and step options and will only "
 "affect the Numeric Slider option type."
 msgstr ""
+"Lisa komaga eraldatud loend valikutest järgnevas formaadis: <code>0,100,1</"
+"code> ( liugle vahemikus <code>0-100</code> intervalliga <code>1</code> ). "
+"Need kolm väärtust näitavad miinimumi, maksimumi ja astme valikuid ning "
+"mõjutavad vaid numbriliuguri valikutüüpi."
 
 #: ../includes/ot-functions-docs-page.php:73
 msgid "CSS Class"
-msgstr ""
+msgstr "CSS klass"
 
 #: ../includes/ot-functions-docs-page.php:74
 msgid "Add and optional class to any option type."
-msgstr ""
+msgstr "Soovi korral lisa klassi-atribuut ükskõik millisele valikutüübile."
 
 #: ../includes/ot-functions-docs-page.php:76
 msgid "Condition"
-msgstr ""
+msgstr "Tingimus"
 
 #: ../includes/ot-functions-docs-page.php:77
 #, php-format
@@ -1564,10 +1801,13 @@ msgid ""
 "examples, %s is a placeholder for your condition, which can be in the form "
 "of %s."
 msgstr ""
+"Lisa komaga eraldatud loend ( ilma tühikuteta ) tingimustest, mille korral "
+"see väli on nähtav. Tühjaks jättes on väli alati nähtav. Nendes näidetes on "
+"%s tingimuse kohahoidjaks, mis tohib olla kujul %s."
 
 #: ../includes/ot-functions-docs-page.php:79
 msgid "Operator"
-msgstr ""
+msgstr "Operaator"
 
 #: ../includes/ot-functions-docs-page.php:80
 #, php-format
@@ -1575,6 +1815,8 @@ msgid ""
 "Choose the logical operator to compute the result of the conditions. Your "
 "options are %s and %s."
 msgstr ""
+"Vali loogiline operaator, millega arvutada tingimuste tulemus. Sinu "
+"valikuteks on %s ja %s."
 
 #: ../includes/ot-functions-docs-page.php:114
 #, php-format
@@ -1587,12 +1829,20 @@ msgid ""
 "%s, %s, %s, %s, %s, %s, and %s. However, you can change them with the %s "
 "filter. The colorpicker saves a hexadecimal color code."
 msgstr ""
+"Äärise valikutüüp kasutatakse laiuse, ühiku, stiili ja värvi määramiseks. "
+"Tekstisisendisse saab kirjutada numbrilise väärtuse ning rippmenüü laseb "
+"valida talle mõõtühiku. Hetkel on vaikimisi ühikuteks %s, %s, %s ja %s. Neid "
+"saab muuta %s filtriga. Stiili rippmenüü laseb valida äärise stiili. "
+"Vaikimisi stiilid on %s, %s, %s, %s, %s, %s, %s ja %s. Neid saab muuta %s "
+"filtriga. Värvivalija salvestab värvikoodi kuueteistkümnendiksüsteemis."
 
 #: ../includes/ot-functions-docs-page.php:117
 #, php-format
 msgid ""
 "The Box Shadow option type is used to set %s, %s, %s, %s, %s, and %s values."
 msgstr ""
+"Kasti varju valikutüüpi kasutatakse %s, %s, %s, %s, %s ja %s väärtuse "
+"määramiseks."
 
 #: ../includes/ot-functions-docs-page.php:132
 #, php-format
@@ -1602,14 +1852,18 @@ msgid ""
 "as hexadecimal, if used within the CSS option type the color and opacity "
 "values will be converted into a valid RGBA CSS value."
 msgstr ""
+"Värvivalija läbipaistmatuse valikutüüp salvestab värvikoodi "
+"kuueteistkümnendiksüsteemis läbipaistmatuse väärtusega %s kuni %s sammuga "
+"%s. Kuigi väärtus salvestatakse kuueteistkümnendiksüsteemis, kasutades teda "
+"koos CSS valikutüübiga teisendatakse ja korrektseks RGBA CSS väärtuseks."
 
 #: ../includes/ot-functions-docs-page.php:139
 msgid "Input"
-msgstr ""
+msgstr "Sisend"
 
 #: ../includes/ot-functions-docs-page.php:145
 msgid "Output"
-msgstr ""
+msgstr "Väljund"
 
 #: ../includes/ot-functions-docs-page.php:166
 #, php-format
@@ -1619,6 +1873,10 @@ msgid ""
 "measurement to add to that value. Currently the default units are %s, %s, "
 "%s, and %s. However, you can change them with the %s filter."
 msgstr ""
+"Mõõtme valikutüüpi kasutatakse laiuse ja kõrguse väärtuste jaoks. "
+"Tekstisisendisse saab kirjutada numbrilise väärtuse ning rippmenüü laseb "
+"valida talle mõõtühiku. Hetkel on vaikimisi ühikuteks %s, %s, %s ja %s. Neid "
+"saab muuta %s filtriga."
 
 #: ../includes/ot-functions-docs-page.php:172
 #, php-format
@@ -1632,10 +1890,18 @@ msgid ""
 "option type. This will allow you to add additional web safe fonts to "
 "individual font families on an as-need basis."
 msgstr ""
+"Google Fontide valikutüüp kaasab dokumendi %1$s dünaamiliselt soovitud hulga "
+"Google veebifonte. Lisaks salvestub iga valitud fondi perekond automaatselt "
+"%2$s massiivi tüpograafia valikutüübis. Fondi salve saab veel rohkem "
+"modifitseerida %3$s filtriga, mis saab kaasa %4$s, %5$s ja %6$s parameetrid. "
+"%6$s parameeter antakse %7$s, nii et ta on tüpograafia valikutüübi ID. See "
+"võimaldab lisada veebis kasutamiseks sobilikke fonte erinevatele fondi "
+"perekondadele vastavalt vajadusele."
 
 #: ../includes/ot-functions-docs-page.php:175
 msgid "The Link Color option type is used to set all link color states."
 msgstr ""
+"Lingi värvi valikutüüpi kasutatakse kõikide linkide värviolekute määramiseks."
 
 #: ../includes/ot-functions-docs-page.php:178
 msgid ""
@@ -1645,18 +1911,24 @@ msgid ""
 "Typical use is for creating sliding content or blocks of code for custom "
 "layouts."
 msgstr ""
+"Nimekirja valikutüüp vahetas välja slaidiesitaja valikutüübi ning võimaldab "
+"põhjalikku kohandamist. Nimekirja elementidele saab lisada sätteid, mida "
+"näidatakse kasutajale uue elemendi lisamisel. Tüüpiline kasutusjuht on "
+"liugleva sisu või koodiblokkide loomiseks."
 
 #: ../includes/ot-functions-docs-page.php:183
 #, php-format
 msgid ""
 "Example filter to add new units to the Measurement option type. Added to %s."
-msgstr ""
+msgstr "Näidisfilter mõõdu valikutüüpi ühikute lisamiseks. Lisatakse %s faili."
 
 #: ../includes/ot-functions-docs-page.php:196
 msgid ""
 "Example filter to completely change the units in the Measurement option "
 "type. Added to <code>functions.php</code>."
 msgstr ""
+"Näidisfilter, mis muudab mõõdu valikutüübi ühikud täiesti teistsugusteks. "
+"Lisatakse <code>functions.php</code> faili."
 
 #: ../includes/ot-functions-docs-page.php:235
 msgid ""
@@ -1664,6 +1936,9 @@ msgid ""
 "images attached to the <code>my_radio_images</code> field. Added to "
 "<code>functions.php</code>."
 msgstr ""
+"See näide käivitab <code>ot_radio_images</code> filtri "
+"<code>my_radio_images</code> väljale lisatud paigutuse piltidel. Lisatakse "
+"<code>functions.php</code> faili."
 
 #: ../includes/ot-functions-docs-page.php:267
 msgid ""
@@ -1671,6 +1946,9 @@ msgid ""
 "type instead, as it's infinitely more customizable. Typical use is for "
 "creating sliding image content."
 msgstr ""
+"Tehniliselt on slaidiesitaja valikutüübi kasutamine taunitud. Kasutage parem "
+"nimekirja elemendi valikutüüpi, kuna see on lõpmatult kohandatav. Tüüpiline "
+"kasutusjuht on libisevate piltidega sisu jaoks."
 
 #: ../includes/ot-functions-docs-page.php:273
 #, php-format
@@ -1681,17 +1959,24 @@ msgid ""
 "add to that value. Currently the default units are %s, %s, %s, and %s. "
 "However, you can change them with the %s filter."
 msgstr ""
+"Vahede valikutüüpi kasutatakse \"padding\" ja \"margin\" väärtuste jaoks "
+"kujul \"top\", \"right\", \"bottom\", \"left\". Tekstisisendisse saab "
+"kirjutada numbrilise väärtuse ning rippmenüü laseb valida talle mõõtühiku. "
+"Hetkel on vaikimisi ühikuteks %s, %s, %s ja %s. Neid saab muuta %s filtriga."
 
 #: ../includes/ot-functions-docs-page.php:276
 msgid ""
 "The Tab option type will break a section or metabox into tabbed content."
 msgstr ""
+"Saki valikutüüp muudab sektsiooni või meta-kasti sakkidega sisuelemendiks."
 
 #: ../includes/ot-functions-docs-page.php:296
 msgid ""
 "Example filters to alter the Textarea option type. Added to <code>functions."
 "php</code>."
 msgstr ""
+"Näidisfiltrid, millega muuta tekstivälja valikutüüpi. Lisatakse "
+"<code>functions.php</code> faili."
 
 #: ../includes/ot-functions-docs-page.php:298
 msgid ""
@@ -1699,6 +1984,9 @@ msgid ""
 "on the line breaks. The default is <code>true</code> which means it wraps "
 "line breaks with an HTML <code>p</code> tag."
 msgstr ""
+"See näide takistab Wordpressil kasutada <code>wpautop</code> filtrit "
+"reavahetustel. Vaikeväärtus on <code>true</code>, mis tähendab, et "
+"reavahtused mähitakse HTML <code>p</code> elemendiga."
 
 #: ../includes/ot-functions-docs-page.php:311
 msgid ""
@@ -1706,6 +1994,9 @@ msgid ""
 "filter on the textarea WYSIWYG. The default is <code>true</code> which means "
 "show the buttons."
 msgstr ""
+"See näide takistab Wordpressil kasutada <code>media_buttons</code> filtrit "
+"tekstivälja WYSIWYG toimetajas. Vaikeväärtus on <code>true</code>, mis "
+"tähendab, et nuppe näidatakse."
 
 #: ../includes/ot-functions-docs-page.php:324
 msgid ""
@@ -1713,6 +2004,9 @@ msgid ""
 "on the textarea WYSIWYG. The default is <code>true</code> which means show "
 "the tinymce."
 msgstr ""
+"See näide takistab Wordpressil kasutada <code>tinymce</code> filtrit "
+"tekstivälja WYSIWYG toimetajas. Vaikeväärtus on <code>true</code>, mis "
+"tähendab, et tinymce on nähtaval."
 
 #: ../includes/ot-functions-docs-page.php:337
 msgid ""
@@ -1721,6 +2015,10 @@ msgid ""
 "ins,img,ul,ol,li,code,spell,close' )</code> which means show those "
 "quicktags. It also means you can filter in your own custom quicktags."
 msgstr ""
+"See näide muudab <code>quicktags</code> filtrit tekstivälja WYSIWYG "
+"toimetajas. Vaikeväärtus on <code>array('buttons' => 'strong,em,link,block,"
+"del,ins,img,ul,ol,li,code,spell,close')</code>, mis tähendab, et neid "
+"elemente näidatakse. Siitkaudu saad kaasata endale sobivaid elemente."
 
 #: ../includes/ot-functions-docs-page.php:355
 #, php-format
@@ -1729,12 +2027,17 @@ msgid ""
 "The default is %s which means it does not wraps line breaks with an HTML %s "
 "tag. Added to %s."
 msgstr ""
+"See näide ütleb Wordpressile, et reavahetuste korral kasutada %s filtrit. "
+"Vaikeväärtus on %s, mis tähendab, et reavahetusi ei mähita HTML %s "
+"elemendiga. Lisatakse %s faili."
 
 #: ../includes/ot-functions-docs-page.php:377
 msgid ""
 "This example would filter <code>ot_recognized_font_families</code> to build "
 "your own font stack. Added to <code>functions.php</code>."
 msgstr ""
+"See näide filtreerib <code>ot_recognized_font_families</code> loomaks enda "
+"fondipinu. Lisatakse <code>functions.php</code> faili."
 
 #: ../includes/ot-functions-docs-page.php:427
 msgid ""
@@ -1742,43 +2045,47 @@ msgid ""
 "or the default value supplied. The returned value would be mixed. Meaning it "
 "could be a string, integer, boolean, or array."
 msgstr ""
+"See funktsioon tagastab või vajadusel trükib väärtuse \"option_tree\" "
+"massiivi salvestatud väärtustest või kaasaantud vaikeväärtuse. Tagastatud "
+"väärtus tüüp on segunenud. See tähendab, et ta võib olla string, integer, "
+"boolean või massiiv."
 
 #: ../includes/ot-functions-docs-page.php:429
 #: ../includes/ot-functions-docs-page.php:479
 msgid "Usage"
-msgstr ""
+msgstr "Kasutus"
 
 #: ../includes/ot-functions-docs-page.php:433
 #: ../includes/ot-functions-docs-page.php:483
 msgid "Parameters"
-msgstr ""
+msgstr "Parameetrid"
 
 #: ../includes/ot-functions-docs-page.php:437
 #: ../includes/ot-functions-docs-page.php:441
 #: ../includes/ot-functions-docs-page.php:487
 msgid "string"
-msgstr ""
+msgstr "string"
 
 #: ../includes/ot-functions-docs-page.php:437
 #: ../includes/ot-functions-docs-page.php:487
 msgid "required"
-msgstr ""
+msgstr "nõutud"
 
 #: ../includes/ot-functions-docs-page.php:437
 msgid "Enter the options unique identifier."
-msgstr ""
+msgstr "Sisesta valikule unikaalne identifikaator."
 
 #: ../includes/ot-functions-docs-page.php:437
 #: ../includes/ot-functions-docs-page.php:487
 msgid "Default:"
-msgstr ""
+msgstr "Vaikimisi:"
 
 #: ../includes/ot-functions-docs-page.php:437
 #: ../includes/ot-functions-docs-page.php:441
 #: ../includes/ot-functions-docs-page.php:487
 #: ../includes/ot-functions-docs-page.php:491
 msgid "None"
-msgstr ""
+msgstr "Puudub"
 
 #: ../includes/ot-functions-docs-page.php:441
 #: ../includes/ot-functions-docs-page.php:491
@@ -1786,12 +2093,12 @@ msgstr ""
 #: ../includes/ot-functions-docs-page.php:499
 #: ../includes/ot-functions-docs-page.php:503
 msgid "optional"
-msgstr ""
+msgstr "valikuline"
 
 #: ../includes/ot-functions-docs-page.php:441
 msgid ""
 "Enter a default return value. This is just incase the request returns null."
-msgstr ""
+msgstr "Sisesta vaikeväärtus. See on vajalik juhul, kui päring tagastab nulli."
 
 #: ../includes/ot-functions-docs-page.php:441
 #: ../includes/ot-functions-docs-page.php:491
@@ -1799,7 +2106,7 @@ msgstr ""
 #: ../includes/ot-functions-docs-page.php:499
 #: ../includes/ot-functions-docs-page.php:503
 msgid "Default"
-msgstr ""
+msgstr "Vaikimisi"
 
 #: ../includes/ot-functions-docs-page.php:471
 msgid ""
@@ -1807,55 +2114,63 @@ msgid ""
 "function or is no longer supported, and may be removed from future versions. "
 "All code that uses this function should be converted to use its replacement."
 msgstr ""
+"Selle funktsiooni kasutamist taunitakse. See tähendab, et ta on asendatud "
+"uue funktsiooniga või teda ei toetata enam ning ta võidakse tulevastest "
+"versioonidest välja jätta. Kõik seda funktsiooni kasutav kood tuleks ümber "
+"muuta kasutamaks tema asendust."
 
 #: ../includes/ot-functions-docs-page.php:473
 msgid "Use"
-msgstr ""
+msgstr "Kasuta"
 
 #: ../includes/ot-functions-docs-page.php:473
 msgid "instead"
-msgstr ""
+msgstr "asemel"
 
 #: ../includes/ot-functions-docs-page.php:477
 msgid ""
 "This function returns, or echos if asked, a value from the \"option_tree\" "
 "array of saved values."
 msgstr ""
+"See funktsioon tagastab või vajadusel trükib väärtuse \"option_tree\" "
+"massiivi salvestatud väärtustest."
 
 #: ../includes/ot-functions-docs-page.php:487
 msgid "Enter a unique Option Key to get a returned value or array."
-msgstr ""
+msgstr "Sisesta unikaalne valiku võti saamaks väärtust või massiivi."
 
 #: ../includes/ot-functions-docs-page.php:491
 msgid "array"
-msgstr ""
+msgstr "array"
 
 #: ../includes/ot-functions-docs-page.php:491
 msgid "Used to cut down on database queries in template files."
-msgstr ""
+msgstr "Kasutatakse andmebaasi päringute vähendamiseks mallifailides."
 
 #: ../includes/ot-functions-docs-page.php:495
 #: ../includes/ot-functions-docs-page.php:499
 msgid "boolean"
-msgstr ""
+msgstr "boolean"
 
 #: ../includes/ot-functions-docs-page.php:495
 msgid "Echo the output."
-msgstr ""
+msgstr "Trüki väljund."
 
 #: ../includes/ot-functions-docs-page.php:499
 msgid "Used to indicate the $item_id is an array of values."
-msgstr ""
+msgstr "Kasutatakse märkimaks, et $item_id on väärtuste massiiv."
 
 #: ../includes/ot-functions-docs-page.php:503
 msgid "integer"
-msgstr ""
+msgstr "integer"
 
 #: ../includes/ot-functions-docs-page.php:503
 msgid ""
 "Numeric offset key for the $item_id array, -1 will return all values (an "
 "array starts at 0)."
 msgstr ""
+"Numbriline nihkevõti $item_id massiivi jaoks, -1 tagastab kõik väärtused "
+"( massiiv algab 0-st )."
 
 #: ../includes/ot-functions-docs-page.php:531
 msgid ""
@@ -1866,24 +2181,32 @@ msgid ""
 "with <code>function_exists</code>, as you're guaranteed to have the "
 "<code>ot_get_option()</code> function available."
 msgstr ""
+"Kui kasutate OptionTree mooduli versiooni, siis on soovitatav oma koodi "
+"lisada <code>function_exists</code> kontroll, nagu kirjeldatud allpool "
+"toodud näidetes. Kui olete OptionTree otse oma teema juurkataloogi sisse "
+"ehitanud, siis teil <strong>ei ole</strong> vaja mähkida oma koodi "
+"<code>function_exists</code> kontrolliga, sest teil on "
+"<code>ot_get_option()</code> funktsiooni saadavus garanteeritud."
 
 #: ../includes/ot-functions-docs-page.php:533
 msgid "String Examples"
-msgstr ""
+msgstr "<em>String-i</em> näited"
 
 #: ../includes/ot-functions-docs-page.php:535
 msgid "Returns the value of <code>test_input</code>."
-msgstr ""
+msgstr "Tagastab <code>test_input</code> väärtuse."
 
 #: ../includes/ot-functions-docs-page.php:541
 msgid ""
 "Returns the value of <code>test_input</code>, but also has a default value "
 "if it returns empty."
 msgstr ""
+"Tagastab <code>test_input</code> väärtuse või vaikeväärtuse, kui tagastatud "
+"väärtus on tühi."
 
 #: ../includes/ot-functions-docs-page.php:547
 msgid "Array Examples"
-msgstr ""
+msgstr "<em>Array</em> näited"
 
 #: ../includes/ot-functions-docs-page.php:549
 msgid ""
@@ -1891,6 +2214,9 @@ msgid ""
 "code>. It then echos an unordered list of links (navigation) using "
 "<code>wp_list_pages()</code>."
 msgstr ""
+"Omistab <code>navigation_ids</code> väärtuse <code>$ids</code> muutujale. "
+"See trükib välja järjestamata loetelu ( navigatsiooni ) linkidest, kasutades "
+"<code>wp_list_pages()</code>."
 
 #: ../includes/ot-functions-docs-page.php:569
 msgid ""
@@ -1899,14 +2225,17 @@ msgid ""
 "value pairs. The first is the value of measurement and the second is the "
 "unit of measurement."
 msgstr ""
+"Järgnevad kaks näidet demonstreerivad, kuidas kasutada <strong>mõõdu</"
+"strong> valikutüüpi. Mõõdu valikutüüp on massiiv kahe võti-väärtus paariga. "
+"Esimene on mõõdu väärtus ning teine on mõõduühik."
 
 #: ../includes/ot-functions-docs-page.php:595
 msgid "This example displays a very basic slider loop."
-msgstr ""
+msgstr "See näide kuvab väga algelise slaidi esitleja tsükli."
 
 #: ../includes/ot-functions-docs-page.php:640
 msgid "It's Super Simple"
-msgstr ""
+msgstr "See on imelihtne"
 
 #: ../includes/ot-functions-docs-page.php:642
 msgid ""
@@ -1915,6 +2244,10 @@ msgid ""
 "make it easy to do A/B testing on text and so much more. Basically, you save "
 "a snapshot of your data as a layout."
 msgstr ""
+"Paigutused teevad su teema aukartust äratavaks! Teema valikute infoga, mida "
+"saad salvestada/importida/eksportida, saad pakendada teemasid erinevate "
+"värvivariatsioonidega või kergelt teostada A/B testimist tekstiosadel ning "
+"palju muud. Põhimõtteliselt on paigutus sinu andmete ülesvõtte salvestus."
 
 #: ../includes/ot-functions-docs-page.php:644
 msgid ""
@@ -1924,67 +2257,75 @@ msgid ""
 "change your theme with the click of a button, all without deleting your "
 "previous options data."
 msgstr ""
+"Peale kõikide erinevate paigutuste või teema variatsioonide loomist saab nad "
+"salvestada eraldi tekstifaili, mida teemaga kaasa pakendada. Teine "
+"kasutusviis oleks teha enda jaoks erinevad variatsioonid ja muuta oma teemat "
+"ainsa nupuvajutusega, ilma eelnevate andmete kustutamiseta."
 
 #: ../includes/ot-functions-docs-page.php:646
 msgid ""
 " Adding a layout is ridiculously easy, follow these steps and you'll be on "
 "your way to having a WordPress super theme."
 msgstr ""
+"Paigutuse lisamine on naeruväärselt lihtne. Järgi neid samme ning oled teel "
+"WordPressi superteema omamisele."
 
 #: ../includes/ot-functions-docs-page.php:648
 msgid "For Developers"
-msgstr ""
+msgstr "Arendajatele"
 
 #: ../includes/ot-functions-docs-page.php:650
 #: ../includes/ot-functions-docs-page.php:679
 msgid "Creating a Layout"
-msgstr ""
+msgstr "Paigutuse loomine"
 
 #: ../includes/ot-functions-docs-page.php:652
 #: ../includes/ot-functions-docs-page.php:659
 #: ../includes/ot-functions-docs-page.php:665
 msgid "Go to the <code>OptionTre->Settings->Layouts</code> tab."
-msgstr ""
+msgstr "Mine <code>OptionTree->Sätted->Paigutused</code> sakile."
 
 #: ../includes/ot-functions-docs-page.php:653
 msgid ""
 "Enter a name for your layout in the text field and hit \"Save Layouts\", "
 "you've created your first layout."
 msgstr ""
+"Sisesta tekstivälja oma paigutuse nimi ja vajuta \"Salvesta paigutused\" "
+"nuppu. Oled loonud oma esimese paigutuse."
 
 #: ../includes/ot-functions-docs-page.php:654
 #: ../includes/ot-functions-docs-page.php:683
 msgid "Adding a new layout is as easy as repeating the steps above."
-msgstr ""
+msgstr "Uue paigutuse lisamine on lihtne, kui järgid ülaltoodud samme."
 
 #: ../includes/ot-functions-docs-page.php:657
 #: ../includes/ot-functions-docs-page.php:686
 msgid "Activating a Layout"
-msgstr ""
+msgstr "Paigutuse aktiveerimine"
 
 #: ../includes/ot-functions-docs-page.php:660
 msgid "Click on the activate layout button in the actions list."
-msgstr ""
+msgstr "Vajuta paigutuse aktiveerimise nupul tegevuste nimekirjas."
 
 #: ../includes/ot-functions-docs-page.php:663
 #: ../includes/ot-functions-docs-page.php:692
 msgid "Deleting a Layout"
-msgstr ""
+msgstr "Paigutuse kustutamine"
 
 #: ../includes/ot-functions-docs-page.php:666
 msgid "Click on the delete layout button in the actions list."
-msgstr ""
+msgstr "Vajuta paigutuse kustutamise nupul tegevuste nimekirjas."
 
 #: ../includes/ot-functions-docs-page.php:669
 #: ../includes/ot-functions-docs-page.php:697
 msgid "Edit Layout Data"
-msgstr ""
+msgstr "Muuda paigutuse andmeid"
 
 #: ../includes/ot-functions-docs-page.php:671
 #: ../includes/ot-functions-docs-page.php:681
 #: ../includes/ot-functions-docs-page.php:688
 msgid "Go to the <code>Appearance->Theme Options</code> page."
-msgstr ""
+msgstr "Mine <code>Välimus->Teema valikud</code> lehele."
 
 #: ../includes/ot-functions-docs-page.php:672
 #: ../includes/ot-functions-docs-page.php:700
@@ -1992,6 +2333,7 @@ msgid ""
 "Modify and save your theme options and the layout will be updated "
 "automatically."
 msgstr ""
+"Muuda ja salvesta oma teema valikuid ning paigutust uuendatakse automaatselt."
 
 #: ../includes/ot-functions-docs-page.php:673
 #: ../includes/ot-functions-docs-page.php:701
@@ -1999,41 +2341,48 @@ msgid ""
 "Saving theme options data will update the currently active layout, so before "
 "you start saving make sure you want to modify the current layout."
 msgstr ""
+"Teema valikute andmete salvestamine uuendab hetkel aktiivset paigutust, "
+"seega enne salvestamist veendu, et soovid muuta hetkel kasutuses olevat "
+"paigutust."
 
 #: ../includes/ot-functions-docs-page.php:674
 msgid ""
 "If you want to edit a new layout, first create it then save your theme "
 "options."
 msgstr ""
+"Kui soovid muuta uut paigutust, tuleb see kõigepealt luua ja seejärel teema "
+"valikud salvestada."
 
 #: ../includes/ot-functions-docs-page.php:677
 msgid "End-Users Mode"
-msgstr ""
+msgstr "Lõppkasutaja režiim"
 
 #: ../includes/ot-functions-docs-page.php:682
 msgid ""
 "Enter a name for your layout in the text field and hit \"New Layout\", "
 "you've created your first layout."
 msgstr ""
+"Sisesta tekstivälja oma uue paigutuse nimi ja vajuta nuppu \"Uus paigutus\". "
+"Oled loonud oma esimese paigutuse."
 
 #: ../includes/ot-functions-docs-page.php:689
 msgid ""
 "Choose a layout from the select list and click the \"Activate Layout\" "
 "button."
-msgstr ""
+msgstr "Vali rippmenüüst paigutus ja vajuta \"Aktiveeri paigutus\" nuppu."
 
 #: ../includes/ot-functions-docs-page.php:694
 msgid "End-Users mode does not allow deleting layouts."
-msgstr ""
+msgstr "Lõppkasutaja režiim ei luba paigutusi kustutada."
 
 #: ../includes/ot-functions-docs-page.php:699
 msgid "Go to the <code>Appearance->Theme Options</code> tab."
-msgstr ""
+msgstr "Mine <code>Välimus->Teema valikud</code> sakile."
 
 #: ../includes/ot-functions-docs-page.php:730
 #: ../includes/ot-functions-docs-page.php:812
 msgid "How-to-guide"
-msgstr ""
+msgstr "Õpetus"
 
 #: ../includes/ot-functions-docs-page.php:732
 msgid ""
@@ -2045,6 +2394,11 @@ msgid ""
 "directory that contains a file named <code>demo-meta-boxes.php</code> you "
 "can reference."
 msgstr ""
+"OptionTreele sisse ehitatud Meta Box API kasutamiseks on vaja paari lihtsat "
+"toimingut. Allolevas koodis demonstreeritakse meta kasti loomist suvalise "
+"hulga saadaolevate valikutüüpidega. Koodinäiteid leiab ka failist <code>demo-"
+"meta-boxes.php</code>, mis asub kaustas <code>theme-mode</code>, mis "
+"omakorda asub kaustas <code>assets</code>."
 
 #: ../includes/ot-functions-docs-page.php:734
 msgid ""
@@ -2053,6 +2407,10 @@ msgid ""
 "automatically revert to a Textarea Simple until a valid solution is found. "
 "WordPress released this statement regarding the wp_editor() function:"
 msgstr ""
+"Tähtis märkus: meta kastid ei toeta hetkel WYSIWYG redaktoreid. Kui määrata "
+"mõne valiku tüübiks tekstiala, muudetakse see automaatselt lihtsustatud "
+"tekstialaks, kuni leitakse töötav lahendus. Wordpress väljastas järgneva "
+"teadaande wp_editor() funktsiooni kohta:"
 
 #: ../includes/ot-functions-docs-page.php:736
 msgid ""
@@ -2060,16 +2418,20 @@ msgid ""
 "What this means in practical terms, is that you cannot put it in meta-boxes "
 "that can be dragged and placed elsewhere on the page."
 msgstr ""
+"Korra loodud WYSIWYG toimetajat ei saa DOM-is ringi liigutada. Praktikas "
+"tähendab see, et teda ei saa panna meta-kastidesse, mida on võimalik "
+"leheküljel ringi liigutada."
 
 #: ../includes/ot-functions-docs-page.php:738
 msgid "Create and include your custom meta boxes file."
-msgstr ""
+msgstr "Loo ja kaasa oma kohandatud meta kastide fail."
 
 #: ../includes/ot-functions-docs-page.php:740
 msgid ""
 "Create a file and name it anything you want, maybe <code>meta-boxes.php</"
 "code>."
 msgstr ""
+"Loo fail ja anna talle meelepärane nimi, näiteks <code>meta-boxes.php</code>."
 
 #: ../includes/ot-functions-docs-page.php:741
 msgid ""
@@ -2077,11 +2439,14 @@ msgid ""
 "code> to put your <code>meta-boxes.php</code> into which will help keep you "
 "file structure nice and tidy."
 msgstr ""
+"Tõenäoliselt soovid luua kausta nimega <code>includes</code>, kuhu panna oma "
+"<code>meta-boxes.php</code> fail, hoidmaks oma failistruktuuri ilusa ja "
+"puhtana."
 
 #: ../includes/ot-functions-docs-page.php:742
 #: ../includes/ot-functions-docs-page.php:842
 msgid "Add the following code to your <code>functions.php</code>."
-msgstr ""
+msgstr "Lisa järgnev kood oma <code>functions.php</code> faili."
 
 #: ../includes/ot-functions-docs-page.php:752
 msgid ""
@@ -2091,6 +2456,11 @@ msgid ""
 "because if you were to call the <code>ot_register_meta_box</code> function "
 "before OptionTree was loaded the sky would fall on your head."
 msgstr ""
+"Lisa variatsioon järgnevast koodist oma <code>meta-boxes.php</code> faili. "
+"Loomulikult tuleb see täita enda kohandatud massiivi väärtustega. Oluline "
+"märkus: kasutame <code>admin_init</code> filtrit, sest kui kutsuda "
+"<code>ot_register_meta_box</code> funktsiooni enne OptionTree laadimist, "
+"kukuks taevas kaela."
 
 #: ../includes/ot-functions-docs-page.php:814
 msgid ""
@@ -2102,27 +2472,33 @@ msgid ""
 "named <code>theme-mode</code> inside the <code>assets</code> directory that "
 "contains a file named <code>demo-theme-options.php</code> you can reference."
 msgstr ""
+"Paari lihtsa sammuga saab Optiontreed kasutada teemasse kaasatud moodulina. "
+"Allolevas koodis näidatakse lihtsat demonstratsiooni, kuidas kaasata terve "
+"moodul moodulina. Sellisel moel on sul kõige uuem versioon OptionTreest, "
+"ilma et peaks mooduli tuuma häkkima. Näidiskoodi leiab failist <code>demo-"
+"theme-options.php</code>, mis asub kaustas <code>theme-mode</code>, mis "
+"omakorda asub kaustas <code>assets</code>."
 
 #: ../includes/ot-functions-docs-page.php:816
 msgid "Step 1: Include the plugin & turn on theme mode."
-msgstr ""
+msgstr "Samm 1: kaasa moodul ja lülita sisse teemarežiim."
 
 #: ../includes/ot-functions-docs-page.php:818
 #, php-format
 msgid "Download the latest version of %s and unarchive the %s directory."
-msgstr ""
+msgstr "Lae alla viimane %s versioon ja paki ta lahti %s kausta."
 
 #: ../includes/ot-functions-docs-page.php:819
 #, php-format
 msgid ""
 "Put the %s directory in the root of your theme. For example, the server path "
 "would be %s."
-msgstr ""
+msgstr "Pane %s kaust oma teema juurkausta. Serveri rada oleks näiteks %s."
 
 #: ../includes/ot-functions-docs-page.php:820
 #, php-format
 msgid "Add the following code to the beginning of your %s."
-msgstr ""
+msgstr "Lisa järgnev kood oma %s algusesse."
 
 #: ../includes/ot-functions-docs-page.php:834
 #, php-format
@@ -2131,16 +2507,21 @@ msgid ""
 "found in the %s directory of this plugin. This file is the starting point "
 "for developing themes with Theme Mode."
 msgstr ""
+"Täieliku OptionTree UI kuvamise filtrite nimekirja leiad selle plugina %s "
+"failist %s kaustast. See fail on teemarežiimis teemade arenduse "
+"alguspunktiks."
 
 #: ../includes/ot-functions-docs-page.php:836
 msgid ""
 "You now have OptionTree built into your theme and anytime an update is "
 "available replace the old version with the new one."
 msgstr ""
+"Sul on nüüd OptionTree teemasse sisse ehitatud. Iga kord, kui saadaval on "
+"uus versioon, vaheta oma vana versioon uue vastu välja."
 
 #: ../includes/ot-functions-docs-page.php:838
 msgid "Step 2: Create Theme Options without using the UI Builder."
-msgstr ""
+msgstr "Samm 2: loo teema valikud ilma UI ehitajata."
 
 #: ../includes/ot-functions-docs-page.php:840
 msgid ""
@@ -2148,6 +2529,9 @@ msgid ""
 "code>, or use the built in file export to create it for you. Remember, you "
 "should always check the file for errors before including it in your theme."
 msgstr ""
+"Loo fail ja anna talle suvaline nimi, näiteks <code>theme-options.php</"
+"code>, või kasuta selle loomiseks sisse ehitatud faili eksporti. Enne teemas "
+"kasutamist tuleks failile kindlasti vigade kontroll teha."
 
 #: ../includes/ot-functions-docs-page.php:841
 msgid ""
@@ -2155,6 +2539,9 @@ msgid ""
 "code> to put your <code>theme-options.php</code> into which will help keep "
 "you file structure nice and tidy."
 msgstr ""
+"Tõenäoliselt soovid luua ka kausta <code>includes</code>, kuhu oma "
+"<code>theme-options.php</code> fail panna. See hoiab failistruktuuri ilusa "
+"ja puhtana."
 
 #: ../includes/ot-functions-docs-page.php:852
 msgid ""
@@ -2162,6 +2549,10 @@ msgid ""
 "code>. You'll obviously need to fill it in with all your custom array values "
 "for contextual help (optional), sections (required), and settings (required)."
 msgstr ""
+"Lisa oma <code>theme-options.php</code> faili mingi variatsioon järgnevast "
+"koodist. Loomulikult tuleb see täita enda massiiviväärtustega "
+"kontekstipõhise abi ( valikuline ), sektsioonide ( nõutud ) ja sätete "
+"( nõutud ) jaoks."
 
 #: ../includes/ot-functions-docs-page.php:855
 msgid ""
@@ -2173,61 +2564,67 @@ msgid ""
 "they've changed in any way. However, this ensures your settings do not get "
 "tampered with by the end-user."
 msgstr ""
+"Allolev kood on stereotüüp, millega saad alustada. Saadaolevate "
+"valikutüüpide täieliku nimekirja saad ülalolevast \"Valikutüübid\" sakist. "
+"Kiire vahemärkus: käsitsi valikute loomiseks ei pea OptionTree olema "
+"teemarežiimis, kuid sel juhul tuleks peita ära dokumentatsioon ja sätted, "
+"sest iga kord kui haldusliides laaditakse kirjutatakse sätted üle alloleva "
+"koodiga. Samas see kindlustab, et lõppkasutaja ei saa sätteid näppida."
 
 #: ../includes/ot-functions-option-types.php:46
 msgid "Sorry, this function does not exist"
-msgstr ""
+msgstr "Kahjuks sellist funktsiooni pole."
 
 #: ../includes/ot-functions-option-types.php:134
 msgid "background-repeat"
-msgstr ""
+msgstr "background-repeat"
 
 #: ../includes/ot-functions-option-types.php:152
 msgid "background-attachment"
-msgstr ""
+msgstr "background-attachment"
 
 #: ../includes/ot-functions-option-types.php:171
 msgid "background-position"
-msgstr ""
+msgstr "background-position"
 
 #: ../includes/ot-functions-option-types.php:224
 msgid "background-size"
-msgstr ""
+msgstr "background-size"
 
 #: ../includes/ot-functions-option-types.php:238
 msgid "background-image"
-msgstr ""
+msgstr "background-image"
 
 #: ../includes/ot-functions-option-types.php:241
 #: ../includes/ot-functions-option-types.php:3117
 msgid "Add Media"
-msgstr ""
+msgstr "Lisa meediat"
 
 #: ../includes/ot-functions-option-types.php:316
 #: ../includes/ot-functions-option-types.php:1074
 msgid "width"
-msgstr ""
+msgstr "width"
 
 #: ../includes/ot-functions-option-types.php:439
 msgid "offset-x"
-msgstr ""
+msgstr "offset-x"
 
 #: ../includes/ot-functions-option-types.php:448
 msgid "offset-y"
-msgstr ""
+msgstr "offset-y"
 
 #: ../includes/ot-functions-option-types.php:457
 msgid "blur-radius"
-msgstr ""
+msgstr "blur-radius"
 
 #: ../includes/ot-functions-option-types.php:466
 msgid "spread-radius"
-msgstr ""
+msgstr "spread-radius"
 
 #: ../includes/ot-functions-option-types.php:538
 #: ../includes/ot-functions-option-types.php:592
 msgid "No Categories Found"
-msgstr ""
+msgstr "Kategooriaid ei leitud"
 
 #: ../includes/ot-functions-option-types.php:587
 #: ../includes/ot-functions-option-types.php:919
@@ -2236,202 +2633,206 @@ msgstr ""
 #: ../includes/ot-functions-option-types.php:2561
 #: ../includes/ot-functions-option-types.php:2676
 msgid "Choose One"
-msgstr ""
+msgstr "Valik üks"
 
 #: ../includes/ot-functions-option-types.php:867
 #: ../includes/ot-functions-option-types.php:925
 #: ../includes/ot-functions-option-types.php:1807
 #: ../includes/ot-functions-option-types.php:1862
 msgid "No Posts Found"
-msgstr ""
+msgstr "Postitusi ei leitud"
 
 #: ../includes/ot-functions-option-types.php:1083
 msgid "height"
-msgstr ""
+msgstr "height"
 
 #: ../includes/ot-functions-option-types.php:1261
 #: ../includes/ot-functions-option-types.php:1304
 msgid "Remove Google Font"
-msgstr ""
+msgstr "Eemalda Google Font"
 
 #: ../includes/ot-functions-option-types.php:1327
 msgid "Add Google Font"
-msgstr ""
+msgstr "Lisa Google Font"
 
 #: ../includes/ot-functions-option-types.php:1369
 msgctxt "color picker"
 msgid "Standard"
-msgstr ""
+msgstr "Standard"
 
 #: ../includes/ot-functions-option-types.php:1370
 msgctxt "color picker"
 msgid "Hover"
-msgstr ""
+msgstr "Hõljudes"
 
 #: ../includes/ot-functions-option-types.php:1371
 msgctxt "color picker"
 msgid "Active"
-msgstr ""
+msgstr "Aktiivne"
 
 #: ../includes/ot-functions-option-types.php:1372
 msgctxt "color picker"
 msgid "Visited"
-msgstr ""
+msgstr "Külastatud"
 
 #: ../includes/ot-functions-option-types.php:1373
 msgctxt "color picker"
 msgid "Focus"
-msgstr ""
+msgstr "Fookus"
 
 #: ../includes/ot-functions-option-types.php:1470
 #: ../includes/ot-functions-option-types.php:2161
 #: ../includes/ot-functions-option-types.php:2326
 msgid "Add New"
-msgstr ""
+msgstr "Lisa uus"
 
 #: ../includes/ot-functions-option-types.php:1473
 #: ../includes/ot-functions-option-types.php:2164
 #: ../includes/ot-functions-option-types.php:2329
 msgid "You can re-order with drag & drop, the order will update after saving."
 msgstr ""
+"Lohistades saab elemente ümber paigutada. Järjekord uueneb peale "
+"salvestamist."
 
 #: ../includes/ot-functions-option-types.php:1624
 msgid "On"
-msgstr ""
+msgstr "Sees"
 
 #: ../includes/ot-functions-option-types.php:1628
 msgid "Off"
-msgstr ""
+msgstr "Väljas"
 
 #: ../includes/ot-functions-option-types.php:1696
 #: ../includes/ot-functions-option-types.php:1751
 msgid "No Pages Found"
-msgstr ""
+msgstr "Lehekülgi ei leitud"
 
 #: ../includes/ot-functions-option-types.php:2084
 msgid "Choose Sidebar"
-msgstr ""
+msgstr "Vali küljendusmenüü"
 
 #: ../includes/ot-functions-option-types.php:2089
 msgid "No Sidebars"
-msgstr ""
+msgstr "Küljendusmenüüd puuduvad"
 
 #: ../includes/ot-functions-option-types.php:2197
 msgid "Facebook"
-msgstr ""
+msgstr "Facebook"
 
 #: ../includes/ot-functions-option-types.php:2202
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: ../includes/ot-functions-option-types.php:2207
 msgid "Google+"
-msgstr ""
+msgstr "Google+"
 
 #: ../includes/ot-functions-option-types.php:2212
 msgid "LinkedIn"
-msgstr ""
+msgstr "LinkedIn"
 
 #: ../includes/ot-functions-option-types.php:2217
 msgid "Pinterest"
-msgstr ""
+msgstr "Pinterest"
 
 #: ../includes/ot-functions-option-types.php:2222
 msgid "Youtube"
-msgstr ""
+msgstr "Youtube"
 
 #: ../includes/ot-functions-option-types.php:2227
 msgid "Dribbble"
-msgstr ""
+msgstr "Dribbble"
 
 #: ../includes/ot-functions-option-types.php:2232
 msgid "Github"
-msgstr ""
+msgstr "Github"
 
 #: ../includes/ot-functions-option-types.php:2237
 msgid "Forrst"
-msgstr ""
+msgstr "Forrst"
 
 #: ../includes/ot-functions-option-types.php:2242
 msgid "Digg"
-msgstr ""
+msgstr "Digg"
 
 #: ../includes/ot-functions-option-types.php:2247
 msgid "Delicious"
-msgstr ""
+msgstr "Delicious"
 
 #: ../includes/ot-functions-option-types.php:2252
 msgid "Tumblr"
-msgstr ""
+msgstr "Tumblr"
 
 #: ../includes/ot-functions-option-types.php:2257
 msgid "Skype"
-msgstr ""
+msgstr "Skype"
 
 #: ../includes/ot-functions-option-types.php:2262
 msgid "SoundCloud"
-msgstr ""
+msgstr "SoundCloud"
 
 #: ../includes/ot-functions-option-types.php:2267
 msgid "Vimeo"
-msgstr ""
+msgstr "Vimeo"
 
 #: ../includes/ot-functions-option-types.php:2272
 msgid "Flickr"
-msgstr ""
+msgstr "Flickr"
 
 #: ../includes/ot-functions-option-types.php:2277
 msgid "VK.com"
-msgstr ""
+msgstr "VK.com"
 
 #: ../includes/ot-functions-option-types.php:2383
 msgid "top"
-msgstr ""
+msgstr "top"
 
 #: ../includes/ot-functions-option-types.php:2392
 msgid "right"
-msgstr ""
+msgstr "right"
 
 #: ../includes/ot-functions-option-types.php:2401
 msgid "bottom"
-msgstr ""
+msgstr "bottom"
 
 #: ../includes/ot-functions-option-types.php:2410
 msgid "left"
-msgstr ""
+msgstr "left"
 
 #: ../includes/ot-functions-option-types.php:2512
 #: ../includes/ot-functions-option-types.php:2566
 msgid "No Tags Found"
-msgstr ""
+msgstr "Märksõnu ei leitud"
 
 #: ../includes/ot-functions-option-types.php:2624
 #: ../includes/ot-functions-option-types.php:2681
 msgid "No Taxonomies Found"
-msgstr ""
+msgstr "Taksonoomiaid ei leitud"
 
 #: ../includes/ot-functions-settings-page.php:35
 msgid "Warning!"
-msgstr ""
+msgstr "Hoiatus!"
 
 #: ../includes/ot-functions-settings-page.php:36
 #, php-format
 msgid ""
 "Go to the %s page if you want to save data, this page is for adding settings."
-msgstr ""
+msgstr "Info salvestamiseks on %s leht, see leht siin on sätete lisamiseks."
 
 #: ../includes/ot-functions-settings-page.php:37
 #, php-format
 msgid ""
 "If you're unsure or not completely positive that you should be editing these "
 "settings, you should read the %s first."
-msgstr ""
+msgstr "Kui kahtled, kas peaksid neid sätteid muutma, loe kõigepealt %s."
 
 #: ../includes/ot-functions-settings-page.php:38
 msgid ""
 "Things could break or be improperly displayed to the end-user if you do one "
 "of the following:"
 msgstr ""
+"Kui teed ühte järgnevatest, võivad asjad katki minna või olla lõpp-"
+"kasutajale valesti kuvatud:"
 
 #: ../includes/ot-functions-settings-page.php:39
 msgid ""
@@ -2439,6 +2840,9 @@ msgid ""
 "contextual help content areas the same ID, don't create any settings, or "
 "have a section at the end of the settings list."
 msgstr ""
+"annad kahele sektsioonile sama ID, annad kahele sättele sama ID, annad "
+"kahele kontekstipõhise abi alale sama ID, ei loo ühtegi sätet või jätad "
+"sektsiooni sätete nimekirja lõppu."
 
 #: ../includes/ot-functions-settings-page.php:40
 msgid ""
@@ -2448,6 +2852,10 @@ msgid ""
 "click the \"Add Section\" button, fill in the input fields, and a new "
 "navigation menu item will be created."
 msgstr ""
+"Sätteid saab luua nii palju kui vaja ning kasutada oma parema äranägemise "
+"järgi. Siia sätte lisamisel tekib see teema valikute lehele oma teemas "
+"kasutamiseks. Sätete sektsioonidesse eraldamiseks vajuta \"Lisa sektsioon\" "
+"nupule, täida sisendväljad ning uus navigatsioonimenüü element on loodud."
 
 #: ../includes/ot-functions-settings-page.php:41
 msgid ""
@@ -2455,18 +2863,21 @@ msgid ""
 "Drop. Don't worry about the order in which you create your settings, you can "
 "always reorder them."
 msgstr ""
+"Kõiki sätteid saab sorteerida ja ümber paigutada lohistamise abil. Sätete "
+"loomise järjekorra üle ei pea muretsema, sest neid saab alati ümber "
+"järjestada."
 
 #: ../includes/ot-functions-settings-page.php:92
 msgid "Add Section"
-msgstr ""
+msgstr "Lisa sektsioon"
 
 #: ../includes/ot-functions-settings-page.php:99
 msgid "Contextual Help"
-msgstr ""
+msgstr "Konteksti põhine abi"
 
 #: ../includes/ot-functions-settings-page.php:103
 msgid "Contextual Help Sidebar"
-msgstr ""
+msgstr "Konteksti põhise abi küljeriba"
 
 #: ../includes/ot-functions-settings-page.php:103
 msgid ""
@@ -2475,10 +2886,14 @@ msgid ""
 "add links to your themes documentation or support forum. Only after you've "
 "added some content below will this display to the user."
 msgstr ""
+"Kui soovida lisada kontekstipõhist abiteksti, sisesta \"Küljeriba\" HTML "
+"siia. See oleks väga hea koht, kuhu lisada linke oma teema "
+"dokumentatsioonile või kasutajatoe foorumile. Seda näidatakse kasutajale "
+"vaid juhul, kui allpool on mingi sisu lisatud."
 
 #: ../includes/ot-functions-settings-page.php:132
 msgid "Add Contextual Help Content"
-msgstr ""
+msgstr "Lisa konteksti põhine abitekst"
 
 #: ../includes/ot-functions-settings-page.php:168
 msgid ""
@@ -2487,6 +2902,10 @@ msgid ""
 "versions. All themes that use this import method should be converted to use "
 "its replacement below."
 msgstr ""
+"Impordi meetodit taunitakse. See tähendab, et teda asendab uuem meetod ja "
+"enam teda ei toetata. Ta võidakse tulevastes versioonides eemaldada. Kõik "
+"teemad, mis seda impordi meetodit kasutavad, tuleks ümber muuta allolevat "
+"asendust kasutama."
 
 #: ../includes/ot-functions-settings-page.php:170
 #, php-format
@@ -2496,14 +2915,18 @@ msgid ""
 "button. A popup window will appear, upload the XML file and click \"%s\". "
 "The file URL should be in the upload input, if it is click \"Import XML\"."
 msgstr ""
+"Kui sulle anti teemaga kaasa valikute XML fail, leia see oma kõvakettalt "
+"ning vajuta üleslaadimise nuppu. Avanevas aknas lae üles XML fail ja vajuta "
+"\"%s\". Faili URL peaks olema üleslaadimise sisendis. Kui see seal on, "
+"vajuta nuppu \"Impordi XML\"."
 
 #: ../includes/ot-functions-settings-page.php:173
 msgid "Import XML"
-msgstr ""
+msgstr "Impordi XML"
 
 #: ../includes/ot-functions-settings-page.php:189
 msgid "Add XML"
-msgstr ""
+msgstr "Lisa XML"
 
 #: ../includes/ot-functions-settings-page.php:226
 msgid ""
@@ -2511,16 +2934,18 @@ msgid ""
 "alpha numeric characters into this textarea and press the \"Import Settings"
 "\" button."
 msgstr ""
+"Sätete importimiseks kopeeri ja kleebi näiliselt juhuslik string tähtedest "
+"ja numbritest siia tekstialasse ning vajuta \"Impordi sätted\" nuppu."
 
 #: ../includes/ot-functions-settings-page.php:229
 msgid "Import Settings"
-msgstr ""
+msgstr "Impordi seaded"
 
 #: ../includes/ot-functions-settings-page.php:271
 msgid ""
 "Only after you've imported the Settings should you try and update your Theme "
 "Options."
-msgstr ""
+msgstr "Enne teema valikute uuendamist impordi sätted."
 
 #: ../includes/ot-functions-settings-page.php:273
 msgid ""
@@ -2528,16 +2953,19 @@ msgid ""
 "string of alpha numeric characters into this textarea and press the \"Import "
 "Theme Options\" button."
 msgstr ""
+"Teema valikute importimiseks kopeeri ja kleebi näiliselt juhuslik string "
+"tähtedest ja numbritest siia tekstialasse ning vajuta \"Impordi teema valikud"
+"\" nuppu."
 
 #: ../includes/ot-functions-settings-page.php:276
 msgid "Import Theme Options"
-msgstr ""
+msgstr "Impordi teema valikud"
 
 #: ../includes/ot-functions-settings-page.php:318
 msgid ""
 "Only after you've imported the Settings should you try and update your "
 "Layouts."
-msgstr ""
+msgstr "Enne paigutuste uuendamist impordi sätted."
 
 #: ../includes/ot-functions-settings-page.php:320
 msgid ""
@@ -2546,10 +2974,14 @@ msgid ""
 "button. Keep in mind that when you import your layouts, the active layout's "
 "saved data will write over the current data set for your Theme Options."
 msgstr ""
+"Paigutuste importimiseks kopeeri ja kleebi näiliselt juhuslik string "
+"tähtedest ja numbritest siia tekstialasse ning vajuta \"Impordi paigutus\" "
+"nuppu. Arvesta, et aktiivse paigutuse salvestatud andmed kirjutavad "
+"hetkeandmed üle."
 
 #: ../includes/ot-functions-settings-page.php:323
 msgid "Import Layouts"
-msgstr ""
+msgstr "Impordi paigutused"
 
 #: ../includes/ot-functions-settings-page.php:366
 #, php-format
@@ -2560,10 +2992,15 @@ msgid ""
 "documentation on %s. Remember, you should always check the file for errors "
 "before including it in your theme."
 msgstr ""
+"Ekspordi oma sätted täisfunktsionaalsesse %s faili. Kui soovid failile "
+"lisada enda kohandatud %s tekstidomeeni, sisesta see tekstivälja enne "
+"eksportimist. Lisainformatsiooni selle faili kasutamise kohta leiad "
+"dokumentatsioonis %s. Pea meeles, et failile tuleks teha vigade kontroll "
+"enne teemasse kaasamist."
 
 #: ../includes/ot-functions-settings-page.php:375
 msgid "Export Settings File"
-msgstr ""
+msgstr "Ekspordi seadete fail"
 
 #: ../includes/ot-functions-settings-page.php:405
 msgid ""
@@ -2573,6 +3010,10 @@ msgid ""
 "<code>OptionTree->Settings->Import</code> <strong>Settings</strong> textarea "
 "on another web site."
 msgstr ""
+"Ekspordi oma sätted, markeerides see tekst ja kopeerides ta tühja .txt "
+"faili. Seejärel salvesta fail hilisemaks importimiseks teise WordPressi "
+"installatsiooni. Alternatiivina võib selle kleepida otse teise veebilehe "
+"<code>OptionTree->Sätted->Import</code> <strong>Sätted</strong> tekstialasse."
 
 #: ../includes/ot-functions-settings-page.php:441
 msgid ""
@@ -2582,6 +3023,11 @@ msgid ""
 "<code>OptionTree->Settings->Import</code> <strong>Theme Options</strong> "
 "textarea on another web site."
 msgstr ""
+"Ekspordi oma teema valikud, markeerides see tekst ja kopeerides ta tühja ."
+"txt faili. Seejärel salvesta fail hilisemaks importimiseks teise WordPressi "
+"installatsiooni. Alternatiivina võib selle kleepida otse teise veebilehe "
+"<code>OptionTree->Sätted->Import</code> <strong>Teema valikud</strong> "
+"tekstialasse."
 
 #: ../includes/ot-functions-settings-page.php:477
 msgid ""
@@ -2591,18 +3037,28 @@ msgid ""
 "<code>OptionTree->Settings->Import</code> <strong>Layouts</strong> textarea "
 "on another web site."
 msgstr ""
+"Ekspordi oma paigutused, markeerides see tekst ja kopeerides ta tühja .txt "
+"faili. Seejärel salvesta fail hilisemaks importimiseks teise WordPressi "
+"installatsiooni. Alternatiivina võib selle kleepida otse teise veebilehe "
+"<code>OptionTree->Sätted->Import</code> <strong>Paigutused</strong> "
+"tekstialasse."
 
 #: ../includes/ot-functions-settings-page.php:519
 msgid ""
 "To add a new layout enter a unique lower case alphanumeric string (dashes "
 "allowed) in the text field and click \"Save Layouts\"."
 msgstr ""
+"Uue paigutuse lisamiseks sisestage tekstivälja unikaalne väiketähtedega "
+"alfanumbriline string ( sidekriipsud lubatud ) ning vajutage \"Salvesta "
+"paigutused\" nupul."
 
 #: ../includes/ot-functions-settings-page.php:520
 msgid ""
 "As well, you can activate, remove, and drag & drop the order; all situations "
 "require you to click \"Save Layouts\" for the changes to be applied."
 msgstr ""
+"Saate ka aktiveerida, eemaldada ning lohistades järjekorda muuta. Muudatused "
+"ei mõju enne, kui vajutate \"Salvesta paigutused\" nuppu."
 
 #: ../includes/ot-functions-settings-page.php:521
 msgid ""
@@ -2611,17 +3067,36 @@ msgid ""
 "layout immediately after creating a new layout that new layout will have a "
 "snapshot of the current Theme Options data attached to it."
 msgstr ""
+"Uue paigutuse loomisel muudetakse see aktiivseks ning edasised muudatused "
+"teema valikutes mõjuvad talle. Kui peale uue paigutuse loomist kohe mõne muu "
+"paigutuse peale vahetada, siis uue paigutuse külge jääb teema valikute "
+"andmete hetkeseis paigutuse loomisel."
 
 #: ../includes/ot-functions-settings-page.php:522
 msgid ""
 "Visit <code>OptionTree->Documentation->Layouts Overview</code> to see a more "
 "in-depth description of what layouts are and how to use them."
 msgstr ""
+"Lehel <code>OptionTree->Dokumentatsioon->Paigutuste ülevaade</code> leiad "
+"põhjalikuma paigutuste kirjelduse ja kasutusjuhendi."
 
 #: ../includes/ot-functions-settings-page.php:559
 msgid "Save Layouts"
-msgstr ""
+msgstr "Salvesta paigutused"
 
 #: ../includes/ot-settings-api.php:355
 msgid "Reset Options"
+msgstr "Algseadista seaded"
+
+#: ../ot-loader.php:21
+msgid ""
+"OptionTree is installed as a plugin and also embedded in your current theme. "
+"Please deactivate the plugin to load the theme dependent version of "
+"OptionTree, and remove this warning."
 msgstr ""
+"OptionTree on paigaldatud nii moodulina kui ka kaasatud aktiivses teemas. "
+"Palun lülita moodul välja, et laetaks teemast sõltuv versioon OptionTreest "
+"ja see hoiatus kaoks."
+
+#~ msgid "Color Picker"
+#~ msgstr "Värvi valija"

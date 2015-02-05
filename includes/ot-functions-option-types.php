@@ -1207,6 +1207,134 @@ if ( ! function_exists( 'ot_type_gallery' ) ) {
 }
 
 /**
+ * Google Fonts option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.5.0
+ */
+if ( ! function_exists( 'ot_type_google_fonts' ) ) {
+  
+  function ot_type_google_fonts( $args = array() ) {
+
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+    
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-google-font ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+      
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+      
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">'; 
+        
+        /* allow fields to be filtered */
+        $ot_recognized_google_fonts_fields = apply_filters( 'ot_recognized_google_font_fields', array(
+          'variants', 
+          'subsets'
+        ), $field_id );
+        
+        // Set a default to show at least one item.
+        if ( ! is_array( $field_value ) || empty( $field_value ) ) {
+          $field_value = array( array(
+            'family'    => '',
+            'variants'  => array(),
+            'subsets'   => array()
+          ) );
+        }
+        
+        foreach( $field_value as $key => $value ) {
+        
+          echo '<div class="type-google-font-group">';
+          
+            /* build font family */
+            $family = isset( $value['family'] ) ? $value['family'] : '';
+            echo '<div class="option-tree-google-font-family">';
+              echo '<a href="javascript:void(0);" class="js-remove-google-font option-tree-ui-button button button-secondary light" title="' . __( 'Remove Google Font', 'option-tree' ) . '"><span class="icon ot-icon-minus-circle"/>' . __( 'Remove Google Font', 'option-tree' ) . '</a>';
+              echo '<select name="' . esc_attr( $field_name ) . '[' . $key . '][family]" id="' . esc_attr( $field_id ) . '-' . $key . '" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
+                echo '<option value="">' . __( '-- Choose One --', 'option-tree' ) . '</option>';
+                foreach ( ot_recognized_google_font_families( $field_id ) as $family_key => $family_value ) {
+                  echo '<option value="' . esc_attr( $family_key ) . '" ' . selected( $family, $family_key, false ) . '>' . esc_html( $family_value ) . '</option>';
+                }
+              echo '</select>';
+            echo '</div>';
+    
+            /* build font variants */
+            if ( in_array( 'variants', $ot_recognized_google_fonts_fields ) ) {
+              $variants = isset( $value['variants'] ) ? $value['variants'] : array();
+              echo '<div class="option-tree-google-font-variants" data-field-id-prefix="' . esc_attr( $field_id ) . '-' . $key . '-" data-field-name="' . esc_attr( $field_name ) . '[' . $key . '][variants]" data-field-class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '">';
+              foreach ( ot_recognized_google_font_variants( $field_id, $family ) as $variant_key => $variant ) {
+                echo '<p class="checkbox-wrap">';
+                  echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[' . $key . '][variants][]" id="' . esc_attr( $field_id ) . '-' . $key . '-' . $variant . '" value="' . esc_attr( $variant ) . '" ' . checked( in_array( $variant, $variants ), true, false )  . ' class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
+                  echo '<label for="' . esc_attr( $field_id ) . '-' . $key . '-' . $variant . '">' . esc_html( $variant ) . '</label>';
+                echo '</p>';
+              }
+              echo '</div>';
+            }
+            
+            /* build font subsets */
+            if ( in_array( 'subsets', $ot_recognized_google_fonts_fields ) ) {
+              $subsets = isset( $value['subsets'] ) ? $value['subsets'] : array();
+              echo '<div class="option-tree-google-font-subsets" data-field-id-prefix="' . esc_attr( $field_id ) . '-' . $key . '-" data-field-name="' . esc_attr( $field_name ) . '[' . $key . '][subsets]" data-field-class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '">';
+              foreach ( ot_recognized_google_font_subsets( $field_id, $family ) as $subset_key => $subset ) {
+                echo '<p class="checkbox-wrap">';
+                  echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[' . $key . '][subsets][]" id="' . esc_attr( $field_id ) . '-' . $key . '-' . $subset . '" value="' . esc_attr( $subset ) . '" ' . checked( in_array( $subset, $subsets ), true, false )  . ' class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
+                  echo '<label for="' . esc_attr( $field_id ) . '-' . $key . '-' . $subset . '">' . esc_html( $subset ) . '</label>';
+                echo '</p>';
+              }
+              echo '</div>';
+            }
+          
+          echo '</div>';
+        
+        }
+
+        echo '<div class="type-google-font-group-clone">';
+        
+          /* build font family */
+          echo '<div class="option-tree-google-font-family">';
+            echo '<a href="javascript:void(0);" class="js-remove-google-font option-tree-ui-button button button-secondary light" title="' . __( 'Remove Google Font', 'option-tree' ) . '"><span class="icon ot-icon-minus-circle"/>' . __( 'Remove Google Font', 'option-tree' ) . '</a>';
+            echo '<select name="' . esc_attr( $field_name ) . '[%key%][family]" id="' . esc_attr( $field_id ) . '-%key%" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
+              echo '<option value="">' . __( '-- Choose One --', 'option-tree' ) . '</option>';
+              foreach ( ot_recognized_google_font_families( $field_id ) as $family_key => $family_value ) {
+                echo '<option value="' . esc_attr( $family_key ) . '">' . esc_html( $family_value ) . '</option>';
+              }
+            echo '</select>';
+          echo '</div>';
+          
+          /* build font variants */
+          if ( in_array( 'variants', $ot_recognized_google_fonts_fields ) ) {
+            echo '<div class="option-tree-google-font-variants" data-field-id-prefix="' . esc_attr( $field_id ) . '-%key%-" data-field-name="' . esc_attr( $field_name ) . '[%key%][variants]" data-field-class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '">';
+            echo '</div>';
+          }
+          
+          /* build font subsets */
+          if ( in_array( 'subsets', $ot_recognized_google_fonts_fields ) ) {
+            echo '<div class="option-tree-google-font-subsets" data-field-id-prefix="' . esc_attr( $field_id ) . '-%key%-" data-field-name="' . esc_attr( $field_name ) . '[%key%][subsets]" data-field-class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '">';
+            echo '</div>';
+          }
+        
+        echo '</div>';
+        
+        echo '<a href="javascript:void(0);" class="js-add-google-font option-tree-ui-button button button-primary right hug-right" title="' . __( 'Add Google Font', 'option-tree' ) . '">' . __( 'Add Google Font', 'option-tree' ) . '</a>';
+        
+      echo '</div>';
+      
+    echo '</div>';
+    
+  }
+
+}
+
+/**
  * Link Color option type.
  *
  * See @ot_display_by_type to see the full list of available arguments.

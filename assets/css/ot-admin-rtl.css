@@ -420,6 +420,15 @@ div.option-tree-ui-media-wrap {
 }
 
 /* -------------------------------------------------- 
+  :: Google Font
+  ---------------------------------------------------*/
+.js-remove-google-font.option-tree-ui-button.button {
+  margin-left: 5px;
+  margin-right: 0;
+  margin-top: 0;
+}
+
+/* -------------------------------------------------- 
   :: OptionTree UI Buttons 
   ---------------------------------------------------*/
 .option-tree-ui-button {
@@ -482,6 +491,17 @@ ul.ot-gallery-list li {
   margin: 0px 0 10px 10px;
 }
 .ot-gallery-buttons {
+  float: right;
+}
+
+/* -------------------------------------------------- 
+  :: Google Fonts
+  ---------------------------------------------------*/
+.option-tree-google-font-family,
+.option-tree-google-font-variants,
+.option-tree-google-font-subsets,
+#option-tree-settings-api p.checkbox-wrap,
+#post-body .ot-metabox-panels p.checkbox-wrap {
   float: right;
 }
 

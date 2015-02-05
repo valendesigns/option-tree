@@ -46,6 +46,7 @@ This is a complete list of all the available option types that come shipped with
 * Date Time Picker
 * Dimension
 * Gallery
+* Google Fonts
 * Link Color
 * List Item
 * Measurement
@@ -125,6 +126,7 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 == Changelog ==
 
 = 2.5.0 =
+* Added the Google Fonts option type. Contributors via github @maimairel, and @valendesigns.
 * Added the Border option type. Contributors via github @doitmax, and @valendesigns.
 * Added the Box Shadow option type. Contributors via github @doitmax, and @valendesigns.
 * Added the Colorpicker Opacity option type. Contributors via github @doitmax, and @valendesigns.
@@ -144,6 +146,7 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 * Added filter `ot_on_off_switch_off_value` to filter the value of the Off button. Contributors via github @BassemN, and @valendesigns.
 * Added filter `ot_on_off_switch_off_label` to filter the label of the Off button. Contributors via github @BassemN, and @valendesigns.
 * Added filter `ot_on_off_switch_width` to filter the width of the On/Off switch.
+* Added Estonian translation. Contributors via github @tjuris, and @RistoNiinemets.
 
 = 2.4.6 =
 * Hotfix - Added a clean up script to consolidate orphaned media posts and remove the old and unused `wp_option_tree` table.

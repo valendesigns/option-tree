@@ -620,6 +620,20 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
       if ( empty( $input ) ) {
         $input = '';
       }
+      
+    } else if ( 'google-fonts' == $type ) {
+      
+      unset($input['%key%']);
+      
+      // Loop over array and check for values
+      if ( is_array( $input ) && ! empty( $input ) ) {
+        $input = array_values( $input );
+      }
+
+      // No value; set to empty
+      if ( empty( $input ) ) {
+        $input = '';
+      }
     
     } else if ( 'link-color' == $type ) {
       
@@ -828,7 +842,7 @@ if ( ! function_exists( 'ot_admin_scripts' ) ) {
     
     /* load all the required scripts */
     wp_enqueue_script( 'ot-admin-js', OT_URL . 'assets/js/ot-admin.js', array( 'jquery', 'jquery-ui-tabs', 'jquery-ui-sortable', 'jquery-ui-slider', 'wp-color-picker', 'ace-editor', 'jquery-ui-datepicker', 'jquery-ui-timepicker' ), OT_VERSION );
-    
+
     /* create localized JS array */
     $localized_array = array( 
       'ajax'                  => admin_url( 'admin-ajax.php' ),
@@ -2416,6 +2430,7 @@ if ( ! function_exists( 'ot_option_types_array' ) ) {
       'date-time-picker'          => __('Date Time Picker', 'option-tree'),
       'dimension'                 => __('Dimension', 'option-tree'),
       'gallery'                   => __('Gallery', 'option-tree'),
+      'google-fonts'              => __('Google Fonts', 'option-tree'),
       'link-color'                => __('Link Color', 'option-tree'),
       'list-item'                 => __('List Item', 'option-tree'),
       'measurement'               => __('Measurement', 'option-tree'),
@@ -2501,6 +2516,38 @@ if ( ! function_exists( 'ot_map_old_option_types' ) ) {
 }
 
 /**
+ * Filters the typography font-family to add Google fonts dynamically.
+ *
+ * @param     array     $families An array of all recognized font families.
+ * @param     string    $field_id ID of the feild being filtered.
+ * @return    array
+ *
+ * @access    public
+ * @since     2.5.0
+ */
+function ot_google_font_stack( $families, $field_id ) {
+
+  $ot_google_fonts = get_theme_mod( 'ot_google_fonts', array() );
+  $ot_set_google_fonts = get_theme_mod( 'ot_set_google_fonts', array() );
+
+  if ( ! empty( $ot_set_google_fonts ) ) {
+    foreach( $ot_set_google_fonts as $id => $sets ) {
+      foreach( $sets as $value ) {
+        $family = isset( $value['family'] ) ? $value['family'] : '';
+        if ( $family && isset( $ot_google_fonts[$family] ) ) {
+          $spaces = explode(' ', $ot_google_fonts[$family]['family'] );
+          $font_stack = count( $spaces ) > 1 ? '"' . $ot_google_fonts[$family]['family'] . '"': $ot_google_fonts[$family]['family'];
+          $families[$family] = apply_filters( 'ot_google_font_stack', $font_stack, $family, $field_id );
+        }
+      }
+    }
+  }
+  
+  return $families;
+}
+add_filter( 'ot_recognized_font_families', 'ot_google_font_stack', 1, 2 );
+
+/**
  * Recognized font families
  *
  * Returns an array of all recognized font families.
@@ -2519,8 +2566,8 @@ if ( ! function_exists( 'ot_map_old_option_types' ) ) {
 if ( ! function_exists( 'ot_recognized_font_families' ) ) {
 
   function ot_recognized_font_families( $field_id = '' ) {
-  
-    return apply_filters( 'ot_recognized_font_families', array(
+    
+    $families = array(
       'arial'     => 'Arial',
       'georgia'   => 'Georgia',
       'helvetica' => 'Helvetica',
@@ -2529,7 +2576,9 @@ if ( ! function_exists( 'ot_recognized_font_families' ) ) {
       'times'     => '"Times New Roman", sans-serif',
       'trebuchet' => 'Trebuchet',
       'verdana'   => 'Verdana'
-    ), $field_id );
+    );
+    
+    return apply_filters( 'ot_recognized_font_families', $families, $field_id );
     
   }
 
@@ -2994,6 +3043,97 @@ if ( ! function_exists( 'ot_recognized_spacing_unit_types' ) ) {
       'pt' => 'pt'
     ), $field_id );
 
+  }
+
+}
+
+/**
+ * Recognized Google font families
+ *
+ * @uses      apply_filters()
+ *
+ * @return    array
+ *
+ * @access    public
+ * @since     2.5.0
+ */
+if ( ! function_exists( 'ot_recognized_google_font_families' ) ) {
+
+  function ot_recognized_google_font_families( $field_id ) {
+
+    $families = array();
+    $ot_google_fonts = get_theme_mod( 'ot_google_fonts', array() );
+    
+    foreach( (array) $ot_google_fonts as $key => $item ) {
+  
+      if ( isset( $item['family'] ) ) {
+  
+        $families[ $key ] = $item['family'];
+  
+      }
+  
+    }
+  
+    return apply_filters( 'ot_recognized_google_font_families', $families, $field_id );
+  
+  }
+
+}
+
+/**
+ * Recognized Google font variants
+ *
+ * @uses      apply_filters()
+ *
+ * @return    array
+ *
+ * @access    public
+ * @since     2.5.0
+ */
+if ( ! function_exists( 'ot_recognized_google_font_variants' ) ) {
+
+  function ot_recognized_google_font_variants( $field_id, $family ) {
+
+    $variants = array();
+    $ot_google_fonts = get_theme_mod( 'ot_google_fonts', array() );
+
+    if ( isset( $ot_google_fonts[ $family ]['variants'] ) ) {
+  
+      $variants = $ot_google_fonts[ $family ]['variants'];
+  
+    }
+  
+    return apply_filters( 'ot_recognized_google_font_variants', $variants, $field_id, $family );
+  
+  }
+
+}
+
+/**
+ * Recognized Google font subsets
+ *
+ * @uses      apply_filters()
+ *
+ * @return    array
+ *
+ * @access    public
+ * @since     2.5.0
+ */
+if ( ! function_exists( 'ot_recognized_google_font_subsets' ) ) {
+
+  function ot_recognized_google_font_subsets( $field_id, $family ) {
+
+    $subsets = array();
+    $ot_google_fonts = get_theme_mod( 'ot_google_fonts', array() );
+  
+    if ( isset( $ot_google_fonts[ $family ]['subsets'] ) ) {
+  
+      $subsets = $ot_google_fonts[ $family ]['subsets'];
+  
+    }
+  
+    return apply_filters( 'ot_recognized_google_font_subsets', $subsets, $field_id, $family );
+  
   }
 
 }
@@ -4929,6 +5069,177 @@ function ot_filter_std_value( $value = '', $std = '' ) {
 
   return $value;
   
+}
+
+/**
+ * Helper function to set the Google fonts array.
+ *
+ * @param     string    $id The option ID.
+ * @param     bool      $value The option value
+ * @return    void
+ *
+ * @access    public
+ * @since     2.5.0
+ */
+function ot_set_google_fonts( $id = '', $value = '' ) {
+
+  $ot_set_google_fonts = get_theme_mod( 'ot_set_google_fonts', array() );
+
+  if ( is_array( $value ) && ! empty( $value ) ) {
+    $ot_set_google_fonts[$id] = $value;
+  } else if ( isset( $ot_set_google_fonts[$id] ) ) {
+    unset( $ot_set_google_fonts[$id] );
+  }
+
+  set_theme_mod( 'ot_set_google_fonts', $ot_set_google_fonts );
+
+}
+
+/**
+ * Helper function to remove unused options from the Google fonts array.
+ *
+ * @param     array     $options The array of saved options.
+ * @return    array
+ *
+ * @access    public
+ * @since     2.5.0
+ */
+function ot_update_google_fonts_after_save( $options ) {
+
+  $ot_set_google_fonts = get_theme_mod( 'ot_set_google_fonts', array() );
+
+  foreach( $ot_set_google_fonts as $key => $set ) {
+    if ( ! isset( $options[$key] ) ) {
+      unset( $ot_set_google_fonts[$key] );
+    }
+  }
+  set_theme_mod( 'ot_set_google_fonts', $ot_set_google_fonts );
+
+}
+add_action( 'ot_after_theme_options_save', 'ot_update_google_fonts_after_save', 1 );
+
+/**
+ * Helper function to fetch the Google fonts array.
+ *
+ * @param     bool      $normalize Whether or not to return a normalized array.
+ * @return    array
+ *
+ * @access    public
+ * @since     2.5.0
+ */
+function ot_fetch_google_fonts( $normalize = true ) {
+
+  /* Google Fonts cache key */
+  $ot_google_fonts_cache_key = apply_filters( 'ot_google_fonts_cache_key', 'ot_google_fonts_cache' );
+
+  /* get the fonts from cache */
+  $ot_google_fonts = apply_filters( 'ot_google_fonts_cache', get_transient( $ot_google_fonts_cache_key ) );
+
+  if ( ! is_array( $ot_google_fonts ) || empty( $ot_google_fonts ) ) {
+
+    $ot_google_fonts = array();
+
+    /* API url and key */
+    $ot_google_fonts_api_url = apply_filters( 'ot_google_fonts_api_url', 'https://www.googleapis.com/webfonts/v1/webfonts' );
+    $ot_google_fonts_api_key = apply_filters( 'ot_google_fonts_api_key', 'AIzaSyB8G-4UtQr9fhDYTiNrDP40Y5GYQQKrNWI' );
+
+    /* API arguments */
+    $ot_google_fonts_fields = apply_filters( 'ot_google_fonts_fields', array( 'family', 'variants', 'subsets' ) );
+    $ot_google_fonts_sort   = apply_filters( 'ot_google_fonts_sort', 'alpha' );
+
+    /* Initiate API request */
+    $ot_google_fonts_query_args = array(
+      'key'    => $ot_google_fonts_api_key, 
+      'fields' => 'items(' . implode( ',', $ot_google_fonts_fields ) . ')', 
+      'sort'   => $ot_google_fonts_sort
+    );
+
+    /* Build and make the request */
+    $ot_google_fonts_query = add_query_arg( $ot_google_fonts_query_args, $ot_google_fonts_api_url );
+    $ot_google_fonts_response = wp_safe_remote_get( $ot_google_fonts_query, array( 'sslverify' => false, 'timeout' => 15 ) );
+
+    /* continue if we got a valid response */
+    if ( 200 == wp_remote_retrieve_response_code( $ot_google_fonts_response ) ) {
+
+      if ( $response_body = wp_remote_retrieve_body( $ot_google_fonts_response ) ) {
+
+        /* JSON decode the response body and cache the result */
+        $ot_google_fonts_data = json_decode( trim( $response_body ), true );
+
+        if ( is_array( $ot_google_fonts_data ) && isset( $ot_google_fonts_data['items'] ) ) {
+
+          $ot_google_fonts = $ot_google_fonts_data['items'];
+          
+          // Normalize the array key
+          $ot_google_fonts_tmp = array();
+          foreach( $ot_google_fonts as $key => $value ) {
+            $id = remove_accents( $value['family'] );
+            $id = strtolower( $id );
+            $id = preg_replace( '/[^a-z0-9_\-]/', '', $id );
+            $ot_google_fonts_tmp[$id] = $value;
+          }
+          
+          $ot_google_fonts = $ot_google_fonts_tmp;
+          set_theme_mod( 'ot_google_fonts', $ot_google_fonts );
+          set_transient( $ot_google_fonts_cache_key, $ot_google_fonts, WEEK_IN_SECONDS );
+
+        }
+
+      }
+
+    }
+
+  }
+
+  return $normalize ? ot_normalize_google_fonts( $ot_google_fonts ) : $ot_google_fonts;
+
+}
+
+/**
+ * Helper function to normalize the Google fonts array.
+ *
+ * @param     array     $google_fonts An array of fonts to nrmalize.
+ * @return    array
+ *
+ * @access    public
+ * @since     2.5.0
+ */
+function ot_normalize_google_fonts( $google_fonts ) {
+
+  $ot_normalized_google_fonts = array();
+
+  if ( is_array( $google_fonts ) && ! empty( $google_fonts ) ) {
+
+    foreach( $google_fonts as $google_font ) {
+
+      if( isset( $google_font['family'] ) ) {
+
+        $id = str_replace( ' ', '+', $google_font['family'] );
+
+        $ot_normalized_google_fonts[ $id ] = array(
+          'family' => $google_font['family']
+        );
+
+        if( isset( $google_font['variants'] ) ) {
+
+          $ot_normalized_google_fonts[ $id ]['variants'] = $google_font['variants'];
+
+        }
+
+        if( isset( $google_font['subsets'] ) ) {
+
+          $ot_normalized_google_fonts[ $id ]['subsets'] = $google_font['subsets'];
+
+        }
+
+      }
+
+    }
+
+  }
+
+  return $ot_normalized_google_fonts;
+
 }
 
 /**

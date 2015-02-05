@@ -2564,6 +2564,25 @@ select.option-tree-ui-select option {
 }
 
 /* -------------------------------------------------- 
+  :: Google Font
+  ---------------------------------------------------*/
+.type-google-font {
+
+}
+.type-google-font-group-clone {
+  display: none;
+}
+.type-google-font-group {
+  float: left;
+  margin-bottom: 20px;
+  width: 100%;
+}
+.js-remove-google-font.option-tree-ui-button.button {
+  margin-left: 0;
+  margin-top: 0;
+}
+
+/* -------------------------------------------------- 
   :: OptionTree UI Buttons 
   ---------------------------------------------------*/
 .option-tree-ui-button.button {
@@ -2812,6 +2831,38 @@ ul.ot-gallery-list li img {
 .ot-gallery-buttons a.option-tree-ui-button {
   margin-top: 0px;
   margin-bottom: 0px;
+}
+
+/* -------------------------------------------------- 
+  :: Google Fonts
+  ---------------------------------------------------*/
+.option-tree-google-font-family,
+.option-tree-google-font-variants,
+.option-tree-google-font-subsets {
+  float: left;
+  width: 20%;
+}
+.option-tree-google-font-family {
+  width: 100%;
+}
+#option-tree-settings-api p.checkbox-wrap,
+#post-body .ot-metabox-panels p.checkbox-wrap {
+  display: block;
+  float: left;
+  margin: 0.3em 0 !important;
+  width: 100%;
+}
+@media screen and ( max-width: 1020px ) {
+  .option-tree-google-font-variants,
+  .option-tree-google-font-subsets {
+    width: 33%;
+  }
+}
+@media screen and ( max-width: 782px ) {
+  .option-tree-google-font-variants,
+  .option-tree-google-font-subsets {
+    width: 50%;
+  }
 }
 
 /* -------------------------------------------------- 
