@@ -1471,55 +1471,91 @@ if ( ! function_exists( 'ot_type_numeric_slider' ) ) {
  * @since     2.2.0
  */
 if ( ! function_exists( 'ot_type_on_off' ) ) {
-  
+
   function ot_type_on_off( $args = array() ) {
-    
+
     /* turns arguments array into variables */
     extract( $args );
-    
+
     /* verify a description */
     $has_desc = $field_desc ? true : false;
-    
+
     /* format setting outer wrapper */
     echo '<div class="format-setting type-radio ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
-      
+
       /* description */
       echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
-      
+
       /* format setting inner wrapper */
       echo '<div class="format-setting-inner">';
-      
-	    /* Force choices & filter labels */
+
+        /* Force only two choices, and allowing filtering on the choices value & label */
         $field_choices = array(
           array(
-            'value'   => apply_filters( 'ot_recognized_on_off_value', 'on', $field_id, 'on' ),
-            'label'   => apply_filters( 'ot_recognized_on_off_label', __( 'On', 'option-tree' ), $field_id, 'on' )
+            /**
+             * Filter the value of the On button.
+             *
+             * @since 2.5.0
+             *
+             * @param string The On button value. Default 'on'.
+             * @param string $field_id The field ID.
+             * @param string $filter_id For filtering both on/off value with one function.
+             */
+            'value'   => apply_filters( 'ot_on_choice_value', 'on', $field_id, 'on' ),
+            /**
+             * Filter the label of the On button.
+             *
+             * @since 2.5.0
+             *
+             * @param string The On button label. Default 'On'.
+             * @param string $field_id The field ID.
+             * @param string $filter_id For filtering both on/off label with one function.
+             */
+            'label'   => apply_filters( 'ot_on_choice_label', __( 'On', 'option-tree' ), $field_id, 'on' )
           ),
           array(
-            'value'   => apply_filters( 'ot_recognized_on_off_value', 'off', $field_id, 'off' ),
-            'label'   => apply_filters( 'ot_recognized_on_off_label', __( 'Off', 'option-tree' ), $field_id, 'off' )
+            /**
+             * Filter the value of the Off button.
+             *
+             * @since 2.5.0
+             *
+             * @param string The Off button value. Default 'off'.
+             * @param string $field_id The field ID.
+             * @param string $filter_id For filtering both on/off value with one function.
+             */
+            'value'   => apply_filters( 'ot_off_choice_value', 'off', $field_id, 'off' ),
+            /**
+             * Filter the label of the Off button.
+             *
+             * @since 2.5.0
+             *
+             * @param string The Off button label. Default 'Off'.
+             * @param string $field_id The field ID.
+             * @param string $filter_id For filtering both on/off label with one function.
+             */
+            'label'   => apply_filters( 'ot_off_choice_label', __( 'Off', 'option-tree' ), $field_id, 'off' )
           )
         );
-	  
+
         echo '<div class="on-off-switch">';
-                    
+
         /* build radio */
         foreach ( (array) $field_choices as $key => $choice ) {
           echo '
             <input type="radio" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '-' . esc_attr( $key ) . '" value="' . esc_attr( $choice['value'] ) . '"' . checked( $field_value, $choice['value'], false ) . ' class="radio option-tree-ui-radio ' . esc_attr( $field_class ) . '" />
             <label for="' . esc_attr( $field_id ) . '-' . esc_attr( $key ) . '" onclick="">' . esc_attr( $choice['label'] ) . '</label>';
         }
-          
+
           echo '<span class="slide-button"></span>';
-          
+
         echo '</div>';
-      
+
       echo '</div>';
-    
+
     echo '</div>';
-    
+
   }
-  
+
 }
 
 /**
