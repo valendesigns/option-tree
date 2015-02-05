@@ -139,6 +139,11 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 * Added styles that clean up the appearance of the included Font Awesome icons in section tabs.
 * Fixed jQuery UI style conflicts created by the WP Review plugin.
 * Added filter `ot_dequeue_jquery_ui_css_screen_ids` to dequeue `jquery-ui-css` by screen ID.
+* Added filter `ot_on_off_switch_on_value` to filter the value of the On button. Contributors via github @BassemN, and @valendesigns.
+* Added filter `ot_on_off_switch_on_label` to filter the label of the On button. Contributors via github @BassemN, and @valendesigns.
+* Added filter `ot_on_off_switch_off_value` to filter the value of the Off button. Contributors via github @BassemN, and @valendesigns.
+* Added filter `ot_on_off_switch_off_label` to filter the label of the Off button. Contributors via github @BassemN, and @valendesigns.
+* Added filter `ot_on_off_switch_width` to filter the width of the On/Off switch.
 
 = 2.4.6 =
 * Hotfix - Added a clean up script to consolidate orphaned media posts and remove the old and unused `wp_option_tree` table.

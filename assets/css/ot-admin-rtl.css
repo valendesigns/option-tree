@@ -503,7 +503,7 @@ ul.ot-gallery-list li {
   }
   .on-off-switch input:last-of-type:checked ~ .slide-button {
     left: auto;
-    right: 50px;
+    right: 50%;
   }
 }
 
