@@ -140,6 +140,7 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 * Added styles that clean up the appearance of the included Font Awesome icons in section tabs.
 * Fixed jQuery UI style conflicts created by the WP Review plugin.
 * Added filter `ot_dequeue_jquery_ui_css_screen_ids` to dequeue `jquery-ui-css` by screen ID.
+* Added Estonian translation. Contributors via github @tjuris, and @RistoNiinemets.
 
 = 2.4.6 =
 * Hotfix - Added a clean up script to consolidate orphaned media posts and remove the old and unused `wp_option_tree` table.
