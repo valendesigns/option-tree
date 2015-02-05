@@ -1489,18 +1489,18 @@ if ( ! function_exists( 'ot_type_on_off' ) ) {
       /* format setting inner wrapper */
       echo '<div class="format-setting-inner">';
       
-        // Force choices
+	    /* Force choices & filter labels */
         $field_choices = array(
           array(
-            'value'   => 'on',
-            'label'   => __( 'On', 'option-tree' ),
+            'value'   => apply_filters( 'ot_recognized_on_off_value', 'on', $field_id, 'on' ),
+            'label'   => apply_filters( 'ot_recognized_on_off_label', __( 'On', 'option-tree' ), $field_id, 'on' )
           ),
           array(
-            'value'   => 'off',
-            'label'   => __( 'Off', 'option-tree' ),
+            'value'   => apply_filters( 'ot_recognized_on_off_value', 'off', $field_id, 'off' ),
+            'label'   => apply_filters( 'ot_recognized_on_off_label', __( 'Off', 'option-tree' ), $field_id, 'off' )
           )
         );
-        
+	  
         echo '<div class="on-off-switch">';
                     
         /* build radio */
