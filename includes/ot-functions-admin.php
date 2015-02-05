@@ -3424,13 +3424,16 @@ if ( ! function_exists( 'ot_social_links_settings' ) ) {
 if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
 
   function ot_insert_css_with_markers( $field_id = '', $insertion = '', $meta = false ) {
-    
+    global $wp_filesystem;
+
     /* missing $field_id or $insertion exit early */
     if ( '' == $field_id || '' == $insertion )
       return;
-
+    
+    $theme_dir = $wp_filesystem->wp_themes_dir() . get_option( 'stylesheet' );
+    
     /* path to the dynamic.css file */
-    $filepath = get_stylesheet_directory() . '/dynamic.css';
+    $filepath = $theme_dir . '/dynamic.css';
     
     /* allow filter on path */
     $filepath = apply_filters( 'css_option_file_path', $filepath, $field_id );
@@ -3443,9 +3446,20 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
     
     /* update the paths */
     update_option( 'ot_css_file_paths', $ot_css_file_paths );
+
+    if ( get_filesystem_method() === 'direct' ) {
+      if ( ! $wp_filesystem->is_writable( $theme_dir ) ) {
+        // TODO admin nag about failed permissions
+      }
+    }
     
+    // File does not exist
+    if ( ! $wp_filesystem->exists( $filepath ) && ! $wp_filesystem->put_contents( $filepath, '', FS_CHMOD_FILE ) ) {
+      return;
+    }
+          
     /* insert CSS into file */
-    if ( file_exists( $filepath ) ) {
+    if ( $wp_filesystem->exists( $filepath ) ) {
       
       $insertion   = ot_normalize_css( $insertion );
       $regex       = "/{{([a-zA-Z0-9\_\-\#\|\=]+)}}/";
@@ -3686,38 +3700,36 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
       }
     
       /* create array from the lines of code */
-      $markerdata = explode( "\n", implode( '', file( $filepath ) ) );
-      
-      /* can't write to the file return false */
-      if ( ! $f = ot_file_open( $filepath, 'w' ) )
-        return false;
-      
+      $markerdata = $wp_filesystem->get_contents_array( $filepath );
+
       $searching = true;
       $foundit = false;
+      $css = array();
       
       /* has array of lines */
       if ( ! empty( $markerdata ) ) {
         
         /* foreach line of code */
         foreach( $markerdata as $n => $markerline ) {
-          
+
           /* found begining of marker, set $searching to false  */
-          if ( $markerline == "/* BEGIN {$marker} */" )
+          if ( $markerline == "/* BEGIN {$marker} */" ) {
             $searching = false;
+          }
           
           /* keep rewrite each line of CSS  */
           if ( $searching == true ) {
             if ( $n + 1 < count( $markerdata ) )
-              ot_file_write( $f, "{$markerline}\n" );
+              $css[] = "{$markerline}\n";
             else
-              ot_file_write( $f, "{$markerline}" );
+              $css[] = "{$markerline}";
           }
           
           /* found end marker write code */
           if ( $markerline == "/* END {$marker} */" ) {
-            ot_file_write( $f, "/* BEGIN {$marker} */\n" );
-            ot_file_write( $f, "{$insertion}\n" );
-            ot_file_write( $f, "/* END {$marker} */\n" );
+            $css[] = "/* BEGIN {$marker} */\n";
+            $css[] = "{$insertion}\n";
+            $css[] = "/* END {$marker} */\n";
             $searching = true;
             $foundit = true;
           }
@@ -3726,15 +3738,18 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
         
       }
       
-      /* nothing inserted, write code. DO IT, DO IT! */
+      /* nothing inserted, add code. DO IT, DO IT! */
       if ( ! $foundit ) {
-        ot_file_write( $f, "/* BEGIN {$marker} */\n" );
-        ot_file_write( $f, "{$insertion}\n" );
-        ot_file_write( $f, "/* END {$marker} */\n" );
+        $css[] = "/* BEGIN {$marker} */\n";
+        $css[] = "{$insertion}\n";
+        $css[] = "/* END {$marker} */\n";
       }
       
-      /* close file */
-      ot_file_close( $f );
+      /* write to file */
+      if ( ! empty( $css ) ) {
+        $wp_filesystem->put_contents( $filepath, implode( '', $css ), FS_CHMOD_FILE );
+      }
+      
       return true;
     }
     
@@ -3758,6 +3773,7 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
 if ( ! function_exists( 'ot_remove_old_css' ) ) {
 
   function ot_remove_old_css( $field_id = '' ) {
+    global $wp_filesystem;
     
     /* missing $field_id string */
     if ( '' == $field_id )
@@ -3768,18 +3784,15 @@ if ( ! function_exists( 'ot_remove_old_css' ) ) {
     
     /* allow filter on path */
     $filepath = apply_filters( 'css_option_file_path', $filepath, $field_id );
-    
+
     /* remove CSS from file */
-    if ( is_writeable( $filepath ) ) {
+    if ( $wp_filesystem->exists( $filepath ) ) {
       
       /* get each line in the file */
-      $markerdata = explode( "\n", implode( '', file( $filepath ) ) );
-      
-      /* can't write to the file return false */
-      if ( ! $f = ot_file_open( $filepath, 'w' ) )
-        return false;
+      $markerdata = $wp_filesystem->get_contents_array( $filepath );
       
       $searching = true;
+      $css = array();
       
       /* has array of lines */
       if ( ! empty( $markerdata ) ) {
@@ -3788,20 +3801,20 @@ if ( ! function_exists( 'ot_remove_old_css' ) ) {
         foreach ( $markerdata as $n => $markerline ) {
           
           /* found begining of marker, set $searching to false  */
-          if ( $markerline == "/* BEGIN {$field_id} */" )
+          if ( $markerline == "/* BEGIN {$field_id} */" ) {
             $searching = false;
+          }
           
           /* $searching is true, keep rewrite each line of CSS  */
           if ( $searching == true ) {
             if ( $n + 1 < count( $markerdata ) )
-              ot_file_write( $f, "{$markerline}\n" );
+              $css[] = "{$markerline}\n";
             else
-              ot_file_write( $f, "{$markerline}" );
+              $css[] = "{$markerline}";
           }
           
           /* found end marker delete old CSS */
           if ( $markerline == "/* END {$field_id} */" ) {
-            ot_file_write( $f, "" );
             $searching = true;
           }
           
@@ -3809,8 +3822,11 @@ if ( ! function_exists( 'ot_remove_old_css' ) ) {
         
       }
       
-      /* close file */
-      ot_file_close( $f );
+      /* write to file */
+      if ( ! empty( $css ) ) {
+        $wp_filesystem->put_contents( $filepath, implode( '', $css ), FS_CHMOD_FILE );
+      }
+      
       return true;
       
     }
@@ -5005,7 +5021,7 @@ function ot_decode( $value ) {
 function ot_file_open( $handle, $mode ) {
 
   $func = 'f' . 'open';
-  return @$func( $handle, $mode );
+  return $func( $handle, $mode );
   
 }
 

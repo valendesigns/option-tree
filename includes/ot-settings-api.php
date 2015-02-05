@@ -53,6 +53,9 @@ if ( ! class_exists( 'OT_Settings' ) ) {
       /* add pages & menu items */
       add_action( 'admin_menu', array( $this, 'add_page' ) );
       
+      /* initialize filesystem */
+      add_action( 'admin_init', array( $this, 'initialize_filesystem' ), 1 );
+      
       /* register sections */
       add_action( 'admin_init', array( $this, 'add_sections' ) );
       
@@ -217,6 +220,8 @@ if ( ! class_exists( 'OT_Settings' ) ) {
      * @since     2.0
      */
     public function display_page() {
+      global $ot_request_filesystem_credentials;
+
       $screen = get_current_screen();
       
       /* loop through settings */
@@ -227,6 +232,30 @@ if ( ! class_exists( 'OT_Settings' ) ) {
           
           /* verify page */
           if ( ! isset( $page['hidden_page'] ) && $screen->id == $this->page_hook[$page['id']] ) {
+
+            /* update active layout content */
+            if ( isset( $_REQUEST['settings-updated'] ) && $_REQUEST['settings-updated'] == 'true' ) {
+
+              if ( $ot_request_filesystem_credentials == true ) {
+
+                // Create the credentials nonce
+                $url = wp_nonce_url( $page['parent_slug'] . '?page=' . $page['menu_slug'] . '&settings-updated=true', $page['menu_slug'] );
+        
+                if ( false === ( $creds = request_filesystem_credentials( $url, '', false, false, null ) ) ) {
+                  break;
+                }
+        
+                if ( ! WP_Filesystem( $creds ) ) {
+                  // our credentials were no good, ask the user for them again
+                  request_filesystem_credentials( $url, '', true, false, null );
+                  break;
+                }
+                
+                ot_after_theme_options_save();
+        
+              }
+
+            }
             
             $show_buttons = isset( $page['show_buttons'] ) && $page['show_buttons'] == false ? false : true;
 
@@ -359,7 +388,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
               }
                           
             echo '</div>';
-          
+
           }
         
         }
@@ -520,6 +549,41 @@ if ( ! class_exists( 'OT_Settings' ) ) {
       
       /* get the option HTML */
       echo ot_display_by_type( $_args );
+    }
+    
+    /**
+     * Sets the `$ot_request_filesystem_credentials` global.
+     *
+     * @return    void
+     *
+     * @access    public
+     * @since     2.5.0
+     */
+    public function initialize_filesystem() {
+      global $ot_request_filesystem_credentials;
+
+      /* loop through options */
+      foreach( (array) $this->options as $option ) {
+
+        /* loop through pages */
+        foreach( (array) $this->get_pages( $option ) as $page ) {
+            
+          /* loop through page settings */
+          foreach( (array) $this->get_the_settings( $page ) as $setting ) {
+            
+            // Ask for filesystem credentials
+            if ( $setting['type'] == 'css' ) {
+
+              $ot_request_filesystem_credentials = true;
+
+            }
+  
+          }
+        
+        }
+        
+      }
+
     }
     
     /**
