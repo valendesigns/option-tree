@@ -96,7 +96,39 @@ if ( ! function_exists( 'ot_get_option' ) ) {
 }
 
 /**
- * Echo Option. (via Github @joshlevinson)
+ * Update Option.
+ *
+ * Helper function to update the option value.
+ *
+ * @param     string    The option ID.
+ * @param     string    The option value.
+ * @return    void
+ *
+ * @access    public
+ * @since     2.5.0
+ */
+if ( ! function_exists( 'ot_update_option' ) ) {
+
+  function ot_update_option( $option_id, $option_value ) {
+
+    // Get the option ID.
+    $options_id = ot_options_id();
+
+    // Get the options array.
+    $options = get_option( $options_id );
+
+    // Update the options array.
+    if ( isset( $options[$option_id] ) ) {
+      $options[$option_id] = $option_value;
+      update_option( $options_id, $options );
+    }
+
+  }
+
+}
+
+/**
+ * Echo Option.
  *
  * Helper function to echo the option value.
  * If no value has been saved, it echos $default.
@@ -221,10 +253,13 @@ if ( ! function_exists( 'ot_load_dynamic_css' ) ) {
     /* don't load in the admin */
     if ( is_admin() )
       return;
-    
+
     /* grab a copy of the paths */
     $ot_css_file_paths = get_option( 'ot_css_file_paths', array() );
-    
+    if ( is_multisite() ) {
+      $ot_css_file_paths = get_blog_option( get_current_blog_id(), 'ot_css_file_paths', $ot_css_file_paths );
+    }
+
     if ( ! empty( $ot_css_file_paths ) ) {
       
       $last_css = '';
@@ -339,8 +374,6 @@ if ( ! function_exists( 'ot_load_google_fonts_css' ) ) {
 
 /**
  * Registers the Theme Option page link for the admin bar.
- *
- * @uses      ot_register_settings()
  *
  * @return    void
  *

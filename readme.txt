@@ -3,8 +3,8 @@ Contributors: valendesigns
 Donate link: http://bit.ly/NuXI3T
 Tags: options, theme options, meta boxes
 Requires at least: 3.5
-Tested up to: 4.0
-Stable tag: 2.4.6
+Tested up to: 4.2-alpha
+Stable tag: 2.5.0
 License: GPLv3
 
 Theme Options UI Builder for WordPress. A simple way to create & save Theme Options and Meta Boxes for free or premium themes.
@@ -47,6 +47,7 @@ This is a complete list of all the available option types that come shipped with
 * Dimension
 * Gallery
 * Google Fonts
+* JavaScript
 * Link Color
 * List Item
 * Measurement
@@ -131,6 +132,7 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 * Added the Box Shadow option type. Contributors via github @doitmax, and @valendesigns.
 * Added the Colorpicker Opacity option type. Contributors via github @doitmax, and @valendesigns.
 * Added the Dimension option type. Contributors via github @doitmax, and @valendesigns.
+* Added the JavaScript option type.
 * Added the Link Color option type. Contributors via github @doitmax, and @valendesigns.
 * Added the Spacing option type. Contributors via github @doitmax, and @valendesigns.
 * Fixed an issue where the Colorpicker was not parsing conditions on `change` or `clear`.
@@ -140,13 +142,23 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 * Stop Theme Check from complaining about the `register_post_type()` function being used in Theme Mode.
 * Added styles that clean up the appearance of the included Font Awesome icons in section tabs.
 * Fixed jQuery UI style conflicts created by the WP Review plugin.
+* Changed the sanitization function from `sanitize_text_field` to `esc_url_raw` for the Upload option type.
 * Added filter `ot_dequeue_jquery_ui_css_screen_ids` to dequeue `jquery-ui-css` by screen ID.
 * Added filter `ot_on_off_switch_on_value` to filter the value of the On button. Contributors via github @BassemN, and @valendesigns.
 * Added filter `ot_on_off_switch_on_label` to filter the label of the On button. Contributors via github @BassemN, and @valendesigns.
 * Added filter `ot_on_off_switch_off_value` to filter the value of the Off button. Contributors via github @BassemN, and @valendesigns.
 * Added filter `ot_on_off_switch_off_label` to filter the label of the Off button. Contributors via github @BassemN, and @valendesigns.
 * Added filter `ot_on_off_switch_width` to filter the width of the On/Off switch.
+* Added filter `ot_type_date_picker_readonly` to filter the addition of the readonly attribute.
+* Added filter `ot_type_date_time_picker_readonly` to filter the addition of the readonly attribute.
+* Added filter `ot_admin_menu_priority` to filter the `admin_menu` action hook priority.
 * Added Estonian translation. Contributors via github @tjuris, and @RistoNiinemets.
+* Added the `ot_update_option` function. Contributors via github @jetonr, and @valendesigns.
+* Fixed an issue where changes to `theme-options.php` required a second page load.
+* Fixed the clean up script, it only displays when there's something to clean up. No more menu item!
+* Update demo files with the latest option types.
+* Changed where `ot_css_file_paths` is saved when `is_multisite` for better `dynamic.css` file support.
+* Changed the default `dynamic.css` file path in multisite to be `dynamic-{current-blog-id}.css`.
 
 = 2.4.6 =
 * Hotfix - Added a clean up script to consolidate orphaned media posts and remove the old and unused `wp_option_tree` table.

@@ -171,6 +171,9 @@ body {
         echo '<h4>'. __( 'Google Fonts', 'option-tree' ) . ':</h4>';
         echo '<p>' . sprintf( __( 'The Google Fonts option type will dynamically enqueue any number of Google Web Fonts into the document %1$s. As well, once the option has been saved each font family will automatically be inserted into the %2$s array for the Typography option type. You can further modify the font stack by using the %3$s filter, which is passed the %4$s, %5$s, and %6$s parameters. The %6$s parameter is being passed from %7$s, so it will be the ID of a Typography option type. This will allow you to add additional web safe fonts to individual font families on an as-need basis.', 'option-tree' ), '<code>HEAD</code>', '<code>font-family</code>', '<code>ot_google_font_stack</code>', '<code>$font_stack</code>', '<code>$family</code>', '<code>$field_id</code>', '<code>ot_recognized_font_families</code>' ) . '</p>';
 
+        echo '<h4>'. __( 'JavaScript', 'option-tree' ) . ':</h4>'; 
+        echo '<p>' . sprintf( __( 'The JavaScript option type is a textarea that uses the %s code editor to highlight your JavaScript and display errors as you type.', 'option-tree' ), '<code>ace.js</code>' ) . '</p>';
+
         echo '<h4>'. __( 'Link Color', 'option-tree' ) . ':</h4>';
         echo '<p>' . __( 'The Link Color option type is used to set all link color states.', 'option-tree' ) . '</p>';
         
@@ -857,12 +860,17 @@ require( trailingslashit( get_template_directory() ) . \'includes/theme-options.
         echo "<pre><code>/**
  * Initialize the options before anything else. 
  */
-add_action( 'admin_init', 'custom_theme_options', 1 );
+add_action( 'init', 'custom_theme_options', 1 );
 
 /**
  * Build the custom settings & update OptionTree.
  */
 function custom_theme_options() {
+
+  /* OptionTree is not loaded yet, or this is not an admin request */
+  if ( ! function_exists( 'ot_settings_id' ) || ! is_admin() )
+    return false;
+
   /**
    * Get a copy of the saved settings array. 
    */
@@ -992,6 +1000,10 @@ function custom_theme_options() {
   if ( &#36;saved_settings !== &#36;custom_settings ) {
     update_option( 'option_tree_settings', &#36;custom_settings ); 
   }
+  
+  /* Lets OptionTree know the UI Builder is being overridden */
+  global &#36;ot_has_custom_theme_options;
+  &#36;ot_has_custom_theme_options = true;
   
 }
 </code></pre>";

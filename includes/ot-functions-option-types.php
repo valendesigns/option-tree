@@ -324,7 +324,7 @@ if ( ! function_exists( 'ot_type_border' ) ) {
           
             echo '<select name="' . esc_attr( $field_name ) . '[unit]" id="' . esc_attr( $field_id ) . '-unit" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
     
-              echo '<option value="">&nbsp;--&nbsp;</option>';
+              echo '<option value="">' . __( 'unit', 'option-tree' ) . '</option>';
     
               foreach ( ot_recognized_border_unit_types( $field_id ) as $unit ) {
                 echo '<option value="' . esc_attr( $unit ) . '"' . ( isset( $field_value['unit'] ) ? selected( $field_value['unit'], $unit, false ) : '' ) . '>' . esc_attr( $unit ) . '</option>';
@@ -343,7 +343,7 @@ if ( ! function_exists( 'ot_type_border' ) ) {
           
             echo '<select name="' . esc_attr( $field_name ) . '[style]" id="' . esc_attr( $field_id ) . '-style" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
     
-              echo '<option value="">&nbsp;--&nbsp;</option>';
+              echo '<option value="">' . __( 'style', 'option-tree' ) . '</option>';
     
               foreach ( ot_recognized_border_style_types( $field_id ) as $key => $style ) {
                 echo '<option value="' . esc_attr( $key ) . '"' . ( isset( $field_value['style'] ) ? selected( $field_value['style'], $key, false ) : '' ) . '>' . esc_attr( $style ) . '</option>';
@@ -958,7 +958,17 @@ if ( ! function_exists( 'ot_type_date_picker' ) ) {
     
     /* filter date format */
     $date_format = apply_filters( 'ot_type_date_picker_date_format', 'yy-mm-dd', $field_id );
-    
+
+    /**
+     * Filter the addition of the readonly attribute.
+     *
+     * @since 2.5.0
+     *
+     * @param bool $is_readonly Whether to add the 'readonly' attribute. Default 'false'.
+     * @param string $field_id The field ID.
+     */
+    $is_readonly = apply_filters( 'ot_type_date_picker_readonly', false, $field_id );
+
     /* format setting outer wrapper */
     echo '<div class="format-setting type-date-picker ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
     
@@ -972,7 +982,7 @@ if ( ! function_exists( 'ot_type_date_picker' ) ) {
       echo '<div class="format-setting-inner">';
       
         /* build date picker */
-        echo '<input type="text" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" value="' . esc_attr( $field_value ) . '" class="widefat option-tree-ui-input ' . esc_attr( $field_class ) . '" />';
+        echo '<input type="text" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" value="' . esc_attr( $field_value ) . '" class="widefat option-tree-ui-input ' . esc_attr( $field_class ) . '"' . ( $is_readonly == true ? ' readonly' : '' ) . ' />';
         
       echo '</div>';
     
@@ -1005,7 +1015,17 @@ if ( ! function_exists( 'ot_type_date_time_picker' ) ) {
     
     /* filter date format */
     $date_format = apply_filters( 'ot_type_date_time_picker_date_format', 'yy-mm-dd', $field_id );
-    
+
+    /**
+     * Filter the addition of the readonly attribute.
+     *
+     * @since 2.5.0
+     *
+     * @param bool $is_readonly Whether to add the 'readonly' attribute. Default 'false'.
+     * @param string $field_id The field ID.
+     */
+    $is_readonly = apply_filters( 'ot_type_date_time_picker_readonly', false, $field_id );
+
     /* format setting outer wrapper */
     echo '<div class="format-setting type-date-time-picker ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
     
@@ -1019,7 +1039,7 @@ if ( ! function_exists( 'ot_type_date_time_picker' ) ) {
       echo '<div class="format-setting-inner">';
       
         /* build date time picker */
-        echo '<input type="text" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" value="' . esc_attr( $field_value ) . '" class="widefat option-tree-ui-input ' . esc_attr( $field_class ) . '" />';
+        echo '<input type="text" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" value="' . esc_attr( $field_value ) . '" class="widefat option-tree-ui-input ' . esc_attr( $field_class ) . '"' . ( $is_readonly == true ? ' readonly' : '' ) . ' />';
         
       echo '</div>';
     
@@ -1091,7 +1111,7 @@ if ( ! function_exists( 'ot_type_dimension' ) ) {
           
             echo '<select name="' . esc_attr( $field_name ) . '[unit]" id="' . esc_attr( $field_id ) . '-unit" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
     
-              echo '<option value="">&nbsp;--&nbsp;</option>';
+              echo '<option value="">' . __( 'unit', 'option-tree' ) . '</option>';
     
               foreach ( ot_recognized_dimension_unit_types( $field_id ) as $unit ) {
                 echo '<option value="' . esc_attr( $unit ) . '"' . ( isset( $field_value['unit'] ) ? selected( $field_value['unit'], $unit, false ) : '' ) . '>' . esc_attr( $unit ) . '</option>';
@@ -1335,6 +1355,50 @@ if ( ! function_exists( 'ot_type_google_fonts' ) ) {
 }
 
 /**
+ * JavaScript option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.5.0
+ */
+if ( ! function_exists( 'ot_type_javascript' ) ) {
+  
+  function ot_type_javascript( $args = array() ) {
+    
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+    
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-javascript simple ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+      
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+      
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+        
+        /* build textarea for CSS */
+        echo '<textarea class="hidden" id="textarea_' . esc_attr( $field_id ) . '" name="' . esc_attr( $field_name ) .'">' . esc_attr( $field_value ) . '</textarea>';
+    
+        /* build pre to convert it into ace editor later */
+        echo '<pre class="ot-javascript-editor ' . esc_attr( $field_class ) . '" id="' . esc_attr( $field_id ) . '">' . esc_textarea( $field_value ) . '</pre>';
+        
+      echo '</div>';
+      
+    echo '</div>';
+    
+  }
+  
+}
+
+/**
  * Link Color option type.
  *
  * See @ot_display_by_type to see the full list of available arguments.
@@ -1519,7 +1583,7 @@ if ( ! function_exists( 'ot_type_measurement' ) ) {
         /* build measurement */
         echo '<select name="' . esc_attr( $field_name ) . '[1]" id="' . esc_attr( $field_id ) . '-1" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
           
-          echo '<option value="">&nbsp;--&nbsp;</option>';
+          echo '<option value="">' . __( 'unit', 'option-tree' ) . '</option>';
           
           foreach ( ot_measurement_unit_types( $field_id ) as $unit ) {
             echo '<option value="' . esc_attr( $unit ) . '"' . ( isset( $field_value[1] ) ? selected( $field_value[1], $unit, false ) : '' ) . '>' . esc_attr( $unit ) . '</option>';
@@ -2464,7 +2528,7 @@ if ( ! function_exists( 'ot_type_spacing' ) ) {
         
           echo '<select name="' . esc_attr( $field_name ) . '[unit]" id="' . esc_attr( $field_id ) . '-unit" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
   
-            echo '<option value="">&nbsp;--&nbsp;</option>';
+            echo '<option value="">' . __( 'unit', 'option-tree' ) . '</option>';
   
             foreach ( ot_recognized_spacing_unit_types( $field_id ) as $unit ) {
               echo '<option value="' . esc_attr( $unit ) . '"' . ( isset( $field_value['unit'] ) ? selected( $field_value['unit'], $unit, false ) : '' ) . '>' . esc_attr( $unit ) . '</option>';

@@ -30,7 +30,8 @@
       this.fix_textarea();
       this.replicate_ajax();
       this.reset_settings();
-      this.css_editor_mode();      
+      this.css_editor_mode();
+      this.javascript_editor_mode();
     },
     init_hide_body: function(elm,type) {
       var css = '.option-tree-setting-body';
@@ -737,6 +738,23 @@
         });
       });
     },
+    javascript_editor_mode: function() {
+      $('.ot-javascript-editor').each(function() {
+        var editor = ace.edit($(this).attr('id'));
+        var this_textarea = $('#textarea_' + $(this).attr('id'));
+        editor.setTheme("ace/theme/chrome");
+        editor.getSession().setMode("ace/mode/javascript");
+        editor.setShowPrintMargin( false );
+    
+        editor.getSession().setValue(this_textarea.val());
+        editor.getSession().on('change', function(){
+          this_textarea.val(editor.getSession().getValue());
+        });
+        this_textarea.on('change', function(){
+          editor.getSession().setValue(this_textarea.val());
+        });
+      });
+    },
     url_exists: function(url) {
       var link = document.createElement('a')
       link.href = url
@@ -950,6 +968,7 @@
               $(this).find('.ot-metabox-panels').css({ minHeight: minHeight })
             }
             OT_UI.css_editor_mode();
+            OT_UI.javascript_editor_mode();
           }
         })
         

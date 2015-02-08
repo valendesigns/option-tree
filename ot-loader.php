@@ -772,7 +772,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
     public function change_image_button( $translation, $text, $domain ) {
       global $pagenow;
     
-      if ( $pagenow == 'themes.php' && 'default' == $domain && 'Insert into post' == $text ) {
+      if ( $pagenow == apply_filters( 'ot_theme_options_parent_slug', 'themes.php' ) && 'default' == $domain && 'Insert into post' == $text ) {
         
         // Once is enough.
         remove_filter( 'gettext', array( $this, 'ot_change_image_button' ) );

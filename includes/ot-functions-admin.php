@@ -90,7 +90,7 @@ if ( ! function_exists( 'ot_register_settings_page' ) ) {
     global $ot_has_custom_theme_options;
     
     // Display UI Builder admin notice
-    if ( OT_SHOW_OPTIONS_UI == true && isset( $_REQUEST['page'] ) && $_REQUEST['page'] == 'ot-settings' && ( $ot_has_custom_theme_options == true || has_action( 'admin_init', 'custom_theme_options' ) ) ) {
+    if ( OT_SHOW_OPTIONS_UI == true && isset( $_REQUEST['page'] ) && $_REQUEST['page'] == 'ot-settings' && ( $ot_has_custom_theme_options == true || has_action( 'admin_init', 'custom_theme_options' ) || has_action( 'init', 'custom_theme_options' ) ) ) {
       
       function ot_has_custom_theme_options() {
     
@@ -584,7 +584,7 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
         $input = '';
       }
     
-    } else if ( in_array( $type, array( 'css', 'text', 'textarea', 'textarea-simple' ) ) ) {
+    } else if ( in_array( $type, array( 'css', 'javascript', 'text', 'textarea', 'textarea-simple' ) ) ) {
       
       if ( ! current_user_can( 'unfiltered_html' ) && OT_ALLOW_UNFILTERED_HTML == false ) {
       
@@ -708,7 +708,7 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
       
     } else if ( 'upload' == $type ) {
 
-      $input = sanitize_text_field( $input );
+      $input = esc_url_raw( $input );
     
     } else if ( 'gallery' == $type ) {
 
@@ -835,7 +835,7 @@ if ( ! function_exists( 'ot_admin_scripts' ) ) {
     wp_enqueue_script( 'wp-color-picker' );
     
     /* Load Ace Editor for CSS Editing */
-    wp_enqueue_script( 'ace-editor', OT_URL . 'assets/js/vendor/ace/ace.js', null, OT_VERSION );   
+    wp_enqueue_script( 'ace-editor', 'https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js', null, '1.1.3' );   
     
     /* load jQuery UI timepicker addon */
     wp_enqueue_script( 'jquery-ui-timepicker', OT_URL . 'assets/js/vendor/jquery/jquery-ui-timepicker.js', array( 'jquery', 'jquery-ui-slider', 'jquery-ui-datepicker' ), '1.4.3' );
@@ -1014,7 +1014,7 @@ if ( ! function_exists( 'ot_default_settings' ) ) {
             
             /* textarea rows */
             $rows = '';
-            if ( in_array( $settings['settings'][$settings_count]['type'], array( 'css', 'textarea' ) ) ) {
+            if ( in_array( $settings['settings'][$settings_count]['type'], array( 'css', 'javascript', 'textarea' ) ) ) {
               if ( (int) $setting->item_options > 0 ) {
                 $rows = (int) $setting->item_options;
               } else {
@@ -1507,7 +1507,7 @@ if ( ! function_exists( 'ot_import_xml' ) ) {
           
           /* textarea rows */
           $rows = '';
-          if ( in_array( $settings['settings'][$settings_count]['type'], array( 'css', 'textarea' ) ) ) {
+          if ( in_array( $settings['settings'][$settings_count]['type'], array( 'css', 'javascript', 'textarea' ) ) ) {
             if ( (int) $value->item_options > 0 ) {
               $rows = (int) $value->item_options;
             } else {
@@ -1794,15 +1794,15 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
 /**
  * Initialize the custom theme options.
  */
-add_action( 'admin_init', 'custom_theme_options' );
+add_action( 'init', 'custom_theme_options' );
 
 /**
  * Build the custom settings & update OptionTree.
  */
 function custom_theme_options() {
   
-  /* OptionTree is not loaded yet */
-  if ( ! function_exists( 'ot_settings_id' ) )
+  /* OptionTree is not loaded yet, or this is not an admin request */
+  if ( ! function_exists( 'ot_settings_id' ) || ! is_admin() )
     return false;
     
   /**
@@ -2431,6 +2431,7 @@ if ( ! function_exists( 'ot_option_types_array' ) ) {
       'dimension'                 => __('Dimension', 'option-tree'),
       'gallery'                   => __('Gallery', 'option-tree'),
       'google-fonts'              => __('Google Fonts', 'option-tree'),
+      'javascript'                => __('JavaScript', 'option-tree'),
       'link-color'                => __('Link Color', 'option-tree'),
       'list-item'                 => __('List Item', 'option-tree'),
       'measurement'               => __('Measurement', 'option-tree'),
@@ -3434,18 +3435,31 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
     
     /* path to the dynamic.css file */
     $filepath = $theme_dir . '/dynamic.css';
+    if ( is_multisite() ) {
+      $multisite_filepath = $theme_dir . '/dynamic-' . get_current_blog_id() . '.css';
+      if ( file_exists( $multisite_filepath ) ) {
+        $filepath = $multisite_filepath;
+      }
+    }
     
     /* allow filter on path */
     $filepath = apply_filters( 'css_option_file_path', $filepath, $field_id );
-    
+
     /* grab a copy of the paths array */
     $ot_css_file_paths = get_option( 'ot_css_file_paths', array() );
-    
+    if ( is_multisite() ) {
+      $ot_css_file_paths = get_blog_option( get_current_blog_id(), 'ot_css_file_paths', $ot_css_file_paths );
+    }
+
     /* set the path for this field */
     $ot_css_file_paths[$field_id] = $filepath;
-    
+
     /* update the paths */
-    update_option( 'ot_css_file_paths', $ot_css_file_paths );
+    if ( is_multisite() ) {
+      update_blog_option( get_current_blog_id(), 'ot_css_file_paths', $ot_css_file_paths );
+    } else {
+      update_option( 'ot_css_file_paths', $ot_css_file_paths );
+    }
 
     if ( get_filesystem_method() === 'direct' ) {
       if ( ! $wp_filesystem->is_writable( $theme_dir ) ) {
@@ -3457,7 +3471,7 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
     if ( ! $wp_filesystem->exists( $filepath ) && ! $wp_filesystem->put_contents( $filepath, '', FS_CHMOD_FILE ) ) {
       return;
     }
-          
+
     /* insert CSS into file */
     if ( $wp_filesystem->exists( $filepath ) ) {
       
@@ -4025,7 +4039,7 @@ if ( ! function_exists( 'ot_settings_view' ) ) {
       $std = maybe_serialize( $std );
     }
     
-    if ( in_array( $type, array( 'textarea', 'textarea-simple', 'css' ) ) ) {
+    if ( in_array( $type, array( 'css', 'javascript', 'textarea', 'textarea-simple' ) ) ) {
       $std_form_element = '<textarea class="textarea" rows="10" cols="40" name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][std]">' . esc_html( $std ) . '</textarea>';
     } else {
       $std_form_element = '<input type="text" name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][std]" value="' . esc_attr( $std ) . '" class="widefat option-tree-ui-input" autocomplete="off" />';
