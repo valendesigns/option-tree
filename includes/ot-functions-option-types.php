@@ -324,7 +324,7 @@ if ( ! function_exists( 'ot_type_border' ) ) {
           
             echo '<select name="' . esc_attr( $field_name ) . '[unit]" id="' . esc_attr( $field_id ) . '-unit" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
     
-              echo '<option value="">&nbsp;--&nbsp;</option>';
+              echo '<option value="">' . __( 'unit', 'option-tree' ) . '</option>';
     
               foreach ( ot_recognized_border_unit_types( $field_id ) as $unit ) {
                 echo '<option value="' . esc_attr( $unit ) . '"' . ( isset( $field_value['unit'] ) ? selected( $field_value['unit'], $unit, false ) : '' ) . '>' . esc_attr( $unit ) . '</option>';
@@ -343,7 +343,7 @@ if ( ! function_exists( 'ot_type_border' ) ) {
           
             echo '<select name="' . esc_attr( $field_name ) . '[style]" id="' . esc_attr( $field_id ) . '-style" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
     
-              echo '<option value="">&nbsp;--&nbsp;</option>';
+              echo '<option value="">' . __( 'style', 'option-tree' ) . '</option>';
     
               foreach ( ot_recognized_border_style_types( $field_id ) as $key => $style ) {
                 echo '<option value="' . esc_attr( $key ) . '"' . ( isset( $field_value['style'] ) ? selected( $field_value['style'], $key, false ) : '' ) . '>' . esc_attr( $style ) . '</option>';
@@ -1111,7 +1111,7 @@ if ( ! function_exists( 'ot_type_dimension' ) ) {
           
             echo '<select name="' . esc_attr( $field_name ) . '[unit]" id="' . esc_attr( $field_id ) . '-unit" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
     
-              echo '<option value="">&nbsp;--&nbsp;</option>';
+              echo '<option value="">' . __( 'unit', 'option-tree' ) . '</option>';
     
               foreach ( ot_recognized_dimension_unit_types( $field_id ) as $unit ) {
                 echo '<option value="' . esc_attr( $unit ) . '"' . ( isset( $field_value['unit'] ) ? selected( $field_value['unit'], $unit, false ) : '' ) . '>' . esc_attr( $unit ) . '</option>';
@@ -1583,7 +1583,7 @@ if ( ! function_exists( 'ot_type_measurement' ) ) {
         /* build measurement */
         echo '<select name="' . esc_attr( $field_name ) . '[1]" id="' . esc_attr( $field_id ) . '-1" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
           
-          echo '<option value="">&nbsp;--&nbsp;</option>';
+          echo '<option value="">' . __( 'unit', 'option-tree' ) . '</option>';
           
           foreach ( ot_measurement_unit_types( $field_id ) as $unit ) {
             echo '<option value="' . esc_attr( $unit ) . '"' . ( isset( $field_value[1] ) ? selected( $field_value[1], $unit, false ) : '' ) . '>' . esc_attr( $unit ) . '</option>';
@@ -2528,7 +2528,7 @@ if ( ! function_exists( 'ot_type_spacing' ) ) {
         
           echo '<select name="' . esc_attr( $field_name ) . '[unit]" id="' . esc_attr( $field_id ) . '-unit" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
   
-            echo '<option value="">&nbsp;--&nbsp;</option>';
+            echo '<option value="">' . __( 'unit', 'option-tree' ) . '</option>';
   
             foreach ( ot_recognized_spacing_unit_types( $field_id ) as $unit ) {
               echo '<option value="' . esc_attr( $unit ) . '"' . ( isset( $field_value['unit'] ) ? selected( $field_value['unit'], $unit, false ) : '' ) . '>' . esc_attr( $unit ) . '</option>';

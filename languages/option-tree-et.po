@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OptionTree\n"
-"POT-Creation-Date: 2015-02-08 05:48-0800\n"
-"PO-Revision-Date: 2015-02-08 05:48-0800\n"
+"POT-Creation-Date: 2015-02-08 08:27-0800\n"
+"PO-Revision-Date: 2015-02-08 08:27-0800\n"
 "Last-Translator: Derek Herman <derek@valendesigns.com>\n"
 "Language-Team: Valen Designs\n"
 "Language: et_EE\n"
@@ -2407,6 +2407,21 @@ msgstr "Lisa meediat"
 #: ../includes/ot-functions-option-types.php:1094
 msgid "width"
 msgstr "width"
+
+#: ../includes/ot-functions-option-types.php:327
+#: ../includes/ot-functions-option-types.php:1114
+#: ../includes/ot-functions-option-types.php:1586
+#: ../includes/ot-functions-option-types.php:2531
+#, fuzzy
+msgid "unit"
+msgstr ""
+"Järgnevad kaks näidet demonstreerivad, kuidas kasutada <strong>mõõdu</"
+"strong> valikutüüpi. Mõõdu valikutüüp on massiiv kahe võti-väärtus paariga. "
+"Esimene on mõõdu väärtus ning teine on mõõduühik."
+
+#: ../includes/ot-functions-option-types.php:346
+msgid "style"
+msgstr ""
 
 #: ../includes/ot-functions-option-types.php:439
 msgid "offset-x"
