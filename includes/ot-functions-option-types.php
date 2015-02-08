@@ -958,7 +958,17 @@ if ( ! function_exists( 'ot_type_date_picker' ) ) {
     
     /* filter date format */
     $date_format = apply_filters( 'ot_type_date_picker_date_format', 'yy-mm-dd', $field_id );
-    
+
+    /**
+     * Filter the addition of the readonly attribute.
+     *
+     * @since 2.5.0
+     *
+     * @param bool $is_readonly Whether to add the 'readonly' attribute. Default 'false'.
+     * @param string $field_id The field ID.
+     */
+    $is_readonly = apply_filters( 'ot_type_date_picker_readonly', false, $field_id );
+
     /* format setting outer wrapper */
     echo '<div class="format-setting type-date-picker ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
     
@@ -972,7 +982,7 @@ if ( ! function_exists( 'ot_type_date_picker' ) ) {
       echo '<div class="format-setting-inner">';
       
         /* build date picker */
-        echo '<input type="text" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" value="' . esc_attr( $field_value ) . '" class="widefat option-tree-ui-input ' . esc_attr( $field_class ) . '" />';
+        echo '<input type="text" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" value="' . esc_attr( $field_value ) . '" class="widefat option-tree-ui-input ' . esc_attr( $field_class ) . '"' . ( $is_readonly == true ? ' readonly' : '' ) . ' />';
         
       echo '</div>';
     
@@ -1005,7 +1015,17 @@ if ( ! function_exists( 'ot_type_date_time_picker' ) ) {
     
     /* filter date format */
     $date_format = apply_filters( 'ot_type_date_time_picker_date_format', 'yy-mm-dd', $field_id );
-    
+
+    /**
+     * Filter the addition of the readonly attribute.
+     *
+     * @since 2.5.0
+     *
+     * @param bool $is_readonly Whether to add the 'readonly' attribute. Default 'false'.
+     * @param string $field_id The field ID.
+     */
+    $is_readonly = apply_filters( 'ot_type_date_time_picker_readonly', false, $field_id );
+
     /* format setting outer wrapper */
     echo '<div class="format-setting type-date-time-picker ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
     
@@ -1019,7 +1039,7 @@ if ( ! function_exists( 'ot_type_date_time_picker' ) ) {
       echo '<div class="format-setting-inner">';
       
         /* build date time picker */
-        echo '<input type="text" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" value="' . esc_attr( $field_value ) . '" class="widefat option-tree-ui-input ' . esc_attr( $field_class ) . '" />';
+        echo '<input type="text" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" value="' . esc_attr( $field_value ) . '" class="widefat option-tree-ui-input ' . esc_attr( $field_class ) . '"' . ( $is_readonly == true ? ' readonly' : '' ) . ' />';
         
       echo '</div>';
     
