@@ -857,12 +857,17 @@ require( trailingslashit( get_template_directory() ) . \'includes/theme-options.
         echo "<pre><code>/**
  * Initialize the options before anything else. 
  */
-add_action( 'admin_init', 'custom_theme_options', 1 );
+add_action( 'init', 'custom_theme_options', 1 );
 
 /**
  * Build the custom settings & update OptionTree.
  */
 function custom_theme_options() {
+
+  /* OptionTree is not loaded yet, or this is not an admin request */
+  if ( ! function_exists( 'ot_settings_id' ) || ! is_admin() )
+    return false;
+
   /**
    * Get a copy of the saved settings array. 
    */
@@ -992,6 +997,10 @@ function custom_theme_options() {
   if ( &#36;saved_settings !== &#36;custom_settings ) {
     update_option( 'option_tree_settings', &#36;custom_settings ); 
   }
+  
+  /* Lets OptionTree know the UI Builder is being overridden */
+  global &#36;ot_has_custom_theme_options;
+  &#36;ot_has_custom_theme_options = true;
   
 }
 </code></pre>";

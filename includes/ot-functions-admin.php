@@ -90,7 +90,7 @@ if ( ! function_exists( 'ot_register_settings_page' ) ) {
     global $ot_has_custom_theme_options;
     
     // Display UI Builder admin notice
-    if ( OT_SHOW_OPTIONS_UI == true && isset( $_REQUEST['page'] ) && $_REQUEST['page'] == 'ot-settings' && ( $ot_has_custom_theme_options == true || has_action( 'admin_init', 'custom_theme_options' ) ) ) {
+    if ( OT_SHOW_OPTIONS_UI == true && isset( $_REQUEST['page'] ) && $_REQUEST['page'] == 'ot-settings' && ( $ot_has_custom_theme_options == true || has_action( 'admin_init', 'custom_theme_options' ) || has_action( 'init', 'custom_theme_options' ) ) ) {
       
       function ot_has_custom_theme_options() {
     
@@ -1794,15 +1794,15 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
 /**
  * Initialize the custom theme options.
  */
-add_action( 'admin_init', 'custom_theme_options' );
+add_action( 'init', 'custom_theme_options' );
 
 /**
  * Build the custom settings & update OptionTree.
  */
 function custom_theme_options() {
   
-  /* OptionTree is not loaded yet */
-  if ( ! function_exists( 'ot_settings_id' ) )
+  /* OptionTree is not loaded yet, or this is not an admin request */
+  if ( ! function_exists( 'ot_settings_id' ) || ! is_admin() )
     return false;
     
   /**
