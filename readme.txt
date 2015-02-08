@@ -148,6 +148,7 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 * Added filter `ot_on_off_switch_width` to filter the width of the On/Off switch.
 * Added filter `ot_type_date_picker_readonly` to filter the addition of the readonly attribute.
 * Added filter `ot_type_date_time_picker_readonly` to filter the addition of the readonly attribute.
+* Added filter `ot_admin_menu_priority` to filter the `admin_menu` action hook priority.
 * Added Estonian translation. Contributors via github @tjuris, and @RistoNiinemets.
 * Fixed an issue where changes to `theme-options.php` required a second page load.
 * Update demo files with the latest option types.

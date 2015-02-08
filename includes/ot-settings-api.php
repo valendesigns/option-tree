@@ -49,9 +49,18 @@ if ( ! class_exists( 'OT_Settings' ) ) {
      * @since     2.0
      */
     public function hooks() {
-      
+
+      /**
+       * Filter the `admin_menu` action hook priority.
+       *
+       * @since 2.5.0
+       *
+       * @param int $priority The priority. Default '10'.
+       */
+      $priority = apply_filters( 'ot_admin_menu_priority', 10 );
+
       /* add pages & menu items */
-      add_action( 'admin_menu', array( $this, 'add_page' ) );
+      add_action( 'admin_menu', array( $this, 'add_page' ), $priority );
       
       /* register sections */
       add_action( 'admin_init', array( $this, 'add_sections' ) );
