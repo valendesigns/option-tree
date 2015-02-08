@@ -47,6 +47,7 @@ This is a complete list of all the available option types that come shipped with
 * Dimension
 * Gallery
 * Google Fonts
+* JavaScript
 * Link Color
 * List Item
 * Measurement
@@ -131,6 +132,7 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 * Added the Box Shadow option type. Contributors via github @doitmax, and @valendesigns.
 * Added the Colorpicker Opacity option type. Contributors via github @doitmax, and @valendesigns.
 * Added the Dimension option type. Contributors via github @doitmax, and @valendesigns.
+* Added the JavaScript option type.
 * Added the Link Color option type. Contributors via github @doitmax, and @valendesigns.
 * Added the Spacing option type. Contributors via github @doitmax, and @valendesigns.
 * Fixed an issue where the Colorpicker was not parsing conditions on `change` or `clear`.

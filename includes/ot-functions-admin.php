@@ -584,7 +584,7 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
         $input = '';
       }
     
-    } else if ( in_array( $type, array( 'css', 'text', 'textarea', 'textarea-simple' ) ) ) {
+    } else if ( in_array( $type, array( 'css', 'javascript', 'text', 'textarea', 'textarea-simple' ) ) ) {
       
       if ( ! current_user_can( 'unfiltered_html' ) && OT_ALLOW_UNFILTERED_HTML == false ) {
       
@@ -835,7 +835,7 @@ if ( ! function_exists( 'ot_admin_scripts' ) ) {
     wp_enqueue_script( 'wp-color-picker' );
     
     /* Load Ace Editor for CSS Editing */
-    wp_enqueue_script( 'ace-editor', OT_URL . 'assets/js/vendor/ace/ace.js', null, OT_VERSION );   
+    wp_enqueue_script( 'ace-editor', 'https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js', null, '1.1.3' );   
     
     /* load jQuery UI timepicker addon */
     wp_enqueue_script( 'jquery-ui-timepicker', OT_URL . 'assets/js/vendor/jquery/jquery-ui-timepicker.js', array( 'jquery', 'jquery-ui-slider', 'jquery-ui-datepicker' ), '1.4.3' );
@@ -1014,7 +1014,7 @@ if ( ! function_exists( 'ot_default_settings' ) ) {
             
             /* textarea rows */
             $rows = '';
-            if ( in_array( $settings['settings'][$settings_count]['type'], array( 'css', 'textarea' ) ) ) {
+            if ( in_array( $settings['settings'][$settings_count]['type'], array( 'css', 'javascript', 'textarea' ) ) ) {
               if ( (int) $setting->item_options > 0 ) {
                 $rows = (int) $setting->item_options;
               } else {
@@ -1507,7 +1507,7 @@ if ( ! function_exists( 'ot_import_xml' ) ) {
           
           /* textarea rows */
           $rows = '';
-          if ( in_array( $settings['settings'][$settings_count]['type'], array( 'css', 'textarea' ) ) ) {
+          if ( in_array( $settings['settings'][$settings_count]['type'], array( 'css', 'javascript', 'textarea' ) ) ) {
             if ( (int) $value->item_options > 0 ) {
               $rows = (int) $value->item_options;
             } else {
@@ -2431,6 +2431,7 @@ if ( ! function_exists( 'ot_option_types_array' ) ) {
       'dimension'                 => __('Dimension', 'option-tree'),
       'gallery'                   => __('Gallery', 'option-tree'),
       'google-fonts'              => __('Google Fonts', 'option-tree'),
+      'javascript'                => __('JavaScript', 'option-tree'),
       'link-color'                => __('Link Color', 'option-tree'),
       'list-item'                 => __('List Item', 'option-tree'),
       'measurement'               => __('Measurement', 'option-tree'),
@@ -4022,7 +4023,7 @@ if ( ! function_exists( 'ot_settings_view' ) ) {
       $std = maybe_serialize( $std );
     }
     
-    if ( in_array( $type, array( 'textarea', 'textarea-simple', 'css' ) ) ) {
+    if ( in_array( $type, array( 'css', 'javascript', 'textarea', 'textarea-simple' ) ) ) {
       $std_form_element = '<textarea class="textarea" rows="10" cols="40" name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][std]">' . esc_html( $std ) . '</textarea>';
     } else {
       $std_form_element = '<input type="text" name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][std]" value="' . esc_attr( $std ) . '" class="widefat option-tree-ui-input" autocomplete="off" />';

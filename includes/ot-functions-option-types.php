@@ -1355,6 +1355,50 @@ if ( ! function_exists( 'ot_type_google_fonts' ) ) {
 }
 
 /**
+ * JavaScript option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.5.0
+ */
+if ( ! function_exists( 'ot_type_javascript' ) ) {
+  
+  function ot_type_javascript( $args = array() ) {
+    
+    /* turns arguments array into variables */
+    extract( $args );
+    
+    /* verify a description */
+    $has_desc = $field_desc ? true : false;
+    
+    /* format setting outer wrapper */
+    echo '<div class="format-setting type-javascript simple ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+      
+      /* description */
+      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
+      
+      /* format setting inner wrapper */
+      echo '<div class="format-setting-inner">';
+        
+        /* build textarea for CSS */
+        echo '<textarea class="hidden" id="textarea_' . esc_attr( $field_id ) . '" name="' . esc_attr( $field_name ) .'">' . esc_attr( $field_value ) . '</textarea>';
+    
+        /* build pre to convert it into ace editor later */
+        echo '<pre class="ot-javascript-editor ' . esc_attr( $field_class ) . '" id="' . esc_attr( $field_id ) . '">' . esc_textarea( $field_value ) . '</pre>';
+        
+      echo '</div>';
+      
+    echo '</div>';
+    
+  }
+  
+}
+
+/**
  * Link Color option type.
  *
  * See @ot_display_by_type to see the full list of available arguments.
