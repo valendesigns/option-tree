@@ -151,6 +151,7 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 * Added filter `ot_type_date_time_picker_readonly` to filter the addition of the readonly attribute.
 * Added filter `ot_admin_menu_priority` to filter the `admin_menu` action hook priority.
 * Added Estonian translation. Contributors via github @tjuris, and @RistoNiinemets.
+* Added the `ot_update_option` function. Contributors via github @jetonr, and @valendesigns.
 * Fixed an issue where changes to `theme-options.php` required a second page load.
 * Fixed the clean up script, it only displays when there's something to clean up. No more menu item!
 * Update demo files with the latest option types.
