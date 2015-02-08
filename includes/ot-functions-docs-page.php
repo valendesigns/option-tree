@@ -110,6 +110,12 @@ if ( ! function_exists( 'ot_type_option_types' ) ) {
         echo '<h4>'. __( 'Background', 'option-tree' ) . ':</h4>';    
         echo '<p>' . sprintf( __( 'The Background option type is for adding background styles to your theme either dynamically via the CSS option type below or manually with %s. The Background option type has filters that allow you to remove fields or change the defaults. For example, you can filter %s to remove unwanted fields from all Background options or an individual one. You can also filter %s. These filters allow you to fine tune the select lists for your specific needs.', 'option-tree' ), '<code>ot_get_option()</code>', '<code>ot_recognized_background_fields</code>', '<code>ot_recognized_background_repeat</code>, <code>ot_recognized_background_attachment</code>, <code>ot_recognized_background_position</code>, ' . __( 'and', 'option-tree' ) . ' <code>ot_type_background_size_choices</code>' ) . '</p>';
         
+        echo '<h4>'. __( 'Border', 'option-tree' ) . ':</h4>';      
+        echo '<p>' . sprintf( __( 'The Border option type is used to set width, unit, style, and color values. The text input excepts a numerical value and the unit select lets you choose the unit of measurement to add to that value. Currently the default units are %s, %s, %s, and %s. However, you can change them with the %s filter. The style select lets you choose the border style. The default styles are %s, %s, %s, %s, %s, %s, %s, and %s. However, you can change them with the %s filter. The colorpicker saves a hexadecimal color code.', 'option-tree' ), '<code>px</code>', '<code>%</code>', '<code>em</code>', '<code>pt</code>', '<code>ot_recognized_border_unit_types</code>', '<code>hidden</code>', '<code>dashed</code>', '<code>solid</code>', '<code>double</code>', '<code>groove</code>', '<code>ridge</code>', '<code>inset</code>', '<code>outset</code>', '<code>ot_recognized_border_style_types</code>' ) . '</p>';
+        
+        echo '<h4>'. __( 'Box Shadow', 'option-tree' ) . ':</h4>';      
+        echo '<p>' . sprintf( __( 'The Box Shadow option type is used to set %s, %s, %s, %s, %s, and %s values.', 'option-tree' ), '<code>inset</code>', '<code>offset-x</code>', '<code>offset-y</code>', '<code>blur-radius</code>', '<code>spread-radius</code>', '<code>color</code>' ) . '</p>';
+        
         echo '<h4>'. __( 'Category Checkbox', 'option-tree' ) . ':</h4>';      
         echo '<p>' . __( 'The Category Checkbox option type displays a list of category IDs. It allows the user to check multiple category IDs and will return that value as an array for use in a custom function or loop.', 'option-tree' ) . '</p>';
         
@@ -121,6 +127,9 @@ if ( ! function_exists( 'ot_type_option_types' ) ) {
         
         echo '<h4>'. __( 'Colorpicker', 'option-tree' ) . ':</h4>'; 
         echo '<p>' . __( 'The Colorpicker option type saves a hexadecimal color code for use in CSS. Use it to modify the color of something in your theme.', 'option-tree' ) . '</p>';
+        
+        echo '<h4>'. __( 'Colorpicker Opacity', 'option-tree' ) . ':</h4>'; 
+        echo '<p>' . sprintf( __( 'The Colorpicker Opacity option type saves a hexadecimal color code with an opacity value from %s to %s in increments of %s. Though the value is saved as hexadecimal, if used within the CSS option type the color and opacity values will be converted into a valid RGBA CSS value.', 'option-tree' ), '<code>0</code>', '<code>1</code>', '<code>0.01</code>' ) . '</p>';
         
         echo '<h4>'. __( 'CSS', 'option-tree' ) . ':</h4>'; 
         echo '<p>' . sprintf( __( 'The CSS option type is a textarea that when used properly can add dynamic CSS to your theme from within OptionTree. Unfortunately, due server limitations you will need to create a file named %s at the root level of your theme and change permissions using %s so the server can write to the file. I have had the most success setting this single file to %s but feel free to play around with permissions until everything is working. A good starting point is %s. When the server can save to the file, CSS will automatically be updated when you save your Theme Options.', 'option-tree' ), '<code>dynamic.css</code>', '<code>chmod</code>', '<code>0777</code>', '<code>0666</code>' ) . '</p>';
@@ -153,8 +162,20 @@ body {
         echo '<h4>'. __( 'Date Time Picker', 'option-tree' ) . ':</h4>'; 
         echo '<p>' . __( 'The Date Time Picker option type is tied to a standard form input field which displays a calendar pop-up that allow the user to pick any date and time when focus is given to the input field. The returned value is a date and time formatted string.', 'option-tree' ) . '</p>';
         
+        echo '<h4>'. __( 'Dimension', 'option-tree' ) . ':</h4>';
+        echo '<p>' . sprintf( __( 'The Dimension option type is used to set width and height values. The text inputs except numerical values and the select lets you choose the unit of measurement to add to that value. Currently the default units are %s, %s, %s, and %s. However, you can change them with the %s filter.', 'option-tree' ), '<code>px</code>', '<code>%</code>', '<code>em</code>', '<code>pt</code>', '<code>ot_recognized_dimension_unit_types</code>' ) . '</p>';
+        
         echo '<h4>'. __( 'Gallery', 'option-tree' ) . ':</h4>'; 
         echo '<p>' . __( 'The Gallery option type saves a comma separated list of image attachment IDs. You will need to create a front-end function to display the images in your theme.', 'option-tree' ) . '</p>';
+
+        echo '<h4>'. __( 'Google Fonts', 'option-tree' ) . ':</h4>';
+        echo '<p>' . sprintf( __( 'The Google Fonts option type will dynamically enqueue any number of Google Web Fonts into the document %1$s. As well, once the option has been saved each font family will automatically be inserted into the %2$s array for the Typography option type. You can further modify the font stack by using the %3$s filter, which is passed the %4$s, %5$s, and %6$s parameters. The %6$s parameter is being passed from %7$s, so it will be the ID of a Typography option type. This will allow you to add additional web safe fonts to individual font families on an as-need basis.', 'option-tree' ), '<code>HEAD</code>', '<code>font-family</code>', '<code>ot_google_font_stack</code>', '<code>$font_stack</code>', '<code>$family</code>', '<code>$field_id</code>', '<code>ot_recognized_font_families</code>' ) . '</p>';
+
+        echo '<h4>'. __( 'JavaScript', 'option-tree' ) . ':</h4>'; 
+        echo '<p>' . sprintf( __( 'The JavaScript option type is a textarea that uses the %s code editor to highlight your JavaScript and display errors as you type.', 'option-tree' ), '<code>ace.js</code>' ) . '</p>';
+
+        echo '<h4>'. __( 'Link Color', 'option-tree' ) . ':</h4>';
+        echo '<p>' . __( 'The Link Color option type is used to set all link color states.', 'option-tree' ) . '</p>';
         
         echo '<h4>'. __( 'List Item', 'option-tree' ) . ':</h4>'; 
         echo '<p>' . __( 'The List Item option type replaced the Slider option type and allows for a great deal of customization. You can add settings to the List Item and those settings will be displayed to the user when they add a new List Item. Typical use is for creating sliding content or blocks of code for custom layouts.', 'option-tree' ) . '</p>';
@@ -250,6 +271,9 @@ add_filter( \'ot_radio_images\', \'filter_radio_images\', 10, 2 );</code></pre>'
         
         echo '<h4>'. __( 'Social Links', 'option-tree' ) . ':</h4>';
         echo '<p>' . sprintf( __( 'The Social Links option type utilizes a drag & drop interface to create a list of social links. There are a few filters that make extending this option type easy. You can set the %s filter to %s and turn off loading default values. Use the %s filter to change the default values that are loaded. To filter the settings array use the %s filter.', 'option-tree' ), '<code>ot_type_social_links_load_defaults</code>', '<code>false</code>', '<code>ot_type_social_links_defaults</code>', '<code>ot_social_links_settings</code>' ) . '</p>';
+        
+        echo '<h4>'. __( 'Spacing', 'option-tree' ) . ':</h4>';
+        echo '<p>' . sprintf( __( 'The Spacing option type is used to set spacing values such as padding or margin in the form of top, right, bottom, and left. The text inputs except numerical values and the select lets you choose the unit of measurement to add to that value. Currently the default units are %s, %s, %s, and %s. However, you can change them with the %s filter.', 'option-tree' ), '<code>px</code>', '<code>%</code>', '<code>em</code>', '<code>pt</code>', '<code>ot_recognized_spacing_unit_types</code>' ) . '</p>';
         
         echo '<h4>'. __( 'Tab', 'option-tree' ) . ':</h4>';      
         echo '<p>' . __( 'The Tab option type will break a section or metabox into tabbed content.', 'option-tree' ) . '</p>';
@@ -836,12 +860,17 @@ require( trailingslashit( get_template_directory() ) . \'includes/theme-options.
         echo "<pre><code>/**
  * Initialize the options before anything else. 
  */
-add_action( 'admin_init', 'custom_theme_options', 1 );
+add_action( 'init', 'custom_theme_options', 1 );
 
 /**
  * Build the custom settings & update OptionTree.
  */
 function custom_theme_options() {
+
+  /* OptionTree is not loaded yet, or this is not an admin request */
+  if ( ! function_exists( 'ot_settings_id' ) || ! is_admin() )
+    return false;
+
   /**
    * Get a copy of the saved settings array. 
    */
@@ -971,6 +1000,10 @@ function custom_theme_options() {
   if ( &#36;saved_settings !== &#36;custom_settings ) {
     update_option( 'option_tree_settings', &#36;custom_settings ); 
   }
+  
+  /* Lets OptionTree know the UI Builder is being overridden */
+  global &#36;ot_has_custom_theme_options;
+  &#36;ot_has_custom_theme_options = true;
   
 }
 </code></pre>";
