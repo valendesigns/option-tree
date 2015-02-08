@@ -149,6 +149,7 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 * Added Estonian translation. Contributors via github @tjuris, and @RistoNiinemets.
 * Fixed an issue where changes to `theme-options.php` required a second page load.
 * Update demo files with the latest option types.
+* Changed where `ot_css_file_paths` is saved when `is_multisite` for better `dynamic.css` file support.
 
 = 2.4.6 =
 * Hotfix - Added a clean up script to consolidate orphaned media posts and remove the old and unused `wp_option_tree` table.

@@ -3434,16 +3434,24 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
     
     /* allow filter on path */
     $filepath = apply_filters( 'css_option_file_path', $filepath, $field_id );
-    
+
     /* grab a copy of the paths array */
-    $ot_css_file_paths = get_option( 'ot_css_file_paths', array() );
-    
+    if ( is_multisite() ) {
+      $ot_css_file_paths = get_blog_option( get_current_blog_id(), 'ot_css_file_paths', array() );
+    } else {
+      $ot_css_file_paths = get_option( 'ot_css_file_paths', array() );
+    }
+
     /* set the path for this field */
     $ot_css_file_paths[$field_id] = $filepath;
-    
+
     /* update the paths */
-    update_option( 'ot_css_file_paths', $ot_css_file_paths );
-    
+    if ( is_multisite() ) {
+      update_blog_option( get_current_blog_id(), 'ot_css_file_paths', $ot_css_file_paths );
+    } else {
+      update_option( 'ot_css_file_paths', $ot_css_file_paths );
+    }
+
     /* insert CSS into file */
     if ( file_exists( $filepath ) ) {
       
