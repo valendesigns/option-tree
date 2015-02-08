@@ -253,10 +253,13 @@ if ( ! function_exists( 'ot_load_dynamic_css' ) ) {
     /* don't load in the admin */
     if ( is_admin() )
       return;
-    
+
     /* grab a copy of the paths */
     $ot_css_file_paths = get_option( 'ot_css_file_paths', array() );
-    
+    if ( is_multisite() ) {
+      $ot_css_file_paths = get_blog_option( get_current_blog_id(), 'ot_css_file_paths', $ot_css_file_paths );
+    }
+
     if ( ! empty( $ot_css_file_paths ) ) {
       
       $last_css = '';
