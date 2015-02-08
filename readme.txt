@@ -140,6 +140,7 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 * Stop Theme Check from complaining about the `register_post_type()` function being used in Theme Mode.
 * Added styles that clean up the appearance of the included Font Awesome icons in section tabs.
 * Fixed jQuery UI style conflicts created by the WP Review plugin.
+* Changed the sanitization function from `sanitize_text_field` to `esc_url_raw` for the Upload option type.
 * Added filter `ot_dequeue_jquery_ui_css_screen_ids` to dequeue `jquery-ui-css` by screen ID.
 * Added filter `ot_on_off_switch_on_value` to filter the value of the On button. Contributors via github @BassemN, and @valendesigns.
 * Added filter `ot_on_off_switch_on_label` to filter the label of the On button. Contributors via github @BassemN, and @valendesigns.
