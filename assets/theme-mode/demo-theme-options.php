@@ -319,6 +319,21 @@ function custom_theme_options() {
         'operator'    => 'and'
       ),
       array(
+        'id'          => 'demo_javascript',
+        'label'       => __( 'JavaScript', 'theme-text-domain' ),
+        'desc'        => '<p>' . sprintf( __( 'The JavaScript option type is a textarea that uses the %s code editor to highlight your JavaScript and display errors as you type.', 'theme-text-domain' ), '<code>ace.js</code>' ) . '</p>',
+        'std'         => '',
+        'type'        => 'javascript',
+        'section'     => 'option_types',
+        'rows'        => '20',
+        'post_type'   => '',
+        'taxonomy'    => '',
+        'min_max_step'=> '',
+        'class'       => '',
+        'condition'   => '',
+        'operator'    => 'and'
+      ),
+      array(
         'id'          => 'demo_link_color',
         'label'       => __( 'Link Color', 'theme-text-domain' ),
         'desc'        => __( 'The Link Color option type is used to set all link color states.', 'theme-text-domain' ),
