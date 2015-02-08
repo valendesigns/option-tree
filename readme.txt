@@ -132,9 +132,9 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 * Added the Box Shadow option type. Contributors via github @doitmax, and @valendesigns.
 * Added the Colorpicker Opacity option type. Contributors via github @doitmax, and @valendesigns.
 * Added the Dimension option type. Contributors via github @doitmax, and @valendesigns.
+* Added the JavaScript option type.
 * Added the Link Color option type. Contributors via github @doitmax, and @valendesigns.
 * Added the Spacing option type. Contributors via github @doitmax, and @valendesigns.
-* Added the JavaScript option type.
 * Fixed an issue where the Colorpicker was not parsing conditions on `change` or `clear`.
 * Fixed the Colorpicker styles on mobile devices.
 * Show the Colorpicker setting ID inside the error message string when the value is invalid.
