@@ -33,7 +33,7 @@ if ( ! function_exists( 'ot_type_theme_options_ui' ) ) {
         echo '<div class="description">';
           
           echo '<h4>'. __( 'Warning!', 'option-tree' ) . '</h4>';
-          echo '<p class="warning">' . sprintf( __( 'Go to the %s page if you want to save data, this page is for adding settings.', 'option-tree' ), '<a href="' . get_admin_url( $blog_id, 'themes.php?page=ot-theme-options' ) . '"><code>Appearance->Theme Options</code></a>' ) . '</p>';
+          echo '<p class="warning">' . sprintf( __( 'Go to the %s page if you want to save data, this page is for adding settings.', 'option-tree' ), '<a href="' . get_admin_url( $blog_id, apply_filters( 'ot_theme_options_parent_slug', 'themes.php' ) . '?page=' . apply_filters( 'ot_theme_options_menu_slug', 'ot-theme-options' ) ) . '"><code>Appearance->Theme Options</code></a>' ) . '</p>';
           echo '<p class="warning">' . sprintf( __( 'If you\'re unsure or not completely positive that you should be editing these settings, you should read the %s first.', 'option-tree' ), '<a href="' . get_admin_url( $blog_id, 'admin.php?page=ot-documentation' ) . '"><code>OptionTree->Documentation</code></a>' ) . '</p>';
           echo '<h4>'. __( 'Things could break or be improperly displayed to the end-user if you do one of the following:', 'option-tree' ) . '</h4>';
           echo '<p class="warning">' . __( 'Give two sections the same ID, give two settings the same ID, give two contextual help content areas the same ID, don\'t create any settings, or have a section at the end of the settings list.', 'option-tree' ) . '</p>';

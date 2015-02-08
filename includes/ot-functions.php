@@ -372,8 +372,6 @@ if ( ! function_exists( 'ot_load_google_fonts_css' ) ) {
 /**
  * Registers the Theme Option page link for the admin bar.
  *
- * @uses      ot_register_settings()
- *
  * @return    void
  *
  * @access    public

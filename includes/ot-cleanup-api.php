@@ -72,7 +72,7 @@ if ( ! class_exists( 'OT_Cleanup' ) ) {
       $page = isset( $_GET['page'] ) ? $_GET['page'] : '';
 
       if ( ! $ot_maybe_cleanup_posts && ! $ot_maybe_cleanup_table && $page == 'ot-cleanup' ) {
-        wp_redirect( 'themes.php?page=' . apply_filters( 'ot_theme_options_menu_slug', 'ot-theme-options' ) );
+        wp_redirect( apply_filters( 'ot_theme_options_parent_slug', 'themes.php' ) . '?page=' . apply_filters( 'ot_theme_options_menu_slug', 'ot-theme-options' ) );
         exit;
       }
 
