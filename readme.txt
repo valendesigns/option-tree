@@ -148,6 +148,7 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 * Added filter `ot_on_off_switch_width` to filter the width of the On/Off switch.
 * Added Estonian translation. Contributors via github @tjuris, and @RistoNiinemets.
 * Fixed an issue where changes to `theme-options.php` required a second page load.
+* Update demo files with the latest option types.
 
 = 2.4.6 =
 * Hotfix - Added a clean up script to consolidate orphaned media posts and remove the old and unused `wp_option_tree` table.
