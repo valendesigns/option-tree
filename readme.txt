@@ -150,6 +150,7 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 * Fixed an issue where changes to `theme-options.php` required a second page load.
 * Update demo files with the latest option types.
 * Changed where `ot_css_file_paths` is saved when `is_multisite` for better `dynamic.css` file support.
+* Changed the default `dynamic.css` file path in multisite to be `dynamic-{current-blog-id}.css`.
 
 = 2.4.6 =
 * Hotfix - Added a clean up script to consolidate orphaned media posts and remove the old and unused `wp_option_tree` table.

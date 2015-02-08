@@ -3431,15 +3431,20 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
 
     /* path to the dynamic.css file */
     $filepath = get_stylesheet_directory() . '/dynamic.css';
+    if ( is_multisite() ) {
+      $multisite_filepath = get_stylesheet_directory() . '/dynamic-' . get_current_blog_id() . '.css';
+      if ( file_exists( $multisite_filepath ) ) {
+        $filepath = $multisite_filepath;
+      }
+    }
     
     /* allow filter on path */
     $filepath = apply_filters( 'css_option_file_path', $filepath, $field_id );
 
     /* grab a copy of the paths array */
+    $ot_css_file_paths = get_option( 'ot_css_file_paths', array() );
     if ( is_multisite() ) {
-      $ot_css_file_paths = get_blog_option( get_current_blog_id(), 'ot_css_file_paths', array() );
-    } else {
-      $ot_css_file_paths = get_option( 'ot_css_file_paths', array() );
+      $ot_css_file_paths = get_blog_option( get_current_blog_id(), 'ot_css_file_paths', $ot_css_file_paths );
     }
 
     /* set the path for this field */
