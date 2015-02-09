@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OptionTree\n"
-"POT-Creation-Date: 2015-02-08 08:27-0800\n"
-"PO-Revision-Date: 2015-02-08 08:27-0800\n"
-"Last-Translator: Derek Herman <derek@valendesigns.com>\n"
+"POT-Creation-Date: 2015-02-09 13:20+0200\n"
+"PO-Revision-Date: 2015-02-09 13:24+0200\n"
+"Last-Translator: Risto Niinemets <risto@konekt.ee>\n"
 "Language-Team: Valen Designs\n"
 "Language: et_EE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.4\n"
+"X-Generator: Poedit 1.7.1\n"
 "X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
 "_n_noop:1,2;_c;_nc:4c,1,2;_x:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_ex:1,2c;"
 "esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
@@ -518,7 +518,7 @@ msgstr "Google Fondid"
 #: ../includes/ot-functions-admin.php:2434
 #: ../includes/ot-functions-docs-page.php:174
 msgid "JavaScript"
-msgstr ""
+msgstr "JavaScript"
 
 #: ../includes/ot-functions-admin.php:2435
 #: ../includes/ot-functions-docs-page.php:177
@@ -1440,6 +1440,9 @@ msgid ""
 "The JavaScript option type is a textarea that uses the %s code editor to "
 "highlight your JavaScript and display errors as you type."
 msgstr ""
+"JavaScript valikutüüp on tekstiväli, mis kasutab %s koodi redaktorit sinu "
+"kirjutatava JavaScripti süntaksi esile toomiseks ning vigade näitamiseks "
+"kirjutamise ajal."
 
 #: ../includes/ot-functions-docs-page.php:178
 msgid "The Link Color option type is used to set all link color states."
@@ -2412,16 +2415,12 @@ msgstr "width"
 #: ../includes/ot-functions-option-types.php:1114
 #: ../includes/ot-functions-option-types.php:1586
 #: ../includes/ot-functions-option-types.php:2531
-#, fuzzy
 msgid "unit"
-msgstr ""
-"Järgnevad kaks näidet demonstreerivad, kuidas kasutada <strong>mõõdu</"
-"strong> valikutüüpi. Mõõdu valikutüüp on massiiv kahe võti-väärtus paariga. "
-"Esimene on mõõdu väärtus ning teine on mõõduühik."
+msgstr "ühik"
 
 #: ../includes/ot-functions-option-types.php:346
 msgid "style"
-msgstr ""
+msgstr "style"
 
 #: ../includes/ot-functions-option-types.php:439
 msgid "offset-x"
