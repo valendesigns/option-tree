@@ -2,7 +2,7 @@
 /**
  * Initialize the custom Theme Options.
  */
-add_action( 'admin_init', 'custom_theme_options' );
+add_action( 'init', 'custom_theme_options' );
 
 /**
  * Build the custom settings & update OptionTree.
@@ -11,7 +11,11 @@ add_action( 'admin_init', 'custom_theme_options' );
  * @since     2.0
  */
 function custom_theme_options() {
-  
+
+  /* OptionTree is not loaded yet, or this is not an admin request */
+  if ( ! function_exists( 'ot_settings_id' ) || ! is_admin() )
+    return false;
+
   /**
    * Get a copy of the saved settings array. 
    */
@@ -45,6 +49,36 @@ function custom_theme_options() {
         'desc'        => sprintf( __( 'The Background option type is for adding background styles to your theme either dynamically via the CSS option type below or manually with %s. The Background option type has filters that allow you to remove fields or change the defaults. For example, you can filter %s to remove unwanted fields from all Background options or an individual one. You can also filter %s. These filters allow you to fine tune the select lists for your specific needs.', 'theme-text-domain' ), '<code>ot_get_option()</code>', '<code>ot_recognized_background_fields</code>', '<code>ot_recognized_background_repeat</code>, <code>ot_recognized_background_attachment</code>, <code>ot_recognized_background_position</code>, ' . __( 'and', 'theme-text-domain' ) . ' <code>ot_type_background_size_choices</code>' ),
         'std'         => '',
         'type'        => 'background',
+        'section'     => 'option_types',
+        'rows'        => '',
+        'post_type'   => '',
+        'taxonomy'    => '',
+        'min_max_step'=> '',
+        'class'       => '',
+        'condition'   => '',
+        'operator'    => 'and'
+      ),
+      array(
+        'id'          => 'demo_border',
+        'label'       => __( 'Border', 'theme-text-domain' ),
+        'desc'        => __( 'The Border option type is used to set width, unit, style, and color values.', 'theme-text-domain' ),
+        'std'         => '',
+        'type'        => 'border',
+        'section'     => 'option_types',
+        'rows'        => '',
+        'post_type'   => '',
+        'taxonomy'    => '',
+        'min_max_step'=> '',
+        'class'       => '',
+        'condition'   => '',
+        'operator'    => 'and'
+      ),
+      array(
+        'id'          => 'demo_box_shadow',
+        'label'       => __( 'Box Shadow', 'theme-text-domain' ),
+        'desc'        => sprintf( __( 'The Box Shadow option type is used to set %s, %s, %s, %s, %s, and %s values.', 'theme-text-domain' ), '<code>inset</code>', '<code>offset-x</code>', '<code>offset-y</code>', '<code>blur-radius</code>', '<code>spread-radius</code>', '<code>color</code>' ),
+        'std'         => '',
+        'type'        => 'box-shadow',
         'section'     => 'option_types',
         'rows'        => '',
         'post_type'   => '',
@@ -117,6 +151,21 @@ function custom_theme_options() {
         'desc'        => __( 'The Colorpicker option type saves a hexadecimal color code for use in CSS. Use it to modify the color of something in your theme.', 'theme-text-domain' ),
         'std'         => '',
         'type'        => 'colorpicker',
+        'section'     => 'option_types',
+        'rows'        => '',
+        'post_type'   => '',
+        'taxonomy'    => '',
+        'min_max_step'=> '',
+        'class'       => '',
+        'condition'   => '',
+        'operator'    => 'and'
+      ),
+      array(
+        'id'          => 'demo_colorpicker_opacity',
+        'label'       => __( 'Colorpicker Opacity', 'theme-text-domain' ),
+        'desc'        => sprintf( __( 'The Colorpicker Opacity option type saves a hexadecimal color code with an opacity value from %s to %s in increments of %s. Though the value is saved as hexadecimal, if used within the CSS option type the color and opacity values will be converted into a valid RGBA CSS value.', 'theme-text-domain' ), '<code>0</code>', '<code>1</code>', '<code>0.01</code>' ),
+        'std'         => '',
+        'type'        => 'colorpicker-opacity',
         'section'     => 'option_types',
         'rows'        => '',
         'post_type'   => '',
@@ -204,6 +253,21 @@ function custom_theme_options() {
         'operator'    => 'and'
       ),
       array(
+        'id'          => 'demo_dimension',
+        'label'       => __( 'Dimension', 'theme-text-domain' ),
+        'desc'        => __( 'The Dimension option type is used to set width and height values.', 'theme-text-domain' ),
+        'std'         => '',
+        'type'        => 'dimension',
+        'section'     => 'option_types',
+        'rows'        => '',
+        'post_type'   => '',
+        'taxonomy'    => '',
+        'min_max_step'=> '',
+        'class'       => '',
+        'condition'   => '',
+        'operator'    => 'and'
+      ),
+      array(
         'id'          => 'demo_gallery',
         'label'       => __( 'Gallery', 'theme-text-domain' ),
         'desc'        => __( 'The Gallery option type saves a comma separated list of image attachment IDs. You will need to create a front-end function to display the images in your theme.', 'theme-text-domain' ),
@@ -230,6 +294,57 @@ function custom_theme_options() {
         'taxonomy'    => '',
         'min_max_step'=> '',
         'class'       => 'ot-gallery-shortcode',
+        'condition'   => '',
+        'operator'    => 'and'
+      ),
+      array(
+        'id'          => 'demo_google_fonts',
+        'label'       => __( 'Google Fonts', 'theme-text-domain' ),
+        'desc'        => sprintf( __( 'The Google Fonts option type will dynamically enqueue any number of Google Web Fonts into the document %1$s. As well, once the option has been saved each font family will automatically be inserted into the %2$s array for the Typography option type. You can further modify the font stack by using the %3$s filter, which is passed the %4$s, %5$s, and %6$s parameters. The %6$s parameter is being passed from %7$s, so it will be the ID of a Typography option type. This will allow you to add additional web safe fonts to individual font families on an as-need basis.', 'theme-text-domain' ), '<code>HEAD</code>', '<code>font-family</code>', '<code>ot_google_font_stack</code>', '<code>$font_stack</code>', '<code>$family</code>', '<code>$field_id</code>', '<code>ot_recognized_font_families</code>' ),
+        'std'         => array( 
+          array(
+            'family'    => 'opensans',
+            'variants'  => array( '300', '300italic', 'regular', 'italic', '600', '600italic' ),
+            'subsets'   => array( 'latin' )
+          )
+        ),
+        'type'        => 'google-fonts',
+        'section'     => 'option_types',
+        'rows'        => '',
+        'post_type'   => '',
+        'taxonomy'    => '',
+        'min_max_step'=> '',
+        'class'       => '',
+        'condition'   => '',
+        'operator'    => 'and'
+      ),
+      array(
+        'id'          => 'demo_javascript',
+        'label'       => __( 'JavaScript', 'theme-text-domain' ),
+        'desc'        => '<p>' . sprintf( __( 'The JavaScript option type is a textarea that uses the %s code editor to highlight your JavaScript and display errors as you type.', 'theme-text-domain' ), '<code>ace.js</code>' ) . '</p>',
+        'std'         => '',
+        'type'        => 'javascript',
+        'section'     => 'option_types',
+        'rows'        => '20',
+        'post_type'   => '',
+        'taxonomy'    => '',
+        'min_max_step'=> '',
+        'class'       => '',
+        'condition'   => '',
+        'operator'    => 'and'
+      ),
+      array(
+        'id'          => 'demo_link_color',
+        'label'       => __( 'Link Color', 'theme-text-domain' ),
+        'desc'        => __( 'The Link Color option type is used to set all link color states.', 'theme-text-domain' ),
+        'std'         => '',
+        'type'        => 'link-color',
+        'section'     => 'option_types',
+        'rows'        => '',
+        'post_type'   => '',
+        'taxonomy'    => '',
+        'min_max_step'=> '',
+        'class'       => '',
         'condition'   => '',
         'operator'    => 'and'
       ),
@@ -469,6 +584,36 @@ function custom_theme_options() {
         'operator'    => 'and'
       ),
       array(
+        'id'          => 'demo_social_links',
+        'label'       => __( 'Social Links', 'theme-text-domain' ),
+        'desc'        => '<p>' . sprintf( __( 'The Social Links option type utilizes a drag & drop interface to create a list of social links. There are a few filters that make extending this option type easy. You can set the %s filter to %s and turn off loading default values. Use the %s filter to change the default values that are loaded. To filter the settings array use the %s filter.', 'theme-text-domain' ), '<code>ot_type_social_links_load_defaults</code>', '<code>false</code>', '<code>ot_type_social_links_defaults</code>', '<code>ot_social_links_settings</code>' ) . '</p>',
+        'std'         => '',
+        'type'        => 'social-links',
+        'section'     => 'option_types',
+        'rows'        => '',
+        'post_type'   => '',
+        'taxonomy'    => '',
+        'min_max_step'=> '',
+        'class'       => '',
+        'condition'   => '',
+        'operator'    => 'and'
+      ),
+      array(
+        'id'          => 'demo_spacing',
+        'label'       => __( 'Spacing', 'theme-text-domain' ),
+        'desc'        => __( 'The Spacing option type is used to set spacing values such as padding or margin in the form of top, right, bottom, and left.', 'theme-text-domain' ),
+        'std'         => '',
+        'type'        => 'spacing',
+        'section'     => 'option_types',
+        'rows'        => '',
+        'post_type'   => '',
+        'taxonomy'    => '',
+        'min_max_step'=> '',
+        'class'       => '',
+        'condition'   => '',
+        'operator'    => 'and'
+      ),
+      array(
         'id'          => 'demo_tag_checkbox',
         'label'       => __( 'Tag Checkbox', 'theme-text-domain' ),
         'desc'        => __( 'The Tag Checkbox option type displays a list of tag IDs. It allows the user to check multiple tag IDs and will return that value as an array for use in a custom function or loop.', 'theme-text-domain' ),
@@ -489,21 +634,6 @@ function custom_theme_options() {
         'desc'        => __( 'The Tag Select option type displays a list of tag IDs. It allows the user to select only one tag ID and will return that value for use in a custom function or loop.', 'theme-text-domain' ),
         'std'         => '',
         'type'        => 'tag-select',
-        'section'     => 'option_types',
-        'rows'        => '',
-        'post_type'   => '',
-        'taxonomy'    => '',
-        'min_max_step'=> '',
-        'class'       => '',
-        'condition'   => '',
-        'operator'    => 'and'
-      ),
-      array(
-        'id'          => 'demo_social_links',
-        'label'       => __( 'Social Links', 'theme-text-domain' ),
-        'desc'        => '<p>' . sprintf( __( 'The Social Links option type utilizes a drag & drop interface to create a list of social links. There are a few filters that make extending this option type easy. You can set the %s filter to %s and turn off loading default values. Use the %s filter to change the default values that are loaded. To filter the settings array use the %s filter.', 'theme-text-domain' ), '<code>ot_type_social_links_load_defaults</code>', '<code>false</code>', '<code>ot_type_social_links_defaults</code>', '<code>ot_social_links_settings</code>' ) . '</p>',
-        'std'         => '',
-        'type'        => 'social-links',
         'section'     => 'option_types',
         'rows'        => '',
         'post_type'   => '',
@@ -673,5 +803,9 @@ function custom_theme_options() {
   if ( $saved_settings !== $custom_settings ) {
     update_option( ot_settings_id(), $custom_settings ); 
   }
+  
+  /* Lets OptionTree know the UI Builder is being overridden */
+  global $ot_has_custom_theme_options;
+  $ot_has_custom_theme_options = true;
   
 }

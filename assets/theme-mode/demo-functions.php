@@ -55,6 +55,11 @@
 # add_filter( 'ot_allow_unfiltered_html', '__return_false' );
 
 /**
+ * Loads the meta boxes for post formats
+ */
+# add_filter( 'ot_post_formats', '__return_true' );
+
+/**
  * OptionTree in Theme Mode
  */
 # require( trailingslashit( get_template_directory() ) . 'option-tree/ot-loader.php' );
