@@ -163,7 +163,8 @@ function custom_theme_options() {
       array(
         'id'          => 'demo_colorpicker_opacity',
         'label'       => __( 'Colorpicker Opacity', 'theme-text-domain' ),
-        'desc'        => sprintf( __( 'The Colorpicker Opacity option type saves a hexadecimal color code with an opacity value from %s to %s in increments of %s. Though the value is saved as hexadecimal, if used within the CSS option type the color and opacity values will be converted into a valid RGBA CSS value.', 'theme-text-domain' ), '<code>0</code>', '<code>1</code>', '<code>0.01</code>' ),
+        'desc'        => __( 'Colorpicker Opacity', 'option-tree-theme' ),
+        'desc'        => sprintf( __( 'The Colorpicker Opacity option type saves an rgba color value for use in CSS. To add opacity to other colorpickers add the %s class to the %s array.', 'option-tree' ), '<code>ot-colorpicker-opacity</code>', '<code>$args</code>' ),
         'std'         => '',
         'type'        => 'colorpicker-opacity',
         'section'     => 'option_types',
