@@ -2554,6 +2554,7 @@ select.option-tree-ui-select option {
   background-color: #fff;
   border: 1px solid #ccc;
   border-top: none;
+  border-radius: 0 0 2px 2px;
   direction: ltr;
   display: none;
   padding: 10px;
