@@ -5669,11 +5669,11 @@ if ( ! function_exists( 'ot_hex2RGB' ) ) {
     }
   
     if ( strlen( $match[1] ) == 6 ) {
-      list($r, $g, $b) = array( $hex[0].$hex[1], $hex[2].$hex[3], $hex[4].$hex[5] );
+      list($r, $g, $b) = array( $hex[1].$hex[2], $hex[3].$hex[4], $hex[5].$hex[6] );
     } else if( strlen( $match[1] ) == 3 ) {
-      list($r, $g, $b) = array( $hex[0].$hex[0], $hex[1].$hex[1], $hex[2].$hex[2] );
+      list($r, $g, $b) = array( $hex[1].$hex[1], $hex[2].$hex[2], $hex[3].$hex[3] );
     } else if ( strlen($match[1]) == 2 ) {
-      list($r, $g, $b) = array( $hex[0].$hex[1], $hex[0].$hex[1], $hex[0].$hex[1] );
+      list($r, $g, $b) = array( $hex[1].$hex[2], $hex[1].$hex[2], $hex[1].$hex[2] );
     } else if ( strlen($match[1]) == 1 ) {
       list($r, $g, $b) = array( $hex.$hex, $hex.$hex, $hex.$hex );
     } else {
