@@ -708,7 +708,9 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
       
     } else if ( 'upload' == $type ) {
 
-      $input = esc_url_raw( $input );
+      if( filter_var( $input, FILTER_VALIDATE_INT ) === FALSE ) {
+        $input = esc_url_raw( $input );
+      }
     
     } else if ( 'gallery' == $type ) {
 
