@@ -132,6 +132,7 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 * Hotfix - Don't use `esc_url_raw` to filter the Upload option type when it's saving an attachment ID. Contributors via github @RistoNiinemets.
 * Hotfix - Show an error message to user if unable to write to the `dynamic.css` file. Contributors via github @johnh10, and @valendesigns.
 * Hotfix - Force the `ot_google_fonts` array to be rebuilt when switching between themes.
+* Hotfix - Stop theme check from nagging about using `add_menu_page` in `ot-cleanup-api.php`.
 
 = 2.5.0 =
 * Added the Google Fonts option type. Contributors via github @maimairel, and @valendesigns.
