@@ -565,22 +565,15 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
       }
       
     } else if ( 'colorpicker-opacity' == $type ) {
-      
-      // Validate color
-      $input['color'] = ot_validate_setting( $input['color'], 'colorpicker', $field_id );
-      
-      // Unset keys with empty values.
-      foreach( $input as $key => $value ) {
-        if ( empty( $value ) ) {
-          unset( $input[$key] );
-        }
-      }
-      
-      // Set empty array to empty string.
-      if ( empty( $input ) ) {
+
+      // Not allowed
+      if ( is_array( $input ) ) {
         $input = '';
       }
-    
+
+      // Validate color
+      $input = ot_validate_setting( $input, 'colorpicker', $field_id );
+
     } else if ( in_array( $type, array( 'css', 'javascript', 'text', 'textarea', 'textarea-simple' ) ) ) {
       
       if ( ! current_user_can( 'unfiltered_html' ) && OT_ALLOW_UNFILTERED_HTML == false ) {
