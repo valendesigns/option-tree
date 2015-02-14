@@ -1,10 +1,14 @@
 {
   "name": "valendesigns/option-tree",
   "description": "Theme Options UI Builder for WordPress.",
+  "homepage": "https://github.com/valendesigns/option-tree",
+  "license": "GPLv3",
   "authors": [
     {
       "name": "Derek Herman",
-      "email": "derek@valendesigns.com"
+      "email": "derek@valendesigns.com",
+      "homepage": "http://valendesigns.com",
+      "role": "Developer"
     }
   ],
   "require": {
