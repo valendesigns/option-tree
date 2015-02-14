@@ -3685,13 +3685,18 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
         $insertion = stripslashes( str_replace( $option, $value, $insertion ) );
          
       }
-    
+
+      // Can't write to the file so we error out
+      if ( ! is_writable( $filepath ) ) {
+        add_settings_error( 'option-tree', 'dynamic_css', sprintf( __( 'Unable to write to file %s.', 'option-tree' ), '<code>' . $filepath . '</code>' ), 'error' );
+        return false;
+      }
+      
       /* create array from the lines of code */
       $markerdata = explode( "\n", implode( '', file( $filepath ) ) );
       
       /* can't write to the file return false */
       if ( ! $f = ot_file_open( $filepath, 'w' ) ) {
-        add_settings_error( 'option-tree', 'dynamic_css', sprintf( __( 'Unable to write to file %s.', 'option-tree' ), '<code>' . $filepath . '</code>' ), 'error' );
         return false;
       }
       
