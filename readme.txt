@@ -127,9 +127,10 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 == Changelog ==
 
 = 2.5.0 =
-* Hotfix - Overhaul the Colorpicker Opacity option type so it save rgba values, not arrays.
+* Hotfix - Overhaul the Colorpicker Opacity option type so it saves rgba values, not arrays.
 * Hotfix - Added the ability to set opacity on any colorpicker with the `ot-colorpicker-opacity` class.
 * Hotfix - Don't use `esc_url_raw` to filter the Upload option type when it's saving an attachment ID. Contributors via github @RistoNiinemets.
+* Hotfix - Show an error message to user if unable to write to the `dynamic.css` file. Contributors via github @johnh10, and @valendesigns.
 
 = 2.5.0 =
 * Added the Google Fonts option type. Contributors via github @maimairel, and @valendesigns.
