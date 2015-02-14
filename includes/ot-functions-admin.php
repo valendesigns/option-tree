@@ -504,12 +504,9 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
         }
         
         // Validate color
-        if ( $key == 'color' && ! empty( $value ) && 0 === preg_match( '/^#([a-f0-9]{6}|[a-f0-9]{3})$/i', $value ) ) {
-          
-          $input[$key] = '';
-          $value = '';
-          
-          add_settings_error( 'option-tree', 'invalid_hex', __( 'The Colorpicker only allows valid hexadecimal values.', 'option-tree' ), 'error' );
+        if ( $key == 'color' && ! empty( $value ) ) {
+
+          $input[$key] = ot_validate_setting( $value, 'colorpicker', $field_id );
           
         }
         
@@ -559,31 +556,24 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
     } else if ( 'colorpicker' == $type ) {
 
       /* return empty & set error */
-      if ( 0 === preg_match( '/^#([a-f0-9]{6}|[a-f0-9]{3})$/i', $input ) ) {
+      if ( 0 === preg_match( '/^#([a-f0-9]{6}|[a-f0-9]{3})$/i', $input ) && 0 === preg_match( '/^rgba\(\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*,\s*([0-9\.]{1,4})\s*\)/i', $input ) ) {
         
         $input = '';
         
-        add_settings_error( 'option-tree', 'invalid_hex', sprintf( __( 'The %s Colorpicker only allows valid hexadecimal values.', 'option-tree' ), '<code>' . $field_id . '</code>' ), 'error' );
+        add_settings_error( 'option-tree', 'invalid_hex', sprintf( __( 'The %s Colorpicker only allows valid hexadecimal or rgba values.', 'option-tree' ), '<code>' . $field_id . '</code>' ), 'error' );
       
       }
       
     } else if ( 'colorpicker-opacity' == $type ) {
-      
-      // Validate color
-      $input['color'] = ot_validate_setting( $input['color'], 'colorpicker', $field_id );
-      
-      // Unset keys with empty values.
-      foreach( $input as $key => $value ) {
-        if ( empty( $value ) ) {
-          unset( $input[$key] );
-        }
-      }
-      
-      // Set empty array to empty string.
-      if ( empty( $input ) ) {
+
+      // Not allowed
+      if ( is_array( $input ) ) {
         $input = '';
       }
-    
+
+      // Validate color
+      $input = ot_validate_setting( $input, 'colorpicker', $field_id );
+
     } else if ( in_array( $type, array( 'css', 'javascript', 'text', 'textarea', 'textarea-simple' ) ) ) {
       
       if ( ! current_user_can( 'unfiltered_html' ) && OT_ALLOW_UNFILTERED_HTML == false ) {
@@ -708,7 +698,9 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
       
     } else if ( 'upload' == $type ) {
 
-      $input = esc_url_raw( $input );
+      if( filter_var( $input, FILTER_VALIDATE_INT ) === FALSE ) {
+        $input = esc_url_raw( $input );
+      }
     
     } else if ( 'gallery' == $type ) {
 
@@ -3065,6 +3057,11 @@ if ( ! function_exists( 'ot_recognized_google_font_families' ) ) {
     $families = array();
     $ot_google_fonts = get_theme_mod( 'ot_google_fonts', array() );
     
+    // Forces an array rebuild when we sitch themes
+    if ( empty( $ot_google_fonts ) ) {
+      $ot_google_fonts = ot_fetch_google_fonts( true, true );
+    }
+    
     foreach( (array) $ot_google_fonts as $key => $item ) {
   
       if ( isset( $item['family'] ) ) {
@@ -3503,18 +3500,6 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
               
               /* set $value with measurement properties */
               $value = $value[0].$value[1];
-            
-            /* Colorpicker Opacity */
-            } else if ( isset( $value['color'] ) && isset( $value['opacity'] ) ) {
-              
-              /* get the RGB color value */
-              $color = ot_hex2RGB( $value['color'] );
-              
-              if ( is_array( $color ) ) {
-                $value = 'rgba(' . $color['r'] . ', ' . $color['g'] . ', ' . $color['b'] . ', ' . $value['opacity'] . ')';
-              } else if ( $color == $value['color'] ) {
-                $value = $value['color'];
-              }
               
             /* Border */
             } else if ( ot_array_keys_exists( $value, array( 'width', 'unit', 'style', 'color' ) ) && ! ot_array_keys_exists( $value, array( 'top', 'right', 'bottom', 'left', 'height', 'inset', 'offset-x', 'offset-y', 'blur-radius', 'spread-radius' ) ) ) {
@@ -3698,13 +3683,20 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
         $insertion = stripslashes( str_replace( $option, $value, $insertion ) );
          
       }
-    
+
+      // Can't write to the file so we error out
+      if ( ! is_writable( $filepath ) ) {
+        add_settings_error( 'option-tree', 'dynamic_css', sprintf( __( 'Unable to write to file %s.', 'option-tree' ), '<code>' . $filepath . '</code>' ), 'error' );
+        return false;
+      }
+      
       /* create array from the lines of code */
       $markerdata = explode( "\n", implode( '', file( $filepath ) ) );
       
       /* can't write to the file return false */
-      if ( ! $f = ot_file_open( $filepath, 'w' ) )
+      if ( ! $f = ot_file_open( $filepath, 'w' ) ) {
         return false;
+      }
       
       $searching = true;
       $foundit = false;
@@ -5135,13 +5127,14 @@ add_action( 'ot_after_theme_options_save', 'ot_update_google_fonts_after_save', 
 /**
  * Helper function to fetch the Google fonts array.
  *
- * @param     bool      $normalize Whether or not to return a normalized array.
+ * @param     bool      $normalize Whether or not to return a normalized array. Default 'true'.
+ * @param     bool      $force_rebuild Whether or not to force the array to be rebuilt. Default 'false'.
  * @return    array
  *
  * @access    public
  * @since     2.5.0
  */
-function ot_fetch_google_fonts( $normalize = true ) {
+function ot_fetch_google_fonts( $normalize = true, $force_rebuild = false ) {
 
   /* Google Fonts cache key */
   $ot_google_fonts_cache_key = apply_filters( 'ot_google_fonts_cache_key', 'ot_google_fonts_cache' );
@@ -5149,7 +5142,7 @@ function ot_fetch_google_fonts( $normalize = true ) {
   /* get the fonts from cache */
   $ot_google_fonts = apply_filters( 'ot_google_fonts_cache', get_transient( $ot_google_fonts_cache_key ) );
 
-  if ( ! is_array( $ot_google_fonts ) || empty( $ot_google_fonts ) ) {
+  if ( $force_rebuild || ! is_array( $ot_google_fonts ) || empty( $ot_google_fonts ) ) {
 
     $ot_google_fonts = array();
 
@@ -5646,46 +5639,6 @@ if ( ! function_exists( 'ot_get_option_type_by_id' ) ) {
   
   }
   
-}
-
-/**
- * Converts Hexidecimal values to RGB.
- *
- * @param     string    $hex The hexidecimal color value.
- * @return    mixed     Returns an array with RGB values or the original hex color on failure.
- *
- * @access    public
- * @since     2.5.0
- */
-if ( ! function_exists( 'ot_hex2RGB' ) ) {
-
-  function ot_hex2RGB( $hex ) {
-    preg_match( "/^#{0,1}([0-9a-f]{1,6})$/i", $hex, $match );
-    
-    if ( ! isset( $match[1] ) ) {
-      return $hex;
-    }
-  
-    if ( strlen( $match[1] ) == 6 ) {
-      list($r, $g, $b) = array( $hex[0].$hex[1], $hex[2].$hex[3], $hex[4].$hex[5] );
-    } else if( strlen( $match[1] ) == 3 ) {
-      list($r, $g, $b) = array( $hex[0].$hex[0], $hex[1].$hex[1], $hex[2].$hex[2] );
-    } else if ( strlen($match[1]) == 2 ) {
-      list($r, $g, $b) = array( $hex[0].$hex[1], $hex[0].$hex[1], $hex[0].$hex[1] );
-    } else if ( strlen($match[1]) == 1 ) {
-      list($r, $g, $b) = array( $hex.$hex, $hex.$hex, $hex.$hex );
-    } else {
-      return $hex;
-    }
-  
-    $color = array();
-    $color['r'] = hexdec( $r );
-    $color['g'] = hexdec( $g );
-    $color['b'] = hexdec( $b );
-  
-    return $color;
-  }
-
 }
 
 /* End of file ot-functions-admin.php */

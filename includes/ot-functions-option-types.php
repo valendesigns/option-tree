@@ -717,59 +717,10 @@ if ( ! function_exists( 'ot_type_colorpicker' ) ) {
 if ( ! function_exists( 'ot_type_colorpicker_opacity' ) ) {
 
   function ot_type_colorpicker_opacity( $args = array() ) {
-    
-    /* turns arguments array into variables */
-    extract( $args );
-    
-    /* verify a description */
-    $has_desc = $field_desc ? true : false;
 
-    /* format setting outer wrapper */
-    echo '<div class="format-setting type-colorpicker-opacity ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
-      
-      /* description */
-      echo $has_desc ? '<div class="description">' . htmlspecialchars_decode( $field_desc ) . '</div>' : '';
-      
-      /* format setting inner wrapper */
-      echo '<div class="format-setting-inner">';
-        
-        /* build colorpicker */  
-        echo '<div class="option-tree-ui-colorpicker-input-wrap">';
-          
-          /* colorpicker JS */      
-          echo '<script>jQuery(document).ready(function($) { OT_UI.bind_colorpicker("' . esc_attr( $field_id ) . '-color"); });</script>';
-          
-          /* set color */
-          $color = isset( $field_value['color'] ) ? esc_attr( $field_value['color'] ) : '';
-          
-          /* set default color */
-          $std = isset( $field_std['color'] ) ? 'data-default-color="' . $field_std['color'] . '"' : '';
-          
-          /* input */
-          echo '<input type="text" name="' . esc_attr( $field_name ) . '[color]" id="' . esc_attr( $field_id ) . '-color" value="' . esc_attr( $color ) . '" class="hide-color-picker ' . esc_attr( $field_class ) . '" ' . $std . ' />';
-        
-        echo '</div>';
+    $args['field_class'] = isset( $args['field_class'] ) ? $args['field_class'] . ' ot-colorpicker-opacity' : 'ot-colorpicker-opacity';
+    ot_type_colorpicker( $args );
 
-        echo '<div class="ot-numeric-slider-wrap">';
-          
-          $min = 0;
-          $max = 1.01;
-          $step = 0.01;
-    
-          /* set background color */
-          $opacity = isset( $field_value['opacity'] ) ? esc_attr( $field_value['opacity'] ) : '';
-								
-          echo '<input type="hidden" name="' . esc_attr( $field_name ) . '[opacity]" id="' . esc_attr( $field_id ) . '-opacity" class="ot-numeric-slider-hidden-input" value="' . $opacity . '" data-min="' . esc_attr( $min ) . '" data-max="' . esc_attr( $max ) . '" data-step="' . esc_attr( $step ) . '">';
-
-          echo '<input type="text" class="ot-numeric-slider-helper-input widefat option-tree-ui-input ' . esc_attr( $field_class ) . '" value="' . esc_attr( $opacity ) . '" readonly>';
-
-          echo '<div id="ot_numeric_slider_' . esc_attr( $field_id ) . '" class="ot-numeric-slider"></div>';
-
-        echo '</div>';
-      
-      echo '</div>';
-      
-    echo '</div>';
   }
 
 }
