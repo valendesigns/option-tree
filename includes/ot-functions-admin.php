@@ -3064,6 +3064,11 @@ if ( ! function_exists( 'ot_recognized_google_font_families' ) ) {
     $families = array();
     $ot_google_fonts = get_theme_mod( 'ot_google_fonts', array() );
     
+    // Forces an array rebuild when we sitch themes
+    if ( empty( $ot_google_fonts ) ) {
+      $ot_google_fonts = ot_fetch_google_fonts( true, true );
+    }
+    
     foreach( (array) $ot_google_fonts as $key => $item ) {
   
       if ( isset( $item['family'] ) ) {
@@ -5129,13 +5134,14 @@ add_action( 'ot_after_theme_options_save', 'ot_update_google_fonts_after_save', 
 /**
  * Helper function to fetch the Google fonts array.
  *
- * @param     bool      $normalize Whether or not to return a normalized array.
+ * @param     bool      $normalize Whether or not to return a normalized array. Default 'true'.
+ * @param     bool      $force_rebuild Whether or not to force the array to be rebuilt. Default 'false'.
  * @return    array
  *
  * @access    public
  * @since     2.5.0
  */
-function ot_fetch_google_fonts( $normalize = true ) {
+function ot_fetch_google_fonts( $normalize = true, $force_rebuild = false ) {
 
   /* Google Fonts cache key */
   $ot_google_fonts_cache_key = apply_filters( 'ot_google_fonts_cache_key', 'ot_google_fonts_cache' );
@@ -5143,7 +5149,7 @@ function ot_fetch_google_fonts( $normalize = true ) {
   /* get the fonts from cache */
   $ot_google_fonts = apply_filters( 'ot_google_fonts_cache', get_transient( $ot_google_fonts_cache_key ) );
 
-  if ( ! is_array( $ot_google_fonts ) || empty( $ot_google_fonts ) ) {
+  if ( $force_rebuild || ! is_array( $ot_google_fonts ) || empty( $ot_google_fonts ) ) {
 
     $ot_google_fonts = array();
 
