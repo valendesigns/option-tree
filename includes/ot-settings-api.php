@@ -517,6 +517,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
         'field_class'       => isset( $class ) ? $class : '',
         'field_choices'     => isset( $choices ) && ! empty( $choices ) ? $choices : array(),
         'field_settings'    => isset( $settings ) && ! empty( $settings ) ? $settings : array(),
+        'field_custom_fields' => isset( $custom_fields ) && ! empty( $custom_fields ) ? $custom_fields : array(),
         'post_id'           => ot_get_media_post_ID(),
         'get_option'        => $get_option,
       );

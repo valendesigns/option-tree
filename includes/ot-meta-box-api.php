@@ -101,6 +101,7 @@ if ( ! class_exists( 'OT_Meta_Box' ) ) {
             'field_operator'    => isset( $field['operator'] ) ? $field['operator'] : 'and',
             'field_choices'     => isset( $field['choices'] ) ? $field['choices'] : array(),
             'field_settings'    => isset( $field['settings'] ) && ! empty( $field['settings'] ) ? $field['settings'] : array(),
+            'field_custom_fields' => isset( $field['custom_fields'] ) && ! empty( $field['custom_fields'] ) ? $field['custom_fields'] : array(),
             'post_id'           => $post->ID,
             'meta'              => true
           );
