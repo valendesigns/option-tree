@@ -586,10 +586,7 @@
       });
     },
     bind_select_wrapper: function() {
-      $(document).on('change', '.option-tree-ui-select', function () {
-        $(this).prev('span').replaceWith('<span>' + $(this).find('option:selected').text() + '</span>');
-      });
-      $(document).on($.browser.msie ? 'click' : 'change', '.option-tree-ui-select', function(event) {
+      $('.option-tree-ui-select').on('change', function () {
         $(this).prev('span').replaceWith('<span>' + $(this).find('option:selected').text() + '</span>');
       });
     },

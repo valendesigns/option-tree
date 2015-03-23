@@ -126,6 +126,9 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 
 == Changelog ==
 
+= 2.5.2 =
+* Hotfix - Remove `$.browser.msie` JS error caused by function being deprecated.
+
 = 2.5.1 =
 * Hotfix - Overhaul the Colorpicker Opacity option type so it saves rgba values, not arrays.
 * Hotfix - Added the ability to set opacity on any colorpicker with the `ot-colorpicker-opacity` class.
