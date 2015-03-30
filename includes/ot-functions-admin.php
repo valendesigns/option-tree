@@ -834,7 +834,7 @@ if ( ! function_exists( 'ot_admin_scripts' ) ) {
 
     /* load the post formats */
     if ( OT_META_BOXES == true && OT_POST_FORMATS == true ) {
-      wp_enqueue_script( 'ot-postformats', OT_URL . 'assets/js/ot-postformats.js', array( 'jquery' ), '1.0' );
+      wp_enqueue_script( 'ot-postformats', OT_URL . 'assets/js/ot-postformats.js', array( 'jquery' ), '1.0.1' );
     }
 
     /* load all the required scripts */
