@@ -128,6 +128,7 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 
 = 2.5.2 =
 * Hotfix - Remove `$.browser.msie` JS error caused by function being deprecated.
+* Hotfix - Change `hover` to `mouseenter mouseleave` to stop jQuery migrate error message.
 * Hotfix - Don't allow duplicate Google Fonts in the `ot-google-fonts-css` enqueue.
 
 = 2.5.1 =
