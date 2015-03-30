@@ -3,7 +3,7 @@ Contributors: valendesigns
 Donate link: http://bit.ly/NuXI3T
 Tags: options, theme options, meta boxes
 Requires at least: 3.8
-Tested up to: 4.2-alpha
+Tested up to: 4.2-beta3
 Stable tag: 2.5.2
 License: GPLv3
 
