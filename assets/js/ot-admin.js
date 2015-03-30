@@ -413,6 +413,7 @@
         } else {
           OT_UI.parse_condition();
         }
+        OT_UI.load_editors();
       });
       OT_UI.parse_condition();
     },
@@ -752,6 +753,10 @@
         });
       });
     },
+    load_editors: function() {
+      OT_UI.css_editor_mode();
+      OT_UI.javascript_editor_mode();
+    },
     url_exists: function(url) {
       var link = document.createElement('a')
       link.href = url
@@ -964,8 +969,7 @@
             if ( $(this).find('.ot-metabox-panels').css('padding') == '12px' && child < parent ) {
               $(this).find('.ot-metabox-panels').css({ minHeight: minHeight })
             }
-            OT_UI.css_editor_mode();
-            OT_UI.javascript_editor_mode();
+            OT_UI.load_editors();
           }
         })
         
@@ -1031,7 +1035,11 @@
         })
         
         // Create the tabs
-        $(this).find('.ot-theme-option-tabs').tabs()
+        $(this).find('.ot-theme-option-tabs').tabs({
+          activate: function( event, ui ) {
+            OT_UI.load_editors();
+          }
+        })
         
         // Move the orphaned settings to the top
         $(this).find('.ot-theme-option-panels > .format-settings').prependTo($(this).find('.ot-theme-option-tabs'))
