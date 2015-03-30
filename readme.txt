@@ -132,6 +132,7 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 * Hotfix - Don't allow duplicate Google Fonts in the `ot-google-fonts-css` enqueue.
 * Hotfix - Fixed an issue with the CSS and JavaScript option types not being initiating inside of tabs.
 * Hotfix - Fixed metabox tab styles for mobile.
+* Hotfix - Separate the post formats JS so it does not interfere with the default behavior and loads only as needed.
 
 = 2.5.1 =
 * Hotfix - Overhaul the Colorpicker Opacity option type so it saves rgba values, not arrays.
