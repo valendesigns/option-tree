@@ -631,5 +631,5 @@ ul.ot-gallery-list li {
 .ot-theme-option-tabs.ui-tabs .ot-theme-option-nav.ui-tabs-nav li.ui-state-default,
 #side-sortables .ot-metabox-tabs.ui-tabs .ot-metabox-nav.ui-tabs-nav li.ui-state-default {
   float: right;
-  margin: 0 3px 0 0;
+  margin: 0 3px 0 0 !important;
 }

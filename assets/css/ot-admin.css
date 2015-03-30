@@ -3910,28 +3910,24 @@ a.ui-datepicker-next {
   #side-sortables .ot-metabox-tabs.ui-tabs .ot-metabox-nav.ui-tabs-nav {
     margin-top: 10px;
   }
-  .ot-metabox-tabs.ui-tabs .ot-metabox-nav.ui-tabs-nav li.ui-state-default {
+  .ot-metabox-tabs.ui-tabs .ot-metabox-nav.ui-tabs-nav li {
     background: #fafafa;
-    border: 1px solid #ccc;
-    border-width: 1px 1px 0px 1px;
-    display: block;
-    float: left;
-    margin: 0 0 0 3px;
-    padding: 0;
-    outline: 0;
+    border: 1px solid #ccc !important;
+    border-width: 1px 1px 0px 1px !important;
+    display: inline-block !important;
+    margin: 0 0 0 3px !important;
+    padding: 0 !important;
+    outline: 0 !important;
+    width: auto !important;
     -webkit-border-radius: 2px 2px 0 0;
        -moz-border-radius: 2px 2px 0 0;
             border-radius: 2px 2px 0 0;
   }
   .ot-metabox-tabs.ui-tabs .ot-metabox-nav.ui-tabs-nav li:hover {
     background: #f1f1f1;
-    border: 1px solid #ccc;
-    border-width: 1px 1px 0px 1px;
   }
   .ot-metabox-tabs.ui-tabs .ot-metabox-nav.ui-tabs-nav li.ui-state-active {
     background: white;
-    border-color: #ccc;
-    border-width: 1px 1px 0px 1px;
     color: black;
     padding: 0;
     -webkit-border-radius: 2px 2px 0 0;
