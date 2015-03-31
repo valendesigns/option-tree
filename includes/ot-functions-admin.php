@@ -816,22 +816,27 @@ if ( ! function_exists( 'ot_admin_scripts' ) ) {
       /* Legacy Thickbox */
       add_thickbox();
     }
-    
+
     /* load jQuery-ui slider */
     wp_enqueue_script( 'jquery-ui-slider' );
-  
+
     /* load jQuery-ui datepicker */
     wp_enqueue_script( 'jquery-ui-datepicker' );
-    
+
     /* load WP colorpicker */
     wp_enqueue_script( 'wp-color-picker' );
-    
-    /* Load Ace Editor for CSS Editing */
+
+    /* load Ace Editor for CSS Editing */
     wp_enqueue_script( 'ace-editor', 'https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js', null, '1.1.3' );   
-    
+
     /* load jQuery UI timepicker addon */
     wp_enqueue_script( 'jquery-ui-timepicker', OT_URL . 'assets/js/vendor/jquery/jquery-ui-timepicker.js', array( 'jquery', 'jquery-ui-slider', 'jquery-ui-datepicker' ), '1.4.3' );
-    
+
+    /* load the post formats */
+    if ( OT_META_BOXES == true && OT_POST_FORMATS == true ) {
+      wp_enqueue_script( 'ot-postformats', OT_URL . 'assets/js/ot-postformats.js', array( 'jquery' ), '1.0.1' );
+    }
+
     /* load all the required scripts */
     wp_enqueue_script( 'ot-admin-js', OT_URL . 'assets/js/ot-admin.js', array( 'jquery', 'jquery-ui-tabs', 'jquery-ui-sortable', 'jquery-ui-slider', 'wp-color-picker', 'ace-editor', 'jquery-ui-datepicker', 'jquery-ui-timepicker' ), OT_VERSION );
 
@@ -3675,7 +3680,16 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
           }
           
         }
-            
+
+        // Fallback when value is empty
+        if ( empty( $value ) && isset( $option_array[1] ) ) {
+
+          // Link Color `inherit` fallback
+          if ( in_array( $option_array[1], array( 'link', 'hover', 'active', 'visited', 'focus' ) ) ) {
+            $value = 'inherit';
+          }
+        }
+
         // Filter the CSS
         $value = apply_filters( 'ot_insert_css_with_markers_value', $value, $option_id );
          

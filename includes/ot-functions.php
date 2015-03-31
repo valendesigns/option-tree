@@ -325,6 +325,8 @@ if ( ! function_exists( 'ot_load_google_fonts_css' ) ) {
 
     if ( ! empty( $families ) ) {
 
+      $families = array_unique( $families );
+
       // Append all subsets to the path, unless the only subset is latin.
       if ( ! empty( $subsets ) ) {
         $subsets = implode( ',', array_unique( $subsets ) );
