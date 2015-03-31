@@ -413,6 +413,7 @@
         } else {
           OT_UI.parse_condition();
         }
+        OT_UI.load_editors();
       });
       OT_UI.parse_condition();
     },
@@ -586,10 +587,7 @@
       });
     },
     bind_select_wrapper: function() {
-      $(document).on('change', '.option-tree-ui-select', function () {
-        $(this).prev('span').replaceWith('<span>' + $(this).find('option:selected').text() + '</span>');
-      });
-      $(document).on($.browser.msie ? 'click' : 'change', '.option-tree-ui-select', function(event) {
+      $('.option-tree-ui-select').on('change', function () {
         $(this).prev('span').replaceWith('<span>' + $(this).find('option:selected').text() + '</span>');
       });
     },
@@ -754,6 +752,10 @@
           editor.getSession().setValue(this_textarea.val());
         });
       });
+    },
+    load_editors: function() {
+      OT_UI.css_editor_mode();
+      OT_UI.javascript_editor_mode();
     },
     url_exists: function(url) {
       var link = document.createElement('a')
@@ -967,8 +969,7 @@
             if ( $(this).find('.ot-metabox-panels').css('padding') == '12px' && child < parent ) {
               $(this).find('.ot-metabox-panels').css({ minHeight: minHeight })
             }
-            OT_UI.css_editor_mode();
-            OT_UI.javascript_editor_mode();
+            OT_UI.load_editors();
           }
         })
         
@@ -979,7 +980,7 @@
         $(this).find('.ot-metabox-tabs').removeClass('ui-widget ui-widget-content ui-corner-all')
         $(this).find('.ot-metabox-nav').removeClass('ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all')
         $(this).find('.ot-metabox-nav li').removeClass('ui-state-default ui-corner-top ui-tabs-active ui-tabs-active')
-        $(this).find('.ot-metabox-nav li').on('hover', function() { $(this).removeClass('ui-state-hover') })
+        $(this).find('.ot-metabox-nav li').on('mouseenter mouseleave', function() { $(this).removeClass('ui-state-hover') })
 
       }
     
@@ -1034,7 +1035,11 @@
         })
         
         // Create the tabs
-        $(this).find('.ot-theme-option-tabs').tabs()
+        $(this).find('.ot-theme-option-tabs').tabs({
+          activate: function( event, ui ) {
+            OT_UI.load_editors();
+          }
+        })
         
         // Move the orphaned settings to the top
         $(this).find('.ot-theme-option-panels > .format-settings').prependTo($(this).find('.ot-theme-option-tabs'))
@@ -1105,123 +1110,6 @@
   
   })
   
-}(window.jQuery);
-
-/*!
- * postformats.js v1.0
- */
-!function ($) {
-
-  "use strict"; // jshint ;_;
-
-  /* POSTFORMATS CLASS DEFINITION
-   * ====================== */
-  var formats = "input.post-format"
-    , metaboxes = [
-          '#ot-post-format-gallery'
-        , '#ot-post-format-link'
-        , '#ot-post-format-image'
-        , '#ot-post-format-quote'
-        , '#ot-post-format-video'
-        , '#ot-post-format-audio'
-      ]
-    , ids = metaboxes.join(',')
-    , insertAfter = '#titlediv'
-    , imageBox = '#postimagediv'
-    , placeholder = 'postimagediv-placeholder'
-    , Postformats = function (element, options) {
-        this.$element = $(element)
-          .on('click.postformats.data-api', $.proxy(this.toggle, this))
-        this.$id = this.$element.attr('id')
-        this.init()
-      }
-
-  Postformats.prototype = {
-
-    constructor: Postformats
-  
-  , init: function () {
-
-      // Moves the metaboxes into place
-      $( '#ot-' + this.$id ).insertAfter( $( insertAfter ) ).hide()
-      
-      // Show the checked metabox
-      if ( this.$element.is(':checked') ) {
-      
-        this.show()
-        
-      }
-      
-    }
-    
-  , toggle: function () {
-
-      // Hides all the post format metaboxes
-      $(ids).each(function() {
-      
-        $(this).hide()
-        
-      })
-      
-      // Shows the clicked post format metabox
-      this.show()
-      
-    }
-  
-  , show: function () {
-      
-      // Featured image is never really hidden so it requires different code 
-      if ( this.$id == 'post-format-image' ) {
-        
-        if ( $( '#' + placeholder ).length == 0 )
-          $( imageBox ).after( '<div id="' + placeholder + '"></div>' ).insertAfter( insertAfter ).find('h3 span').text(option_tree.with)
-        
-      // Revert image
-      } else {
-
-        $( '#' + placeholder ).replaceWith( $( imageBox ) )
-        $( imageBox ).find('h3 span').text(option_tree.replace)
-        
-      }
-      
-      // Show the metabox
-      $( '#ot-' + this.$id ).show()
-      
-    }
-  
-  }
-    
-  /* POSTFORMATS PLUGIN DEFINITION
-   * ======================= */
-  var old = $.fn.postformats
-
-  $.fn.postformats = function (option) {
-    return this.each(function () {
-      var $this = $(this)
-        , data = $this.data('postformats')
-        , options = typeof option == 'object' && option
-      if (!data) $this.data('postformats', (data = new Postformats(this, options)))
-      if (typeof option == 'string') data[option]()
-    })
-  }
-
-  $.fn.postformats.Constructor = Postformats
-  
-  /* POSTFORMATS NO CONFLICT
-   * ================= */
-  $.fn.postformats.noConflict = function () {
-    $.fn.postformats = old
-    return this
-  }
-
-  /* POSTFORMATS DATA-API
-   * ============== */
-  $(document).on('ready.postformats.data-api', function () {
-    $(formats).each(function () {
-      $(this).postformats()
-    })
-  })
-
 }(window.jQuery);
 
 /*!
