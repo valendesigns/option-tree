@@ -3680,7 +3680,16 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
           }
           
         }
-            
+
+        // Fallback when value is empty
+        if ( empty( $value ) && isset( $option_array[1] ) ) {
+
+          // Link Color `inherit` fallback
+          if ( in_array( $option_array[1], array( 'link', 'hover', 'active', 'visited', 'focus' ) ) ) {
+            $value = 'inherit';
+          }
+        }
+
         // Filter the CSS
         $value = apply_filters( 'ot_insert_css_with_markers_value', $value, $option_id );
          
