@@ -127,6 +127,9 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 == Changelog ==
 
 = 2.5.2 =
+* Hotfix - Fixed an issue where having multiple Google Fonts option types caused the "Add Google Font" button to insert multiple dropdowns.
+
+= 2.5.2 =
 * Hotfix - Add `inherit` fallback to the `link-color` option type in dynamic.css.
 * Hotfix - Remove `$.browser.msie` JS error caused by function being deprecated.
 * Hotfix - Change `hover` to `mouseenter mouseleave` to stop jQuery migrate error message.

@@ -631,7 +631,8 @@
       });
       $('.js-add-google-font').on('click', function (event) {
         var $group = $(this).parent('.format-setting-inner').find('.type-google-font-group'),
-            $clone = $('.type-google-font-group-clone').clone(true),
+            $el_clone = $(this).prev('.type-google-font-group-clone'),
+            $clone = $el_clone.clone(true),
             $count = $group.length ? $group.length : 0;
         $clone.attr('class', 'type-google-font-group');
         var replacer = function(index, elm) { 
@@ -646,7 +647,7 @@
         $('.option-tree-google-font-subsets', $clone).each( function() {
           $(this).attr('data-field-id-prefix', replacer ).attr('data-field-name', replacer );
         });
-        $('.type-google-font-group-clone').before($clone)
+        $el_clone.before($clone)
         event.preventDefault()
       });
       $('.js-remove-google-font').on('click', function (event) {
