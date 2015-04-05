@@ -4,7 +4,7 @@ Donate link: http://bit.ly/NuXI3T
 Tags: options, theme options, meta boxes
 Requires at least: 3.8
 Tested up to: 4.2-beta3
-Stable tag: 2.5.2
+Stable tag: 2.5.3
 License: GPLv3
 
 Theme Options UI Builder for WordPress. A simple way to create & save Theme Options and Meta Boxes for free or premium themes.
@@ -126,7 +126,7 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 
 == Changelog ==
 
-= 2.5.2 =
+= 2.5.3 =
 * Hotfix - Fixed an issue where having multiple Google Fonts option types caused the "Add Google Font" button to insert multiple dropdowns.
 
 = 2.5.2 =
