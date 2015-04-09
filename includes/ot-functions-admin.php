@@ -3726,10 +3726,10 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
            *
            * @since 2.5.3
            *
-           * @param $fallback The default CSS fallback value.
-           * @param $option_id The option ID.
-           * @param $option_type The option type.
-           * @param $option_key The option array key.
+           * @param string $fallback The default CSS fallback value.
+           * @param string $option_id The option ID.
+           * @param string $option_type The option type.
+           * @param string $option_key The option array key.
            */
           $fallback = apply_filters( 'ot_insert_css_with_markers_fallback', $fallback, $option_id, $option_type, $option_key );
 
