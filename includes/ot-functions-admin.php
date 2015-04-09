@@ -3478,6 +3478,7 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
         $option_id    = isset( $option_array[0] ) ? $option_array[0] : '';
         $option_key   = isset( $option_array[1] ) ? $option_array[1] : '';
         $option_type  = ot_get_option_type_by_id( $option_id );
+        $fallback     = '';
 
         // Get the meta array value
         if ( $meta ) {
@@ -3685,13 +3686,10 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
 
         }
 
-        // Default CSS falback value
-        $fallback = '';
-
         // Attempt to fallback when `$value` is empty
         if ( empty( $value ) ) {
 
-          // We're trying to access a single array key so `$option_type` will not work
+          // We're trying to access a single array key
           if ( ! empty( $option_key ) ) {
 
             // Link Color `inherit`
