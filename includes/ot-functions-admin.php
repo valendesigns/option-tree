@@ -3681,13 +3681,34 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
           
         }
 
-        // Fallback when value is empty
+        // Default CSS falback value
+        $fallback = '';
+
+        // Fallback when the value is empty and we're trying to access an array key.
         if ( empty( $value ) && isset( $option_array[1] ) ) {
 
-          // Link Color `inherit` fallback
+          // Link Color `inherit`
           if ( in_array( $option_array[1], array( 'link', 'hover', 'active', 'visited', 'focus' ) ) ) {
-            $value = 'inherit';
+            $fallback = 'inherit';
           }
+        
+        // Fallback when the value is empty and we're NOT trying to access an array key.
+        } else if ( empty( $value ) && ! isset( $option_array[1] ) ) {
+
+          // Border `inherit`
+          if ( $option_type == 'border' ) {
+            $fallback = 'inherit';
+          }
+
+          // Box Shadow `none`
+          if ( $option_type == 'box-shadow' ) {
+            $fallback = 'none';
+          }
+        }
+
+        // Let's fallback!
+        if ( ! empty( $fallback ) ) {
+          $value = $fallback;
         }
 
         // Filter the CSS

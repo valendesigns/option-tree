@@ -127,6 +127,8 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 == Changelog ==
 
 = 2.5.3 =
+* Hotfix - Add `inherit` fallback to the `border` option type in dynamic.css.
+* Hotfix - Add `none` fallback to the `box-shadow` option type in dynamic.css.
 * Hotfix - Fixed an issue where having multiple Google Fonts option types caused the "Add Google Font" button to insert multiple dropdowns.
 
 = 2.5.2 =
