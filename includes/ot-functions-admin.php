@@ -3684,26 +3684,46 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
         // Default CSS falback value
         $fallback = '';
 
-        // Fallback when the value is empty and we're trying to access an array key.
-        if ( empty( $value ) && isset( $option_array[1] ) ) {
+        // Attempt to fallback when `$value` is empty
+        if ( empty( $value ) ) {
 
-          // Link Color `inherit`
-          if ( in_array( $option_array[1], array( 'link', 'hover', 'active', 'visited', 'focus' ) ) ) {
-            $fallback = 'inherit';
-          }
-        
-        // Fallback when the value is empty and we're NOT trying to access an array key.
-        } else if ( empty( $value ) && ! isset( $option_array[1] ) ) {
+          // Set the array key of the option, if available
+          $option_key = isset( $option_array[1] ) ? $option_array[1] : '';
 
-          // Border `inherit`
-          if ( $option_type == 'border' ) {
-            $fallback = 'inherit';
+          // We're trying to access a single array key
+          if ( ! empty( $option_key ) ) {
+
+            // Link Color `inherit`
+            if ( in_array( $option_key, array( 'link', 'hover', 'active', 'visited', 'focus' ) ) ) {
+              $fallback = 'inherit';
+            }
+
+          } else {
+
+            // Border `inherit`
+            if ( $option_type == 'border' ) {
+              $fallback = 'inherit';
+            }
+
+            // Box Shadow `none`
+            if ( $option_type == 'box-shadow' ) {
+              $fallback = 'none';
+            }
+
           }
 
-          // Box Shadow `none`
-          if ( $option_type == 'box-shadow' ) {
-            $fallback = 'none';
-          }
+          /**
+           * Filter the `dynamic.css` fallback value.
+           *
+           * @since 2.5.3
+           *
+           * @param $fallback The default CSS fallback value.
+           * @param $option_id The option ID.
+           * @param $option_type The option type.
+           * @param $option_key The option array key.
+           */
+          $fallback = apply_filters( 'ot_insert_css_with_markers_fallback', $fallback, $option_id, $option_type, $option_key );
+
         }
 
         // Let's fallback!
