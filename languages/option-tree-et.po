@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OptionTree\n"
-"POT-Creation-Date: 2015-03-30 18:37-0800\n"
-"PO-Revision-Date: 2015-03-30 18:38-0800\n"
+"POT-Creation-Date: 2015-04-09 11:26-0800\n"
+"PO-Revision-Date: 2015-04-09 11:26-0800\n"
 "Last-Translator: Derek Herman <derek@valendesigns.com>\n"
 "Language-Team: Valen Designs\n"
 "Language: et_EE\n"
@@ -300,7 +300,7 @@ msgstr "Saada OptionTree-le"
 
 #: ../includes/ot-functions-admin.php:847
 #: ../includes/ot-functions-option-types.php:257
-#: ../includes/ot-functions-option-types.php:3207
+#: ../includes/ot-functions-option-types.php:3218
 msgid "Remove Media"
 msgstr "Eemalda meedia"
 
@@ -500,7 +500,7 @@ msgid "Dimension"
 msgstr "Mõõtmed"
 
 #: ../includes/ot-functions-admin.php:2429
-#: ../includes/ot-functions-admin.php:5413
+#: ../includes/ot-functions-admin.php:5463
 #: ../includes/ot-functions-docs-page.php:168
 msgid "Gallery"
 msgstr "Galerii"
@@ -681,7 +681,7 @@ msgstr "Kaks küljendusmenüüd paremal"
 
 #: ../includes/ot-functions-admin.php:3260
 #: ../includes/ot-functions-admin.php:3316
-#: ../includes/ot-functions-admin.php:5453
+#: ../includes/ot-functions-admin.php:5503
 msgid "Link"
 msgstr "Viide"
 
@@ -714,47 +714,47 @@ msgstr ""
 "Sisesta link profiilile või lehele sellel sotsiaalmeedia veebilehel. Ära "
 "unusta lisada lingi ette %s osa."
 
-#: ../includes/ot-functions-admin.php:3703
+#: ../includes/ot-functions-admin.php:3753
 #, php-format
 msgid "Unable to write to file %s."
 msgstr ""
 
-#: ../includes/ot-functions-admin.php:3973
+#: ../includes/ot-functions-admin.php:4023
 msgid "edit"
 msgstr "muuda"
 
-#: ../includes/ot-functions-admin.php:3974
-#: ../includes/ot-functions-admin.php:4042
-#: ../includes/ot-functions-admin.php:4043
-#: ../includes/ot-functions-admin.php:4205
-#: ../includes/ot-functions-admin.php:4206
-#: ../includes/ot-functions-admin.php:4271
-#: ../includes/ot-functions-admin.php:4272
-#: ../includes/ot-functions-admin.php:4399
-#: ../includes/ot-functions-admin.php:4400
-#: ../includes/ot-functions-admin.php:4552
-#: ../includes/ot-functions-admin.php:4553
+#: ../includes/ot-functions-admin.php:4024
+#: ../includes/ot-functions-admin.php:4092
+#: ../includes/ot-functions-admin.php:4093
+#: ../includes/ot-functions-admin.php:4255
+#: ../includes/ot-functions-admin.php:4256
+#: ../includes/ot-functions-admin.php:4321
+#: ../includes/ot-functions-admin.php:4322
+#: ../includes/ot-functions-admin.php:4449
+#: ../includes/ot-functions-admin.php:4450
+#: ../includes/ot-functions-admin.php:4602
+#: ../includes/ot-functions-admin.php:4603
 msgid "Edit"
 msgstr "Muuda"
 
-#: ../includes/ot-functions-admin.php:3976
-#: ../includes/ot-functions-admin.php:3977
-#: ../includes/ot-functions-admin.php:4045
-#: ../includes/ot-functions-admin.php:4046
-#: ../includes/ot-functions-admin.php:4208
-#: ../includes/ot-functions-admin.php:4209
-#: ../includes/ot-functions-admin.php:4274
-#: ../includes/ot-functions-admin.php:4275
-#: ../includes/ot-functions-admin.php:4333
-#: ../includes/ot-functions-admin.php:4334
-#: ../includes/ot-functions-admin.php:4402
-#: ../includes/ot-functions-admin.php:4403
-#: ../includes/ot-functions-admin.php:4555
-#: ../includes/ot-functions-admin.php:4556
+#: ../includes/ot-functions-admin.php:4026
+#: ../includes/ot-functions-admin.php:4027
+#: ../includes/ot-functions-admin.php:4095
+#: ../includes/ot-functions-admin.php:4096
+#: ../includes/ot-functions-admin.php:4258
+#: ../includes/ot-functions-admin.php:4259
+#: ../includes/ot-functions-admin.php:4324
+#: ../includes/ot-functions-admin.php:4325
+#: ../includes/ot-functions-admin.php:4383
+#: ../includes/ot-functions-admin.php:4384
+#: ../includes/ot-functions-admin.php:4452
+#: ../includes/ot-functions-admin.php:4453
+#: ../includes/ot-functions-admin.php:4605
+#: ../includes/ot-functions-admin.php:4606
 msgid "Delete"
 msgstr "Kustuta"
 
-#: ../includes/ot-functions-admin.php:3983
+#: ../includes/ot-functions-admin.php:4033
 msgid ""
 "<strong>Section Title</strong>: Displayed as a menu item on the Theme "
 "Options page."
@@ -762,7 +762,7 @@ msgstr ""
 "<strong>Sektsiooni pealkiri</strong>: Näidatakse menüü elemendina teema "
 "valikute lehel."
 
-#: ../includes/ot-functions-admin.php:3991
+#: ../includes/ot-functions-admin.php:4041
 msgid ""
 "<strong>Section ID</strong>: A unique lower case alphanumeric string, "
 "underscores allowed."
@@ -770,7 +770,7 @@ msgstr ""
 "<strong>Sektsiooni ID</strong>: unikaalne väiketähtedega tähtnumbriline "
 "string, alakriipsud lubatud."
 
-#: ../includes/ot-functions-admin.php:4052
+#: ../includes/ot-functions-admin.php:4102
 msgid ""
 "<strong>Label</strong>: Displayed as the label of a form element on the "
 "Theme Options page."
@@ -778,8 +778,8 @@ msgstr ""
 "<strong>Nimetus</strong>: Näidatakse kui vormi elemendi nimetust teema "
 "valikute lehel."
 
-#: ../includes/ot-functions-admin.php:4060
-#: ../includes/ot-functions-admin.php:4289
+#: ../includes/ot-functions-admin.php:4110
+#: ../includes/ot-functions-admin.php:4339
 msgid ""
 "<strong>ID</strong>: A unique lower case alphanumeric string, underscores "
 "allowed."
@@ -787,14 +787,14 @@ msgstr ""
 "<strong>ID</strong>: unikaalne väiketähtedega tähtnumbriline string, "
 "alakriipsud lubatud."
 
-#: ../includes/ot-functions-admin.php:4068
+#: ../includes/ot-functions-admin.php:4118
 msgid ""
 "<strong>Type</strong>: Choose one of the available option types from the "
 "dropdown."
 msgstr ""
 "<strong>Tüüp</strong>: vali rippmenüüst üks pakutavatest valiku tüüpidest."
 
-#: ../includes/ot-functions-admin.php:4079
+#: ../includes/ot-functions-admin.php:4129
 msgid ""
 "<strong>Description</strong>: Enter a detailed description for the users to "
 "read on the Theme Options page, HTML is allowed. This is also where you "
@@ -804,7 +804,7 @@ msgstr ""
 "saavad lugeda teema valikute lehel. HTML on lubatud. See on ühtlasi ka koht, "
 "kuhu sisestada tekstibloki ja pealkirjaga tekstibloki valikutüüpide sisu."
 
-#: ../includes/ot-functions-admin.php:4087
+#: ../includes/ot-functions-admin.php:4137
 msgid ""
 "<strong>Choices</strong>: This will only affect the following option types: "
 "Checkbox, Radio, Select & Select Image."
@@ -812,21 +812,21 @@ msgstr ""
 "<strong>Valikud</strong>: mõjutab vaid järgnevaid valikutüüpe: valikkastid, "
 "raadiokastid, rippvalik ja pildi valik."
 
-#: ../includes/ot-functions-admin.php:4092
+#: ../includes/ot-functions-admin.php:4142
 msgid "Add Choice"
 msgstr "Lisa valik"
 
-#: ../includes/ot-functions-admin.php:4098
+#: ../includes/ot-functions-admin.php:4148
 msgid ""
 "<strong>Settings</strong>: This will only affect the List Item option type."
 msgstr "<strong>Sätted</strong>: mõjutab vaid nimekirja elemendi valikutüüpi."
 
-#: ../includes/ot-functions-admin.php:4103
+#: ../includes/ot-functions-admin.php:4153
 #: ../includes/ot-functions-settings-page.php:93
 msgid "Add Setting"
 msgstr "Lisa säte"
 
-#: ../includes/ot-functions-admin.php:4109
+#: ../includes/ot-functions-admin.php:4159
 msgid ""
 "<strong>Standard</strong>: Setting the standard value for your option only "
 "works for some option types. Read the <code>OptionTree->Documentation</code> "
@@ -836,7 +836,7 @@ msgstr ""
 "valikutüübile. Lisainfot leiad <code>OptionTree->Dokumentatsioon</code> "
 "lehelt."
 
-#: ../includes/ot-functions-admin.php:4117
+#: ../includes/ot-functions-admin.php:4167
 msgid ""
 "<strong>Rows</strong>: Enter a numeric value for the number of rows in your "
 "textarea. This will only affect the following option types: CSS, Textarea, & "
@@ -846,7 +846,7 @@ msgstr ""
 "tekstiväljal. Mõjutab vaid järgnevaid valikutüüpe: CSS, tekstiväli ja lihtne "
 "tekstiväli."
 
-#: ../includes/ot-functions-admin.php:4125
+#: ../includes/ot-functions-admin.php:4175
 msgid ""
 "<strong>Post Type</strong>: Add a comma separated list of post type like "
 "'post,page'. This will only affect the following option types: Custom Post "
@@ -857,7 +857,7 @@ msgstr ""
 "valikutüüpe: enda loodud postitüübi valikkastid ja enda loodud postitüübi "
 "rippvalik."
 
-#: ../includes/ot-functions-admin.php:4133
+#: ../includes/ot-functions-admin.php:4183
 msgid ""
 "<strong>Taxonomy</strong>: Add a comma separated list of any registered "
 "taxonomy like 'category,post_tag'. This will only affect the following "
@@ -867,7 +867,7 @@ msgstr ""
 "taksonoomiatest nagu 'category,post_tag'. See mõjutab vaid järgnevaid "
 "valikutüüpe: taksonoomia valikukastid & taksonoomia rippvalik."
 
-#: ../includes/ot-functions-admin.php:4141
+#: ../includes/ot-functions-admin.php:4191
 msgid ""
 "<strong>Min, Max, & Step</strong>: Add a comma separated list of options in "
 "the following format <code>0,100,1</code> (slide from <code>0-100</code> in "
@@ -880,12 +880,12 @@ msgstr ""
 "code> intervalliga <code>1</code> ). Need kolm väärtust näitavad miinimumi, "
 "maksimumi ja astme valikuid ning mõjutavad vaid numbriliuguri valikutüüpi."
 
-#: ../includes/ot-functions-admin.php:4149
+#: ../includes/ot-functions-admin.php:4199
 msgid "<strong>CSS Class</strong>: Add and optional class to this option type."
 msgstr ""
 "<strong>CSS klass</strong>: Soovi korral lisa sellele valikutüübile klass."
 
-#: ../includes/ot-functions-admin.php:4157
+#: ../includes/ot-functions-admin.php:4207
 #, php-format
 msgid ""
 "<strong>Condition</strong>: Add a comma separated list (no spaces) of "
@@ -898,7 +898,7 @@ msgstr ""
 "tühjaks. Nendes näidetes on <code>value</code> kohahoidja teie tingimustele, "
 "mis võivad olla kujul %s."
 
-#: ../includes/ot-functions-admin.php:4165
+#: ../includes/ot-functions-admin.php:4215
 msgid ""
 "<strong>Operator</strong>: Choose the logical operator to compute the result "
 "of the conditions."
@@ -906,30 +906,30 @@ msgstr ""
 "<strong>Operaator</strong>: vali loogiline operaator, millega arvutada välja "
 "tingimuste tulemus."
 
-#: ../includes/ot-functions-admin.php:4168
+#: ../includes/ot-functions-admin.php:4218
 #: ../includes/ot-functions-docs-page.php:111
 #: ../includes/ot-functions-docs-page.php:378
 msgid "and"
 msgstr "ja"
 
-#: ../includes/ot-functions-admin.php:4169
+#: ../includes/ot-functions-admin.php:4219
 msgid "or"
 msgstr "või"
 
-#: ../includes/ot-functions-admin.php:4215
+#: ../includes/ot-functions-admin.php:4265
 #: ../includes/ot-functions-docs-page.php:29
 msgid "Label"
 msgstr "Nimetus"
 
-#: ../includes/ot-functions-admin.php:4225
+#: ../includes/ot-functions-admin.php:4275
 msgid "Value"
 msgstr "Väärtus"
 
-#: ../includes/ot-functions-admin.php:4235
+#: ../includes/ot-functions-admin.php:4285
 msgid "Image Source (Radio Image only)"
 msgstr "Pildi allikas ( ainult pildiga raadiovaliku jaoks )"
 
-#: ../includes/ot-functions-admin.php:4281
+#: ../includes/ot-functions-admin.php:4331
 msgid ""
 "<strong>Title</strong>: Displayed as a contextual help menu item on the "
 "Theme Options page."
@@ -937,7 +937,7 @@ msgstr ""
 "<strong>Pealkiri</strong>: kuvatakse kui kontekstipõhine abimenüü element "
 "teema valikute lehel."
 
-#: ../includes/ot-functions-admin.php:4297
+#: ../includes/ot-functions-admin.php:4347
 msgid ""
 "<strong>Content</strong>: Enter the HTML content about this contextual help "
 "item displayed on the Theme Option page for end users to read."
@@ -945,57 +945,57 @@ msgstr ""
 "<strong>Sisu</strong>: sisesta HTML sisu selle kontekstipõhise elemendi "
 "kohta. Näidatakse teema valikute lehel lõppkasutajatele."
 
-#: ../includes/ot-functions-admin.php:4328
+#: ../includes/ot-functions-admin.php:4378
 msgid "Layout"
 msgstr "Paigutus"
 
-#: ../includes/ot-functions-admin.php:4330
-#: ../includes/ot-functions-admin.php:4331
+#: ../includes/ot-functions-admin.php:4380
+#: ../includes/ot-functions-admin.php:4381
 msgid "Activate"
 msgstr "Aktiveeri"
 
-#: ../includes/ot-functions-admin.php:4367 ../includes/ot-meta-box-api.php:223
+#: ../includes/ot-functions-admin.php:4417 ../includes/ot-meta-box-api.php:223
 #: ../includes/ot-settings-api.php:610
 msgid "Title"
 msgstr "Pealkiri"
 
-#: ../includes/ot-functions-admin.php:4707
+#: ../includes/ot-functions-admin.php:4757
 msgid "New Layout"
 msgstr "Uus paigutus"
 
-#: ../includes/ot-functions-admin.php:5462
+#: ../includes/ot-functions-admin.php:5512
 msgid "Link URL"
 msgstr "Viide"
 
-#: ../includes/ot-functions-admin.php:5469
+#: ../includes/ot-functions-admin.php:5519
 msgid "Link Title"
 msgstr "Lingi pealkiri"
 
-#: ../includes/ot-functions-admin.php:5499
+#: ../includes/ot-functions-admin.php:5549
 msgid "Quote"
 msgstr "Tsitaat"
 
-#: ../includes/ot-functions-admin.php:5508
+#: ../includes/ot-functions-admin.php:5558
 msgid "Source Name (ex. author, singer, actor)"
 msgstr "Allika nimi (nt autor, laulja, näitleja)"
 
-#: ../includes/ot-functions-admin.php:5515
+#: ../includes/ot-functions-admin.php:5565
 msgid "Source URL"
 msgstr "Allika URL"
 
-#: ../includes/ot-functions-admin.php:5522
+#: ../includes/ot-functions-admin.php:5572
 msgid "Source Title (ex. book, song, movie)"
 msgstr "Allika pealkiri (nt raamat, laul, film)"
 
-#: ../includes/ot-functions-admin.php:5529
+#: ../includes/ot-functions-admin.php:5579
 msgid "Source Date"
 msgstr "Allika kuupäev"
 
-#: ../includes/ot-functions-admin.php:5559
+#: ../includes/ot-functions-admin.php:5609
 msgid "Video"
 msgstr "Video"
 
-#: ../includes/ot-functions-admin.php:5568
+#: ../includes/ot-functions-admin.php:5618
 #, php-format
 msgid ""
 "Embed video from services like Youtube, Vimeo, or Hulu. You can find a list "
@@ -1006,16 +1006,16 @@ msgstr ""
 "Nimekirja toetatud oEmbed veebilehtedest leiad %1$s. Teine variant oleks "
 "kasutada sisse ehitatud lühikoodi %2$s."
 
-#: ../includes/ot-functions-admin.php:5568
-#: ../includes/ot-functions-admin.php:5607
+#: ../includes/ot-functions-admin.php:5618
+#: ../includes/ot-functions-admin.php:5657
 msgid "Wordpress Codex"
 msgstr "Wordpress Codex"
 
-#: ../includes/ot-functions-admin.php:5598
+#: ../includes/ot-functions-admin.php:5648
 msgid "Audio"
 msgstr "Audio"
 
-#: ../includes/ot-functions-admin.php:5607
+#: ../includes/ot-functions-admin.php:5657
 #, php-format
 msgid ""
 "Embed audio from services like SoundCloud and Rdio. You can find a list of "
@@ -2402,7 +2402,7 @@ msgid "background-image"
 msgstr "background-image"
 
 #: ../includes/ot-functions-option-types.php:241
-#: ../includes/ot-functions-option-types.php:3191
+#: ../includes/ot-functions-option-types.php:3202
 msgid "Add Media"
 msgstr "Lisa meediat"
 
@@ -2414,7 +2414,7 @@ msgstr "width"
 #: ../includes/ot-functions-option-types.php:327
 #: ../includes/ot-functions-option-types.php:1065
 #: ../includes/ot-functions-option-types.php:1550
-#: ../includes/ot-functions-option-types.php:2495
+#: ../includes/ot-functions-option-types.php:2506
 msgid "unit"
 msgstr "ühik"
 
@@ -2447,8 +2447,8 @@ msgstr "Kategooriaid ei leitud"
 #: ../includes/ot-functions-option-types.php:870
 #: ../includes/ot-functions-option-types.php:1819
 #: ../includes/ot-functions-option-types.php:1930
-#: ../includes/ot-functions-option-types.php:2635
-#: ../includes/ot-functions-option-types.php:2750
+#: ../includes/ot-functions-option-types.php:2646
+#: ../includes/ot-functions-option-types.php:2761
 msgid "Choose One"
 msgstr "Valik üks"
 
@@ -2503,14 +2503,14 @@ msgid "Focus"
 msgstr "Fookus"
 
 #: ../includes/ot-functions-option-types.php:1497
-#: ../includes/ot-functions-option-types.php:2235
-#: ../includes/ot-functions-option-types.php:2400
+#: ../includes/ot-functions-option-types.php:2246
+#: ../includes/ot-functions-option-types.php:2411
 msgid "Add New"
 msgstr "Lisa uus"
 
 #: ../includes/ot-functions-option-types.php:1500
-#: ../includes/ot-functions-option-types.php:2238
-#: ../includes/ot-functions-option-types.php:2403
+#: ../includes/ot-functions-option-types.php:2249
+#: ../includes/ot-functions-option-types.php:2414
 msgid "You can re-order with drag & drop, the order will update after saving."
 msgstr ""
 "Lohistades saab elemente ümber paigutada. Järjekord uueneb peale "
@@ -2529,105 +2529,105 @@ msgstr "Väljas"
 msgid "No Pages Found"
 msgstr "Lehekülgi ei leitud"
 
-#: ../includes/ot-functions-option-types.php:2158
+#: ../includes/ot-functions-option-types.php:2169
 msgid "Choose Sidebar"
 msgstr "Vali küljendusmenüü"
 
-#: ../includes/ot-functions-option-types.php:2163
+#: ../includes/ot-functions-option-types.php:2174
 msgid "No Sidebars"
 msgstr "Küljendusmenüüd puuduvad"
 
-#: ../includes/ot-functions-option-types.php:2271
+#: ../includes/ot-functions-option-types.php:2282
 msgid "Facebook"
 msgstr "Facebook"
 
-#: ../includes/ot-functions-option-types.php:2276
+#: ../includes/ot-functions-option-types.php:2287
 msgid "Twitter"
 msgstr "Twitter"
 
-#: ../includes/ot-functions-option-types.php:2281
+#: ../includes/ot-functions-option-types.php:2292
 msgid "Google+"
 msgstr "Google+"
 
-#: ../includes/ot-functions-option-types.php:2286
+#: ../includes/ot-functions-option-types.php:2297
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
-#: ../includes/ot-functions-option-types.php:2291
+#: ../includes/ot-functions-option-types.php:2302
 msgid "Pinterest"
 msgstr "Pinterest"
 
-#: ../includes/ot-functions-option-types.php:2296
+#: ../includes/ot-functions-option-types.php:2307
 msgid "Youtube"
 msgstr "Youtube"
 
-#: ../includes/ot-functions-option-types.php:2301
+#: ../includes/ot-functions-option-types.php:2312
 msgid "Dribbble"
 msgstr "Dribbble"
 
-#: ../includes/ot-functions-option-types.php:2306
+#: ../includes/ot-functions-option-types.php:2317
 msgid "Github"
 msgstr "Github"
 
-#: ../includes/ot-functions-option-types.php:2311
+#: ../includes/ot-functions-option-types.php:2322
 msgid "Forrst"
 msgstr "Forrst"
 
-#: ../includes/ot-functions-option-types.php:2316
+#: ../includes/ot-functions-option-types.php:2327
 msgid "Digg"
 msgstr "Digg"
 
-#: ../includes/ot-functions-option-types.php:2321
+#: ../includes/ot-functions-option-types.php:2332
 msgid "Delicious"
 msgstr "Delicious"
 
-#: ../includes/ot-functions-option-types.php:2326
+#: ../includes/ot-functions-option-types.php:2337
 msgid "Tumblr"
 msgstr "Tumblr"
 
-#: ../includes/ot-functions-option-types.php:2331
+#: ../includes/ot-functions-option-types.php:2342
 msgid "Skype"
 msgstr "Skype"
 
-#: ../includes/ot-functions-option-types.php:2336
+#: ../includes/ot-functions-option-types.php:2347
 msgid "SoundCloud"
 msgstr "SoundCloud"
 
-#: ../includes/ot-functions-option-types.php:2341
+#: ../includes/ot-functions-option-types.php:2352
 msgid "Vimeo"
 msgstr "Vimeo"
 
-#: ../includes/ot-functions-option-types.php:2346
+#: ../includes/ot-functions-option-types.php:2357
 msgid "Flickr"
 msgstr "Flickr"
 
-#: ../includes/ot-functions-option-types.php:2351
+#: ../includes/ot-functions-option-types.php:2362
 msgid "VK.com"
 msgstr "VK.com"
 
-#: ../includes/ot-functions-option-types.php:2457
+#: ../includes/ot-functions-option-types.php:2468
 msgid "top"
 msgstr "top"
 
-#: ../includes/ot-functions-option-types.php:2466
+#: ../includes/ot-functions-option-types.php:2477
 msgid "right"
 msgstr "right"
 
-#: ../includes/ot-functions-option-types.php:2475
+#: ../includes/ot-functions-option-types.php:2486
 msgid "bottom"
 msgstr "bottom"
 
-#: ../includes/ot-functions-option-types.php:2484
+#: ../includes/ot-functions-option-types.php:2495
 msgid "left"
 msgstr "left"
 
-#: ../includes/ot-functions-option-types.php:2586
-#: ../includes/ot-functions-option-types.php:2640
+#: ../includes/ot-functions-option-types.php:2597
+#: ../includes/ot-functions-option-types.php:2651
 msgid "No Tags Found"
 msgstr "Märksõnu ei leitud"
 
-#: ../includes/ot-functions-option-types.php:2698
-#: ../includes/ot-functions-option-types.php:2755
+#: ../includes/ot-functions-option-types.php:2709
+#: ../includes/ot-functions-option-types.php:2766
 msgid "No Taxonomies Found"
 msgstr "Taksonoomiaid ei leitud"
 
