@@ -3474,8 +3474,9 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
       foreach( $matches[0] as $option ) {
 
         $value        = '';
-        $option_id    = str_replace( array( '{{', '}}' ), '', $option );
-        $option_array = explode( '|', $option_id );
+        $option_array = explode( '|', str_replace( array( '{{', '}}' ), '', $option ) );
+        $option_id    = isset( $option_array[0] ) ? $option_array[0] : '';
+        $option_key   = isset( $option_array[1] ) ? $option_array[1] : '';
         $option_type  = ot_get_option_type_by_id( $option_id );
         
         /* get the array value */
@@ -3687,27 +3688,34 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
         // Attempt to fallback when `$value` is empty
         if ( empty( $value ) ) {
 
-          // Set the array key of the option, if available
-          $option_key = isset( $option_array[1] ) ? $option_array[1] : '';
-
-          // We're trying to access a single array key
+          // We're trying to access a single array key so `$option_type` will not work
           if ( ! empty( $option_key ) ) {
 
             // Link Color `inherit`
-            if ( in_array( $option_key, array( 'link', 'hover', 'active', 'visited', 'focus' ) ) ) {
+            if ( $option_type == 'link-color' ) {
               $fallback = 'inherit';
             }
 
           } else {
 
-            // Border `inherit`
+            // Border
             if ( $option_type == 'border' ) {
               $fallback = 'inherit';
             }
 
-            // Box Shadow `none`
+            // Box Shadow
             if ( $option_type == 'box-shadow' ) {
               $fallback = 'none';
+            }
+
+            // Colorpicker
+            if ( $option_type == 'colorpicker' ) {
+              $fallback = 'inherit';
+            }
+
+            // Colorpicker Opacity
+            if ( $option_type == 'colorpicker-opacity' ) {
+              $fallback = 'inherit';
             }
 
           }
