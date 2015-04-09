@@ -132,6 +132,7 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 * Hotfix - Added `inherit` fallback to the `colorpicker` option type in dynamic.css.
 * Hotfix - Added `inherit` fallback to the `colorpicker-opacity` option type in dynamic.css.
 * Hotfix - Added filter `ot_insert_css_with_markers_fallback` to filter the `dynamic.css` fallback value.
+* Hotfix - Added filter `ot_type_radio_image_attributes` to filter the image attributes for each radio choice. Contributors via github @BassemN, and @valendesigns.
 * Hotfix - Refactored `ot_insert_css_with_markers` to remove confusing & unnecessary PHP statements and fix whitespace.
 * Hotfix - Fixed an issue in `ot_insert_css_with_markers` where the `$option_type` variable was not being set properly.
 * Hotfix - Fixed an issue where having multiple Google Fonts option types caused the "Add Google Font" button to insert multiple dropdowns.

@@ -2035,9 +2035,20 @@ if ( ! function_exists( 'ot_type_radio_image' ) ) {
           /* make radio image source filterable */
           $src = apply_filters( 'ot_type_radio_image_src', $src, $field_id );
           
+          /**
+           * Filter the image attributes.
+           *
+           * @since 2.5.3
+           *
+           * @param string $attributes The image attributes.
+           * @param string $field_id The field ID.
+           * @param array $choice The choice.
+           */
+          $attributes = apply_filters( 'ot_type_radio_image_attributes', '', $field_id, $choice );
+          
           echo '<div class="option-tree-ui-radio-images">';
             echo '<p style="display:none"><input type="radio" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '-' . esc_attr( $key ) . '" value="' . esc_attr( $choice['value'] ) . '"' . checked( $field_value, $choice['value'], false ) . ' class="option-tree-ui-radio option-tree-ui-images" /><label for="' . esc_attr( $field_id ) . '-' . esc_attr( $key ) . '">' . esc_attr( $choice['label'] ) . '</label></p>';
-            echo '<img src="' . esc_url( $src ) . '" alt="' . esc_attr( $choice['label'] ) .'" title="' . esc_attr( $choice['label'] ) .'" class="option-tree-ui-radio-image ' . esc_attr( $field_class ) . ( $field_value == $choice['value'] ? ' option-tree-ui-radio-image-selected' : '' ) . '" />';
+            echo '<img ' . $attributes . ' src="' . esc_url( $src ) . '" alt="' . esc_attr( $choice['label'] ) .'" title="' . esc_attr( $choice['label'] ) .'" class="option-tree-ui-radio-image ' . esc_attr( $field_class ) . ( $field_value == $choice['value'] ? ' option-tree-ui-radio-image-selected' : '' ) . '" />';
           echo '</div>';
         }
         
