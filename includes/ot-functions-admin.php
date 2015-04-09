@@ -3422,7 +3422,7 @@ if ( ! function_exists( 'ot_social_links_settings' ) ) {
  *
  * @access    public
  * @since     1.1.8
- * @updated   2.0.12
+ * @updated   2.5.3
  */
 if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
 
