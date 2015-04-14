@@ -580,14 +580,14 @@
     init_select_wrapper: function(scope) {
       scope = scope || document;
       $('.option-tree-ui-select', scope).each(function () {
-        if ( ! $(this).parent().hasClass('select-wrapper') ) {
+         
           $(this).wrap('<div class="select-wrapper" />');
           $(this).parent('.select-wrapper').prepend('<span>' + $(this).find('option:selected').text() + '</span>');
-        }
+       
       });
     },
     bind_select_wrapper: function() {
-      $('.option-tree-ui-select').on('change', function () {
+      $(document).on('change', '.option-tree-ui-select', function () {
         $(this).prev('span').replaceWith('<span>' + $(this).find('option:selected').text() + '</span>');
       });
     },
