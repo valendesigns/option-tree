@@ -63,10 +63,13 @@ if ( ! class_exists( 'OT_Cleanup' ) ) {
      */
     public function maybe_cleanup() {
       global $wpdb, $table_prefix, $ot_maybe_cleanup_posts, $ot_maybe_cleanup_table;
-      
+
+      $wpdb->hide_errors();
       $posts = $wpdb->get_results( "SELECT * FROM $wpdb->posts WHERE post_type = 'option-tree' LIMIT 2" );
       $table = $wpdb->get_results( "SHOW TABLES LIKE '{$table_prefix}option_tree'" );
-      
+      $wpdb->show_errors();
+      $wpdb->flush();
+
       $ot_maybe_cleanup_posts = count( $posts ) > 1;
       $ot_maybe_cleanup_table = count( $table ) == 1;
       $page = isset( $_GET['page'] ) ? $_GET['page'] : '';
