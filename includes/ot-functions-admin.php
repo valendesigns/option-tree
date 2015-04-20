@@ -973,15 +973,16 @@ if ( ! function_exists( 'ot_create_media_post' ) ) {
 if ( ! function_exists( 'ot_default_settings' ) ) {
 
   function ot_default_settings() {
-    global $wpdb, $table_prefix;
+    global $wpdb;
     
     if ( ! get_option( ot_settings_id() ) ) {
       
       $section_count = 0;
       $settings_count = 0;
       $settings = array();
+      $table_name = $wpdb->prefix . 'option_tree';
       
-      if ( count( $wpdb->get_results( "SHOW TABLES LIKE '{$table_prefix}option_tree'" ) ) == 1 && $old_settings = $wpdb->get_results( "SELECT * FROM {$table_prefix}option_tree ORDER BY item_sort ASC" ) ) {
+      if ( in_array( $table_name, $wpdb->tables() ) && $old_settings = $wpdb->get_results( "SELECT * FROM $table_name ORDER BY item_sort ASC" ) ) {
         
         foreach ( $old_settings as $setting ) {
           
