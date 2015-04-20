@@ -126,6 +126,9 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 
 == Changelog ==
 
+= 2.5.4 =
+* Hotfix - Fixed an issue where the select field value was not visible. Contributors via github @sabbirk15.
+
 = 2.5.3 =
 * Hotfix - Added `inherit` fallback to the `border` option type in dynamic.css.
 * Hotfix - Added `none` fallback to the `box-shadow` option type in dynamic.css.
