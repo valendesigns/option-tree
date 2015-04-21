@@ -177,7 +177,7 @@ if ( ! class_exists( 'OT_Meta_Box' ) ) {
       global $pagenow;
 
       /* don't save if $_POST is empty */
-      if ( empty( $_POST ) )
+      if ( empty( $_POST ) || ( isset( $_POST['vc_inline'] ) && $_POST['vc_inline'] == true ) )
         return $post_id;
       
       /* don't save during quick edit */

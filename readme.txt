@@ -127,6 +127,7 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 == Changelog ==
 
 = 2.5.4 =
+* Hotfix - Fixed an issue where Visual Composer was indirectly destroying OptionTree meta box values.
 * Hotfix - Fixed an issue where the select field value was not visible. Contributors via github @sabbirk15.
 * Hotfix - Fixed and issue where database errors would display due to a deprecated missing table.
 
