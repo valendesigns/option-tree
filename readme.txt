@@ -3,7 +3,7 @@ Contributors: valendesigns
 Donate link: http://bit.ly/NuXI3T
 Tags: options, theme options, meta boxes
 Requires at least: 3.8
-Tested up to: 4.2-beta3
+Tested up to: 4.2
 Stable tag: 2.5.4
 License: GPLv3
 
@@ -127,6 +127,7 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 == Changelog ==
 
 = 2.5.4 =
+* Hotfix - Support for WordPress 4.2 term splitting.
 * Hotfix - Fixed an issue where Visual Composer was indirectly destroying OptionTree meta box values.
 * Hotfix - Fixed an issue where the select field value was not visible. Contributors via github @sabbirk15.
 
