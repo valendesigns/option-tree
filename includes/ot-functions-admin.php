@@ -1276,7 +1276,7 @@ if ( ! function_exists( 'ot_import' ) ) {
       }
       
       /* redirect */
-      wp_redirect( add_query_arg( array( 'action' => 'import-xml', 'message' => $message ), $_POST['_wp_http_referer'] ) );
+      wp_redirect( esc_url_raw( add_query_arg( array( 'action' => 'import-xml', 'message' => $message ), $_POST['_wp_http_referer'] ) ) );
       exit;
       
     }
@@ -1297,7 +1297,7 @@ if ( ! function_exists( 'ot_import' ) ) {
       }
       
       /* redirect */
-      wp_redirect( add_query_arg( array( 'action' => 'import-settings', 'message' => $message ), $_POST['_wp_http_referer'] ) );
+      wp_redirect( esc_url_raw( add_query_arg( array( 'action' => 'import-settings', 'message' => $message ), $_POST['_wp_http_referer'] ) ) );
       exit;
       
     }
@@ -1345,7 +1345,7 @@ if ( ! function_exists( 'ot_import' ) ) {
       }
       
       /* redirect accordingly */
-      wp_redirect( add_query_arg( array( 'action' => 'import-data', 'message' => $message ), $_POST['_wp_http_referer'] ) );
+      wp_redirect( esc_url_raw( add_query_arg( array( 'action' => 'import-data', 'message' => $message ), $_POST['_wp_http_referer'] ) ) );
       exit;
       
     }
@@ -1413,7 +1413,7 @@ if ( ! function_exists( 'ot_import' ) ) {
       }
         
       /* redirect accordingly */
-      wp_redirect( add_query_arg( array( 'action' => 'import-layouts', 'message' => $message ), $_POST['_wp_http_referer'] ) );
+      wp_redirect( esc_url_raw( add_query_arg( array( 'action' => 'import-layouts', 'message' => $message ), $_POST['_wp_http_referer'] ) ) );
       exit;
       
     }
@@ -2043,7 +2043,7 @@ if ( ! function_exists( 'ot_save_settings' ) ) {
       }
       
       /* redirect */
-      wp_redirect( add_query_arg( array( 'action' => 'save-settings', 'message' => $message ), $_POST['_wp_http_referer'] ) );
+      wp_redirect( esc_url_raw( add_query_arg( array( 'action' => 'save-settings', 'message' => $message ), $_POST['_wp_http_referer'] ) ) );
       exit;
       
     }
@@ -2268,9 +2268,9 @@ if ( ! function_exists( 'ot_modify_layouts' ) ) {
       
       /* redirect */
       if ( isset( $_REQUEST['page'] ) && $_REQUEST['page'] == apply_filters( 'ot_theme_options_menu_slug', 'ot-theme-options' ) ) {
-        $query_args = add_query_arg( array( 'settings-updated' => 'layout' ), remove_query_arg( array( 'action', 'message' ), $_POST['_wp_http_referer'] ) );
+        $query_args = esc_url_raw( add_query_arg( array( 'settings-updated' => 'layout' ), remove_query_arg( array( 'action', 'message' ), $_POST['_wp_http_referer'] ) ) );
       } else {
-        $query_args = add_query_arg( array( 'action' => 'save-layouts', 'message' => $message ), $_POST['_wp_http_referer'] );
+        $query_args = esc_url_raw( add_query_arg( array( 'action' => 'save-layouts', 'message' => $message ), $_POST['_wp_http_referer'] ) );
       }
       wp_redirect( $query_args );
       exit;
@@ -5227,7 +5227,7 @@ function ot_fetch_google_fonts( $normalize = true, $force_rebuild = false ) {
     );
 
     /* Build and make the request */
-    $ot_google_fonts_query = add_query_arg( $ot_google_fonts_query_args, $ot_google_fonts_api_url );
+    $ot_google_fonts_query = esc_url_raw( add_query_arg( $ot_google_fonts_query_args, $ot_google_fonts_api_url ) );
     $ot_google_fonts_response = wp_safe_remote_get( $ot_google_fonts_query, array( 'sslverify' => false, 'timeout' => 15 ) );
 
     /* continue if we got a valid response */

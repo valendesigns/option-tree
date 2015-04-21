@@ -128,6 +128,7 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 
 = 2.5.4 =
 * Hotfix - Support for WordPress 4.2 term splitting.
+* Hotfix - Removed any potential XSS security issues with `add_query_arg` by escaping it.
 * Hotfix - Fixed an issue where Visual Composer was indirectly destroying OptionTree meta box values.
 * Hotfix - Fixed an issue where the select field value was not visible. Contributors via github @sabbirk15.
 
