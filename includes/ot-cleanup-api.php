@@ -66,9 +66,8 @@ if ( ! class_exists( 'OT_Cleanup' ) ) {
 
       $table_name = $wpdb->prefix . 'option_tree';
       $page = isset( $_GET['page'] ) ? $_GET['page'] : '';
-
       $ot_maybe_cleanup_posts = count( $wpdb->get_results( "SELECT * FROM $wpdb->posts WHERE post_type = 'option-tree' LIMIT 2" ) ) > 1;
-      $ot_maybe_cleanup_table = in_array( $table_name, $wpdb->tables() );
+      $ot_maybe_cleanup_table = $wpdb->get_var( $wpdb->prepare( "SHOW TABLES LIKE %s", $table_name ) ) == $table_name;
 
       if ( ! $ot_maybe_cleanup_posts && ! $ot_maybe_cleanup_table && $page == 'ot-cleanup' ) {
         wp_redirect( apply_filters( 'ot_theme_options_parent_slug', 'themes.php' ) . '?page=' . apply_filters( 'ot_theme_options_menu_slug', 'ot-theme-options' ) );
@@ -240,7 +239,7 @@ if ( ! class_exists( 'OT_Cleanup' ) ) {
 
             $wpdb->query( "DROP TABLE IF EXISTS $table_name" );
 
-            if ( ! in_array( $table_name, $wpdb->tables() ) ) {
+            if ( $wpdb->get_var( $wpdb->prepare( "SHOW TABLES LIKE %s", $table_name ) ) != $table_name ) {
 
               echo '<p>' . sprintf( __( 'The %s table has been successfully deleted. The page will now reload...', 'option-tree' ), '<tt>' . $table_name . '</tt>' ) . '</p>';
 

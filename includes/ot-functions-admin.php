@@ -982,7 +982,7 @@ if ( ! function_exists( 'ot_default_settings' ) ) {
       $settings = array();
       $table_name = $wpdb->prefix . 'option_tree';
       
-      if ( in_array( $table_name, $wpdb->tables() ) && $old_settings = $wpdb->get_results( "SELECT * FROM $table_name ORDER BY item_sort ASC" ) ) {
+      if ( $wpdb->get_var( $wpdb->prepare( "SHOW TABLES LIKE %s", $table_name ) ) == $table_name && $old_settings = $wpdb->get_results( "SELECT * FROM $table_name ORDER BY item_sort ASC" ) ) {
         
         foreach ( $old_settings as $setting ) {
           
