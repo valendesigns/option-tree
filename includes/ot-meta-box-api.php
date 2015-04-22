@@ -30,13 +30,21 @@ if ( ! class_exists( 'OT_Meta_Box' ) ) {
     function __construct( $meta_box ) {
       if ( ! is_admin() )
         return;
-        
+
+      global $ot_meta_boxes;
+
+      if ( ! isset( $ot_meta_boxes ) ) {
+        $ot_meta_boxes = array();
+      }
+
+      $ot_meta_boxes[] = $meta_box;
+
       $this->meta_box = $meta_box;
-      
+
       add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ) );
-      
+
       add_action( 'save_post', array( $this, 'save_meta_box' ), 1, 2 );
-      
+
     }
     
     /**
@@ -64,9 +72,9 @@ if ( ! class_exists( 'OT_Meta_Box' ) ) {
      * @since     1.0
      */
     function build_meta_box( $post, $metabox ) {
-      
+
       echo '<div class="ot-metabox-wrapper">';
-           
+
         /* Use nonce for verification */
         echo '<input type="hidden" name="' . $this->meta_box['id'] . '_nonce" value="' . wp_create_nonce( $this->meta_box['id'] ) . '" />';
         
@@ -177,7 +185,7 @@ if ( ! class_exists( 'OT_Meta_Box' ) ) {
       global $pagenow;
 
       /* don't save if $_POST is empty */
-      if ( empty( $_POST ) )
+      if ( empty( $_POST ) || ( isset( $_POST['vc_inline'] ) && $_POST['vc_inline'] == true ) )
         return $post_id;
       
       /* don't save during quick edit */
