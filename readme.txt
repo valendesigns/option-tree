@@ -3,8 +3,8 @@ Contributors: valendesigns
 Donate link: http://bit.ly/NuXI3T
 Tags: options, theme options, meta boxes
 Requires at least: 3.8
-Tested up to: 4.2-beta3
-Stable tag: 2.5.3
+Tested up to: 4.2
+Stable tag: 2.5.4
 License: GPLv3
 
 Theme Options UI Builder for WordPress. A simple way to create & save Theme Options and Meta Boxes for free or premium themes.
@@ -125,6 +125,12 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 3. Documentation
 
 == Changelog ==
+
+= 2.5.4 =
+* Hotfix - Support for WordPress 4.2 term splitting.
+* Hotfix - Removed any potential XSS security issues with `add_query_arg` by escaping it.
+* Hotfix - Fixed an issue where Visual Composer was indirectly destroying OptionTree meta box values.
+* Hotfix - Fixed an issue where the select field value was not visible. Contributors via github @sabbirk15.
 
 = 2.5.3 =
 * Hotfix - Added `inherit` fallback to the `border` option type in dynamic.css.

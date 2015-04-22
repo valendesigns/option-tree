@@ -973,15 +973,16 @@ if ( ! function_exists( 'ot_create_media_post' ) ) {
 if ( ! function_exists( 'ot_default_settings' ) ) {
 
   function ot_default_settings() {
-    global $wpdb, $table_prefix;
+    global $wpdb;
     
     if ( ! get_option( ot_settings_id() ) ) {
       
       $section_count = 0;
       $settings_count = 0;
       $settings = array();
+      $table_name = $wpdb->prefix . 'option_tree';
       
-      if ( count( $wpdb->get_results( "SHOW TABLES LIKE '{$table_prefix}option_tree'" ) ) == 1 && $old_settings = $wpdb->get_results( "SELECT * FROM {$table_prefix}option_tree ORDER BY item_sort ASC" ) ) {
+      if ( $wpdb->get_var( $wpdb->prepare( "SHOW TABLES LIKE %s", $table_name ) ) == $table_name && $old_settings = $wpdb->get_results( "SELECT * FROM $table_name ORDER BY item_sort ASC" ) ) {
         
         foreach ( $old_settings as $setting ) {
           
@@ -1275,7 +1276,7 @@ if ( ! function_exists( 'ot_import' ) ) {
       }
       
       /* redirect */
-      wp_redirect( add_query_arg( array( 'action' => 'import-xml', 'message' => $message ), $_POST['_wp_http_referer'] ) );
+      wp_redirect( esc_url_raw( add_query_arg( array( 'action' => 'import-xml', 'message' => $message ), $_POST['_wp_http_referer'] ) ) );
       exit;
       
     }
@@ -1296,7 +1297,7 @@ if ( ! function_exists( 'ot_import' ) ) {
       }
       
       /* redirect */
-      wp_redirect( add_query_arg( array( 'action' => 'import-settings', 'message' => $message ), $_POST['_wp_http_referer'] ) );
+      wp_redirect( esc_url_raw( add_query_arg( array( 'action' => 'import-settings', 'message' => $message ), $_POST['_wp_http_referer'] ) ) );
       exit;
       
     }
@@ -1344,7 +1345,7 @@ if ( ! function_exists( 'ot_import' ) ) {
       }
       
       /* redirect accordingly */
-      wp_redirect( add_query_arg( array( 'action' => 'import-data', 'message' => $message ), $_POST['_wp_http_referer'] ) );
+      wp_redirect( esc_url_raw( add_query_arg( array( 'action' => 'import-data', 'message' => $message ), $_POST['_wp_http_referer'] ) ) );
       exit;
       
     }
@@ -1412,7 +1413,7 @@ if ( ! function_exists( 'ot_import' ) ) {
       }
         
       /* redirect accordingly */
-      wp_redirect( add_query_arg( array( 'action' => 'import-layouts', 'message' => $message ), $_POST['_wp_http_referer'] ) );
+      wp_redirect( esc_url_raw( add_query_arg( array( 'action' => 'import-layouts', 'message' => $message ), $_POST['_wp_http_referer'] ) ) );
       exit;
       
     }
@@ -2042,7 +2043,7 @@ if ( ! function_exists( 'ot_save_settings' ) ) {
       }
       
       /* redirect */
-      wp_redirect( add_query_arg( array( 'action' => 'save-settings', 'message' => $message ), $_POST['_wp_http_referer'] ) );
+      wp_redirect( esc_url_raw( add_query_arg( array( 'action' => 'save-settings', 'message' => $message ), $_POST['_wp_http_referer'] ) ) );
       exit;
       
     }
@@ -2267,9 +2268,9 @@ if ( ! function_exists( 'ot_modify_layouts' ) ) {
       
       /* redirect */
       if ( isset( $_REQUEST['page'] ) && $_REQUEST['page'] == apply_filters( 'ot_theme_options_menu_slug', 'ot-theme-options' ) ) {
-        $query_args = add_query_arg( array( 'settings-updated' => 'layout' ), remove_query_arg( array( 'action', 'message' ), $_POST['_wp_http_referer'] ) );
+        $query_args = esc_url_raw( add_query_arg( array( 'settings-updated' => 'layout' ), remove_query_arg( array( 'action', 'message' ), $_POST['_wp_http_referer'] ) ) );
       } else {
-        $query_args = add_query_arg( array( 'action' => 'save-layouts', 'message' => $message ), $_POST['_wp_http_referer'] );
+        $query_args = esc_url_raw( add_query_arg( array( 'action' => 'save-layouts', 'message' => $message ), $_POST['_wp_http_referer'] ) );
       }
       wp_redirect( $query_args );
       exit;
@@ -5226,7 +5227,7 @@ function ot_fetch_google_fonts( $normalize = true, $force_rebuild = false ) {
     );
 
     /* Build and make the request */
-    $ot_google_fonts_query = add_query_arg( $ot_google_fonts_query_args, $ot_google_fonts_api_url );
+    $ot_google_fonts_query = esc_url_raw( add_query_arg( $ot_google_fonts_query_args, $ot_google_fonts_api_url ) );
     $ot_google_fonts_response = wp_safe_remote_get( $ot_google_fonts_query, array( 'sslverify' => false, 'timeout' => 15 ) );
 
     /* continue if we got a valid response */
@@ -5704,6 +5705,418 @@ if ( ! function_exists( 'ot_get_option_type_by_id' ) ) {
   }
   
 }
+
+/**
+ * Build an array of potential Theme Options that could share terms
+ *
+ * @return    array
+ *
+ * @access    private
+ * @since     2.5.4
+ */
+function _ot_settings_potential_shared_terms() {
+
+  $options      = array();
+  $settings     = get_option( ot_settings_id(), array() );
+  $option_types = array( 
+    'category-checkbox',
+    'category-select',
+    'tag-checkbox',
+    'tag-select',
+    'taxonomy-checkbox',
+    'taxonomy-select'
+  );
+
+  if ( isset( $settings['settings'] ) ) {
+
+    foreach( $settings['settings'] as $value ) {
+
+      if ( isset( $value['type'] ) ) {
+
+        if ( $value['type'] == 'list-item' && isset( $value['settings'] ) ) {
+
+          $saved = ot_get_option( $value['id'] );
+
+          foreach( $value['settings'] as $item ) {
+
+            if ( isset( $value['id'] ) && isset( $item['type'] ) && in_array( $item['type'], $option_types ) ) {
+              $sub_options = array();
+
+              foreach( $saved as $sub_key => $sub_value ) {
+                if ( isset( $sub_value[$item['id']] ) ) {
+                  $sub_options[$sub_key] = $sub_value[$item['id']];
+                }
+              }
+
+              if ( ! empty( $sub_options ) ) {
+                $options[] = array( 
+                  'id'       => $item['id'],
+                  'taxonomy' => $value['taxonomy'],
+                  'parent'   => $value['id'],
+                  'value'    => $sub_options
+                );
+              }
+            }
+
+          }
+
+        }
+
+        if ( in_array( $value['type'], $option_types ) ) {
+          $saved = ot_get_option( $value['id'] );
+          if ( ! empty( $saved ) ) {
+            $options[] = array( 
+              'id'       => $value['id'],
+              'taxonomy' => $value['taxonomy'],
+              'value'    => $saved
+            );
+          }
+        }
+
+      }
+
+    }
+
+  }
+
+  return $options;
+
+}
+
+/**
+ * Build an array of potential Meta Box options that could share terms
+ *
+ * @return    array
+ *
+ * @access    private
+ * @since     2.5.4
+ */
+function _ot_meta_box_potential_shared_terms() {
+  global $ot_meta_boxes;
+
+  $options      = array();
+  $settings     = $ot_meta_boxes;
+  $option_types = array( 
+    'category-checkbox',
+    'category-select',
+    'tag-checkbox',
+    'tag-select',
+    'taxonomy-checkbox',
+    'taxonomy-select'
+  );
+
+  foreach( $settings as $setting ) {
+
+    if ( isset( $setting['fields'] ) ) {
+
+      foreach( $setting['fields'] as $value ) {
+
+        if ( isset( $value['type'] ) ) {
+
+          if ( $value['type'] == 'list-item' && isset( $value['settings'] ) ) {
+
+            $children = array();
+
+            foreach( $value['settings'] as $item ) {
+
+              if ( isset( $value['id'] ) && isset( $item['type'] ) && in_array( $item['type'], $option_types ) ) {
+
+                $children[$value['id']][] = $item['id'];
+
+              }
+
+            }
+            
+            if ( ! empty( $children[$value['id']] ) ) {
+              $options[] = array( 
+                'id'       => $value['id'],
+                'children' => $children[$value['id']],
+                'taxonomy' => $value['taxonomy'],
+              );
+            }
+
+          }
+
+          if ( in_array( $value['type'], $option_types ) ) {
+
+            $options[] = array( 
+              'id'       => $value['id'],
+              'taxonomy' => $value['taxonomy'],
+            );
+
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+
+  return $options;
+
+}
+
+/**
+ * Update terms when a term gets split.
+ *
+ * @param     int     $term_id ID of the formerly shared term.
+ * @param     int     $new_term_id ID of the new term created for the $term_taxonomy_id.
+ * @param     int     $term_taxonomy_id ID for the term_taxonomy row affected by the split.
+ * @param     string  $taxonomy Taxonomy for the split term.
+ * @return    void
+ *
+ * @access    public
+ * @since     2.5.4
+ */
+function ot_split_shared_term( $term_id, $new_term_id, $term_taxonomy_id, $taxonomy ) {
+
+  // Process the Theme Options
+  $settings    = _ot_settings_potential_shared_terms();
+  $old_options = get_option( ot_options_id(), array() );
+  $new_options = $old_options;
+
+  // Process the saved settings
+  if ( ! empty( $settings ) && ! empty( $old_options ) ) {
+
+    // Loop over the Theme Options
+    foreach( $settings as $option ) {
+
+      if ( ! is_array( $option['taxonomy'] ) ) {
+        $option['taxonomy'] = explode( ',', $option['taxonomy'] );
+      }
+
+      if ( ! in_array( $taxonomy, $option['taxonomy'] ) ) {
+        continue;
+      }
+
+      // The option ID was found
+      if ( array_key_exists( $option['id'], $old_options ) || ( isset( $option['parent'] ) && array_key_exists( $option['parent'], $old_options ) ) ) {
+
+        // This is a list item, we have to go deeper
+        if ( isset( $option['parent'] ) ) {
+
+          // Loop over the array
+          foreach( $option['value'] as $key => $value ) {
+
+            // The value is an array of IDs
+            if ( is_array( $value ) ) {
+
+              // Loop over the sub array
+              foreach( $value as $sub_key => $sub_value ) {
+
+                if ( $sub_value == $term_id ) {
+
+                  unset( $new_options[$option['parent']][$key][$option['id']][$sub_key] );
+                  $new_options[$option['parent']][$key][$option['id']][$new_term_id] = $new_term_id;
+
+                }
+
+              }
+
+            } else if ( $value == $term_id ) {
+
+              unset( $new_options[$option['parent']][$key][$option['id']] );
+              $new_options[$option['parent']][$key][$option['id']] = $new_term_id;
+
+            }
+
+          }
+
+        } else {
+
+          // The value is an array of IDs
+          if ( is_array( $option['value'] ) ) {
+
+            // Loop over the array
+            foreach( $option['value'] as $key => $value ) {
+
+              // It's a single value, just replace it
+              if ( $value == $term_id ) {
+
+                unset( $new_options[$option['id']][$key] );
+                $new_options[$option['id']][$new_term_id] = $new_term_id;
+
+              }
+
+            }
+
+          // It's a single value, just replace it
+          } else if ( $option['value'] == $term_id ) {
+
+            $new_options[$option['id']] = $new_term_id;
+
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+
+  // Options need to be updated
+  if ( $old_options !== $new_options ) {
+    update_option( ot_options_id(), $new_options );
+  }
+
+  // Process the Meta Boxes
+  $meta_settings = _ot_meta_box_potential_shared_terms();
+  $option_types  = array( 
+    'category-checkbox',
+    'category-select',
+    'tag-checkbox',
+    'tag-select',
+    'taxonomy-checkbox',
+    'taxonomy-select'
+  );
+
+  if ( ! empty( $meta_settings ) ) {
+    $old_meta = array();
+    
+    foreach( $meta_settings as $option ) {
+
+      if ( ! is_array( $option['taxonomy'] ) ) {
+        $option['taxonomy'] = explode( ',', $option['taxonomy'] );
+      }
+      
+      if ( ! in_array( $taxonomy, $option['taxonomy'] ) ) {
+        continue;
+      }
+
+      if ( isset( $option['children'] ) ) {
+        $post_ids = get_posts( array(
+          'fields'     => 'ids',
+          'meta_key'   => $option['id'],
+        ) );
+
+        if ( $post_ids ) {
+
+          foreach( $post_ids as $post_id ) {
+
+            // Get the meta
+            $old_meta = get_post_meta( $post_id, $option['id'], true );
+            $new_meta = $old_meta;
+
+            // Has a saved value
+            if ( ! empty( $old_meta ) && is_array( $old_meta ) ) {
+
+              // Loop over the array
+              foreach( $old_meta as $key => $value ) {
+
+                foreach( $value as $sub_key => $sub_value ) {
+
+                  if ( in_array( $sub_key, $option['children'] ) ) {
+
+                    // The value is an array of IDs
+                    if ( is_array( $sub_value ) ) {
+
+                      // Loop over the array
+                      foreach( $sub_value as $sub_sub_key => $sub_sub_value ) {
+
+                        // It's a single value, just replace it
+                        if ( $sub_sub_value == $term_id ) {
+
+                          unset( $new_meta[$key][$sub_key][$sub_sub_key] );
+                          $new_meta[$key][$sub_key][$new_term_id] = $new_term_id;
+
+                        }
+
+                      }
+
+                    // It's a single value, just replace it
+                    } else if ( $sub_value == $term_id ) {
+
+                      $new_meta[$key][$sub_key] = $new_term_id;
+
+                    }
+
+                  }
+
+                }
+
+              }
+
+              // Update
+              if ( $old_meta !== $new_meta ) {
+  
+                update_post_meta( $post_id, $option['id'], $new_meta, $old_meta );
+  
+              }
+
+            }
+
+          }
+
+        }
+
+      } else {
+        $post_ids = get_posts( array(
+          'fields'     => 'ids',
+          'meta_query' => array(
+            'key'     => $option['id'],
+            'value'   => $term_id,
+            'compare' => 'IN'
+          ),
+        ) );
+
+        if ( $post_ids ) {
+
+          foreach( $post_ids as $post_id ) {
+
+            // Get the meta
+            $old_meta = get_post_meta( $post_id, $option['id'], true );
+            $new_meta = $old_meta;
+
+            // Has a saved value
+            if ( ! empty( $old_meta ) ) {
+
+              // The value is an array of IDs
+              if ( is_array( $old_meta ) ) {
+
+                // Loop over the array
+                foreach( $old_meta as $key => $value ) {
+
+                  // It's a single value, just replace it
+                  if ( $value == $term_id ) {
+
+                    unset( $new_meta[$key] );
+                    $new_meta[$new_term_id] = $new_term_id;
+
+                  }
+
+                }
+
+              // It's a single value, just replace it
+              } else if ( $old_meta == $term_id ) {
+
+                $new_meta = $new_term_id;
+
+              }
+
+              // Update
+              if ( $old_meta !== $new_meta ) {
+  
+                update_post_meta( $post_id, $option['id'], $new_meta, $old_meta );
+  
+              }
+
+            }
+
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+
+}
+add_action( 'split_shared_term', 'ot_split_shared_term', 10, 4 );
 
 /* End of file ot-functions-admin.php */
 /* Location: ./includes/ot-functions-admin.php */
