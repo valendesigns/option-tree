@@ -5750,9 +5750,10 @@ function _ot_settings_potential_shared_terms() {
 
               if ( ! empty( $sub_options ) ) {
                 $options[] = array( 
-                  'id'     => $item['id'],
-                  'parent' => $value['id'],
-                  'value'  => $sub_options
+                  'id'       => $item['id'],
+                  'taxonomy' => $value['taxonomy'],
+                  'parent'   => $value['id'],
+                  'value'    => $sub_options
                 );
               }
             }
@@ -5765,8 +5766,9 @@ function _ot_settings_potential_shared_terms() {
           $saved = ot_get_option( $value['id'] );
           if ( ! empty( $saved ) ) {
             $options[] = array( 
-              'id'     => $value['id'],
-              'value'  => $saved
+              'id'       => $value['id'],
+              'taxonomy' => $value['taxonomy'],
+              'value'    => $saved
             );
           }
         }
@@ -5829,6 +5831,7 @@ function _ot_meta_box_potential_shared_terms() {
               $options[] = array( 
                 'id'       => $value['id'],
                 'children' => $children[$value['id']],
+                'taxonomy' => $value['taxonomy'],
               );
             }
 
@@ -5837,7 +5840,8 @@ function _ot_meta_box_potential_shared_terms() {
           if ( in_array( $value['type'], $option_types ) ) {
 
             $options[] = array( 
-              'id'     => $value['id'],
+              'id'       => $value['id'],
+              'taxonomy' => $value['taxonomy'],
             );
 
           }
@@ -5878,6 +5882,14 @@ function ot_split_shared_term( $term_id, $new_term_id, $term_taxonomy_id, $taxon
 
     // Loop over the Theme Options
     foreach( $settings as $option ) {
+
+      if ( ! is_array( $option['taxonomy'] ) ) {
+        $option['taxonomy'] = explode( ',', $option['taxonomy'] );
+      }
+
+      if ( ! in_array( $taxonomy, $option['taxonomy'] ) ) {
+        continue;
+      }
 
       // The option ID was found
       if ( array_key_exists( $option['id'], $old_options ) || ( isset( $option['parent'] ) && array_key_exists( $option['parent'], $old_options ) ) ) {
@@ -5965,6 +5977,14 @@ function ot_split_shared_term( $term_id, $new_term_id, $term_taxonomy_id, $taxon
     $old_meta = array();
     
     foreach( $meta_settings as $option ) {
+
+      if ( ! is_array( $option['taxonomy'] ) ) {
+        $option['taxonomy'] = explode( ',', $option['taxonomy'] );
+      }
+      
+      if ( ! in_array( $taxonomy, $option['taxonomy'] ) ) {
+        continue;
+      }
 
       if ( isset( $option['children'] ) ) {
         $post_ids = get_posts( array(
