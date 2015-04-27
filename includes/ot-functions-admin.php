@@ -647,7 +647,7 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
       $input[0] = sanitize_text_field( $input[0] );
       
       // No value; set to empty
-      if ( empty( $input[0] ) && empty( $input[1] ) ) {
+      if ( empty( $input[0] ) && strlen( $input[0] ) == 0 && empty( $input[1] ) ) {
         $input = '';
       }
       
@@ -3507,10 +3507,11 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
 
             // Measurement
             if ( $option_type == 'measurement' ) {
-
+              $unit = ! empty( $value[1] ) ? $value[1] : 'px';
+			  
               // Set $value with measurement properties
-              if ( isset( $value[0] ) && isset( $value[1] ) )
-                $value = $value[0].$value[1];
+              if ( strlen( $value[0] ) > 0 )
+                $value = $value[0].$unit;
 
             // Border
             } else if ( $option_type == 'border' ) {
