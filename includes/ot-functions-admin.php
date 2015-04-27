@@ -658,7 +658,7 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
         if ( ! empty( $value ) && ! is_numeric( $value ) && $key !== 'unit' ) {
           $errors[] = $key;
         }
-        if ( empty( $value ) ) {
+        if ( empty( $value ) && strlen( $value ) == 0 ) {
           unset( $input[$key] );
         }
       }
@@ -3558,16 +3558,16 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
 
               $unit = ! empty( $value['unit'] ) ? $value['unit'] : 'px';
 
-              if ( ! empty( $value['top'] ) )
+              if ( strlen( $value['top'] ) > 0 )
                 $spacing[] = $value['top'].$unit;
 
-              if ( ! empty( $value['right'] ) )
+              if ( strlen( $value['right'] ) > 0 )
                 $spacing[] = $value['right'].$unit;
 
-              if ( ! empty( $value['bottom'] ) )
+              if ( strlen( $value['bottom'] ) > 0 )
                 $spacing[] = $value['bottom'].$unit;
 
-              if ( ! empty( $value['left'] ) )
+              if ( strlen( $value['left'] ) > 0 )
                 $spacing[] = $value['left'].$unit;
 
               // Set $value with spacing properties or empty string
