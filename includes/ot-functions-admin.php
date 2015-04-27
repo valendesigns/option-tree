@@ -511,7 +511,7 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
         }
         
         // Unset keys with empty values.
-        if ( empty( $value ) ) {
+        if ( empty( $value ) && strlen( $value ) == 0 ) {
           unset( $input[$key] );
         }
         
@@ -3518,7 +3518,7 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
 
               $unit = ! empty( $value['unit'] ) ? $value['unit'] : 'px';
 
-              if ( ! empty( $value['width'] ) )
+              if ( strlen( $value['width'] ) > 0 )
                 $border[] = $value['width'].$unit;
 
               if ( ! empty( $value['style'] ) )
