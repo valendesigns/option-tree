@@ -511,7 +511,7 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
         }
         
         // Unset keys with empty values.
-        if ( empty( $value ) ) {
+        if ( empty( $value ) && strlen( $value ) == 0 ) {
           unset( $input[$key] );
         }
         
@@ -543,7 +543,7 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
       
       // Unset keys with empty values.
       foreach( $input as $key => $value ) {
-        if ( empty( $value ) ) {
+        if ( empty( $value ) && strlen( $value ) == 0 ) {
           unset( $input[$key] );
         }
       }
@@ -589,7 +589,7 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
         if ( ! empty( $value ) && ! is_numeric( $value ) && $key !== 'unit' ) {
           $errors[] = $key;
         }
-        if ( empty( $value ) ) {
+        if ( empty( $value ) && strlen( $value ) == 0 ) {
           unset( $input[$key] );
         }
       }
@@ -647,7 +647,7 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
       $input[0] = sanitize_text_field( $input[0] );
       
       // No value; set to empty
-      if ( empty( $input[0] ) && empty( $input[1] ) ) {
+      if ( empty( $input[0] ) && strlen( $input[0] ) == 0 && empty( $input[1] ) ) {
         $input = '';
       }
       
@@ -658,7 +658,7 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
         if ( ! empty( $value ) && ! is_numeric( $value ) && $key !== 'unit' ) {
           $errors[] = $key;
         }
-        if ( empty( $value ) ) {
+        if ( empty( $value ) && strlen( $value ) == 0 ) {
           unset( $input[$key] );
         }
       }
@@ -3507,10 +3507,11 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
 
             // Measurement
             if ( $option_type == 'measurement' ) {
-
+              $unit = ! empty( $value[1] ) ? $value[1] : 'px';
+			  
               // Set $value with measurement properties
-              if ( isset( $value[0] ) && isset( $value[1] ) )
-                $value = $value[0].$value[1];
+              if ( isset( $value[0] ) && strlen( $value[0] ) > 0 )
+                $value = $value[0].$unit;
 
             // Border
             } else if ( $option_type == 'border' ) {
@@ -3518,7 +3519,7 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
 
               $unit = ! empty( $value['unit'] ) ? $value['unit'] : 'px';
 
-              if ( ! empty( $value['width'] ) )
+              if ( isset( $value['width'] ) && strlen( $value['width'] ) > 0 )
                 $border[] = $value['width'].$unit;
 
               if ( ! empty( $value['style'] ) )
@@ -3542,10 +3543,10 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
 
               $unit = ! empty( $value['unit'] ) ? $value['unit'] : 'px';
 
-              if ( ! empty( $value['width'] ) )
+              if ( isset( $value['width'] ) && strlen( $value['width'] ) > 0 )
                 $dimension[] = $value['width'].$unit;
 
-              if ( ! empty( $value['height'] ) )
+              if ( isset( $value['height'] ) && strlen( $value['height'] ) > 0 )
                 $dimension[] = $value['height'].$unit;
 
               // Set $value with dimension properties or empty string
@@ -3557,16 +3558,16 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
 
               $unit = ! empty( $value['unit'] ) ? $value['unit'] : 'px';
 
-              if ( ! empty( $value['top'] ) )
+              if ( isset( $value['top'] ) && strlen( $value['top'] ) > 0 )
                 $spacing[] = $value['top'].$unit;
 
-              if ( ! empty( $value['right'] ) )
+              if ( isset( $value['right'] ) && strlen( $value['right'] ) > 0 )
                 $spacing[] = $value['right'].$unit;
 
-              if ( ! empty( $value['bottom'] ) )
+              if ( isset( $value['bottom'] ) && strlen( $value['bottom'] ) > 0 )
                 $spacing[] = $value['bottom'].$unit;
 
-              if ( ! empty( $value['left'] ) )
+              if ( isset( $value['left'] ) && strlen( $value['left'] ) > 0 )
                 $spacing[] = $value['left'].$unit;
 
               // Set $value with spacing properties or empty string
