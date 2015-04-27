@@ -3510,7 +3510,7 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
               $unit = ! empty( $value[1] ) ? $value[1] : 'px';
 			  
               // Set $value with measurement properties
-              if ( strlen( $value[0] ) > 0 )
+              if ( isset( $value[0] ) && strlen( $value[0] ) > 0 )
                 $value = $value[0].$unit;
 
             // Border
@@ -3519,7 +3519,7 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
 
               $unit = ! empty( $value['unit'] ) ? $value['unit'] : 'px';
 
-              if ( strlen( $value['width'] ) > 0 )
+              if ( isset( $value['width'] ) && strlen( $value['width'] ) > 0 )
                 $border[] = $value['width'].$unit;
 
               if ( ! empty( $value['style'] ) )
@@ -3543,10 +3543,10 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
 
               $unit = ! empty( $value['unit'] ) ? $value['unit'] : 'px';
 
-              if ( strlen( $value['width'] ) > 0 )
+              if ( isset( $value['width'] ) && strlen( $value['width'] ) > 0 )
                 $dimension[] = $value['width'].$unit;
 
-              if ( strlen( $value['height'] ) > 0 )
+              if ( isset( $value['height'] ) && strlen( $value['height'] ) > 0 )
                 $dimension[] = $value['height'].$unit;
 
               // Set $value with dimension properties or empty string
@@ -3558,16 +3558,16 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
 
               $unit = ! empty( $value['unit'] ) ? $value['unit'] : 'px';
 
-              if ( strlen( $value['top'] ) > 0 )
+              if ( isset( $value['top'] ) && strlen( $value['top'] ) > 0 )
                 $spacing[] = $value['top'].$unit;
 
-              if ( strlen( $value['right'] ) > 0 )
+              if ( isset( $value['right'] ) && strlen( $value['right'] ) > 0 )
                 $spacing[] = $value['right'].$unit;
 
-              if ( strlen( $value['bottom'] ) > 0 )
+              if ( isset( $value['bottom'] ) && strlen( $value['bottom'] ) > 0 )
                 $spacing[] = $value['bottom'].$unit;
 
-              if ( strlen( $value['left'] ) > 0 )
+              if ( isset( $value['left'] ) && strlen( $value['left'] ) > 0 )
                 $spacing[] = $value['left'].$unit;
 
               // Set $value with spacing properties or empty string
