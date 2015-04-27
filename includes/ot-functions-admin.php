@@ -543,7 +543,7 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
       
       // Unset keys with empty values.
       foreach( $input as $key => $value ) {
-        if ( empty( $value ) ) {
+        if ( empty( $value ) && strlen( $value ) == 0 ) {
           unset( $input[$key] );
         }
       }
