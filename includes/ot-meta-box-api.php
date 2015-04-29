@@ -93,10 +93,11 @@ if ( ! class_exists( 'OT_Meta_Box' ) ) {
           }
           
           /* build the arguments array */
-          $_args = array(
+          $_args = apply_filters( 'ot_metabox_arguments', array(
             'type'              => $field['type'],
             'field_id'          => $field['id'],
             'field_name'        => $field['id'],
+            'field_label'       => $field['label'],
             'field_value'       => $field_value,
             'field_desc'        => isset( $field['desc'] ) ? $field['desc'] : '',
             'field_std'         => isset( $field['std'] ) ? $field['std'] : '',
@@ -152,9 +153,9 @@ if ( ! class_exists( 'OT_Meta_Box' ) ) {
             echo '<div class="format-setting-wrap">';
             
               /* don't show title with textblocks */
-              if ( $_args['type'] != 'textblock' && ! empty( $field['label'] ) ) {
+              if ( $_args['type'] != 'textblock' && ! empty( $_args['field_label'] ) ) {
                 echo '<div class="format-setting-label">';
-                  echo '<label for="' . $field['id'] . '" class="label">' . $field['label'] . '</label>';
+                  echo '<label for="' . $field['id'] . '" class="label">' . $_args['field_label'] . '</label>';
                 echo '</div>';
               }
       
