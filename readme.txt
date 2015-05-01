@@ -128,6 +128,7 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 
 = 2.5.5 =
 * Hotfix - Allow a `0` value to be saved with certain option types. Contributors via github @BassemN.
+* Hotfix - Stop media from being attached to the OptionTree post type when uploaded from the media manager or customizer. Contributors via github @earnjam, and @valendesigns.
 
 = 2.5.4 =
 * Hotfix - Support for WordPress 4.2 term splitting.

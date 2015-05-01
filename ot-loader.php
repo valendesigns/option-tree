@@ -689,7 +689,12 @@ if ( ! class_exists( 'OT_Loader' ) ) {
      * @since     2.2.0
      */
     public function shortcode( $settings, $post ) {
-  
+      global $pagenow;
+
+      if ( in_array( $pagenow, array( 'upload.php', 'customize.php' ) ) ) {
+        return $settings;
+      }
+
       // Set the OptionTree post ID
       if ( ! is_object( $post ) ) {
         $post_id = isset( $_GET['post'] ) ? $_GET['post'] : ( isset( $_GET['post_ID'] ) ? $_GET['post_ID'] : 0 );
