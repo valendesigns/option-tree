@@ -4,7 +4,7 @@ Donate link: http://bit.ly/NuXI3T
 Tags: options, theme options, meta boxes
 Requires at least: 3.8
 Tested up to: 4.2
-Stable tag: 2.5.4
+Stable tag: 2.5.5
 License: GPLv3
 
 Theme Options UI Builder for WordPress. A simple way to create & save Theme Options and Meta Boxes for free or premium themes.
@@ -125,6 +125,12 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 3. Documentation
 
 == Changelog ==
+
+= 2.5.5 =
+* Hotfix - Allow a `0` value to be saved with certain option types. Contributors via github @BassemN.
+* Hotfix - Stop media from being attached to the OptionTree post type when uploaded from the media manager or customizer. Contributors via github @earnjam, and @valendesigns.
+* Hotfix - Added filter `ot_load_dynamic_css` to explicitly turn the feature off if desired.
+* Hotfix - Stopped `dynamic.css` created with other themes from being loaded elsewhere.
 
 = 2.5.4 =
 * Hotfix - Support for WordPress 4.2 term splitting.
