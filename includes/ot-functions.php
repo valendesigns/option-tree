@@ -219,8 +219,25 @@ if ( ! function_exists( 'ot_load_dynamic_css' ) ) {
   function ot_load_dynamic_css() {
     
     /* don't load in the admin */
-    if ( is_admin() )
+    if ( is_admin() ) {
       return;
+    }
+
+    /**
+     * Filter whether or not to enqueue a `dynamic.css` file at the theme level.
+     *
+     * By filtering this to `false` OptionTree will not attempt to enqueue any CSS files.
+     *
+     * Example: add_filter( 'ot_load_dynamic_css', '__return_false' );
+     *
+     * @since 2.5.5
+     *
+     * @param bool $load_dynamic_css Default is `true`.
+     * @return bool
+     */
+    if ( false === (bool) apply_filters( 'ot_load_dynamic_css', true ) ) {
+      return;
+    }
 
     /* grab a copy of the paths */
     $ot_css_file_paths = get_option( 'ot_css_file_paths', array() );
@@ -238,8 +255,16 @@ if ( ! function_exists( 'ot_load_dynamic_css' ) ) {
         if ( '' != $path && file_exists( $path ) ) {
         
           $parts = explode( '/wp-content', $path );
-          
+
           if ( isset( $parts[1] ) ) {
+
+            $sub_parts = explode( '/', $parts[1] );
+
+            if ( isset( $sub_parts[1] ) && isset( $sub_parts[2] ) ) {
+              if ( $sub_parts[1] == 'themes' && $sub_parts[2] != get_template() ) {
+                continue;
+              }
+            }
             
             $css = set_url_scheme( WP_CONTENT_URL ) . $parts[1];
             
