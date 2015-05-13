@@ -118,7 +118,7 @@ if ( ! function_exists( 'ot_type_background' ) ) {
               $background_color = isset( $field_value['background-color'] ) ? esc_attr( $field_value['background-color'] ) : '';
               
               /* input */
-              echo '<input type="text" name="' . esc_attr( $field_name ) . '[background-color]" id="' . $field_id . '-picker" value="' . $background_color . '" class="hide-color-picker ' . esc_attr( $field_class ) . '" />';
+              echo '<input type="text" name="' . esc_attr( $field_name ) . '[background-color]" id="' . $field_id . '-picker" value="' . $background_color . '" class="hide-color-picker ot_type_colorpicker_opacity ' . esc_attr( $field_class ) . '" />';
             
             echo '</div>';
           
