@@ -61,7 +61,7 @@ if ( ! class_exists( 'OT_Post_Formats' ) ) {
       if ( ! is_admin() )
         return false;
           
-      $meta_boxes = apply_filters( 'ot_recognized_meta_boxes', array(
+      $meta_boxes = apply_filters( 'ot_recognized_post_format_meta_boxes', array(
         ot_meta_box_post_format_gallery(),
         ot_meta_box_post_format_link(),
         ot_meta_box_post_format_quote(),
