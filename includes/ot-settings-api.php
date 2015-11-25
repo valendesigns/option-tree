@@ -939,25 +939,33 @@ if ( ! class_exists( 'OT_Settings' ) ) {
           
         }
         
-        echo '<div id="setting_' . $field['id'] . '" class="' . $class . '"' . $conditions . '>';
-          
-          echo '<div class="format-setting-wrap">';
-          
-            if ( $field['args']['type'] != 'textblock' && ! empty( $field['title'] ) ) {
+        $option_html_wraps = (bool) apply_filters( 'ot_display_option_html_wraps', true, $field['id'] );
+        
+        if( $option_html_wraps ) {
             
-              echo '<div class="format-setting-label">';
+          echo '<div id="setting_' . $field['id'] . '" class="' . $class . '"' . $conditions . '>';
           
-                echo '<h3 class="label">' . $field['title'] . '</h3>';     
-            
-              echo '</div>';
-            
-            }
-      
-            call_user_func( $field['callback'], $field['args'] );
-          
+            echo '<div class="format-setting-wrap">';
+
+              if ( $field['args']['type'] != 'textblock' && ! empty( $field['title'] ) ) {
+
+                echo '<div class="format-setting-label">';
+
+                  echo '<h3 class="label">' . $field['title'] . '</h3>';     
+
+                echo '</div>';
+
+              }
+
+              call_user_func( $field['callback'], $field['args'] );
+
+            echo '</div>';
+
           echo '</div>';
-    
-        echo '</div>';
+          
+        } else {
+          call_user_func( $field['callback'], $field['args'] );
+        }
         
       }
       
