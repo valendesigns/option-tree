@@ -9,12 +9,15 @@
    * ====================== */
   var formats = "input.post-format"
     , metaboxes = [
-          '#ot-post-format-gallery'
-        , '#ot-post-format-link'
-        , '#ot-post-format-image'
-        , '#ot-post-format-quote'
-        , '#ot-post-format-video'
+          '#ot-post-format-aside'
         , '#ot-post-format-audio'
+        , '#ot-post-format-chat'
+        , '#ot-post-format-gallery'
+        , '#ot-post-format-image'
+        , '#ot-post-format-link'
+        , '#ot-post-format-quote'
+        , '#ot-post-format-status'
+        , '#ot-post-format-video'
       ]
     , ids = metaboxes.join(',')
     , insertAfter = '#titlediv'
