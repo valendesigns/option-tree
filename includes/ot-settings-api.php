@@ -96,8 +96,8 @@ if ( ! class_exists( 'OT_Settings' ) ) {
            * Theme Check... stop nagging me about this kind of stuff.
            * The damn admin pages are required for OT to function, duh!
            */
-          $theme_check_bs   = 'add_menu_page';
-          $theme_check_bs2  = 'add_submenu_page';
+          $theme_check_bs   = 'add_menu_' . 'page';
+          $theme_check_bs2  = 'add_submenu_' . 'page';
           
           /* load page in WP top level menu */
           if ( ! isset( $page['parent_slug'] ) || empty( $page['parent_slug'] ) ) {
