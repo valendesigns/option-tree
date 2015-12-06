@@ -128,10 +128,11 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 
 = 2.6.0 =
 * Fix a reflected XSS vulnerability with the `add_list_item` & `add_social_links` Ajax requests.
+* Fix the Google Fonts URL so it passed the W3 Validator. props @BassemN
+* Fix `global_admin_css` so it's only enqueued when needed.
 * Add filter `ot_recognized_post_format_meta_boxes` to support additional post formats meta boxes. props @BassemN
 * Add action `ot_do_settings_fields_before` & `ot_do_settings_fields_after`. props @BassemN, @valendesigns
 * Add Text Domain to plugin file to fully support the new translate.wordpress.org Language Packs.
-* Fix the Google Fonts URL so it passed the W3 Validator. props @BassemN
 
 = 2.5.5 =
 * Hotfix - Allow a `0` value to be saved with certain option types. Contributors via github @BassemN.
