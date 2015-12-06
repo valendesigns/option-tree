@@ -881,7 +881,11 @@ if ( ! class_exists( 'OT_Settings' ) ) {
           
           echo '<div class="inside">';
           
+            do_action( 'ot_section_top', $page, $section );
+            
             $this->do_settings_fields( $page, $section['id'] );
+            
+            do_action( 'ot_section_bottom', $page, $section );
           
           echo '</div>';
           
