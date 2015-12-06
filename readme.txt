@@ -128,6 +128,7 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 
 = 2.6.0 =
 * Add filter `ot_recognized_post_format_meta_boxes` to support additional post formats meta boxes. props @BassemN
+* Add action `ot_do_settings_fields_before` & `ot_do_settings_fields_after`. props @BassemN, @valendesigns
 * Add Text Domain to plugin file to fully support the new translate.wordpress.org Language Packs.
 * Fix the Google Fonts URL so it passed the W3 Validator. props @BassemN
 

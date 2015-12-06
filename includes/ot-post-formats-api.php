@@ -61,6 +61,14 @@ if ( ! class_exists( 'OT_Post_Formats' ) ) {
       if ( ! is_admin() )
         return false;
 
+      /**
+       * Filter the post formats meta boxes.
+       *
+       * @since 2.6.0
+       *
+       * @param array $meta_boxes The meta boxes being registered.
+       * @return array
+       */
       $meta_boxes = apply_filters( 'ot_recognized_post_format_meta_boxes', array(
         ot_meta_box_post_format_gallery(),
         ot_meta_box_post_format_link(),
