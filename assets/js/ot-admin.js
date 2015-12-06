@@ -241,7 +241,8 @@
             post_id: post_id,
             get_option: get_option,
             settings: settings,
-            type: type
+            type: type,
+            nonce: option_tree.nonce
           },
           complete: function( data ) {
             if ( type == 'choice' || type == 'list_item_setting' ) {
