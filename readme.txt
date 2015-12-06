@@ -541,7 +541,7 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 * Revert functions.load.php, will fix and update in next version
 
 = 1.1.7 =
-* Added layout (theme variation) support with save/delete/activate/import/export capabilities. Contributions form Brian of flauntbooks.com
+* Added layout (theme variation) support with save/delete/activate/import/export capabilities.
 * Allow layout change on Theme Options page.
 * Full Multisite compatibility by manually adding xml mime type for import options.
 * Replaced eregi() with preg_match() for 5.3+ compatibility.
