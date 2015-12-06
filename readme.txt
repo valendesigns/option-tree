@@ -127,7 +127,8 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 == Changelog ==
 
 = 2.6.0 =
-Add Text Domain to plugin file to fully support the new translate.wordpress.org Language Packs.
+* Add Text Domain to plugin file to fully support the new translate.wordpress.org Language Packs.
+* Fix the Google Fonts URL so it passed the W3 Validator. props @BassemN
 
 = 2.5.5 =
 * Hotfix - Allow a `0` value to be saved with certain option types. Contributors via github @BassemN.
