@@ -7,6 +7,7 @@
  * Author:      Derek Herman
  * Author URI:  http://valendesigns.com
  * License:     GPLv3
+ * Text Domain: option-tree
  */
 
 /**
