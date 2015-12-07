@@ -261,7 +261,7 @@ if ( ! function_exists( 'ot_load_dynamic_css' ) ) {
             $sub_parts = explode( '/', $parts[1] );
 
             if ( isset( $sub_parts[1] ) && isset( $sub_parts[2] ) ) {
-              if ( $sub_parts[1] == 'themes' && $sub_parts[2] != get_template() ) {
+              if ( $sub_parts[1] == 'themes' && $sub_parts[2] != get_stylesheet() ) {
                 continue;
               }
             }
