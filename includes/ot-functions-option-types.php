@@ -38,7 +38,7 @@ if ( ! function_exists( 'ot_display_by_type' ) ) {
     
     /* build the function name */
     $function_name_by_type = str_replace( '-', '_', 'ot_type_' . $args['type'] );
-    
+
     /* call the function & pass in arguments array */
     if ( function_exists( $function_name_by_type ) ) {
       call_user_func( $function_name_by_type, $args );
@@ -49,6 +49,29 @@ if ( ! function_exists( 'ot_display_by_type' ) ) {
   }
   
 }
+
+/**
+ * Hidden option type.
+ *
+ * See @ot_display_by_type to see the full list of available arguments.
+ *
+ * @param     array     An array of arguments.
+ * @return    string
+ *
+ * @access    public
+ * @since     2.5.5
+ */
+
+if( ! function_exists( 'ot_type_hidden' ) ) {
+  function ot_type_hidden($args = array()) {
+    /* turns arguments array into variables */
+    extract( $args );
+
+    /* build text input */
+    echo '<input type="hidden" class="hidden-list-item-input" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" value="' . esc_attr( $field_value ) . '" />';
+  }
+}
+
 
 /**
  * Background option type.
@@ -1464,7 +1487,7 @@ if ( ! function_exists( 'ot_type_list_item' ) ) {
       
       /* format setting inner wrapper */
       echo '<div class="format-setting-inner">';
-        
+
         /* pass the settings array arround */
         echo '<input type="hidden" name="' . esc_attr( $field_id ) . '_settings_array" id="' . esc_attr( $field_id ) . '_settings_array" value="' . ot_encode( serialize( $field_settings ) ) . '" />';
         
@@ -1478,9 +1501,8 @@ if ( ! function_exists( 'ot_type_list_item' ) ) {
           
         /* build list items */
         echo '<ul class="option-tree-setting-wrap' . ( $sortable ? ' option-tree-sortable' : '' ) .'" data-name="' . esc_attr( $field_id ) . '" data-id="' . esc_attr( $post_id ) . '" data-get-option="' . esc_attr( $get_option ) . '" data-type="' . esc_attr( $type ) . '">';
-        
+
         if ( is_array( $field_value ) && ! empty( $field_value ) ) {
-        
           foreach( $field_value as $key => $list_item ) {
             
             echo '<li class="ui-state-default list-list-item">';

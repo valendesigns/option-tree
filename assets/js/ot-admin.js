@@ -14,6 +14,7 @@
       this.init_add();
       this.init_edit();
       this.init_remove();
+      this.init_hide();
       this.init_edit_title();
       this.init_edit_id();
       this.init_activate_layout();
@@ -148,6 +149,25 @@
           }, 200 );
         }
         return false;
+      });
+    },
+    init_hide: function() {
+      $(document).on('click', '.option-tree-setting-hide', function(event) {
+        event.preventDefault();
+
+        var btn = $(this),
+            hiddenInput = btn.parents('li').find('.hidden-list-item-input'),
+            isListItemHidden = hiddenInput.val();
+
+        if( "" === isListItemHidden ) {
+          isListItemHidden = 'false';
+        }
+
+        isListItemHidden = isListItemHidden === 'false' ? 'true' : 'false';
+
+        hiddenInput.val(isListItemHidden);
+
+        btn.toggleClass('active').find('.icon').toggleClass('ot-icon-eye-slash');
       });
     },
     init_edit_title: function() {

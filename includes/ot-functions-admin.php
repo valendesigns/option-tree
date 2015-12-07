@@ -4411,20 +4411,26 @@ if ( ! function_exists( 'ot_layout_view' ) ) {
 if ( ! function_exists( 'ot_list_item_view' ) ) {
 
   function ot_list_item_view( $name, $key, $list_item = array(), $post_id = 0, $get_option = '', $settings = array(), $type = '' ) {
-    
+    var_dump($list_item);
+
     /* required title setting */
     $required_setting = array(
-      array(
-        'id'        => 'title',
-        'label'     => __( 'Title', 'option-tree' ),
-        'desc'      => '',
-        'std'       => '',
-        'type'      => 'text',
-        'rows'      => '',
-        'class'     => 'option-tree-setting-title',
-        'post_type' => '',
-        'choices'   => array()
-      )
+        array(
+            'id'        => 'is-hidden',
+            'class'     => 'option-tree-setting-hidden',
+            'type'      => 'hidden'
+        ),
+        array(
+            'id'        => 'title',
+            'label'     => __( 'Title', 'option-tree' ),
+            'desc'      => '',
+            'std'       => '',
+            'type'      => 'text',
+            'rows'      => '',
+            'class'     => 'option-tree-setting-title',
+            'post_type' => '',
+            'choices'   => array()
+        )
     );
     
     /* load the old filterable slider settings */
@@ -4443,7 +4449,9 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
     
     /* merge the two settings array */
     $settings = array_merge( $required_setting, $settings );
-    
+
+    $is_list_item_hidden = isset( $list_item['is-hidden'] ) ? $list_item['is-hidden'] === 'true' : false;
+
     echo '
     <div class="option-tree-setting">
       <div class="open">' . ( isset( $list_item['title'] ) ? esc_attr( $list_item['title'] ) : '' ) . '</div>
@@ -4451,12 +4459,15 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
         <a href="javascript:void(0);" class="option-tree-setting-edit option-tree-ui-button button left-item" title="' . __( 'Edit', 'option-tree' ) . '">
           <span class="icon ot-icon-pencil"></span>' . __( 'Edit', 'option-tree' ) . '
         </a>
+        <a href="javascript:void(0);" class="option-tree-setting-hide option-tree-ui-button button button-tertiary center-item' . ( $is_list_item_hidden ? " active" : "" ) . '" title="' . __( 'Hide', 'option-tree' ) . '">
+          <span class="icon ot-icon-eye ' . ( $is_list_item_hidden ? "ot-icon-eye-slash" : "" ) . '"></span>' . __( 'Hide', 'option-tree' ) . '
+        </a>
         <a href="javascript:void(0);" class="option-tree-setting-remove option-tree-ui-button button button-secondary light right-item" title="' . __( 'Delete', 'option-tree' ) . '">
           <span class="icon ot-icon-trash-o"></span>' . __( 'Delete', 'option-tree' ) . '
         </a>
       </div>
       <div class="option-tree-setting-body">';
-        
+
       foreach( $settings as $field ) {
         
         // Set field value

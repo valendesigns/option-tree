@@ -1653,13 +1653,22 @@
   max-width: 110px;
 }
 .option-tree-setting-edit,
-.option-tree-setting-remove {
+.option-tree-setting-remove,
+.option-tree-setting-hide {
   text-indent: -9999px;
 }
 
-/* -------------------------------------------------- 
-  :: Code formatting
-  ---------------------------------------------------*/
+.option-tree-setting-hide .icon {
+  width: 20px !important;
+}
+
+.option-tree-setting-hidden-wrap {
+  display: none;
+}
+
+  /* --------------------------------------------------
+    :: Code formatting
+    ---------------------------------------------------*/
 #option-tree-settings-api code,
 .ot-metabox-wrapper code {
   background-color: #f1f1f1;
@@ -2692,6 +2701,22 @@ select.option-tree-ui-select option {
            box-shadow: inset 0 1px 0 rgba(0,0,0,0.1);
    vertical-align: top;
 }
+
+.option-tree-ui-button.button-tertiary.active,
+.option-tree-ui-button.button-tertiary.active:hover,
+.option-tree-ui-button.button-tertiary.active:focus,
+.option-tree-ui-button.button-tertiary:active {
+  background: #DEE84B;
+  border-color: #ABAF01;
+  color: #fff;
+  text-shadow: none;
+  -webkit-box-shadow: inset 0 1px 0 rgba(214, 194, 53, 0.5), 0 1px 0 rgba(0,0,0,.15);
+  -moz-box-shadow: inset 0 1px 0 rgba(214, 194, 53, 0.5), 0 1px 0 rgba(0,0,0,.15);
+  box-shadow: inset 0 1px 0 rgba(214, 194, 53, 0.5), 0 1px 0 rgba(0,0,0,.15);
+
+   vertical-align: top;
+}
+
 .option-tree-ui-button.right {
   float: right;
 }
