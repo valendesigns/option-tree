@@ -656,7 +656,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
      * AJAX utility function for adding a new list item.
      */
     public function add_list_item() {
-    	check_ajax_referer( 'option_tree', 'nonce' );
+      check_ajax_referer( 'option_tree', 'nonce' );
       ot_list_item_view( $_REQUEST['name'], $_REQUEST['count'], array(), $_REQUEST['post_id'], $_REQUEST['get_option'], unserialize( ot_decode( $_REQUEST['settings'] ) ), $_REQUEST['type'] );
       die();
     }
