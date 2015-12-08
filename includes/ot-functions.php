@@ -62,6 +62,27 @@ if ( ! function_exists( 'ot_layouts_id' ) ) {
   
 }
 
+
+/**
+ * Get Meta box.
+ *
+ * @return    mixed
+ *
+ * @access    public
+ * @since     2.5.5
+ */
+if ( ! function_exists( 'ot_get_meta' ) ) {
+
+  function ot_get_meta( $post_id, $meta_key, $single = false ) {
+
+    //filter the meta boxes here
+
+    return get_post_meta($post_id, $meta_key, $single);
+
+  }
+
+}
+
 /**
  * Get Option.
  *
@@ -131,7 +152,24 @@ if ( ! function_exists( 'ot_echo_option' ) ) {
 if ( ! function_exists( 'ot_wpml_filter' ) ) {
 
   function ot_wpml_filter( $options, $option_id ) {
-      
+
+    //remove hidden items from an array of results
+    if( is_array( $options[$option_id] ) ) {
+      $filtered = [];
+
+      foreach( $options[$option_id] as $item ) {
+        if( 'true' !== $item[ '_ot_is_hidden_list_item' ] ) {
+          unset( $item[ '_ot_is_hidden_list_item' ] );
+
+          $filtered[] = $item;
+        }
+
+        unset( $item[ '_ot_is_hidden_list_item' ] );
+      }
+
+      $options[$option_id] = $filtered;
+    }
+
     // Return translated strings using WMPL
     if ( function_exists('icl_t') ) {
       
@@ -140,12 +178,12 @@ if ( ! function_exists( 'ot_wpml_filter' ) ) {
       if ( isset( $settings['settings'] ) ) {
       
         foreach( $settings['settings'] as $setting ) {
-          
+
           // List Item & Slider
           if ( $option_id == $setting['id'] && in_array( $setting['type'], array( 'list-item', 'slider' ) ) ) {
           
             foreach( $options[$option_id] as $key => $value ) {
-          
+
               foreach( $value as $ckey => $cvalue ) {
                 
                 $id = $option_id . '_' . $ckey . '_' . $key;
@@ -154,14 +192,14 @@ if ( ! function_exists( 'ot_wpml_filter' ) ) {
                 if ( ! empty( $_string ) ) {
                 
                   $options[$option_id][$key][$ckey] = $_string;
-                  
+
                 }
                 
               }
             
             }
           
-          // List Item & Slider
+          // Social links
           } else if ( $option_id == $setting['id'] && $setting['type'] == 'social-links' ) {
           
             foreach( $options[$option_id] as $key => $value ) {
@@ -199,9 +237,8 @@ if ( ! function_exists( 'ot_wpml_filter' ) ) {
       }
     
     }
-    
+
     return $options[$option_id];
-  
   }
 
 }

@@ -4411,12 +4411,11 @@ if ( ! function_exists( 'ot_layout_view' ) ) {
 if ( ! function_exists( 'ot_list_item_view' ) ) {
 
   function ot_list_item_view( $name, $key, $list_item = array(), $post_id = 0, $get_option = '', $settings = array(), $type = '' ) {
-    var_dump($list_item);
 
     /* required title setting */
     $required_setting = array(
         array(
-            'id'        => 'is-hidden',
+            'id'        => '_ot_is_hidden_list_item',
             'class'     => 'option-tree-setting-hidden',
             'type'      => 'hidden'
         ),
@@ -4450,7 +4449,7 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
     /* merge the two settings array */
     $settings = array_merge( $required_setting, $settings );
 
-    $is_list_item_hidden = isset( $list_item['is-hidden'] ) ? $list_item['is-hidden'] === 'true' : false;
+    $is_list_item_hidden = isset( $list_item['_ot_is_hidden_list_item'] ) ? $list_item['_ot_is_hidden_list_item'] === 'true' : false;
 
     echo '
     <div class="option-tree-setting">
@@ -4600,6 +4599,13 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
 if ( ! function_exists( 'ot_social_links_view' ) ) {
 
   function ot_social_links_view( $name, $key, $list_item = array(), $post_id = 0, $get_option = '', $settings = array(), $type = '' ) {
+    $required_setting = array(
+        array(
+            'id'        => '_ot_is_hidden_list_item',
+            'class'     => 'option-tree-setting-hidden',
+            'type'      => 'hidden'
+        ),
+    );
     
     /* if no settings array load the filterable social links settings */
     if ( empty( $settings ) ) {
@@ -4607,6 +4613,11 @@ if ( ! function_exists( 'ot_social_links_view' ) ) {
       $settings = ot_social_links_settings( $name );
       
     }
+
+    /* merge the two settings array */
+    $settings = array_merge( $required_setting, $settings );
+
+    $is_list_item_hidden = isset( $list_item['_ot_is_hidden_list_item'] ) ? $list_item['_ot_is_hidden_list_item'] === 'true' : false;
     
     echo '
     <div class="option-tree-setting">
@@ -4614,6 +4625,9 @@ if ( ! function_exists( 'ot_social_links_view' ) ) {
       <div class="button-section">
         <a href="javascript:void(0);" class="option-tree-setting-edit option-tree-ui-button button left-item" title="' . __( 'Edit', 'option-tree' ) . '">
           <span class="icon ot-icon-pencil"></span>' . __( 'Edit', 'option-tree' ) . '
+        </a>
+        <a href="javascript:void(0);" class="option-tree-setting-hide option-tree-ui-button button button-tertiary center-item' . ( $is_list_item_hidden ? " active" : "" ) . '" title="' . __( 'Hide', 'option-tree' ) . '">
+          <span class="icon ot-icon-eye ' . ( $is_list_item_hidden ? "ot-icon-eye-slash" : "" ) . '"></span>' . __( 'Hide', 'option-tree' ) . '
         </a>
         <a href="javascript:void(0);" class="option-tree-setting-remove option-tree-ui-button button button-secondary light right-item" title="' . __( 'Delete', 'option-tree' ) . '">
           <span class="icon ot-icon-trash-o"></span>' . __( 'Delete', 'option-tree' ) . '

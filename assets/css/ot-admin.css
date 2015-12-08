@@ -2714,7 +2714,17 @@ select.option-tree-ui-select option {
   -moz-box-shadow: inset 0 1px 0 rgba(214, 194, 53, 0.5), 0 1px 0 rgba(0,0,0,.15);
   box-shadow: inset 0 1px 0 rgba(214, 194, 53, 0.5), 0 1px 0 rgba(0,0,0,.15);
 
-   vertical-align: top;
+  vertical-align: top;
+}
+
+.option-tree-ui-button.button-tertiary.active,
+.option-tree-ui-button.button-tertiary.active:hover,
+.option-tree-ui-button.button-tertiary.active:focus {
+  transform: translateY(0);
+}
+
+.option-tree-ui-button.button-tertiary:active {
+  transform: translateY(1px);
 }
 
 .option-tree-ui-button.right {
