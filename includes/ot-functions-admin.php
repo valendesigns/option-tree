@@ -4413,7 +4413,7 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
   function ot_list_item_view( $name, $key, $list_item = array(), $post_id = 0, $get_option = '', $settings = array(), $type = '' ) {
 
     /* required title setting */
-    $required_setting = array(
+    $required_settings = array(
         array(
             'id'        => '_ot_is_hidden_list_item',
             'class'     => 'option-tree-setting-hidden',
@@ -4447,7 +4447,7 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
     }
     
     /* merge the two settings array */
-    $settings = array_merge( $required_setting, $settings );
+    $settings = array_merge( $required_settings, $settings );
 
     $is_list_item_hidden = isset( $list_item['_ot_is_hidden_list_item'] ) ? $list_item['_ot_is_hidden_list_item'] === 'true' : false;
 

@@ -64,8 +64,13 @@ if ( ! function_exists( 'ot_layouts_id' ) ) {
 
 
 /**
- * Get Meta box.
+ * Get meta.
  *
+ * Helper function to return the meta value. Filters the hidden list items.
+ *
+ * @param     int        $post_id    Post ID.
+ * @param     string     $meta_key   Meta key.
+ * @param     bool       $single     Whether to return only the first value of the specified $meta_key.
  * @return    mixed
  *
  * @access    public
@@ -75,9 +80,80 @@ if ( ! function_exists( 'ot_get_meta' ) ) {
 
   function ot_get_meta( $post_id, $meta_key, $single = false ) {
 
-    //filter the meta boxes here
+    $metaData = get_post_meta($post_id, $meta_key, $single);
 
-    return get_post_meta($post_id, $meta_key, $single);
+    if( ! $single ) {
+      $filteredMeta = [];
+
+      foreach( $metaData as $meta ) {
+        $filteredMeta[] = ot_remove_hidden_items( $meta );
+      }
+
+      return $filteredMeta;
+    }
+
+    return ot_remove_hidden_items( $metaData );
+
+  }
+
+}
+
+/**
+ * Echo meta.
+ *
+ * Helper function to echo the meta value. Filters the hidden list items.
+ *
+ * @param     int        $post_id    Post ID.
+ * @param     string     $meta_key   Meta key.
+ * @param     bool       $single     Whether to echo only the first value of the specified $meta_key.
+ * @return    mixed
+ *
+ * @access    public
+ * @since     2.5.5
+ */
+if ( ! function_exists( 'ot_echo_meta' ) ) {
+
+  function ot_echo_meta( $post_id, $meta_key, $single = false ) {
+
+    echo ot_get_meta( $post_id, $meta_key, $single );
+
+  }
+
+}
+
+/**
+ * Remove hidden items from an array.
+ *
+ * @param     mixed    Anything
+ * @return    mixed    If passed an array, returns a filtered array. Otherwise returns what was passed.
+ *
+ * @access    public
+ * @since     2.5.5
+ */
+if ( ! function_exists( 'ot_remove_hidden_items' ) ) {
+
+  function ot_remove_hidden_items ( $dataToFilter ) {
+
+    if( is_array( $dataToFilter ) ) {
+
+      $filtered = [];
+
+      foreach( $dataToFilter as $item ) {
+
+        if( 'true' !== $item[ '_ot_is_hidden_list_item' ] ) {
+
+          unset( $item[ '_ot_is_hidden_list_item' ] );
+
+          $filtered[] = $item;
+
+        }
+
+      }
+
+      return $filtered;
+    }
+
+    return $dataToFilter;
 
   }
 
@@ -154,23 +230,9 @@ if ( ! function_exists( 'ot_wpml_filter' ) ) {
   function ot_wpml_filter( $options, $option_id ) {
 
     //remove hidden items from an array of results
-    if( is_array( $options[$option_id] ) ) {
-      $filtered = [];
+    $options[$option_id] = ot_remove_hidden_items( $options[$option_id] );
 
-      foreach( $options[$option_id] as $item ) {
-        if( 'true' !== $item[ '_ot_is_hidden_list_item' ] ) {
-          unset( $item[ '_ot_is_hidden_list_item' ] );
-
-          $filtered[] = $item;
-        }
-
-        unset( $item[ '_ot_is_hidden_list_item' ] );
-      }
-
-      $options[$option_id] = $filtered;
-    }
-
-    // Return translated strings using WMPL
+    // Return translated strings using WPML
     if ( function_exists('icl_t') ) {
       
       $settings = get_option( ot_settings_id() );
