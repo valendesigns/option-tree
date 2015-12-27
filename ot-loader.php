@@ -91,7 +91,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       
         if ( apply_filters( 'ot_child_theme_mode', false ) == true ) {
         
-          $path = @explode( get_template(), str_replace( '\\', '/', dirname( __FILE__ ) ) );
+          $path = @explode( get_stylesheet(), str_replace( '\\', '/', dirname( __FILE__ ) ) );
           $path = ltrim( end( $path ), '/' );
           define( 'OT_LANG_DIR', trailingslashit( trailingslashit( get_stylesheet_directory() ) . $path ) . trailingslashit( 'languages' ) . 'theme-mode' );
           
