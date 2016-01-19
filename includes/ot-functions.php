@@ -326,7 +326,7 @@ if ( ! function_exists( 'ot_load_google_fonts_css' ) ) {
           if ( ! empty( $font['variants'] ) && is_array( $font['variants'] ) ) {
 
             // Variants string
-            $variants = ':' . implode( ',', $font['variants'] );
+            $variants = ':' . ( ',', $font['variants'] );
 
             // Add subsets to array
             if ( ! empty( $font['subsets'] ) && is_array( $font['subsets'] ) ) {
@@ -360,7 +360,7 @@ if ( ! function_exists( 'ot_load_google_fonts_css' ) ) {
         }
       }
 
-      wp_enqueue_style( 'ot-google-fonts', esc_url( '//fonts.googleapis.com/css?family=' . implode( '|', $families ) ) . $append, false, null );
+      wp_enqueue_style( 'ot-google-fonts', esc_url( '//fonts.googleapis.com/css?family=' . implode( '%7C', $families ) ) . $append, false, null );
     }
 
   }
