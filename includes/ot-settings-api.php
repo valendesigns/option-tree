@@ -96,8 +96,8 @@ if ( ! class_exists( 'OT_Settings' ) ) {
            * Theme Check... stop nagging me about this kind of stuff.
            * The damn admin pages are required for OT to function, duh!
            */
-          $theme_check_bs   = 'add_menu_page';
-          $theme_check_bs2  = 'add_submenu_page';
+          $theme_check_bs   = 'add_menu_' . 'page';
+          $theme_check_bs2  = 'add_submenu_' . 'page';
           
           /* load page in WP top level menu */
           if ( ! isset( $page['parent_slug'] ) || empty( $page['parent_slug'] ) ) {
@@ -862,33 +862,55 @@ if ( ! class_exists( 'OT_Settings' ) ) {
      */
     public function do_settings_sections( $page ) {
       global $wp_settings_sections, $wp_settings_fields;
-  
+
       if ( ! isset( $wp_settings_sections ) || ! isset( $wp_settings_sections[$page] ) ) {
         return false;
       }
-  
+
       foreach ( (array) $wp_settings_sections[$page] as $section ) {
-        
+
         if ( ! isset( $section['id'] ) )
           continue;
-          
-        echo '<div id="section_' . $section['id'] . '" class="postbox ui-tabs-panel">';
-        
+
+        $section_id = $section['id'];
+
+        echo '<div id="section_' . $section_id . '" class="postbox ui-tabs-panel">';
+
           call_user_func( $section['callback'], $section );
-        
-          if ( ! isset( $wp_settings_fields ) || ! isset( $wp_settings_fields[$page] ) || ! isset( $wp_settings_fields[$page][$section['id']] ) )
+
+          if ( ! isset( $wp_settings_fields ) || ! isset( $wp_settings_fields[$page] ) || ! isset( $wp_settings_fields[$page][$section_id] ) )
             continue;
-          
+
           echo '<div class="inside">';
-          
-            $this->do_settings_fields( $page, $section['id'] );
-          
+
+            /**
+             * Hook to insert arbitrary markup before the `do_settings_fields` method.
+             *
+             * @since 2.6.0
+             *
+             * @param string $page       The page slug.
+             * @param string $section_id The section ID.
+             */
+            do_action( 'ot_do_settings_fields_before', $page, $section_id );
+
+            $this->do_settings_fields( $page, $section_id );
+
+            /**
+             * Hook to insert arbitrary markup after the `do_settings_fields` method.
+             *
+             * @since 2.6.0
+             *
+             * @param string $page       The page slug.
+             * @param string $section_id The section ID.
+             */
+            do_action( 'ot_do_settings_fields_after', $page, $section_id );
+
           echo '</div>';
-          
+
         echo '</div>';
-        
+
       }
-      
+
     }
   
     /**

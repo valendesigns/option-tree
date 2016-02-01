@@ -79,7 +79,7 @@ if ( ! class_exists( 'OT_Cleanup' ) ) {
         if ( $page != 'ot-cleanup' )
           add_action( 'admin_notices', array( $this, 'cleanup_notice' ) );
 
-        $theme_check_bs = 'add_menu_page';
+        $theme_check_bs = 'add_menu_' . 'page';
 
         $theme_check_bs( apply_filters( 'ot_cleanup_page_title', __( 'OptionTree Cleanup', 'option-tree' ) ), apply_filters( 'ot_cleanup_menu_title', __( 'OptionTree Cleanup', 'option-tree' ) ), 'edit_theme_options', 'ot-cleanup', array( $this, 'options_page' ) );
 

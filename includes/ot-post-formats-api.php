@@ -38,13 +38,13 @@ if ( ! class_exists( 'OT_Post_Formats' ) ) {
      * @since   2.3.0
      */
     private function setup_actions() {
-      
+
       // Initialize the meta boxes
-      add_action( 'admin_init',                             array( $this, 'meta_boxes'                   ), 2 );
-      
+      add_action( 'admin_init', array( $this, 'meta_boxes'          ), 2 );
+
       // Setup pings for the link & quote URLs
-      add_filter( 'pre_ping',                               array( $this, 'pre_ping_post_links'      ), 10, 3 );
-  
+      add_filter( 'pre_ping',   array( $this, 'pre_ping_post_links' ), 10, 3 );
+
     }
   
     /**
@@ -56,29 +56,37 @@ if ( ! class_exists( 'OT_Post_Formats' ) ) {
      * @since     2.3.0
      */
     public function meta_boxes() {
-      
+
       // Exit if called outside of WP admin
       if ( ! is_admin() )
         return false;
-          
-      $meta_boxes = array(
+
+      /**
+       * Filter the post formats meta boxes.
+       *
+       * @since 2.6.0
+       *
+       * @param array $meta_boxes The meta boxes being registered.
+       * @return array
+       */
+      $meta_boxes = apply_filters( 'ot_recognized_post_format_meta_boxes', array(
         ot_meta_box_post_format_gallery(),
         ot_meta_box_post_format_link(),
         ot_meta_box_post_format_quote(),
         ot_meta_box_post_format_video(),
-        ot_meta_box_post_format_audio()
-      );
-      
+        ot_meta_box_post_format_audio(),
+      ) );
+
       /**
        * Register our meta boxes using the 
        * ot_register_meta_box() function.
        */
       foreach( $meta_boxes as $meta_box ) {
-      
+
         ot_register_meta_box( $meta_box );
-        
+
       }
-      
+
     }
     
     /**

@@ -261,7 +261,7 @@ if ( ! function_exists( 'ot_load_dynamic_css' ) ) {
             $sub_parts = explode( '/', $parts[1] );
 
             if ( isset( $sub_parts[1] ) && isset( $sub_parts[2] ) ) {
-              if ( $sub_parts[1] == 'themes' && $sub_parts[2] != get_template() ) {
+              if ( $sub_parts[1] == 'themes' && $sub_parts[2] != get_stylesheet() ) {
                 continue;
               }
             }
@@ -360,7 +360,7 @@ if ( ! function_exists( 'ot_load_google_fonts_css' ) ) {
         }
       }
 
-      wp_enqueue_style( 'ot-google-fonts', esc_url( '//fonts.googleapis.com/css?family=' . implode( '|', $families ) ) . $append, false, null );
+      wp_enqueue_style( 'ot-google-fonts', esc_url( '//fonts.googleapis.com/css?family=' . implode( '%7C', $families ) ) . $append, false, null );
     }
 
   }

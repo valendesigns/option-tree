@@ -7,6 +7,7 @@
  * Author:      Derek Herman
  * Author URI:  http://valendesigns.com
  * License:     GPLv3
+ * Text Domain: option-tree
  */
 
 /**
@@ -90,12 +91,14 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       
         if ( apply_filters( 'ot_child_theme_mode', false ) == true ) {
         
-          $path = ltrim( end( @explode( get_stylesheet(), str_replace( '\\', '/', dirname( __FILE__ ) ) ) ), '/' );
+          $path = @explode( get_stylesheet(), str_replace( '\\', '/', dirname( __FILE__ ) ) );
+          $path = ltrim( end( $path ), '/' );
           define( 'OT_LANG_DIR', trailingslashit( trailingslashit( get_stylesheet_directory() ) . $path ) . trailingslashit( 'languages' ) . 'theme-mode' );
           
         } else {
-        
-          $path = ltrim( end( @explode( get_template(), str_replace( '\\', '/', dirname( __FILE__ ) ) ) ), '/' );
+          
+          $path = @explode( get_template(), str_replace( '\\', '/', dirname( __FILE__ ) ) );
+          $path = ltrim( end( $path ), '/' );
           define( 'OT_LANG_DIR', trailingslashit( trailingslashit( get_template_directory() ) . $path ) . trailingslashit( 'languages' ) . 'theme-mode' );
           
         }
@@ -396,6 +399,9 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       /* Registers the Settings page */
       if ( OT_SHOW_PAGES == true ) {
         add_action( 'init', 'ot_register_settings_page' );
+
+        /* global CSS */
+        add_action( 'admin_head', array( $this, 'global_admin_css' ) );
       }
       
     }
@@ -486,9 +492,6 @@ if ( ! class_exists( 'OT_Loader' ) ) {
       
       /* create media post */
       add_action( 'admin_init', 'ot_create_media_post', 8 );
-      
-      /* global CSS */
-      add_action( 'admin_head', array( $this, 'global_admin_css' ) );
 
       /* Google Fonts front-end CSS */
       add_action( 'wp_enqueue_scripts', 'ot_load_google_fonts_css', 1 );
@@ -583,8 +586,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
           font-weight: normal;
           font-style: normal;
         }
-        #adminmenu #toplevel_page_ot-settings .menu-icon-generic div.wp-menu-image:before,
-        #option-tree-header #option-tree-logo a:before {
+        #adminmenu #toplevel_page_ot-settings .menu-icon-generic div.wp-menu-image:before {
           font: normal ' . $fontsize . '/1 "option-tree-font" !important;
           speak: none;
           padding: 6px 0;
@@ -597,14 +599,8 @@ if ( ! class_exists( 'OT_Loader' ) ) {
           -moz-transition:    all .1s ease-in-out;
           transition:         all .1s ease-in-out;
         }
-        #adminmenu #toplevel_page_ot-settings .menu-icon-generic div.wp-menu-image:before,
-        #option-tree-header #option-tree-logo a:before {
+        #adminmenu #toplevel_page_ot-settings .menu-icon-generic div.wp-menu-image:before {
           content: "\e785";
-        }
-        #option-tree-header #option-tree-logo a:before {
-          font-size: 20px !important;
-          height: 24px;
-          padding: 2px 0;
         }'  . $wp_38minus . '
       </style>
       ';
@@ -662,6 +658,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
      * AJAX utility function for adding a new list item.
      */
     public function add_list_item() {
+      check_ajax_referer( 'option_tree', 'nonce' );
       ot_list_item_view( $_REQUEST['name'], $_REQUEST['count'], array(), $_REQUEST['post_id'], $_REQUEST['get_option'], unserialize( ot_decode( $_REQUEST['settings'] ) ), $_REQUEST['type'] );
       die();
     }
@@ -670,6 +667,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
      * AJAX utility function for adding a new social link.
      */
     public function add_social_links() {
+      check_ajax_referer( 'option_tree', 'nonce' );
       ot_social_links_view( $_REQUEST['name'], $_REQUEST['count'], array(), $_REQUEST['post_id'], $_REQUEST['get_option'], unserialize( ot_decode( $_REQUEST['settings'] ) ), $_REQUEST['type'] );
       die();
     }

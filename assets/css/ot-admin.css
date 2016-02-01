@@ -1232,6 +1232,20 @@
   padding: 3px 12px 3px 13px;
   width: 20px;
 }
+#option-tree-header #option-tree-logo a:before {
+	content: "\e785";
+  font: normal 20px/1 "option-tree-font" !important;
+  speak: none;
+  padding: 2px 0;
+  height: 24px;
+  width: 20px;
+  display: inline-block;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-transition: all .1s ease-in-out;
+  -moz-transition:    all .1s ease-in-out;
+  transition:         all .1s ease-in-out;
+}
 #option-tree-header li#option-tree-logo:hover {
   background-color: #222;
   color: #0074a2;
