@@ -36,14 +36,19 @@ if ( ! function_exists( 'ot_display_by_type' ) ) {
     /* allow filters to be executed on the array */
     $args = apply_filters( 'ot_display_by_type', $args );
     
+    /* replace trace for underscore */
+    $type_underscore = str_replace( '-', '_', $args['type'] );
+
     /* build the function name */
-    $function_name_by_type = str_replace( '-', '_', 'ot_type_' . $args['type'] );
+    $function_name_by_type = "ot_type_{$type_underscore}";
+    
+    do_action( $function_name_by_type, $args );
     
     /* call the function & pass in arguments array */
     if ( function_exists( $function_name_by_type ) ) {
       call_user_func( $function_name_by_type, $args );
     } else {
-      echo '<p>' . __( 'Sorry, this function does not exist', 'option-tree' ) . '</p>';
+      echo apply_filters( "ot_type_{$type_underscore}_error", '<p>' . __( 'Sorry, this function does not exist', 'option-tree' ) . '</p>' );
     }
     
   }
