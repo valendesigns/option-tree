@@ -268,7 +268,9 @@ if ( ! class_exists( 'OT_Meta_Box' ) ) {
             }
             
             /* set up new data with validated data */
-            $new = $_POST[$field['id']];
+            /*$new = $_POST[$field['id']];*/
+            /*wp_slash added on serialize data issue fix when added text with Apostrophes like i'am so now store like i\'am*/
+            $new = wp_slash($_POST[$field['id']]);
           
           } else if ( $field['type'] == 'social-links' ) {
             
