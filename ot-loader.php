@@ -97,8 +97,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
           
         } else {
           
-          $path = @explode( get_template(), str_replace( '\\', '/', dirname( __FILE__ ) ) );
-          $path = ltrim( end( $path ), '/' );
+          $path = basename(dirname(__FILE__));
           define( 'OT_LANG_DIR', trailingslashit( trailingslashit( get_template_directory() ) . $path ) . trailingslashit( 'languages' ) . 'theme-mode' );
           
         }
