@@ -4461,7 +4461,9 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
       foreach( $settings as $field ) {
         
         // Set field value
-        $field_value = isset( $list_item[$field['id']] ) ? $list_item[$field['id']] : '';
+        /*$field_value = isset( $list_item[$field['id']] ) ? $list_item[$field['id']] : '';*/
+        /*Remove unslash when display on textarea */
+        $field_value = isset( $list_item[$field['id']] ) ? wp_unslash($list_item[$field['id']]) : '';
         
         /* set default to standard value */
         if ( isset( $field['std'] ) ) {  
