@@ -34,7 +34,7 @@ if ( class_exists( 'OT_Loader' ) && defined( 'OT_PLUGIN_MODE' ) && OT_PLUGIN_MOD
  * @author    Derek Herman <derek@valendesigns.com>
  * @copyright Copyright (c) 2013, Derek Herman
  */
-if ( ! class_exists( 'OT_Loader' ) ) {
+if ( ! class_exists( 'OT_Loader' ) && defined( 'ABSPATH' ) ) {
 
   class OT_Loader {
     
