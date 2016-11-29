@@ -3047,7 +3047,7 @@ if ( ! function_exists( 'ot_type_typography' ) ) {
           echo '<select name="' . esc_attr( $field_name ) . '[font-family]" id="' . esc_attr( $field_id ) . '-font-family" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
             echo '<option value="">font-family</option>';
             foreach ( ot_recognized_font_families( $field_id ) as $key => $value ) {
-              echo '<option value="' . esc_attr( $key ) . '" ' . selected( $font_family, $key, false ) . '>' . esc_attr( $value ) . '</option>';
+              echo '<option value="' . esc_attr( $value ) . '" ' . selected( $font_family, $key, false ) . '>' . esc_attr( $value ) . '</option>';
             }
           echo '</select>';
         }
