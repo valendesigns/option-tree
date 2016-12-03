@@ -24,6 +24,7 @@
  * @param     string      $field_class Extra CSS classes.
  * @param     array       $field_choices The array of option choices.
  * @param     array       $field_settings The array of settings for a list item.
+ * @param     array       $field_custom_fields The array of optional custom fields.
  * @return    string
  *
  * @access    public
