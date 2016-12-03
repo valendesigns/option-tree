@@ -326,7 +326,7 @@ if ( ! function_exists( 'ot_load_google_fonts_css' ) ) {
           if ( ! empty( $font['variants'] ) && is_array( $font['variants'] ) ) {
 
             // Variants string
-            $variants = ':' . implode( ',', $font['variants'] );
+            $variants = ':' . ( ',', $font['variants'] );
 
             // Add subsets to array
             if ( ! empty( $font['subsets'] ) && is_array( $font['subsets'] ) ) {
