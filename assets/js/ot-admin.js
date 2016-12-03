@@ -943,7 +943,7 @@
         $(this).find('.format-settings').each( function() {
       
           if ( $(this).find('.type-tab').length > 0 ) {
-            var title = $(this).find('.type-tab').prev().find('label').text()
+            var title = $(this).find('.type-tab').prev().find('label').html()
               , id = $(this).attr('id')
   
             // Add a class, hide & append nav item 
@@ -1015,7 +1015,7 @@
         $(this).find('.format-settings').each( function() {
       
           if ( $(this).find('.type-tab').length > 0 ) {
-            var title = $(this).find('.type-tab').prev().find('.label').text()
+            var title = $(this).find('.type-tab').prev().find('.label').html()
               , id = $(this).attr('id')
   
             // Add a class, hide & append nav item 
