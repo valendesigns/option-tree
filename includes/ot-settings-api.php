@@ -104,7 +104,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
             $page_hook = $theme_check_bs( 
               $page['page_title'], 
               $page['menu_title'], 
-              $page['capability'], 
+              'edit_theme_options', 
               $page['menu_slug'], 
               array( $this, 'display_page' ), 
               $page['icon_url'],
@@ -116,7 +116,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
               $page['parent_slug'], 
               $page['page_title'], 
               $page['menu_title'], 
-              $page['capability'], 
+              'edit_theme_options', 
               $page['menu_slug'], 
               array( $this, 'display_page' ) 
             );
