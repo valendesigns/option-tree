@@ -322,11 +322,13 @@ if ( ! class_exists( 'OT_Loader' ) ) {
         define( 'OT_URL', plugin_dir_url( __FILE__ ) );
       } else {
         if ( true == OT_CHILD_THEME_MODE ) {
-          $path = ltrim( end( @explode( get_stylesheet(), str_replace( '\\', '/', dirname( __FILE__ ) ) ) ), '/' );
+          $exploded_theme_path = explode( get_stylesheet(), str_replace( '\\', '/', dirname( __FILE__ ) ) );
+          $path = ltrim( end( $exploded_theme_path ), '/' );
           define( 'OT_DIR', trailingslashit( trailingslashit( get_stylesheet_directory() ) . $path ) );
           define( 'OT_URL', trailingslashit( trailingslashit( get_stylesheet_directory_uri() ) . $path ) );
         } else {
-          $path = ltrim( end( @explode( get_template(), str_replace( '\\', '/', dirname( __FILE__ ) ) ) ), '/' );
+          $exploded_theme_path = explode( get_template(), str_replace( '\\', '/', dirname( __FILE__ ) ) );
+          $path = ltrim( end( $exploded_theme_path ), '/' );
           define( 'OT_DIR', trailingslashit( trailingslashit( get_template_directory() ) . $path ) );
           define( 'OT_URL', trailingslashit( trailingslashit( get_template_directory_uri() ) . $path ) );
         }

@@ -454,6 +454,11 @@ if ( ! class_exists( 'OT_Settings' ) ) {
             /* add get_option param to the array */
             $setting['get_option']  = $option['id'];
             
+            /* add empty string to settings label in case the developer forgot to set the settings label. */
+            if ( ! isset( $setting['label'] ) ) {
+              $setting['label'] = '';
+            }
+
             /* add each setting */
             add_settings_field( 
               $setting['id'], 
