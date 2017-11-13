@@ -1865,8 +1865,11 @@ if ( ! function_exists( 'ot_type_post_checkbox' ) ) {
       /* format setting inner wrapper */
       echo '<div class="format-setting-inner">';
       
+        /* setup the post types */
+        $post_type = isset( $field_post_type ) ? explode( ',', $field_post_type ) : array( 'post' );
+
         /* query posts array */
-        $my_posts = get_posts( apply_filters( 'ot_type_post_checkbox_query', array( 'post_type' => array( 'post' ), 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC', 'post_status' => 'any' ), $field_id ) );
+        $my_posts = get_posts( apply_filters( 'ot_type_post_checkbox_query', array( 'post_type' =>  $post_type, 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC', 'post_status' => 'any' ), $field_id ) );
         
         /* has posts */
         if ( is_array( $my_posts ) && ! empty( $my_posts ) ) {
@@ -1922,8 +1925,11 @@ if ( ! function_exists( 'ot_type_post_select' ) ) {
         /* build page select */
         echo '<select name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" class="option-tree-ui-select ' . $field_class . '">';
         
+         /* setup the post types */
+        $post_type = isset( $field_post_type ) ? explode( ',', $field_post_type ) : array( 'post' );
+        
         /* query posts array */
-        $my_posts = get_posts( apply_filters( 'ot_type_post_select_query', array( 'post_type' => array( 'post' ), 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC', 'post_status' => 'any' ), $field_id ) );
+        $my_posts = get_posts( apply_filters( 'ot_type_post_select_query', array( 'post_type' => $post_type, 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC', 'post_status' => 'any' ), $field_id ) );
         
         /* has posts */
         if ( is_array( $my_posts ) && ! empty( $my_posts ) ) {
