@@ -326,7 +326,8 @@ if ( ! class_exists( 'OT_Loader' ) ) {
           define( 'OT_DIR', trailingslashit( trailingslashit( get_stylesheet_directory() ) . $path ) );
           define( 'OT_URL', trailingslashit( trailingslashit( get_stylesheet_directory_uri() ) . $path ) );
         } else {
-          $path = ltrim( end( @explode( get_template(), str_replace( '\\', '/', dirname( __FILE__ ) ) ) ), '/' );
+          $temp_path = @explode( get_template(), str_replace( '\\', '/', dirname( __FILE__ ) ) );
+          $path = ltrim( end( $temp_path ), '/' );
           define( 'OT_DIR', trailingslashit( trailingslashit( get_template_directory() ) . $path ) );
           define( 'OT_URL', trailingslashit( trailingslashit( get_template_directory_uri() ) . $path ) );
         }
