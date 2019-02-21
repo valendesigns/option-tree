@@ -66,7 +66,9 @@ if ( ! function_exists( 'ot_register_theme_options_page' ) ) {
       );
 
       // Filters the options.php to add the minimum user capabilities.
-      add_filter( 'option_page_capability_' . ot_options_id(), create_function( '$caps', "return '$caps';" ), 999 );
+      add_filter( 'option_page_capability_' . ot_options_id(), function( $caps ) {
+        return $caps;
+      }, 999 );
 
     }
 
