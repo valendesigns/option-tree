@@ -37,7 +37,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
 	class OT_Loader {
 
 		/**
-		 * Constructor.
+		 * Class constructor.
 		 *
 		 * This method loads other methods of the class.
 		 *
@@ -290,7 +290,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
 			}
 
 			// Include the cleanup api.
-			$files[] = 'ot-cleanup-api';
+			$files[] = 'class-ot-cleanup';
 
 			// Require the files.
 			foreach ( $files as $file ) {
