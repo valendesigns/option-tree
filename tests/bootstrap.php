@@ -92,7 +92,7 @@ tests_add_filter( 'site_option_active_sitewide_plugins', '_phpunit_filter_active
 tests_add_filter( 'option_active_plugins', '_phpunit_filter_active_plugins' );
 
 /**
- * Load the plugins.
+ * Load the plugin.
  */
 function _phpunit_load_plugin_file() {
 	global $_plugin_file;
