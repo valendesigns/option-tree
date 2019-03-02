@@ -280,7 +280,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
 
 			// Include the post formats api.
 			if ( true === OT_META_BOXES && true === OT_POST_FORMATS ) {
-				$files[] = 'ot-post-formats-api';
+				$files[] = 'class-ot-post-formats';
 			}
 
 			// Include the settings & docs pages.
