@@ -45,4 +45,9 @@
 			</property>
 		</properties>
 	</rule>
+
+	<!-- Don't complain about file names. -->
+	<rule ref="WordPress">
+		<exclude name="WordPress.Files.FileName.InvalidClassFileName"/>
+	</rule>
 </ruleset>
