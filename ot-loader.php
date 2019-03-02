@@ -46,76 +46,14 @@ if ( ! class_exists( 'OT_Loader' ) ) {
 		 */
 		public function __construct() {
 
-			// Load languages.
-			$this->load_languages();
-
 			// Load OptionTree.
 			add_action( 'after_setup_theme', array( $this, 'load_option_tree' ), 1 );
 		}
 
 		/**
-		 * Load the languages before everything else.
+		 * OptionTree loads on the 'after_setup_theme' action.
 		 *
-		 * @access private
-		 * @since  2.1.3
-		 */
-		private function load_languages() {
-
-			/**
-			 * A quick check to see if we're in plugin mode.
-			 *
-			 * @since 2.1.3
-			 */
-			define( 'OT_PLUGIN_MODE', strpos( dirname( __FILE__ ), 'plugins' . DIRECTORY_SEPARATOR . basename( dirname( __FILE__ ) ) ) !== false ? true : false );
-
-			/**
-			 * Path to the languages directory.
-			 *
-			 * This path will be relative in plugin mode and absolute in theme mode.
-			 *
-			 * @since   2.0.10
-			 * @updated 2.4.1
-			 */
-			if ( OT_PLUGIN_MODE ) {
-				define( 'OT_LANG_DIR', trailingslashit( dirname( plugin_basename( __FILE__ ) ) ) . trailingslashit( 'languages' ) );
-			} else {
-				if ( true === apply_filters( 'ot_child_theme_mode', false ) ) {
-					$path = @explode( get_stylesheet(), str_replace( '\\', '/', dirname( __FILE__ ) ) );
-					$path = ltrim( end( $path ), '/' );
-					define( 'OT_LANG_DIR', trailingslashit( trailingslashit( get_stylesheet_directory() ) . $path ) . trailingslashit( 'languages' ) . 'theme-mode' );
-				} else {
-					$path = @explode( get_template(), str_replace( '\\', '/', dirname( __FILE__ ) ) );
-					$path = ltrim( end( $path ), '/' );
-					define( 'OT_LANG_DIR', trailingslashit( trailingslashit( get_template_directory() ) . $path ) . trailingslashit( 'languages' ) . 'theme-mode' );
-				}
-			}
-
-			// Load the text domain.
-			if ( OT_PLUGIN_MODE ) {
-				add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
-			} else {
-				add_action( 'after_setup_theme', array( $this, 'load_textdomain' ) );
-			}
-		}
-
-		/**
-		 * Load the text domain.
-		 *
-		 * @access private
-		 * @since  2.0
-		 */
-		public function load_textdomain() {
-
-			if ( OT_PLUGIN_MODE ) {
-				load_plugin_textdomain( 'option-tree', false, OT_LANG_DIR );
-			} else {
-				load_theme_textdomain( 'option-tree', OT_LANG_DIR );
-			}
-		}
-
-		/**
-		 * Load OptionTree on the 'after_setup_theme' action. Then filters will
-		 * be available to the theme, and not only when in Theme Mode.
+		 * @todo Load immediately.
 		 *
 		 * @access public
 		 * @since 2.1.2
@@ -290,11 +228,11 @@ if ( ! class_exists( 'OT_Loader' ) ) {
 				define( 'OT_URL', plugin_dir_url( __FILE__ ) );
 			} else {
 				if ( true === OT_CHILD_THEME_MODE ) {
-					$path = ltrim( end( @explode( get_stylesheet(), str_replace( '\\', '/', dirname( __FILE__ ) ) ) ), '/' );
+					$path = ltrim( end( explode( get_stylesheet(), str_replace( '\\', '/', dirname( __FILE__ ) ) ) ), '/' );
 					define( 'OT_DIR', trailingslashit( trailingslashit( get_stylesheet_directory() ) . $path ) );
 					define( 'OT_URL', trailingslashit( trailingslashit( get_stylesheet_directory_uri() ) . $path ) );
 				} else {
-					$path = ltrim( end( @explode( get_template(), str_replace( '\\', '/', dirname( __FILE__ ) ) ) ), '/' );
+					$path = ltrim( end( explode( get_template(), str_replace( '\\', '/', dirname( __FILE__ ) ) ) ), '/' );
 					define( 'OT_DIR', trailingslashit( trailingslashit( get_template_directory() ) . $path ) );
 					define( 'OT_URL', trailingslashit( trailingslashit( get_template_directory_uri() ) . $path ) );
 				}
@@ -518,15 +456,15 @@ if ( ! class_exists( 'OT_Loader' ) ) {
 		 * Adds CSS for the menu icon.
 		 */
 		public function global_admin_css() {
-			echo '
+			?>
 <style>
 	@font-face {
 		font-family: "option-tree-font";
-		src:url("' . OT_URL . 'assets/fonts/option-tree-font.eot");
-		src:url("' . OT_URL . 'assets/fonts/option-tree-font.eot?#iefix") format("embedded-opentype"),
-			url("' . OT_URL . 'assets/fonts/option-tree-font.woff") format("woff"),
-			url("' . OT_URL . 'assets/fonts/option-tree-font.ttf") format("truetype"),
-			url("' . OT_URL . 'assets/fonts/option-tree-font.svg#option-tree-font") format("svg");
+		src:url("<?php echo esc_url_raw( OT_URL ); ?>assets/fonts/option-tree-font.eot");
+		src:url("<?php echo esc_url_raw( OT_URL ); ?>assets/fonts/option-tree-font.eot?#iefix") format("embedded-opentype"),
+			url("<?php echo esc_url_raw( OT_URL ); ?>assets/fonts/option-tree-font.woff") format("woff"),
+			url("<?php echo esc_url_raw( OT_URL ); ?>assets/fonts/option-tree-font.ttf") format("truetype"),
+			url("<?php echo esc_url_raw( OT_URL ); ?>assets/fonts/option-tree-font.svg#option-tree-font") format("svg");
 		font-weight: normal;
 		font-style: normal;
 	}
@@ -546,55 +484,90 @@ if ( ! class_exists( 'OT_Loader' ) ) {
 	#adminmenu #toplevel_page_ot-settings .menu-icon-generic div.wp-menu-image:before {
 		content: "\e785";
 	}
-</style>';
+</style>
+			<?php
 		}
 
 		/**
 		 * AJAX utility function for adding a new section.
 		 */
 		public function add_section() {
-			echo ot_sections_view( ot_settings_id() . '[sections]', $_REQUEST['count'] );
-			die();
+			check_ajax_referer( 'option_tree', 'nonce' );
+
+			$count  = isset( $_REQUEST['count'] ) ? absint( $_REQUEST['count'] ) : 0;
+			$output = ot_sections_view( ot_settings_id() . '[sections]', $count );
+
+			echo $output; // phpcs:ignore
+			wp_die();
 		}
 
 		/**
 		 * AJAX utility function for adding a new setting.
 		 */
 		public function add_setting() {
-			echo ot_settings_view( $_REQUEST['name'], $_REQUEST['count'] );
-			die();
+			check_ajax_referer( 'option_tree', 'nonce' );
+
+			$name   = isset( $_REQUEST['name'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['name'] ) ) : '';
+			$count  = isset( $_REQUEST['count'] ) ? absint( $_REQUEST['count'] ) : 0;
+			$output = ot_settings_view( $name, $count );
+
+			echo $output; // phpcs:ignore
+			wp_die();
 		}
 
 		/**
 		 * AJAX utility function for adding a new list item setting.
 		 */
 		public function add_list_item_setting() {
-			echo ot_settings_view( $_REQUEST['name'] . '[settings]', $_REQUEST['count'] );
-			die();
+			check_ajax_referer( 'option_tree', 'nonce' );
+
+			$name   = isset( $_REQUEST['name'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['name'] ) ) : '';
+			$count  = isset( $_REQUEST['count'] ) ? absint( $_REQUEST['count'] ) : 0;
+			$output = ot_settings_view( $name . '[settings]', $count );
+
+			echo $output; // phpcs:ignore
+			wp_die();
 		}
 
 		/**
 		 * AJAX utility function for adding new contextual help content.
 		 */
 		public function add_the_contextual_help() {
-			echo ot_contextual_help_view( $_REQUEST['name'], $_REQUEST['count'] );
-			die();
+			check_ajax_referer( 'option_tree', 'nonce' );
+
+			$name   = isset( $_REQUEST['name'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['name'] ) ) : '';
+			$count  = isset( $_REQUEST['count'] ) ? absint( $_REQUEST['count'] ) : 0;
+			$output = ot_contextual_help_view( $name, $count );
+
+			echo $output; // phpcs:ignore
+			wp_die();
 		}
 
 		/**
 		 * AJAX utility function for adding a new choice.
 		 */
 		public function add_choice() {
-			echo ot_choices_view( $_REQUEST['name'], $_REQUEST['count'] );
-			die();
+			check_ajax_referer( 'option_tree', 'nonce' );
+
+			$name   = isset( $_REQUEST['name'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['name'] ) ) : '';
+			$count  = isset( $_REQUEST['count'] ) ? absint( $_REQUEST['count'] ) : 0;
+			$output = ot_choices_view( $name, $count );
+
+			echo $output; // phpcs:ignore
+			wp_die();
 		}
 
 		/**
 		 * AJAX utility function for adding a new layout.
 		 */
 		public function add_layout() {
-			echo ot_layout_view( $_REQUEST['count'] );
-			die();
+			check_ajax_referer( 'option_tree', 'nonce' );
+
+			$count  = isset( $_REQUEST['count'] ) ? absint( $_REQUEST['count'] ) : 0;
+			$output = ot_layout_view( $count );
+
+			echo $output; // phpcs:ignore
+			wp_die();
 		}
 
 		/**
@@ -602,8 +575,16 @@ if ( ! class_exists( 'OT_Loader' ) ) {
 		 */
 		public function add_list_item() {
 			check_ajax_referer( 'option_tree', 'nonce' );
-			ot_list_item_view( $_REQUEST['name'], $_REQUEST['count'], array(), $_REQUEST['post_id'], $_REQUEST['get_option'], unserialize( ot_decode( $_REQUEST['settings'] ) ), $_REQUEST['type'] );
-			die();
+
+			$name       = isset( $_REQUEST['name'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['name'] ) ) : '';
+			$count      = isset( $_REQUEST['count'] ) ? absint( $_REQUEST['count'] ) : 0;
+			$post_id    = isset( $_REQUEST['post_id'] ) ? absint( $_REQUEST['post_id'] ) : 0;
+			$get_option = isset( $_REQUEST['get_option'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['get_option'] ) ) : '';
+			$type       = isset( $_REQUEST['type'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['type'] ) ) : '';
+			$settings   = isset( $_REQUEST['settings'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['settings'] ) ) : 'a:0:{}';
+
+			ot_list_item_view( $name, $count, array(), $post_id, $get_option, unserialize( ot_decode( $settings ) ), $type ); // phpcs:ignore
+			wp_die();
 		}
 
 		/**
@@ -611,8 +592,16 @@ if ( ! class_exists( 'OT_Loader' ) ) {
 		 */
 		public function add_social_links() {
 			check_ajax_referer( 'option_tree', 'nonce' );
-			ot_social_links_view( $_REQUEST['name'], $_REQUEST['count'], array(), $_REQUEST['post_id'], $_REQUEST['get_option'], unserialize( ot_decode( $_REQUEST['settings'] ) ), $_REQUEST['type'] );
-			die();
+
+			$name       = isset( $_REQUEST['name'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['name'] ) ) : '';
+			$count      = isset( $_REQUEST['count'] ) ? absint( $_REQUEST['count'] ) : 0;
+			$post_id    = isset( $_REQUEST['post_id'] ) ? absint( $_REQUEST['post_id'] ) : 0;
+			$get_option = isset( $_REQUEST['get_option'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['get_option'] ) ) : '';
+			$type       = isset( $_REQUEST['type'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['type'] ) ) : '';
+			$settings   = isset( $_REQUEST['settings'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['settings'] ) ) : 'a:0:{}';
+
+			ot_social_links_view( $name, $count, array(), $post_id, $get_option, unserialize( ot_decode( $settings ) ), $type ); // phpcs:ignore
+			wp_die();
 		}
 
 		/**
@@ -638,7 +627,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
 
 			// Set the OptionTree post ID.
 			if ( ! is_object( $post ) ) {
-				$post_id = isset( $_GET['post'] ) ? $_GET['post'] : ( isset( $_GET['post_ID'] ) ? $_GET['post_ID'] : 0 );
+				$post_id = isset( $_GET['post'] ) ? absint( $_GET['post'] ) : ( isset( $_GET['post_ID'] ) ? absint( $_GET['post_ID'] ) : 0 ); // phpcs:ignore
 				if ( 0 >= $post_id && function_exists( 'ot_get_media_post_ID' ) ) {
 					$post_id = ot_get_media_post_ID();
 				}
@@ -664,12 +653,14 @@ if ( ! class_exists( 'OT_Loader' ) ) {
 		 * @since  2.2.0
 		 */
 		public function ajax_gallery_update() {
+			check_ajax_referer( 'option_tree', 'nonce' );
 
-			if ( ! empty( $_POST['ids'] ) ) {
+			if ( ! empty( $_POST['ids'] ) && is_array( $_POST['ids'] ) ) {
 
 				$html = '';
+				$ids  = array_filter( $_POST['ids'], 'absint' ); // phpcs:ignore
 
-				foreach ( $_POST['ids'] as $id ) {
+				foreach ( $ids as $id ) {
 
 					$thumbnail = wp_get_attachment_image_src( $id, 'thumbnail' );
 
@@ -677,8 +668,9 @@ if ( ! class_exists( 'OT_Loader' ) ) {
 				}
 
 				echo $html; // phpcs:ignore
-				exit();
 			}
+
+			wp_die();
 		}
 
 		/**
@@ -688,19 +680,25 @@ if ( ! class_exists( 'OT_Loader' ) ) {
 		 * @since  2.5.0
 		 */
 		public function retrieve_google_font() {
+			check_ajax_referer( 'option_tree', 'nonce' );
 
 			if ( isset( $_POST['field_id'], $_POST['family'] ) ) {
 
 				ot_fetch_google_fonts();
 
-				echo wp_json_encode(
+				$field_id = isset( $_POST['field_id'] ) ? sanitize_text_field( wp_unslash( $_POST['field_id'] ) ) : '';
+				$family   = isset( $_POST['family'] ) ? sanitize_text_field( wp_unslash( $_POST['family'] ) ) : '';
+				$html     = wp_json_encode(
 					array(
-						'variants' => ot_recognized_google_font_variants( $_POST['field_id'], $_POST['family'] ),
-						'subsets'  => ot_recognized_google_font_subsets( $_POST['field_id'], $_POST['family'] ),
+						'variants' => ot_recognized_google_font_variants( $field_id, $family ),
+						'subsets'  => ot_recognized_google_font_subsets( $field_id, $family ),
 					)
 				);
-				exit();
+
+				echo $html; // phpcs:ignore
 			}
+
+			wp_die();
 		}
 
 		/**

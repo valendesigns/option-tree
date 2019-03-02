@@ -5,5 +5,6 @@
 		"**/*.jsx",
 		"**/node_modules/**",
 		"**/vendor/**"
-	]
+	],
+	"requireCamelCaseOrUpperCaseIdentifiers": true
 }

@@ -39,8 +39,10 @@ if ( ! function_exists( 'ot_register_theme_options_page' ) ) {
     
     /* build the Theme Options */
     if ( function_exists( 'ot_register_settings' ) && OT_USE_THEME_OPTIONS ) {
-      
-      ot_register_settings( array(
+
+    	$caps = apply_filters( 'ot_theme_options_capability', 'edit_theme_options' );
+
+    	ot_register_settings( array(
           array(
             'id'                  => ot_options_id(),
             'pages'               => array( 
@@ -49,7 +51,7 @@ if ( ! function_exists( 'ot_register_theme_options_page' ) ) {
                 'parent_slug'     => apply_filters( 'ot_theme_options_parent_slug', 'themes.php' ),
                 'page_title'      => apply_filters( 'ot_theme_options_page_title', __( 'Theme Options', 'option-tree' ) ),
                 'menu_title'      => apply_filters( 'ot_theme_options_menu_title', __( 'Theme Options', 'option-tree' ) ),
-                'capability'      => $caps = apply_filters( 'ot_theme_options_capability', 'edit_theme_options' ),
+                'capability'      => $caps,
                 'menu_slug'       => apply_filters( 'ot_theme_options_menu_slug', 'ot-theme-options' ),
                 'icon_url'        => apply_filters( 'ot_theme_options_icon_url', null ),
                 'position'        => apply_filters( 'ot_theme_options_position', null ),
@@ -66,7 +68,7 @@ if ( ! function_exists( 'ot_register_theme_options_page' ) ) {
       );
       
       // Filters the options.php to add the minimum user capabilities.
-      add_filter( 'option_page_capability_' . ot_options_id(), create_function( '$caps', "return '$caps';" ), 999 );
+      add_filter( 'option_page_capability_' . ot_options_id(), function() use ( $caps ) { return $caps; }, 999 );
     
     }
   
@@ -5213,9 +5215,13 @@ function ot_fetch_google_fonts( $normalize = true, $force_rebuild = false ) {
 
     $ot_google_fonts = array();
 
-    /* API url and key */
+    // API url and key.
     $ot_google_fonts_api_url = apply_filters( 'ot_google_fonts_api_url', 'https://www.googleapis.com/webfonts/v1/webfonts' );
-    $ot_google_fonts_api_key = apply_filters( 'ot_google_fonts_api_key', 'AIzaSyB8G-4UtQr9fhDYTiNrDP40Y5GYQQKrNWI' );
+    $ot_google_fonts_api_key = apply_filters( 'ot_google_fonts_api_key', false );
+
+    if ( false === $ot_google_fonts_api_key ) {
+    	return array();
+    }
 
     /* API arguments */
     $ot_google_fonts_fields = apply_filters( 'ot_google_fonts_fields', array( 'family', 'variants', 'subsets' ) );
@@ -5223,9 +5229,9 @@ function ot_fetch_google_fonts( $normalize = true, $force_rebuild = false ) {
 
     /* Initiate API request */
     $ot_google_fonts_query_args = array(
-      'key'    => $ot_google_fonts_api_key, 
-      'fields' => 'items(' . implode( ',', $ot_google_fonts_fields ) . ')', 
-      'sort'   => $ot_google_fonts_sort
+      'key'    => $ot_google_fonts_api_key,
+      'fields' => 'items(' . implode( ',', $ot_google_fonts_fields ) . ')',
+      'sort'   => $ot_google_fonts_sort,
     );
 
     /* Build and make the request */
