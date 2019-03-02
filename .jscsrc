@@ -6,5 +6,5 @@
 		"**/node_modules/**",
 		"**/vendor/**"
 	],
-	"requireCamelCaseOrUpperCaseIdentifiers": true
+	"requireCamelCaseOrUpperCaseIdentifiers": false
 }
