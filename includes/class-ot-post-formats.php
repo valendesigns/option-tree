@@ -2,7 +2,7 @@
 /**
  * OptionTree Post Formats.
  *
- * @package   OptionTree
+ * @package OptionTree
  */
 
 if ( ! defined( 'OT_VERSION' ) ) {

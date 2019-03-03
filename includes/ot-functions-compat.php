@@ -1,6 +1,6 @@
 <?php
 /**
- * OptionTree compatibility functions.
+ * OptionTree Compatibility Functions.
  *
  * @package OptionTree
  */

@@ -1,6 +1,6 @@
 <?php
 /**
- * OptionTree deprecated functions.
+ * OptionTree Deprecated Functions.
  *
  * @package OptionTree
  */

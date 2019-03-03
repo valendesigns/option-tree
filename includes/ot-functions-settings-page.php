@@ -1,6 +1,6 @@
 <?php
 /**
- * OptionTree settings page functions.
+ * OptionTree Settings Page Functions.
  *
  * @package OptionTree
  */
