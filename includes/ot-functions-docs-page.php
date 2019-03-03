@@ -644,7 +644,7 @@ if ( ! function_exists( 'ot_type_examples' ) ) {
 		echo '<h4>' . esc_html__( 'Array Examples', 'option-tree' ) . ':</h4>';
 
 		/* translators: %1$s: option id, %2$s: variable name, %3$s: function name */
-		$string = esc_html__( 'Assigns the value of  to the variable . It then echos an unordered list of links (navigation) using .', 'option-tree' );
+		$string = esc_html__( 'Assigns the value of %1$s to the variable %2$s. It then echos an unordered list of links (navigation) using %3$s.', 'option-tree' );
 		echo '<p>' . sprintf( $string, '<code>navigation_ids</code>', '<code>$ids</code>', '<code>wp_list_pages()</code>' ) . '</p>'; // phpcs:ignore
 
 		echo '<pre><code>if ( function_exists( \'ot_get_option\' ) ) {
@@ -667,7 +667,7 @@ if ( ! function_exists( 'ot_type_examples' ) ) {
 
 		/* translators: %s: option type name */
 		$string = esc_html__( 'The next two examples demonstrate how to use the %s option type. The Measurement option type is an array with two key/value pairs. The first is the value of measurement and the second is the unit of measurement.', 'option-tree' );
-		echo '<p>' . sprintf( $string. '<strong>' . esc_html__( 'Measurement', 'option-tree' ) . '</strong>' ) . '</p>'; // phpcs:ignore
+		echo '<p>' . sprintf( $string, '<strong>' . esc_html__( 'Measurement', 'option-tree' ) . '</strong>' ) . '</p>'; // phpcs:ignore
 
 		echo '<pre><code>if ( function_exists( \'ot_get_option\' ) ) {
   /* get the array */
