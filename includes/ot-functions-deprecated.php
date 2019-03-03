@@ -26,7 +26,7 @@ if ( ! function_exists( 'get_option_tree' ) ) {
 	 * @updated    2.0
 	 * @deprecated 2.0
 	 */
-	function get_option_tree( $item_id = '', $options = '', $echo = false, $is_array = false, $offset = -1 ) {
+	function get_option_tree( $item_id = '', $options = array(), $echo = false, $is_array = false, $offset = -1 ) {
 
 		// Load saved options.
 		if ( ! $options ) {
