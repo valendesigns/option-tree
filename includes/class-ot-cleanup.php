@@ -1,6 +1,6 @@
 <?php
 /**
- * OptionTree Cleanup API
+ * OptionTree Cleanup.
  *
  * @package OptionTree
  */
@@ -12,7 +12,7 @@ if ( ! defined( 'OT_VERSION' ) ) {
 if ( ! class_exists( 'OT_Cleanup' ) ) {
 
 	/**
-	 * OptionTree Cleanup API class.
+	 * OptionTree Cleanup class.
 	 *
 	 * This class loads all the OptionTree Cleanup methods and helpers.
 	 */
