@@ -525,7 +525,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
 		 */
 		public function initialize_settings() {
 
-			// :oop through options.
+			// Loop through options.
 			foreach ( (array) $this->options as $option ) {
 
 				// Skip if option is already set.
