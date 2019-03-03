@@ -270,7 +270,7 @@ if ( ! class_exists( 'OT_Loader' ) ) {
 				'ot-functions-admin',
 				'ot-functions-option-types',
 				'ot-functions-compat',
-				'ot-settings-api',
+				'class-ot-settings',
 			);
 
 			// Include the meta box api.
