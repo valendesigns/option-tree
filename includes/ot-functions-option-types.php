@@ -30,13 +30,17 @@ if ( ! function_exists( 'ot_display_by_type' ) ) {
 	 *     @var array  $field_choices The array of option choices.
 	 *     @var array  $field_settings The array of settings for a list item.
 	 *
-	 * @access    public
-	 * @since     2.0
+	 * @access public
+	 * @since  2.0
 	 */
 	function ot_display_by_type( $args = array() ) {
 
 		// Allow filters to be executed on the array.
 		$args = apply_filters( 'ot_display_by_type', $args );
+
+		if ( empty( $args['type'] ) ) {
+			return;
+		}
 
 		// Build the function name.
 		$function_name_by_type = str_replace( '-', '_', 'ot_type_' . $args['type'] );
