@@ -2369,7 +2369,7 @@ if ( ! function_exists( 'ot_type_social_links' ) ) {
 			foreach ( $field_value as $key => $link ) {
 
 				echo '<li class="ui-state-default list-list-item">';
-				ot_social_links_view( $field_id, $key, $link, $post_id, $get_option, $field_settings, $type );
+				ot_social_links_view( $field_id, $key, $link, $post_id, $get_option, $field_settings );
 				echo '</li>';
 			}
 		}
