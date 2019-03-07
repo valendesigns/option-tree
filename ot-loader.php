@@ -20,13 +20,10 @@ if ( class_exists( 'OT_Loader' ) && defined( 'OT_PLUGIN_MODE' ) && true === OT_P
 	 * Forces Plugin Mode when OptionTree is already loaded and displays an admin notice.
 	 */
 	function ot_conflict_notice() {
-
 		echo '<div class="error"><p>' . esc_html__( 'OptionTree is installed as a plugin and also embedded in your current theme. Please deactivate the plugin to load the theme dependent version of OptionTree, and remove this warning.', 'option-tree' ) . '</p></div>';
-
 	}
 
 	add_action( 'admin_notices', 'ot_conflict_notice' );
-
 }
 
 if ( ! class_exists( 'OT_Loader' ) ) {
@@ -372,34 +369,34 @@ if ( ! class_exists( 'OT_Loader' ) ) {
 			// Adds the Theme Option page to the admin bar.
 			add_action( 'admin_bar_menu', 'ot_register_theme_options_admin_bar_menu', 999 );
 
-			// prepares the after save do_action.
+			// Prepares the after save do_action.
 			add_action( 'admin_init', 'ot_after_theme_options_save', 1 );
 
 			// default settings.
 			add_action( 'admin_init', 'ot_default_settings', 2 );
 
-			// import.
+			// Import.
 			add_action( 'admin_init', 'ot_import', 4 );
 
-			// export.
+			// Export.
 			add_action( 'admin_init', 'ot_export', 5 );
 
-			// save settings.
+			// Save settings.
 			add_action( 'admin_init', 'ot_save_settings', 6 );
 
-			// save layouts.
+			// Save layouts.
 			add_action( 'admin_init', 'ot_modify_layouts', 7 );
 
-			// create media post.
+			// Create media post.
 			add_action( 'admin_init', 'ot_create_media_post', 8 );
 
 			// Google Fonts front-end CSS.
 			add_action( 'wp_enqueue_scripts', 'ot_load_google_fonts_css', 1 );
 
-			// dynamic front-end CSS.
+			// Dynamic front-end CSS.
 			add_action( 'wp_enqueue_scripts', 'ot_load_dynamic_css', 999 );
 
-			// insert theme CSS dynamically.
+			// Insert theme CSS dynamically.
 			add_action( 'ot_after_theme_options_save', 'ot_save_css' );
 
 			// AJAX call to create a new section.
@@ -750,5 +747,5 @@ if ( ! class_exists( 'OT_Loader' ) ) {
 	 *
 	 * @since 2.0
 	 */
-	$ot_loader = new OT_Loader();
+	new OT_Loader();
 }
