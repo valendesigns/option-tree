@@ -775,7 +775,7 @@ if ( ! function_exists( 'ot_type_custom_post_type_checkbox' ) ) {
 		// Has posts.
 		if ( is_array( $my_posts ) && ! empty( $my_posts ) ) {
 			foreach ( $my_posts as $my_post ) {
-				$post_title = ! emoty( $my_post->post_title ) ? $my_post->post_title : 'Untitled';
+				$post_title = ! empty( $my_post->post_title ) ? $my_post->post_title : 'Untitled';
 				echo '<p>';
 				echo '<input type="checkbox" name="' . esc_attr( $field_name ) . '[' . esc_attr( $my_post->ID ) . ']" id="' . esc_attr( $field_id ) . '-' . esc_attr( $my_post->ID ) . '" value="' . esc_attr( $my_post->ID ) . '" ' . ( isset( $field_value[ $my_post->ID ] ) ? checked( $field_value[ $my_post->ID ], $my_post->ID, false ) : '' ) . ' class="option-tree-ui-checkbox ' . esc_attr( $field_class ) . '" />';
 				echo '<label for="' . esc_attr( $field_id ) . '-' . esc_attr( $my_post->ID ) . '">' . esc_html( $post_title ) . '</label>';
@@ -3137,7 +3137,7 @@ if ( ! function_exists( 'ot_type_upload' ) ) {
 		echo '<input type="text" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" value="' . esc_attr( $field_value ) . '" class="widefat option-tree-ui-upload-input ' . esc_attr( $field_class ) . '" />';
 
 		// Add media button.
-		echo '<a href="javascript:void(0);" class="ot_upload_media option-tree-ui-button button button-primary light" rel="' . esc_att( $post_id ) . '" title="' . esc_html__( 'Add Media', 'option-tree' ) . '"><span class="icon ot-icon-plus-circle"></span>' . esc_html__( 'Add Media', 'option-tree' ) . '</a>'; // phpcs:ignore
+		echo '<a href="javascript:void(0);" class="ot_upload_media option-tree-ui-button button button-primary light" rel="' . esc_attr( $post_id ) . '" title="' . esc_html__( 'Add Media', 'option-tree' ) . '"><span class="icon ot-icon-plus-circle"></span>' . esc_html__( 'Add Media', 'option-tree' ) . '</a>'; // phpcs:ignore
 
 		echo '</div>';
 
