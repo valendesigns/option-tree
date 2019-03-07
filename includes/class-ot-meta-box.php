@@ -268,7 +268,7 @@ if ( ! class_exists( 'OT_Meta_Box' ) ) {
 						// Convert the settings to an array.
 						$settings = maybe_unserialize( $decoded );
 
-						// Settings are empty for some odd ass reason get the defaults.
+						// Settings are empty for some odd reason get the defaults.
 						if ( empty( $settings ) ) {
 							$settings = ( 'slider' === $field['type'] ) ? ot_slider_settings( $field['id'] ) : ot_list_item_settings( $field['id'] );
 						}
