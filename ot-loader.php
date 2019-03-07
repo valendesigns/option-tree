@@ -378,9 +378,6 @@ if ( ! class_exists( 'OT_Loader' ) ) {
 			// default settings.
 			add_action( 'admin_init', 'ot_default_settings', 2 );
 
-			// add xml to upload filetypes array.
-			add_action( 'admin_init', 'ot_add_xml_to_upload_filetypes', 3 );
-
 			// import.
 			add_action( 'admin_init', 'ot_import', 4 );
 
