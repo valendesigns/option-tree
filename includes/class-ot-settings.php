@@ -436,8 +436,8 @@ if ( ! class_exists( 'OT_Settings' ) ) {
 					// Loop through page settings.
 					foreach ( (array) $this->get_the_settings( $page ) as $setting ) {
 
-						// Skip if missing setting keys.
-						if ( ! array_diff_key( array_flip( array( 'id', 'label', 'section' ) ), $setting ) ) {
+						// Skip if missing setting ID, label, or section.
+						if ( ! isset( $setting['id'] ) || ! isset( $setting['label'] ) || ! isset( $setting['section'] ) ) {
 							continue;
 						}
 
@@ -453,7 +453,6 @@ if ( ! class_exists( 'OT_Settings' ) ) {
 							$setting['section'],
 							$setting
 						);
-
 					}
 				}
 			}
