@@ -239,14 +239,14 @@ if ( ! class_exists( 'OT_Settings' ) ) {
 						$show_buttons = isset( $page['show_buttons'] ) && false === $page['show_buttons'] ? false : true;
 
 						// Update active layout content.
-						if ( isset( $_REQUEST['settings-updated'] ) && true === $_REQUEST['settings-updated'] ) { // phpcs:ignore
+						if ( isset( $_REQUEST['settings-updated'] ) && true === filter_var( wp_unslash( $_REQUEST['settings-updated'] ), FILTER_VALIDATE_BOOLEAN ) ) { // phpcs:ignore
 
 							$layouts = get_option( ot_layouts_id() );
 
 							// Has active layout.
 							if ( isset( $layouts['active_layout'] ) ) {
-								$option_tree                          = get_option( $option['id'] );
-								$layouts[ $layouts['active_layout'] ] = ot_encode( maybe_serialize( $option_tree ) );
+								$option_tree                          = get_option( $option['id'], array() );
+								$layouts[ $layouts['active_layout'] ] = ot_encode( $option_tree );
 								update_option( ot_layouts_id(), $layouts );
 							}
 						}
@@ -602,16 +602,8 @@ if ( ! class_exists( 'OT_Settings' ) ) {
 									),
 								);
 
-								$decoded = isset( $post_global[ $setting['id'] . '_settings_array' ] ) ? ot_decode( $post_global[ $setting['id'] . '_settings_array' ] ) : 'YTowOnt9'; // Fallback is an empty encoded array.
-								preg_match_all( '/^a:[0-9]+:{((?!O:[0-9]+:).)*}$/', $decoded, $matches, PREG_SET_ORDER );
-
-								// Prevent object injection.
-								if ( ! $matches ) {
-									continue;
-								}
-
 								// Convert the settings to an array.
-								$settings = maybe_unserialize( $decoded );
+								$settings = isset( $post_global[ $setting['id'] . '_settings_array' ] ) ? ot_decode( $post_global[ $setting['id'] . '_settings_array' ] ) : array();
 
 								// Settings are empty for some odd ass reason get the defaults.
 								if ( empty( $settings ) ) {
@@ -644,16 +636,8 @@ if ( ! class_exists( 'OT_Settings' ) ) {
 								}
 							} elseif ( is_array( $input[ $setting['id'] ] ) && 'social-links' === $setting['type'] ) {
 
-								$decoded = isset( $post_global[ $setting['id'] . '_settings_array' ] ) ? ot_decode( $post_global[ $setting['id'] . '_settings_array' ] ) : 'YTowOnt9'; // Fallback is an empty encoded array.
-								preg_match_all( '/^a:[0-9]+:{((?!O:[0-9]+:).)*}$/', $decoded, $matches, PREG_SET_ORDER );
-
-								// Prevent object injection.
-								if ( ! $matches ) {
-									continue;
-								}
-
 								// Convert the settings to an array.
-								$settings = maybe_unserialize( $decoded );
+								$settings = isset( $post_global[ $setting['id'] . '_settings_array' ] ) ? ot_decode( $post_global[ $setting['id'] . '_settings_array' ] ) : array();
 
 								// Settings are empty get the defaults.
 								if ( empty( $settings ) ) {

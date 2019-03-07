@@ -330,8 +330,8 @@ if ( ! function_exists( 'ot_type_export_settings' ) ) {
 		echo '</div>';
 
 		// Get theme options data.
-		$settings = get_option( ot_settings_id() );
-		$settings = ! empty( $settings ) ? ot_encode( maybe_serialize( $settings ) ) : '';
+		$settings = get_option( ot_settings_id(), array() );
+		$settings = ! empty( $settings ) ? ot_encode( $settings ) : '';
 
 		echo '<div class="format-setting-inner">';
 		echo '<textarea rows="10" cols="40" name="export_settings" id="export_settings" class="textarea">' . $settings . '</textarea>'; // phpcs:ignore
@@ -365,8 +365,8 @@ if ( ! function_exists( 'ot_type_export_data' ) ) {
 		echo '</div>';
 
 		// Get theme options data.
-		$data = get_option( ot_options_id() );
-		$data = ! empty( $data ) ? ot_encode( maybe_serialize( $data ) ) : '';
+		$data = get_option( ot_options_id(), array() );
+		$data = ! empty( $data ) ? ot_encode( $data ) : '';
 
 		echo '<div class="format-setting-inner">';
 		echo '<textarea rows="10" cols="40" name="export_data" id="export_data" class="textarea">' . $data . '</textarea>'; // phpcs:ignore
@@ -400,8 +400,8 @@ if ( ! function_exists( 'ot_type_export_layouts' ) ) {
 		echo '</div>';
 
 		// Get layout data.
-		$layouts = get_option( ot_layouts_id() );
-		$layouts = ! empty( $layouts ) ? ot_encode( maybe_serialize( $layouts ) ) : '';
+		$layouts = get_option( ot_layouts_id(), array() );
+		$layouts = ! empty( $layouts ) ? ot_encode( $layouts ) : '';
 
 		echo '<div class="format-setting-inner">';
 		echo '<textarea rows="10" cols="40" name="export_layouts" id="export_layouts" class="textarea">' . $layouts . '</textarea>'; // phpcs:ignore

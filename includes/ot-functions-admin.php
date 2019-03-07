@@ -1124,14 +1124,9 @@ if ( ! function_exists( 'ot_import' ) ) {
 			// Default message.
 			$message = 'failed';
 
-			$decoded = isset( $_POST['import_settings'] ) ? ot_decode( $_POST['import_settings'] ) : ''; // phpcs:ignore
-			preg_match_all( '/^a:[0-9]+:{((?!O:[0-9]+:).)*}$/', $decoded, $matches, PREG_SET_ORDER );
+			$settings = isset( $_POST['import_settings'] ) ? ot_decode( sanitize_text_field( wp_unslash( $_POST['import_settings'] ) ) ) : array();
 
-			// Prevent object injection.
-			if ( $matches ) {
-
-				// Convert the settings to an array.
-				$settings = maybe_unserialize( $decoded );
+			if ( is_array( $settings ) && ! empty( $settings ) ) {
 
 				$settings_safe = ot_validate_settings( $settings );
 
@@ -1162,15 +1157,9 @@ if ( ! function_exists( 'ot_import' ) ) {
 
 			// Default message.
 			$message = 'failed';
+			$options = isset( $_POST['import_data'] ) ? ot_decode( sanitize_text_field( wp_unslash( $_POST['import_data'] ) ) ) : array();
 
-			$decoded = isset( $_POST['import_data'] ) ? ot_decode( $_POST['import_data'] ) : ''; // phpcs:ignore
-			preg_match_all( '/^a:[0-9]+:{((?!O:[0-9]+:).)*}$/', $decoded, $matches, PREG_SET_ORDER );
-
-			// Prevent object injection.
-			if ( $matches ) {
-
-				// Convert the options to an array.
-				$options = maybe_unserialize( $decoded );
+			if ( $options ) {
 
 				$options_safe = array();
 
@@ -1219,15 +1208,9 @@ if ( ! function_exists( 'ot_import' ) ) {
 
 			// Default message.
 			$message = 'failed';
+			$layouts = isset( $_POST['import_layouts'] ) ? ot_decode( sanitize_text_field( wp_unslash( $_POST['import_layouts'] ) ) ) : array();
 
-			$decoded = isset( $_POST['import_layouts'] ) ? ot_decode( $_POST['import_layouts'] ) : ''; // phpcs:ignore
-			preg_match_all( '/^a:[0-9]+:{((?!O:[0-9]+:).)*}$/', $decoded, $matches, PREG_SET_ORDER );
-
-			// Prevent object injection.
-			if ( $matches ) {
-
-				// Convert the layouts to an array.
-				$layouts = maybe_unserialize( $decoded );
+			if ( $layouts ) {
 
 				// Get settings array.
 				$settings = get_option( ot_settings_id() );
@@ -1248,16 +1231,8 @@ if ( ! function_exists( 'ot_import' ) ) {
 								continue;
 							}
 
-							$decoded = $value ? ot_decode( $value ) : 'YTowOnt9'; // Fallback is an empty encoded array.
-							preg_match_all( '/^a:[0-9]+:{((?!O:[0-9]+:).)*}$/', $decoded, $matches, PREG_SET_ORDER );
-
-							// Prevent object injection.
-							if ( ! $matches ) {
-								continue;
-							}
-
 							// Convert the options to an array.
-							$options = maybe_unserialize( $decoded );
+							$options = ot_decode( $value );
 
 							$options_safe = array();
 
@@ -1268,11 +1243,11 @@ if ( ! function_exists( 'ot_import' ) ) {
 							}
 
 							// Store the sanitized values for later.
-							if ( $key === $layouts_safe['active_layout'] ) {
+							if ( $key === $layouts['active_layout'] ) {
 								$new_options_safe = $options_safe;
 							}
 
-							$layouts_safe[ $key ] = ot_encode( maybe_serialize( $options_safe ) );
+							$layouts_safe[ $key ] = ot_encode( $options_safe );
 						}
 					}
 
@@ -1869,17 +1844,18 @@ if ( ! function_exists( 'ot_validate_settings_array' ) ) {
 						if ( 'choices' === $fk ) {
 							foreach ( $field as $ck => $choice ) {
 								foreach ( $choice as $vk => $value ) {
-									$settings_safe[ $sk ][ $fk ][ $ck ][ $vk ] = $field_types[ $fk ][ $vk ]( $value );
+									$settings_safe[ $sk ][ $fk ][ $ck ][ $vk ] = call_user_func( $field_types[ $fk ][ $vk ], $value );
 								}
 							}
 						} elseif ( 'std' === $fk && is_array( $field ) ) {
+							$callback  = $field_types[ $fk ];
+							$array_map = function( $item ) use ( $array_map, $callback ) {
+								return is_array( $item ) ? array_map( $array_map, $item ) : call_user_func( $callback, $item );
+							};
 
-							// This is only for validating an array of standard values coming from a theme-options.php file.
-							foreach ( $field as $dk => $std ) {
-								$settings_safe[ $sk ][ $fk ][ $dk ] = $field_types[ $fk ]( $std );
-							}
+							$settings_safe[ $sk ][ $fk ] = array_map( $array_map, $field );
 						} else {
-							$sanitized = $field_types[ $fk ]( $field );
+							$sanitized = call_user_func( $field_types[ $fk ], $field );
 							if ( 'rows' === $fk && 0 === $sanitized ) {
 								$sanitized = '';
 							}
@@ -1913,7 +1889,7 @@ if ( ! function_exists( 'ot_modify_layouts' ) ) {
 			$option_tree_layouts = get_option( ot_layouts_id() );
 
 			// New layouts value.
-			$layouts = isset( $_POST[ ot_layouts_id() ] ) ? array_filter( $_POST[ ot_layouts_id() ], 'sanitize_text_field' ) : ''; // phpcs:ignore
+			$layouts = isset( $_POST[ ot_layouts_id() ] ) ? $_POST[ ot_layouts_id() ] : ''; // phpcs:ignore
 
 			// Rebuild layout array.
 			$rebuild = array();
@@ -1926,10 +1902,10 @@ if ( ! function_exists( 'ot_modify_layouts' ) ) {
 					$rebuild['active_layout'] = $layouts['active_layout'];
 				}
 
-				/* add new and overwrite active layout */
+				// Add new and overwrite active layout.
 				if ( isset( $layouts['_add_new_layout_'] ) && ! empty( $layouts['_add_new_layout_'] ) ) {
 					$rebuild['active_layout']             = ot_sanitize_layout_id( $layouts['_add_new_layout_'] );
-					$rebuild[ $rebuild['active_layout'] ] = ot_encode( maybe_serialize( get_option( ot_options_id() ) ) );
+					$rebuild[ $rebuild['active_layout'] ] = ot_encode( get_option( ot_options_id(), array() ) );
 				}
 
 				$first_layout = '';
@@ -1962,22 +1938,31 @@ if ( ! function_exists( 'ot_modify_layouts' ) ) {
 			// Save & show success message.
 			if ( is_array( $rebuild ) && 1 < count( $rebuild ) ) {
 
-				$decoded = ot_decode( $rebuild[ $rebuild['active_layout'] ] );
+				$options = ot_decode( $rebuild[ $rebuild['active_layout'] ] );
 
-				preg_match_all( '/^a:[0-9]+:{((?!O:[0-9]+:).)*}$/', $decoded, $matches, PREG_SET_ORDER );
+				if ( $options ) {
 
-				// Prevent object injection.
-				if ( $matches ) {
+					$options_safe = array();
 
-					// Rebuild the theme options.
-					$rebuild_option_tree = maybe_unserialize( $decoded );
+					// Get settings array.
+					$settings = get_option( ot_settings_id() );
 
-					if ( is_array( $rebuild_option_tree ) ) {
+					// Has options.
+					if ( is_array( $options ) ) {
+
+						// Validate options.
+						if ( is_array( $settings ) ) {
+							foreach ( $settings['settings'] as $setting ) {
+								if ( isset( $options[ $setting['id'] ] ) ) {
+									$options_safe[ $setting['id'] ] = ot_validate_setting( wp_unslash( $options[ $setting['id'] ] ), $setting['type'], $setting['id'] );
+								}
+							}
+						}
 
 						// Execute the action hook and pass the theme options to it.
-						do_action( 'ot_before_theme_options_save', $rebuild_option_tree );
+						do_action( 'ot_before_theme_options_save', $options_safe );
 
-						update_option( ot_options_id(), $rebuild_option_tree );
+						update_option( ot_options_id(), $options_safe );
 					}
 				}
 
@@ -4894,16 +4879,20 @@ if ( ! function_exists( 'ot_encode' ) ) {
 	/**
 	 * Helper function to return encoded strings.
 	 *
-	 * @param  array $value The array to encode.
+	 * @param array $value The array to encode.
 	 *
-	 * @return string
+	 * @return string|bool
 	 *
-	 * @access public
-	 * @since  2.0.13
+	 * @access  public
+	 * @since   2.0.13
+	 * @updated 2.7.0
 	 */
 	function ot_encode( $value ) {
-		$func = 'base64' . '_encode'; // phpcs:ignore
-		return $func( $value );
+		if ( is_array( $value ) ) {
+			return base64_encode( maybe_serialize( $value ) ); // phpcs:ignore
+		}
+
+		return false;
 	}
 }
 
@@ -4920,8 +4909,29 @@ if ( ! function_exists( 'ot_decode' ) ) {
 	 * @since  2.0.13
 	 */
 	function ot_decode( $value ) {
-		$func = 'base64' . '_decode'; // phpcs:ignore
-		return $func( $value );
+
+		$fallback = array();
+		$decoded  = base64_decode( $value ); // phpcs:ignore
+
+		// Search for an array.
+		preg_match( '/a:\d+:{.*?}/', $decoded, $array_matches, PREG_OFFSET_CAPTURE, 0 );
+
+		// Search for an object.
+		preg_match( '/O:\d+:"[a-z0-9_]+":\d+:{.*?}/i', $decoded, $obj_matches, PREG_OFFSET_CAPTURE, 0 );
+
+		// Prevent object injection or non arrays.
+		if ( $obj_matches || ! $array_matches ) {
+			return $fallback;
+		}
+
+		// Convert the options to an array.
+		$decoded = maybe_unserialize( $decoded );
+
+		if ( is_array( $decoded ) ) {
+			return $decoded;
+		}
+
+		return $fallback;
 	}
 }
 
@@ -4941,11 +4951,18 @@ if ( ! function_exists( 'ot_filter_std_value' ) ) {
 	function ot_filter_std_value( $value = '', $std = '' ) {
 
 		if ( is_string( $std ) && ! empty( $std ) ) {
-			preg_match_all( '/^a:[0-9]+:{((?!O:[0-9]+:).)*}$/', $std, $matches, PREG_SET_ORDER );
+
+			// Search for an array.
+			preg_match( '/a:\d+:{.*?}/', $std, $array_matches, PREG_OFFSET_CAPTURE, 0 );
+
+			// Search for an object.
+			preg_match( '/O:\d+:"[a-z0-9_]+":\d+:{.*?}/i', $std, $obj_matches, PREG_OFFSET_CAPTURE, 0 );
 
 			// Prevent object injection.
-			if ( $matches ) {
+			if ( $array_matches && ! $obj_matches ) {
 				$std = maybe_unserialize( $std );
+			} elseif ( $obj_matches ) {
+				$std = '';
 			}
 		}
 

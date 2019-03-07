@@ -257,16 +257,8 @@ if ( ! class_exists( 'OT_Meta_Box' ) ) {
 							),
 						);
 
-						$decoded = isset( $post_global[ $field['id'] . '_settings_array' ] ) ? ot_decode( $post_global[ $field['id'] . '_settings_array' ] ) : 'YTowOnt9'; // Fallback is an empty encoded array.
-						preg_match_all( '/^a:[0-9]+:{((?!O:[0-9]+:).)*}$/', $decoded, $matches, PREG_SET_ORDER );
-
-						// Prevent object injection.
-						if ( ! $matches ) {
-							continue;
-						}
-
 						// Convert the settings to an array.
-						$settings = maybe_unserialize( $decoded );
+						$settings = isset( $post_global[ $field['id'] . '_settings_array' ] ) ? ot_decode( $post_global[ $field['id'] . '_settings_array' ] ) : array();
 
 						// Settings are empty for some odd reason get the defaults.
 						if ( empty( $settings ) ) {
@@ -293,16 +285,8 @@ if ( ! class_exists( 'OT_Meta_Box' ) ) {
 
 					} elseif ( 'social-links' === $field['type'] ) {
 
-						$decoded = isset( $post_global[ $field['id'] . '_settings_array' ] ) ? ot_decode( $post_global[ $field['id'] . '_settings_array' ] ) : 'YTowOnt9'; // Fallback is an empty encoded array.
-						preg_match_all( '/^a:[0-9]+:{((?!O:[0-9]+:).)*}$/', $decoded, $matches, PREG_SET_ORDER );
-
-						// Prevent object injection.
-						if ( ! $matches ) {
-							continue;
-						}
-
 						// Convert the settings to an array.
-						$settings = maybe_unserialize( $decoded );
+						$settings = isset( $post_global[ $field['id'] . '_settings_array' ] ) ? ot_decode( $post_global[ $field['id'] . '_settings_array' ] ) : array();
 
 						// Settings are empty get the defaults.
 						if ( empty( $settings ) ) {

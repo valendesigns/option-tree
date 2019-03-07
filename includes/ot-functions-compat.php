@@ -69,17 +69,8 @@ if ( ! function_exists( 'compat_ot_import_from_files' ) ) {
 				return false;
 			}
 
-			$rawdata = isset( $get_data['body'] ) ? $get_data['body'] : '';
-			$options = ot_decode( $rawdata );
-
-			preg_match_all( '/^a:[0-9]+:{((?!O:[0-9]+:).)*}$/', $options, $matches, PREG_SET_ORDER );
-
-			// Prevent object injection.
-			if ( ! $matches ) {
-				return;
-			}
-
-			$options = maybe_unserialize( $options );
+			$options      = isset( $get_data['body'] ) ? ot_decode( $get_data['body'] ) : array();
+			$options_safe = array();
 
 			// Get settings array.
 			$settings = get_option( ot_settings_id() );
@@ -91,19 +82,14 @@ if ( ! function_exists( 'compat_ot_import_from_files' ) ) {
 				if ( is_array( $settings ) ) {
 
 					foreach ( $settings['settings'] as $setting ) {
-
 						if ( isset( $options[ $setting['id'] ] ) ) {
-
-							$content = ot_stripslashes( $options[ $setting['id'] ] );
-
-							$options[ $setting['id'] ] = ot_validate_setting( $content, $setting['type'], $setting['id'] );
-
+							$options_safe[ $setting['id'] ] = ot_validate_setting( wp_unslash( $options[ $setting['id'] ] ), $setting['type'], $setting['id'] );
 						}
 					}
 				}
 
 				// Update the option tree array.
-				update_option( ot_options_id(), $options );
+				update_option( ot_options_id(), $options_safe );
 			}
 		}
 
@@ -116,17 +102,8 @@ if ( ! function_exists( 'compat_ot_import_from_files' ) ) {
 				return false;
 			}
 
-			$rawdata = isset( $get_data['body'] ) ? $get_data['body'] : '';
-			$layouts = ot_decode( $rawdata );
-
-			preg_match_all( '/^a:[0-9]+:{((?!O:[0-9]+:).)*}$/', $layouts, $matches, PREG_SET_ORDER );
-
-			// Prevent object injection.
-			if ( ! $matches ) {
-				return;
-			}
-
-			$layouts = maybe_unserialize( $layouts );
+			$layouts      = isset( $get_data['body'] ) ? ot_decode( $get_data['body'] ) : array();
+			$layouts_safe = array();
 
 			// Get settings array.
 			$settings = get_option( ot_settings_id() );
@@ -140,53 +117,34 @@ if ( ! function_exists( 'compat_ot_import_from_files' ) ) {
 					foreach ( $layouts as $key => $value ) {
 
 						if ( 'active_layout' === $key ) {
+							$layouts_safe['active_layout'] = $key;
 							continue;
 						}
 
-						$decoded = ot_decode( $value );
-
-						preg_match_all( '/^a:[0-9]+:{((?!O:[0-9]+:).)*}$/', $decoded, $matches, PREG_SET_ORDER );
-
-						// Prevent object injection.
-						if ( ! $matches ) {
-							continue;
-						}
-
-						$options = maybe_unserialize( $decoded );
+						$options      = ot_decode( $value );
+						$options_safe = array();
 
 						foreach ( $settings['settings'] as $setting ) {
-
 							if ( isset( $options[ $setting['id'] ] ) ) {
-
-								$content = ot_stripslashes( $options[ $setting['id'] ] );
-
-								$options[ $setting['id'] ] = ot_validate_setting( $content, $setting['type'], $setting['id'] );
-
+								$options_safe[ $setting['id'] ] = ot_validate_setting( wp_unslash( $options[ $setting['id'] ] ), $setting['type'], $setting['id'] );
 							}
 						}
 
-						$layouts[ $key ] = ot_encode( serialize( $options ) ); // phpcs:ignore
+						if ( $key === $layouts['active_layout'] ) {
+							$new_options_safe = $options_safe;
+						}
+
+						$layouts_safe[ $key ] = ot_encode( $options_safe );
 					}
 				}
 
 				// Update the option tree array.
-				if ( isset( $layouts['active_layout'] ) ) {
-
-					$decoded = ot_decode( $layouts[ $layouts['active_layout'] ] );
-
-					preg_match_all( '/^a:[0-9]+:{((?!O:[0-9]+:).)*}$/', $decoded, $matches, PREG_SET_ORDER );
-
-					// Prevent object injection.
-					if ( ! $matches ) {
-						return;
-					}
-
-					update_option( ot_options_id(), maybe_unserialize( $decoded ) );
-
+				if ( isset( $new_options_safe ) ) {
+					update_option( ot_options_id(), $new_options_safe );
 				}
 
 				// Update the option tree layouts array.
-				update_option( ot_layouts_id(), $layouts );
+				update_option( ot_layouts_id(), $layouts_safe );
 			}
 		}
 	}

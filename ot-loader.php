@@ -577,18 +577,9 @@ if ( ! class_exists( 'OT_Loader' ) ) {
 			$post_id    = isset( $_REQUEST['post_id'] ) ? absint( $_REQUEST['post_id'] ) : 0;
 			$get_option = isset( $_REQUEST['get_option'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['get_option'] ) ) : '';
 			$type       = isset( $_REQUEST['type'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['type'] ) ) : '';
-			$settings   = isset( $_REQUEST['settings'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['settings'] ) ) : 'YTowOnt9'; // Fallback is an empty encoded array.
-			$decoded    = ot_decode( $settings );
+			$settings   = isset( $_REQUEST['settings'] ) ? ot_decode( sanitize_text_field( wp_unslash( $_REQUEST['settings'] ) ) ) : array();
 
-			preg_match_all( '/^a:[0-9]+:{((?!O:[0-9]+:).)*}$/', $decoded, $matches, PREG_SET_ORDER );
-
-			// Prevent object injection.
-			if ( ! $matches ) {
-				echo esc_html__( 'Settings are invalid.', 'option-tree' );
-				wp_die();
-			}
-
-			ot_list_item_view( $name, $count, array(), $post_id, $get_option, maybe_unserialize( $decoded ), $type );
+			ot_list_item_view( $name, $count, array(), $post_id, $get_option, $settings, $type );
 			wp_die();
 		}
 
@@ -603,18 +594,9 @@ if ( ! class_exists( 'OT_Loader' ) ) {
 			$post_id    = isset( $_REQUEST['post_id'] ) ? absint( $_REQUEST['post_id'] ) : 0;
 			$get_option = isset( $_REQUEST['get_option'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['get_option'] ) ) : '';
 			$type       = isset( $_REQUEST['type'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['type'] ) ) : '';
-			$settings   = isset( $_REQUEST['settings'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['settings'] ) ) : 'YTowOnt9'; // Fallback is an empty encoded array.
-			$decoded    = ot_decode( $settings );
+			$settings   = isset( $_REQUEST['settings'] ) ? ot_decode( sanitize_text_field( wp_unslash( $_REQUEST['settings'] ) ) ) : array();
 
-			preg_match_all( '/^a:[0-9]+:{((?!O:[0-9]+:).)*}$/', $decoded, $matches, PREG_SET_ORDER );
-
-			// Prevent object injection.
-			if ( ! $matches ) {
-				echo esc_html__( 'Settings are invalid.', 'option-tree' );
-				wp_die();
-			}
-
-			ot_social_links_view( $name, $count, array(), $post_id, $get_option, maybe_unserialize( $decoded ), $type );
+			ot_social_links_view( $name, $count, array(), $post_id, $get_option, $settings, $type );
 			wp_die();
 		}
 
