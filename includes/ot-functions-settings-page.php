@@ -139,61 +139,6 @@ if ( ! function_exists( 'ot_type_theme_options_ui' ) ) {
 	}
 }
 
-if ( ! function_exists( 'ot_type_import_xml' ) ) {
-
-	/**
-	 * Import XML option type.
-	 *
-	 * @access public
-	 * @since  2.0
-	 */
-	function ot_type_import_xml() {
-
-		echo '<form method="post" id="import-xml-form">';
-
-		// Form nonce.
-		wp_nonce_field( 'import_xml_form', 'import_xml_nonce' );
-
-		// Format setting outer wrapper.
-		echo '<div class="format-setting type-textblock has-desc">';
-
-		// Description.
-		echo '<div class="description">';
-
-		echo '<p class="deprecated">' . esc_html__( 'This import method has been deprecated. That means it has been replaced by a new method and is no longer supported, and may be removed from future versions. All themes that use this import method should be converted to use its replacement below.', 'option-tree' ) . '</p>';
-
-		/* translators: %s: button text */
-		echo '<p>' . sprintf( esc_html__( 'If you were given a Theme Options XML file with a premium or free theme, locate it on your hard drive and upload that file by clicking the upload button. A popup window will appear, upload the XML file and click "%s". The file URL should be in the upload input, if it is click "Import XML".', 'option-tree' ), esc_html( apply_filters( 'ot_upload_text', __( 'Send to OptionTree', 'option-tree' ) ) ) ) . '</p>';
-
-		echo '<button class="option-tree-ui-button button button-primary right hug-right">' . esc_html__( 'Import XML', 'option-tree' ) . '</button>';
-
-		echo '</div>';
-
-		echo '<div class="format-setting-inner">';
-
-		// Build upload.
-		echo '<div class="option-tree-ui-upload-parent">';
-
-		// Input.
-		echo '<input type="text" name="import_xml" id="import_xml" value="" class="widefat option-tree-ui-upload-input" />';
-
-		// Get media post_id.
-		$id      = ot_get_media_post_ID();
-		$post_id = $id ? absint( $id ) : 0;
-
-		// Add xml button.
-		echo '<a href="javascript:void(0);" class="ot_upload_media option-tree-ui-button button button-primary light" rel="' . esc_attr( $post_id ) . '" title="' . esc_attr( esc_html__( 'Add XML', 'option-tree' ) ) . '"><span class="icon ot-icon-plus-circle"></span>' . esc_html__( 'Add XML', 'option-tree' ) . '</a>';
-
-		echo '</div>';
-
-		echo '</div>';
-
-		echo '</div>';
-
-		echo '</form>';
-	}
-}
-
 if ( ! function_exists( 'ot_type_import_settings' ) ) {
 
 	/**

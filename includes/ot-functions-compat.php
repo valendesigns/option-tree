@@ -31,20 +31,8 @@ if ( ! function_exists( 'compat_ot_import_from_files' ) ) {
 	function compat_ot_import_from_files() {
 
 		// File path & name.
-		$ot_xml    = '/option-tree/theme-options.xml';
 		$ot_data   = '/option-tree/theme-options.txt';
 		$ot_layout = '/option-tree/layouts.txt';
-
-		// XML file path - child theme first then parent.
-		if ( is_readable( get_stylesheet_directory() . $ot_xml ) ) {
-
-			$xml_file = get_stylesheet_directory_uri() . $ot_xml;
-
-		} elseif ( is_readable( get_template_directory() . $ot_xml ) ) {
-
-			$xml_file = get_template_directory_uri() . $ot_xml;
-
-		}
 
 		// Data file path - child theme first then parent.
 		if ( is_readable( get_stylesheet_directory() . $ot_data ) ) {
@@ -69,21 +57,8 @@ if ( ! function_exists( 'compat_ot_import_from_files' ) ) {
 		}
 
 		// Check for files.
-		$has_xml    = isset( $xml_file ) ? true : false;
 		$has_data   = isset( $data_file ) ? true : false;
 		$has_layout = isset( $layout_file ) ? true : false;
-
-		// Auto import XML file.
-		if ( true === $has_xml && ! get_option( ot_settings_id() ) && class_exists( 'SimpleXMLElement' ) ) {
-
-			$settings = ot_import_xml( $xml_file );
-
-			if ( isset( $settings ) && ! empty( $settings ) ) {
-
-				update_option( ot_settings_id(), $settings );
-
-			}
-		}
 
 		// Auto import Data file.
 		if ( true === $has_data && ! get_option( ot_options_id() ) ) {
