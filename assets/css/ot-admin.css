@@ -2562,7 +2562,7 @@ select.option-tree-ui-select option {
           box-shadow: none;
 }
 .option-tree-ui-colorpicker-input-wrap .wp-color-result:after,
-.option-tree-ui-colorpicker-input-wrap .wp-color-result-text{
+.option-tree-ui-colorpicker-input-wrap .wp-color-result-text {
   line-height: 27px;
 }
 .option-tree-ui-colorpicker-input-wrap .wp-picker-container .iris-picker {
