@@ -2522,6 +2522,9 @@ select.option-tree-ui-select option {
 .hide-color-picker {
   display: none;
 }
+.wp-picker-active .hide-color-picker {
+	display: inline-block;
+}
 .option-tree-ui-colorpicker-input-wrap .option-tree-ui-colorpicker-label {
   height: 30px;
   line-height: 30px;
@@ -2550,7 +2553,7 @@ select.option-tree-ui-select option {
   margin: 0 0 5px 0 !important;
 }
 .option-tree-ui-colorpicker-input-wrap .wp-color-result {
-  height: 27px;
+  height: 29px !important;
   outline: 0;
   margin: 0 5px 5px 0px;
   top: 0px;
@@ -2558,7 +2561,8 @@ select.option-tree-ui-select option {
      -moz-box-shadow: none;
           box-shadow: none;
 }
-.option-tree-ui-colorpicker-input-wrap .wp-color-result:after {
+.option-tree-ui-colorpicker-input-wrap .wp-color-result:after,
+.option-tree-ui-colorpicker-input-wrap .wp-color-result-text{
   line-height: 27px;
 }
 .option-tree-ui-colorpicker-input-wrap .wp-picker-container .iris-picker {
