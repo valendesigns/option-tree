@@ -4,12 +4,13 @@
 Theme Options UI Builder for WordPress. A simple way to create & save Theme Options and Meta Boxes for free or premium themes.
 
 **Contributors:** [valendesigns](https://profiles.wordpress.org/valendesigns)  
-**Tags:** [options](https://wordpress.org/plugins/tags/options), [theme options](https://wordpress.org/plugins/tags/theme-options), [meta boxes](https://wordpress.org/plugins/tags/meta-boxes)  
+**Tags:** [options](https://wordpress.org/plugins/tags/options), [theme options](https://wordpress.org/plugins/tags/theme-options), [meta boxes](https://wordpress.org/plugins/tags/meta-boxes), [settings](https://wordpress.org/plugins/tags/settings)  
 **Requires at least:** 3.8  
 **Tested up to:** 5.1  
 **Stable tag:** 2.7.0  
-**License:** GPLv2 or later  
+**License:** [GPLv2 or later](http://www.gnu.org/licenses/gpl-2.0.html)  
 **Donate link:** https://bit.ly/2TBvksV  
+**Requires PHP:** 5.3.0  
 
 [![Build Status](https://travis-ci.org/valendesigns/option-tree.svg?branch=develop)](https://travis-ci.org/valendesigns/option-tree) 
 
