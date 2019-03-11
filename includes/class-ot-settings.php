@@ -617,6 +617,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
 
 								foreach ( $input[ $setting['id'] ] as $k => $setting_array ) {
 
+									$has_value = false;
 									foreach ( $settings as $sub_setting ) {
 
 										// Setup the WPML ID.
@@ -631,6 +632,10 @@ if ( ! class_exists( 'OT_Settings' ) ) {
 											// Validate setting.
 											$input[ $setting['id'] ][ $k ][ $sub_setting['id'] ] = ot_validate_setting( $input[ $setting['id'] ][ $k ][ $sub_setting['id'] ], $sub_setting['type'], $sub_setting['id'], $wpml_id );
 										}
+									}
+
+									if ( ! $has_value ) {
+										unset( $input[ $setting['id'] ][ $k ] );
 									}
 								}
 							} elseif ( is_array( $input[ $setting['id'] ] ) && 'social-links' === $setting['type'] ) {
@@ -648,6 +653,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
 
 								foreach ( $input[ $setting['id'] ] as $k => $setting_array ) {
 
+									$has_value = false;
 									foreach ( $settings as $sub_setting ) {
 
 										// Setup the WPML ID.
@@ -659,9 +665,22 @@ if ( ! class_exists( 'OT_Settings' ) ) {
 										// Verify sub setting has a type & value.
 										if ( isset( $sub_setting['type'] ) && isset( $input[ $setting['id'] ][ $k ][ $sub_setting['id'] ] ) ) {
 
+											if ( 'href' === $sub_setting['id'] ) {
+												$sub_setting['type'] = 'url';
+											}
+
 											// Validate setting.
-											$input[ $setting['id'] ][ $k ][ $sub_setting['id'] ] = ot_validate_setting( $input[ $setting['id'] ][ $k ][ $sub_setting['id'] ], $sub_setting['type'], $sub_setting['id'], $wpml_id );
+											$input_safe = ot_validate_setting( $input[ $setting['id'] ][ $k ][ $sub_setting['id'] ], $sub_setting['type'], $sub_setting['id'], $wpml_id );
+
+											if ( ! empty( $input_safe ) ) {
+												$input[ $setting['id'] ][ $k ][ $sub_setting['id'] ] = $input_safe;
+												$has_value = true;
+											}
 										}
+									}
+
+									if ( ! $has_value ) {
+										unset( $input[ $setting['id'] ][ $k ] );
 									}
 								}
 							} else {

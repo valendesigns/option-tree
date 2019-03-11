@@ -192,10 +192,13 @@ if ( ! class_exists( 'OT_Loader' ) ) {
 			/**
 			 * For developers: Allow Unfiltered HTML in all the textareas.
 			 *
-			 * Run a filter and set to true if you want all the
-			 * users to be able to post anything in the textareas.
+			 * Run a filter and set to true if you want all the users to be
+			 * able to add script, style, and iframe tags in the textareas.
 			 * WARNING: This opens a security hole for low level users
 			 * to be able to post malicious scripts, you've been warned.
+			 *
+			 * If a user can already post `unfiltered_html` then the tags
+			 * above will be available to them without setting this to `true`.
 			 *
 			 * @since 2.0
 			 */

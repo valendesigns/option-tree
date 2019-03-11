@@ -1187,6 +1187,19 @@
      -moz-border-radius: 0 0 2px 2px;
           border-radius: 0 0 2px 2px;
 }
+.postbox.ot-meta-box {
+
+}
+
+#poststuff .postbox.ot-meta-box .inside {
+	background-color: #f3f4f5;
+	margin: 0;
+	padding: 6px 12px 12px;
+}
+
+#poststuff .postbox.ot-meta-box .is-panel {
+	display: none !important;
+}
 
 /* -------------------------------------------------- 
   :: Header
@@ -2156,6 +2169,9 @@ li ul .format-setting-label {
   left: 1px;
   width: 14px;
   z-index: 10;
+}
+.postbox.ot-meta-box .ot-option-group--icon {
+	width: 28px;
 }
 .ot-icon-circle.ot-option-group--icon:before {
   left: 1px;

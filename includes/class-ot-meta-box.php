@@ -66,8 +66,22 @@ if ( ! class_exists( 'OT_Meta_Box' ) ) {
 		 * @since  1.0
 		 */
 		public function add_meta_boxes() {
+			global $wp_version;
+
+			$is_wp_5 = version_compare( $wp_version, '5.0', '>=' );
+
 			foreach ( (array) $this->meta_box['pages'] as $page ) {
 				add_meta_box( $this->meta_box['id'], $this->meta_box['title'], array( $this, 'build_meta_box' ), $page, $this->meta_box['context'], $this->meta_box['priority'], $this->meta_box['fields'] );
+
+				if ( $is_wp_5 ) {
+					add_filter(
+						'postbox_classes_' . $page . '_' . $this->meta_box['id'],
+						function( $classes ) {
+							array_push( $classes, 'ot-meta-box' );
+							return $classes;
+						}
+					);
+				}
 			}
 		}
 

@@ -434,250 +434,282 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
 			return $input;
 		}
 
+		/**
+		 * Filter to modify a setting field value before validation.
+		 *
+		 * This cannot be used to filter the returned value of a custom
+		 * setting type. You must use the `ot_validate_setting_input_safe`
+		 * filter to ensure custom setting types are saved to the database.
+		 *
+		 * @param mixed  $input    The setting field value.
+		 * @param string $type     The setting field type.
+		 * @param string $field_id The setting field ID.
+		 */
 		$input = apply_filters( 'ot_validate_setting', $input, $type, $field_id );
+
+		/**
+		 * Filter to validate a setting field value.
+		 *
+		 * @param mixed  $input_safe This is either null, or the filtered input value.
+		 * @param mixed  $input      The setting field value.
+		 * @param string $type       The setting field type.
+		 * @param string $field_id   The setting field ID.
+		 */
+		$input_safe = apply_filters( 'ot_validate_setting_input_safe', null, $input, $type, $field_id );
+
+		// The value was filtered and is safe to return.
+		if ( ! is_null( $input_safe ) ) {
+			return $input_safe;
+		}
 
 		/* translators: %1$s: the input id, %2$s: the field id */
 		$string_nums = esc_html__( 'The %1$s input field for %2$s only allows numeric values.', 'option-tree' );
 
-		/* translators: %s: the field id */
-		$string_color = esc_html__( 'The %s Colorpicker only allows valid hexadecimal or rgba values.', 'option-tree' );
-
 		if ( 'background' === $type ) {
 
-			$input['background-color'] = ot_validate_setting( $input['background-color'], 'colorpicker', $field_id );
-
-			$input['background-image'] = ot_validate_setting( $input['background-image'], 'upload', $field_id );
+			$input_safe = array();
 
 			// Loop over array and check for values.
 			foreach ( (array) $input as $key => $value ) {
-				if ( ! empty( $value ) ) {
-					$has_value = true;
+				if ( 'background-color' === $key ) {
+					$input_safe[ $key ] = ot_validate_setting( $value, 'colorpicker', $field_id );
+				} elseif ( 'background-image' === $key ) {
+					$input_safe[ $key ] = ot_validate_setting( $value, 'upload', $field_id );
+				} else {
+					$input_safe[ $key ] = sanitize_text_field( $value );
 				}
 			}
-
-			// No value; set to empty.
-			if ( ! isset( $has_value ) ) {
-				$input = '';
-			}
 		} elseif ( 'border' === $type ) {
+
+			$input_safe = array();
 
 			// Loop over array and set errors or unset key from array.
 			foreach ( $input as $key => $value ) {
 
+				if ( empty( $value ) ) {
+					continue;
+				}
+
 				// Validate width.
-				if ( 'width' === $key && ! empty( $value ) && ! is_numeric( $value ) ) {
-
-					$input[ $key ] = '0';
-
-					add_settings_error( 'option-tree', 'invalid_border_width', sprintf( $string_nums, '<code>width</code>', '<code>' . $field_id . '</code>' ), 'error' );
-
+				if ( 'width' === $key ) {
+					if ( ! is_numeric( $value ) ) {
+						add_settings_error( 'option-tree', 'invalid_border_width', sprintf( $string_nums, '<code>width</code>', '<code>' . $field_id . '</code>' ), 'error' );
+					} else {
+						$input_safe[ $key ] = absint( $value );
+					}
+				} elseif ( 'color' === $key ) {
+					$input_safe[ $key ] = ot_validate_setting( $value, 'colorpicker', $field_id );
+				} else {
+					$input_safe[ $key ] = sanitize_text_field( $value );
 				}
-
-				// Validate color.
-				if ( 'color' === $key && ! empty( $value ) ) {
-
-					$input[ $key ] = ot_validate_setting( $value, 'colorpicker', $field_id );
-
-				}
-
-				// Unset keys with empty values.
-				if ( empty( $value ) && 0 === strlen( $value ) ) {
-					unset( $input[ $key ] );
-				}
-			}
-
-			if ( empty( $input ) ) {
-				$input = '';
 			}
 		} elseif ( 'box-shadow' === $type ) {
 
-			// Validate inset.
-			$input['inset'] = isset( $input['inset'] ) ? 'inset' : '';
+			$input_safe = array();
 
-			// Validate offset-x.
-			$input['offset-x'] = isset( $input['offset-x'] ) ? ot_validate_setting( $input['offset-x'], 'text', $field_id ) : '';
-
-			// Validate offset-y.
-			$input['offset-y'] = isset( $input['offset-y'] ) ? ot_validate_setting( $input['offset-y'], 'text', $field_id ) : '';
-
-			// Validate blur-radius.
-			$input['blur-radius'] = isset( $input['blur-radius'] ) ? ot_validate_setting( $input['blur-radius'], 'text', $field_id ) : '';
-
-			// Validate spread-radius.
-			$input['spread-radius'] = isset( $input['spread-radius'] ) ? ot_validate_setting( $input['spread-radius'], 'text', $field_id ) : '';
-
-			// Validate color.
-			$input['color'] = isset( $input['color'] ) ? ot_validate_setting( $input['color'], 'colorpicker', $field_id ) : '';
-
-			// Unset keys with empty values.
-			foreach ( $input as $key => $value ) {
-				if ( empty( $value ) && 0 === strlen( $value ) ) {
-					unset( $input[ $key ] );
+			// Loop over array and check for values.
+			foreach ( (array) $input as $key => $value ) {
+				if ( 'inset' === $key ) {
+					$input_safe[ $key ] = 'inset';
+				} elseif ( 'color' === $key ) {
+					$input_safe[ $key ] = ot_validate_setting( $value, 'colorpicker', $field_id );
+				} else {
+					$input_safe[ $key ] = sanitize_text_field( $value );
 				}
 			}
+		} elseif ( 'checkbox' === $type ) {
 
-			// Set empty array to empty string.
-			if ( empty( $input ) ) {
-				$input = '';
+			$input_safe = array();
+
+			// Loop over array and check for values.
+			foreach ( (array) $input as $key => $value ) {
+				if ( ! empty( $value ) ) {
+					$input_safe[ $key ] = sanitize_text_field( $value );
+				}
 			}
 		} elseif ( 'colorpicker' === $type ) {
 
-			// Return empty & set error.
-			if ( 0 === preg_match( '/^#([a-f0-9]{6}|[a-f0-9]{3})$/i', $input ) && 0 === preg_match( '/^rgba\(\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*,\s*([0-9\.]{1,4})\s*\)/i', $input ) ) {
+			$input_safe = '';
 
-				$input = '';
+			// Only strings are allowed.
+			if ( is_string( $input ) ) {
 
-				add_settings_error( 'option-tree', 'invalid_hex', sprintf( $string_color, '<code>' . $field_id . '</code>' ), 'error' );
+				/* translators: %s: the field id */
+				$string_color = esc_html__( 'The %s Colorpicker only allows valid hexadecimal or rgba values depending on the setting type.', 'option-tree' );
 
+				if ( 0 === preg_match( '/^#([a-f0-9]{6}|[a-f0-9]{3})$/i', $input ) && 0 === preg_match( '/^rgba\(\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*,\s*([0-9\.]{1,4})\s*\)/i', $input ) ) {
+					add_settings_error( 'option-tree', 'invalid_hex_or_rgba', sprintf( $string_color, '<code>' . $field_id . '</code>' ), 'error' );
+				} else {
+					$input_safe = $input;
+				}
 			}
 		} elseif ( 'colorpicker-opacity' === $type ) {
+			$input_safe = ot_validate_setting( $input, 'colorpicker', $field_id );
+		} elseif ( in_array( $type, array( 'category-checkbox', 'custom-post-type-checkbox', 'page-checkbox', 'post-checkbox', 'tag-checkbox', 'taxonomy-checkbox' ), true ) ) {
 
-			// Not allowed.
-			if ( is_array( $input ) ) {
-				$input = '';
+			$input_safe = array();
+
+			// Loop over array and check for values.
+			foreach ( (array) $input as $key => $value ) {
+				if ( filter_var( $value, FILTER_VALIDATE_INT ) && 0 < $value ) {
+					$input_safe[ $key ] = absint( $value );
+				}
 			}
+		} elseif ( in_array( $type, array( 'category-select', 'custom-post-type-select', 'page-select', 'post-select', 'tag-select', 'taxonomy-select' ), true ) ) {
 
-			// Validate color.
-			$input = ot_validate_setting( $input, 'colorpicker', $field_id );
+			$input_safe = '';
 
+			if ( filter_var( $input, FILTER_VALIDATE_INT ) && 0 < $input ) {
+				$input_safe = absint( $input );
+			}
 		} elseif ( in_array( $type, array( 'css', 'javascript', 'text', 'textarea', 'textarea-simple' ), true ) ) {
+			$filter = function( $tags, $context ) {
+				if ( 'post' === $context ) {
+					if ( current_user_can( 'unfiltered_html' ) || true === OT_ALLOW_UNFILTERED_HTML ) {
+						$tags['script'] = array_fill_keys( array( 'async', 'charset', 'defer', 'src', 'type' ), 1 );
+						$tags['style']  = array_fill_keys( array( 'media', 'type' ), 1 );
+						$tags['iframe'] = array_fill_keys( array( 'align', 'frameborder', 'height', 'longdesc', 'marginheight', 'marginwidth', 'name', 'sandbox', 'scrolling', 'src', 'srcdoc', 'width' ), 1 );
 
-			if ( ! current_user_can( 'unfiltered_html' ) && false === OT_ALLOW_UNFILTERED_HTML ) {
+						$tags = apply_filters( 'ot_allowed_html', $tags );
+					}
+				}
+				return $tags;
+			};
 
-				$input = wp_kses_post( $input );
-
+			add_filter( 'wp_kses_allowed_html', $filter, 10, 2 );
+			$input_safe = wp_kses_post( $input );
+			remove_filter( 'wp_kses_allowed_html', $filter );
+		} elseif ( 'date-picker' === $type || 'date-time-picker' === $type ) {
+			if ( ! empty( $input ) && (bool) strtotime( $input ) ) {
+				$input_safe = sanitize_text_field( $input );
 			}
 		} elseif ( 'dimension' === $type ) {
 
-			// Loop over array and set error keys or unset key from array.
+			$input_safe = array();
+
+			// Loop over array and set errors.
 			foreach ( $input as $key => $value ) {
-				if ( ! empty( $value ) && ! is_numeric( $value ) && 'unit' !== $key ) {
-					$errors[] = $key;
-				}
-				if ( empty( $value ) && 0 === strlen( $value ) ) {
-					unset( $input[ $key ] );
-				}
-			}
-
-			// Return 0 & set error.
-			if ( isset( $errors ) ) {
-
-				foreach ( $errors as $error ) {
-
-					$input[ $error ] = '0';
-
-					add_settings_error( 'option-tree', 'invalid_dimension_' . $error, sprintf( $string_nums, '<code>' . $error . '</code>', '<code>' . $field_id . '</code>' ), 'error' );
-
+				if ( ! empty( $value ) ) {
+					if ( ! is_numeric( $value ) && 'unit' !== $key ) {
+						add_settings_error( 'option-tree', 'invalid_dimension_' . $key, sprintf( $string_nums, '<code>' . $key . '</code>', '<code>' . $field_id . '</code>' ), 'error' );
+					} else {
+						$input_safe[ $key ] = sanitize_text_field( $value );
+					}
 				}
 			}
+		} elseif ( 'gallery' === $type ) {
 
-			if ( empty( $input ) ) {
-				$input = '';
+			$input_safe = '';
+
+			if ( '' !== trim( $input ) ) {
+				$input_safe = sanitize_text_field( $input );
 			}
 		} elseif ( 'google-fonts' === $type ) {
 
-			unset( $input['%key%'] );
+			$input_safe = array();
 
-			// Loop over array and check for values.
-			if ( is_array( $input ) && ! empty( $input ) ) {
-				$input = array_values( $input );
+			// Loop over array.
+			foreach ( $input as $key => $value ) {
+				if ( '%key%' === $key ) {
+					continue;
+				}
+
+				foreach ( $value as $fk => $fvalue ) {
+					if ( is_array( $fvalue ) ) {
+						foreach ( $fvalue as $sk => $svalue ) {
+							$input_safe[ $key ][ $fk ][ $sk ] = sanitize_text_field( $svalue );
+						}
+					} else {
+						$input_safe[ $key ][ $fk ] = sanitize_text_field( $fvalue );
+					}
+				}
 			}
 
-			// No value; set to empty.
-			if ( empty( $input ) ) {
-				$input = '';
-			}
+			array_values( $input_safe );
 		} elseif ( 'link-color' === $type ) {
+
+			$input_safe = array();
 
 			// Loop over array and check for values.
 			if ( is_array( $input ) && ! empty( $input ) ) {
 				foreach ( $input as $key => $value ) {
 					if ( ! empty( $value ) ) {
-						$input[ $key ] = ot_validate_setting( $input[ $key ], 'colorpicker', $field_id . '-' . $key );
-						$has_value     = true;
+						$input_safe[ $key ] = ot_validate_setting( $input[ $key ], 'colorpicker', $field_id . '-' . $key );
 					}
 				}
 			}
 
-			// No value; set to empty.
-			if ( ! isset( $has_value ) ) {
-				$input = '';
-			}
+			array_filter( $input_safe );
 		} elseif ( 'measurement' === $type ) {
 
-			$input[0] = sanitize_text_field( $input[0] );
+			$input_safe = array();
 
-			// No value; set to empty.
-			if ( empty( $input[0] ) && 0 === strlen( $input[0] ) && empty( $input[1] ) ) {
-				$input = '';
+			foreach ( $input as $key => $value ) {
+				if ( ! empty( $value ) ) {
+					$input_safe[ $key ] = sanitize_text_field( $value );
+				}
+			}
+		} elseif ( 'numeric-slider' === $type ) {
+			$input_safe = '';
+
+			if ( ! empty( $input ) ) {
+				if ( ! is_numeric( $input ) ) {
+					add_settings_error( 'option-tree', 'invalid_numeric_slider', sprintf( $string_nums, '<code>' . esc_html__( 'slider', 'option-tree' ) . '</code>', '<code>' . $field_id . '</code>' ), 'error' );
+				} else {
+					$input_safe = sanitize_text_field( $input );
+				}
+			}
+		} elseif ( 'on-off' === $type ) {
+			$input_safe = '';
+
+			if ( ! empty( $input ) ) {
+				$input_safe = sanitize_text_field( $input );
+			}
+		} elseif ( 'radio' === $type || 'radio-image' === $type || 'select' === $type || 'sidebar-select' === $type ) {
+			$input_safe = '';
+
+			if ( ! empty( $input ) ) {
+				$input_safe = sanitize_text_field( $input );
 			}
 		} elseif ( 'spacing' === $type ) {
 
-			// Loop over array and set error keys or unset key from array.
-			foreach ( $input as $key => $value ) {
-				if ( ! empty( $value ) && ! is_numeric( $value ) && 'unit' !== $key ) {
-					$errors[] = $key;
-				}
-				if ( empty( $value ) && 0 === strlen( $value ) ) {
-					unset( $input[ $key ] );
-				}
-			}
+			$input_safe = array();
 
-			// Return 0 & set error.
-			if ( isset( $errors ) ) {
-
-				foreach ( $errors as $error ) {
-
-					$input[ $error ] = '0';
-
-					add_settings_error( 'option-tree', 'invalid_spacing_' . $error, sprintf( $string_nums, '<code>' . $error . '</code>', '<code>' . $field_id . '</code>' ), 'error' );
-				}
-			}
-
-			if ( empty( $input ) ) {
-				$input = '';
-			}
-		} elseif ( 'typography' === $type && isset( $input['font-color'] ) ) {
-
-			$input['font-color'] = ot_validate_setting( $input['font-color'], 'colorpicker', $field_id );
-
-			// Loop over array and check for values.
+			// Loop over array and set errors.
 			foreach ( $input as $key => $value ) {
 				if ( ! empty( $value ) ) {
-					$has_value = true;
-				}
-			}
-
-			// No value; set to empty.
-			if ( ! isset( $has_value ) ) {
-				$input = '';
-			}
-		} elseif ( 'upload' === $type ) {
-
-			if ( filter_var( $input, FILTER_VALIDATE_INT ) === false ) {
-				$input = esc_url_raw( $input );
-			}
-		} elseif ( 'gallery' === $type ) {
-
-			$input = trim( $input );
-
-		} elseif ( 'social-links' === $type ) {
-
-			// Loop over array and check for values, plus sanitize the text field.
-			foreach ( (array) $input as $key => $value ) {
-				if ( ! empty( $value ) && is_array( $value ) ) {
-					foreach ( (array) $value as $item_key => $item_value ) {
-						if ( ! empty( $item_value ) ) {
-							$has_value                  = true;
-							$input[ $key ][ $item_key ] = sanitize_text_field( $item_value );
-						}
+					if ( ! is_numeric( $value ) && 'unit' !== $key ) {
+						add_settings_error( 'option-tree', 'invalid_spacing_' . $key, sprintf( $string_nums, '<code>' . $key . '</code>', '<code>' . $field_id . '</code>' ), 'error' );
+					} else {
+						$input_safe[ $key ] = sanitize_text_field( $value );
 					}
 				}
 			}
+		} elseif ( 'typography' === $type && isset( $input['font-color'] ) ) {
 
-			// No value; set to empty.
-			if ( ! isset( $has_value ) ) {
-				$input = '';
+			$input_safe = array();
+
+			// Loop over array and check for values.
+			foreach ( $input as $key => $value ) {
+				if ( 'font-color' === $key ) {
+					$input_safe[ $key ] = ot_validate_setting( $value, 'colorpicker', $field_id );
+				} else {
+					$input_safe[ $key ] = sanitize_text_field( $value );
+				}
+			}
+		} elseif ( 'upload' === $type ) {
+
+			$input_safe = filter_var( $input, FILTER_VALIDATE_INT );
+
+			if ( false === $input_safe && is_string( $input ) ) {
+				$input_safe = esc_url_raw( $input );
+			}
+		} elseif ( 'url' === $type ) {
+
+			$input_safe = '';
+
+			if ( ! empty( $input ) ) {
+				$input_safe = esc_url_raw( $input );
 			}
 		}
 
@@ -688,17 +720,27 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
 			$single_string_types = apply_filters( 'ot_wpml_option_types', array( 'text', 'textarea', 'textarea-simple' ) );
 
 			if ( in_array( $type, $single_string_types, true ) ) {
-				if ( ! empty( $input ) ) {
-					ot_wpml_register_string( $wmpl_id, $input );
+				if ( ! empty( $input_safe ) ) {
+					ot_wpml_register_string( $wmpl_id, $input_safe );
 				} else {
 					ot_wpml_unregister_string( $wmpl_id );
 				}
 			}
 		}
 
-		$input = apply_filters( 'ot_after_validate_setting', $input, $type, $field_id );
+		/**
+		 * Filter to modify the validated setting field value.
+		 *
+		 * It's important to note that the filter does not have access to
+		 * the original value and can only modify the validated input value.
+		 *
+		 * @param mixed  $input_safe The setting field value.
+		 * @param string $type       The setting field type.
+		 * @param string $field_id   The setting field ID.
+		 */
+		$input_safe = apply_filters( 'ot_after_validate_setting', $input_safe, $type, $field_id );
 
-		return $input;
+		return $input_safe;
 	}
 }
 
