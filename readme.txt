@@ -140,6 +140,7 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 * Fix deprecated `create_function` notice in PHP 7.2+. props @modesthatred
 * Fix notice "Only variables should be passed by reference". props @SergeAx
 * Add `wordpress-plugin` project type to composer file. props @egifford
+* Removed translation files.
 
 = 2.6.0 =
 * Fix a reflected XSS vulnerability with the `add_list_item` & `add_social_links` Ajax requests.
