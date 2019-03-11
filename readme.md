@@ -11,7 +11,7 @@ Theme Options UI Builder for WordPress. A simple way to create & save Theme Opti
 **License:** GPLv3  
 **Donate link:** https://bit.ly/2TBvksV  
 
-[![Build Status](https://travis-ci.org/valendesigns/option-tree.svg?branch=develop)](https://travis-ci.org/valendesigns/option-tree) [![Coverage Status](https://coveralls.io/repos/valendesigns/option-tree/badge.svg?branch=develop)](https://coveralls.io/github/valendesigns/option-tree) 
+[![Build Status](https://travis-ci.org/valendesigns/option-tree.svg?branch=develop)](https://travis-ci.org/valendesigns/option-tree) 
 
 ## Description ##
 
