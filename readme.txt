@@ -94,7 +94,8 @@ This is a complete list of all the available option types that come shipped with
 1. You must deactivate and/or delete the plugin version of OptionTree.
 1. Add the following code to the beginning of your `functions.php`.
 
-`/**
+```
+/**
  * Required: set 'ot_theme_mode' filter to true.
  */
 add_filter( 'ot_theme_mode', '__return_true' );
@@ -102,7 +103,8 @@ add_filter( 'ot_theme_mode', '__return_true' );
 /**
  * Required: include OptionTree.
  */
-require( trailingslashit( get_template_directory() ) . 'option-tree/ot-loader.php' );`
+require( trailingslashit( get_template_directory() ) . 'option-tree/ot-loader.php' );
+```
 
 For a list of all the OptionTree UI display filters refer to the `demo-functions.php` file found in the `/assets/theme-mode/` directory of this plugin. This file is the starting point for developing themes with Theme Mode.
 
