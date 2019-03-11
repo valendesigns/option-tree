@@ -26,7 +26,7 @@ if ( class_exists( 'OT_Loader' ) && defined( 'OT_PLUGIN_MODE' ) && true === OT_P
 	add_action( 'admin_notices', 'ot_conflict_notice' );
 }
 
-if ( ! class_exists( 'OT_Loader' ) ) {
+if ( ! class_exists( 'OT_Loader' ) && defined( 'ABSPATH' ) ) {
 
 	/**
 	 * OptionTree loader class.
