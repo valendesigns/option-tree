@@ -901,7 +901,7 @@ if ( ! function_exists( 'ot_get_media_post_ID' ) ) {
 			global $wpdb;
 
 			// Get the media post ID.
-			$post_ID = $wpdb->get_var( "SELECT ID FROM $wpdb->posts WHERE `post_title` = 'Media' AND `post_type` = 'option-tree' AND `post_status` = 'private'" ); // phpcs:ignore
+			$post_ID = $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM $wpdb->posts p WHERE p.post_title = %s AND p.post_type = %s AND p.post_status = %s", 'Media', 'option-tree', 'private' ) ); // phpcs:ignore
 
 			// Add to the DB.
 			if ( null !== $post_ID && 0 < $post_ID ) {
