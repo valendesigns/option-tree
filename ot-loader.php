@@ -6,7 +6,7 @@
  * Version:     2.7.0
  * Author:      Derek Herman
  * Author URI:  http://valendesigns.com
- * License:     GPLv3
+ * License:     GPLv2 or later
  * Text Domain: option-tree
  *
  * @package OptionTree

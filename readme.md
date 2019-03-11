@@ -8,7 +8,7 @@ Theme Options UI Builder for WordPress. A simple way to create & save Theme Opti
 **Requires at least:** 3.8  
 **Tested up to:** 5.1  
 **Stable tag:** 2.7.0  
-**License:** GPLv3  
+**License:** GPLv2 or later  
 **Donate link:** https://bit.ly/2TBvksV  
 
 [![Build Status](https://travis-ci.org/valendesigns/option-tree.svg?branch=develop)](https://travis-ci.org/valendesigns/option-tree) 
