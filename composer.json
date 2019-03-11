@@ -1,6 +1,7 @@
 {
   "name": "valendesigns/option-tree",
   "description": "Theme Options UI Builder for WordPress.",
+  "type": "wordpress-plugin",
   "homepage": "https://github.com/valendesigns/option-tree",
   "license": "GPLv3",
   "authors": [
