@@ -3298,7 +3298,9 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
 		}
 
 		// Remove CSS from file, but ensure the file is actually CSS first.
-		if ( is_writeable( $filepath ) && 'css' === end( explode( '.', basename( $filepath ) ) ) ) {
+		$file_parts = explode( '.', basename( $filepath ) );
+		$file_ext   = end( $file_parts );
+		if ( is_writeable( $filepath ) && 'css' === $file_ext ) {
 
 			$insertion = ot_normalize_css( $insertion );
 			$regex     = '/{{([a-zA-Z0-9\_\-\#\|\=]+)}}/';
@@ -3370,8 +3372,14 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
 							// Box Shadow.
 						} elseif ( 'box-shadow' === $option_type ) {
 
+							$value_safe = array();
+							foreach ( $value as $val ) {
+								if ( ! empty( $val ) ) {
+									$value_safe[] = $val;
+								}
+							}
 							// Set $value with box-shadow properties or empty string.
-							$value = ! empty( $value ) ? implode( ' ', $value ) : '';
+							$value = ! empty( $value_safe ) ? implode( ' ', $value_safe ) : '';
 
 							// Dimension.
 						} elseif ( 'dimension' === $option_type ) {
@@ -3516,7 +3524,7 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
 								$value .= "background-size: $size;";
 							}
 						}
-					} else {
+					} elseif ( ! empty( $value[ $option_key ] ) ) {
 						$value = $value[ $option_key ];
 					}
 				}
