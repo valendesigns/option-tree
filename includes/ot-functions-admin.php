@@ -711,6 +711,31 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
 			if ( ! empty( $input ) ) {
 				$input_safe = esc_url_raw( $input );
 			}
+		} else {
+
+			$input_safe = '';
+
+			// We don't know what the setting type is, so fallback to `sanitize_textarea_field` on all values.
+			if ( is_string( $input ) ) {
+				$input_safe = sanitize_textarea_field( $input );
+			} elseif ( is_array( $input ) ) {
+
+				/**
+				 * Filter the array values recursively.
+				 *
+				 * @param array $values The value to sanitize.
+				 *
+				 * @return array
+				 */
+				function _sanitize_recursive( $values = array() ) {
+					$result = array();
+					foreach ( $values as $key => $value ) {
+						$result[ $key ] = is_array( $value ) ? _sanitize_recursive( $value ) : sanitize_textarea_field( $value );
+					}
+					return $result;
+				}
+				$input_safe = _sanitize_recursive( $input );
+			}
 		}
 
 		// WPML Register and Unregister strings.
