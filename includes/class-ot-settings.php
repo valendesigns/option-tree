@@ -604,7 +604,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
 								// Convert the settings to an array.
 								$settings = isset( $post_global[ $setting['id'] . '_settings_array' ] ) ? ot_decode( $post_global[ $setting['id'] . '_settings_array' ] ) : array();
 
-								// Settings are empty for some odd ass reason get the defaults.
+								// Settings are empty for some odd reason get the defaults.
 								if ( empty( $settings ) ) {
 									$settings = 'slider' === $setting['type'] ? ot_slider_settings( $setting['id'] ) : ot_list_item_settings( $setting['id'] );
 								}
@@ -631,6 +631,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
 
 											// Validate setting.
 											$input[ $setting['id'] ][ $k ][ $sub_setting['id'] ] = ot_validate_setting( $input[ $setting['id'] ][ $k ][ $sub_setting['id'] ], $sub_setting['type'], $sub_setting['id'], $wpml_id );
+											$has_value = true;
 										}
 									}
 
