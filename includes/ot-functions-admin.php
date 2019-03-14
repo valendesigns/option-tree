@@ -713,28 +713,49 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
 			}
 		} else {
 
+			/* translators: %1$s: the calling function, %2$s the filter name, %3$s the option type, %4$s the version number */
+			$string_error = esc_html__( 'Notice: %1$s was called incorrectly. All stored data must be filtered through %2$s, the %3$s option type is not using this filter. This is required since version %4$s.', 'option-tree' );
+
+			// Log a user notice that things have changed since the last version.
+			add_settings_error( 'option-tree', 'ot_validate_setting_error', sprintf( $string_error, '<code>ot_validate_setting</code>', '<code>ot_validate_setting_input_safe</code>', '<code>' . $type . '</code>', '<code>2.7.0</code>' ), 'error' );
+
 			$input_safe = '';
 
-			// We don't know what the setting type is, so fallback to `sanitize_textarea_field` on all values.
-			if ( is_string( $input ) ) {
-				$input_safe = sanitize_textarea_field( $input );
-			} elseif ( is_array( $input ) ) {
+			/*
+			 * We don't know what the setting type is, so fallback to `sanitize_textarea_field`
+			 * on all values and do a best-effort sanitize of the user data before saving it.
+			 */
+			if ( ! is_object( $input ) ) {
 
-				/**
-				 * Filter the array values recursively.
-				 *
-				 * @param array $values The value to sanitize.
-				 *
-				 * @return array
-				 */
-				function _sanitize_recursive( $values = array() ) {
-					$result = array();
-					foreach ( $values as $key => $value ) {
-						$result[ $key ] = is_array( $value ) ? _sanitize_recursive( $value ) : sanitize_textarea_field( $value );
+				// Contains an integer, float, string or boolean.
+				if ( is_scalar( $input ) ) {
+					$input_safe = sanitize_textarea_field( $input );
+				} else {
+
+					/**
+					 * Filter the array values recursively.
+					 *
+					 * @param array $values The value to sanitize.
+					 *
+					 * @return array
+					 */
+					function _sanitize_recursive( $values = array() ) {
+						$result = array();
+						foreach ( $values as $key => $value ) {
+							if ( ! is_object( $value ) ) {
+								if ( is_scalar( $value ) ) {
+									$result[ $key ] = sanitize_textarea_field( $value );
+								} else {
+									$result[ $key ] = _sanitize_recursive( $value );
+								}
+							}
+						}
+
+						return $result;
 					}
-					return $result;
+
+					$input_safe = _sanitize_recursive( $input );
 				}
-				$input_safe = _sanitize_recursive( $input );
 			}
 		}
 
@@ -758,6 +779,7 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
 		 *
 		 * It's important to note that the filter does not have access to
 		 * the original value and can only modify the validated input value.
+		 * This is a breaking change as of version 2.7.0.
 		 *
 		 * @param mixed  $input_safe The setting field value.
 		 * @param string $type       The setting field type.

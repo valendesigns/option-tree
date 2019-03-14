@@ -116,9 +116,6 @@ For a list of all the OptionTree UI display filters refer to the `demo-functions
 ### Is there a demo theme I can install? ###
 There sure is, and I'm glad you asked. Download and activate the [OptionTree Theme](https://github.com/valendesigns/option-tree-theme) and get some experience setting up OptionTree on your own with detailed directions and tips.
 
-### Why are my translation files not loading? ###
-It is important to note that when you use OptionTree as a plugin, you must store your language files in the `option-tree/languages` directory and use file names like `option-tree-es_ES.mo` & `option-tree-es_ES.po`. However, when using OptionTree in Theme Mode you must also create a `theme-mode` directory inside the `option-tree/languages` directory and store your files there with names like `es_ES.mo` & `es_ES.po`. This is due to the different naming conventions of the `load_plugin_textdomain()` and `load_theme_textdomain()` functions.
-
 ### I get errors or a blank screen when I activate the plugin. What's the deal? ###
 The most likely scenario is your theme already has OptionTree installed in Theme Mode. And since the plugin and theme version can't both be active at the same time without the sky falling on your head, your site has decided to throw in the towel. If that's not your issue, open up a support request and we'll figure it out together. UPDATE: As of OptionTree 2.4.0 the plugin version will not conflict with the Theme Mode version if they are both 2.4.0 or higher.
 
@@ -134,6 +131,7 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 * Fix a vulnerability where Object Injection could take place if someone has a valid nonce.
 * Force all settings to be sanitized and escaped before saving and during display.
 * Add filter `ot_validate_setting_input_safe` which is used to validate the input value of a custom setting type. All values must be validated!
+* Add a notice to let users know that a custom setting type is not properly validating saved data and do a best-effort sanitize of the user data before saving it.
 * Fix issue with Composer autoload and only load OptionTree if we have access to WordPress. props @infomaniac50
 * Fix deprecated `create_function` notice in PHP 7.2+. props @modesthatred
 * Fix notice "Only variables should be passed by reference". props @SergeAx
