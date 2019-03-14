@@ -619,7 +619,7 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 == Upgrade Notice ==
 
 = 2.7.0 =
-All custom setting types must use the `ot_validate_setting_input_safe` filter to sanitize user input data. OptionTree will attempt to sanitize the data, but data loss could happen on custom option type when saving. So please update your custom setting types. Additionally, please install OptionTree on a test server, or backup your database, before upgrading your live site. This version contains breaking changes!
+All custom setting types must use the `ot_validate_setting_input_safe` filter to sanitize user input data. OptionTree will attempt to sanitize the data, but data loss could happen with custom setting types when saving — so please update them. Additionally, please install OptionTree on a test server, or backup your database, before upgrading your live site. This version contains breaking changes!
 
 = 2.3.0 =
 As with each major release, please install OptionTree on a test server before upgrading your live site.
