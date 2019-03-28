@@ -1025,8 +1025,8 @@ if ( ! function_exists( 'ot_default_settings' ) ) {
 			$section_count  = 0;
 			$settings_count = 0;
 			$settings       = array();
-			$table_name     = $wpdb->prefix . 'option_tree';
-			$old_settings   = $wpdb->get_results( $wpdb->prepare( 'SELECT * FROM %s ORDER BY item_sort ASC', $table_name ) ); // phpcs:ignore
+            $table_name = "{$wpdb->prefix}option_tree";
+            $old_settings   = $wpdb->get_results( "SELECT * FROM $table_name ORDER BY item_sort ASC"); // phpcs:ignore
 			$find_table     = $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $table_name ) ); // phpcs:ignore
 
 			if ( $old_settings && $find_table === $table_name ) {
