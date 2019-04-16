@@ -1026,10 +1026,24 @@ if ( ! function_exists( 'ot_default_settings' ) ) {
 			$settings_count = 0;
 			$settings       = array();
 			$table_name     = $wpdb->prefix . 'option_tree';
-			$old_settings   = $wpdb->get_results( $wpdb->prepare( 'SELECT * FROM %s ORDER BY item_sort ASC', $table_name ) ); // phpcs:ignore
-			$find_table     = $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $table_name ) ); // phpcs:ignore
 
-			if ( $old_settings && $find_table === $table_name ) {
+			$find_table = wp_cache_get( 'find_table', 'option_tree' );
+			if ( false === $find_table ) {
+				$find_table = $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $table_name ) ); // phpcs:ignore
+				wp_cache_set( 'find_table', $find_table, 'option_tree', 86400 );
+			}
+
+			if ( $find_table === $table_name ) {
+
+				$old_settings = wp_cache_get( 'old_settings', 'option_tree' );
+				if ( false === $old_settings ) {
+					$old_settings = $wpdb->get_results( "SELECT * FROM ${table_name} ORDER BY item_sort ASC" ); // phpcs:ignore
+					wp_cache_set( 'old_settings', $old_settings, 'option_tree', 86400 );
+				}
+
+				if ( ! $old_settings ) {
+					return;
+				}
 
 				foreach ( $old_settings as $setting ) {
 
