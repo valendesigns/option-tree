@@ -36,7 +36,8 @@ module.exports = function( grunt ) {
 			deploy: {
 				options: {
 					plugin_slug: 'option-tree',
-					build_dir: 'build'
+					build_dir: 'build',
+					plugin_main_file: 'ot-loader.php'
 				}
 			}
 		}
