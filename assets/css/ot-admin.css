@@ -2320,12 +2320,10 @@ select.option-tree-ui-select option {
   ---------------------------------------------------*/
 .format-setting.type-checkbox input,
 .format-setting.type-radio input {
-  float: left;
-  margin: 2px 5px 0 1px;
+  margin: 2px 5px 0 2px;
 }
 .format-setting.type-checkbox label,
 .format-setting.type-radio label {
-  float: left;
   max-width: 90%;
   padding: 0px;
 }
