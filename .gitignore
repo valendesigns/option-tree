@@ -6,7 +6,6 @@
 
 # Composer
 /vendor
-composer.lock
 
 # NPM
 /node_modules

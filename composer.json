@@ -23,7 +23,7 @@
 	"php-coveralls/php-coveralls": "^2.1",
 	"slowprog/composer-copy-file": "0.2.1",
 	"wp-coding-standards/wpcs": "*",
-	"xwp/wp-dev-lib": "^1.0.0"
+	"xwp/wp-dev-lib": "^1.1.0"
   },
   "scripts": {
 	"phpcs": [

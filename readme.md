@@ -12,7 +12,7 @@ Theme Options UI Builder for WordPress. A simple way to create & save Theme Opti
 **Donate link:** https://bit.ly/2TBvksV  
 **Requires PHP:** 5.3.0  
 
-[![Build Status](https://travis-ci.org/valendesigns/option-tree.svg?branch=develop)](https://travis-ci.org/valendesigns/option-tree) [![Built with Grunt](https://cdn.gruntjs.com/builtwith.svg)](http://gruntjs.com) 
+[![Build Status](https://travis-ci.org/valendesigns/option-tree.svg?branch=develop)](https://travis-ci.org/valendesigns/option-tree) [![Built with Grunt](https://gruntjs.com/cdn/builtwith.svg)](http://gruntjs.com) 
 
 ## Description ##
 
