@@ -140,6 +140,7 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 * Removed translation files.
 * Removed the deprecated XML file import method.
 * Fix SQL syntax issue. props @ryanlabelle
+* Fix metabox radio & checkbox style issues. props @ryanlabelle
 
 = 2.6.0 =
 * Fix a reflected XSS vulnerability with the `add_list_item` & `add_social_links` Ajax requests.
