@@ -12,7 +12,7 @@
  * @package OptionTree
  */
 
-if ( class_exists( 'OT_Loader' ) && defined( 'OT_PLUGIN_MODE' ) && true === OT_PLUGIN_MODE ) {
+if ( class_exists( 'OT_Loader' ) && defined( 'OT_PLUGIN_MODE' ) && true === OT_PLUGIN_MODE && defined( 'ABSPATH' ) ) {
 
 	add_filter( 'ot_theme_mode', '__return_false', 999 );
 
