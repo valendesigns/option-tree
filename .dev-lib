@@ -1,0 +1,4 @@
+DEFAULT_BASE_BRANCH=develop
+PHPCS_IGNORE='vendor/*,tests/wp-tests/*,assets/theme-mode/*'
+CHECK_SCOPE=patches
+DEV_LIB_SKIP=phpunit

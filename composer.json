@@ -1,8 +1,9 @@
 {
   "name": "valendesigns/option-tree",
   "description": "Theme Options UI Builder for WordPress.",
+  "type": "wordpress-plugin",
   "homepage": "https://github.com/valendesigns/option-tree",
-  "license": "GPLv3",
+  "license": "GPL-2.0-or-later",
   "authors": [
     {
       "name": "Derek Herman",
@@ -11,9 +12,52 @@
       "role": "Developer"
     }
   ],
+  "prefer-stable" : true,
   "require": {
+	"php": ">=5.3"
   },
-  "autoload": {
-    "files": ["ot-loader.php"]
+  "require-dev": {
+	"brainmaestro/composer-git-hooks": "^2.6.0",
+	"dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
+	"phpcompatibility/phpcompatibility-wp": "*",
+	"php-coveralls/php-coveralls": "^2.1",
+	"slowprog/composer-copy-file": "0.2.1",
+	"wp-coding-standards/wpcs": "*",
+	"xwp/wp-dev-lib": "^1.1.0"
+  },
+  "scripts": {
+	"phpcs": [
+	  "./vendor/bin/phpcs ${1:.} --standard=.phpcs.ruleset.xml"
+	],
+	"phpcbf": [
+	  "./vendor/bin/phpcbf ${1:.} --standard=.phpcs.ruleset.xml"
+	],
+	"phpunit": [
+	  "./bin/phpunit.sh xdebug_off"
+	],
+	"phpunit-coverage": [
+	  "./bin/phpunit.sh xdebug_on"
+	],
+	"post-install-cmd": [
+	  "./bin/install-tests.sh",
+	  "./vendor/bin/cghooks add --no-lock",
+	  "SlowProg\\CopyFile\\ScriptHandler::copy"
+	],
+	"post-update-cmd": [
+	  "./bin/install-tests.sh",
+	  "./vendor/bin/cghooks update",
+	  "SlowProg\\CopyFile\\ScriptHandler::copy"
+	],
+	"readme": [
+	  "./vendor/xwp/wp-dev-lib/scripts/generate-markdown-readme"
+	]
+  },
+  "extra": {
+	"copy-file": {
+	  "tests/autoload.php": "tests/wp-tests/phpunit/wp-tests-config.php"
+	},
+	"hooks": {
+	  "pre-commit": "./vendor/xwp/wp-dev-lib/scripts/pre-commit"
+	}
   }
 }

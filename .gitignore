@@ -1,0 +1,12 @@
+.DS_Store
+
+# PHPUnit
+/coverage
+/tests/wp-tests
+
+# Composer
+/vendor
+
+# NPM
+/node_modules
+/build

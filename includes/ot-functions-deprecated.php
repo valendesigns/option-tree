@@ -1,99 +1,94 @@
-<?php if ( ! defined( 'OT_VERSION' ) ) exit( 'No direct script access allowed' );
+<?php
 /**
- * OptionTree deprecated functions
+ * OptionTree Deprecated Functions.
  *
- * @package   OptionTree
- * @author    Derek Herman <derek@valendesigns.com>
- * @copyright Copyright (c) 2013, Derek Herman
- * @since     2.0
+ * @package OptionTree
  */
 
-/**
- * Displays or returns a value from the 'option_tree' array.
- *
- * @param       string    $item_id
- * @param       array     $options
- * @param       bool      $echo
- * @param       bool      $is_array
- * @param       int       $offset
- * @return      mixed     array or comma seperated lists of values
- *
- * @access      public
- * @since       1.0.0
- * @updated     2.0
- * @deprecated  2.0
- */
+if ( ! defined( 'OT_VERSION' ) ) {
+	exit( 'No direct script access allowed' );
+}
+
 if ( ! function_exists( 'get_option_tree' ) ) {
 
-  function get_option_tree( $item_id = '', $options = '', $echo = false, $is_array = false, $offset = -1 ) {
-    /* load saved options */
-    if ( ! $options )
-      $options = get_option( ot_options_id() );
-    
-    /* no value return */
-    if ( ! isset( $options[$item_id] ) || empty( $options[$item_id] ) )
-      return;
-    
-    /* set content value & strip slashes */
-    $content = option_tree_stripslashes( $options[$item_id] );
-    
-    /* is an array */
-    if ( $is_array == true ) {
-      /* saved as a comma seperated lists of values, explode into an array */
-      if ( !is_array( $content ) )
-        $content = explode( ',', $content );
-    
-      /* get an array value using an offset */
-      if ( is_numeric( $offset ) && $offset >= 0 ) {
-        $content = $content[$offset];
-      } else if ( ! is_numeric( $offset ) && isset( $content[$offset] ) ) {
-        $content = $content[$offset];
-      }
-    
-    /* not an array */
-    } else if ( $is_array == false ) {
-      /* saved as array, implode and return a comma seperated lists of values */
-      if ( is_array( $content ) )
-        $content = implode( ',', $content ); /* This is fucked */
-    }
-    
-    /* echo content */
-    if ( $echo )
-      echo $content;
-    
-    return $content;
-  }
+	/**
+	 * Displays or returns a value from the 'option_tree' array.
+	 *
+	 * @param      string $item_id  The item ID.
+	 * @param      array  $options  Options array.
+	 * @param      bool   $echo     Whether to echo or return value.
+	 * @param      bool   $is_array Whether the value option is an array or string.
+	 * @param      int    $offset   The array key.
+	 * @return     mixed  Array or comma separated lists of values.
+	 *
+	 * @access     public
+	 * @since      1.0.0
+	 * @updated    2.0
+	 * @deprecated 2.0
+	 */
+	function get_option_tree( $item_id = '', $options = array(), $echo = false, $is_array = false, $offset = -1 ) {
 
+		// Load saved options.
+		if ( ! $options ) {
+			$options = get_option( ot_options_id() );
+		}
+
+		// No value return.
+		if ( ! isset( $options[ $item_id ] ) || empty( $options[ $item_id ] ) ) {
+			return;
+		}
+
+		// Set content value & strip slashes.
+		$content = option_tree_stripslashes( $options[ $item_id ] );
+
+		if ( true === $is_array ) {
+			if ( ! is_array( $content ) ) {
+				$content = explode( ',', $content );
+			}
+
+			if ( is_numeric( $offset ) && 0 <= $offset ) {
+				$content = $content[ $offset ];
+			} elseif ( ! is_numeric( $offset ) && isset( $content[ $offset ] ) ) {
+				$content = $content[ $offset ];
+			}
+		} else {
+			if ( is_array( $content ) ) {
+				$content = implode( ',', $content );
+			}
+		}
+
+		if ( $echo ) {
+			echo $content; // phpcs:ignore
+		}
+
+		return $content;
+	}
 }
 
-/**
- * Custom stripslashes from single value or array.
- *
- * @param       mixed $input
- * @return      mixed
- *
- * @access      public
- * @since       1.1.3
- * @deprecated  2.0
- */
 if ( ! function_exists( 'option_tree_stripslashes' ) ) {
 
-  function option_tree_stripslashes( $input ) {
-    if ( is_array( $input ) ) {
-      foreach( $input as &$val ) {
-        if ( is_array( $val ) ) {
-          $val = option_tree_stripslashes( $val );
-        } else {
-          $val = stripslashes( $val );
-        }
-      }
-    } else {
-      $input = stripslashes( $input );
-    }
-    return $input;
-  }
-
+	/**
+	 * Custom stripslashes from single value or array.
+	 *
+	 * @param      mixed $input Input string or array.
+	 * @return     mixed
+	 *
+	 * @access     public
+	 * @since      1.1.3
+	 * @deprecated 2.0
+	 */
+	function option_tree_stripslashes( $input ) {
+		if ( is_array( $input ) ) {
+			foreach ( $input as &$val ) {
+				if ( is_array( $val ) ) {
+					$val = option_tree_stripslashes( $val );
+				} else {
+					$val = stripslashes( $val );
+				}
+			}
+		} else {
+			$input = stripslashes( $input );
+		}
+		return $input;
+	}
 }
-
-/* End of file ot-functions-deprecated.php */
-/* Location: ./includes/ot-functions-deprecated.php */

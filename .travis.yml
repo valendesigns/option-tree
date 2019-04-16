@@ -1,0 +1,34 @@
+language: php
+
+sudo: false
+
+dist: precise
+
+notifications:
+  email:
+    on_success: never
+    on_failure: change
+
+cache:
+  directories:
+    - vendor
+    - $HOME/phpunit-bin
+
+php:
+  - 5.6
+  - 7.3
+
+env:
+  - WP_VERSION=latest WP_MULTISITE=0
+  - WP_VERSION=latest WP_MULTISITE=1
+
+install:
+  - composer install
+  - export DEV_LIB_PATH=vendor/xwp/wp-dev-lib/scripts
+  - source "$DEV_LIB_PATH/travis.install.sh"
+
+script:
+  - source "$DEV_LIB_PATH/travis.script.sh"
+
+after_script:
+  - source "$DEV_LIB_PATH/travis.after_script.sh"

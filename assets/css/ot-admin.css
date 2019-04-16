@@ -1187,6 +1187,19 @@
      -moz-border-radius: 0 0 2px 2px;
           border-radius: 0 0 2px 2px;
 }
+.postbox.ot-meta-box {
+
+}
+
+#poststuff .postbox.ot-meta-box .inside {
+	background-color: #f3f4f5;
+	margin: 0;
+	padding: 6px 12px 12px;
+}
+
+#poststuff .postbox.ot-meta-box .is-panel {
+	display: none !important;
+}
 
 /* -------------------------------------------------- 
   :: Header
@@ -2157,6 +2170,9 @@ li ul .format-setting-label {
   width: 14px;
   z-index: 10;
 }
+.postbox.ot-meta-box .ot-option-group--icon {
+	width: 28px;
+}
 .ot-icon-circle.ot-option-group--icon:before {
   left: 1px;
   position: relative;
@@ -2304,12 +2320,10 @@ select.option-tree-ui-select option {
   ---------------------------------------------------*/
 .format-setting.type-checkbox input,
 .format-setting.type-radio input {
-  float: left;
-  margin: 2px 5px 0 1px;
+  margin: 2px 5px 0 2px;
 }
 .format-setting.type-checkbox label,
 .format-setting.type-radio label {
-  float: left;
   max-width: 90%;
   padding: 0px;
 }
@@ -2506,6 +2520,9 @@ select.option-tree-ui-select option {
 .hide-color-picker {
   display: none;
 }
+.wp-picker-active .hide-color-picker {
+	display: inline-block;
+}
 .option-tree-ui-colorpicker-input-wrap .option-tree-ui-colorpicker-label {
   height: 30px;
   line-height: 30px;
@@ -2534,7 +2551,7 @@ select.option-tree-ui-select option {
   margin: 0 0 5px 0 !important;
 }
 .option-tree-ui-colorpicker-input-wrap .wp-color-result {
-  height: 27px;
+  height: 29px !important;
   outline: 0;
   margin: 0 5px 5px 0px;
   top: 0px;
@@ -2542,7 +2559,8 @@ select.option-tree-ui-select option {
      -moz-box-shadow: none;
           box-shadow: none;
 }
-.option-tree-ui-colorpicker-input-wrap .wp-color-result:after {
+.option-tree-ui-colorpicker-input-wrap .wp-color-result:after,
+.option-tree-ui-colorpicker-input-wrap .wp-color-result-text {
   line-height: 27px;
 }
 .option-tree-ui-colorpicker-input-wrap .wp-picker-container .iris-picker {

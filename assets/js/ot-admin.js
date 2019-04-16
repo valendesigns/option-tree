@@ -1,6 +1,6 @@
 /**
  * Option Tree UI
- * 
+ *
  * Dependencies: jQuery, jQuery UI, ColorPicker
  *
  * @author Derek Herman (derek@valendesigns.com)
@@ -318,8 +318,8 @@
 
       while( match = regex.exec( condition ) ) {
         conditions.push({
-          'check': match[1], 
-          'rule':  match[2], 
+          'check': match[1],
+          'rule':  match[2],
           'value': match[3] || ''
         });
       }
@@ -361,7 +361,7 @@
               break;
             case 'contains':
               result = ( v1.indexOf(v2) !== -1 ? true : false );
-              break; 
+              break;
             case 'is':
               result = ( v1 == v2 );
               break;
@@ -383,7 +383,7 @@
               passed = ( passed && result );
               break;
           }
-          
+
         });
 
         if ( passed ) {
@@ -391,7 +391,7 @@
         } else {
           $(this).animate({opacity: 'hide' , height: 'hide'}, 200);
         }
-        
+
         delete passed;
 
       });
@@ -618,8 +618,9 @@
           dataType: 'json',
           data: {
             action: 'ot_google_font',
-            family: input.val(), 
-            field_id: input.attr('id')
+            family: input.val(),
+            field_id: input.attr( 'id' ),
+            nonce: option_tree.nonce
           }
         }).done(function(response) {
           if ( response.hasOwnProperty('variants') ) {
@@ -728,7 +729,7 @@
         editor.setTheme("ace/theme/chrome");
         editor.getSession().setMode("ace/mode/css");
         editor.setShowPrintMargin( false );
-    
+
         editor.getSession().setValue(this_textarea.val());
         editor.getSession().on('change', function(){
           this_textarea.val(editor.getSession().getValue());
@@ -818,8 +819,9 @@
           url: ajaxurl,
           dataType: 'html',
           data: {
-            action: 'gallery_update'
-          , ids: ids
+            action: 'gallery_update',
+            ids: ids,
+            nonce: option_tree.nonce
           },
           success: function(res) {
             parent.children('.ot-gallery-list').html(res);
@@ -860,50 +862,50 @@
       
       if ( _.isUndefined( shortcode.get('ids') ) && ! input.hasClass('ot-gallery-shortcode') && ids )
         shortcode.set( 'ids', ids )
-      
+
       if ( _.isUndefined( shortcode.get('ids') ) )
         shortcode.set( 'ids', '0' )
-      
+
       attachments = wp.media.gallery.attachments( shortcode )
 
       selection = new wp.media.model.Selection( attachments.models, {
         props:    attachments.props.toJSON()
       , multiple: true
       })
-      
+
       selection.gallery = attachments.gallery
-    
+
       // Fetch the query's attachments, and then break ties from the query to allow for sorting.
       selection.more().done( function () {
         selection.props.set({ query: false })
         selection.unmirror()
         selection.props.unset('orderby')
       })
-      
+
       return selection
-      
+
     }
-    
+
   , open: function (elm) {
-      
+
       ot_gallery.frame(elm).open()
-      
+
     }
-  
+
   , remove: function (elm) {
-      
+
       if ( confirm( option_tree.confirm ) ) {
-        
+
         $(elm).parents('.format-setting-inner').children('.ot-gallery-value').attr('value', '');
         $(elm).parents('.format-setting-inner').children('.ot-gallery-list').remove();
         $(elm).next('.ot-gallery-edit').text( option_tree.create );
         $(elm).remove();
         OT_UI.parse_condition();
-        
+
       }
 
     }
-  
+
   }
 
   // Gallery delete
@@ -911,13 +913,13 @@
     e.preventDefault()
     ot_gallery.remove($(this))
   })
-  
+
   // Gallery edit
   $(document).on('click.ot_gallery.data-api', '.ot-gallery-edit', function (e) {
     e.preventDefault()
     ot_gallery.open($(this))
   })
-  
+
 }(window.jQuery);
 
 /*!
@@ -925,43 +927,43 @@
  */
 !function ($) {
 
-  $(document).on('ready', function () {
-    
+  $( document ).ready( function() {
+
     // Loop over the metaboxes
     $('.ot-metabox-wrapper').each( function() {
-    
+
       // Only if there is a tab option
       if ( $(this).find('.type-tab').length ) {
-        
+
         // Add .ot-metabox-panels
         $(this).find('.type-tab').parents('.ot-metabox-wrapper').wrapInner('<div class="ot-metabox-panels" />')
-        
+
         // Wrapp with .ot-metabox-tabs & add .ot-metabox-nav before .ot-metabox-panels
         $(this).find('.ot-metabox-panels').wrap('<div class="ot-metabox-tabs" />').before('<ul class="ot-metabox-nav" />')
-        
+
         // Loop over settings and build the tabs nav
         $(this).find('.format-settings').each( function() {
-      
+
           if ( $(this).find('.type-tab').length > 0 ) {
             var title = $(this).find('.type-tab').prev().find('label').text()
               , id = $(this).attr('id')
-  
-            // Add a class, hide & append nav item 
+
+            // Add a class, hide & append nav item
             $(this).addClass('is-panel').hide()
             $(this).parents('.ot-metabox-panels').prev('.ot-metabox-nav').append('<li><a href="#' + id + '">' + title + '</a></li>')
-            
+
           }
-          
+
         })
-        
+
         // Loop over the panels and wrap and ID them.
         $(this).find('.is-panel').each( function() {
           var id = $(this).attr('id')
-          
+
           $(this).add( $(this).nextUntil('.is-panel') ).wrapAll('<div id="' + id + '" class="tab-content" />')
-          
+
         })
-        
+
         // Create the tabs
         $(this).find('.ot-metabox-tabs').tabs({
           activate: function( event, ui ) {
@@ -974,10 +976,10 @@
             OT_UI.load_editors();
           }
         })
-        
+
         // Move the orphaned settings to the top
         $(this).find('.ot-metabox-panels > .format-settings').prependTo($(this))
-        
+
         // Remove a bunch of classes to stop style conflicts.
         $(this).find('.ot-metabox-tabs').removeClass('ui-widget ui-widget-content ui-corner-all')
         $(this).find('.ot-metabox-nav').removeClass('ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all')
@@ -985,11 +987,11 @@
         $(this).find('.ot-metabox-nav li').on('mouseenter mouseleave', function() { $(this).removeClass('ui-state-hover') })
 
       }
-    
+
     })
-     
+
   })
-  
+
 }(window.jQuery);
 
 /*!
@@ -997,69 +999,69 @@
  */
 !function ($) {
 
-  $(document).on('ready', function () {
-    
+  $( document ).ready( function() {
+
     // Loop over the theme options
     $('#option-tree-settings-api .inside').each( function() {
-    
+
       // Only if there is a tab option
       if ( $(this).find('.type-tab').length ) {
-        
+
         // Add .ot-theme-option-panels
         $(this).find('.type-tab').parents('.inside').wrapInner('<div class="ot-theme-option-panels" />')
-        
+
         // Wrap with .ot-theme-option-tabs & add .ot-theme-option-nav before .ot-theme-option-panels
         $(this).find('.ot-theme-option-panels').wrap('<div class="ot-theme-option-tabs" />').before('<ul class="ot-theme-option-nav" />')
-        
+
         // Loop over settings and build the tabs nav
         $(this).find('.format-settings').each( function() {
-      
+
           if ( $(this).find('.type-tab').length > 0 ) {
             var title = $(this).find('.type-tab').prev().find('.label').text()
               , id = $(this).attr('id')
-  
-            // Add a class, hide & append nav item 
+
+            // Add a class, hide & append nav item
             $(this).addClass('is-panel').hide()
             $(this).parents('.ot-theme-option-panels').prev('.ot-theme-option-nav').append('<li><a href="#' + id + '">' + title + '</a></li>')
-            
+
           } else {
-          
+
           }
-          
+
         })
-        
+
         // Loop over the panels and wrap and ID them.
         $(this).find('.is-panel').each( function() {
           var id = $(this).attr('id')
-          
+
           $(this).add( $(this).nextUntil('.is-panel') ).wrapAll('<div id="' + id + '" class="tab-content" />')
-          
+
         })
-        
+
         // Create the tabs
         $(this).find('.ot-theme-option-tabs').tabs({
           activate: function( event, ui ) {
             OT_UI.load_editors();
           }
         })
-        
+
         // Move the orphaned settings to the top
         $(this).find('.ot-theme-option-panels > .format-settings').prependTo($(this).find('.ot-theme-option-tabs'))
-      
+
       }
-    
+
     })
-     
+
   })
-  
+
 }(window.jQuery);
 
 /*!
  * Fixes the state of metabox radio buttons after a Drag & Drop event.
  */
 !function ($) {
-  
-  $(document).on('ready', function () {
+
+  $( document ).ready( function() {
 
     // detect mousedown and store all checked radio buttons
     $('.hndle').on('mousedown', function () {
@@ -1071,47 +1073,47 @@
       // set live event listener for mouse up on the content .wrap 
       // then give the dragged div time to settle before firing the reclick function
       $('.wrap').on('mouseup', function () {
-        
+
         var ot_checked_radios = {}
-        
+
         // loop over all checked radio buttons inside of parent element
         $('#' + parent_id + ' input[type="radio"]').each( function () {
-          
+
           // stores checked radio buttons
           if ( $(this).is(':checked') ) {
-            
+
             ot_checked_radios[$(this).attr('name')] = $(this).val()
-          
+
           }
-          
+
           // write to the object
           $(document).data('ot_checked_radios', ot_checked_radios)
-          
+
         })
         
         // restore all checked radio buttons 
         setTimeout( function () {
-      
+
           // get object of checked radio button names and values
           var checked = $(document).data('ot_checked_radios')
-          
+
           // step thru each object element and trigger a click on it's corresponding radio button
           for ( key in checked ) {
-            
+
             $('input[name="' + key + '"]').filter('[value="' + checked[key] + '"]').trigger('click')
-            
+
           }
-          
+
           $('.wrap').unbind('mouseup')
-          
+
         }, 50 )
-      
+
       })
-      
+
     })
-  
+
   })
-  
+
 }(window.jQuery);
 
 /*!
