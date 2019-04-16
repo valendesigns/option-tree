@@ -139,6 +139,7 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 * Add `wordpress-plugin` project type to composer file. props @egifford
 * Removed translation files.
 * Removed the deprecated XML file import method.
+* Fix SQL syntax issue. props @ryanlabelle
 
 = 2.6.0 =
 * Fix a reflected XSS vulnerability with the `add_list_item` & `add_social_links` Ajax requests.

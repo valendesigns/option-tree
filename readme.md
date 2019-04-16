@@ -12,7 +12,7 @@ Theme Options UI Builder for WordPress. A simple way to create & save Theme Opti
 **Donate link:** https://bit.ly/2TBvksV  
 **Requires PHP:** 5.3.0  
 
-[![Build Status](https://travis-ci.org/valendesigns/option-tree.svg?branch=develop)](https://travis-ci.org/valendesigns/option-tree) 
+[![Build Status](https://travis-ci.org/valendesigns/option-tree.svg?branch=develop)](https://travis-ci.org/valendesigns/option-tree) [![Built with Grunt](https://cdn.gruntjs.com/builtwith.svg)](http://gruntjs.com) 
 
 ## Description ##
 
@@ -138,6 +138,7 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 * Add `wordpress-plugin` project type to composer file. props @egifford
 * Removed translation files.
 * Removed the deprecated XML file import method.
+* Fix SQL syntax issue. props @ryanlabelle
 
 ### 2.6.0 ###
 * Fix a reflected XSS vulnerability with the `add_list_item` & `add_social_links` Ajax requests.
