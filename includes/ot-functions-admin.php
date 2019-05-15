@@ -731,29 +731,29 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
 				if ( is_scalar( $input ) ) {
 					$input_safe = sanitize_textarea_field( $input );
 				} else {
-
-					/**
-					 * Filter the array values recursively.
-					 *
-					 * @param array $values The value to sanitize.
-					 *
-					 * @return array
-					 */
-					function _sanitize_recursive( $values = array() ) {
-						$result = array();
-						foreach ( $values as $key => $value ) {
-							if ( ! is_object( $value ) ) {
-								if ( is_scalar( $value ) ) {
-									$result[ $key ] = sanitize_textarea_field( $value );
-								} else {
-									$result[ $key ] = _sanitize_recursive( $value );
+					if ( ! function_exists( '_sanitize_recursive' ) ) {
+						/**
+						 * Filter the array values recursively.
+						 *
+						 * @param array $values The value to sanitize.
+						 *
+						 * @return array
+						 */
+						function _sanitize_recursive( $values = array() ) {
+							$result = array();
+							foreach ( $values as $key => $value ) {
+								if ( ! is_object( $value ) ) {
+									if ( is_scalar( $value ) ) {
+										$result[ $key ] = sanitize_textarea_field( $value );
+									} else {
+										$result[ $key ] = _sanitize_recursive( $value );
+									}
 								}
 							}
+
+							return $result;
 						}
-
-						return $result;
 					}
-
 					$input_safe = _sanitize_recursive( $input );
 				}
 			}
