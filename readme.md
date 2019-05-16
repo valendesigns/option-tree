@@ -127,6 +127,7 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 
 ### 2.7.1 ###
 * Hotfix - Fix error cannot redeclare `_sanitize_recursive()`. props @shramee
+* Hotfix - Ensure `iframe` supports the `style` attribute for users with `unfiltered_html` capabilities.
 * Hotfix - Ensure `noscript` is supported for users with `unfiltered_html` capabilities.
 
 ### 2.7.0 ###
