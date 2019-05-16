@@ -563,23 +563,51 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
 				$input_safe = absint( $input );
 			}
 		} elseif ( in_array( $type, array( 'css', 'javascript', 'text', 'textarea', 'textarea-simple' ), true ) ) {
-			$filter = function( $tags, $context ) {
-				if ( 'post' === $context ) {
-					if ( current_user_can( 'unfiltered_html' ) || true === OT_ALLOW_UNFILTERED_HTML ) {
-						$tags['script']   = array_fill_keys( array( 'async', 'charset', 'defer', 'src', 'type' ), 1 );
-						$tags['style']    = array_fill_keys( array( 'media', 'type' ), 1 );
-						$tags['iframe']   = array_fill_keys( array( 'align', 'frameborder', 'height', 'longdesc', 'marginheight', 'marginwidth', 'name', 'sandbox', 'scrolling', 'src', 'srcdoc', 'style', 'width' ), 1 );
-						$tags['noscript'] = array();
+			if ( ! function_exists( '_filter_wp_kses_post' ) ) {
+				/**
+				 * Filter the allowed HTML and safe CSS styles.
+				 *
+				 * @since 2.7.2
+				 *
+				 * @param bool $add Whether to add or remove the filter.
+				 */
+				function _filter_wp_kses_post( $add = true ) {
+					$css_filter = function ( $attr ) {
+						array_push( $attr, 'display', 'visibility' );
 
-						$tags = apply_filters( 'ot_allowed_html', $tags );
+						$attr = apply_filters( 'ot_safe_style_css', $attr );
+
+						return $attr;
+					};
+
+					$html_filter = function ( $tags, $context ) {
+						if ( 'post' === $context ) {
+							if ( current_user_can( 'unfiltered_html' ) || true === OT_ALLOW_UNFILTERED_HTML ) {
+								$tags['script']   = array_fill_keys( array( 'async', 'charset', 'defer', 'src', 'type' ), true );
+								$tags['style']    = array_fill_keys( array( 'media', 'type' ), true );
+								$tags['iframe']   = array_fill_keys( array( 'align', 'allowfullscreen', 'class', 'frameborder', 'height', 'id', 'longdesc', 'marginheight', 'marginwidth', 'name', 'sandbox', 'scrolling', 'src', 'srcdoc', 'style', 'width' ), true );
+								$tags['noscript'] = true;
+
+								$tags = apply_filters( 'ot_allowed_html', $tags );
+							}
+						}
+
+						return $tags;
+					};
+
+					if ( $add ) {
+						add_filter( 'safe_style_css', $css_filter );
+						add_filter( 'wp_kses_allowed_html', $html_filter, 10, 2 );
+					} else {
+						remove_filter( 'safe_style_css', $css_filter );
+						remove_filter( 'wp_kses_allowed_html', $html_filter );
 					}
 				}
-				return $tags;
-			};
+			}
 
-			add_filter( 'wp_kses_allowed_html', $filter, 10, 2 );
+			_filter_wp_kses_post( true );
 			$input_safe = wp_kses_post( $input );
-			remove_filter( 'wp_kses_allowed_html', $filter );
+			_filter_wp_kses_post( false );
 		} elseif ( 'date-picker' === $type || 'date-time-picker' === $type ) {
 			if ( ! empty( $input ) && (bool) strtotime( $input ) ) {
 				$input_safe = sanitize_text_field( $input );
