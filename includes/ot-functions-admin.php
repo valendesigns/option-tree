@@ -566,9 +566,10 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
 			$filter = function( $tags, $context ) {
 				if ( 'post' === $context ) {
 					if ( current_user_can( 'unfiltered_html' ) || true === OT_ALLOW_UNFILTERED_HTML ) {
-						$tags['script'] = array_fill_keys( array( 'async', 'charset', 'defer', 'src', 'type' ), 1 );
-						$tags['style']  = array_fill_keys( array( 'media', 'type' ), 1 );
-						$tags['iframe'] = array_fill_keys( array( 'align', 'frameborder', 'height', 'longdesc', 'marginheight', 'marginwidth', 'name', 'sandbox', 'scrolling', 'src', 'srcdoc', 'width' ), 1 );
+						$tags['script']   = array_fill_keys( array( 'async', 'charset', 'defer', 'src', 'type' ), 1 );
+						$tags['style']    = array_fill_keys( array( 'media', 'type' ), 1 );
+						$tags['iframe']   = array_fill_keys( array( 'align', 'frameborder', 'height', 'longdesc', 'marginheight', 'marginwidth', 'name', 'sandbox', 'scrolling', 'src', 'srcdoc', 'width' ), 1 );
+						$tags['noscript'] = array();
 
 						$tags = apply_filters( 'ot_allowed_html', $tags );
 					}
