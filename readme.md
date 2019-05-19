@@ -7,7 +7,7 @@ Theme Options UI Builder for WordPress. A simple way to create & save Theme Opti
 **Tags:** [options](https://wordpress.org/plugins/tags/options), [theme options](https://wordpress.org/plugins/tags/theme-options), [meta boxes](https://wordpress.org/plugins/tags/meta-boxes), [settings](https://wordpress.org/plugins/tags/settings)  
 **Requires at least:** 3.8  
 **Tested up to:** 5.2  
-**Stable tag:** 2.7.2  
+**Stable tag:** 2.7.3  
 **License:** [GPLv2 or later](http://www.gnu.org/licenses/gpl-2.0.html)  
 **Donate link:** https://bit.ly/2TBvksV  
 **Requires PHP:** 5.3.0  
@@ -124,6 +124,9 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 
 
 ## Changelog ##
+
+### 2.7.3 ###
+* Hotfix - Update regex for Object Injection check to include `+` bypass and PHP serialized classes. props @erwanlr
 
 ### 2.7.2 ###
 * Hotfix - Extend the `unfiltered_html` `iframe` capabilities to support additional `style` attributes.

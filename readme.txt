@@ -3,7 +3,7 @@ Contributors: valendesigns
 Tags: options, theme options, meta boxes, settings
 Requires at least: 3.8
 Tested up to: 5.2
-Stable tag: 2.7.2
+Stable tag: 2.7.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://bit.ly/2TBvksV
@@ -125,6 +125,9 @@ The most likely scenario is your theme already has OptionTree installed in Theme
 3. Documentation
 
 == Changelog ==
+
+= 2.7.3 =
+* Hotfix - Update regex for Object Injection check to include `+` bypass and PHP serialized classes. props @erwanlr
 
 = 2.7.2 =
 * Hotfix - Extend the `unfiltered_html` `iframe` capabilities to support additional `style` attributes.
