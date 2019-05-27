@@ -950,9 +950,6 @@ if ( ! function_exists( 'ot_type_date_time_picker' ) ) {
 		// Format setting outer wrapper.
 		echo '<div class="format-setting type-date-time-picker ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
 
-		// Date time picker JS.
-		echo '<script>jQuery(document).ready(function($) { OT_UI.bind_date_time_picker("' . esc_attr( $field_id ) . '", "' . esc_attr( $date_format ) . '"); });</script>';
-
 		// Description.
 		echo $has_desc ? '<div class="description">' . wp_kses_post( htmlspecialchars_decode( $field_desc ) ) . '</div>' : '';
 
@@ -961,6 +958,9 @@ if ( ! function_exists( 'ot_type_date_time_picker' ) ) {
 
 		// Build date time picker.
 		echo '<input type="text" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" value="' . esc_attr( $field_value ) . '" class="widefat option-tree-ui-input ' . esc_attr( $field_class ) . '"' . ( true === $is_readonly ? ' readonly' : '' ) . ' />';
+
+		// Date picker JS.
+		echo '<script>OT_UI.bind_date_picker("' . esc_attr( $field_id ) . '", "' . esc_attr( $date_format ) . '");</script>';
 
 		echo '</div>';
 
