@@ -961,7 +961,7 @@ if ( ! function_exists( 'ot_type_date_time_picker' ) ) {
 
 		// Date picker JS.
 		echo '<script>OT_UI.bind_date_picker("' . esc_attr( $field_id ) . '", "' . esc_attr( $date_format ) . '");</script>';
-		
+
 		echo '</div>';
 
 		echo '</div>';
