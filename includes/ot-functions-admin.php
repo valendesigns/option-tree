@@ -4718,7 +4718,7 @@ if ( ! function_exists( 'ot_theme_options_layouts_form' ) ) {
 
 			echo '<select name="' . esc_attr( ot_layouts_id() ) . '[active_layout]" class="option-tree-ui-select">';
 
-			$hidden = '';
+			$hidden_safe = '';
 
 			foreach ( $layouts as $key => $data ) {
 
