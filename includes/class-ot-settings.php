@@ -698,7 +698,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
 
 							foreach ( $current_settings['settings'] as $check_setting ) {
 
-								if ( $setting['id'] === $check_setting['id'] && ! empty( $current_options[ $setting['id'] ] ) ) {
+								if ( isset( $check_setting['id'] ) && $setting['id'] === $check_setting['id'] && ! empty( $current_options[ $setting['id'] ] ) ) {
 
 									foreach ( $current_options[ $setting['id'] ] as $key => $value ) {
 
