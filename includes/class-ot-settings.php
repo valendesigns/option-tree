@@ -310,8 +310,23 @@ if ( ! class_exists( 'OT_Settings' ) ) {
 							echo '<ul class="ui-tabs-nav">';
 
 							// Loop through page sections.
+							// foreach ( (array) $page['sections'] as $section ) {
+							// 	echo '<li id="tab_' . esc_attr( $section['id'] ) . '"><a href="#section_' . esc_attr( $section['id'] ) . '">' . wp_kses_post( $section['title'] ) . '</a></li>';
+							// }
+							// }
+							// Plan-B edit to show group title.
 							foreach ( (array) $page['sections'] as $section ) {
-								echo '<li id="tab_' . esc_attr( $section['id'] ) . '"><a href="#section_' . esc_attr( $section['id'] ) . '">' . wp_kses_post( $section['title'] ) . '</a></li>';
+								if ( isset( $section['group'] ) ) {
+									if ( isset( $section['group']['title'] ) ) {
+										echo '<li class="pb-section-group">';
+										if ( isset( $section['group']['icon'] ) ) {
+											echo '<i class="' . esc_attr( $section['group']['icon'] ) . '"></i> ';
+										}
+										echo  esc_attr( $section['group']['title'] ) . '</li>';
+									}
+								}
+								echo '<li id="tab_' . esc_attr( $section['id'] ) . '">';
+								echo '<a href="#section_' . esc_attr( $section['id'] ) . '">' . wp_kses_post( $section['title'] ) . '</a></li>';
 							}
 
 							echo '</ul>';
@@ -698,7 +713,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
 
 							foreach ( $current_settings['settings'] as $check_setting ) {
 
-								if ( $setting['id'] === $check_setting['id'] && ! empty( $current_options[ $setting['id'] ] ) ) {
+								if ( isset( $check_setting['id'] ) && $setting['id'] === $check_setting['id'] && ! empty( $current_options[ $setting['id'] ] ) ) {
 
 									foreach ( $current_options[ $setting['id'] ] as $key => $value ) {
 
