@@ -390,6 +390,10 @@ if ( ! class_exists( 'OT_Settings' ) ) {
 					// Loop through page sections.
 					foreach ( (array) $this->get_sections( $page ) as $section ) {
 
+						if ( empty( $section ) ) {
+							continue;
+						}
+
 						// Add each section.
 						add_settings_section(
 							$section['id'],
