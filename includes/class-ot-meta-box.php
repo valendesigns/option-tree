@@ -207,7 +207,7 @@ if ( ! class_exists( 'OT_Meta_Box' ) ) {
 			global $pagenow;
 
 			// Verify nonce.
-			if ( isset( $_POST[ $this->meta_box['id'] . '_nonce' ] ) && ! wp_verify_nonce( $_POST[ $this->meta_box['id'] . '_nonce' ], $this->meta_box['id'] ) ) { // phpcs:ignore
+			if ( ! isset( $_POST[ $this->meta_box['id'] . '_nonce' ] ) || ! wp_verify_nonce( $_POST[ $this->meta_box['id'] . '_nonce' ], $this->meta_box['id'] ) ) { // phpcs:ignore
 				return $post_id;
 			}
 
