@@ -694,7 +694,7 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
 			if ( ! empty( $input ) ) {
 				$input_safe = sanitize_text_field( $input );
 			}
-		} elseif ( 'radio' === $type || 'radio-image' === $type || 'select' === $type || 'sidebar-select' === $type ) {
+		} elseif ( 'radio' === $type || 'radio-image' === $type || 'select' === $type || 'sidebar-select' === $type || 'menu-select' === $type ) {
 			$input_safe = '';
 
 			if ( ! empty( $input ) ) {
@@ -2302,6 +2302,7 @@ if ( ! function_exists( 'ot_option_types_array' ) ) {
 				'radio-image'               => esc_html__( 'Radio Image', 'option-tree' ),
 				'select'                    => esc_html__( 'Select', 'option-tree' ),
 				'sidebar-select'            => esc_html__( 'Sidebar Select', 'option-tree' ),
+				'menu-select'               => esc_html__( 'Menu Select', 'option-tree' ),
 				'slider'                    => esc_html__( 'Slider', 'option-tree' ),
 				'social-links'              => esc_html__( 'Social Links', 'option-tree' ),
 				'spacing'                   => esc_html__( 'Spacing', 'option-tree' ),
@@ -5057,7 +5058,7 @@ if ( ! function_exists( 'ot_decode' ) ) {
 		preg_match( '/a:\d+:{.*?}/', $decoded, $array_matches, PREG_OFFSET_CAPTURE, 0 );
 
 		// Search for an object.
-		preg_match( '/O|C:\+?\d+:"[a-z0-9_]+":\+?\d+:/i', $decoded, $obj_matches, PREG_OFFSET_CAPTURE, 0 );
+		preg_match( '/O|C:\+?\d+:"[a-z0-9_]+":\+?\d+:/', $decoded, $obj_matches, PREG_OFFSET_CAPTURE, 0 );
 
 		// Prevent object injection or non arrays.
 		if ( $obj_matches || ! $array_matches ) {

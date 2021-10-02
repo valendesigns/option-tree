@@ -2155,6 +2155,67 @@ if ( ! function_exists( 'ot_type_sidebar_select' ) ) {
 	}
 }
 
+if ( ! function_exists( 'ot_type_menu_select' ) ) {
+
+	/**
+	 * Menu Select option type.
+	 * 
+	 * This option type bring us to have all Wordpress navigation menus as a select box in the 
+	 * Option panel.
+	 * 
+	 * Suppose you want to create a mega menu in multi dimensions row and column or wanting
+	 * To create, manage and show some custom menus in the some post or pages or even creating a dynamical menu.
+	 * This functionality help us to do all of them.
+	 * 
+	 * See @ot_display_by_type to see the full list of available arguments.
+	 *
+	 * @param array $args An array of arguments.
+	 *
+	 * @access public
+	 * @since  2.7.3
+	 */
+	function ot_type_menu_select( $args = array() ) {
+
+		// Turns arguments array into variables.
+		extract( $args ); // phpcs:ignore
+
+		// Verify a description.
+		$has_desc = ! empty( $field_desc ) ? true : false;
+
+		// Format setting outer wrapper.
+		echo '<div class="format-setting type-menu-select ' . ( $has_desc ? 'has-desc' : 'no-desc' ) . '">';
+
+		/* description */
+		echo $has_desc ? '<div class="description">' . wp_kses_post( htmlspecialchars_decode( $field_desc ) ) . '</div>' : '';
+
+		// Format setting inner wrapper.
+		echo '<div class="format-setting-inner">';
+
+		// Build menu select.
+		echo '<select name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_id ) . '" class="option-tree-ui-select ' . esc_attr( $field_class ) . '">';
+
+		// Query menus array
+		$my_menus = wp_get_nav_menus();
+
+		// Has menus.
+		if ( is_array( $my_menus ) && ! empty( $my_menus ) ) {
+			echo '<option value="">-- ' . esc_html__( 'Choose One', 'option-tree' ) . ' --</option>';
+			foreach ( $my_menus as $my_menu ) {
+				$menu_name = ! empty( $my_menu->name ) ? $my_menu->name : 'Untitled';
+				echo '<option value="' . esc_attr( $my_menu->term_id ) . '" ' . selected( $field_value, $my_menu->term_id, false ) . '>' . esc_html( $menu_name ) . '</option>';
+			}
+		} else {
+			echo '<option value="">' . esc_html__( 'No Menus Found', 'option-tree' ) . '</option>';
+		}
+
+		echo '</select>';
+
+		echo '</div>';
+
+		echo '</div>';
+	}
+}
+
 if ( ! function_exists( 'ot_type_slider' ) ) {
 
 	/**
