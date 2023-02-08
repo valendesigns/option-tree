@@ -392,8 +392,8 @@ if ( ! class_exists( 'OT_Settings' ) ) {
 
 						// Add each section.
 						add_settings_section(
-							$section['id'],
-							$section['title'],
+							is_array($section) ? $section['id'] : null,
+							is_array($section) ? $section['title'] : null,
 							array( $this, 'display_section' ),
 							$page['menu_slug']
 						);
