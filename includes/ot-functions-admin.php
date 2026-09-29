@@ -1066,7 +1066,7 @@ if ( ! function_exists( 'ot_default_settings' ) ) {
 
 				$old_settings = wp_cache_get( 'old_settings', 'option_tree' );
 				if ( false === $old_settings ) {
-					$old_settings = $wpdb->get_results( "SELECT * FROM ${table_name} ORDER BY item_sort ASC" ); // phpcs:ignore
+					$old_settings = $wpdb->get_results( "SELECT * FROM {$table_name} ORDER BY item_sort ASC" ); // phpcs:ignore
 					wp_cache_set( 'old_settings', $old_settings, 'option_tree', 86400 );
 				}
 

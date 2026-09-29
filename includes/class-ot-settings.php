@@ -759,7 +759,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
 		public function get_pages( $option = array() ) {
 
 			if ( empty( $option ) ) {
-				return false;
+				return array();
 			}
 
 			// Check for pages.
@@ -770,7 +770,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
 
 			}
 
-			return false;
+			return array();
 		}
 
 		/**
@@ -785,7 +785,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
 		public function get_sections( $page = array() ) {
 
 			if ( empty( $page ) ) {
-				return false;
+				return array();
 			}
 
 			// Check for sections.
@@ -796,7 +796,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
 
 			}
 
-			return false;
+			return array();
 		}
 
 		/**
@@ -811,7 +811,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
 		public function get_the_settings( $page = array() ) {
 
 			if ( empty( $page ) ) {
-				return false;
+				return array();
 			}
 
 			/* check for settings */
@@ -822,7 +822,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
 
 			}
 
-			return false;
+			return array();
 		}
 
 		/**
